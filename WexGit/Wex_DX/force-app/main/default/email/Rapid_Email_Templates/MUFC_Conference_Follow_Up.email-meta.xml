@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>MUFC Conference Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM MUFC Conference Follow Up</name>
+    <style>freeForm</style>
+    <subject>MUFC Follow Up</subject>
+    <textOnly>Dear {!Lead.FirstName},
+
+
+While at the Ultimate Conference you had stopped by our booth.  I&apos;m contacting you as follow up to see if you are interested in exploring how the rapid! PayCard could fulfill any desire to achieve 100% Direct- Deposit for payroll.
+
+
+If you’d like to learn more on how the rapid! PayCard can benefit {!Lead.Company}, and it’s employees, please let me know and I’ll respond accordingly. If not, please let me know that as well, and I’ll be sure to take you off my contact list.
+
+
+Assuming paycards are of interest, I&apos;ve attached a product review and below are a few links to additional information that you might find of value.
+
+
+Ø rapid! PayCard Overview
+
+Ø Employer Benefits of ePayroll:
+
+Ø Employer Frequently Asked Questions:
+
+Ø The rapid! PayCard Features:
+
+
+Yours sincerely,
+
+
+
+Matt Merriam
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: 470-545-3219 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt.merriam@wexinc.com
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

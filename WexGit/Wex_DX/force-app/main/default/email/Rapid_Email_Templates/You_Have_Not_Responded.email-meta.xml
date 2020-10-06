@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM You Have Not Responded</name>
+    <style>freeForm</style>
+    <subject>You have not responded...</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I have made a number of attempts to contact you (via e-mail and/or by phone) and you have not responded.
+
+If there is any interest in exploring the “zero cost” rapid! PayCard program, and how it will benefit {!Account.Name} &amp; its employees, please let me know so we can stay in touch. If you&apos;ve already made other plans, or just prefer that I don&apos;t contact you further, please let me know that as well.
+
+If you’ll please just tell me if I should quietly disappear or stay in touch. Either way, I&apos;ll happily comply.
+
+A few links below to catch up if you&apos;d like.
+
+Ø rapid! PayCard Overview
+
+Ø  Employer Benefits of ePayroll
+
+Ø Employer Frequently Asked Questions
+
+
+with best regards,
+
+Matt Merriam
+
+Matt Merriam
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: 470.545.3219 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt.merriam@wexinc.com
+
+W: www.wexinc.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

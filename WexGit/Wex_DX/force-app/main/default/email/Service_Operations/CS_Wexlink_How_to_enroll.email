@@ -1,0 +1,24 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Thank you for contacting us. To begin the set up for Wexlink reporting, please have the attached Fleet Data Release & Agreement form completed and returned to cswexlink@wexinc.com Please, have the form signed by an authorized contact with the business. Please note the $4.99 monthly servicing fee for this product. Please let us know if we can be of further assistance to you.
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

@@ -1,0 +1,24 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">Dear {!OnlineApplication__c.Contact_Name__c},<br>
+<br>
+Thank you for your interest in the&nbsp;D &amp; S&nbsp;Fuel Card
+program.&nbsp;For your convenience, I’ve attached a link to our online
+application.&nbsp;Please note that the name listed on the Business Service
+Agreement (BSA) must be <u>exactly</u> the same as the name used to sign the
+application.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font size="2" face="Verdana,Helvetica,Sans-Serif" style="background-color: rgb(255, 255, 255);">Please <a href="{!OnlineApplication__c.External_Application_URL__c}">click on this link</a>&nbsp;</font><font size="2" face="Verdana,Helvetica,Sans-Serif" style="background-color: rgb(255, 255, 255);">and follow the instructions to complete your application process.&nbsp; Thank you.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">Again, thank you for your interest in the D&amp;S Fuel Card
+program.&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">If you have any questions about the application, please do not
+hesitate to call or email me.</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">Sincerely,<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">{!User.Name}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">Phone: {!User.Phone} | Fax: {!User.Fax}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="2">{!User.Email} | <u><span style="color: blue;"><a href="http://www.D&amp;SFactors.com">www.D&amp;SFactors.com</a></span></u></font><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>GPS Top 100</name>
+    <style>promotionRight</style>
+    <subject>Exclusive GPS Offer To Top WEX Fleet One Customers±</subject>
+    <textOnly>Dear Valued Fleet One® Customer:
+Your loyalty to Fleet One has definitely been noticed. We’re honored to count you as one of our very top customers, and we’d like to reward your continued allegiance to us with a free gift. 
+For a very limited time, we’d like to offer you our time-and money-saving GPS equipment at NO COST. If any of the following could help your organization grow even more, we’ll give you the tool you need – for free±.
+
+
+Control speeding and out-of-route miles
+
+Verify time cards and time spent at jobs
+
+Eliminate personal use of company vehicles
+
+Dispatch the closest vehicle to customer needs
+
+Recover stolen/lost assets quickly
+Call me today at {!User.Phone} and tell me how many GPS units you need. I’ll ship them out to you, free of charge. It’s just one way Fleet One is dedicated to seeing your organization thrive… and to show our sincere gratitude for your dedication to Fleet One. Don’t wait too long. This exclusive offer to our Top Customers is for a limited time only!
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone: {!User.Phone} 
+Fax: {!User.Fax} 
+{!User.Email} 
+www.FleetOne.com
+± Limited time offer and restrictions apply. Inquire for details.  
+To opt-out of email messages &quot;Reply&quot; with &quot;Opt-Out&quot; in the subject line. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FREE GPS±
+Limited Time Offer
+ 
+Call 
+{!User.Phone} Today!
+ </textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,5 @@
+The following request has been completed by {!Request__c.Assigned_To__c}
+
+{!Request__c.Description__c}
+
+https://na12.salesforce.com/{!Request__c.Id}

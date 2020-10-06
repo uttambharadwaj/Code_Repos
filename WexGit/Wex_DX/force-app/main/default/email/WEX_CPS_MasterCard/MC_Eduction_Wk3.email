@@ -1,0 +1,25 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div style="text-align: center;"><font style="color: rgb(51, 51, 51); font-style: italic;" size="5"><span style="font-family: Times New Roman,Times,Serif; font-weight: bold;">New ePayment Method from Wright Express Widely Accepted</span></font><br></div><br><font size="3"><span style="font-family: Times New Roman,Times,Serif;">Dear {!Contact.FirstName},</span><br style="font-family: Times New Roman,Times,Serif;"><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">I
+ am following up on last week’s message introducing Wright Express’ 
+ePayments solution for your Accounts Payable department.&nbsp; AP Direct is a
+ no cost solution that delivers money to your bottom line.&nbsp; And, vendor 
+participation is critical.</span><br style="font-family: Times New Roman,Times,Serif;"><br style="font-family: Times New Roman,Times,Serif;"><span style="font-weight: bold; font-family: Times New Roman,Times,Serif;">Regarding Vendor Participation</span><span style="font-family: Times New Roman,Times,Serif;">:</span></font><font size="3"><span style="font-family: Times New Roman,Times,Serif;"><br><br></span></font><ul><li><font size="3"><span style="font-family: Times New Roman,Times,Serif;">Wright Express will take the lead enrolling vendors on your behalf—a service you’re not likely to get from an ACH vendor</span></font></li><li><font size="3"><span style="font-family: Times New Roman,Times,Serif;">We will collaborate with you to develop an enrollment strategy appropriate to your supplier relationships</span></font></li><li><font size="3"><span style="font-family: Times New Roman,Times,Serif;">Key suppliers in your sector are already enrolled and accepting this method of electronic payment</span></font></li></ul><font size="3"><span style="font-family: Times New Roman,Times,Serif;">With
+ Wright Express, you can expect practical advice and consultation so 
+that you get the most out of this new program.&nbsp; It’s born out of a 
+service philosophy you cannot find in a traditional bank.&nbsp; Just ask any 
+one of our 300,000 commercial payments customers we have served (and 
+continue to serve) over 27 years.</span><br style="font-family: Times New Roman,Times,Serif;"><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">I
+ would appreciate an opportunity to meet with you for an initial 
+discovery session.&nbsp; I will call you in the next few days to see about 
+availability.&nbsp; In the meantime, please do not hesitate to contact me 
+with questions.</span><br style="font-family: Times New Roman,Times,Serif;"><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">Sincerely, </span><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">{!User.FirstName} {!User.LastName} </span><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">{!User.Title} </span><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">Phone - {!User.Phone} </span><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">Cell - {!User.MobilePhone} </span><br style="font-family: Times New Roman,Times,Serif;"><span style="font-family: Times New Roman,Times,Serif;">{!User.Email} </span><br style="font-family: Times New Roman,Times,Serif;"><br style="font-family: Times New Roman,Times,Serif;"><a href="http://www.wrightexpress.com/payment-solutions/accounts-payable-direct"><span style="font-family: Times New Roman,Times,Serif;">www.wrightexpress.com/ePayments</span></a><br><br><font style="font-family: Times New Roman,Times,Serif;" size="1">CONFIDENTIALITY
+ NOTICE: This message contains confidential information of Wright 
+Express Corporation. It is intended only for the use of the designated 
+recipient(s) stated above and further distribution of the information is
+ prohibited. If you have received this message in error, please notify 
+sender immediately by telephone or reply by e-mail and delete the entire
+ message and any attachments.</font></font>]]></td>
+</tr>
+</table>

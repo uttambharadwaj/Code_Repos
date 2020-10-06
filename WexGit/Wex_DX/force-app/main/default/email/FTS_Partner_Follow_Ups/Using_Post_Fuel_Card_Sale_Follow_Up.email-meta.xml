@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>use for workflow rule to remind fleets earning discounts from us</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>Using/Post Fuel Card Sale Follow Up</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name} FTS Fuel Card</subject>
+    <textOnly>{!Contact.FirstName},
+
+By now you should be on the road to savings with your FTS fuel card. To increase the savings, be sure to register to receive the daily price feed email with all FTS fuel locations.
+
+In addition to the fuel savings, I thought you might also be interested in our national account tire program which provides you with your own negotiated pricing for your over-the-road needs as well as your local stock purchases. Brands include Michelin, Goodyear, Continental, Yokohama, Cooper, and Oliver. 
+
+We value your business. If you have any questions or would like to talk to a tire specialist about this program,  please do not hesitate to call us at 800-749-1724 for customer service.
+
+Thank you,
+{!User.FirstName} {!User.LastName}
+Relationship Manager, EFS 
+Phone:  {!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>InTouch_GPS_Letterhead</letterhead>
+    <name>InTouch eAPP Follow-up</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest in {!OnlineApplication__c.Application_Title__c}</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in the CarsArrive Fleet Card program. For your convenience, I’ve attached a link to our online application. Please note that the name listed on the Business Service Agreement (BSA) must be EXACTLY the same as the name used to sign the application.
+
+Please click on this link and follow the instructions to complete your application process.  Thank you.
+
+Again, thank you for your interest in CarsArrive Fleet Card. If you have any questions about the application, please don’t hesitate to call or email me.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+
+{!User.CompanyName}
+Phone: {!User.Phone}
+Fax: {!User.Fax}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

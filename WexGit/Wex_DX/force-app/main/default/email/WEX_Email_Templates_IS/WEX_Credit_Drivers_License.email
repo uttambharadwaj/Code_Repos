@@ -1,0 +1,33 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font>
+<p style="color: gray; font-size: 8pt; font-family: arial;"><br></p><font face="Arial, sans-serif">
+<p class="MsoNormal">Credit is requesting verification of the Personal Guaranty
+signer’s date of birth.<o:p></o:p></p><p class="MsoNormal"><o:p>&nbsp;</o:p></p><p style="margin: 0in 0in 0.0001pt; background-image: initial; background-attachment: initial; background-color: white; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">Please email or fax a copy of a third party document such
+as a driver’s license that contains both the name of the person who signed the
+Person Guaranty and their date of birth.&nbsp; <o:p></o:p></p><p style="margin: 0in 0in 0.0001pt; background-image: initial; background-attachment: initial; background-color: white; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><span style="background-image: initial; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;"><o:p>&nbsp;</o:p></span></p><p class="MsoNormal"><span style="background: white;">As soon as I receive it</span>,
+I will forward it to credit so they can finalize the review of your application
+so we can get your new cards ordered.<o:p></o:p></p><p class="MsoNormal"><o:p>&nbsp;</o:p></p><p style="margin: 0in 0in 0pt;" class="MsoNormal">
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal">Again, thank you for choosing WEX! &nbsp;<o:p></o:p></p></font><font face="Arial, sans-serif">
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><br><em>{!User.FirstName} {!User.LastName} <br>{!User.Title} <br>Phone - {!User.Phone} <br>Fax - {!User.Fax} <br>{!User.Email} </em></p>
+<p style="color: black; font-size: 10pt; font-family: Verdana, sans-serif; line-height: normal; margin: 0in 0in 0pt;" class="MsoNormal"><br><br><br><em>&nbsp;</em></p></font>
+<p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt"></span></i></font>&nbsp;</p>
+<p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</span></i><i><span style="COLOR: gray; FONT-SIZE: 8pt"></span></i></font></p>
+<p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</span></i></font></p>
+<p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i></font></p>
+<p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</span></i></font></p>
+<p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email},<a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="COLOR: gray"> <span style="COLOR: rgb(51,51,255)">email us to unsubscribe</span></span></a>. Please be sure to include your name, company name and email address in the email.</span></i></font></p><br>]]></td>
+</tr>
+</table>

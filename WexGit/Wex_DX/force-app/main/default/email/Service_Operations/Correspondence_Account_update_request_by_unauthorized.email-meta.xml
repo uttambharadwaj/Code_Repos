@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Account : update request by unauthorized</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+We cannot complete a change in the Esso account for anyone who is not an authorized contact on the account. Please complete the attached Contact Update form, have it signed by an officer of the company or a currently authorized contact, and return it to us with your request for the account change.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

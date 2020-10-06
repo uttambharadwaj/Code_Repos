@@ -1,0 +1,12 @@
+Congratulations on enrolling in The Gold Program!  As a reminder, we have your agreed upon pricing in place and the purchasing terms by which you will pay for your tires.  You can now purchase your tires at any authorized dealer under The Gold Program National Account, and receive your negotiated discount pricing.
+
+To help you get started, I have included quick instructions on how to purchase through The Gold Program for both your stock and emergency breakdown needs. Please distribute to anyone in your company (dispatchers, drivers, maintenance, etc) who might need it in order to utilize the program.  You can also visit goldprogramonline.com to register for our customer portal where you can view your pricing, invoices, etc.  You will need your Gold ID which is {!Account.Gold_ID__c}.  
+
+I will follow up with you soon, but please do not hesitate to contact me before that time with any questions or if you need additional tire pricing.  
+
+
+Thank you,
+{!Opportunity.OwnerFullName} 
+{!Opportunity.OwnerTitle}
+{!Opportunity.OwnerPhone}
+Gold Line: 866-354-7322

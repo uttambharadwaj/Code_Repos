@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Card Termed per Fraud</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Fraud Card Skimming</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. That card was used at a site where a card skimming device was discovered, and our fraud department emailed your office to advise they would terminate the card as a precaution. I have issued a new card with the same information, but with a different card number to prevent possible unauthorized charges. Please let me know if I may be of further assistance.
+
+Regards,  
+{!User.FirstName} 
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,38 @@
+<messaging:emailTemplate subject="{!relatedTo.Offer__r.Application_Title__c} Fuel Card Application - More information needed" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br><br></br>
+{!relatedTo.Contact_Name__c},
+<br></br><br></br>
+
+Congratulations!  Your application has been processed; however, additional information is needed in order to complete your application. 
+<br></br><br></br>
+
+Someone will contact you shortly to review the incomplete information. 
+<br></br><br></br>
+
+Again, thank you for your interest in the {!relatedTo.Offer__r.Application_Title__c} fuel card. If you have any questions about the application, please don’t hesitate to call me at {!relatedTo.Owner.Phone} or email me at {!relatedTo.Owner.Email}.<br></br><br></br>
+
+Sincerely, 
+<br></br><br></br>
+
+{!relatedTo.Owner.FirstName} {!relatedTo.Owner.LastName}<br></br>
+{!relatedTo.Owner.Phone}<br></br>
+{!relatedTo.Owner.Email}<br></br>
+<a href="{!relatedTo.Offer__r.Complete_Later_Url__c}" target="_blank">{!relatedTo.Offer__r.Complete_Later_Url__c}</a><br></br>
+<br></br><br></br>
+<br></br>
+
+Sent to:  {!relatedTo.Email__c}<br></br>
+Reference #: {!relatedTo.Name}<br></br>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

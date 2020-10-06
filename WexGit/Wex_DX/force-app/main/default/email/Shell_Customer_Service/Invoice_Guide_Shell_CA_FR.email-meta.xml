@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Images/Shell_Canada_Invoice_FR1.pdf</attachedDocuments>
+    <available>true</available>
+    <description>French Sample invoice with guided notes for Shell Canada</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Invoice Guide-Shell CA(FR)</name>
+    <style>freeForm</style>
+    <subject>Shell Invoice and Report Guide</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+
+
+
+
+Veuillez prendre connaissance du guide ci-joint pour en savoir plus sur vos factures et rapports de Shell.
+
+
+
+Cordialement,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+Email - {!User.Email}
+
+
+
+
+
+
+
+
+
+© Shell Fleet Solutions, 2020. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106
+
+
+La carte de carburant Shell est émise par WEX Canada Ltd. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur le suivi des clics par WEX Inc. et sur les liens qui figurent dans le présent courriel.
+
+
+AVIS DE CONFIDENTIALITÉ : Ce courriel est envoyé par WEX à la demande de Shell. Shellmd et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du destinataire désigné ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou par courriel et supprimer le message en entier ainsi que toute pièce jointe.
+
+
+
+© Shell Trademark Management B.V., 2020. Tous les droits qui ne sont pas expressément octroyés par la présente sont réservés.
+
+
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès de Shell Fleet Solutions. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous pour vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

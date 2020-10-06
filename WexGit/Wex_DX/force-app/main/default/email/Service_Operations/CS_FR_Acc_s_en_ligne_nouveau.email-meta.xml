@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Votre mot de passe temporaire a été envoyé à l&apos;adresse e-mail dans le fichier.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Accès en ligne: nouveau</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Votre mot de passe temporaire a été envoyé à l&apos;adresse e-mail dans le fichier. Si cela ne vous a pas été transmis par le gestionnaire de flotte, nous pouvons avoir besoin de mettre à jour les informations de contact sur le compte. Veuillez remplir le formulaire de mise à jour de contact ci-joint, le faire signer par un contact autorisé actuel ou un dirigeant de l&apos;entreprise, et nous le retourner avec votre demande de mot de passe temporaire.
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

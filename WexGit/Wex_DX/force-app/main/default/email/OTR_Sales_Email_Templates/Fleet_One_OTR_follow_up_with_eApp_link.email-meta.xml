@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>with eApp link</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One OTR Follow Up</name>
+    <style>freeForm</style>
+    <subject>Thanks for your Interest!</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you for your interest in the WEX Fleet One fuel program, designed to offer you nationwide acceptance and fuel cost savings.
+
+The benefits you will enjoy as a WEX Fleet One customer are:
+
+· Cash Price at the Pump
+
+· Discounts and Rebates
+
+· Free Control Features by Account and Card
+
+· Access to Controlled Cash Advances
+
+· Zero Transaction Fees
+
+· Free Access to Online Account Management Tools
+
+· Daily, Weekly or Monthly Detailed Activity Report
+
+· Easy Fuel Tax Reporting with our Online System Reporting
+
+· Flexible Terms with Easy Credit Approval
+
+· 24/7 Access to Customer Service
+
+· High Rating in Customer Service Satisfaction Surveys
+
+When you are ready to get started, please click here to complete your application.  If you have any questions throughout the process I am available to assist. Thank you for choosing WEX Fleet One!
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

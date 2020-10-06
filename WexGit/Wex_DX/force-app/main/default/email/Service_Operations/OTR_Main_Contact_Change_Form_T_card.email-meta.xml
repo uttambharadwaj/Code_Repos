@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_OTR</letterhead>
+    <name>OTR - Main Contact Change Form (T-card)</name>
+    <style>freeForm</style>
+    <subject>T-Chek Main Contact Change - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. We have attached the &lt; T-chek Main Contact Change Form&gt; you requested.  Please complete the form and email it to customer.service@tchek.com.
+
+
+{!Case.OwnerFirstName}
+Customer Service Representative
+WEX Inc.
+1104 Country Hills Drive, Ogden, UT 84403
+Office (888) 824-7378
+www.efsllc.com
+www.fleetone.com
+www.wexinc.com
+
+
+CONFIDENTIALITY NOTICE: The contents in this message and any attachments are legally privileged and confidential, are intended only for the use of the designated recipient(s) stated above and may contain trade secret information of Wright Express protected under the Economic Espionage Act of 1996. If you are not the intended recipient, you may not review, copy or distribute either this message or any attachments. If you have received this message in error, please notify the sender immediately by telephone or reply e-mail and delete the entire message and any attachments.
+The sender believes that this e-mail and any attachments were free of any virus, worm, Trojan horse, and/or malicious code when sent. This message and its attachments could have been infected during transmission. By reading the message and opening any attachments, the recipient accepts full responsibility for taking protective and remedial action about viruses and other defects. The sender&apos;s employer is not liable for any loss or damage arising in any way from this message or its attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

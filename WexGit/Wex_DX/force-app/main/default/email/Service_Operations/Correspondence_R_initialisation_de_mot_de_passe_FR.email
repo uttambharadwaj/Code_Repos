@@ -1,0 +1,29 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Nous avons réinitialisé  votre mot de passe pour le nom d’utilisateur  BLANK
+Vous recevrez par courriel un nouveau mot de passe  temporaire.    
+Vous pourrez alors vous rendre sur www.essofleetonline.com et accédez au site.
+<br></br>
+Svp, prendre note que l’utilisation d’un téléphone intelligent ou une tablette ne fonctionnera pas sur le site.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

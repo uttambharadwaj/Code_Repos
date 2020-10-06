@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso- Account : program transition (need premium account)</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+This would mean moving your account to an Esso Premier Plus account. You can find out more about the differences between the Esso Business Card account that you currently have and the Esso Premier Plus account by going online to: www.esso.ca. One major benefit of the Esso Premier Plus account is increased reporting, including being able to keep up with your drivers’ mileage. There is no charge for the Esso Premier Plus account, but we would need to send you new fuel cards because the odometer entry requirement is part of the magnetic stripe on the cards. If you decide you wish to make this change, please complete the attached Program Transition form. If you have any questions, we would be happy to answer them. Please let us know.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

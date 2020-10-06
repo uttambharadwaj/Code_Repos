@@ -1,0 +1,54 @@
+<table height="400" width="650" cellpadding="0" border="0" cellspacing="0" >
+<tr valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="460" >
+<table height="400" width="460" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<SPAN style="FONT-FAMILY: 'Trebuchet MS','sans-serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><SPAN style="FONT-SIZE: 12pt"><FONT face=Calibri><SPAN style="COLOR: black; FONT-SIZE: 13.5pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT face=Verdana,Helvetica,Sans-Serif>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>Dear {!Contact.FirstName},<?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><o:p><FONT size=3 face=Calibri>&nbsp;</FONT></o:p></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><FONT size=3><FONT face=Calibri><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial">In order to help protect our clients against fraud losses, we have implemented strict fraud strategies based on recent trends.&nbsp;These strategies may impact your holiday purchasing this year, especially if you are planning to make multiple or large-dollar purchases in card-present transactions at retail stores. As a result, your cardholders may experience declines or card suspensions. Card Program Administrators may contact &nbsp;</SPAN><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><A href="mailto:WEXMCFRAUD@wexinc.com"><SPAN style="COLOR: blue; mso-bidi-font-family: Arial">WEXMCFRAUD@wexinc.com</SPAN></A></SPAN><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"> during EST business hours with questions or concerns &nbsp;or to notify the Fraud Team of planned, large or unusual purchases.&nbsp;They may also call our 24-hour Customer Service Department at 877-557-6415 to assist with declines or card suspensions.<o:p></o:p></SPAN></FONT></FONT></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><o:p><FONT size=3 face=Calibri>&nbsp;</FONT></o:p></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>Sincerely, <o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>{!User.FirstName} {!User.LastName} <o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>{!User.Title} <o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>Phone - {!User.Phone} <o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>Cell - {!User.MobilePhone} <o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>{!User.Email} <o:p></o:p></FONT></FONT></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><o:p><FONT size=3 face=Calibri>&nbsp;</FONT></o:p></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><U><SPAN style="COLOR: blue; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT size=3><FONT face=Calibri>www.wexinc.com<o:p></o:p></FONT></FONT></SPAN></U></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal></FONT></SPAN><SPAN style="COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><o:p>&nbsp;</o:p></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT face=Arial,Sans-Serif><FONT size=1>CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.<o:p></o:p></FONT></FONT></SPAN></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNoSpacing></FONT></SPAN></SPAN></P>]]></td>
+</tr>
+</table>
+</td>
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="10" >
+<![CDATA[]]></td>
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="180" >
+<table height="400" width="180" cellpadding="5" border="0" cellspacing="5" >
+<tr height="100" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="180" tEditID="c2r1" locked="0" aEditID="c2r1" rowspan="3" >
+<![CDATA[<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><IMG border=0 alt="" align=left src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001LHlV&amp;oid=00D700000009EOI">&nbsp;<FONT style="BACKGROUND-COLOR: #ffffff" color=#cc0000 face=Arial,Sans-Serif><EM><STRONG><BR></STRONG></P>
+<P align=center>&nbsp;</P>
+<P align=right>&nbsp;</P>
+<P align=center>&nbsp;</P>
+<P align=center>&nbsp;</P>
+<P align=center>&nbsp;</P>
+<P align=center>&nbsp;</P>
+<P align=center>&nbsp;</P>
+<P align=left><STRONG>&nbsp;&nbsp;&nbsp; Questions about&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; potential fraud?</STRONG></P>
+<P align=left>&nbsp;</P>
+<P align=left>&nbsp;</P>
+<P align=center><STRONG><FONT size=2>Email our Fraud Team</FONT></STRONG></P>
+<P align=center><STRONG><FONT size=2>during business hours (ET):</FONT></STRONG></P>
+<P align=center><A href="mailto:WEXMCFRAUD@wexinc.com"><A href="mailto:WEXMCFRAUD@wexinc.com"><STRONG><FONT size=2>WEXMCFRAUD@wexinc.com</FONT></STRONG></A></A></P>
+<P align=center><STRONG><FONT size=2>or call our 24-hour&nbsp;Customer Service Department at </FONT></STRONG></P>
+<P align=center><STRONG><FONT size=2>877-557-6415.</FONT></STRONG></P></EM></FONT>]]></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>

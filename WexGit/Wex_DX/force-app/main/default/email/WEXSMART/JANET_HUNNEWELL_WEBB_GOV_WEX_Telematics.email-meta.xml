@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For JANET HUNNEWELL_WEBB USE</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>JANET HUNNEWELL_WEBB - WEX Telematics</name>
+    <style>none</style>
+    <subject>Six smart ways to increase your fleet’s fuel efficiency</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,16 @@
+The WEX Asia Virtual Payments team has received your request and will be in touch with you within 24 hours. Please send all emails regarding this case to SupportAsia@wexinc.com, and reference your Case Number {!Case.CaseNumber}. If your matter requires immediate attention, please call the office line  +65 6808 5629
+
+
+WEX Asia 虛擬付款團隊已經收到您的需求且會在 24 小時內回覆，在之後的郵件往返也請寄到 SupportAsia@wexinc.com 並參考需求編号 {!Case.CaseNumber}。如果您這是緊急需求，請直接撥打我們的辦公室電話+65 6808 5629。
+
+Thanks, 感謝
+The WEX Asia Virtual Payments Team
+WEX Asia 虛擬付款團隊
+
+---
+
+From: {!Case.SuppliedEmail} 
+
+Subject: {!Case.Subject} 
+
+{!Case.Description}

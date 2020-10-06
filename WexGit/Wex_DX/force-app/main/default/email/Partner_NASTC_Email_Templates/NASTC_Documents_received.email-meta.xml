@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For use when documents have been received</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>NASTC Documents received</name>
+    <style>freeForm</style>
+    <subject>We have received your documents</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+I have received your documents, thank you. Copies have been sent to the underwriter. Currently, your file is being processed in operations and you should receive your new WEX Fleet One fuel cards in approximately 7 days. Please be sure to follow any instructions contained in your welcome packet.
+
+
+Thank You,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

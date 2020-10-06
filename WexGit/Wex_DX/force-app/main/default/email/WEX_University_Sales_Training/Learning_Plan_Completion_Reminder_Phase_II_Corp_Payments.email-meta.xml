@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send from Training Event to any one assigned a Learning Plan Phase II that hasn&apos;t completed within 30 days.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Learning Plan Completion Reminder Phase II Corp Payments</name>
+    <style>freeForm</style>
+    <subject>Your Learning Plan Misses You!</subject>
+    <textOnly>Your Learning Plan is Waiting!
+
+Hi ,
+
+I&apos;m just checking in to see how you&apos;re doing on completing your Learning Plan Phase II Corporate Payments (https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/0g000000H2uy/fCkk0cnJjPFHlaRXStOhMDxKCdTRNlcP0gpb1Q5odnA).
+
+Once you&apos;ve fully reviewed the Learning Plan, take the Knowledge Check (https://forms.gle/hRLqTVZSnL1uvVj57) to indicate that you&apos;ve completed this training.
+
+Please let me know any if you have any questions.
+
+Thank You,
+
+{!User.Name}
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

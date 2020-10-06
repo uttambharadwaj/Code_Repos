@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Wawa_Letterhead</letterhead>
+    <name>Wawa Email Application</name>
+    <style>freeForm</style>
+    <subject>Wawa Fleet Card Program Application</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+Let me first take a moment to say thank you for choosing the Wawa Fleet Card Program. I know you’ll find our card program both convenient and cost-effective.
+
+As you requested, I am forwarding the application for our fleet card program. Please complete as indicated and either fax it back to me at {!User.Fax} or email it to me at {!User.Email}. This application is the first step in getting your fleet account up and running.
+
+I look forward to working with you to finalize the setup details as soon as your account is approved.
+
+If you have any questions, please feel free to contact me at {!User.Phone}.
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+
+
+
+
+
+This communication may contain confidential, proprietary or legally privileged information. It is intended only for the person(s) to whom it is addressed. If you are not an intended recipient, you may not use, read, retransmit, disseminate or take any action in reliance upon it. Please notify the sender that you have received it in error and immediately delete the entire communication, including any attachments. This communication is not intended to create or modify any obligation, contract or warranty of Wawa, Inc., unless Wawa, Inc. clearly expresses such an intent.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

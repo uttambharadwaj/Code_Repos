@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>The marketing team created this Chevron auto response email for Chevrontexacocorrespondance@wexinc.com</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Case - Chevron Auto Response</name>
+    <style>freeForm</style>
+    <subject>Case #: {!Case.CaseNumber} - Thank you for contacting the Chevron and Texaco Correspondence Team</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for reaching out! We have received your email and a customer adviser will follow up with you as soon as possible to resolve your inquiry so you can get back to business.
+
+Answering questions are a top priority for us. If your issue can’t wait, our customer advisers are here to help 24 hours a day at 1-888-531-3698.
+
+In the meantime, you may refer to our resource page for everything you need to know about your Chevron and Texaco Business Card Program.
+
+Tutorial for using our online account management system
+Going paperless
+Finding current balance or available credit on your account
+Driver instructions
+Reporting and spending controls
+And much more…
+
+
+Access your Chevron and Texaco Business Card account on-the-go with our mobile app SmartHub.
+
+Download at the iPhone App Store or for Android users on Google Play. You can also download at www.fleetsmarthub.com.
+
+Best Regards,
+
+Chevron and Texaco Business Card Program Correspondence Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Additional Info Request</name>
+    <style>freeForm</style>
+    <subject>Additional Info Request - {!Claim__c.Account_Name__c}</subject>
+    <textOnly>Dispute Claim No. {!Claim__c.Name}
+
+Hello,
+
+
+We are in the process of reviewing disputed charges.
+
+
+If you have not already done so, we suggest that a police report be filed and the stations involved be contacted immediately to obtain possible video surveillance evidence as most stations keep surveillance tape for only a short period of time.
+
+
+In order to move forward with our investigation, we require additional information in order to proceed with the review of your claim.  Please submit the following items referenced with an (X):
+
+
+The full card number(s) that is in dispute.
+A  copy of the card(s)
+A copy of the Police Report
+The date range of the disputed transactions.
+A reconciliation of valid and disputed transactions (if any are valid during the disputed date range).
+The completion of the attached affidavit.  Please ensure the following steps are completed:
+
+Fully complete each section and include card numbers.
+Sign and date the affidavit.
+Have the affidavit notarized.
+
+A thorough summary of why the transactions are being disputed including; a) where the card(s) was kept prior to the abuse, b) the circumstance around how the card(s) became lost or stolen, and c) how the din(s) used would have been known.
+
+You can return the documentation by fax: 207-791-1655, or email: disputes@fleetfraudservices.com , or mail to:
+
+Fleet Fraud Services
+
+97 Darling Avenue
+
+South Portland, ME 04106
+
+
+Please return the requested documentation within 10 business days from the date of this letter. If the requested information is not received during the 10 business day time period your claim will be considered no longer active and will be closed.
+
+
+If you currently do not have authorization controls assigned to your cards, we strongly encourage you to do so.  If you need assistance with adding these controls, please contact Customer Service.
+
+
+Please keep in mind that resolution to your dispute will take an average of 60 – 90 day s to complete. During this period it is important that your account be kept current based upon the terms and conditions of your fuel card agreement. If it is determined that you are due any credit it will be granted at the resolution of your case. Please note that subject to any limitations imposed by applicable law, you may be liable to us for all unauthorized use of a card until you notify us of such use
+
+
+Please feel free to contact us at (888) 691-0361 should you have any questions.
+
+
+Regards,
+
+Fleet Fraud Services
+
+Toll Free: 888-691-0361
+
+Fax: 207-791-1655</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

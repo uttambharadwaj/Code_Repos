@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Merchant_Letterhead</letterhead>
+    <name>Approved - Autopay 2x / Week Required</name>
+    <style>freeForm</style>
+    <subject>Your Fleet One Fuel Card Application - Requires Attention</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+Great news! We were able to get your company approved for a conditional complimentary line of credit for $$$$$.
+
+
+This approval is conditional that your new account remains on Autopay 2x per Week for the life of your account, or until you apply again for a credit line and meet our credit requirements to have this restriction lifted. Please note, cash products (such as cash advances and Pluschecks) will not be available until the autopay restriction has been lifted.
+
+
+In order for me to complete your account setup and get the cards sent out to you, I need you to reply back to this email with your authorization for me to switch y’all to “Autopay” per the terms of your credit approval (Autopay is required.)
+
+
+Also, please include which 2 days of the week, Mon-Fri, you wish for us to draft you on.
+
+
+EXAMPLE: &quot;I APPROVE AUTOPAY – Monday and Thursday&quot;
+
+
+If you would prefer, you can complete the below form and copy/paste it into your reply email. Please make sure to place an &quot;X&quot; in the two boxes of the week you want us to draft you on.
+
+
+I approve Autopay on (pick 2):
+
+
+
+
+Monday
+
+
+Tuesday
+
+
+Wednesday
+
+
+Thursday
+
+
+Friday
+
+
+Once I receive your reply email, I will reply with a confirmation email and send your application for processing. Typically, your fuel card welcome packet will arrive about 7-10 days later via UPS.
+
+
+Thank you,
+
+
+
+{!User.Name}
+
+{!User.Title}
+
+WEX Fleet One &amp; EFS
+
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+
+khaywood@fleetone.com | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+Case #: {!Case.CaseNumber}
+Functional Area: {!Case.Functional_Area__c} 
+Functional Area Sub-Type: {!Case.Functional_Area_Sub_Type__c} 
+
+Subject: {!Case.Subject} 
+
+The following Comment has been added to your Case:  
+{!Case.Last_Case_Comment}
+
+Please click on the link below to view this case in salesforce:
+
+{!Case.Link}

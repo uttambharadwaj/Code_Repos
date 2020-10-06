@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Account : number please</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Because of email security concerns, please provide the Esso Business Card Customer number so we may open the attachment to your email and assist you. 
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

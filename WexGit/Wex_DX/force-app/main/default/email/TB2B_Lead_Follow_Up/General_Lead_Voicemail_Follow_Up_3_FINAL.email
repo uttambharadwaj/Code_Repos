@@ -1,0 +1,13 @@
+{!Lead.FirstName},
+
+I’ve tried reaching you a handful of times, but I haven’t heard back. I’m guessing right now isn’t the best time to connect, and I'm going to assume you are no longer interested in our {!Lead.Product_Interest__c} savings at this time. I value your time and will close out your request unless I hear back from you.  
+
+You should have all of my contact information, and I'm here if you have any questions or would like to revisit our program in the future.
+
+Thanks again, and I hope to connect at some point down the road!
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

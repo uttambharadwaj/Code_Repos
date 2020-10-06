@@ -1,0 +1,7 @@
+You have just received a new completed BSA for your account 
+{!OnlineApplication__c.Legal_Business_Name__c}
+
+Click this link to view the Online Application Record in salesforce.com:
+{!OnlineApplication__c.Link}
+
+Thank you.

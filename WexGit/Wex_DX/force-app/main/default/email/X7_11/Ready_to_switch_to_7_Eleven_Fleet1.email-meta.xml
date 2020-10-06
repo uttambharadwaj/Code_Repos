@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use as a follow-up with a prospect who indicated they&apos;d be interested in switching fleet card programs, and to schedule a meeting.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Letterhead</letterhead>
+    <name>Ready to switch to 7-Eleven Fleet?</name>
+    <style>freeForm</style>
+    <subject>Thank you for your interest in the 7-Eleven Fleet Card.</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I&apos;m following up in regard to 7-Eleven&apos;s Universal Fleet Card Program. I&apos;m open to discussing/negotiating the details according to your needs, and to win your fleet fueling business.
+
+With 7-Eleven, you&apos;ll receive (among many benefits):
+
+- 7 cents off every gallon purchased at 7-Eleven for your first 11 weeks; then up to 5 cents off per gallon thereafter.
+- No set-up or monthly card fees.
+- Acceptance at more than 90% of U.S. fueling locations.
+- Exceptional online cost and vehicle management controls, including driver purchasing policies to control who makes purchases, where, for what and for how much.
+- Detailed purchase and vehicle performance data.
+- Comprehensive reporting.
+
+Please let me know if you have 10-15 minutes this or next week to discuss things further. I think you&apos;ll find 7-Eleven&apos;s program a valuable asset to your business.
+
+Thank you in advance for your time.
+
+Tracy Suh
+Regional Sales Manager
+7-Eleven/WEX Inc.
+P.O. Box 802794, Dallas, TX 75380
+Office (972) 803-4181  Cell (469) 571-5873  Fax (207) 761-3536
+
+tracy.suh@wexinc.com
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

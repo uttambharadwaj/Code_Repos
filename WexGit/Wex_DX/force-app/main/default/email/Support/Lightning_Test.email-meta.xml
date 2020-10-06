@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Lightning Test</name>
+    <style>freeForm</style>
+    <subject>Trying out Lightning Templates and Attachments</subject>
+    <textOnly>here&apos;s at attachments</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

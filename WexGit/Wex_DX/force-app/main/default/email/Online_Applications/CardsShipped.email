@@ -1,0 +1,78 @@
+<messaging:emailTemplate subject="{!relatedTo.Offer__r.Application_Title__c} Fuel Card Application ({!relatedTo.Account__r.Name}) - Cards Shipped" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br><br></br>
+{!relatedTo.Contact_Name__c},
+<br></br><br></br>
+
+Congratulations! Your {!relatedTo.Offer__r.Application_Title__c} fuel cards are on the way. 
+<br></br><br></br>
+
+Your cards have been shipped {!relatedTo.Shipping_Method__c} to: 
+<br></br><br></br>
+<!---{!relatedTo.Ship_Cards_To__c}-->
+<table>
+       <tr> 
+           <td>
+                {!relatedTo.Legal_Business_Name__c} 
+           </td>
+       </tr>   
+       <tr> 
+           <td>
+                {!relatedTo.AO_Name__c}
+           </td>
+       </tr> 
+       <tr> 
+           <td>
+              {!relatedTo.AO_Address__c}
+           </td>
+       </tr> 
+        <tr> 
+           <td>
+              {!relatedTo.AO_City__c}   {!relatedTo.AO_State__c}   {!relatedTo.AO_Zip_Code__c}
+           </td>
+       </tr> 
+           
+   </table>
+ 
+<br></br><br></br>
+
+Your cards will be active and ready to use when you receive them.  Please refer to your account information available <a href="https://fleet.fleetone.com/Default.aspx?ReturnUrl=/&SKey=eed49d16-a90a-4636-943d-9316494f6b8e" target="_blank">online</a> for your driver and card information.  Use your account number {!relatedTo.F1_Account_Number__c} as your username and the password you submitted with your application.
+<br></br><br></br>
+
+The tracking number is {!relatedTo.UPS_Tracking_Number__c}.  You may use the following link to check the status of your shipment:
+<a href="http://wwwapps.ups.com/WebTracking/track?track=yes&trackNums={!relatedTo.UPS_Tracking_Number__c}">Click here to check UPS Status</a>
+<br></br><br></br>
+
+
+
+{!relatedTo.Offer__r.Application_Title__c} has <a href="http://www.fleetone.com/OTRtutorials">online tutorials</a> to help you learn to manage your new online account. Here you can learn how to dispatch a PlusChek, change driver information on the cards, and even run reports to help manage your fleet's purchases!
+
+<br></br><br></br>
+
+<br></br><br></br>
+
+
+Sincerely, 
+<br></br><br></br>
+
+<apex:outputPanel >
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), 'Fleet Fuel Card Sales Team' , If(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Contact_Name__c,relatedTo.Owner.FirstName+" "+relatedTo.Owner.LastName))}"/><br></br>
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Phone_Number__c,relatedTo.Owner.Phone))}"/><br></br>
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Email__c,relatedTo.Owner.Email))}"/><br></br>
+</apex:outputpanel>
+<br></br><br></br>
+
+Sent to:  {!relatedTo.Email__c}<br></br>
+Reference #: {!relatedTo.Name}<br></br>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

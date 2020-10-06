@@ -1,0 +1,12 @@
+Hello {!Case.Contact},
+
+	This is {!Case.OwnerFullName} from {!NullValue(Case.Program__c, "WEX Fleet")} Services. I am following up on your call regarding a finance fee on your {!NullValue(Case.Program__c, "WEX Fleet")} account. I would be happy to work with you on this fee as well as help you to avoid this fee again in the future. 
+
+	Please call me at the number below or let me know when you would be available for a call. 
+
+Thank you,
+
+{!Case.OwnerFullName}
+ {!NullValue(Case.Program__c, "WEX")} {!Case.OwnerTitle}
+{!Case.OwnerEmail}
+{!Case.OwnerPhone}

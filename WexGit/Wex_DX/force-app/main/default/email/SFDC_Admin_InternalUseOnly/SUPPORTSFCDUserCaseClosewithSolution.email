@@ -1,0 +1,26 @@
+{!Contact.FirstName},   
+
+Your {!Case.RecordType} has been completed and closed.
+
+Functional Area: {!Case.Functional_Area__c}
+Functional Area Sub-Type: {!Case.Functional_Area_Sub_Type__c}
+Subject: {!Case.Subject}
+
+Description: 
+{!Case.Description}
+
+Solution: 
+{!Case.Solution_Description}   
+
+Here is a link to the record in salesforce:
+{!Case.Link}
+
+Thank you,   
+{!User.Name} 
+{!User.Title}
+{!Organization.Name}   
+{!User.Phone}
+
+
+
+{!Case.Solution_Attachments}

@@ -1,0 +1,20 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoPlainText" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="background-color: rgb(255, 255, 255);">{!Contact.FirstName},</span><span style="background-color: rgb(255, 255, 255);">&nbsp;</span></font></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="background-color: rgb(255, 255, 255);"><br></span></font></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></p><p class="MsoPlainText"><font face="Verdana, Helvetica, sans-serif" size="2">I have attached a form that I need filled out. Please do
+so and attached a copy of avoided check. Please secure from your bank a note
+with your acct # ( US FUNDS ACCT) and routing #.<o:p></o:p></font></p><p class="MsoPlainText"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></p><p class="MsoPlainText"><font face="Verdana, Helvetica, sans-serif" size="2">I apologize for the extra items but we have a
+specific&nbsp; problem getting all this
+correct with the Canadian banking system and We want to avoid any problems
+that&nbsp; would interrupt us giving perfect
+service in the future.<o:p></o:p></font></p><p class="MsoPlainText"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></p><p class="MsoPlainText">
+
+
+
+
+
+
+
+</p><p class="MsoPlainText"><font face="Verdana, Helvetica, sans-serif" size="2">Thank you!!</font><font face="arial" style="font-size: 12pt;"><o:p></o:p></font></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial;"><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small;">&nbsp;</span></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial;"><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small;">&nbsp;</span></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><span style="background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif" size="2">{!User.FirstName}&nbsp;{!User.LastName}</font></span></p><p class="MsoPlainText" style="font-size: 12pt; font-family: arial;"><font size="2" face="Verdana, Helvetica, sans-serif"><font style="background-color: rgb(255, 255, 255);">{!User.Title}&nbsp;<br>Phone: {!User.Phone} | Fax: {!User.Fax}&nbsp;<br>{!User.Email} |&nbsp;</font><a href="http://www.fleetone.com/" style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"><span style="color: blue;"><font>www.FleetOne.com</font></span></a></font></p>]]></td>
+</tr>
+</table>

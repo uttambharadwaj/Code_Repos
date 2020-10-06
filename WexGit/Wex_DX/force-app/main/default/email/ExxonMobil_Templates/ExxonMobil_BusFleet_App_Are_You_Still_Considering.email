@@ -1,0 +1,17 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font size="1"><span style="COLOR: gray; FONT-SIZE: 8pt"><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black"><font face="Calibri"><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Arial,Sans-Serif" size="3">I am checking in with you one last time to see if you are still considering the ExxonMobil Business Fleet card program.<span style="mso-spacerun: yes">&nbsp; </span>It’s easy to enroll. Simply complete the attached application form and fax it to me at {!User.Fax} or scan and email it to me at {!User.Email}.<br></font></p><font face="Arial,Sans-Serif" size="3">
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Arial,Sans-Serif" size="3">&nbsp;</font></p><font face="Arial,Sans-Serif" size="3">
+</font></font></span></span></font><font face="Arial,Sans-Serif"><span style="color: black; font-size: 12pt;">The ExxonMobil Business Fleet card program is accepted at more than 10,000 Exxon- or Mobil-branded stations in the U.S. To find accepting locations close to you, visit </span><a href="http://www.wexinc.com/accepting-locations"><span style="color: blue; font-size: 12pt;">http://www.exxonmobilstations.com/</span></a><span style="color: black; font-size: 12pt;"></span></font><font size="1"><span style="COLOR: gray; FONT-SIZE: 8pt"><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black"><font face="Calibri"><font face="Arial,Sans-Serif" size="3">
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Arial,Sans-Serif"><span style="color: black; font-size: 12pt;">&nbsp;</span></font></p><font face="Arial,Sans-Serif" size="3">
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Arial,Sans-Serif" size="3">Please call me if you have any questions. </font></p><font face="Arial,Sans-Serif" size="3">
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Arial,Sans-Serif" size="3">&nbsp;</font></p><font face="Arial,Sans-Serif" size="3">
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Arial,Sans-Serif" size="3">Thank you for your interest in the ExxonMobil Business Fleet card program.</font></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">&nbsp;</font></p>
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><em>Sincerely, <br><br>{!User.FirstName} {!User.LastName} <br>{!User.Title} <br>Phone - {!User.Phone}&nbsp; <br></em></span></p><em>
+<p><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><em>Fax - {!User.Fax}&nbsp;</em></span></p>
+</em><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="2"><em>{!User.Email}&nbsp;</em></font></p>
+<p><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><em>&nbsp;</em></span></p><em></em></span></span></font><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt"></span></i></font>]]></td>
+</tr>
+</table>

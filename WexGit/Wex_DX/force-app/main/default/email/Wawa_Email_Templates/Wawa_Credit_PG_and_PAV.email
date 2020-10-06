@@ -1,0 +1,72 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif" style="">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></font></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Thank you
+for applying for our fuel card program!&nbsp;<br><br><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">In order to enroll, you must submit a <b>Personal Guaranty</b>. An officer of your
+company must complete and sign the form, which you can either scan/email or fax
+back to me once completed.<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">To comply with the Patriot Act, our bank is
+requesting you<b> verify your physical
+address</b> for approval. &nbsp;Please provide documentation from a third party
+to verify your business is located at the correct address listed on your
+application. <o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">To pass verification, the bank requires a copy
+of&nbsp;<b><u>one</u></b>&nbsp;of the
+following documents:<o:p></o:p></font></p><p class="MsoNormal" style="line-height: normal;"><ul><li><font face="Times New Roman, Times, serif"><b style="">Utility bill</b> or <b style="">insurance document</b>&nbsp;showing that the bill is mailed to the
+physical street address or that it services the physical address of the
+business</font></li><li><font face="Times New Roman, Times, serif"><b style="">Lease agreement</b> which
+identifies the business and the physical address of the office</font></li><li><b style=""><font face="Times New Roman, Times, serif">Certified articles of incorporation</font></b></li><li><font face="Times New Roman, Times, serif">An unexpired <b style="">government-issued business license.</b></font></li></ul><font face="Times New Roman, Times, serif"><o:p></o:p></font></p><p class="MsoNormal" style="line-height: normal;"><font face="Times New Roman, Times, serif"><o:p></o:p></font></p><p class="MsoNormal" style="line-height: normal;">
+<font face="Times New Roman, Times, serif"><br>
+Feel free to scan and email the verification to me at the email address noted
+below, or if you prefer, you can fax it to me at {!User.Fax}.&nbsp; You can
+also call me at {!User.Phone} if you have any questions.<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">Sincerely,<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif"><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">Fax - {!User.Fax}<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">{!User.Email}<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:gray">CONFIDENTIALITY NOTICE: "This message contains
+confidential information of WEX Inc. It is intended only for the use of the
+designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; background: white;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<i style=""><span style="line-height: 115%; color: gray;"><font face="Times New Roman, Times, serif" style="" size="1">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</font></span></i></p>]]></td>
+</tr>
+</table>

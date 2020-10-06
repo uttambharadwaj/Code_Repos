@@ -1,0 +1,14 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p style="MARGIN: 0in 0in 10pt" class="MsoNormal"><font size="4" face="Verdana,Helvetica,Sans-Serif"><span style="line-height: 115%; color: black; font-size: 9pt;">Dear {!Contact.FirstName},</span></font></p><font size="4" face="Verdana,Helvetica,Sans-Serif">
+</font><p style="MARGIN: 0in 0in 10pt" class="MsoNormal"><font size="4" face="Verdana,Helvetica,Sans-Serif"><span style="line-height: 115%; color: black; font-size: 9pt;">Thanks again for&nbsp;your interest in <b>The </b><b style="mso-bidi-font-weight: normal">Sunoco Fleet Card Program</b>.</span></font></p><font size="4" face="Verdana,Helvetica,Sans-Serif">
+</font><p style="MARGIN: 0in 0in 10pt" class="MsoNormal"><font size="4" face="Verdana,Helvetica,Sans-Serif"><span style="line-height: 115%; color: black; font-size: 9pt;">I'm
+ emailing to confirm our scheduled meeting on &lt;date&gt; at 
+&lt;time&gt;.&nbsp;I look forward to&nbsp;talking with you about your fleet 
+fueling and management needs, and how the Sunoco Program can help. I think 
+you'll find the Program&nbsp;an ideal fit for your business.</span><span style="line-height: 115%; color: black; font-size: 9pt;"></span></font></p><font size="4" face="Verdana,Helvetica,Sans-Serif">
+</font><p style="MARGIN: 0in 0in 10pt" class="MsoNormal"><font size="4" face="Verdana,Helvetica,Sans-Serif"><span style="line-height: 115%; color: black; font-size: 9pt;">If you have any questions before our meeting, please do not hesitate to call. Otherwise I'll&nbsp;plan to see you soon.</span><span style="line-height: 115%; color: black; font-size: 9pt;"></span></font><font size="4" face="Verdana,Helvetica,Sans-Serif"><span style="line-height: 115%; color: black; font-size: 9pt;"></span></font></p><font size="4" face="Verdana,Helvetica,Sans-Serif"><span style="line-height: 115%; color: black; font-size: 9pt;">Many thanks,<br><br><br></span></font><font size="2"><font face="Verdana,Helvetica,Sans-Serif">{!User.FirstName} {!User.LastName}<br>{!User.Title}<br>{!User.Phone}<br>{!User.Email}</font></font><span style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; FONT-SIZE: 11pt; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin"><font size="2" face="Verdana,Helvetica,Sans-Serif"><br></font></span><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"></span>
+<p><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"></span> <br></p><br>]]></td>
+</tr>
+</table>

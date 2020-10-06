@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Verdana,Helvetica,Sans-Serif">Dear Business Owner,<br><br>Thank you for your interest in the CarsArrive Fleet Card. Did you know a fuel card can give you the tools you need to reduce your administrative hassles, saving you valuable time and resources? &nbsp;</font><div><br></div><div><font face="Verdana,Helvetica,Sans-Serif"><a href="http://www.fuelbook.com/fuelcard.html">Click here</a>&nbsp;to learn more about how the CarsArrive Fleet Card program can help you manage your fuel costs.<br><br>Again, thank you for your interest in the CarsArrive Fleet Card. I look forward to the opportunity to assist you with your fuel card needs.</font><font face="Verdana,Helvetica,Sans-Serif"><br><br>Sincerely,<br><br>{!User.Name}<br>{!User.Title}<br>WEX Fleet One<br>Phone: {!User.Phone}<br>Fax: {!User.Fax}<br>Email: {!User.Email}</font></div>]]></td>
+</tr>
+</table>

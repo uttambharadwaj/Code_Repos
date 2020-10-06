@@ -1,0 +1,10 @@
+{!Contact.FirstName},
+
+Congratulations on being approved for an XPO/EFS fuel card. In order to get the cards finalized, we need some information for the specific set up of your fleet cards.  This is very important to identify your driver id or unit number set up so your card activation will go smoothly.
+
+Please complete this form and email back to me at {!User.Email}, or respond to this email with your Driver Name and Driver ID to be used by each cardholder.  You can also call 800-749-1724 option 1 to provide this over the phone.
+
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

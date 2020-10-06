@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to thank prospect for a meeting you&apos;ve had with him/her in person. REMEMBER to attach the Program Sell Sheet &amp; an App!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Fleet_Program</letterhead>
+    <name>RSM: THANK YOU Note for In-Person Meeting_JSaenz</name>
+    <style>freeForm</style>
+    <subject>Thank you for discussing the 7-Eleven Fuel Card Program.</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you again for your interest in the 7-Eleven Fuel Card Program and for taking the time to meet with me.
+
+I think you’ll find the 7-Eleven Fuel Card Program an ideal solution for your business, helping you more cost-effectively manage your fleet of vehicles. Whether you’re looking for a fleet card with robust fuel rebates or nationwide card acceptance, the 7-Eleven Fuel Card is a powerful tool for managing your fleet vehicle expenses with ease.
+
+As we discussed, our Program also includes a suite of online tools to help you save hours of administrative time and significantly drive down your fleet costs, including:
+
+· Powerful Reporting. Know who bought what, when, where and for how much available in hard copy and online.
+
+· Broad Acceptance. Fuel and save at 7-Eleven regardless of the fuel brand at the pumps, plus enjoy card acceptance at 95% of all fueling locations nationwide.
+
+· Purchase Controls. Help eliminate any misuse of company vehicles by setting purchase limits for each driver, with purchase alerts to keep you well informed.
+
+· Live U.S.-based Customer Service. Award-winning customer assistance for you and your drivers 24/7.
+
+As you review our Program information, and complete the application, feel free to contact me with any questions at all. I’ll also plan to follow up with you soon.
+
+Thanks again for your time. We’ll look forward to working with you.
+
+Sincerely,
+
+John Saenz
+7-Eleven Fuel Card Program - Regional Sales Manager
+210.372.0346 Mobile
+207.253.1343 Fax
+john.saenz@wexinc.com
+
+
+
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

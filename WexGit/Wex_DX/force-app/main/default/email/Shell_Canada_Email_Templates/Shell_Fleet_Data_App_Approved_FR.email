@@ -1,0 +1,67 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt;"></p><p class="MsoNormal" style="font-size: 12pt;"><a name="lt_pId002"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Bonjour {!Contact.FirstName},</span></a><font face="Times New Roman, Times, serif" style=""><br><br><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><a name="lt_pId003"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Félicitations!</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;"> <a name="lt_pId004">Votre
+compte de carte de carburant Shell a été approuvé.</a></span></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId005"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Vous devez maintenant remplir le formulaire
+ci-joint, en suivant les étapes ci-dessous&nbsp;:</span></a></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId006"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Configuration recommandée&nbsp;:</span></a></p>
+
+<p class="MsoListParagraphCxSpFirst" style="font-size: 12pt; margin: 0in 0in 6pt; line-height: normal;"></p><ul style="font-size: 12pt;"><li><a name="lt_pId007"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Les identifiants de chauffeur (NIP) sont liés
+aux employés/chauffeurs</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">.</span></li><li><a name="lt_pId008"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Les cartes de carburant sont liées aux véhicules</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">.</span></li><li><a name="lt_pId009"><b><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">N’importe quel </span></b><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">chauffeur
+peut utiliser son identifiant pour <b>n’importe quelle</b> carte associée à
+votre compte.</span></a></li></ul><p style="font-size: 12pt;"></p>
+
+
+
+
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId010"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Renseignements à inscrire sur le
+formulaire&nbsp;:</span></a></p>
+
+<p class="MsoListParagraphCxSpFirst" style="font-size: 12pt; margin: 0in 0in 6pt; line-height: normal;"></p><a name="lt_pId011" style="font-size: 12pt;"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Veuillez choisir <b><u>UN</u></b> champ que vous
+aimeriez voir apparaître à la deuxième ligne de votre carte, sous le nom de
+votre entreprise</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">&nbsp;:</span><br><ul style="font-size: 12pt;"><li><a name="lt_pId012"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Description du véhicule <b>ou</b></span></a></li><li><a name="lt_pId013"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Numéro d’immatriculation <b>ou</b></span></a></li><li><a name="lt_pId014"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Numéro d’unité</span></a></li></ul><p style="font-size: 12pt;"></p>
+
+
+
+
+
+
+
+<p class="MsoListParagraphCxSpLast" style="font-size: 12pt; margin: 0in 0in 6pt; line-height: normal;"><a name="lt_pId015"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Laissez le reste des champs vides dans la partie
+inférieure du formulaire.</span></a></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId016"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Renseignements sur les chauffeurs&nbsp;:</span></a></p>
+
+<p class="MsoListParagraph" style="font-size: 12pt; margin: 0in 0in 6pt; line-height: normal;"></p><ul style="font-size: 12pt;"><li><a name="lt_pId017"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Veuillez fournir la liste des noms de vos
+chauffeurs, de même qu’un identifiant distinct de quatre ou de six chiffres
+pour chacun d’eux.</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;"> <a name="lt_pId018">Si vous préférez que nous
+assignions les identifiants, laissez simplement cette section vide.</a></span></li></ul><p style="font-size: 12pt;"></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId019"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Numérisez le formulaire rempli et envoyez-le-moi
+par courriel à l’adresse indiquée ci-après ou télécopiez-le au {!User.Fax} dès
+que possible.</span></a></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId020"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Quand je l’aurai reçu, je communiquerai avec
+vous afin de vérifier la configuration de votre compte avant l’émission de vos
+cartes.</span></a></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 6pt; line-height: normal;"><a name="lt_pId021"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Si vous avez des questions, n’hésitez pas à
+m’appeler.</span></a></p>
+
+<p class="MsoNormal" style="font-size: 12pt; margin: 5pt 0in 12pt; line-height: normal;"><a name="lt_pId022"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Cordialement,</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">&nbsp;<br>
+<i><br>
+<a name="lt_pId023">{!User.FirstName} {!User.LastName}</a>&nbsp;<br>
+<a name="lt_pId024">{!User.Title}</a>&nbsp;<br>
+<a name="lt_pId025">Téléphone&nbsp;: {!User.Phone}</a>&nbsp;<br>
+<a name="lt_pId026">Télécopieur&nbsp;: {!User.Fax}</a><br>
+<a name="lt_pId027">{!User.Email}</a></i></span></p>
+
+<p class="MsoNormal"><span style="background: white;"><a name="lt_pId001"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">©&nbsp;Shell Fleet Solutions, 2019.</span></i></a><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">&nbsp;<a name="lt_pId002">Tous droits réservés.</a></span></i></span></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><a name="lt_pId003" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106&nbsp;</span></i></a><i style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">ÉTATS-UNIS</span></i></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><br></p><p style="margin: 0in;"><a name="lt_pId004"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">Le programme Solutions Shell pour parc est offert et administré par WEX&nbsp;Canada,&nbsp;Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell.</span></i></a><a name="lt_pId005"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">&nbsp;Nous respectons votre vie privée.</span></i></a><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">&nbsp;<a name="lt_pId006">Veuillez consulter&nbsp;</a><a>notre&nbsp;</a></span></i><a href="http://tx.e1.fleetservicesonline.com/track.aspx?3802467.187188.14348713688.7410.1060408_4513_H"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif;">politique de confidentialité</span></i></a><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">&nbsp;pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.</span></i></p><div><div id="_com_1" class="msocomtxt" language="JavaScript"><br></div><div id="_com_1" class="msocomtxt" language="JavaScript"><a name="lt_pId007"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(165, 165, 165);">AVIS DE CONFIDENTIALITÉ&nbsp;: «&nbsp;Ce courriel est envoyé par WEX à la demande de Shell. Shell<sup>md</sup>, et Shell Fleet Plus<sup>mc</sup>&nbsp;sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.</span></i></a><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(165, 165, 165);">&nbsp;<a name="lt_pId009">Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite.&nbsp;</a><a name="lt_pId010">Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe.&nbsp;»</a></span></i></div></div><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><br></p><p style="margin: 0in; color: rgb(165, 165, 165); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><a name="lt_pId011"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif;">Shell<sup>md&nbsp;</sup>&nbsp;et Shell Fleet Plus<sup>mc</sup>&nbsp;sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.</span></i></a></p><p style="margin: 0in; font-family: Calibri; font-size: 11pt;">&nbsp;</p><p style="margin: 0in; font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><a name="lt_pId013"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">Ce courriel a été envoyé à {!Contact.Email}</span></i></a><a name="lt_pId014"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc.</span></i></a><a name="lt_pId015"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">&nbsp;Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}</span><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(102, 102, 102);">,</span></i></a><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif;">&nbsp;écrivez-nous afin de vous désinscrire de notre liste</span></i></a><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">.</span></i><a name="lt_pId016"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 11.4133px; font-family: Calibri, sans-serif; color: rgb(151, 151, 151);">&nbsp;Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</span></i></a></p><p style="font-size: 12pt;"></p>]]></td>
+</tr>
+</table>

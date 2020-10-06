@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>May &apos;12 Webinar invite through Claims Magazine</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>Claims Sector Webinar Invite - May 2012</name>
+    <style>freeForm</style>
+    <subject>Upcoming Webinar on Electronic Claims Payments</subject>
+    <textOnly>Webinar
+Paying Claims Electronically:
+Lessons from the Field
+
+Dear {!Contact.Salutation} {!Contact.LastName},
+
+Are you looking for ways that can turn a payment expense into a revenue generator, while improving the claims process? Claims magazine and Wright Express will host a free webinar exploring how property/casualty insurers can use electronic-payment methods for greater control and quicker turnaround of claims. The webinar is set for 2 p.m. EDT, Wednesday, May 23.
+
+
+During the webinar, you will learn:
+
+*  How newer, faster, cheaper electronic claims payment options are driving financial savings in claims operations
+*  How electronic claims payments can help improve customer satisfaction
+*  Best practices and implementation considerations for electronic claims payments in your operation
+
+Panelists include:
+
+-- Jim Pratt, Vice President, Wright Express
+
+-- David Baker, Claims Manager, Mercury Select Management Co. Inc.
+
+
+The event is presented by Wright Express. For more information and to register at no charge, visit: http://www.propertycasualty360.com/webseminars/paying-claims-electronically-lessons-from-the-fiel
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/claims
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

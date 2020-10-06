@@ -1,0 +1,25 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Nous avons procédé au changement demandé. Vous recevrez votre relevé par la poste à partir du xx.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

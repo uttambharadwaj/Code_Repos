@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Contact Formulaire de mise à jour sans contact</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Contact Formulaire de mise à jour sans contact</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Nous ne pouvons effectuer les changements  demandés du faite que votre nom ne figure pas sur la liste des personnes autorisées au compte. Vous devez nous retourner le document  ci-joint pour mettre à jour la liste des contacts ( courriel ou fax 800.395.0809). Ce document  doit être signé par un officier de la compagnie  (propriétaire , contrôleur  etc. ou un contact existant.)
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

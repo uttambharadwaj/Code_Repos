@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>French Email template for Shell Canada CS about going paperless</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Going Paperless-Shell CA (FR)</name>
+    <style>freeForm</style>
+    <subject>How to go paperless</subject>
+    <textOnly>Bonjour {!Contact.Name},
+
+
+
+Voici comment recevoir vos rapports et factures par voie électronique :
+
+
+À la page d’accueil, cliquez Inscrivez-vous maintenant.
+
+Choisissez un compte actif, puis cliquez sur Suivant.
+
+La liste de vos rapports actifs apparaîtra. Désactivez l’option Livraison papier pour recevoir un rapport par voie électronique. Pour ne plus rien recevoir par la poste, désactivez cette option pour tous les rapports.
+
+Cliquez sur Soumettre.
+
+Dorénavant, vous recevrez un courriel chaque fois qu’une facture ou un rapport est disponible. Vous pourrez consulter ces fichiers en ligne.
+
+
+
+
+Cordialement,
+
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+Email - {!User.Email}
+
+
+
+
+
+
+© Shell Fleet Solutions, 2020. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106
+
+
+La carte de carburant Shell est émise par WEX Canada Ltd. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur le suivi des clics par WEX Inc. et sur les liens qui figurent dans le présent courriel.
+
+
+AVIS DE CONFIDENTIALITÉ : Ce courriel est envoyé par WEX à la demande de Shell. Shellmd et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du destinataire désigné ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou par courriel et supprimer le message en entier ainsi que toute pièce jointe.
+
+
+
+© Shell Trademark Management B.V., 2020. Tous les droits qui ne sont pas expressément octroyés par la présente sont réservés.
+
+
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès de Shell Fleet Solutions. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous pour vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

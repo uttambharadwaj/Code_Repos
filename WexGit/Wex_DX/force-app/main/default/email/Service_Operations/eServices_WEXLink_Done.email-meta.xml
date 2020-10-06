@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>WEXLink Setup Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - WEXLink Done</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+I have completed the setup, and the first file will post tomorrow. Your vendor will access the files via a secure ftp connection using the following credentials: Host: ftp.wrightexpress.com (not a link; this text is entered when prompted for host/domain in the SFTP software); Username: Password: Filename: I have attached the file specs for your vendor. Please let me know if I may be of further assistance.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

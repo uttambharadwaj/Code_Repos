@@ -1,0 +1,22 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p class="MsoNormal"><font face="Arial, sans-serif" size="2">{!Contact.FirstName},<o:p></o:p></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2"><br></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2">You haven’t yet taken advantage of the opportunity to save
+money on your fuel and fleet related expenses with the NASTC Quality Plus
+Network (QPN) cards.<o:p></o:p></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2">In a final attempt to offer this service to you, I have
+included the documents still needed to complete your account.&nbsp; Please call me directly with any questions or
+concerns.&nbsp; Please fax completed documents
+to 615.858.6226 and I will be happy to expedite your supplies to you. <o:p></o:p></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2"><br></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2">Thank you,<o:p></o:p></font></p><p class="MsoNormal"><font face="Arial, sans-serif" size="2"><br></font></p><p class="MsoPlainText">
+
+
+
+
+
+
+
+</p><p class="MsoNormal"><font face="Arial, sans-serif" size="2">{!User.FirstName} {User.LastName}<br>
+<span style="line-height: 115%; background-image: initial; background-attachment: initial; background-color: white; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">{!User.Title}&nbsp;<br>
+Phone: {!User.Phone} | Fax: {!User.Fax}&nbsp;<br>
+{!User.Email} |&nbsp;</span><a href="http://www.fleetone.com/"><span style="line-height: 115%; background-image: initial; background-attachment: initial; background-color: white; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;">www.FleetOne.com</span></a></font><font size="3" style="font-family: arial;"><o:p></o:p></font></p>]]></td>
+</tr>
+</table>

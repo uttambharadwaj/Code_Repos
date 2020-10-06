@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>BLANK</letterhead>
+    <name>AU Virtual Payments Case Auto Response V3</name>
+    <style>freeForm</style>
+    <subject>WEX Australia Virtual Payments Case {!Case.CaseNumber} has been created - {!Case.Subject}</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+The WEX Virtual Accounts team has received your request and will be in touch within 48 hours or sooner based on the urgency of the request.
+
+Please send all emails regarding this case to the Virtual.Accounts@wexaustralia.com mailbox, and reference your Case Number {!Case.CaseNumber} and Case ID {!Case.Thread_Id}.
+
+Thank you,
+
+The WEX Australia Virtual Payments Team
+
+
+WEX Australia Pty Ltd.
+Level 3, 293 Camberwell Road
+Camberwell VIC 3124
+wexaustralia.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

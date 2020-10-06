@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>RSM: Use to inform current contract COSTAR uses of the change in card programs.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco_PA_current_user</letterhead>
+    <name>RSM: Sunoco PA Costar Template</name>
+    <style>freeForm</style>
+    <subject>Your Fleet Card Contract is Expiring</subject>
+    <textOnly>Dear [Contact Name],
+
+As you may know, effective September 30, 2012, the Commonwealth of Pennsylvania contract with your current fleet card provider will expire. The Commonwealth has selected Wright Express and Sunoco as the new fleet card provider to all COSTARS under contract number 4400009775.
+
+This contract offers a new volume rebate on fleet card purchases to all participants, and even more robust features and benefits. As a member of COSTARS, you’re eligible to participate. However, you need to act now to sign up for this new service.
+
+Program details:
+
+Save Money - New rebate on all purchases, with the potential for additional rebates when fueling at Sunoco locations. It’s free to get started – no setup fees or monthly card fees
+
+Save Time - Administrative time is reduced and fiscal reporting is made easier with detailed reporting.
+
+Easy-to-Use - 24/7 customer service, plus full account online self-service
+
+You need to act now, to enroll in this new program. To learn more details about the Commonwealth Sunoco Universal Fleet Card Program, or to enroll, call me today. The process takes just a few minutes. Start saving with the new contract!
+
+Sincerely,
+
+{!Opportunity.OwnerFullName}
+
+{!Opportunity.OwnerTitle}
+Phone: {!Opportunity.OwnerPhone}
+{!Opportunity.OwnerEmail}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

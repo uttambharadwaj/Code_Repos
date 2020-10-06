@@ -1,0 +1,14 @@
+You have been assigned a new case.  
+
+Case #:  {!Case.CaseNumber}
+Submitted By: {!Case.Submitted_By__c}
+Department of Origin: {!Case.Reason}
+
+Contact Name:  {!Case.Contact}
+Account:  {!Case.Account}
+Reason for Case: {!Case.Reason_for_Case__c}
+Subject:  {!Case.Subject}
+
+Here's the link:  {!Case.Link}
+
+This is an auto-notification to alert you that a new case has been assigned to you.

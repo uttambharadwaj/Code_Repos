@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template to send as a follow up to an introduction phone conversation.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_F1_Account_Management</letterhead>
+    <name>Account Management Intro - Phone</name>
+    <style>freeForm</style>
+    <subject>Per my voice mail - Account Management services at WEX Fleet One</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+My name is {!Account.OwnerFullName} and I am the Account Manager at WEX Fleet One assigned to help make sure you get the most out of your WEX Fleet One Account.
+
+
+Per our conversation, I not only wanted to introduce myself, but also make certain you were aware of everything WEX Fleet One can can offer you to manage your company&apos;s vehicles.
+
+
+Factoring – Accelerated Cash Flow, Powerful Real-Time Reporting, Fuel Card Funding and Flexible Pricing Structure with no hidden fees.
+
+
+WEX Fuel Management – Fuel solutions for wholesalers, retailers, fleets with onsite or bulk fuel, and those buying fuel on the road.
+
+
+Permits - Purchase the necessary temporary permits your drivers need including Trip, Fuel, and Oversize/Overweight.
+
+
+Telematics – An easy-to-use fleet vehicle tracking solution that helps you monitor fuel use and driver behavior - anytime, anywhere.
+
+
+Cash Services – Cash Advances. ATM access. PlusChek® Services. And more.
+
+
+Do you have vehicles in your fleet with less than 18 wheels? WEX Fleet One has got you covered. We offer feature-packed savings for your gasoline vehicles too!
+
+
+I&apos;ll be reaching out to you again in the coming weeks to see what we can do for you. In the meantime, you can reach me at {!Account.OwnerPhone} from 8 AM to 5 PM Central or via email at {!Account.OwnerEmail}. You can also contact our 24 hour a day Customer Care department at 800-359-7587.
+
+
+Thank you for your time and your business! I look forward to speaking to you in the near future.
+
+
+
+Sincerely,
+
+
+{!Account.OwnerFullName}
+
+{!Account.OwnerTitle}
+
+{!Account.OwnerPhone}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

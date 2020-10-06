@@ -1,0 +1,15 @@
+{!Lead.FirstName},
+
+I'm still trying to connect with you regarding your recent request for more information on the {!Lead.Card_Program__c}. I'm confident our fuel card can save your fleet money.
+
+As a reminder, the FTS fuel card offers fuel discounts up to 20 cents per gallon at more than 2,400 locations and is accepted at over 8,000 locations. Plus get access to a ton of additional savings on tires, maintenance, wireless and much more — with many of the savings going directly back to your FTS card.  
+
+Please give me a call back at {!User.Phone}, or reply to this email to get the ball rolling. If I don't hear back from you today, I will attempt to connect with you tomorrow.
+
+Thanks,
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

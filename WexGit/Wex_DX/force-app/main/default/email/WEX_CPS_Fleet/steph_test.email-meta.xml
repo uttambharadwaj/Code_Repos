@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email offering WEX online (Millenium) flash demo and customer testimonials</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>WEX Online Flash Demonstration</name>
+    <style>none</style>
+    <subject>Learn How WEXOnline Can Help Your Business</subject>
+    <textOnly>Welcome to Wright Express
+
+Hello {!Contact.FirstName},
+
+I wanted to follow up with you on your fleet&apos;s needs, and share some tools that have been useful to many of my new customers. WEXOnline®, the Wright Express customer web portal for existing accounts, has been called the most robust reporting tool in the industry. Fleet managers are raving about it, and I wanted to be sure you were aware of this powerful tool.
+
+We have a new automated demo that you can now view from your desktop. Tired of managing your fleet with outdated technologies? In just a few minutes you&apos;ll see how this revolutionary tool can make your reporting stress-free.
+
+Why WEXOnline?
+
+WEXOnline puts all your reporting at the tip of your fingers, making it easy to generate custom or standard reports. Add drivers, create profiles for groups of drivers, and determine if your fleet is leveraging the lowest fuel prices. Tired of managing your fleet with 20th century technology? Reduce the time you spend dealing with administrative issues.
+
+The proof is in the pudding.
+
+Don&apos;t take our word for it. Listen to what our customers are saying. Wright Express has one of the highest customer retention rates. We treat our customers well, and make sure they get the utmost level of attention. Watch a video to hear what our customers think.
+
+I&apos;ll be reaching out shortly to help bounce some more ideas around about how your fleet can benefit from joining Wright Express. In the meantime, take a few minutes from your day to view these new tools.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Phone}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

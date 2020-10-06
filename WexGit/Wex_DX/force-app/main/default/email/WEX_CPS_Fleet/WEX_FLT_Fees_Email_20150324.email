@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Template 9</title>
+      <style type="text/css">
+         /* Client-specific Styles */
+         #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
+         body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
+         /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+         .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
+         .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing.  */
+         #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+         img {outline:none; text-decoration:none;border:none; -ms-interpolation-mode: bicubic;}
+         a img {border:none;}
+         .image_fix {display:block;}
+         p {margin: 0px 0px !important;}
+         table td {border-collapse: collapse;}
+         table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; table-layout: fixed; }
+           table table { table-layout: auto; }
+         a {color: #3a97b5;text-decoration: none;text-decoration:none!important;}
+         /*STYLES*/
+         table[class=full] { width: 100%; clear: both; }
+
+      </style>
+   </head>
+   <body>
+
+<!-- Start of 2-columns -->
+<table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+   <tbody>
+      <tr>
+         <td align="center">
+            <table width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+               <tbody>
+                  <tr>
+                     <td width="100%" align="center">
+                        <table bgcolor="#ffffff" width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <img src="http://www.wexhosted.com/esp_assets/campaigns/sfdc/WEXFleet_banner.jpg" width="650" height="200" display="block">
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- End of 2-columns -->   
+<!-- start textbox-with-title -->
+<table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+   <tbody>
+      <tr>
+         <td align="center">
+            <table width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+               <tbody>
+                  <tr>
+                     <td width="100%" align="center">
+                        <table bgcolor="#ffffff" width="650" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                           <tbody>
+                              <!-- Spacing -->
+                              <tr>
+                                 <td width="100%" height="10"></td>
+                              </tr>
+                              <!-- Spacing -->
+                              <tr>
+                                 <td align="center">
+                                    <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                                       <tbody>
+                                          <!-- Title -->
+
+                                           <tr>
+                                             <td width="100%" height="10"></td>
+                                          </tr>
+                                          <tr>
+                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; color: #333333; text-align:left;line-height: 24px;">
+                                                Dear {!Contact.FirstName},<br>
+                                                 <br>
+                                                 You've seen the news and heard it on the radio… the price of fuel has been dropping over the last several months. That’s good news for companies that rely on vehicles to get business done!<br>
+                                                 <br>
+                                                 What you may not have noticed is some new fees are taking a bite out of your savings. Some providers are applying additional fees (weekly admin fees and/or minimum program admin fees) adding up to 10 cents per gallon to your bill! Additionally, some of the “cents per gallon” rebates you may have seen may have been turned off by your card provider because of the falling fuel prices.<br>
+                                                 <br>
+                                                 Flip over your next billing statement and look for headings that speak to “Minimum Program Administration Fee” and “Rebate/Volume Discount”.
+
+                                             </td>
+                                          </tr>
+                                          <!-- End of content -->
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td align="center">
+                                                <img src="http://www.wexhosted.com/esp_assets/campaigns/sfdc/BillFees.jpg" width="363" height="315" display="block">
+                                             </td>
+                                          </tr> 
+                                       		<!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+											<tr>
+                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; color: #333333; text-align:left;line-height: 24px;">Take a closer look… your savings should be going back into your business and not eaten up by new fees buried in your invoices!<br>
+                                                 <br>I don't know how often you audit your statements but this is the only way to ensure you are getting the savings you were promised. I've helped many customers like you discover hidden fees. I will be contacting you over the next several days to discuss how I can help you and your business.<br>
+                                                 <br>
+                                                 Sincerely,<br>
+                                                 <br>
+                                                 {!User.FirstName} {!User.LastName}<br>
+                                                 {!User.Title}<br>
+                                                 Phone - {!User.Phone} <br>
+                                                 {!User.Email} 
+                                                </td>
+                                           </tr>
+                                            <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+                                           <tr>
+                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 10px; -webkit-text-size-adjust: none;color: #bfbfbf; text-align:left;line-height: 14px;">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."<br>
+                                                 <br>
+                                                 WEX Inc., 97 Darling Avenue, South Portland, ME 04106<br>
+                                                 <br>
+                                                 This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, <a href="mailto:info@wexnews.com?subject=Unsubscribe">email us to unsubscribe</a>. Please be sure to include your name, company name and email address in the email.
+                                               </td>
+                                           </tr>
+                                           <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+                                           
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              <tr>
+                                             <td align="center">
+                                                <img src="http://www.wexhosted.com/esp_assets/campaigns/sfdc/WEXFLeet_footer.jpg" width="650" height="105" display="block">
+                                             </td>
+                                          </tr> 
+
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- end of textbox-with-title -->
+
+   </body>
+   </html>

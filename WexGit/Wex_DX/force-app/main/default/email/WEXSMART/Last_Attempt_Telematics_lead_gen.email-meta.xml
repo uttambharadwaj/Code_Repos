@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For Acquirent use only. Last Attempt email for lead gen program</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Last Attempt- Telematics lead gen</name>
+    <style>none</style>
+    <subject>following up</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

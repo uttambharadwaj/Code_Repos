@@ -1,0 +1,86 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font style="font-size: 12pt; font-family: arial;" color="#808080" size="2" face="Arial, sans-serif"><em></em></font><p class="MsoNormal" style=""><font face="Arial, sans-serif" style="">Dear
+{!Contact.FirstName},<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">Congratulations! Your GetGo Fleet Card account has been
+approved.<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif">As the next step, please take a few
+moments to complete the attached form, following the steps below:<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif">Recommended Program Setup:</font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><ul><li><font face="Arial, sans-serif">Drivers
+IDs (or PIN #s) are linked to employees/drivers</font></li><li><font face="Arial, sans-serif">Fuel
+Cards are linked to vehicles</font></li><li><font face="Arial, sans-serif"><b style="text-indent: -0.25in;">Any</b><span style="text-indent: -0.25in;">&nbsp;driver can use his/her Driver ID
+number on&nbsp;</span><b style="text-indent: -0.25in;">any</b><span style="text-indent: -0.25in;">&nbsp;card on your account</span></font></li></ul></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif"><span style="text-indent: -0.25in;">I</span>nformation needed on the Fleet Card
+Information Form:</font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><ul><li><font face="Arial, sans-serif">Please
+choose&nbsp;<b style="text-indent: -0.25in;"><u>ONE</u></b><span style="text-indent: -0.25in;">&nbsp;field that you would like to have appear on
+the second line of your card, beneath your company name</span></font></li><li><font face="Arial, sans-serif">Vehicle
+description&nbsp;<b style="text-indent: -0.25in;">or</b></font></li><li><font face="Arial, sans-serif">License
+plate number&nbsp;<b style="text-indent: -0.25in;">or</b></font></li><li><font face="Arial, sans-serif">Unit
+number</font></li><li><font face="Arial, sans-serif">Leave
+the rest of the fields on the bottom portion of the form blank</font></li></ul></p><p class="MsoListParagraphCxSpLast" style="margin: 0in 0in 6pt; text-indent: -0.25in; line-height: normal;"><font face="Arial, sans-serif"><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif">Driver Information:</font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><ul><li><font face="Arial, sans-serif">Please provide a list of your driver
+names along with a separate four- or six-digit Driver ID number for each
+driver. If you prefer for us to assign the Driver ID number(s), just leave that
+section blank.</font></li></ul></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif"><span style="text-indent: -0.25in;">Pl</span>ease either scan/email the completed
+form to me at the email address noted below or fax it to {!User.Fax} at your
+earliest convenience.</font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif"><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif">Once I receive this information, I will
+be in touch to review the account set-up with you before issuing your cards.<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif">If you need help filling out the form, please
+watch our 5 minute informational video. <span class="MsoHyperlink"><a href="http://www.wexcard.com/tutorial">http://www.wexcard.com/tutorial</a></span> <o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Arial, sans-serif">Feel free to give me a call if you have any questions.<o:p></o:p></font></p><p class="MsoNormal" style="margin: 5pt 0in 12pt; line-height: normal;"><font face="Arial, sans-serif">Sincerely,&nbsp;<br>
+<i><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}<br>
+{!User.Email}<o:p></o:p></i></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is
+prohibited. If you have received this message in error, please notify sender
+immediately by telephone or reply by e-mail and delete the entire message and
+any attachments."</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></font></p><p style="margin: 0in 0in 10pt;" class="MsoNormal">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<i style=""><span style="line-height: 115%; color: gray;"><font face="Arial, sans-serif" style="" size="1">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</font></span></i></p>]]></td>
+</tr>
+</table>

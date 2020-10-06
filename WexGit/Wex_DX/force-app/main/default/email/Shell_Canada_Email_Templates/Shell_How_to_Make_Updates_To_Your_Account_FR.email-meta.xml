@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Shell Comment faire des mises à jour de carte / pilote</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell How to Make Updates To Your Account_FR</name>
+    <style>freeForm</style>
+    <subject>Marche à suivre pour apporter des modifications à votre compte Shell</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Bienvenue au programme de carte de carburant Shell!
+
+Maintenant que votre compte de carte de carburant Shell est établi, si vous souhaitez le modifier, trois possibilités s’offrent à vous :
+
+Par téléphone : Vous pouvez communiquer avec le service à la clientèle en tout temps au 1-866-627-7994.
+
+Par télécopieur : Il vous suffit de remplir les formulaires ci-joints et de nous les télécopier au 1-800-395-0809.
+
+En ligne : Vous pouvez effectuer des changements en tout temps sur le site www.shellaccountmanager.ca. Pour obtenir de l’aide au sujet de nos outils en ligne, reportez-vous au document PDF fourni en pièce jointe.
+
+Merci d’avoir choisi le programme de carte de carburant Shell.
+
+Cordialement,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

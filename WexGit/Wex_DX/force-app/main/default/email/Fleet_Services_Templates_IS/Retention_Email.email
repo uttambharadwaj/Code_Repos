@@ -1,0 +1,37 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><font style=""><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: black; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 10pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-bidi-font-size: 12.0pt;"><font face="Arial,Sans-Serif"><br></font></span></i></p><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Arial, sans-serif" style=""><span style="background-color: rgb(255, 255, 255);">Dear {!Contact.FirstName},<br></span></font><span style="font-family: Arial, sans-serif; font-size: 12pt;"><span style="background-color: rgb(255, 255, 255);"><br></span>I understand you had reached out to our Contact Center.<br></span><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br>I was unable to reach you via phone and have left you a voicemail message.&nbsp; I will be following up again soon.&nbsp; I would love to have the opportunity to remedy any issues you may have experienced with our program.<br></span><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br>Feel free to reach out to me.&nbsp; My contact information is listed below.<br></span><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br>I appreciate your time and thank you for being a customer.<br></span><i style="font-family: Arial, sans-serif; font-size: 12pt;"><br>{!User.FirstName} {!User.LastName}</i></p><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: black;"><font face="Arial,Sans-Serif">
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email} </font></span></i></p><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Arial, sans-serif" style=""><i style=""><span style="color: black;"></span></i>&nbsp;</font></p><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: black; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 10pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-bidi-font-size: 12.0pt;"></span></i>&nbsp;</p><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: black; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 10pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-bidi-font-size: 12.0pt;"><o:p></o:p></span></i>&nbsp;</p>
+
+<p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt; line-height: normal;" class="MsoNormal"><i><span style="color: black; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 12pt; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p>&nbsp;</o:p></span></i></p>
+
+<p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;;">CONFIDENTIALITY NOTICE: "This message
+contains confidential information of WEX Inc. It is intended only for the use
+of the designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 12pt; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></p>
+
+<p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;</span></i><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 12pt; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></p>
+
+<p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;;">WEX Inc., 97 Darling Avenue, South Portland, ME
+04106</span></i><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 12pt; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></p>
+
+<p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;;">&nbsp;</span></i><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 12pt; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></p>
+
+<p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;;">This is an advertisement from WEX Inc. If you no
+longer wish to receive future email advertisements from {!User.Email},</span></i><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;"><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="color: gray; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-bidi-font-size: 11.0pt;"> </span></i><i><span style="color: rgb(51, 51, 255); font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;; mso-bidi-font-size: 11.0pt;">email us to
+unsubscribe</span></i></a></span><i><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt; mso-fareast-font-family: &quot;Times New Roman&quot;;">.
+Please be sure to include your name, company name and email address in the
+email.</span></i><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 12pt; mso-fareast-font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></p>
+
+</font>]]></td>
+</tr>
+</table>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>April 12 Webinar INVITE</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MAsterCard_Education</letterhead>
+    <name>Education Sector (Apr &apos;12) Webinar INVITE</name>
+    <style>freeForm</style>
+    <subject>Upcoming University Business Webinar on ePayments</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Interested in turning A/P payments into a revenue source? You&apos;re not alone. One out of every two colleges and universities are considering implementing an ePayable strategy to reap the financial rewards and streamline payment operations.
+
+University Business and Wright Express will host a discussion exploring recent developments in ePayments in Higher Education. Panelists will cover recent trends and best practices from successful implementations, and working with vendors to prepare for the change.  You will learn how colleges and universities can use ePayments to improve efficiencies and generate a revenue stream while paying their bills. The webinar is set for 2 p.m. EDT, Tuesday, April 3rd.
+
+Panelists include:
+
+- Jim Pratt, Vice President, Wright Express
+- Ian Robbins, Director of Procurement, University of Montana
+- Stephen Cohen, Sr Vice President, Boost Payment Solutions
+
+The event is presented by Wright Express. You can register at:
+
+http://www.universitybusiness.com/webseminar/practical-applications-e-payments-campus
+
+I hope you are able to join this session.
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/education
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

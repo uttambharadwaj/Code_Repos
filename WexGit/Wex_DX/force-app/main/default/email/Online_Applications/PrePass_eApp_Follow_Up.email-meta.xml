@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>PrePass</letterhead>
+    <name>PrePass eApp Follow-Up</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest, {!OnlineApplication__c.Application_Title__c} Instructions</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+
+Thank you for your interest in PrePass.  For your convenience, a link to the online application is included with this message.  Please complete and sign when your schedule allows.  Note that the person listed on the Business Services Agreement (BSA) must be exactly the same as the individual who signs the application.
+
+
+Please click on this link and follow the instructions to complete your application process.  Thank you.
+
+
+We look forward to a long relationship with you!  Thank you for allowing PrePass to assist you in your business and if you have any questions regarding your application or our services, please don’t hesitate to contact us.
+
+Sincerely,
+
+
+
+PrePass Sales Department
+
+Phone: 800.773.7277 x 4 | Fax: 801.352.3633
+
+prepassupdates@prepass.com | www.PrePass.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

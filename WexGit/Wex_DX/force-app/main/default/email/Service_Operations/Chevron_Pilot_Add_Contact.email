@@ -1,0 +1,29 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Thank you for contacting us. Please select and open the attached URL link and submit your requested changes for Contact Add. The link will expire in 48 hours.
+<br></br>
+https://onlineservices.secure.force.com/FleetMaintenance/AccountMaintenance?recordId=5000g00002FNmUp&key=0010g9EOI5000g2f7fpU&c__action=contact
+<br></br>
+We would like you to fill out a simple survey by clicking on the link below. This feedback is appreciated and critical to how we expand features in the future. Thank you!
+<br></br>
+ https://wex.qualtrics.com/jfe/form/SV_brXwf6tXbMYsL09
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Week 1 First contact to introduce AP Direct to Hospitals prospect.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_Hospital</letterhead>
+    <name>Hospital Sector Wk1 Intro</name>
+    <style>freeForm</style>
+    <subject>Introduction to Wright Express ePayments for Hospitals</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I would like 30 minutes to introduce you to the easiest new revenue opportunity that you could start collecting this quarter.  Wright Express’ ePayments solution – AP Direct – provides your Accounts Payable department with a new payment option that replaces checks.  It’s a no-cost, ACH-like solution that delivers money to your bottom line.  Even better—it integrates directly into your existing ERP system. 
+
+Key Benefits:
+
+- Maximize financial incentives—think cash back—while paying your bills electronically
+
+- Improve working capital—pay your vendors faster and pay us later
+
+- Reduce cycle time and costs associated with paper checks
+
+- Improve your team’s efficiency with automated reconciliations
+
+Wright Express is the only commercially chartered bank fully dedicated to addressing your business to business payment needs.   As such, you
+can expect continued investment in solutions, consultations and services to meet your needs.  Don’t let this revenue opportunity pass you by.  Unlike your
+other typical revenue sources, it does not require complicated hassling with
+insurance carriers for reimbursements or difficult patient collections at point
+of service.
+
+I will follow up with a phone call to see about scheduling an initial discovery session.  In the meantime, please do not hesitate to contact me with questions.
+
+Sincerely, 
+
+{!User.FirstName}
+{!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com/hospitals
+
+
+
+CONFIDENTIALITY
+NOTICE: This message contains confidential information of Wright Express
+Corporation. It is intended only for the use of the designated recipient(s)
+stated above and further distribution of the information is prohibited. If you
+have received this message in error, please notify sender immediately by
+telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Message #1 for introducing Beth and reminder of WS 10 ct rebate offer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_WEXSMART</letterhead>
+    <name>BETH Outbound WEXSMART 10ct rebate #1</name>
+    <style>freeForm</style>
+    <subject>Unique Savings Opportunity on GPS Telematics</subject>
+    <textOnly>Save 10 cents per gallon for three months* with WEXSMART
+
+Dear {!Contact.FirstName},
+
+I&apos;d like to take this opportunity to introduce myself - my name is Beth Brenneman and I am a senior WEXSMART GPS Telematics consultant here at Wright Express. 
+
+I wanted to make sure you are aware of a unique savings opportunity with Wright Express&apos;s GPS telematics solution -- WEXSMART.  Now through December 15th, 2011, qualifying orders can help you earn a 10 cent rebate on your fleet account&apos;s fueling purchases for three months.
+
+WEXSMART can help you save year round by:
+
+* Reducing unauthorized vehicle uses like idling, speeding or off-hours use
+* Decreasing vehicle maintenance costs
+* Improving fleet productivity and re-deploying resourcesNEW! Easily identify potential fuel card misuse.  
+* Spot situations where your Wright Express fuel card is used an unreasonable distance from your vehicle locations. 
+
+I will follow-up by phone in the next two days to see if you would be interested in hearing more about how WEXSMART can help your fleet.  Please let me know if there is someone else I should talk to at your organization regarding this opportunity. 
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+* All units must be purchased by December 15th, 2011. Offer includes a 10¢ rebate per gallon fueled for three months. To qualify for the gallon rebate, you must fulfill an order that is equal to at least 50% of your account&apos;s fuel cards that are open to charge at the time of order. A minimum 2 year contract is required. Credits for fuel rebates earned will be applied monthly in arrears, following your WEXSMART contract effective date. Additional terms and fees apply. Ask your account executive for details.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

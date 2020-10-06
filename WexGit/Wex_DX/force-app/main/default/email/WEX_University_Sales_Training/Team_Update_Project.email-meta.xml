@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Team update project:</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Team Update Project</name>
+    <style>freeForm</style>
+    <subject>Team Update Project: {!Case.Subject}</subject>
+    <textOnly>Hi Everyone,
+
+Overview: {!Case.Description}
+
+Outcomes:
+
+Potential ROI(s)/Success Metric(s):
+
+Pros:
+
+Cons:
+
+Takeaways:
+
+Next Steps:
+
+
+Thank You,
+
+{!User.Name}
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

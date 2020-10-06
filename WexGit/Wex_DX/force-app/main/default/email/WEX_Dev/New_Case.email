@@ -1,0 +1,7 @@
+Hello {!User.FirstName},
+
+A new case has been created for your group.
+{!Case.Subject}
+The case Id is: {!Case.Id}
+Status:  {!Case.Status}
+Link to case: https://na5.salesforce.com/{!Case.Id}

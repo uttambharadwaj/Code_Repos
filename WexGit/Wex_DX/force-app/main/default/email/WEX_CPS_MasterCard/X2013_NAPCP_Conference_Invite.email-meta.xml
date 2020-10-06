@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Pre-conference email to prospects and contacts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>2013 NAPCP Conference Invite</name>
+    <style>promotionRight</style>
+    <subject>Enter to win an iPad at NAPCP New Orleans</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+I wanted to invite you to stop by the WEX booth (#28) at the up-coming NAPCP Conference in New Orleans and enter to win an iPad mini. If you have attended in the past, you are aware of our support of the conference. We appreciate the time you take to learn about best practices and ways to improve your program.
+
+
+For 30 years, WEX (NYSE: WXS) has been one of the premier commercial payment providers in the U.S. with a suite of &apos;best-in-class’ solutions. As the one of the top ten MasterCard issuers in the U.S., we provide accounts payable and purchasing tools to various industries. For the 5th consecutive year Forbes has ranked us in its list of America&apos;s 100 Best Small Companies.
+
+
+Be sure to attend our product demonstration, &quot;Streamline Your AP Process with One Solution to Manage Payments&quot; on Tuesday, April 16th at 2:45pm. We will be demonstrating our no-cost, virtual payment solution which provides several benefits to our customers that include:
+
+Revenue share and increased float
+Operational efficiencies
+Increased control
+Enhanced data and reporting capbailities
+
+WEX is the only commercially chartered bank fully dedicated to addressing your business to business payment needs. You can expect continued investment in solutions, consultations, and services to meet your needs. I hope you take the time to stop by and to enter to win.
+
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone - {!User.Phone}
+
+Cell - {!User.MobilePhone}
+
+{!User.Email}
+
+
+www.wexinc.com/payment-solutions
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.
+
+Wright Express Corporation Changes Name to WEX Inc.&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+New brand reflects Company’s evolution to an international provider of physical, digital and virtual corporate card payment solutions.
+
+
+Wright Express Corporation (NYSE: WXS), announced its name change to WEX Inc. October 25th. The new name reflects the Company’s transformation and growth strategies which are focused on physical, digital and virtual corporate card payment solutions for businesses internationally. The Company will continue to be listed on the New York Stock Exchange under the ticker WXS.
+
+
+“Today begins a new chapter in our Company’s evolution with the launch of our new, international brand, WEX Inc. This new brand is built on a foundational set of Company values - integrity, innovation and execution - that have remained constant as we have grown,” said Michael E. Dubyak, chairman, president and CEO of WEX Inc. “Over the last 30 years, we have achieved a leadership position in the rapidly changing corporate payments industry through our passion to deliver precision solutions, combined with our persistence in delivering an exceptional customer experience. The ongoing execution of our growth strategy further enables WEX Inc. to diversify its business and expand our international footprint.”</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

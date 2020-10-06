@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_CPS_Fleet/FUELING_POLICY_doc.doc</attachedDocuments>
+    <attachedDocuments>WEX_CPS_Fleet/Generic_Remit_Instructions_pdf.pdf</attachedDocuments>
+    <attachedDocuments>WEX_CPS_Fleet/MasterCard_Feature_Sheets_360_pdf.pdf</attachedDocuments>
+    <attachedDocuments>WEX_CPS_Fleet/SAMPLE_Fuel_Policy_doc.doc</attachedDocuments>
+    <attachedDocuments>WEX_CPS_Fleet/WEX_RSM_Referral_Form_doc.doc</attachedDocuments>
+    <available>true</available>
+    <description>Email welcoming a new customer to WEX</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_CPS</letterhead>
+    <name>Fleet - Welcome to WEX</name>
+    <style>freeForm</style>
+    <subject>Welcome to WEX!</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+Thank you for choosing WEX to help you manage your company&apos;s fuel spend. Our universal fleet fuel card is accepted at over 150,000 gas stations and can be enabled to make maintenance purchases at over 50,000 service locations as well.
+
+
+I would recommend you keep this email handy as a reference point should any questions come up as you move forward with the WEX program.
+
+Customer Service - Our customer service team is housed in South Portland, ME, staffed by employees of WEX. They are there to help you with any account maintenance questions seven days a week, 365 days a year, 24 hours a day. You can call customer service at 800-492-0669. This number is also on the back of every WEX card should your drivers have issue in the field.
+Sign Up For WEX On Line - WEX offers a website (www.wexonline.com) to help you manage your account (request cards, add driver I.D.&apos;s, etc.). This site also has a number of tools you can use to help manage and reduce your fuel expenses. The most powerful tool available on the site is Fuel Price Mapping, giving you access to real time fuel pricing in a selected radius from any address in the U.S. with a Google Map overlay. You can sign up for WEX On Line at www.wexonline.com.
+Paying Your Invoice - Attached you will find generic remittance instructions for paying your Wright Express bill. If you have signed up for our Direct Debit program, please disregard. If you are paying by check, please review the instructions. You can also pay online through WEX On Line where you can schedule your payment weeks ahead to be paid on the due date. If you have any questions about your invoice, please call customer service at 800-492-0669.
+Fleet Fuel Policy - If you don&apos;t have one drafted, I have attached a sample. Please take the time to set up a policy even if it is very simple. Let your drivers know what is expected of them up front and then use our tools to manage the exceptions to your policy.
+Want a free tank of gas? - I have attached a Word document that is a fleet customer referral form. If you have any customers, suppliers, etc. that you think could take advantage of the WEX fleet card program, please fill out the form and email it back to me at {!Opportunity.OwnerEmail}. If they end up signing up, we&apos;ll give you a $25 credit on your next invoice... just about a free tank of gas!
+
+{!Contact.FirstName}, I am sure we spoke about the two other products WEX offers, but I wanted to make sure you had information on file so if your company ever considers looking at either type of program, you would keep WEX in mind.
+
+WEXSmart - Our GPS based telematics program not only gives you, the fleet manager, access to location, speed, etc. but engine diagnostic information as well. Vehicles with this unit installed burn less fuel as they spend less time idling. Most companies report a major drop in after hours use after installation. Customers of the companies using this product report greater satisfaction as the fleet can route the closest vehicle to a customer instead of the first available. All that and there is still the potential to save on your annual vehicle insurance premiums!
+WEX MasterCard - WEX offers your standard &quot;travel and entertainment&quot; and purchasing cards, but specializes in unique applications with virtual and &quot;ghost&quot; card technology we invented for the web-based travel industry. Instead of giving out a corporate credit card number over the phone for any purchase, leaving you exposed to the entire credit line on that card, WEX Purchase Log allows you to request a single use, virtual card number, locked down to just the amount of the purchase. That virtual card number is then supplied to the vendor. If they attempt to charge more, it is declined. Once the charge goes through, we terminate the account. Add in up to six custom fields you define and reconciliation of these charges takes minutes. Many fleet customers use this as an option to being invoiced for vehicle repairs.
+
+Again, I would like to thank you for signing up with WEX. If you have any questions about the program, please let me know. If you need help with account maintenance, billing, etc., please do not hesitate to call customer service at 800-492-0669.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+www.wexinc.com
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

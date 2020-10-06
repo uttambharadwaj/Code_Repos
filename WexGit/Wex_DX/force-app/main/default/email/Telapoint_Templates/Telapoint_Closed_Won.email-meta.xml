@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This is used when a Telapoint Oppty is Closed Won</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Telapoint Closed Won</name>
+    <style>none</style>
+    <subject>Telapoint Opportunity Won!</subject>
+    <textOnly>Drew,  
+
+Opportunity {!Opportunity.Name} owned by {!Opportunity.OwnerFullName} has been changed to {!Opportunity.StageName}  Thanks  WEX Salesforce Integration
+
+Thanks
+
+WEX Salesforce Integration</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>to manually send Welcome Email #2: Fleet</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Welcome Email #2: Fleet</name>
+    <style>freeForm</style>
+    <subject>Register for Marathon Fleet Online for faster and easier fleet management</subject>
+    <textOnly>Register for Marathon Fleet Online- www.marathonfleetcard.com/login
+
+Registering is easy - Watch this quick guide: http://www.fleetcarddirect.com/distrib-userenroll/
+
+Be sure to register for Marathon Fleet Online where you’ll find easy card and vehicle spending controls, reports highlighting ways to save, customized email alerts, and more:
+
+•Add new cards or turn off lost cards in minutes
+
+•Download receipt data to your accounting system
+
+•No more chasing lost receipts or entering data
+
+•Get email alerts to help manage on-time payment and avoid late fees
+
+•Set purchase controls to help prevent unauthorized spending, including; fuel limits, allowable days and times, fuel type, and store or vehicle service charges
+
+•View, download, or print last 12 months of reports
+
+•Save time and simplify your life - Go Paperless: http://www.fleetcarddirect.com/tutorials/fleet-distributor.php 
+
+
+Marathon Station Locator ►http://mymarathonstation.com/StoreLocator 
+Drivers can find the most convenient Marathon near them.
+
+
+QUESTIONS? Customer Service is open to assist you and your drivers 24 hours a day, 7 days a week. 1-866-544-0699</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

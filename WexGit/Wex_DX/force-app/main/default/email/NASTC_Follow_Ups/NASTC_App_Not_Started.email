@@ -1,0 +1,13 @@
+{!Contact.FirstName}, 
+
+I am trying to reach you concerning the NASTC fuel card.  I have yet to receive your application for the NASTC fuel card and wanted to see if you had any questions or having any issues completing the application.  
+
+Please remember the sooner I get the application the sooner I can get your cards to you and the sooner you will be able to participate in the NASTC fuel savings. 
+
+If you have any questions, please call or e-mail me.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

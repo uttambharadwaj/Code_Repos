@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>March 2014 APA Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>March APA Webinar</name>
+    <style>freeForm</style>
+    <subject>APA Webinar</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+I first off want to thank you for taking the time to sign up and participate in March&apos;s APA WEX rapid! PayCard Webinar - Payroll Card and Payroll Best Practices.
+
+
+
+http://www.americanpayroll.org/product/?cid=50&amp;gid=190
+
+
+
+I have included the link in case you wanted to go back and listen to it again or forward to any friends or colleagues.
+
+
+I also wanted to reach out to you and provide some information about our WEX rapid! PayCard program. We are leaders in the paycard industry offering the most robust and customer friendly program while staying technologically advanced in order to provide a financial tool and a benefit to all employees.
+
+
+If you would like to schedule a 10-15 minute phone conversation in order to learn a little more about our company and allow me to learn more about your company and current process for distributing your employees their pay then please let me know. After we talk we can decide if there is interest in taking the next step and seeing a full product demonstration via a web meeting.
+
+
+Please let me know if there is interest in either a phone conversation or a web meeting and I will follow up accordingly. If I haven’t heard anything in the next 7-10 days then I will give you a call just to touch base with you.
+
+
+Thank you again, and I look forward to speaking with you!
+
+
+
+
+
+Art Kimball
+
+
+WEX Inc.
+
+
+rapid! PayCard
+
+
+o| 813.344.2894 c| 813.714.3716 f| 727.828.4444
+
+
+e| arthur.kimball@wexinc.com
+
+
+www.wexinc.com • www.rapidpaycard.com
+
+
+
+
+
+
+The &quot;Earth&quot; without &quot;Art&quot; is just &quot;Eh&quot;.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

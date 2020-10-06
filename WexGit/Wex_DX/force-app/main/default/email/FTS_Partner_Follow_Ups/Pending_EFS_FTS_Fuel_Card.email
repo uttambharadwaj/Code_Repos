@@ -1,0 +1,12 @@
+Hi {!Contact.FirstName}! 
+
+In order to set up your {!OnlineApplicationOffer__c.Name} fuel card account, you must establish an online password. It needs to have a min of 4 but no more than 10 numbers or letters. 
+
+If you have any questions, please do not hesitate to call me.
+
+Thank you 
+{!User.FirstName} {!User.LastName} 
+Relationship Manager Strategic Partners 
+WEX Inc. 
+{!User.Email} 
+{!User.Phone}

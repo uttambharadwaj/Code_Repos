@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Online Access : active</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+As you can see above, the status for your online access is active. You may have been able to login successfully by now, but we have a couple of suggestions if you&apos;re still having trouble.
+
+1. Please make sure you&apos;re on the exact website: www.essofleetonline.com. Internet Explorer is the best browser to use as Google Chrome will sometimes take you to other Esso sites.
+2. Please don&apos;t use a username/password save program, as this doesn&apos;t communicate well with our website.
+
+If we can be of further assistance with your new Esso Business Card account, please let us know.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

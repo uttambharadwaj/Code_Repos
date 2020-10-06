@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Managing Your Speedway Busines Universal Account</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Speedway_Letterhead</letterhead>
+    <name>Managing Your Speedway Universal Account</name>
+    <style>freeForm</style>
+    <subject>Managing Your Speedway Busines Universal Account</subject>
+    <textOnly>Hi
+
+Your cards have shipped and you should receive them in 5-7 business days!
+
+When you receive them you can give me a call if you need help getting set up online.
+
+Our Speedway activation team will also be giving you a call to help you get set-up online,
+
+and answer any other questions about using your cards so look out for another call from a 207 phone number.
+
+Thank you so much for partnering with the Speedway Business Card Program!
+
+Once you receive your cards you can manage your account online! You may opt out of paper statements and avoid a $10 paper statement charge, which is applied to encourage responsible paper usage.
+
+
+
+Here is a tutorial that will help you navigate the online portal once you have created your online logins -
+
+*******Take a look at this video with custom table of contents Tips &amp; Tricks for your online portal ****************
+
+https://www.speedwayuniversalmanager.com bookmark or save to your favorites and write down your username and password
+
+
+
+You must enroll as a New User
+Once you enter all your info to create your New User, you will receive a confirmation email within a few minutes
+CHECK YOUR SPAM FILE for the confirmation email
+Once you receive this confirmation email, you will then go back online and create your actual password
+FOR HELP CALL - 866 544 5796 and ask for E-SERVICES. E-SERVICES will assist you in all things for your portal
+
+
+
+
+Again, if you have any questions, call customer service 1-866-544-5796 and ask for E-SERVICES/online assistance.
+
+If you ever have issues or too long a wait with customer service during the week please call me. I&apos;m happy to help!
+
+Make 2020 the Year to streamline and focus on your business growth and help others to do the same
+
+
+Who do you know that owns or manages a business with company vehicles?
+Who do you know that is: a business owner, manager, bookkeeper, controller, fleet manager, driver, or traveling sales person?
+
+We have some very valuable tools and additional resources and business services we can provide to them.
+If you refer anyone to me, I will be sure to take good care of them. Thank you for partnering your business with Speedway!
+
+To Your Success,
+
+Ehrika
+
+Ehrika Martin
+Speedway Business Development
+Direct: 207-523-6066
+Fax: 207-874-1731
+Providing Speedy Solutions to running your business.
+
+Powered by:
+fleet SmartHub App
+
+--
+Learn More to Reduce Fuel Expenses</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

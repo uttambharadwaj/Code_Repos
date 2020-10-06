@@ -1,0 +1,23 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Caso #: {!Case.CaseNumber}
+<br></br>
+Gracias por contactarnos para confirmar el recibo de su pago reciente. Espere 10 días hábiles para que los futuros pagos enviados por correo se publiquen, o aproveche nuestros pagos gratuitos en línea o telefónicos, que se publican dentro de un día hábil.
+<br></br>
+
+Saludos,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

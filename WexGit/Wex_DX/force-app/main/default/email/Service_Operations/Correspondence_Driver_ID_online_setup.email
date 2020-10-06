@@ -1,0 +1,26 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+<p>You can set your own (passwords/PINs/Driver IDs *all the same thing) online at: Manage Account on the red bar &gt;&gt; Driver &gt;&gt; Add (if you wish to cancel the old ones, you choose Terminate).</p>
+<p>Otherwise, you can give us the new codes. By the way, the codes are not at all linked to the cards, but only to the driver&rsquo;s name. Any code on your account works with any active card.</p>
+<p>Please let us know if we can be of further assistance.</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Goodbye letter to NASTC contact</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Good Bye</name>
+    <style>freeForm</style>
+    <subject>Goodbye from NASTC fuel card program</subject>
+    <textOnly>{!Contact.FirstName}, 
+
+Thank you for your recent application for a fuel card account!
+ 
+We currently are not able to extend the requested credit line, however, we want you to benefit from the great savings of this NASTC fuel card program!
+ 
+We offer the same program with the same great savings and advantages on a &quot;Prepay&quot; basis, and opening a prepay account is Fast and Easy! The other option is a Letter of Credit from your bank. I am attaching a sample LOC for your bank understanding, if you choose this route.
+ 
+What is required for the prepaid account is a minimum initial deposit of $500.00. We will expedite the account set up and get the card(s) sent to you right away so that you can use the funds you have deposited quickly!
+Usually within 7 business days you can have the cards in your hand and start saving money!
+ 
+Payment method on Prepaid account:
+ 
+1. Wire transfer from your bank - Instructions for wire transfer will be sent to you.
+ 
+2. Comchek or T-Chek - Call or email the Comchek or T-Chek number, the amount, and the authorization number. We will run it immediately
+ 
+3 Western Union
+ 
+4. A self-imitated ACH
+
+Thank you!!!
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone: {!User.Phone} | Fax: {!User.Fax} 
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

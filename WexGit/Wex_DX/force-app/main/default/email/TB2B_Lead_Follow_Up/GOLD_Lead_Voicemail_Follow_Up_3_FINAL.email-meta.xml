@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Third and final follow up email after no contact made</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>GOLD Lead Voicemail Follow Up #3 FINAL</name>
+    <style>none</style>
+    <subject>Closing out your request</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

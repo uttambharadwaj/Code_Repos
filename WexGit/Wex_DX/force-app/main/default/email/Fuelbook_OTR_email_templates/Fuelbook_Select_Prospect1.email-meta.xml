@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fuelbook Select email follow up after speaking with prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FuelBook_Select_Letterhead2</letterhead>
+    <name>Fuelbook Select (Prospect)</name>
+    <style>freeForm</style>
+    <subject>Fuelbook Select exclusive offer</subject>
+    <textOnly>Thank you for speaking with me in regards to the Fuelbook Select card. Please follow the link for further details www.fuelbookselect.com. Benefits include:  
+
+•	Save 6 cent per gallon off retail posted cash price
+•	5 Pilot Flying J MyRward loyalty points per gallon 
+•	Zero fuel transaction fees at Pilot Flying J locations
+•	No credit check required 
+•	Accepted at over 7,000 truck stops
+
+If you are interested in signing up for this exclusive offer go the link below.  I look forward to working closely with you.  Feel free to contact me directly with any questions or concerns. 
+
+https://onlineservices.secure.force.com/appl/ApplicationCompanyInformation?noFrame=true&amp;offer=a3L70000000kndb
+
+Sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,8 @@
+Hello {!User.FirstName},
+
+{!Case.Subject} has been closed.
+The case Id is: {!Case.Id}
+Total Hours: {!Case.Hours_Worked__c}
+Status:  {!Case.Status}
+Solution: {!Case.Solution_Subject_and_Description}
+Link to case: https://na5.salesforce.com/{!Case.Id}

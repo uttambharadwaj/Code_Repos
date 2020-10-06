@@ -1,0 +1,12 @@
+you have an opportunity to grow some fuel gallons.  This opportunity was created for the Fuel Specialist to contact member and determine next steps.  
+
+Member: {!Opportunity.Account}
+Opp created by: {!Opportunity.CreatedBy}
+Opp Record type: {!Opportunity.RecordType}
+Oppty Lead Source: {!Opportunity.LeadSource}
+
+Truck Count: {!Opportunity.Truck_count__c}
+
+Comments: {!Opportunity.Description}
+
+See the opportunity here: https://na12.salesforce.com/{!Opportunity.Id}

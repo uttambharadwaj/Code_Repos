@@ -1,0 +1,21 @@
+Dear {{{Recipient.FirstName}}},<br />
+<br />
+I am following up on my email about easing the pain of supplier payments for {{{Opportunity.Account_Name__c}}}.&nbsp;<br />
+<br />
+Take a look at this <a href="https://www.youtube.com/watch?v=ntxwtKzWcWE&amp;list=PL179qYIjfZpCnRVrkxGnBam9GCmEcOd05&amp;index=7">one minute testimonial</a> and ask yourself if {{{Opportunity.Account_Name__c}}} could benefit from a partnership that leverages deep expertise and singular focus to develop unique payment solutions . . . maximizing your efficiency and cash flow as we have for companies like Expedia, Priceline and Travelliance.&nbsp;<br />
+<br />
+Do you have 15 minutes to tell me more about {{{Opportunity.Account_Name__c}}} and find out what we could do for you? &nbsp;<br />
+<br />
+Please let me know what times you are available over the next week or two, or if there is someone else within your organization I should talk to. I look forward to hearing from you.<br />
+<br />
+<br />
+Sincerely,<br />
+<br />
+{{{Sender.Name}}}<br />
+{{{Sender.Title}}}<br />
+{{{Sender.Email}}}<br />
+{{{Sender.Phone}}}<br />
+www.wexinc.com<br />
+<br />
+<br />
+<span style="font-size:10px;"><i>This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</i></span>

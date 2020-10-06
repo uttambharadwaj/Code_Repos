@@ -1,0 +1,7 @@
+Hi {{{Recipient.FirstName}}},
+<br /> 
+<br /> this is some boiler plate content. that sales can leverage.
+<br /> 
+<br /> Sincercely,
+<br /> 
+<br /> {{{Sender.Username}}}

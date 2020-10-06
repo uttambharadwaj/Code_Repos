@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use when reaching out to a prospect for the first time (by email, or perhaps after not having luck connecting by phone). ATTACH PROGRAM INFO!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Stripes_eLetterhead</letterhead>
+    <name>RSM: Cold Call/Email_JSaenz</name>
+    <style>freeForm</style>
+    <subject>Controlling your vehicle expenses with The Stripes Fleet Card Program.</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+My name is John Saenz and I&apos;m the Authorized Representative for The Stripes Fleet Card Program.
+
+We help businesses like yours save upwards of 15% on overall vehicle management and fueling costs, including competitive fuel rebates on every gallon whenever you fuel at over 700 Stripes® Stores, regardless of the fuel brand on the pumps.
+
+Whether you’re looking for a fleet card program with easy-set cost controls, in-depth reporting, robust rebates, nationwide card acceptance, or the ability to save hours of administrative time managing your fleet vehicles and expenses, Stripes has an ideal fleet card solution for your business.
+
+I would like to share some additional information about The Stripes Fleet Card Program, and speak with you about your current fuel program and needs. I&apos;ll be in touch to schedule some time to meet.
+
+Many thanks,
+
+John Saenz
+Authorized Representative - Stripes Fleet Accounts
+210.372.0346 Mobile
+207.253.1343 Fax
+john.saenz@wexinc.com
+www.stripesfleetcards.com/john
+
+
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+
+Stripes Fleet Card Program Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

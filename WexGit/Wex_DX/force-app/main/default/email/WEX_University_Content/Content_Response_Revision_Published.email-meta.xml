@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to respond to the Business Requestor when a revision is published.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Customer_Service_Banner_Letterhead</letterhead>
+    <name>Content Response - Revision Published</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.CaseNumber} {!Case.Case_Reason__c} {!Case.Subject}</subject>
+    <textOnly>{!Case.User__c},
+
+The document {!Case.Document_Name__c} has been revised and a new version has been published to the {!Case.To_be_published_in__c}.
+
+Please reply to this email with any questions.
+
+Thank you,
+{!Case.OwnerFullName}
+Content Management
+Sales Operations &amp; Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

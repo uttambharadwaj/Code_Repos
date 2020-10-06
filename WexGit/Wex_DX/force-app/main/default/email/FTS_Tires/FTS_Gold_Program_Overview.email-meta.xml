@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/GoldOverview_New_FTS_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Gold Program Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>FTS Gold Program Overview</name>
+    <style>freeForm</style>
+    <subject>FTS Plus+ Gold Program</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you were aware of our national account tire savings through The Gold Program. As an FTS Plus+ member, you receive access to national accounts with most major tire brands. Please review the attached information and call or email me with any questions
+
+Thank you,
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+{!User.FirstName} {!User.LastName}
+FTS Plus+ Representative
+Phone: 800.749.1724 Opt. 2
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

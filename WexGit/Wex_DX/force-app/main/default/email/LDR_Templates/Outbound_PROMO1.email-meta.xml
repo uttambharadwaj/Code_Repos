@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>15¢ CITGO promo for Cold to Close only (Ends March 30 2018)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead</letterhead>
+    <name>CITGO 15 cent promo</name>
+    <style>freeForm</style>
+    <subject>CITGO FLEET  LAST CHANCE OFFER</subject>
+    <textOnly>Now is the best time to apply for the CITGO fleet card program!
+
+Get 17¢ off per gallon for 6 months.
+
+
+Dear {!Contact.FirstName},
+
+Whether your business is large or small, take charge of your fueling expenses with the CITGO fleet card program. For a limited time only, CITGO is offering 17¢ off on EVERY gallon purchased at a CITGO with the CITGO fleet card!
+
+The CITGO fleet card is the perfect way to simplify your vehicle fueling and eliminate hours of paperwork.
+
+- Rebates of 17¢ on every gallon* for the first 6 months
+
+- Enjoy convenient access to nearly 6,000 CITGO locations or ask for our Universal Card and you&apos;ll have acceptance at over 90% of all U.S. fueling sites
+
+- Helps prevent unwanted spending with pre-set controls
+
+- 24/7 U.S. based customer services – for you and your drivers
+
+I will be following up with you over the next couple of days. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to speaking with you about the needs of your business.
+
+Don’t wait any longer to start saving 17¢ per gallon on fuel.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+*Subject to credit approval. New accounts only. The 6 month promotional period begins on the date your account is opened. Discounts are not applied at the time of purchase – they will appear as an account credit on your monthly billing statement. Must apply by Sept.  30th, 2017. Standard rebates of up to 5¢ per gallon of fuel will be applied after the promotional offer. Rebates are subjected to change at any time without prior notice.
+
+
+CITGO and the CITGO logo are trademarks of CITGO Petroleum.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>6th Attempt, no contact - allow them to book a meeting</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One 3rd (Final) Follow Up - Prospect Interested</name>
+    <style>freeForm</style>
+    <subject>Checking in with you one last time...</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+You had previously requested information on our program but I never heard back from you.  Are you still considering our program?
+
+Remember, we offer:
+
+Fuel discounts at over 3,600 sites
+Average savings of 15 cents per gallon*
+No fuel transaction fees in the EDGE network**
+Acceptance at over 8,000 truck stops nationwide
+Nationwide tire discounts with most major brands
+Additional savings on wireless plans, repairs, hotels and more.
+
+Book a Meeting with Me in 1 Click
+
+Would love to hear back from you!
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.
+
+*The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network pricing at all.
+
+**In-network sites include Pilot Flying J, AMBEST, Circle K, Quick Fuel, Petroleum Wholesale, Sapp Bros., Speedway, and many more.”</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send from Training Event to all/any new hires</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Learning Plan: Customer Service</name>
+    <style>freeForm</style>
+    <subject>Start Your Learning Journey</subject>
+    <textOnly>Get started on your Learning Journey!
+
+As part of your new journey with WEX, the Global Training Team has developed self-directed and self-paced Learning Plans to jump start your success in your new role.
+
+
+Your Phase I Learning Plan can be found here:
+
+
+PHASE I: Get to know WEX
+https://docs.google.com/document/d/1MSbGdaiqFVx0TLURiBqczsu-LDH7xfCgBSltasuiM8g/preview
+
+Complete this Learning Plan and Knowledge Check within the next two weeks.
+
+Thank You,
+
+{!User.Name}
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

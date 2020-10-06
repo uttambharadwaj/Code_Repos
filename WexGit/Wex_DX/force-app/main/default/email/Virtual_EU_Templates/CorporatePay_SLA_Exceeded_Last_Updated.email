@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><br></div><div><br></div><div>It has now been 24 hours since the Sales / Relationship Management team provided additional information for the application linked to&nbsp;<a href="https://na5.salesforce.com/{!Opportunity.00N70000003TZ0K}">{!Opportunity.Account_Asset__c}</a>&nbsp;and the application status is&nbsp;{!Opportunity.Application_Status__c}<span style="font-size: 12pt;">.</span></div><div><br></div><div><br></div><div>Application Submitted Date -&nbsp;{!Opportunity.Application_Submitted_Date__c}</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font></i></div>]]></td>
+</tr>
+</table>

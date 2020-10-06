@@ -1,0 +1,14 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="1" aEditID="c1r1" >
+<![CDATA[<P><FONT face=Verdana,Helvetica,Sans-Serif>Dear {!Contact.Name}:</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>The Hess Fleet Card has a great savings opportunity for {!Account.Name}</FONT><FONT face=Verdana,Helvetica,Sans-Serif>, and now is the ideal time to sign up. For a limited time we are offering new Hess Fleet Card customers <STRONG>5¢&nbsp;per gallon savings</STRONG> on fuel purchases.* We have had overwhelming response from businesses like {!Account.Name} </FONT><FONT face=Verdana,Helvetica,Sans-Serif>to our most popular savings offer ever!</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>To take advantage of this great offer, or if you have any questions, please feel free to call me at&nbsp;{!User.Phone} </FONT><FONT face=Verdana,Helvetica,Sans-Serif>or email me at {!User.Email}</FONT><FONT face=Verdana,Helvetica,Sans-Serif>. I look forward to speaking with you soon.</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>Sincerely,</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>{!User.FirstName} {!User.LastName}<BR>{!User.Phone}<BR>{!User.Email}</FONT></P>]]></td>
+</tr>
+</table>

@@ -1,0 +1,36 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+<p>The Controls tab on the red bar &gt;&gt; Profile Manager &gt;&gt; Add New Profile</p>
+<p>Profile Information</p>
+<p style="padding-left: 30px;">Profile Name: create a name for the profile (eg: 500/mo)</p>
+<p>Frequency Controls</p>
+<p style="padding-left: 30px;">Only select the button beside the period (eg: daily, weekly&hellip;)</p>
+<p>Product Type Controls</p>
+<p style="padding-left: 30px;">Total Fuel: &gt; Top-Up Fluids (any kind of automotive additive fluids): enter Dollars per Transaction &gt; Transactions per Period &gt; Dollars per Period Control When Authorizations&nbsp;Occur *Most customers don&rsquo;t use&nbsp;this, but you may</p>
+<p>Submit</p>
+<p>(You can create as many Profiles as you need.)</p>
+<p>You&rsquo;ll see a pop up window advising you that you now need to Assign the Profile to specific or all of your cards. To do this, go to:</p>
+<p>Controls &gt;&gt; Assign Profiles</p>
+<p style="padding-left: 30px;">You&rsquo;ll see all your cards. You can select the button to assign the Profile to all cards at once, or you can go to each specific card and select the new Profile.</p>
+<p>Submit</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

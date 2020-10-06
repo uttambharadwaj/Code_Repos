@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Truckers Advantage Solicited</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Truckers_Advantage</letterhead>
+    <name>Truckers Advantage Solicited</name>
+    <style>freeForm</style>
+    <subject>Truckers Advantage/OOIDA (We can help!)</subject>
+    <textOnly>My name is {!User.Name} and I am with Truckers Advantage, I attempted to reach you today to give you more information regarding our fuel card program and answer any questions you may have.
+
+Nationwide acceptance at over 8000 truck stop locations
+	Zero Monthly card fees
+	Zero fuel transaction fees
+
+Fuel Discounts at these locations:
+Pilot Flying J:   Retail minus 10 cents
+Speedway:  Cost Plus 7 cents
+Sapp Brothers:  Cost Plus 8 cents
+Quickfuel:  Cost plus 7 cents
+Savings of up to 30 to 40 cents per gallon at some independents
+
+I look forward to speaking with you personally, feel free to call or send me an email, my contact information is listed below.
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com 
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

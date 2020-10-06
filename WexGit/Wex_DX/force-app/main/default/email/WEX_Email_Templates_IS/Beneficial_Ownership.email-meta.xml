@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Beneficial_Ownership.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Send PDF of Beneficial Ownership Form</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Generic_Letterhead</letterhead>
+    <name>Beneficial Ownership</name>
+    <style>freeForm</style>
+    <subject>Beneficial Ownership Form</subject>
+    <textOnly>Before we can review your application, we must ask you to identify:
+
+Any person who owns, directly or indirectly, at least 25 percent of the equity interests of this business.
+One person with a significant managing role, like an executive officer or senior manager.
+
+Federal regulations now require all banks to verify the ownership of certain business types when they open a new account.
+
+Please provide the Name, Address, Date of Birth, and Social Security Number (or Passport Number, in the case of foreign persons) for each individual.
+
+We’ve made it easy.
+
+Simply complete this form, sign it.  You can either scan it and email or fax it back to me.
+
+Read our FAQ about this Federal requirement here.  If you still have questions, don’t hesitate to call us at 1-800-395-0812 ext 3.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

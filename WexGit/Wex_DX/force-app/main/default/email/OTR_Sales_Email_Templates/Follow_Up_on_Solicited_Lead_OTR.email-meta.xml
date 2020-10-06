@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Follow Up on Solicited Lead- OTR</name>
+    <style>freeForm</style>
+    <subject>We can help!</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+My name is {!User.Name}, a consultant with WEX Fleet One. I attempted to reach you earlier today to give you more information regarding our fuel card program and answer any questions you may have.
+
+The WEX Fleet One Fuel Card provides:
+
+· Zero Transaction Fees
+
+· Cash Price at all Truck Stops
+
+· Detailed Reporting and Control
+
+· Free Online Account Management
+
+· Immediate Cash Services
+
+· Credit lines to fit your business needs
+
+· Discounts and Rebates
+
+Here you will find several testimonials and videos of our customers sharing their positive experiences with WEX Fleet One.
+
+I look forward to speaking with you personally. Feel free to call or respond via email at your earliest convenience. You will find my contact information below.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,20 @@
+{!Contact.FirstName}
+
+Thank you for taking my call today. I'm following up with some additional information, below, about our WEX Fuel Card program along with my contact information. 
+
+Our WEX Fuel Card program allows you to set a range of controls over when, where, what and how much your drivers can purchase. You simply establish your set of rules for each driver and the card will be rejected if a driver attempts to purchase outside of your guidelines.
+
+Additionally, our Purchase Alerts keep a close watch on your purchases - both fuel and service (where applicable). Utilize Purchase Alerts to start receiving email notification when a card violates one of your preset guidelines.
+
+Customer Testimonial videos:
+http://www.wexinc.com/fleet-operators-and-managers/fleet-cards/video-testimonials
+
+Please call or email me anytime with questions.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone} 
+Fax - {!User.Fax} 
+{!User.Email}

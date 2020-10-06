@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>EFS - PrePay Information existing account with AR #</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS - PrePay Information (has Carrier ID)</name>
+    <style>formalLetter</style>
+    <subject>How to send in a Bank Wire / ACH to your EFS Account</subject>
+    <textOnly>Greetings,
+Company Name: {!Account.Name}
+
+
+Company Authorized Contact: {!Contact.Full_Name__c}
+
+
+
+Below are the instructions for sending bank wire/ACH payments to fund your EFS account:
+
+
+Bank Name:  Fifth Third Bank
+
+38 Fountain Square
+
+Cincinnati, OH 45263
+
+
+Account Name:  WEX BANK
+
+1104 Country Hills Drive
+
+Ogden, Utah 84403
+
+
+Account Number:  7361767473
+
+
+Wire Routing Number:  042000314
+
+ACH Routing Number:  064103833
+
+
+Please note that Fifth Third uses different routing number for wires and ACH. If the incorrect routing number is used, the payment will be rejected by the bank.
+
+
+Please make sure to include your AR # _______ in the payment remittance information (&quot;OBI Fields&quot;). We cannot apply your payment without this information. Please follow the example illustrated below:
+
+
+
+OBI Line 1:  AR# XXXXXXXX
+
+
+
+
+
+If you have any questions, please let me know.
+
+
+
+Kind Regards,
+Katie Haywood |  Sr. Account Executive
+
+
+3102 West End Avenue, Suite 900  |  Nashville, TN 37203
+
+Phone: 615.523.6496  |  Fax: 615.858.6496
+
+
+KHaywood@FleetOne.com | www.FleetOne.com | www.efsllc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,13 @@
+<messaging:emailTemplate subject="New Transaction Dispute Form Submitted!" recipientType="User" relatedToType="Case">
+<messaging:htmlEmailBody >
+
+A new transaction dispute form has been submitted!
+
+<p>
+<b>Customer Name:</b>&nbsp;{!relatedTo.Account.Name}
+</p>
+
+<a href="{!$Label.Instance_URL}{!relatedTo.Id}">View Dispute</a>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

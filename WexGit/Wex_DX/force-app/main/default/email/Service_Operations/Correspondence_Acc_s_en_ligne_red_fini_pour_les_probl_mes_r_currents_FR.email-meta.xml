@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Accès en ligne redéfini pour les problèmes récurrents</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Accès en ligne redéfini pour les problèmes récurrents</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+J’ai envoyé un autre mot de passe pour réinitialiser votre accès en ligne. Peut-être votre problème est le navigateur utilisé. L’Internet Explorer est le meilleur. 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

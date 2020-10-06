@@ -1,0 +1,9 @@
+{!Contact.FirstName},
+
+This is to notify you that after consideration of the collected documents that were presented to WEX, it was determined by WEX Bank that the application for the {!OnlineApplicationOffer__c.Name}fuel card was declined. You will receive a letter from WEX Bank explaining their decision.
+
+Thank you
+{!User.FirstName} {!User.LastName}
+WEX Inc.
+{!User.Title}
+{!User.Phone}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email with link to download White Paper on Closed Loop Fleet Cards.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>2015 Closed Loop Feet Card Networks</name>
+    <style>none</style>
+    <subject>Closed Loop Networks for Higher Savings</subject>
+    <textOnly>Closed Loop Networks for Higher Savings - WEX
+
+Learn how WEX&apos;s closed loop network helps you drive fleet costs down.
+
+Closed Loop Networks are built for business use, and don’t run on the credit card networks that were built for consumers. Our whitepaper shows how fleet cards can help your business.
+
+http://images.response.wexinc.com/Web/WrightExpressCorporation/{e67210fb-4cbe-4693-bdbc-99fddb688ab7}_LFClosedLoopWhitepaper.pdf
+
+
+Learn about how you can control which products your drivers can purchase, where they can purchase them, and the total dollar amount of the purchase. Reduce your risk of fraud or misuse, and increase your ability to keep expenses in check. Not all fleet cards are the same!
+
+
+WEX, Inc.|  97 Darling Avenue  |  South Portland, ME 04106  |  USA  | Privacy Policy</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

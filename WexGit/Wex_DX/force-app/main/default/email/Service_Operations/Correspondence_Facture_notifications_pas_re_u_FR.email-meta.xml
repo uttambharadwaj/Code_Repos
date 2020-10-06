@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Facture : notifications pas reçu</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Facture : notifications pas reçu</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Certains fournisseurs de messagerie classifient les courriels provenant de essofleetonline.com comme étant indésirables. Nous vous suggérons de vérifier votre dossier SPAM/JUNK/INDESIRABLES. Aussi, nous vous suggérons d’ajouter onlineservices@essofleetonline.com dans vos contacts afin de remédier à la situation.  
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

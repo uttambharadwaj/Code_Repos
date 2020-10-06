@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template to use for direct inquiries to WEX that are predominantly a small-business opportunity (for which WEX does not have a great solution).</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>Small Biz Direct Inquiry Response</name>
+    <style>freeForm</style>
+    <subject>re: Your Recent Wright Express Inquiry</subject>
+    <textOnly>Dear Applicant,
+ 
+Thank you for your interest in the Wright Express MasterCard® program for Small Business.  Unfortunately, the program is no longer available.  We apologize for any inconvenience to you.
+ 
+Wright Express is an industry leader in providing payment solutions for small businesses that have company vehicles.  The Wright Express Universal Fleet Card program may be a great fit for your fuel and vehicle related service needs.  The Wright Express Universal Fleet Card is accepted at 90% of retail fueling locations nationwide, and over 45,000 name-brand service sites, such as Jiffy Lube, Sears and more.
+ 
+With the Wright Express Universal Fleet Card you can set pre-determined limits on what drivers can charge, how often and on what kinds of products and services, during what period of time.  Gain ultimate control over vehicle related spending.
+ 
+The program’s powerful reporting functions also help you slash the administrative time and expense involved in tracking and managing vehicle related spending.
+ 
+If this program is of interest to you, please contact us toll-free at 1-888-300-9039.  We would be happy to explain more about our services and how we can help you save time and money with regard to your vehicle operating costs.
+ 
+Sincerely,
+ 
+Justine Libby
+Manager, Inside Sales
+Wright Express Financial Services Corporation</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

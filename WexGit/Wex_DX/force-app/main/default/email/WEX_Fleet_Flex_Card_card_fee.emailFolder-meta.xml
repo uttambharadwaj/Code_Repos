@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>*Wex FlexCard Templates IS</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>DirectOTRSalesGroup</group>
+        <group>DirectOTRSalesMgrs</group>
+        <group>InsideSales</group>
+        <group>InsideSalesDataEntry</group>
+        <group>InsideSalesManager</group>
+        <role>DirectorInsideSales</role>
+        <role>Lead_Development_Role</role>
+        <role>Product_Manager</role>
+        <roleAndSubordinates>DirectLocalSales2</roleAndSubordinates>
+        <roleAndSubordinates>Fleet_Outbound_Channel_Sales</roleAndSubordinates>
+        <roleAndSubordinates>Fleet_Outbound_Channel_Sales_STL</roleAndSubordinates>
+        <roleAndSubordinates>Fleet_Outbound_Channel_Sales_TL</roleAndSubordinates>
+        <roleAndSubordinates>Head_of_Marketing</roleAndSubordinates>
+        <roleAndSubordinates>Marketing</roleAndSubordinates>
+        <roleAndSubordinates>MarketingReporting</roleAndSubordinates>
+        <roleAndSubordinates>Marketing_Manager</roleAndSubordinates>
+        <roleAndSubordinates>OTR_Outbound_Channel_Sales_TL</roleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

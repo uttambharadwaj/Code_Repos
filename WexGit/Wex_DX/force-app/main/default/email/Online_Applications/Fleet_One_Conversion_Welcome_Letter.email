@@ -1,0 +1,35 @@
+<messaging:emailTemplate subject="New {!relatedTo.Offer__r.Application_Title__c} Account Information" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+
+<br  /><br  />
+
+<p>Dear {!relatedTo.Contact_First_Name__c},</p>
+
+<p>We are pleased to inform you that your account conversion is complete! Your existing carrier ID, {!relatedTo.Carrier_ID_Number__c}, has been updated to reflect the {!relatedTo.Offer__r.Application_Title__c} discounts, rebates and fees. Please see the attached terms and conditions for these details.</p>
+
+<p>Your current cards are still active and will continue to work until you receive your new cards in 3-5 business days. Your new cards will arrive active and will contain the same Driver Names and Prompt information as your existing cards.</p>
+
+<p>Please reach out to us with any questions regarding your account.</p>
+
+<p>Sincerely,</p>
+
+<apex:outputPanel >
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), 'Fleet Fuel Card Sales Team' , If(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Contact_Name__c,relatedTo.Owner.FirstName+" "+relatedTo.Owner.LastName))}"/><br />
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Phone_Number__c,relatedTo.Owner.Phone))}"/><br />
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Email__c,relatedTo.Owner.Email))}"/><br />
+</apex:outputpanel>
+
+<p>Terms and Conditions Version: {!relatedTo.Terms_and_Conditions_Version__c}</p>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

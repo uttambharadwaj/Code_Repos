@@ -1,0 +1,79 @@
+<messaging:emailTemplate subject="Telematic Order for {!relatedTo.Vendor_Account__r.Name}, Order No {!relatedTo.QuoteNumber__c}" recipientType="Contact" relatedToType="zqu__Quote__c">
+    <messaging:htmlEmailBody >
+        <html>
+            <body>
+                <!-- Header-->
+                <p><b>Telematics Order for:</b></p>
+                <p><b>Vendor Name</b> {!relatedTo.Vendor_Account__r.Name}</p>
+                <p><b>Order Date</b> {!TODAY()}</p>
+                <p><b>Order Number</b> {!relatedTo.QuoteNumber__c}</p>
+                <p><b>First Time Order</b> {!relatedTo.FirstTimeOrder__c}</p>
+                
+                <apex:outputpanel rendered="{!NOT(if(ISBLANK(relatedTo.SecondaryAccountName__c),true,false))}">
+                    <p><b>Multi Address Flag</b> Yes</p>
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!if(ISBLANK(relatedTo.SecondaryAccountName__c),true,false)}">
+                    <p><b>Multi Address Flag</b> No</p>
+                </apex:outputpanel>
+                
+                <p><b>Sales Representative</b> {!relatedTo.SalesRep1__r.Name}</p>
+                
+                <p><b>Special Shipping Instructions:</b></p>
+                <p>{!relatedTo.Vendor_Order_Instructions__c}</p>
+                
+                <br/>
+                <br/>
+                <!--Shipments-->
+                <h3>Shipping and Order Detail:</h3>
+                
+                <table>
+                    <tr>
+                        <th>Vendor Product Name</th>
+                        <th>Vendor Product Code</th>
+                        <th>Quantity</th>
+                        <th>Wex Cost</th>
+                        <th>Service Contract Term</th>
+                        <th>Billing Account Name</th>
+                        
+                        <th>Shipping Contact</th>
+                        <th>Shipping Address Line 1</th>
+                        <th>Shipping Address Line 2</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip Code</th>
+                        <th>Shipping Contact Phone</th>
+                        <th>Shipping Contact Email</th>
+                        <th>Shipping Carrier</th>
+                        <th>Shipping Service</th>
+                    </tr>
+                    
+                    <apex:repeat var="shipmentCharges" value="{!relatedTo.Shipment_Charge_Groups__r}">
+                        <tr>
+                            <td>{!shipmentCharges.Product_Name__c}</td>
+                            <td>{!shipmentCharges.ProductRatePlanCharge__r.zqu__ProductRatePlan__r.VendorProductCode__c}</td>
+                            <td>{!shipmentCharges.Quantity__c}</td>
+                            <td>{!shipmentCharges.Effective_Price__c}</td>
+                            <td>{!shipmentCharges.ServiceTerm__c}</td>
+                            <td>{!if(ISBLANK(relatedTo.SecondaryAccountName__c) || (NOT(CONTAINS(shipmentCharges.ProductCategory__c, 'Monthly Service')||CONTAINS(shipmentCharges.ProductCategory__c, 'ELD / HOS Software')) && NOT(CONTAINS(shipmentCharges.ProductCategory__c, 'ELD / HOS Software'))),relatedTo.PrimaryAccountName__c,relatedTo.SecondaryAccountName__c)}</td>
+                            
+                            <td>{!shipmentCharges.Shipment__r.Shipping_Contact__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.Address_Line_1__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.Address_Line_2__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.City__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.State__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.Zip__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.Shipping_Contact_Phone__c}</td>
+                            <td>{!shipmentCharges.Shipment__r.Shipping_Contact_Email__c}</td>
+                            <td>{!shipmentCharges.Shipping_Carrier__c}</td>
+                            <td>{!shipmentCharges.Shipping_Service__c}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+                
+                <br/>
+                
+                
+            </body>
+        </html>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

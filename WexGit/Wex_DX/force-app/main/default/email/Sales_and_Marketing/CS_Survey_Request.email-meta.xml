@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Survey to send upon closure of a Service Operations case</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS Survey Request</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} -  #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us.
+{!Case.SurveyInclusionText__c} 
+
+
+
+Merci de nous contacter.
+{!Case.SurveyInclusionFrText__c} 
+
+
+
+Gracias por contactarnos.
+{!Case.SurveyInclusionEsText__c}
+
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/FTS_Hot.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Office360 Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Office360_Follow_Up_FTS</name>
+    <style>none</style>
+    <subject>Office360 Follow Up</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

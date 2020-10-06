@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Welcome to WEX</title>
+<style media="all" type="text/css">
+a:link, a:visited {
+     color:#305b7c;
+     text-decoration:underline;
+}
+p {
+ padding:0px;
+}
+.ReadMsgBody
+  {width: 100%;}
+.ExternalClass
+  {width: 100%;}
+-->
+</style>
+</head>
+
+<body style="background: none repeat scroll 0% 0% #e4e9f3;" bgcolor="#e4e9f3">
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#e4e9f3">
+<tr>
+<td>
+
+<table width="750" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+	<tr>
+		<td><img src="
+https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001Kxwb&oid=00D700000009EOI&lastMod=1337267165000" width="750" border="0" height="205" alt="Simplify Your Fleet's Reporting" /></td>
+	</tr>
+    <tr>
+		<td height="5"></td>
+	</tr>
+    <tr>
+		<td height="15" bgcolor="#668285"></td>
+	</tr>
+    <tr>
+		<td height="40"></td>
+	</tr>
+</table>
+
+<table width="750" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+	<tr>
+    	<td width="90"></td>
+        <td width="610">
+        	<p style="font-family: Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#000;">Hello {!Contact.FirstName},</p>
+            
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000; line-height:20px;">I wanted to follow up with you on your fleet's needs, and share some tools that have been useful to many of my new customers - WEXOnline&reg. Fleet managers are raving about it, and I wanted to be sure you were aware of this powerful tool. <a href="http://www.wexinc.com/wex-fleet-management-demo">Check out our Online Demonstration</a>  </p>
+            
+            <table width="610" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+            	<tr valign="top">
+     
+                <td width="40"></td>
+            </tr>
+            </table>
+            
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#000;">Why WEXOnline?</p>
+            
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000; line-height:20px;">WEXOnline puts all your reporting at the tip of your fingers, making it easy to generate custom or standard reports. Add drivers, create profiles for groups of drivers, and determine if your fleet is leveraging the lowest fuel prices. Reduce the time you spend dealing with administrative issues.</p>
+            
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#000;">Don't take our word for it.</p>
+            
+            <table width="610" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+            	<tr valign="top">
+                <td width="208"><a href="https://www.youtube.com/watch?v=5-P_ogzL96g" style="color:#668284; text-decoration: underline;"><img src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001Kxwg&oid=00D700000009EOI&lastMod=1337267226000" width="208" border="0" height="169" alt="" /></a></td>
+                <td width="20"></td>
+                <td width="382"><p style="font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000; line-height:20px;">Hear what our customers are saying. WEX has one of the highest customer retention rates. Our customers get the utmost level of attention. <a href="http://www.fleetcardbenefits.com" style="color:#668284; text-decoration: underline;">Watch a video</a> to hear what they think.</p>
+                
+                <p style="font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000; line-height:20px;">I'll be reaching out shortly. In the meantime, take a few minutes from your day to see our brief 4-minute demo</a>.</p></td>
+            </tr>
+            </table>
+            
+            <table width="610" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+            	<tr>
+                <td width="610" height="45" colspan="2"></td>
+                </tr>
+                
+                <p style="font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000; line-height:20px;">Sincerely,</p>
+                
+                <p style="font-family: Arial, Helvetica, sans-serif; font-size:13px; color:#000; line-height:20px;">{!User.FirstName} {!User.LastName}<br />{!User.Phone}</p></td>
+                  
+          </tr>
+            </table>
+            
+		</td>
+        <td width="50"></td>
+    </tr>
+</table>
+
+<table width="750" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#668285">
+	<tr>
+		<td height="40" bgcolor="#FFFFFF"></td>
+	</tr>
+    <tr>
+		<td height="25"></td>
+	</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

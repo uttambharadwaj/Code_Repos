@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Besoin d&apos;états financiers ou d&apos;une autorisation personnelle pour se qualifier. Également besoin d&apos;une vérification d&apos;adresse physique. Joindre un formulaire d&apos;autorisation personnelle.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Credit FS PA and PAV_FR</name>
+    <style>freeForm</style>
+    <subject>Programme de carte de carburant Shell – Renseignements supplémentaires requis</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Merci d’avoir choisi le programme de carte de carburant Shell.
+
+Pour être admissible au crédit, vous devez soumettre les états financiers de votre entreprise ou faire signer une autorisation personnelle (ci-jointe) à l’un de ses dirigeants.
+
+Si vous optez pour les états financiers, vous devez transmettre les documents financiers d’un exercice en entier, soit le bilan et l’état des résultats.
+
+Si vous optez pour l’autorisation personnelle, un dirigeant de l’entreprise doit remplir et signer le formulaire, que vous pouvez ensuite numériser et m’envoyer par courriel à l’adresse indiquée ci-après ou me télécopier au {!User.Fax}.
+
+De plus, afin de se conformer à la Patriot Act, notre banque doit valider l’adresse réelle de votre entreprise. Nous vous prions donc de fournir un document provenant d’un tiers attestant que votre entreprise est située à l’adresse inscrite sur votre demande.
+
+Vous pouvez nous faire parvenir une copie de l’un des documents suivants :
+
+-Une facture de services publics ou un document d’assurance prouvant que la facture est envoyée ou que le service est fourni à l’adresse réelle de l’entreprise;
+-Un bail sur lequel figurent le nom de l’entreprise et son adresse réelle;
+-Les statuts constitutifs certifiés;
+-Un permis d’exploitation d’un commerce valide délivré par un gouvernement.
+
+
+Vous pouvez numériser le document et me l’envoyer par courriel à l’adresse indiquée ci-après ou le télécopier au {!User.Fax}. Si vous avez des questions, n’hésitez pas à m’appeler au {!User.Phone}.
+
+Cordialement,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité  pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

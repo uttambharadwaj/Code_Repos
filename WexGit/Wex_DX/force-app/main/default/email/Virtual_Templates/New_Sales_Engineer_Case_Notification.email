@@ -1,0 +1,7 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><br></div><div><br></div><div>Hi Danielle,</div><div><br></div><div>A new Case has been added to the <a href="https://na5.salesforce.com/500?fcf=00B70000007v3ZT">Virtual Sales Engineer Queue</a>.&nbsp;</div><div><br></div><div>Please assign this Case&nbsp;<span style="font-size: 12pt;"><a href="https://na5.salesforce.com/{!Case.Id}
+">{!Case.CaseNumber}</a></span><span style="font-size: 12pt;">&nbsp;to one of the Sales Engineers (they can also assign them Case to themselves).</span></div><div><br></div><div>Case Subject -&nbsp;{!Case.Subject}</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font></i></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use once an application has been submitted to prepare the prospect for next steps in process.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Comm_of_MA1</letterhead>
+    <name>RSM: Comm of MA - App in Review/Next Steps</name>
+    <style>freeForm</style>
+    <subject>Next Steps for the Gulf Fleet Fueling Program (Card Set-up)</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Now that your Commonwealth of MA Universal Fleet Card application has been received and submitted for approval, I want to prepare you for next steps. Assuming the application is approved, I will reach out to you to ask the following questions regarding your preferences for card set-up:
+
+
+1. How many cards are you going to need? (Spare cards are generally recommended as a back- up as there is a cost for replacement cards.)
+
+2. Do you want the cards to be fuel only or set up for custom controls?
+
+3. What company name would you like embossed on the card? (20 character limit)
+
+4. What information do you want on the second line of embossing? e.g. vehicle #, department, etc.
+
+5. Would you like to choose the PIN that we assign to each of your drivers, or would you like me to generate random #’s that you can change when you receive the cards?
+
+This process is easy and usually very quick.
+
+
+As always you are welcome to reach out to me if you have any questions. And if you’d like to go ahead and submit responses to the questions above, please feel free to do so via email. Otherwise, I’ll look forward to following up with you soon.
+
+
+Thank you.
+
+
+Toni Clemens
+Regional Sales Manager – New England and New York
+Gulf Fleet Card Program ▪ WEX Inc.
+Hartford, CT
+Office/Cell: (203) 233-0349
+Fax: (207) 791-1618
+Email: toni.clemens@wexinc.com
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Gulf Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Carte: requête de transactions</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Carte: requête de transactions</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Pour faire une recherche de transactions en ligne, allez à l’onglet de Requête &gt;&gt; Requêtes sur les transactions &gt;&gt; Détails des transactions
+
+Sélectionnez les dates
+Choisissez des critères et cliquez Rechercher.
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

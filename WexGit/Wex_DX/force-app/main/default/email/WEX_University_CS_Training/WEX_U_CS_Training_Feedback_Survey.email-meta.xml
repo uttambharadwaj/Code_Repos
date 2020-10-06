@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to Trainees upon completion of training</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Customer_Service_Banner_Letterhead</letterhead>
+    <name>CS Training Feedback Survey</name>
+    <style>freeForm</style>
+    <subject>Customer Service Training Survey</subject>
+    <textOnly>Customer Service Training Survey
+
+CSO Training &amp; Development is committed to giving WEX Customer Service Professionals the tools and knowledge they need to succeed on the job and grow professionally. Investing in our people is our number one goal to ensure long-term growth and success for our business.
+We are very interested in hearing your feedback on your training experience so we can continuously improve.
+
+In order to gather useful information about your learning experience, please complete the Customer Service Training Feedback Survey at https://wex.qualtrics.com/jfe/form/SV_0kaIcelcUOvpkCF by next Friday.
+
+Survey has 15 questions and should take you approximately 5 minutes to complete.  Email CSO Training with any questions.
+
+Thank you,
+WEX University Customer Service Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

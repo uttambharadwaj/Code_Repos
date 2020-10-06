@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>ADP Savings</name>
+    <style>freeForm</style>
+    <subject>Payroll Savings with ADP</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our savings on payroll services. As an FTS Plus+ member, you can save a minimum of 25% when you outsource your payroll with ADP.
+
+25% discount on processing costs
+Free month of payroll processing services
+Waived one-time setup fee
+
+
+For full details, please visit ftsplus.com/adp.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Nancy Gustafson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,15 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font face="Verdana" size="2">{!Contact.FirstName}, <br><br><br>Attached is some additional information and testimonials from some of our satisfied clients.</font></p>
+<p><font face="Verdana" size="2">&nbsp;</font></p>
+<p><font face="Verdana" size="2"><font face="Verdana" size="2">I look forward to talking with you soon.</font></font><font face="Verdana"><font size="2"><br>Sincerely, <br><br>{!User.FirstName} {!User.LastName} <br></font></font></p>
+<p><font face="Verdana"><font size="2">{!User.Title} <br>Phone - {!User.Phone} <br>Cell - {!User.MobilePhone} <br>{!User.Email} <br><br></font></font><a href="http://www.wrightexpress360.com/" target="_BLANK"><font color="#000000" face="Verdana" size="2">www.wrightexpress360.com</font></a><font face="Verdana" size="2"> <br><br><font size="1">CONFIDENTIALITY
+ NOTICE: "This message contains confidential information of Wright 
+Express Corporation. It is intended only for the use of the designated 
+recipient(s) stated above and further distribution of the information is
+ prohibited. If you have received this message in error, please notify 
+sender immediately by telephone or reply by e-mail and delete the entire
+ message and any attachments."</font></font></p>]]></td>
+</tr>
+</table>

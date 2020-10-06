@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Incomplete Direct Debit Request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>REC - Fleet Account Number</name>
+    <style>freeForm</style>
+    <subject>Incomplete Direct Debit Request</subject>
+    <textOnly>Hello,
+
+Please provide your WEX fleet account number for this request.
+
+Sincerely,
+WEX Bank
+1-866-755-1033</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

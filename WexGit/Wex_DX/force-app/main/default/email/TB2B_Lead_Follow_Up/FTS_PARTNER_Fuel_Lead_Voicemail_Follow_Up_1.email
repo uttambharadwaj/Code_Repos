@@ -1,0 +1,15 @@
+Hi {!Lead.FirstName},
+
+I just tried calling, but I wanted to send you a quick email in case this is more convenient for you. I'm following up on your recent interest in the {!Lead.Card_Program__c}. 
+
+This robust fuel card is accepted at over 8,000 locations with more than 2,400 locations that offer fuel discounts up to 20 cents per gallon! 
+
+I'd love to go over the fuel card and its benefits in detail with you and answer any questions you may have. Feel free to give me a call back or reply to this email at your earliest convenience, otherwise I will try you back tomorrow. 
+
+Thank you, and I look forward to speaking with you.
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

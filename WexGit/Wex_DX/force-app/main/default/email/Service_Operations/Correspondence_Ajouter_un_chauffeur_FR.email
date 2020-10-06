@@ -1,0 +1,26 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Si vous souhaitez ajouter un nouveau NIP ou un nouveau chauffeur allez sur l’onglet : GESTION DES COMPTE >>CHAUFFEUR>>AJOUTER. 
+Tapez le(s) nom du chauffeur et le NIP désiré ou laissez le système le choisir pour vous si le champ du NIP ne vous est pas proposé en cliquant sur SOUMETTRE. Ces NIP sont liées au chauffeur/utilisateur et non aux cartes. Chacun des chauffeurs ainsi créer peut utiliser toutes les cartes au compte. 
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

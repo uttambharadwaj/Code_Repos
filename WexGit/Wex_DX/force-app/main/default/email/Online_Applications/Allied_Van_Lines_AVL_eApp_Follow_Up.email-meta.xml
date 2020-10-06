@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>eApp Follow Up with Link</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Allied_Van_Lines_AVL_Letterhead</letterhead>
+    <name>Allied Van Lines (AVL) eApp Follow Up</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest, {!OnlineApplication__c.Application_Title__c} Instructions</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

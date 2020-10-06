@@ -1,0 +1,11 @@
+{!Contact.FirstName},
+
+I have received your application for the XPO EFS fuel card.  Our underwriters have came back to me with some requirements for approval. They want 2 drafts per week and you will not be able to use for cash.  Please reply to this email letting me know which the 2 days you choose for payment. I will start processing your cards as soon as I receive the amended application.
+
+ If you have any questions, please give me a call.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

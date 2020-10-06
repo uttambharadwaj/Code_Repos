@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>OTR incomplete eapp link with info</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fuelbook</letterhead>
+    <name>Fuelbook OTR Incomplete Eapp link w info</name>
+    <style>freeForm</style>
+    <subject>Fuelbook Select (Additional Information Required!)</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in Fuelbook Select. It appears you began the application process, but have not completed it.  For your convenience, I’ve attached a link to our online application so that you may complete the process. Please remember that WEX Bank adheres to the &quot;Know Your Customer&quot; bank regulation, so we do request financial information.  Please don&apos;t miss out on this exclusive offer. .
+
+
+Click here and follow the instructions to complete your application process.
+
+Here are some features and benefits you will have immediate access to when you start using your Fuelbook Select Card.
+
+Save 6 cent per gallon off retail posted cash price
+5 Pilot Flying J MyRward loyalty points per gallon
+Zero fuel transaction fees at Pilot Flying J locations
+No credit check required
+Accepted at over 7,000 truck stops
+
+Feel free to contact me with any questions regarding your application. I look forward to working with you!
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

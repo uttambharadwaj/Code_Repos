@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Client Inactivity/Potential ETF Notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Factoring</letterhead>
+    <name>Factoring Client Inactivity Email</name>
+    <style>freeForm</style>
+    <subject>Attention: {!Contact.Name} Factoring Account On Hold Due To Inactivity</subject>
+    <textOnly>Hello WEX Fleet One Factoring Customer,
+
+Please be advised that your Factoring Account is on hold due to inactivity.  To reactivate your account please contact your salesperson or call 877-275-8801 and a customer service representative will assist you.
+
+Also, please be aware that you may be subject to early termination fees if you choose not to continue factoring your accounts with WEX Fleet One Factoring.
+
+
+
+Thanks,
+
+Factoring Team
+WEX Inc.
+3100 West End Avenue, Suite 1150 Nashville, TN 37203
+Office (877) 275-8801
+Factoring@wexinc.com
+www.efsllc.com
+www.fleetonefactoring.com
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

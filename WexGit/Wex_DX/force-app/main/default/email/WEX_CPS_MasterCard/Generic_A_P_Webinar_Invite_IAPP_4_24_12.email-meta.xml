@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Webinar invite for live webinar event on 4/24/12; presentation on virtual payment programs to IAPP members, featuring Cambia, Travelliance</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>Generic A/P Webinar Invite (IAPP, 4/24/12)</name>
+    <style>freeForm</style>
+    <subject>Webinar: Lessons from Two Successful Virtual Payment Programs</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I thought you might be interested in the online webinar described below hosted by the Institute of Financial Operations, and featuring two Wright Express clients.
+
+On April 24th, 11:30 EST, Jim Pratt from Wright Express, Lorraine Creek from Cambia Health Solutions, and David Sumners from Travelliance will discuss recent trends in virtual payment programs, and key success factors when considering for your organization.  Areas covered will include how virtual payment programs have improved payment processes in their financial operations, and ways to control indirect spend beyond traditional plastic cards.  The panel will also cover why virtual payment programs are seeing significant increases in usage as a broader understanding of their role &amp; acceptance by vendors has emerged in the last two years.
+
+Register for the event here: http://www.financialops.org/web/e-learning/lessons-from-two-practical-and-highly-successful-virtual-payment-programs.  
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/ePayables
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

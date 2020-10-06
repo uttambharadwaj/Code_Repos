@@ -1,0 +1,10 @@
+{!Contact.FirstName},
+
+By now you are on the road to higher tire savings by having enrolled in The Gold Program!  I wanted to touch base to see if you needed additional tire pricing or had any questions regarding the program.  And if you have not already registered for our Gold Customer Portal, please do so by visiting https://goldprogramonline.com. The portal provides you with access to your invoices.  You will need your Gold ID which is {!Account.Gold_ID__c}.
+  
+If there is anything else we can help you with, such as fuel discounts, wireless savings or more, please let me know, and I will have a Fleet Consultant get in touch with you. Also, we welcome your referrals of other fleets!  For more information, please visit https://goldprogramonline.com/Home/Refer
+
+Thank you,
+{!Opportunity.OwnerFullName}
+{!Opportunity.OwnerEmail}
+{!Opportunity.OwnerPhone}

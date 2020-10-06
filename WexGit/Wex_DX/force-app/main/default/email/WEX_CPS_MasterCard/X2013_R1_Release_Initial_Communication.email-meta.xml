@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>For use as the initial communication for the 2013 R1 Encompass release</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Virtual_Payments_Product_Information</letterhead>
+    <name>2014 R2 Release Initial Communication</name>
+    <style>freeForm</style>
+    <subject>2013 WEX Virtual Payments Product Information Update</subject>
+    <textOnly>&lt;?xml:namespace prefix = v ns = &quot;urn:schemas-microsoft-com:vml&quot; /&gt;&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;&lt;?xml:namespace prefix = w ns = &quot;urn:schemas-microsoft-com:office:word&quot; /&gt;
+
+WEX Virtual will release new EnCompass functionality on Sunday, May 5th. Encompass will be down briefly starting at midnight EST, Saturday, May 4th. These new features are designed to enhance the user experience, increase automation, and drive efficiencies within your organization.
+
+
+AR Exchange
+
+WEX Virtual will introduce a centralized portal for WEX customers to communicate with suppliers. Through a unique online interface, A/R Exchange, suppliers will now be able to:
+
+· Enroll
+
+· Accept payment
+
+· Search and view pending and historical payments
+
+· Administer their account, users, notifications, and customers
+
+
+Through EnCompass, WEX Virtual customers will be able to:
+
+· Search for accepting suppliers, and invite suppliers to use AR Exchange
+
+· View an d manage supplier enrollment status
+
+· Enter and update supplier information
+
+· Attach documents related to payments for suppliers
+
+
+Alert and Messaging Enhancements
+
+WEX Virtual customers can now configure and receive alerts based on authorizations in real-time.  Customers will also be able to create and schedule reports based on authorization data in Report Studio. Information is now more quickly available for decision making, detection of misuse, deterrence of fraud, and communication with suppliers. Less reliance on manual research saves time and expense.
+
+
+For all program types, alerts are available when an authorization:
+
+· Occurs in specified geographies
+
+· Occurs in specified Merchant Category Codes (MCCs)
+
+· Varies by a configurable percent from the log amount (if applicable)
+
+· Declines: designated number of consecutive declines, reasons for declines
+
+
+For purchasing/physical plastic programs, the above alerts are available with the addition of authorizations above dollar amount and percent value against available credit limit.
+
+
+Once enrolled to receive any of the above alerts, administrators create roles to allow certain users to receive alerts. Users can receive alerts via any combination of email, text, or EnCompass mailbox. In addition, users can select the frequency of receipt, either immediate or daily.
+
+
+Automated Chargebacks
+
+WEX Virtual has improved the automation of the chargeback process. Direct engagement with suppliers gives WEX Virtual customers more effective management and better control over the chargeback process directly in Encompass, or via web services. Encompass can now be used to identify transactions that should be disputed, and notify the supplier via email that all or part of the transaction is in dispute. The supplier can respond via email back to the AP customer regarding the dispute.  WEX Virtual customers and the WEX Chargeback team now have an online view, and can receive reporting on disputes that are in progress.
+
+Card Image Available via Email
+
+WEX Virtual Customers can now send virtual card images via email. The card image option was previously only available via fax remittances. In the remittance email, suppliers receive an email, with a link that directs them to a secure site where the card image is available. The card image may make the payment information easier to interpret. AP customers can also establish the number of views, and days until remittance views expire.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

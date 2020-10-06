@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email for rapid sales team</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>rapid! Prospecting Email</name>
+    <style>formalLetter</style>
+    <subject>Start Turning Payroll Checks into Profits</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

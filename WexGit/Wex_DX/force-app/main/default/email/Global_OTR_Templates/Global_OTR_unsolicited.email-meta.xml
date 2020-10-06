@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>OTR unsolicited</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Global_Fleet_letterhead</letterhead>
+    <name>Global OTR unsolicited</name>
+    <style>freeForm</style>
+    <subject>Would you be interested in reducing your fuel costs?</subject>
+    <textOnly>As an industry leader in providing fuel and funds to the transportation industry I thought you might be interested to see why companies choose WEX Fleet One and how we might benefit your company. Most companies are looking for methods to reduce their cost of fuel, improve driver retention, control driver expenditures, and save time through process improvement efficiencies. Benefits to using Fleet One include: 
+
+· Guaranteed Cash price
+
+· Discounts and/or Rebates below the cash price
+
+· Free control Features by account and by card
+
+· Access to controlled cash advances
+
+· No transaction fees
+
+· Free access to online account management tools
+
+· Daily, weekly monthly detailed activity report
+
+· Ease fuel tax reporting with our online system reporting
+
+· Flexible terms with easy credit approval or deposit funds as needed
+
+· 24/7 access to customer service
+
+· Tools to help drivers located lowest fuel stops
+
+· Rated high in customer service satisfaction surveys
+
+
+I look forward to learning more about your business and discussing in greater detail the benefits we provide.  Please feel free to contact me or simply respond to this email.
+
+
+Best,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

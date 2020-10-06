@@ -1,0 +1,7 @@
+Dear Customer Services, this asset is still showing as the cards not having been received. Please check the account and if no activity on created cards please check with the administrator whether the cards have been received. If not please follow up as appropriate. Thanks.
+
+Account Asset Name - {!Account_Asset__c.Name}
+
+Cards Received - {!Account_Asset__c.Cards_Received__c}
+
+Client Account Number - {!Account_Asset__c.Client_Account_Number__c}

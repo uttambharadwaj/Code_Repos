@@ -1,0 +1,25 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Comme vous pouvez voir en haut, votre accès est à réinitialisation. L’adresse courriel est le même exactement. Si vous n’avez pas reçu le mot de passe temporaire, peut-être il est dans le dossier d’Indésirables? Et pour les meilleurs résultats avec notre site web, veuillez utiliser l’Internet Explorer.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

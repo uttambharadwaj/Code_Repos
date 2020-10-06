@@ -1,0 +1,70 @@
+<messaging:emailTemplate subject="New {!relatedTo.Offer__r.Application_Title__c} Account Information" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+
+<br  /><br  />
+
+<p><strong>Your Carrier ID: {!relatedTo.Carrier_ID_Number__c}
+<br />
+Your AR ID: {!relatedTo.AR_ID_Number__c}</strong></p>
+
+<p>Dear {!relatedTo.Contact_First_Name__c},</p>
+
+<p>Welcome to the EFS/{!relatedTo.Offer__r.Application_Title__c} Fleet Mastercard Program! We look forward to making your payments easier to manage through innovative solutions and dynamic service. Soon you will receive new cards issued by WEX Bank (member FDIC).</p>
+
+<p>Please follow these simple steps to manage your password and security credentials:</p>
+
+<p><strong>1. Access Your Account Login Credentials:</strong> You will receive an email from eManager with a link to set up your password and security credentials. For a step-by-step guide to setting up your account, <a href="https://www.wexdrive.com/otr/pdf/EFS_eMgr-Getting-Started-with-Verify4.pdf">click here.</a></p>
+
+<p><strong>2. Activate You New Cards:</strong> Your new cards must be activated prior to use. EFS provides several convenient ways to activate and manage your cards.
+<ul>
+  <li> To activate via Automated IVR, Call toll-free 888-824-7378 and pick option "2".</li>
+  <li> To activate via eManager or EFS Mobile App, see <a href="http://www.wexdrive.com/otr/pdf/EFS_eMgr-CardMgmt.pdf">Card Activation Quick Reference Guide</a></li>
+  </ul>
+</p>
+
+<p>Cards are preset with the limits indicated on your application. Adding additional products and validation prompts can be completed via eManager. For further instructions, refer to the <a href="https://www.wexdrive.com/otr/pdf/EFS_eMrg_CT3-QuickRefGuide.pdf">eManager Quick Reference Guide</a> or call 888-824-7378.</p>
+
+<p>When contacting Customer Service, please have your User ID, Employee Number, and Security Code ready. Both User ID and Password are required to access eManager. If you do not receive a Password set-up link within 24 hours, call 888-824-7378.</p>
+
+<p>We have enclosed the following reference items to help guide you:
+<ul>
+  <li> <a href="https://www.wexdrive.com/otr/pdf/EFS_eMrg_CT3-QuickRefGuide.pdf">eManager Quick Reference Guide</a></li>
+  <li> <a href="https://www.wexdrive.com/otr/pdf/EFS_eMgr-MoneyCodes.pdf">Money Codes Quick Reference Guide</a></li>
+  <li> <a href="https://www.wexdrive.com/otr/pdf/EFS_eMgr_ACH-Transf-Instruct_Guide.pdf">ACH Transfer Guide</a></li>
+  <li> <a href="http://www.wexdrive.com/otr/pdf/EFS_ATM-PIN-eBroch.pdf">ATM Pin Setup Guide</a></li>
+  <li> <a href="http://www.wexdrive.com/otr/pdf/EFS_CarrierControlMobileApp-eBroch.pdf">CarrierControl Mobile App User Guide</a></li>
+  <li> <a href="http://www.wexdrive.com/otr/pdf/EFS_CardControlNonATM-eBroch.pdf">CardControl Mobile App User Guide</a></li>
+  <li> <a href="http://www.wexdrive.com/otr/pdf/EFS_CardProgramFAQ.pdf">Frequently Asked Questions</a></li>
+</ul>
+</p>
+<p>For additional training support guides and support videos on how to manage your EFS account go to: <a href="www.efsllc.com/support">www.efsllc.com/support.</a></p>
+
+<apex:outputPanel >
+  <apex:outputText value="{!relatedTo.Offer__r.Additional_Text__c}" />
+</apex:outputPanel>
+
+<p>Thank you for choosing EFS. We look forward to serving you.</p>
+<p>Sincerely,</p>
+
+<apex:outputPanel >
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), 'EFS Card Sales Team' , If(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Contact_Name__c,relatedTo.Owner.FirstName+" "+relatedTo.Owner.LastName))}"/><br />
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Phone_Number__c,relatedTo.Owner.Phone))}"/><br />
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Email__c,relatedTo.Owner.Email))}"/><br />
+</apex:outputpanel>
+
+<p>Sent to:  {!relatedTo.Email__c}<br />
+Reference #: {!relatedTo.Name}<br />
+Terms and Conditions Version: {!relatedTo.Terms_and_Conditions_Version__c}</p>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

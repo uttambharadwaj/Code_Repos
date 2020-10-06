@@ -1,0 +1,20 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Number of Trailers: {!Account.Trailer_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Major Lanes Traveled: {!Opportunity.Major_Lanes_Traveled__c}
+Preferred Service Provider: {!Opportunity.Preferred_Service_Provider__c}
+If other, who?: {!Opportunity.If_other_who__c}
+Preferred Payment Method: {!Opportunity.Preferred_payment_method__c}
+Comments: {!Opportunity.Vendor_Comments__c}

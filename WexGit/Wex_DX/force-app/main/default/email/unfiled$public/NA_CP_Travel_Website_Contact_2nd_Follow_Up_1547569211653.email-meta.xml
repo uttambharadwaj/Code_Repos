@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Second follow up email to an opportunity that contacted WEX through our website.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>CP NA OPTY - Travel Website Contact 2nd Follow Up</name>
+    <relatedEntityType>Opportunity</relatedEntityType>
+    <style>none</style>
+    <subject>Following up again on your interest in WEX</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

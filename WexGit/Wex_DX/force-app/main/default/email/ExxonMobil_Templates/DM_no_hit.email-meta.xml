@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/ExxonMobil_App_Alone1.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/ExxonMobil_Fleet_Card_All_Pack.pdf</attachedDocuments>
+    <available>true</available>
+    <description>ExxonMobil Whistle Campaign - Follow up email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>ExxonMobil Whistle campaign</name>
+    <style>freeForm</style>
+    <subject>We see you visited our site</subject>
+    <textOnly>{!Contact.FirstName},
+
+I saw that you received the &quot;whistle&quot; invitation I sent you and visited your personalized web page. I have made several attempts to reach you but haven&apos;t been able to so I thought I would try via email in case that works better for you.
+
+I&apos;d love to have a few moments of your time to show you how you can save money by reducing the cost of managing your fleet of vehicles. I&apos;d like to show you how to save every month on fuel expenses. I also have an attractive introductory offer to share with you.
+
+If you are interested in hearing more, please give me a call back at your earliest convenience.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

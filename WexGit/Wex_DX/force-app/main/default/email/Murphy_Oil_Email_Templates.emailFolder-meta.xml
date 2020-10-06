@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>*Murphy Oil Email Templates IS</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>Murphy_USA_Partner_Group</group>
+        <role>ISSalesRep</role>
+        <role>Marketing</role>
+        <role>MarketingReporting</role>
+        <role>Outbound_Channel_Marketing</role>
+        <role>PLISSalesRep</role>
+        <role>Product_Manager</role>
+        <role>VP_Customer_Acquisitions</role>
+    </sharedTo>
+</EmailFolder>

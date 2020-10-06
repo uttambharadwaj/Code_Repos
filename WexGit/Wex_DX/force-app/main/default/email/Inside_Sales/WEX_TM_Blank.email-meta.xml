@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Testing Promo Left Temp - Section 179 info - right size - send if not able to reach by phone 1st attempt</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Telematics_New_Logo_Letterhead</letterhead>
+    <name>TM Attempt 1</name>
+    <style>promotionLeft</style>
+    <subject>WEX Telematics has the Right Fit For your Fleet</subject>
+    <textOnly>Dear {!Contact.FirstName},
+ 
+I am sorry I did not connect today.   I wanted to see when you will have time to learn more about WEX Telematics.  
+Our Telematics Solution integrates seamlessly with our fuel cards so you can now have a powerful tool that will provide greater control over slippage but also allow you to: 
+
+-Better Coach drivers to cut fuel costs, lower insurance premiums, and increase safety. 
+
+-Take greater control of maintenance scheduling to avoid costly breakdowns and keep the fleet running optimally.
+
+-Monitor vehicle idling to reduce fuel costs.  
+
+-Track assets  to prevent theft. 
+
+There is also a level of customization and flexibility to give you the program that fits your unique fleet.  
+
+When would be a good time to reach out to you? 
+ 
+Sincerely,
+
+Brian Fitzpatrick
+WEX Telematics Service
+Phone: (847) 440-1724
+Fax:     (207) 791-1610
+Email:  bfitzpatrick@fleetlink.com
+http://www.wextelematics.com/
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify the sender immediately by telephone or reply e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

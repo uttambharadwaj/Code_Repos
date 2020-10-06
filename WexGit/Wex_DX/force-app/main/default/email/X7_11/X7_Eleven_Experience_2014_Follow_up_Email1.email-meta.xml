@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow-up message to Franchisee leads collected in Vegas (Jan. 2014).</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Fleet_Program</letterhead>
+    <name>7-Eleven Experience 2014 Follow-up Email</name>
+    <style>freeForm</style>
+    <subject>IMPORTANT: Increasing Your Store Profits with the 7-Eleven Fleet Card.</subject>
+    <textOnly>{!Contact.FirstName},
+
+With the onset of Spring, I wanted to thank you for visiting our 7-Eleven Fleet Fuel booth at the 7-Eleven Experience in late January. We appreciated the chance to meet and talk with you, and share some details about how the 7-Eleven Fleet Fuel Program can be a powerful tool in increasing your store profitability.
+
+If you sell fuel at your 7-Eleven sites, the opportunities to grow your business through the 7-Eleven Fleet Fuel Program are boundless.
+
+As part of 7-Eleven’s commitment to you, I am here as your dedicated 7-Eleven Fleet Fuel Program Sales Manager to help you generate new and repeat commercial business around your 7-Eleven stores. I want to work with you to identify lead opportunities in your area, bring this business onto the 7-Eleven Universal Fleet Card, and start generating new gallons and c-store spend at your 7-Eleven locations. While this is a win-win for everyone, it’s most importantly a win for you. (Plus you’ll receive $25 for every fleet application that becomes a new, approved account!)
+
+Let’s work together. Feel free to contact me anytime. I’ll also reach out to you to get things started.
+
+Together, we can grow your business.
+
+&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Tracy Suh
+7-Eleven Fleet Fuel Program
+Regional Sales Manager
+Office (972) 803-4181 I Cell (469) 571-5873 I Fax (207) 761-3536
+tracy.suh@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

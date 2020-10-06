@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fleet Data Form</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Fleet Data Request</name>
+    <style>freeForm</style>
+    <subject>Congratulations!  Sheetz Business Edge</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Congratulations, your Sheetz Business Edge account has been approved.
+
+
+Before your account can be setup, I will need your driver and vehicle information. Please fill out and email the attached Fleet Information Form back to me as soon as possible. The vehicle description you provide will appear on the second line of your cards, under your company name, as well as appearing on your reports. Driver names will also appear on your reports.
+
+
+A card will be assigned to each vehicle you list. You can provide Driver ID numbers on the form, or you can let our computer assign them.  Each Driver’s ID will work with any of your vehicle cards.
+
+
+If you have any questions about the Fleet Information Form, please feel free to contact me at {!User.Phone}.
+
+
+Again, congratulations on your new Sheetz Business Edge account. I look forward to helping you run your business more efficiently.
+
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

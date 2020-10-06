@@ -1,0 +1,12 @@
+{!Contact.FirstName},
+
+In order to process your application for a NASTC Fleet One fuel card, we need some additional information, as required by our bank.
+
+In addition, I will need the set up form completed so that when you receive your cards, they will arrive active with the appropriate driver id information and ready for use.
+
+Please complete these forms and email back to me at nastcfuelcard@wexinc.com 
+
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

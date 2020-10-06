@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to participants of Integrity Coaching</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Integrity Coaching Survey</name>
+    <style>freeForm</style>
+    <subject>Feedback Requested | Integrity Coaching Course</subject>
+    <textOnly>Your Feedback Is Important!
+
+We hope you enjoyed the Integrity Coaching Seminar on {!Case.Class_Start_Date_del__c}.  It is our goal to ensure the Global Sales Operations Training Team delivers world class training programs.  In order to continue to improve our programs and meet the needs of our growing sales force, we are asking you to answer a brief survey based on your experience.  The survey will only take 5 minutes and can be taken on a smart phone.  Thank you for your time and email Sales Training if you have any questions.
+
+Please follow the link below to start the survey.
+https://wex.qualtrics.com/jfe/form/SV_bEJvkjtqbZM1l3L
+
+Thank you,
+
+~The Global Sales Operations Training Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

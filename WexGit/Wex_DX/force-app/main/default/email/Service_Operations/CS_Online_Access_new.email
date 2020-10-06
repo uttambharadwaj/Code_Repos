@@ -1,0 +1,24 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Your temporary password was sent to the email address on file. If that was not forwarded to you by the fleet manager, we may need to update the contact information on the account. Please complete the attached Contact Update form, have it signed by a current authorized contact or an officer of the company, and return it to us with your request for a temporary password.
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

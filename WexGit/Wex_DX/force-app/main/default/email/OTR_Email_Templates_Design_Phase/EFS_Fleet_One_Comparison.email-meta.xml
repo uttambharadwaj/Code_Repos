@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS &amp; Fleet One - Comparison</name>
+    <style>freeForm</style>
+    <subject>EFS &amp; Fleet One - a quick comparison on two great programs!</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+As your new WEX Fleet One / EFS Account Executive for the sunshine state of Florida, I will be working with you to provide your business with all of the support and information you need in making decisions concerning one of your largest expenses – fuel.
+
+
+
+As you may know, Fleet One and EFS have a fuel card solution for virtually every fueling need. Whether you are an owner operator or own a large fleet of trucks, Fleet One and EFS combine the expertise, technology, relationships, and resources of highly complementary companies to bring unique and innovative payment solutions that are unparalleled in the industry.
+
+
+When the time comes for you to evaluate how your business purchases fuel and handles the reporting, driver controls, and payments that accompany a fuel card program, please keep me in mind.
+
+
+Fleet One &amp; EFS… which card is right for me?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I am at your service and happy to answer any questions you may have regarding our fuel card programs. Please feel free to email me anytime or call me directly at 615-523-6496.
+
+
+
+If you would like to go ahead and fill out an application, please click on the below link for Fleet One EDGE or complete and return the attached documents to start the EFS application process.
+
+
+
+
+FLEET ONE EDGE APPLICATION: CLICK HERE
+
+
+
+EFS APPLICATION: Please complete attached documents.
+
+
+
+Kind Regards,
+
+
+
+{!User.Name}
+
+{!User.Title}
+
+WEX Fleet One &amp; EFS
+
+Phone:  {!User.Phone} | Fax: {!User.Fax}
+
+
+{!User.Email} | www.FleetOne.com | www.EFSllc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay CSDM Case SLA Exceeded Notification</name>
+    <style>freeForm</style>
+    <subject>{!Case.Opportunity__c} Case - SLA Exceeded</subject>
+    <textOnly>Hi Bonnie,
+
+There is 1 hour remaining before the deadline for this Case&apos;s SLA is exceeded.
+
+The Case owner is {!Case.OwnerFirstName}.
+
+Approval Requested? - 
+
+
+Application Form Received - {!Case.Application_Form_Received__c}
+
+KYB Passed - {!Case.KYB_Passed__c}
+KYC Passed - {!Case.KYC_Passed__c}
+
+Fees Set Up - {!Case.Fees_Set_Up__c}
+Admins Created - {!Case.Admins_Created__c}
+MCC Blocks - {!Case.MCC_Blocks__c}
+Application Sent To Valitor - {!Case.Application_Sent_To_Valitor__c}
+
+3rd Party API Informed - {!Case.X3rd_Party_API_Informed__c}
+
+Account Set Up In Portal - {!Case.Account_Set_Up_In_Portal__c}
+
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

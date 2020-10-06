@@ -1,0 +1,11 @@
+{!Case.Case_Approver__c}, 
+You have been asked to approve the following salesforce enhancement request: 
+
+Submitted by: {!Case.OwnerFullName}
+Subject: {!Case.Subject}
+Description: {!Case.Description} 
+
+Please review this case and approve or decline it by replying to this email and typing either: "approve" or "reject".
+
+Thank you, 
+WEX Salesforce Support

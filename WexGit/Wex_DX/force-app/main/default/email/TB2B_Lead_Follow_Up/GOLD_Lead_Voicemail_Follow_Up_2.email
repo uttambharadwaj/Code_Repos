@@ -1,0 +1,15 @@
+{!Lead.FirstName},
+
+I'm still trying to connect with you regarding your recent request for more information on our national account tire program. I'd love to learn more about your specific needs and work to develop the best tire program for your fleet. I'm confident we can help you save money on your tires.
+
+As a reminder, The Gold Program gives you access to our national accounts with most major tire brands, and offers savings up to $120/tire. Your customized pricing is good for both your stock and over-the-road purchases, ensuring you always know what you're going to pay for your tires.
+
+Please give me a call back at {!User.Phone}, or reply to this email to get the ball rolling. If I don't hear back from you today, I will attempt to connect with you tomorrow.
+
+Thanks,
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

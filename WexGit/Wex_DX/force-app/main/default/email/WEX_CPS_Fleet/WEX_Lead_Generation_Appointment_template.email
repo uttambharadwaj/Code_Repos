@@ -1,0 +1,16 @@
+{!Contact.FirstName}, 
+
+Thanks for taking my call today. I am confirming that you have an appointment with our WEX Account Manager, <ENTER REP NAME>, on <ENTER DATE> at <ENTER TIME> at <ENTER LOCATION>.
+ 
+<ENTER REP FIRST NAME> specializes in cost savings and fueling needs for large fleets, which it sounds like your business might be able to benefit from. Should something come up between now and then, feel free to reach out to me and we can reschedule.
+ 
+During our conversation, you mentioned an interest in <ENTER THEIR PAIN POINT HERE>.We'll make sure to review how this works on our WEX Fleet programs.
+
+In the meantime, you can find more information about the WEX Fleet program and view some of our customer testimonials here: 
+http://www.wexinc.com/fleet-operators-and-managers/fleet-cards/video-testimonials   
+
+Regards,
+{!User.FirstName} {!User.LastName}
+WEX Fleet Specialist
+Phone: {!User.Phone}
+Email: {!User.Email}

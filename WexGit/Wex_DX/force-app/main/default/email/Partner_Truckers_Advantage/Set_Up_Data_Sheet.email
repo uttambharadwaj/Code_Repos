@@ -1,0 +1,7 @@
+{!Contact.FirstName},
+
+Congratulations on being approved for a Fleet One fuel card. In order to get the cards finalized, we need some information for the specific set up of your fleet cards.  Please call me to go through the form since I know it can be confusing.
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

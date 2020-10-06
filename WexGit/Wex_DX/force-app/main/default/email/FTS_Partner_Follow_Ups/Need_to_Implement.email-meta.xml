@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>Need to Implement</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name} New Fuel Card Account</subject>
+    <textOnly>{!Contact.FirstName},
+
+Congratulations on getting set up on the XPO fuel card! You are in for some serious fuel savings, not to mention the control and reporting that comes with the card.
+
+View the savings locations here:
+https://www.google.com/url?hl=en&amp;q=https://www.google.com/maps/d/viewer?mid%3D16RVAUoO7ZYWwgrFNsujHoXQleXg%26ll%3D35.0414511172241%252C-83.39113483818355%26z%3D7&amp;source=gmail&amp;ust=1526003561713000&amp;usg=AFQjCNGwCcG6Ow3z27lTuCuQRTIwFAPuoQ
+
+
+If you have any questions regarding your new account, please do not hesitate to call us at 800-749-1724, Option 1.
+
+Thank you!
+
+Marti Watson
+Relationship Manager, EFS
+Phone: 901-474-0825 | F: 801-624-3049
+marti.watson@efsllc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

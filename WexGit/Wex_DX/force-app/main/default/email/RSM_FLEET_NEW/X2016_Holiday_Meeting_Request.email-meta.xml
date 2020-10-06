@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template to propose an stop-by around holidays</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>2016 Holiday Meeting Request</name>
+    <style>freeForm</style>
+    <subject>Start the New Year with a better fleet card program!</subject>
+    <textOnly>{!Today}
+
+
+Hello {!Contact.FirstName},
+
+
+I&apos;d like to introduce myself. I represent WEX Inc. We&apos;ve been issuing fleet cards for over 30 years and offer robust reporting and universal acceptance. WEX maximizes your savings on fuel by providing you with control and visibility over every gallon purchased.
+
+We help our customers:
+
+reduce vehicle related expenses by utilizing advanced tools
+receive alerts if a driver violates a policy
+allocate costs to your internal cost centers
+
+I&apos;d like to meet with you briefly as I know this may be a busy time of year. Can I stop by for ten minutes in the next couple of weeks to put a face with a name? Please advise a good day of week for you.
+
+
+Sincerely,
+
+
+{!User.Name}
+
+{!User.Title}
+
+Wex Inc.
+
+Phone: {!User.Phone}
+
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

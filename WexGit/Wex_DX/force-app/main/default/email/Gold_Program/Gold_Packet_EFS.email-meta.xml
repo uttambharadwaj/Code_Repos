@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Gold_Program/GoldEnrollment_EFS_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Gold Packet with EFS Credit Applications</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Gold Packet - EFS</name>
+    <style>none</style>
+    <subject>Thank you for your interest in The Gold Program</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

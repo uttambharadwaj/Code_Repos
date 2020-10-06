@@ -1,0 +1,267 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><u><span style="mso-ascii-font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Arial;
+color:#7030A0">&nbsp;CO-BRAND WP CLAIM RESOLUTION COM<span style="background:white">MENTS:&nbsp;&nbsp;{!Claim__c.Name}&nbsp;/</span>{!Claim__c.Acct_For_Email_Merge__c}</span></u></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: center; line-height: normal;"><b><u><span style="font-size:8.0pt;
+mso-ascii-font-family:Calibri;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-hansi-font-family:Calibri;mso-bidi-font-family:Arial;color:#7030A0">&nbsp;</span></u></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><i><span style="mso-ascii-font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Arial;
+color:#7030A0">&nbsp;</span></i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><i><u><span style="mso-ascii-font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Arial;
+color:#7030A0">Account comments:</span></u></i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">**Adj/CHECK Req
+submitted in the amt of ${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;for
+dispute<span style="background:white">&nbsp;claim&nbsp;{!Claim__c.Name}&nbsp;for
+allowable disputed charges on
+card(s)&nbsp;</span></span><span style="font-family: Arial, sans-serif; text-align: start;">{!Claim__c.Abbreviated_Card__c}</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><span style="background:white">,&nbsp;</span>{!Fraud_Purchase_Device__c.CO_ID_STD_EMB_GTag__c}<span style="background:white">&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and
+{!Claim__c.Allowable_Dispute_End_Date__c}.</span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">**Resolution email sent
+for dispute cl<span style="background:white">aim&nbsp;{!Claim__c.Name}&nbsp;w</span>&nbsp;determination
+that fleet is receiving a credit in the amt of&nbsp;<span style="background:
+white">${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;due to</span>&nbsp;WP.
+The claim is closed.** Fleet Fraud&nbsp;<o:p></o:p></span><font face="Arial, sans-serif">Services.</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><u><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:#7030A0">Claim File Comments
+(header):</span></u></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;">&nbsp;<span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: center; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Claim
+File Comments<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;"><br clear="all">
+</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">FT #: {!Claim__c.Name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Fleet:
+{!Claim__c.Account_Name__c}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Account #:
+{!Claim__c.Acct_For_Email_Merge__c}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Program Acct #:
+{!Claim__c.Program_Account_For_Email_Merge__c}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">Card #:&nbsp;<o:p></o:p></span><font face="Arial, sans-serif">{!Claim__c.Abbreviated_Card__c}</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">DIN: {!Claim__c.DIN__c}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Claim Start:{!Claim__c.Claim_Dispute_Start_Date__c}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Claim
+End:{!Claim__c.Allowable_Dispute_End_Date__c}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Claim
+Amount:${!Claim__c.Total_Claim_Dollars__c}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: 13.8pt;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Allowable
+Amt:${!Claim__c.Allowable_Dispute_Dollars__c}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;"><br clear="all">
+</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; width: 100%;">
+ <tbody><tr>
+  <td style="padding:0in 0in 0in 0in"></td>
+ </tr>
+</tbody></table>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">FT Summary:<o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: center; line-height: normal;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;"><br clear="all">
+</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><u><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:#7030A0">CO-BRAND WP Resolution
+Email:</span></u></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif" style="">Hello,<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif">Please see the resolution outlined below for dispute claim<span style="background:white">&nbsp;#&nbsp;{!Claim__c.Name}.&nbsp; Please feel free
+to contact us to discuss any questions you may have.</span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif"><span style="background: white;">&nbsp;</span><o:p></o:p></font></p>
+
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="0" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; width: 418.55pt; margin-left: 0.2in; border-collapse: collapse;">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:19.25pt">
+  <td width="298" nowrap="" style="width:223.7pt;border:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:19.25pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:9.0pt;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">Customer</span><o:p></o:p></font></p>
+  </td>
+  <td width="682" nowrap="" style="width:194.85pt;border:solid windowtext 1.0pt;
+  border-left:none;padding:0in 5.4pt 0in 5.4pt;height:19.25pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:0in;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">{!Claim__c.Account_Name__c}</span><o:p></o:p></font></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:1;height:17.9pt">
+  <td width="298" nowrap="" style="width:223.7pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt;height:17.9pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:9.0pt;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">Account</span><o:p></o:p></font></p>
+  </td>
+  <td width="682" nowrap="" style="width:194.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:17.9pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:0in;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3">{!Claim__c.Program_Account_Masked__c}<o:p></o:p></font></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2;height:20.15pt">
+  <td width="298" nowrap="" style="width:223.7pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt;height:20.15pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:9.0pt;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">Card</span><o:p></o:p></font></p>
+  </td>
+  <td width="682" nowrap="" style="width:194.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:20.15pt"><p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:0in;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3">{!Claim__c.Abbreviated_Card__c},&nbsp;<o:p></o:p>{!Claim__c.CO_ID_STD_EMB_GTag__c}</font></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;height:26.9pt">
+  <td width="298" nowrap="" style="width:223.7pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt;height:26.9pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:9.0pt;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">Driver Identification Number (DID)</span><o:p></o:p></font></p>
+  </td>
+  <td width="682" nowrap="" style="width:194.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:26.9pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:0in;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned as
+  “{!Claim__c.Driver_Name__c}”</span><o:p></o:p></font></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:4;height:19.25pt">
+  <td width="298" nowrap="" style="width:223.7pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt;height:19.25pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:9.0pt;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3">Allowable Dispute Period<o:p></o:p></font></p>
+  </td>
+  <td width="682" nowrap="" style="width:194.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:19.25pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:0in;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3">Betwee<span style="background:white">n&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and {!Claim__c.Allowable_Dispute_End_Date__c}</span><o:p></o:p></font></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:5;mso-yfti-lastrow:yes;height:5.05pt">
+  <td width="298" nowrap="" style="width:223.7pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt;height:5.05pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:9.0pt;margin-bottom:.0001pt;line-height:13.8pt"><font face="Arial, sans-serif" size="3"><span style="background: white;">Allowable Dispute Amount</span><o:p></o:p></font></p>
+  </td>
+  <td width="682" nowrap="" style="width:194.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt;height:5.05pt">
+  <p class="MsoNormal" style="margin-top:0in;margin-right:-13.5pt;margin-bottom:
+  0in;margin-left:0in;margin-bottom:.0001pt;line-height:13.8pt"><span style="background: white;"><font face="Arial, sans-serif" style="" size="3">${!Claim__c.Allowable_Dispute_Dollars__c}</font></span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Research and analysis by
+WEX Fraud Department produced the following information:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><i><span style="font-size: 12pt; background: yellow;">ATTACH COPY OF CHECK</span></i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<ul type="disc" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">A check was sent via regular mail delivery to the
+     attentio<span style="background:white">n
+     of&nbsp;{!Claim__c.Account_Contact_Name__c}&nbsp;in the amount of $</span>{!Claim__c.Allowable_Dispute_Dollars__c}<span style="background:white">. Th</span>e dispute claim is closed.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">A copy of the check is attached.<o:p></o:p></span></li>
+</ul>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Thank you<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Arial;
+color:#1F497D">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Lucida Calligraphy&quot;;">Fleet Fraud Services</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt;">Fax: 207-791-1655</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt;">XX</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><u><span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:#7030A0">CO-BRAND LIABLE
+COMMENTS:</span></u></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt; font-family: Arial, sans-serif;">Research and analysis by
+WEX Fraud Department produced the following information:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><i><span style="font-size: 12pt; background: yellow;">Include bullets that
+apply &amp; add any additional applicable details if needed.</span></i></b><b><i>&nbsp;&nbsp;</i></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<ul type="disc" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">No attempt to guess at DIN was made prior to the onset
+     of the abuse.&nbsp; This would indicate that the perpetrator had knowledge
+     of the DIN or that the DIN was not kept in a confidential manner.&nbsp;<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Transaction(s) total<span style="background:white">ing
+     $&nbsp;{!Claim__c.Ticket_Request_Amount__c}&nbsp;occurre</span>d inside a
+     merchant location therefore a signature may have been obtained.&nbsp; On
+     the customer’s behalf WEX requested copies of the receipts, and once
+     received WEX&nbsp;will forward the copies t<span style="background:white">o&nbsp;{!Claim__c.Partner_Formal_Name__c}.&nbsp;</span><o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">The remaining&nbsp;&nbsp;/ All disputed transactions
+     were made at outside payment terminals (“OPT”).&nbsp; No signature is
+     required for OPT purchases as the swipe of the card into the card reader
+     establishes that the card was present at the time of the sale.<o:p></o:p></span></li>
+ <li class="MsoNormal" style="line-height: normal;"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">There were no declined attempts to use the card after
+     cancelation.&nbsp;&nbsp;This would indicate that the perpetrator had
+     knowledge the card was canceled or no longer had access to the card.</span></li><li class="MsoNormal" style="line-height: normal;">No further information to
+help identify or confirm the perpetrator(s) was available.</li></ul>]]></td>
+</tr>
+</table>

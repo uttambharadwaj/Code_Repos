@@ -1,0 +1,9 @@
+<p>Claim: {!Claim__c.Name}</p>
+<p>Claim Link: {!Claim__c.Link}</p>
+<p>WEX Account #: {!Claim__c.WEX_Account__c}</p>
+<p>Program Account #: {!Claim__c.Program_Account__c}</p>
+<p>Account Name: {!Claim__c.Account_Name__c}</p>
+<p>Dispute Type: {!Claim__c.Dispute_Type__c}</p>
+<p>Resolution: {!Claim__c.Resolution__c}</p>
+<p>Allowable Dispute Dollars: {!Claim__c.Allowable_Dispute_Dollars__c}</p>
+<p>Origination Point: {!Claim__c.Origination_Point__c}</p>

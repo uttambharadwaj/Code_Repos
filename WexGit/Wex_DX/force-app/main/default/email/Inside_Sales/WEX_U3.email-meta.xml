@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_U_Letterhead</letterhead>
+    <name>WEX U</name>
+    <style>freeForm</style>
+    <subject>Info on the WEX Universal Fuel Card</subject>
+    <textOnly>Thank you for your interest in our WEX Universal fuel card.    
+ 
+The universal card is good at over 90% of all fueling sites in the nation, and is only $2 per month, per card.  Plus, you get a service network available as well. 
+ 
+Enjoy the benefit of operating your company vehicles with peace of mind, knowing that your employees cannot purchase anything other than fuel.  You can easily find out where your employees fueled, how much they paid for the fuel,  even track how many miles per gallon your vehicles are getting, while making sure that every drop of fuel you are buying is going into your vehicles. 
+ 
+ 
+Let us do the administrative work!  No more saving receipts.  Just pull your account up online and monitor the activity on your account.  You can order new fuel cards at any time, or deactivate a fuel card online if you happen to let an employee go and forget to get his fuel card from him!
+ 
+Please look at the enclosed details.  I will follow up with a phone call over the next several days, or feel free to call me Monday through Friday, 8 to 5 central time!
+ 
+Thank you!
+ 
+Sincerely,
+
+
+ 
+Lori Parr
+WEX Inc.
+Phone: 1.888.353.3801 ext 6433 | Fax: 615.858.6433
+lparr@FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

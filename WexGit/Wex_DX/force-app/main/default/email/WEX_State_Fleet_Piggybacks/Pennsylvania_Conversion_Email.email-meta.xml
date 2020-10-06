@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for PA conversion accounts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Pennsylvania_Conversion</letterhead>
+    <name>Pennsylvania-Conversion Email</name>
+    <style>freeForm</style>
+    <subject>Your Fleet Card Contract is Expiring</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+As you may know, effective September 30, 2012, the Commonwealth of Pennsylvania contract with your current fleet card provider will expire. The Commonwealth has selected Wright Express and Sunoco as the new fleet card provider to all COSTARS under contract number 4400009775.
+
+This contract offers a new volume rebate on fleet card purchases to all participants, and even more robust features and benefits. As a member of COSTARS, you’re eligible to participate. However, you need to act now to sign up for this new service.
+
+Program details:
+
+Save Money: New rebate on all purchases, with the potential for additional rebates when fueling at Sunoco locations. It’s free to get started – no setup fees or monthly card fees
+
+Save Time: Administrative time is reduced and fiscal reporting is made easier with detailed reporting.
+
+Easy-to-Use: 24/7 customer service, plus full account online self-service
+
+You need to act now, to enroll in this new program. To learn more details about the Commonwealth Sunoco Universal Fleet Card Program, or to enroll, call me today. The process takes just a few minutes. Start saving with the new contract!
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

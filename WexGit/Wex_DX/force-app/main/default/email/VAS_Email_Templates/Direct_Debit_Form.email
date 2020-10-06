@@ -1,0 +1,17 @@
+Hello {!Case.Contact},
+
+	This is {!Case.OwnerFullName} from {!NullValue(Case.Program__c, "WEX Fleet")} Services. I am so glad you have decided to keep your fuel card account with us and I am here to help make this transition to direct debit as easy as possible for you. As I mentioned in our phone conversation, the first step is for you to complete the Direct Debit Form attached to this email and mail it back to me at the address below.
+
+{!Case.OwnerFullName}, WEX Inc.
+97 Darling Ave
+South Portland, ME 04106
+
+
+Thank you for your continued business.
+
+Sincerely,
+
+{!Case.OwnerFullName}
+{!NullValue(Case.Program__c, "WEX")} {!Case.OwnerTitle}
+{!Case.OwnerEmail}
+{!Case.OwnerPhone}

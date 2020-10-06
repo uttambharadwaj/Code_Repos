@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>App for QuikTrip FlexCard (rebate)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>QuikTrip_Letterhead</letterhead>
+    <name>FlexCard - Application with Program Information - PL</name>
+    <style>freeForm</style>
+    <subject>QuikTrip Fleetmaster - Here is the information you requested</subject>
+    <textOnly>{!Contact.FirstName},
+
+I received your request for additional information on our QuikTrip Fleetmaster Card program. Please take a few minutes to look through the accompanying information. You’ll find our widely accepted QuikTrip Fleetmaster program is a one-card solution for all your fueling needs.
+
+We save you money. Use your QuikTrip Fleetmaster cards at any QuikTrip location. This allows you to access stations with the lowest price per gallon.
+
+We save you time. Eliminate manually tracking receipts with online reports and add, update and suspend drivers quickly. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read invoice.
+
+We give you control. Take advantage of the real time transaction view and card authorization reports. You can also easily download this data from the web right to Excel each month. Simply find out who, what, where and when the QuikTrip Fleetmaster cards were used by your drivers, so you can account for every penny.
+
+We make it convenient. Your drivers only need to carry one card to fuel at any QuikTrip retail location. You will find a complete list of accepting locations at http://www.quiktrip.com/Locations.
+
+It’s easy to enroll. Simply complete the attached application form and fax it back to me at {!User.Fax}.
+
+Thank you for your interest in the QuikTrip Fleetmaster program.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by email and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

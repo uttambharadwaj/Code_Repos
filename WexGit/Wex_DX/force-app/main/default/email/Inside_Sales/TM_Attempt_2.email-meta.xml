@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send after not able to reach on the second attempt - Testimonials included</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Telematics_New_Logo_Letterhead</letterhead>
+    <name>TM Attempt 2</name>
+    <style>promotionRight</style>
+    <subject>WEX Telematics Benefits Your Fleet</subject>
+    <textOnly>Dear{!Contact.FirstName}, 
+
+I am following up on the message I left you today.   I am sorry I have not been able to reach you regarding our comprehensive vehicle management solution for your company owned vehicles. 
+
+Do give you an idea of what this solution can do for you, I have highlighted just a few advantages of WEX Telematics below: 
+
+Increased visibility and control of fleet operations
+Lower fuel and operational costs
+Easy employee performance monitoring
+Reduced labor costs and higher employee productivity
+Increased profitability and better vehicle utilization
+Better customer service
+I hope to set a time for you and one of our more senior Representatives to speak in depth about your Fleet and what solutions are available for you.  As the IRS section 179 will expire at the end of 2013, I recommend doing this sooner than later.   I will follow up in a couple days to determine your availability.   
+
+Thank you, 
+
+Brian Fitzpatrick
+WEX Telematics Service
+Phone: (847) 440-1724
+Fax:     (207) 791-1610
+Email:  bfitzpatrick@fleetlink.com
+http://www.wextelematics.com/
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify the sender immediately by telephone or reply e-mail and delete the entire message and any attachments
+
+What Current Telematics Customers are Saying:
+
+We have found WEX Telematics to be a vital part of our daily operations. We use this information for both dispatch and diagnostics. We use it when doing payroll to proof the hours handed in by out-of-state techs, as well as those techs that stay overnight. I feel we are much more efficient and green using WEX Telematics. We have saved thousands of dollars in both fuel and labor. I appreciate the changes that are made and updating that is done. I have recently started running the FuelGuard report – another great tool. Keep up the great work and thank you!
+
+Marie Bramblett, Dock &amp; Door Handling Systems, Inc.
+
+WEX Telematics is one of the greatest assets of our company. We know where our vehicles are at all times. The report function allows us to process information more quickly for managerial, analysis and accountability purposes.
+
+Marcia Canny, Lucky Cab
+
+I own a carpet maintenance company. We maintain buildings all over the city. I was noticing how my labor kept creeping up each week, yet actual work had not increased. Once I added WEX Telematics systems, our labor not only went back to where it was, but actually dropped an additional 15%. My men know that they are being tracked every day, and it has made them much more honest.
+
+
+Jim Lacy, Interior Solutions, LLC
+
+
+
+Read More: http://www.wextelematics.com/testimonials</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

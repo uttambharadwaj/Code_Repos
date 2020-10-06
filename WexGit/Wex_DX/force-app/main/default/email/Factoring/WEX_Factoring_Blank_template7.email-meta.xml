@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Factoring Letterhead with signature offering</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Final_WEX_Factoring</letterhead>
+    <name>WEX Factoring Blank template</name>
+    <style>freeForm</style>
+    <subject>Thank you from WEX Factoring!</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you again for your interest in Fleet One Factoring.  Please take a look at the at the rate proposal and let me know if you have any questions or concerns. I will need the following items listed should you decide to move forward for underwriting to begin:
+
+Fees associated:
+
+    Flat discount rate
+    $3.00 ACH funding fee
+    $15.00 Wire fee
+    FREE funding to fuel account
+
+·         Signed proposal 
+
+·         Application 
+
+·         Copy of Operating Authority
+
+·         Insurance certificate
+
+·         Sample Invoice and backup paperwork used for billing
+
+·         Articles of Incorporation/Organization/Partnership
+
+·         Copy of Driver’s License
+
+
+Powerful real-time reporting along with on-line credit checks available 24/7 for no additional charges.
+
+I hope you have a wonderful rest of the day! I look forward to speaking with you soon.
+
+
+Sincerely, 
+
+{!User.Name}
+Fleet One Factoring, LLC
+{!User.Title}
+{!User.Phone} 
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

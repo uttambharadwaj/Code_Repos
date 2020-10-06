@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to new hires to their WEX email addresses</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>CS New Hire Employee Number</name>
+    <style>freeForm</style>
+    <subject>WEX Employee Number</subject>
+    <textOnly>Hi insert employee&apos;s name,
+
+
+Your employee number is xxxxxx. Please keep it in a location you can access it if you are locked out of your computer. The IT/System Access team may ask for it if you need a reset at any point.
+
+
+
+
+
+Thank you,
+
+Elaine</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

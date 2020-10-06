@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2014 MUFC - WEX rapid! PayCard</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MUFC 14 Follow Up</name>
+    <style>freeForm</style>
+    <subject>2014 MUFC - WEX rapid! PayCard</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+I just wanted to shoot you a quick note and thank you for attending the 2013 Georgia Statewide APA conference.  Hopefully you had a moment to stop by our both or you attended our presentation on Digital Payments.
+
+If you’d like to learn more on how the COST FREE rapid! PayCard can benefit your company and it’s employees, please let me know, and I’ll respond accordingly. If not, please let me know that as well, and I’ll be sure to take you off my contact list.
+
+
+Assuming paycards are of interest, I&apos;ve attached a product review and below are a few links to additional information that you might find of value.
+
+
+Ø rapid! PayCard Overview
+
+Ø Cost Savings &amp; Environmental Impact Calculator:
+
+Ø Employer Benefits of ePayroll:
+
+Ø Employer Frequently Asked Questions:
+
+Ø The rapid! PayCard Features:
+
+Yours sincerely,
+
+
+
+{!User.Name}
+{!User.Title}
+Rapid! PayCard
+Phone:  {!User.Phone} | Fax:  {!User.Fax}
+{!User.Email} | www.Rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

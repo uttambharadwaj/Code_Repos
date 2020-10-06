@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>Voicemail, trying to reach you</name>
+    <style>formalLetter</style>
+    <subject>EFS and T-Chek: Sorry I missed you</subject>
+    <textOnly>{!Contact.FirstName},
+My name is {!Contact.OwnerFullName}, an Account Executive with EFS and T-Chek.  I attempted to contact you to discuss how our fuel card program can save you time, money and provide you the account security you need.
+
+As I mentioned in my message, I look forward to speaking with you personally regarding the specific benefits of our fuel card program and how they relate to your business.
+
+I realize how valuable your time is.  Please let me know when a good time to connect would be and I will be happy to get in touch with you.
+
+Sincerely,
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+Office (615) 523-6496 | Fax (615) 850-0799
+
+khaywood@fleetone.com
+
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

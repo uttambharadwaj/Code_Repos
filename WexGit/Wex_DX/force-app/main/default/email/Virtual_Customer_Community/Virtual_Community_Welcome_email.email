@@ -1,0 +1,48 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 15.75pt;"><span style="font-size:10.5pt;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#505050"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 15.75pt;"><span style="font-size:10.5pt;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:#505050">Dear Customer,<br>
+&nbsp;<br>
+We are excited to announce the launch of the <strong>WEX</strong> <strong>Customer Community library and knowledge base!</strong><br>
+&nbsp;<br>
+The library has been developed as part of our <strong>Customer Success strategy</strong> and is intended
+to offer you comprehensive support as well as a knowledge base to help support
+you in managing your WEX accounts.<br>
+&nbsp;<br>
+On the WEX Customer Community you’ll find a wide range of resources covering a
+cross section of subjects which we hope you will find useful. If you are
+looking for a specific topic or keyword, the easiest way is to use the search
+box at the top of the page which will help you navigate to the documents in the
+library that contain your topic and/or keyword.<br>
+&nbsp;<br>
+Below is a brief overview of what you can expect to find in the library.</span></p><ul type="disc" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ <li class="MsoNormal" style="color:#505050;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:15.75pt;mso-list:l0 level1 lfo1;tab-stops:list 36.0pt"><strong><span style="font-size:10.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Technical Guides: </span></strong><span style="font-size:10.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Resources &amp; guides to assist with technical queries<o:p></o:p></span></li>
+ <li class="MsoNormal" style="color:#505050;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:15.75pt;mso-list:l0 level1 lfo1;tab-stops:list 36.0pt"><strong><span style="font-size:10.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Managing Your Account</span></strong><span style="font-size:10.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">: Resources &amp; guides to assist in the day to day
+     management of your account<o:p></o:p></span></li>
+</ul>
+
+<b><span style="color: rgb(80, 80, 80); font-family: Arial, sans-serif; font-size: 10.5pt;">&nbsp;</span><span style="color: rgb(80, 80, 80); font-family: Arial, sans-serif; font-size: 14px;">{!Community_Name}</span></b><div><span style="color: rgb(80, 80, 80); font-family: Arial, sans-serif; font-size: 10.5pt;"><br>
+You can access the virtual customer community <a href="{!Community_URL}">here</a>.</span><div><br></div><div><div><div><font color="#505050" face="Arial, sans-serif"><span style="font-size: 14px;">Username: &nbsp;{!Receiving_User.Username}</span></font></div><div><font color="#505050" face="Arial, sans-serif"><span style="font-size: 14px;"><br></span><span style="font-size: 10.5pt;">
+We hope you find the WEX Customer Community a useful support tool for your
+business. We will be adding and developing new resources throughout the year so
+please be sure to log in to see what new resources are &nbsp;available.</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+&nbsp;</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+Should you have any issues accessing the site please contact your Relationship
+Manager.</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+&nbsp;</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+Kind regards,</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+&nbsp;</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+Julie Sutton</span></font><br><font color="#505050" face="Arial, sans-serif"><span style="font-size: 10.5pt;">
+Director of Client Engagement, Travel</span></font></div></div></div></div>]]></td>
+</tr>
+</table>

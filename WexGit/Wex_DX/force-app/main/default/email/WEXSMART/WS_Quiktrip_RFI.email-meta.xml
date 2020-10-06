@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Quiktrip standard email template for RFI</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>QuikTrip_Standard</letterhead>
+    <name>WS QuikTrip RFI</name>
+    <style>freeForm</style>
+    <subject>The Info You Requested for QuikSMART</subject>
+    <textOnly>Dear {!Contact.FirstName}, 
+ 
+Thank you for your interest in QuikSMART.  Please find information attached to help answer some initial questions you may have.  
+ 
+I would love to spend 20 minutes with you for a live demo of our solution -- it&apos;s the best way to see the many ways you can save with QuikSMART.  
+ 
+Please let me know if I can answer any questions.  I will follow up in next 5 days.
+ 
+Sincerely, 
+{!Opportunity.OwnerFullName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-family: arial; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Your
+Sales Onboarding is starting on&nbsp;</font><font face="Arial, sans-serif" size="2">{!Case.Class_Start_Date_del__c}. The agenda for the week is attached.</font></p><p class="MsoNormal" style="font-family: arial; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Items
+to keep in mind:</font></p><ul><li><font face="Arial, sans-serif" size="2">Note start time listed on the agenda. If you are attending class on-site, on Day One arrive at 8:30 am at <b>225 Gorham Road, South Portland, ME 04106</b>.<span style="background-color: rgb(255, 255, 255); line-height: 15.6pt;">&nbsp;</span></font></li><li style="color: rgb(0, 0, 0);"><span style="text-indent: -0.25in;"><font size="2" face="Arial, sans-serif">If you h<font face="arial">ave </font><b style="font-family: arial;"><font color="#cc0000">NOT</font></b><font face="arial"> finalized your paperwork with HR, bring
+your two forms of ID to complete the Federal I-9 Employment Eligibility
+Verification form or you cannot participate in training.</font></font></span></li><li style="font-family: arial; color: rgb(0, 0, 0);"><span style="text-indent: -0.25in;"><font size="2" face="Arial, sans-serif">The dress policy is business casual. &nbsp;You
+may wear business casual attire during training but we do have you role play a
+sales meeting that many past Reps have preferred to wear business attire to
+complete.</font></span></li></ul><!--[if !supportLists]--><p style="font-family: arial; color: rgb(0, 0, 0);"></p>
+
+
+
+
+
+
+
+<p class="MsoNormal" style="font-family: arial; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Please contact me&nbsp;<span style="background-color: rgb(255, 255, 255);">or&nbsp;</span><a href="mailto:Salestraining@wexinc.com" style="background-color: rgb(255, 255, 255);">Salestraining@wexinc.com</a>&nbsp;with any questions<span style="background-color: rgb(255, 255, 255);">. &nbsp;</span></font></p><p class="MsoNormal" style="font-family: arial; color: rgb(0, 0, 0);"><span style="background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif" size="2">{!User.Name} | {!User.Phone}</font></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><br></p>]]></td>
+</tr>
+</table>

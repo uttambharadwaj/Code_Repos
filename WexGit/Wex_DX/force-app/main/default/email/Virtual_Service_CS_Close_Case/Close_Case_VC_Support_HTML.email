@@ -1,0 +1,12 @@
+Thank you for contacting Customer Services, your query has now been resolved and we have closed your case {!Case.CaseNumber} . If you feel there is further support required in this matter please respond to this email or call the team on 0203 553 5988 <br>
+<br>
+<br>
+Kind regards<br> 
+WEX Customer Services<br> 
+<b><font color="red">WEX Europe Limited</font></b><br>
+66 Hammersmith Road, London, W14 8UD<br> 
+Phone: +44 (0) 203 553 5988 <br>
+Email: vcsupport@wexeurope.com<br> 
+www.wexeurope.com <br>
+
+{!Case.Thread_Id}

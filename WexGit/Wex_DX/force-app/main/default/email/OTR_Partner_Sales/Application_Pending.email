@@ -1,0 +1,11 @@
+{!Contact.FirstName},
+
+I have received your application for the {!OnlineApplicationOffer__c.Name} fuel card.  At this time your application is currently under review by WEX Bank.  I expect a decision within 3-5 business days, at which point I will follow up with you regarding their decision. If further documents are requested I will notify you as soon as possible with specific details.
+
+If you have any questions, please contact me at {!User.Email}.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

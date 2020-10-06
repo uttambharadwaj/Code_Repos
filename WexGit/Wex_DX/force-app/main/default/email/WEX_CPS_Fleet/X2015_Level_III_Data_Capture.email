@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Automotive Fleet - Level III</title>
+</head>
+
+<body style="background: #e2e3e4;" bgcolor="#e2e3e4">
+  <table border="0" cellspacing="0" cellpadding="0" align="center">
+    <tbody>
+        <tr>
+            <td valign="top" style="color:#666666;font-family: Arial, sans-serif ;font-size:12px; -webkit-text-size-adjust: none; line-height: 16px;padding-bottom: 8px;" width="600">Hello {!Contact.FirstName},<br>
+                <br>
+                Many of our current customers have found value in keeping tuned in to industry trends. I thought you might find this interesting.<br>
+                <br>
+                Let me know if you have any questions.<br>
+                {!User.Name} | Phone: {!User.Phone} | Email: {!User.Email}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="background: #e2e3e4;" align="center" bgcolor="#e2e3e4" border="0" cellpadding="0" cellspacing="0" width="95%">
+<tr>
+<td>
+    <table style="background: #ffffff;" align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="650">
+    <tr>
+        <td width="650" height="5" bgcolor="#4d4d4f" style="background-color: #4d4d4f;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="650"><a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{71a49343-a112-49ce-b939-b9867c94ea6d}_Level3WhitePaper_WEBVersion.pdf"><img src="http://www.wexhosted.com/marcom/images/wexu-20140107-auto-fleet-email/images/banner-level3.gif" alt="WEX Inc. - Learn About Level III Data" style="display: block;" border="0" height="322" width="650"></a></td>
+    </tr>
+    <tr>
+        <td width="650"><a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{71a49343-a112-49ce-b939-b9867c94ea6d}_Level3WhitePaper_WEBVersion.pdf" style="font-family: Arial, Helvetica, sans-serif; font-size: 11pt; font-weight: normal; line-height: 20px; color:#e51937;"><img src='http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{12cc82b9-2621-49a7-9273-3dfd037a6b24}_WEXLF-whitepaper.jpg' alt="Download the whitepaper &gt;&gt;" style="display: block;"></a></td>
+    </tr>
+    <tr>
+        <td width="650" height="5" bgcolor="#4d4d4f" style="background-color: #4d4d4f;">&nbsp;</td>
+    </tr>
+    </table>
+
+	<table style="background: #ffffff;" align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="650">
+    <tr>
+    <td colspan="3"><p>&nbsp;</p></td>
+    </tr>
+    <tr>
+    <td width="50"></td>
+    <td width="550">
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14pt; color: #333333; font-weight: normal; line-height: 25px;"><strong>WEX's informative white paper series</strong> can help you identify the latest trends and reduce costs through industry best practices.</p>
+        <p><img src="http://www.wexhosted.com/marcom/images/wexu-20140107-auto-fleet-email/images/benefits.gif" alt="" style="display: block;" border="0" height="157" width="550"></p>        
+    </td>
+    <td width="50"></td>    
+    </tr>
+    <tr>
+        <td colspan="3" width="650" height="5" bgcolor="#4d4d4f" style="background-color: #4d4d4f;">&nbsp;</td>
+    </tr>
+    <tr>
+    <td width="50"></td>
+    <td width="550" style="font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #333333; font-weight: normal; line-height: 20px;padding-bottom: 15px;padding-top: 10px">
+        <strong>Level III Data Capture Benefits:</strong>
+        <ul>
+            <li style="font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #333333; font-weight: normal; line-height: 20px;">Provides more advanced reporting than credit cards or debit cards</li>
+            <li style="font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #333333; font-weight: normal; line-height: 20px;">Utilizes odometer readings to monitor miles per gallon and optimize maintenance schedules</li>
+            <li style="font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #333333; font-weight: normal; line-height: 20px;">Leverages purchase controls to limit what drivers purchase, such as fuel, fluids, parts, or general merchandise</li>
+        </ul>
+
+        Learn more about level III data and other industry trends. <a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{71a49343-a112-49ce-b939-b9867c94ea6d}_Level3WhitePaper_WEBVersion.pdf" style="font-family: Arial, Helvetica, sans-serif; font-size: 11pt; font-weight: normal; line-height: 20px; color:#e51937;">Download our whitepaper</a> and learn more.
+    </td>
+    <td width="50"></td>    
+    </tr>    
+    <tr>
+        <td colspan="3" width="650"><a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{71a49343-a112-49ce-b939-b9867c94ea6d}_Level3WhitePaper_WEBVersion.pdf" style="font-family: Arial, Helvetica, sans-serif; font-size: 11pt; font-weight: normal; line-height: 20px; color:#e51937;"><img src='http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{12cc82b9-2621-49a7-9273-3dfd037a6b24}_WEXLF-whitepaper.jpg' alt="Download the whitepaper &gt;&gt;" style="display: block;"></a></td>
+    </tr>
+    <tr>
+        <td colspan="3" width="650" height="5" bgcolor="#4d4d4f" style="background-color: #4d4d4f;">&nbsp;</td>
+    </tr>
+    </table>
+    
+	
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+<p>To change Direct Debit bank accounts, you need to cancel out the current Active bank account first. If you go to our website: <a href="http://www.essofleetonline.com/">www.essofleetonline.com</a> to Invoice &amp; Payment &gt;&gt; Direct Debit Enrolment and see your current bank account as Active and under Invoice &amp; Payment &gt;&gt; Review Payments, a payment is scheduled, this account will have to be suspended. Please follow these directions:</p>
+<ol>
+<li>On the Invoice &amp; Payment &gt;&gt; Direct Debit Enrolment page, in the section that says Direct Debit Information, click the down arrow in the box that says Process beside Direct Debit Status: and change it to Suspend. Click on the Submit button at the bottom of the page.</li>
+</ol>
+<p style="padding-left: 30px;">Then on that same page in the Bank Information section, click the box at the end of the current bank Account under the Delete column. Click on the Submit button at the bottom of the page.</p>
+<ol start="2">
+<li>Then you&rsquo;re ready to add your new bank account information by clicking on Add Bank Account. Be sure to click Submit at the bottom of this page when finished so that it&rsquo;s saved online.</li>
+</ol>
+<p style="padding-left: 30px;">Next, you&rsquo;ll need to look in the gray box on this page and download the PAD agreement and send that to us with a copy of your check. There is a fax number there, but you can also send it to <a href="mailto:iol_pad@wexinc.com">iol_pad@wexinc.com</a>.</p>
+<p>If you have any further questions, please let us know.</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

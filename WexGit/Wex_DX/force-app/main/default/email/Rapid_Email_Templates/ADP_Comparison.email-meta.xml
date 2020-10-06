@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>ADP Comparison</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>ADP Comparison</name>
+    <style>freeForm</style>
+    <subject>Paycard Comparison</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+It was nice speaking with you.
+
+I&apos;ve attached the fee comparison as discussed.  To be fair and for the purposes of full disclosure, this comparison is based upon the most recent Aline Card fee schedule I currently have on hand.  These things can change and I&apos;d suggest you double check using whatever ADP has provided.  Or, if you prefer you can send ADP&apos;s fees to me, and I&apos;ll do the comparison for you.
+
+To make things a bit easier, you&apos;ll note that I have highlighted the areas where one program provides benefit over the other.  Once reviewed, and presuming I&apos;ve accurately portrayed the ADP fee structure,  I think you&apos;ll have to agree, that the WEX rapid! PayCard provides your employees a far greater benefit when compared to ADP&apos;s Aline program.
+
+While a good place to start, fees are only the &quot;tip of the iceberg&quot;.  I hope after you&apos;ve reviewed the attached,  you&apos;ll give some consideration into taking a closer look at the rapid! PayCard offering.
+
+As you suggested, I&apos;ll touch base again sometime late next week, and we&apos;ll see what, if any, next steps would be appropriate.
+
+Best wishes,
+
+
+{!User.Name}
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: {!User.Phone} • C: {!User.MobilePhone} • F: 727.828.4444
+
+E: {!User.Email}
+
+W: www.wexinc • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

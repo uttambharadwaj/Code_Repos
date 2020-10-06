@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Top 50 1st email - millenium article</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>JAW Top 50 millenium article/email</name>
+    <style>freeForm</style>
+    <subject>Millenium advantage</subject>
+    <textOnly>Dear { },
+
+
+We at rapid!paycard continue to expand solutions to benefit workforce and to help drive down costs while healthcare continues to increase.   Our focus on gen X,Y and millennials plays a part in this ever changing landscape and how you can best support employees with creative benefits above and beyond what you already offer.   Here’s a great article for reference. http://www.millennialmarketing.com/2014/01/2014-millennial-trends/&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+&lt;?xml:namespace prefix = u1 /&gt;
+
+&lt;?xml:namespace prefix = u2 /&gt;
+
+
+Looking forward to keeping touch this year.
+
+
+Sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

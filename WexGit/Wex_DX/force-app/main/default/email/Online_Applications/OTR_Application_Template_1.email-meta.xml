@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to use when sales initiates an Online App. Contains a link to the partially completed App.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>1. App Initiated by Sales</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest, {!OnlineApplication__c.Application_Title__c} Instructions</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in the WEX Fleet One Fuel Card system. For your convenience, I have included a link to our online application. Please note that the name listed on the Business Service Agreement (BSA) must be exactly the same as the individual whose electronic signature is on the EchoSign.
+
+Please click here and follow the instructions to complete your application process.
+
+Again, thank you for your interest in WEX Fleet One.  If you have any questions about the application, please do not hesitate to call or email me.
+
+Sincerely,
+
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone:  {!User.Phone} |  Fax: {!User.Fax}
+{!User.Email}  |  www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

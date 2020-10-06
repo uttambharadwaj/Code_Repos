@@ -1,0 +1,19 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+What is your average length of haul? {!Opportunity.Average_Haul_Length__c}
+Current process for document delivery? {!Opportunity.Current_Document_Delivery_Process__c}
+If using TripPak, when does your current contract expire? {!Opportunity.TripPak_Contact_Expiration_Date__c}
+Percentage of drivers fueling at Pilot & Love's? {!Opportunity.Pilot_Loves_Fueling_Percentage__c}
+Comments: {!Opportunity.Vendor_Comments__c}

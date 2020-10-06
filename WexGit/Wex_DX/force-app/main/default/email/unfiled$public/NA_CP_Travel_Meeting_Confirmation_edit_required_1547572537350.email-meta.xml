@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Meeting confirmation email. You will need to make sure location is correct and add date and time.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>CP NA OPTY - Travel Meeting Confirmation (edit required)</name>
+    <relatedEntityType>Opportunity</relatedEntityType>
+    <style>none</style>
+    <subject>WEX Meeting Confirmation</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

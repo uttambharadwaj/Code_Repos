@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Non-Solicit Agreement (move from RTS)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>_Non Solicit Statement for Email</name>
+    <style>freeForm</style>
+    <subject>Non-Solicit Agreement (move from RTS)</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+
+
+Please reply:  I approve.   Name and Date.
+
+
+
+
+To WEX/EFS/FleetOne :
+
+
+
+This is to confirm that I was in no way expressly, directly nor indirectly solicited regarding my decision to join Fleet One and to seek separation from my existing card provider.   I solely, upon my own decision and volition contacted Fleet One on my own.   As a result of my inquiry, a representative contacted me to follow up on my inquiry, welcomed my company to EFS/Fleet One EDGE card, and answered my questions concerning my newly sought after account.
+
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Office (615) 523-6496 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

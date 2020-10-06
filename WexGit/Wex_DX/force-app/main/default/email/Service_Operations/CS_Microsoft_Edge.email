@@ -1,0 +1,32 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Thank you for contacting us.  We are aware that some customers using Microsoft Edge are not able to view or access the menus at www.wexonline.com. Please see the steps below to correct this within the Edge menu while our IT department researches a permanent solution. I’m sorry for the inconvenience this has caused.
+ 
+<br></br>
+
+Click on the Edge menu which looks like three dots in the upper right corner of the screen
+
+<br></br>
+
+Select ‘Open with Internet Explorer’
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

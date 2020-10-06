@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>APA 2014</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>APA Congress 2014-LP</name>
+    <style>freeForm</style>
+    <subject>Congress is only a few weeks away, what does WEX have in store for you...</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I want to go ahead and give you a rundown of all of the great events that WEX rapid! PayCard will be sponsoring this year at the APA Congress:
+
+Tuesday, May 13
+
+9:45 a.m. – 11:15 a.m.   Pre-Congress Session 2
+(#20404)                         Bruce Phipps, CPP – “Local Income Tax in             Pennsylvania”
+                                        earn 1.5 CPE Credits
+
+2:15 p.m. – 3:45 p.m.      Pre-Congress Session 3
+(#20711)                         Bruce Phipps, CPP, Einstein Healthcare Network; Martin Armstrong, DBA, MBA, CPP, Time Warner Cable; William Dunn, CPP APA – “Payroll Card Case Study”
+
+                                        earn 1.5 CPE Credits
+
+4:00 p.m. –6:00 p.m.       Opening General Session
+(Keynote Speaker)          Connie Dieken – “Are You the Real Deal?”
+
+                                       earn 1.0 CPE Credit
+
+Wednesday, May 14
+Booth # 707                   WEX rapid! PayCard WEX Souvenir Shot Glass w/ Sampling of Flavored Spirits.
+
+8:00 a.m. – 9:30 a.m.     Workshop Session 1
+(#30208)                         Dennis Danilewicz, CPP – “Payroll/AP Best Practices: What Does This Really Mean?”
+                                       earn 1.5 CPE Credits
+
+8:00 a.m. – 9:30 a.m.      Workshop Session 1
+(#30213)                         Bruce Phipps, CPP – “HR/Payroll Moves to the Clouds”    
+                                        earn 1.5 CPE Credits
+
+3:30 p.m. – 5:00 p.m.      Workshop Session 4
+(#30611)                         Dennis Danilewicz, CPP – “Metrics: How to Begin to Tell Your Story”
+                                        earn 1.5 CPE Credits
+
+Thursday, May 15
+Booth # 707                    WEX rapid! PayCard Wine Glass Decorating Activity
+
+8:00 a.m. – 9:30 a.m.      Workshop Session 5 – Attention From the Media: (#40201)                         How Has it Impacted Payroll Card Best Practices?
+                 
+                                       Thought Leadership Workshop with Dennis Danilewicz, CPP, NYU Langone Medical Center; Cathy Beyda, Esq., Paul Hastings; James Medlock, CPP, APA; Bruce Phipps, CPP, Einstein Healthcare Network; Brian Slowik, WEX rapid! PayCard
+
+                                        earn 1.5 CPE Credits
+
+Will You Be Attending Thought Leadership Workshop?  Yes ___ No___
+
+4:00 p.m. – 5:30 p.m.      Workshop Session 7
+(#40610)                          Dennis Danilewicz, CPP – The Perfect Partnership: Payroll and Human Resources
+
+                                         earn 1.5 CPE Credits
+
+Friday, May 16
+Booth # 707                     WEX rapid! PayCard Wine Glass Decorating Activity
+
+2:15 p.m. – 3:45 p.m.       Workshop Session 9
+(#50403)                          Bruce Phipps, CPP – “Local Income Tax in Pennsylvania”
+
+                                        earn 1.5 CPE Credits
+
+2:15 p.m. – 3:45 p.m.      Workshop Session 9
+(#50505)                         Stephanie Salavejus, CPP – “Developing a Successful Partnership With Your Vendor”
+
+                                        earn 1.5 CPE Credits
+
+2:15 p.m. – 3:45 p.m.      Workshop Session 9
+(#50509)                         Dennis Danilewicz, CPP – “Developing a Cohesive Team”
+
+                                        earn 1.5 CPE Credits
+Saturday, May 17
+
+11:30 a.m. – 1:00 p.m.    Workshop Session 13
+(#60308)                          Bruce Phipps, CPP – “Ready, Set, Recover!     Ensuring Your Employees Get Paid”
+
+                                         earn 1.5 CPE Credits
+
+
+Get To Know the WEX rapid! PayCard Team
+
+I would like to invite you to join our Senior Management Team for breakfast, lunch, dinner, cocktails or coffee on us.
+
+You may have some extra time while at APA Congress, and if you would like to meet up for a short product demonstration and ask questions, then list what your availability is:
+
+Yes, I am interested in a meeting:
+
+Date _______________ Time_________
+
+Name/Company__________________________________________
+
+Number of Paper Checks Issued Per Pay period________________
+
+Cell phone number ___________________ (in case of change of meeting place.)
+
+I hope to see you there. Thank You,
+
+Lauar Pinner 
+WEX Inc.
+rapid! PayCard
+o| 863.940.3518 c| 863.397.5255 f| 727.828.4444
+e| laura.pinner@wexinc.com
+www.wexinc.com • www.rapidpaycard.com
+
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

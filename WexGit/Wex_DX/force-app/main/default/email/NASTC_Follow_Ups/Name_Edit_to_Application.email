@@ -1,0 +1,9 @@
+{!Contact.FirstName},
+
+In order to get your NASTC fuel card application processed,  I have resent your application with a slight name change. Please sign and return as soon as is possible.  
+
+Thank you kindly!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

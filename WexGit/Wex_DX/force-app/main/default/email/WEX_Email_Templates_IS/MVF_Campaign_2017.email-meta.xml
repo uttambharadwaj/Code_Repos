@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sorry I missed you...</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Generic_Letterhead</letterhead>
+    <name>MVF Campaign 2017</name>
+    <style>freeForm</style>
+    <subject>Looking for the best fuel card for your business?</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+My name is {!User.FirstName} and I am an Account Executive with Wex, Inc. We are a fuel card provider.
+
+I am responding to your request for more information through Expert Market in regards to our various fuel card programs.
+
+At Wex, we manage the fleet card programs for the most popular fuel cards – offering competitive rebates to help save you money – and all with the purchasing controls and reporting you need to manage your fleet expenditures.
+
+Based on your region – we can match you up to a program that can help optimize the best rebates and coverage.  Give me a call and lets find a program that will work best for you.
+
+We appreciate you considering the Wex fuel card programs for your business.
+
+Thank you for the opportunity to be of service. My direct line is listed below.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+{!Contact.FirstName},
+
+I received your completed application for the NASTC Fleet One fuel card. 
+ You entered $0.00 as credit line requested which will prevent you from securing a line of credit with us to buy fuel. Is that what you intended to do? If not please reply to this email stating that you want a credit line and the dollar amount. 
+
+I have also attached a payment method authorization form which will authorize your account for auto draft payment.  Please return this form with your email.
+
+Thank you
+{!User.FirstName} {!User.LastName}
+WEX Fleet One Sales
+{!User.Phone}

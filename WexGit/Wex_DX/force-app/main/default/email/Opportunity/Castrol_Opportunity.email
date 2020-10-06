@@ -1,0 +1,23 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+Contact: {!Opportunity.Opportunity_Contact__c}
+
+How many gallons do you purchase in an avg month? {!Opportunity.Monthly_Oil_Gallons_Purchased__c}
+What is your drain interval? {!Opportunity.Drain_Interval__c}
+What oil brand are you buying? {!Opportunity.Oil_Brand__c}
+How long have you been buying that brand? {!Opportunity.Oil_Brand_Loyalty__c}
+Do you do oil sampling?  {! IF(Opportunity.Oil_Sampling__c, "Yes", "No") }
+What company currently supplies your lubricants? {!Opportunity.Lubricant_Supplier__c}
+What products are you interested in? {!Opportunity.Castrol_Products_Interest__c}
+Comments: {!Opportunity.Vendor_Comments__c}

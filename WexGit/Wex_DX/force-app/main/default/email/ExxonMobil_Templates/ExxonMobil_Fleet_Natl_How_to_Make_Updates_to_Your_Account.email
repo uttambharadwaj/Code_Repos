@@ -1,0 +1,46 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-font-style:italic">Dear
+{!Contact.FirstName},<br><br></span><o:p></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Welcome to the ExxonMobil Fleet National Card Program!<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Now that you have an established account with us, you can easily
+make changes to your Fleet National Card account in three ways:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Via Phone: </span></b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Customer Service is
+available 7 days a week, 24 hours a day at 1-888-531-3698 for assistance. <b><o:p></o:p></b></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Via Fax: </span></b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">Use the attached forms to
+make changes to your account. Simply complete and fax the forms back to us at
+1-800-395-0809.<b><o:p></o:p></b></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Online:</span></b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"> Make changes online
+anytime by visiting&nbsp;</span><span style="font-family: Arial, sans-serif; font-size: 11pt;"><a href="https://www.exxonmobiluniversalonline.com/online/">https://www.exxonmobiluniversalonline.com/online/</a>&nbsp;</span><span style="font-size: 12pt;">. For guidance, please
+refer to the attached pdf for tutorials on our online tools!</span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;mso-bidi-font-weight:bold">Thank you for choosing </span><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">the ExxonMobil Fleet National Card Program.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Sincerely,&nbsp;<br>
+</span></i><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:black"><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+{!User.Email}</span></i></p>]]></td>
+</tr>
+</table>

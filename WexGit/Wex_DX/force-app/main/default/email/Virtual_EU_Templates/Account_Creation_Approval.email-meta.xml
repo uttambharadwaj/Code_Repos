@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay Account Creation Approval</name>
+    <style>freeForm</style>
+    <subject>{!Account_Asset__c.Name} Account Setup Approval Request</subject>
+    <textOnly>{!Account_Asset__c.LastModifiedBy} has requested your approval for account asset {!Account_Asset__c.Name}.
+
+Please review the account on the portal, along with the application form which is attached to opportunity {!Account_Asset__c.Opportunity_Name__c}.
+
+Then do x, y, z to confirm that you have approved the account setup.
+
+
+
+
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

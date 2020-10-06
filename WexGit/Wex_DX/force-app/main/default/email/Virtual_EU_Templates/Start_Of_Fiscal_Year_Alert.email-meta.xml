@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>Start Of Fiscal Year Alert</name>
+    <style>freeForm</style>
+    <subject>{!Virtual_FEP__c.Account_Name__c} New Fiscal Year</subject>
+    <textOnly>Hi {!Virtual_FEP__c.OwnerFirstName},
+
+{!Virtual_FEP__c.Account_Name__c}&apos;s new year begins on {!Virtual_FEP__c.Start_Of_Fiscal_Year__c}. You may wish to request their new financials.
+
+This notification has been sent because of the date that is saved in the customer&apos;s Virtual FEP which you can view here.
+
+If this date {!Virtual_FEP__c.Start_Of_Fiscal_Year__c} is not today&apos;s date, you will receive another notification on the date which is displayed.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

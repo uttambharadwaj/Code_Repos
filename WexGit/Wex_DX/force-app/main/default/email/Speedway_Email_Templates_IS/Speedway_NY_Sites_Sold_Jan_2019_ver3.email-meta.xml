@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Outreach About Speedway Sites in NY Sold to Sunoco - Site 7733 in Farmington</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Speedway_Letterhead</letterhead>
+    <name>Speedway NY Sites Sold Jan 2019_ver3</name>
+    <style>freeForm</style>
+    <subject>Important News About Your Local Speedway Station</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Greetings from the Speedway Business Fleet Card Program!
+
+
+We want to let you know that the Speedway station at 1429 State Route 332 in Farmington where your drivers have been fueling is changing hands, and as a result that location will no longer be able to accept the Speedway Business Fleet Card after January 29, 2019.
+
+The good news is that there is another Speedway location less than 2 miles away at 6180 Collett Road where you and your drivers can continue to fuel and enjoy all the benefits of the Speedway Business Fleet Card.
+
+If you have any questions about this change, please contact me directly at the number below.
+
+Thank you for choosing the Speedway Business Fleet Card Program.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,13 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font face="Verdana,Helvetica,Sans-Serif"><font size="2"><font face="Verdana,Helvetica,Sans-Serif">{!Contact.Salutation} {!Contact.LastName}, <br><br>I am the {!User.Title} of Fleet Sales for WEX.&nbsp;I am attempting to assist {!Opportunity.OwnerFullName}, your local Regional Sales Manager who reports to me, by following up with customers&nbsp;not&nbsp;putting the Wright Express program to full use.<br><br>My latest report shows you are using only a portion of your WEX Universal Fleet Cards. Typically, our customers see a reduction in their fuel spend/gallon use by 10%. Of course, delaying the roll out of the program reduces your ability to save with WEX. Please let {!Opportunity.OwnerFirstName} or I&nbsp;know what&nbsp;can be done to help facilitate roll out of the program to your fleet drivers. <br><br>If there is a problem with the cards or if you have questions about the program itself, please call me at {!User.Phone}. You can also contact {!Opportunity.OwnerFirstName} at {!Opportunity.OwnerPhone} or via email at {!Opportunity.OwnerEmail}.<br><br>Thank you for selecting WEX. We look forward to helping you control, manage and reduce your fleet operating expenses.&nbsp;<br><br></font></font></font><font face="Verdana,Helvetica,Sans-Serif"><font size="2"><br><br>Sincerely, <br></font></font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">{!User.FirstName} {!User.LastName}</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">{!User.Title}<br>Phone - {!User.Phone}<br>Cell - {!User.MobilePhone}<br>{!User.Email}</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif"><a href="http://www.wrightexpress.com">www.wexinc.com</a></font></p>
+<p><font face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="1" face="Verdana,Helvetica,Sans-Serif">CONFIDENTIALITY NOTICE: "This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</font></p>]]></td>
+</tr>
+</table>

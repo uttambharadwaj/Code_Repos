@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>Virtual NA Opportunity Won</name>
+    <style>freeForm</style>
+    <subject>New Sale - {!Opportunity.Name}</subject>
+    <textOnly>Hi,
+
+{!Opportunity.Name} is now at Stage {!Opportunity.StageName} and a Relationship Manager may need to be assigned to the account {!Opportunity.Account}.
+
+Opportunity Owner - {!Opportunity.OwnerFullName}
+Close Date - {!Opportunity.CloseDate}
+
+Product Type - {!Opportunity.Record_Type_Name__c}
+Annual Settlement Value - {!Opportunity.Annual_Settlement_Value__c}
+Net Full Service Revenue - {!Opportunity.Net_Full_Service_Revenue__c}
+
+Opportunity Billing Address: City - {!Opportunity.Billing_City__c}
+Opportunity Billing Address: Country - {!Opportunity.Billing_Country__c}
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

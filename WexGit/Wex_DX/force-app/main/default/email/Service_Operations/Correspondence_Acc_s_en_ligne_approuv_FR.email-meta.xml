@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Accès en ligne approuvé</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Accès en ligne approuvé</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Votre accès en ligne a été approuvé. Votre nom d’utilisateur est : BLANK Vous devriez recevoir un mot de passe temporaire dans un courriel séparé ainsi que des instructions supplémentaires. Pour toutes questions n’hésitez pas à nous répondre ou à nous téléphoner au service à la clientèle au 1. 800.267.0156 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

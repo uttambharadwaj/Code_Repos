@@ -1,0 +1,20 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style=""><p class="MsoNormal" style="color: rgb(0, 0, 0); text-align: center;"><font face="Verdana, Helvetica, sans-serif" style=""><b style="font-size: 12pt; font-family: arial;"><span style="color: red;">Your Feedback Is
+Important!</span></b><b style=""><span style="color: red;"><font face="arial" style="font-size: 12pt;">&nbsp;</font><br><font size="2"><br></font></span></b></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif"><font style="font-size: small;"><span style="color: rgb(0, 0, 0);">We hope you enjoyed the <b style="">Integrity
+Coaching Course!&nbsp;</b></span><span style="color: rgb(0, 0, 0);">It is our goal to ensure the Global Sales Training Team delivers world class training programs.&nbsp; <br><br>In order
+to continue to improve our programs and meet the needs of our growing
+sales force, we are asking you to answer a brief survey based on your
+experience.<br></span></font><b style=""><span style="color: blue;"><br></span></b></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); text-align: center;"><span style="line-height: 115%;"><font face="Verdana, Helvetica, sans-serif"><a href="https://wex.qualtrics.com/jfe/form/SV_bvcpPUBONu6dGKh" style=""><b style="">Integrity Coaching
+Survey</b></a><font style="font-size: small;"><o:p></o:p></font></font></span></p><font face="Verdana, Helvetica, sans-serif" size="2"><font style="color: rgb(0, 0, 0);"><span style="color: rgb(0, 0, 0);"><br>Please email me&nbsp;</span></font><font style="color: rgb(0, 0, 0);"><span style="color: rgb(0, 0, 0);">with any questions.<font style="">&nbsp;</font></span><span style="color: rgb(31, 73, 125);">&nbsp;</span></font></font><p style="color: rgb(0, 0, 0);"></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif" size="2"><br>Thank you,<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"><br></p><p class="MsoNormal" style=""><font face="Calibri, sans-serif"><span style="font-size: 14.6667px;">{!User.Name}</span></font><!--[endif]--></p><p class="MsoNormal" style=""><font face="Calibri, sans-serif"><span style="font-size: 14.6667px;">{!User.Title}</span></font></p><p class="MsoNormal" style=""><font face="Calibri, sans-serif"><span style="font-size: 14.6667px;">{!User.Email}</span></font></p></div><div style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"></div>]]></td>
+</tr>
+</table>

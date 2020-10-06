@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><font face="arial">{!Contact.FirstName}</font></div><div><font face="arial"><br></font></div><div><font face="arial">Thank you for the call today, I appreciate your time. Just confirming that &lt;SALES REP NAME HERE&gt;, WEX’s Regional Manager will be meeting with you on &lt; Date&gt; &lt;Time&gt;.</font></div><div><font face="arial"><br></font></div><div><span style="font-size: 12pt;">If you would like to reach out to &lt;SALES REP FIRST NAME HERE&gt;, you can reach &lt;HIM/HER&gt; at &lt;SALES REP EMAIL HERE&gt; or &lt;PHONE HERE&gt;.</span></div><div><font face="arial"><br></font></div><div><font face="arial">Regards,</font></div><div><font face="arial">{!User.FirstName} {!User.LastName}</font></div><div><font face="arial">WEX Fleet Specialist</font></div><div><font face="arial">Phone: {!User.Phone}</font></div><div><font face="arial">Email: {!User.Email}</font></div>]]></td>
+</tr>
+</table>

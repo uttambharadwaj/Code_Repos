@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Intro Additional Info Request</name>
+    <style>freeForm</style>
+    <subject>Intro &amp; Additional Info Request - {!Claim__c.Account_Name__c}</subject>
+    <textOnly>{!Claim__c.Name}
+
+Hello,
+
+
+
+
+We received your request to review disputed charges and have assigned the above claim number for card ending {!Claim__c.Abbreviated_Card__c}. We have received your claim and have begun our investigation.
+
+
+If you have not already done so, we suggest that a police report be filed and the stations involved be contacted immediately to obtain possible video surveillance evidence as most stations keep surveillance tape for only a short period of time.
+
+
+We require additional information in order to proceed with the review of your claim.  Please submit the following items:
+
+
+The full card number(s) that is in dispute.
+A copy of the card(s)
+A copy of the Police Report
+The date range of the disputed transactions.
+The completion of the attached affidavit. Please ensure the following steps are completed:
+
+Fully complete each section and include card numbers.
+Sign and date the affidavit.
+
+
+A detailed summary of why the transactions are being disputed including;
+
+where the card(s) was kept prior to the abuse,
+the circumstance around how the card(s) became lost or stolen, and
+how the din(s) used would have been known.
+
+
+You can return the documentation by fax: 207-791-1655, or email: disputes@fleetfraudservices.com , or mail to:
+
+Fleet Fraud Services
+
+97 Darling Avenue
+
+South Portland, ME 04106
+
+
+
+Please return the requested documentation within 10 business days from the date of this letter. If the requested information is not received during the 10 business day time period your claim will be closed without further notification.
+
+
+If you currently do not have authorization controls assigned to your cards, we strongly encourage you to do so via your online account.  If you need assistance with adding these controls, please contact Customer Service. In addition to the transactions currently being disputed, we also suggest that you review your account activity online. (The online account can be accessed through the web address located on the back of your billing statement and Customer Service is available for online assistance with this process.
+
+
+Please also understand that the company is obligated to keep the account current per the terms and conditions of the Agreement.  Any credit due will be granted at the resolution of the claim.  As we realize that this may create a hardship for your business, we are interested in working with you through this process.  Should you need to discuss alternate payment options/arrangements, please contact: forbearance@fleetservicesonline.com. Please note that subject to any limitations imposed by applicable law, you may be liable to us for all unauthorized use of a card until you notify us of such use.
+
+
+While in most instances it may take significantly less time, please allow us up to 90 days to resolve your claim.  We will contact you if additional information is required.  If you have further questions regarding the claim, please feel free to call (888) 691-0361 and we will be happy to speak with you.
+
+
+
+Fleet Fraud Services
+
+
+Toll Free: 888-691-0361
+
+Fax: 207-791-1655
+
+Email: disputes@fleetfraudservices.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

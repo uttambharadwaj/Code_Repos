@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>SBWO Dispute Claim Intro &amp; Resolution (Email)</name>
+    <style>freeForm</style>
+    <subject>Dispute Claim Intro &amp; Resolution - {!Claim__c.Acount_Name__c}</subject>
+    <textOnly>Re: Claim No {!Claim__c.Name}
+
+
+
+Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+
+Thank you for your letter regarding disputed transactions on fleet account ending {!Claim__c.Program_Account_Masked__c}.
+
+
+
+This letter confirms that we have reviewed your claim of disputed transactions. The occurrence of fraud, misuse or abuse on our card program is extremely unfortunate and we are sensitive to the potential business and financial hardships it can cause to our customers. Following are our findings and recommendations:
+
+
+Disputed transactions occurred on card {!Claim__c.Abbreviated_Card__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c} for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.D
+Disputed transactions were conducted using a valid Card(s) and Driver Identification Number(s).\
+The disputed transactions occurred at Outside Payment Terminals (OPT).  No signature is required for OPT purchases as the swipe of the card into the card reader establishes the card was present at the time of the sale.
+
+We are crediting your account in full for the allowable disputed charges totaling ${!Claim__c.Allowable_Dispute_Dollars__c}.  This constitutes a goodwill adjustment in recognition of our mutually beneficial relationship and is considered final resolution to the dispute claim identified above and does not apply to any other outstanding and/or future balances on the account.  You will see this reflected on your next billing statement.
+
+
+
+If the card(s) that had disputed transactions had not already been terminated when you discovered the misuse, we have terminated them as part of the resolution of your claim to prevent any future unauthorized activity. You may order a new card at any time either by accessing your Online Account or contacting our Customer Service Department at the number on your billing statement.
+
+
+
+If you currently do not have account Authorization Controls assigned to your cards, we strongly encourage you to do so.  For assistance with adding these controls, please contact Customer Service.
+
+
+
+Please feel free to contact us at Disputes@fleetfraudservices.com should you have any questions. We appreciate your business and look forward to maintaining our relationship.
+
+
+
+Sincerely,
+
+
+
+Fleet Fraud Services
+
+Enclosure(s): Fleet Security Measures</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

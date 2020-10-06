@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Terminix_Addendum.docx</attachedDocuments>
+    <available>true</available>
+    <description>WEX Terminix</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Terminix</letterhead>
+    <name>Terminix WEX</name>
+    <style>freeForm</style>
+    <subject>Terminix - WEX Fuel Card</subject>
+    <textOnly>Introducing our Fuel Card Program courtesy of ServiceMaster&apos;s new vendor relationship with WEX.  Beginning January 1st, all Terminix contractors will have access to the following:
+
+Save Money
+• 1.7% rebate on your monthly fuel spend
+• Credited monthly 30 days in arrears via your fuel statement
+• 26 day payment terms
+
+Control Fuel
+
+• Know who, what, where and how much your drivers spend
+• Control spending through online card customization
+
+Convenience
+• Single card acceptance at most fueling locations
+• Ability to pay for maintenance on your vehicles
+
+
+Save Time
+• Easy to read invoices
+• Transaction data easily downloaded to QuickBooks or Excel
+
+Please fill out the attached one page credit application entitled ServiceMaster Addendum, and WEX will contact you regarding account set-up.  If you already have an existing account with WEX, you can upgrade to this program.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email. WEX Inc., 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

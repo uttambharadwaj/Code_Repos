@@ -1,0 +1,6 @@
+A request has been submitted for approval by {!Request__c.OwnerFullName} at {!Request__c.CreatedDate}.
+
+Description:
+{!Request__c.Description__c}
+
+https://na12.salesforce.com/{!Request__c.Id}

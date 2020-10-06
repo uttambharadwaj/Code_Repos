@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Wawa_Letterhead</letterhead>
+    <name>Wawa Thank You For Applying</name>
+    <style>freeForm</style>
+    <subject>Wawa Fleet Card Program Application Received</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+Thank you for submitting your application for a Wawa fleet card account. Your application is being processed which takes, on average, approximately 5 to 7 days.
+
+I look forward to working with you to finalize the setup details as soon as your account is approved.
+
+If you have any questions, please feel free to contact me at {!User.Phone}.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+
+
+
+This communication may contain confidential, proprietary or legally privileged information. It is intended only for the person(s) to whom it is addressed. If you are not an intended recipient, you may not use, read, retransmit, disseminate or take any action in reliance upon it. Please notify the sender that you have received it in error and immediately delete the entire communication, including any attachments. This communication is not intended to create or modify any obligation, contract or warranty of Wawa, Inc., unless Wawa, Inc. clearly expresses such an intent.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

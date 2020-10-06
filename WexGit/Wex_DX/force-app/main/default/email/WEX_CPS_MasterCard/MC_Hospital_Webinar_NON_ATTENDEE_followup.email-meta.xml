@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_MasterCard/MC_About_Wright_Express.pdf</attachedDocuments>
+    <attachedDocuments>WEX_MasterCard/ePayables_Trends_Healthcare.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Oct hospital webinar NON-ATTENDEE follow-up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_Hospital</letterhead>
+    <name>Hospital Sector (Oct&apos;11) Webinar NON-ATTENDEE followup</name>
+    <style>freeForm</style>
+    <subject>Sorry We Missed You at the HFN Webinar</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Recently, Wright Express sponsored a webinar through HFN titled &quot;Evaluating ePayable Opportunities.&quot;  Presenters reviewed new research and recent ePayables trends in the health care sector, described the dynamics leading to increased adoption of ePayment programs by both buyers and suppliers, and offered some best practices for organizations considering ePayable solutions.  For your convenience, a recording of the webinar is available here: http://www.bulldogsolutions.net/MedTech/MED1108/frmRegistration.aspx?bdls=29565.
+
+Wright Express’s ePayments solution – AP Direct – is a no-cost, bank to bank transfer of funds that delivers money to your bottom line.  Even better—it integrates directly into your existing ERP system. 
+
+Key Benefits:
+* Maximize financial incentives—think cash back—while paying your bills electronically
+* Improve working capital—pay your vendors faster and pay us later
+* Reduce cycle time and costs associated with paper checks
+* Improve your team’s efficiency with automated reconciliations
+
+Wright Express is the only commercially chartered bank fully dedicated to addressing your business to business payment needs.   As such, you can expect continued investment in solutions, consultations and services to meet your needs.
+
+I would appreciate an opportunity to discuss any questions you may have about AP Direct, or Wright Express. Would next week work for you?  In addition, I have attached some additional materials for your review.
+ 
+Sincerely, 
+{!User.FirstName} 
+{!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} {!User.Email} 
+
+www.wrightexpress.com/hospitals
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

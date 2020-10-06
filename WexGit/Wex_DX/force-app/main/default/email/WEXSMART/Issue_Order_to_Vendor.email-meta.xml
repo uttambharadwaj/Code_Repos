@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>36.0</apiVersion>
+    <available>true</available>
+    <description>BRD Requirement BR45775</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Issue Order to Vendor</name>
+    <packageVersions>
+        <majorNumber>6</majorNumber>
+        <minorNumber>61</minorNumber>
+        <namespace>zqu</namespace>
+    </packageVersions>
+    <style>none</style>
+    <subject>Telematic Order for , Order No</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

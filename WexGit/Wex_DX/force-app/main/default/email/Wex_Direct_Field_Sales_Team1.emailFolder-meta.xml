@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Wex Direct Field Sales Team</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <role>Customer_Success_Specialist</role>
+        <role>F1_Director_Marketing</role>
+        <role>FieldSalesManagerEast</role>
+        <role>FieldSalesManagerWest</role>
+        <role>Outbound_Channel_Marketing</role>
+        <role>RegionalSalesManagerEast</role>
+        <role>RegionalSalesManagerWest</role>
+    </sharedTo>
+</EmailFolder>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>to manually send Welcome Email #3: Universal</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Welcome Email #3: Universal</name>
+    <style>freeForm</style>
+    <subject>Quick Tips: Save Time &amp; Money with your Marathon Universal Cards</subject>
+    <textOnly>Marathon Universal Card Program:
+Save Time &amp; Money- Maximize Your Invoice, Reports &amp; Payment Options
+ 
+	 
+Your time is valuable. Save time and money with these quick guides to Marathon Fleet Online reporting and invoices.
+ 
+Sample Monthly Invoice ►
+app.response.wexinc.com/e/er?s=2439&amp;lid=512&amp;elq=b64e5fde52fe43998bfdad812bdbdbcb 
+
+Top 4 Tips for Preventing Late Fees ► 
+app.response.wexinc.com/e/er?s=2439&amp;lid=510&amp;elq=b64e5fde52fe43998bfdad812bdbdbcb
+
+
+Reports for Easy Management
+
+Choose from more detailed reports to see exactly who, what, when, and where your fuel expenses are coming from each month.
+ 
+See an Easy Guide to reports, invoicing, and payment options ► app.response.wexinc.com/e/er?s=2439&amp;lid=514&amp;elq=b64e5fde52fe43998bfdad812bdbdbcb
+
+quick list of report terms ► 
+app.response.wexinc.com/e/er?s=2439&amp;lid=516&amp;elq=b64e5fde52fe43998bfdad812bdbdbcb
+
+
+Save Time &amp; Simplify Your Life
+
+Reduce mail delivery delays, lost or stolen invoices, and late payment fees. Go Paperless ► http://www.fleetcarddirect.com/tutorials/fleet-distributor.php 
+
+QUESTIONS? Customer Service is open to assist you and your drivers 24 hours a day, 7 days a week. 1-866-544-0699
+	 
+Copyright ©2015 Marathon Fleet Services. All rights reserved.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

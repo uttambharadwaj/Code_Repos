@@ -1,0 +1,16 @@
+{!Contact.FirstName},
+
+Thanks for taking my call today. I am confirming that you have an appointment with our Wawa Fleet Manager, Scott Perkins and his team on <ENTER DATE> at <ENTER TIME> at <ENTER LOCATION>.
+
+Should something come up between now and then, feel free to reach out to me and we can reschedule.
+
+During our conversation, you mentioned an interest in <ENTER THEIR PAIN POINT HERE>. We'll make sure to review how this works on the Wawa program during our appointment.
+
+In the meantime, please see the attached PDF with information about our promotional rebate.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}

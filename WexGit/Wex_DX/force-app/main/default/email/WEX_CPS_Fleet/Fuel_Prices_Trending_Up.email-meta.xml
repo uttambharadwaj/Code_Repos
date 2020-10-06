@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Get meeting based on fuel prices rising</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Fleet_Letterhead</letterhead>
+    <name>Fuel Prices Trending Up</name>
+    <style>formalLetter</style>
+    <subject>Fuel Prices Are Trending Up - WEX can help!</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+Hello,
+
+
+
+With fuel prices trending up, it becomes even more important to find cost-saving opportunities which can help absorb the impact. WEX is at the intersection of payments, data and technology, and we offer a variety of solutions specifically designed to reduce fuel spend and cut operating costs.
+
+One starting point is considering using the mobile app called WEX Connect. See attached flyer. Would you have interest in a half-hour meeting with me, as your WEX representative, to discuss how we can benefit your organization? If so, can you please provide some dates and times that would be good for you in the next 2-3 week period?
+
+
+
+Thank you!
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+http://www.wexinc.com/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

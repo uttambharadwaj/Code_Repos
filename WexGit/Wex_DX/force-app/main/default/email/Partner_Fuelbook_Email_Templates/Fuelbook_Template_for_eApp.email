@@ -1,0 +1,10 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<FONT face=Verdana,Helvetica,Sans-Serif>Dear {!OnlineApplication__c.Contact_Name__c},<BR><BR>Thank you for your interest in The Fuelbook Fleet Card program. For your convenience, I've attached a link to our online application. Please note that the name listed on the Business Services Agreement (BSA) must be the same as the name used to sign the application.<BR></FONT><SPAN style="BACKGROUND-COLOR: white; background-origin: initial; background-clip: initial"><SPAN style="FONT-FAMILY: 'Times New Roman', serif; FONT-SIZE: 12pt"><?XML:NAMESPACE PREFIX = O /><O:P></O:P></SPAN>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Verdana,Helvetica,Sans-Serif>&nbsp;</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Verdana,Helvetica,Sans-Serif>Please&nbsp;</FONT><A href="{!OnlineApplication__c.External_Application_URL__c}"><FONT face=Verdana,Helvetica,Sans-Serif>click on this link</FONT></A><FONT face=Verdana,Helvetica,Sans-Serif>&nbsp;and follow the instructions to complete your application process.&nbsp; Thank you.</FONT></P><SPAN style="BACKGROUND-COLOR: rgb(255,255,255)"></SPAN>
+<P style="BACKGROUND-COLOR: rgb(255,255,255)"><SPAN style="FONT-FAMILY: Arial, sans-serif"><FONT face=Verdana,Helvetica,Sans-Serif></FONT></SPAN></P><FONT style="BACKGROUND-COLOR: rgb(255,255,255)"></FONT>
+<P style="BACKGROUND-COLOR: rgb(255,255,255); MARGIN: 0in 0in 0pt" class=MsoNormal><BR></SPAN><FONT face=Verdana,Helvetica,Sans-Serif>Again, thank you for your interest in The Fuelbook Fleet Card.&nbsp;If you have any questions about the application, please don't hesitate to call or email me.<BR><BR>Sincerely,<BR><BR>{!User.Name}<BR>{!User.Title}<BR>WEX Fleet One<BR>Phone: {!User.Phone}<BR>Fax: {!User.Fax}<BR>Email: {!User.Email}</FONT></P>]]></td>
+</tr>
+</table>

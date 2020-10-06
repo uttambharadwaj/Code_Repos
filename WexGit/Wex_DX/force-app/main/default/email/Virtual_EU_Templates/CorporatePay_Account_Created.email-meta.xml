@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay Account Created</name>
+    <style>freeForm</style>
+    <subject>Account Set Up Completed - {!Case.Opportunity__c}</subject>
+    <textOnly>The account, linked to opportunity {!Opportunity.Name} has now been created by the Customer Services team.
+
+
+Product - {!Opportunity.Record_Type_Name__c}
+
+Full Service Revenue - {!Opportunity.00N700000030U0l}
+
+Opportunity Owner - {!Opportunity.Owner_First_Name__c} {!Opportunity.Owner_Last_Name__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

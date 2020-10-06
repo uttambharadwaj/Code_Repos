@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to new hires to their personal email addresses</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>CS New Hire Welcome</name>
+    <style>freeForm</style>
+    <subject>Welcome to WEX!</subject>
+    <textOnly>We&apos;re looking forward to seeing you!
+
+We are excited to have you join our WEX Customer Service Team! We have a wonderful team atmosphere and are eager to get to know you better.
+
+On Monday, please arrive at 123 Darling Ave. South Portland Maine at 10am. At this time, we will be meeting you in the lobby then going to one of our conference rooms. Please be sure to bring the documentation required by Human Resources (HR) on your first day. Someone from HR will meet with you to verify your information and issue you your WEX badge.
+
+The dress code policy is casual. We have an onsite cafeteria available from 7:30AM -1:30PM.
+
+Your schedule for the next 12 weeks will be 8:30am-5pm Monday – Friday. If you have any questions between now and Monday, don’t hesitate to reach out. We are all excited to have you part of this team. Welcome to WEX!
+
+Thank you,
+
+Elaine</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

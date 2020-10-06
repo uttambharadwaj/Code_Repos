@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Initial Communication re: October Encompass release</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MC_Product_Release_Update</letterhead>
+    <name>October 2012 Release Brief</name>
+    <style>products</style>
+    <subject>New Encompass Enhancements and Controls</subject>
+    <textOnly>Full details on our enhancements will be coming in future communications.
+
+{!Contact.FirstName},
+
+Wright Express will be releasing new EnCompass functionality on Sunday, October 28th. Encompass will be down briefly starting at midnight EST, Saturday, October 27th.  Many new features in this release came as a direct result of input we gathered from our customers. We feel that these changes will enhance your overall experience and create additional efficiencies within your organization. Key enhancements are highlighted below. We will follow up with more details on all the enhancements prior to the release date.
+
+______________________________________________
+
+Whether in the office, on a business trip, working from home, or anywhere in the world, Wright Express customers and cardholders can now manage payments from the palm of their hand with EnCompass Mobile.
+
+EnCompass Mobile
+
+Wright Express cardholders and program administrators can now access EnCompass anywhere, anytime, through any tablet or smartphone browser. On a mobile device, users simply sign on to the existing EnCompass URL, using their current username and password. No application download or additional software is required. EnCompass Mobile provides similar functionality available through the EnCompass commercial payment platform for Purchase Log, AP Direct, and purchasing card solutions· Cardholders can manage transactions, view statements, and make payments
+
+· Manage Payables: view, create, and manage virtual cards (Purchase Logs or AP Direct Merchant Logs)
+
+· Manage workflow:  view, create, and approve
+workflow items
+
+· Manage administration: View and manage cards and accounts, such as approving and activating card accounts, and modifying velocity limits
+
+· See transaction authorizations in real-time
+
+____________________________________________________
+
+
+Soon there will be even more safety and control - such as granting users &quot;Read Only&quot; access and device fingerprinting.
+
+Even Better Security and
+Adminsitration Features!
+
+
+Here are some new features that support program administration, security, and ease of use:
+
+· Read-Only Access for Purchase Log
+and AP Direct: Payments Administrators can now grant “read-only” access in order to increase the organization’s internal controls. With this new ”View” permission , users will have visibility into payment information, but are not able to edit existing information. For example, users can now respond to merchants requesting updates on payment status, but cannot modify the payments.
+
+
+· Transaction Management Lockdown and Extract: To support GL population and accounting period closes, complete transactions can be located (by date range, for example), locked, extracted and designated as not available for future extraction.  This will help ensure that transactions are associated with the right accounting period, and not accounted for twice.
+
+
+· Security Features have been added, such device “fingerprinting”, registering a trusted computer, and complex password support.  These additions make user access, and remote access, more secure.
+
+
+· Email Bounce-Back Status: Virtual payments in Encompass will now show payment notification email failures, providing users with the opportunity to edit the payment so that the email can be re-sent to the correct address.
+
+______________________________________________
+
+
+We&apos;ve expanded our international currency settlement capabilities - helping you reduce costs.
+
+International SettlementWright Express has expanded its international settlement capabilities for virtual cards to US customers in the following currencies: Danish Krone, Norwegian Krone, Swedish Krona, Swiss Franc, and the South African Rand. By adding five additional currencies, Wright Express now offers settlement in 15 currencies.
+
+
+This solution allows WEX customers to reduce costs and improve authorization controls associated with international transactions. Customers should contact Wright Express for a financial cost/benefit analysis when considering using the solution for international payments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

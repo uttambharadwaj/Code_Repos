@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>Fleet Data Form 2nd Attempt</name>
+    <style>freeForm</style>
+    <subject>Your Account Is Approved</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I recently wrote to let you know that your WEX Fuel Card account has been approved, and included Fleet Data forms that required your completion. I have not yet received those forms back from you.
+
+We cannot issue your cards until we have that information in hand. I am including the forms here again for your reference. Please fax these forms back to me at 207-253-1408 at your earliest convenience. Once I receive this information I will be in touch to review the account set up with you before issuing your cards.
+
+Meanwhile, just give me a call with any questions.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

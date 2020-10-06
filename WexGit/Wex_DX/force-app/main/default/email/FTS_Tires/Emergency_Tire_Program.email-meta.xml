@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>Emergency Tire Program</name>
+    <style>freeForm</style>
+    <subject>Get National Account Tire Savings Over-the-Road</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our emergency tire program. Road Call is a nationwide program that provides you with national account tire pricing over-the-road from top names in the industry.
+
+Road Call is available 24 hours a day, 365 days a year to take your call and get you back up and running. No matter where your drivers are, you&apos;re covered.
+
+For full details and to get a quote today, please visit ftsplus.com/roadcall.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Nancy Gustafson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

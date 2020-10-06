@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>More Info Needed with TnC &amp; TIN</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell More Info Needed FR</name>
+    <style>freeForm</style>
+    <subject>Renseignements requis pour votre compte Shell</subject>
+    <textOnly>Vous avez presque terminé!
+
+Bonjour {!Contact.FirstName},
+
+
+Pour éviter toute interruption de service, prenez un moment dès aujourd’hui pour remplir le formulaire ci-joint et fournir les documents manquants.
+
+
+Veuillez les transmettre par :
+Télécopieur : 1-207-761-3590
+Courriel : ShellInfoReturn@wexinc.com
+
+
+Des questions?
+
+Nous sommes là pour vous aider avec la transition. Nos conseillers sont disponibles de 8 h à 20 h (HE) au 1-855-886-6705.
+
+En tant qu’institution financière répertoriée, WEX Canada est assujettie à certaines exigences réglementaires, dont la législation fédérale, qui oblige toute institution financière à demander une adresse réelle d’entreprise ainsi qu’un numéro d’identification aux fins de l’impôt.
+
+
+Cordialement,
+
+
+L’équipe de transition
+
+
+Téléphone : 1-855-886-6705
+Télécopieur : 1-207-761-3590
+Courriel : ShellInfoReturn@wexinc.com
+Poste : 97 Darling Avenue, South Portland, Main 04106 |États-Unis|
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 |États-Unis|
+
+Shellmd et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Le programme de carte Shell Fleet Plusmc est offert et administré par WEX Canada, Ltd, une filiale de WEX Inc. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+Si vous ne souhaitez plus recevoir de courriels à propos des Solutions Shell pour parcs, vous pouvez vous décinscrire, immédiatement. Votre demande sera traitée dans les dix jours ouvrables suivant sa réception.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Promo Offer of 15¢ in Q1 2019</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Promo Offer - 15¢ Offer 2019</name>
+    <style>freeForm</style>
+    <subject>Sheetz Business Edge Universal Card - Special Promo Offer</subject>
+    <textOnly>Now is the best time to apply for the Sheetz Business Edge Universal card program!
+
+Get 15¢ off per gallon for the next 6 months.
+
+ 
+
+Hello {!Contact.FirstName},
+
+For a limited time only, Sheetz is offering 15¢ off on EVERY gallon purchased at a Sheetz with the Sheetz Business Edge Universal card! 
+
+I wanted to reach out to let you know about this exciting promotion and set up a time to discuss the additional benefits and features of our card.  Please let me know if you have some time in the near future as this promotion is only available if you sign up by March 31st.
+
+In addition, the Sheetz Business Edge cards can save you up to $0.08 off after the introductory promotional period.  
+
+I will look forward to hearing from you!!!  Have a great day!
+ 
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Cell:  {!User.MobilePhone}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

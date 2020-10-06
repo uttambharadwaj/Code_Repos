@@ -1,0 +1,8 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><br></div><div><br></div><div>Hi Bonnie,</div><div><br></div><div>After 2 hours the Case for Opportunity&nbsp;<span style="font-size: 12pt;"><a href="https://na5.salesforce.com/{!Case.OpportunityId__c}
+">{!Case.Opportunity__c}</a> has not been accepted.</span></div><div><br></div><div>You can view the Case <a href="https://na5.salesforce.com/{!Case.Id}
+">here</a> and the Wex Europe Customer Services Queue <a href="https://na5.salesforce.com/500?fcf=00B700000084RIy">here</a>.</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font></i></div>]]></td>
+</tr>
+</table>

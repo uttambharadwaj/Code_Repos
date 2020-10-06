@@ -1,0 +1,5 @@
+The following {!Request__c.Priority__c} priority request has been created by {!Request__c.CreatedBy}
+
+{!Request__c.Description__c}
+
+https://na12.salesforce.com/{!Request__c.Id}

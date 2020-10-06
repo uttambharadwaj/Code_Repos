@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_MasterCard/AP_Direct_Brochure1.pdf</attachedDocuments>
+    <attachedDocuments>WEX_MasterCard/General_1pg_Overview.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Reinlein-Breazeale standard intro copy to EXISTING WEX CUSTOMER in standard MC template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_CPS_MasterCard</letterhead>
+    <name>Reinlein Email Template2_WEX</name>
+    <style>freeForm</style>
+    <subject>Wright Express Payment Solutions----Beyond your fleet account</subject>
+    <textOnly>Suite of Best-in-Class Payment Programs
+
+{!Contact.Salutation} {!Contact.LastName}, 
+
+Your company benefits every day with the Wright Express Universal Card and its reporting technology, one of the most powerful and successful fleet card programs in the industry.
+
+What you might not know, is that for over 28 years, Wright Express Corporation (NYSE: WXS) has been one of the premier commercial payment providers in the U.S. with a suite of &apos;best-in-class&apos; ePayables solutions.  For the 4th consecutive year Forbes has ranked Wright Express in its list of America&apos;s 100 Best Small Companies; Wright Express was ranked 30th in 2011.
+
+I’d like to talk with {!Account.Name} about how your accounting and procurement areas could benefit with our other corporate payment programs, similar to what was accomplished with the WEX Fleet Card program.  In addition to improve operational efficiencies, {!Account.Name} could realize a new source of revenue as rebates are available based on annual transactional volume and billing/repayment terms.
+
+I will be following up in the next couple of days to see if we can schedule an initial introduction meeting.  In the meantime, please feel free to contact me as well via email or phone.
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com/cps
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

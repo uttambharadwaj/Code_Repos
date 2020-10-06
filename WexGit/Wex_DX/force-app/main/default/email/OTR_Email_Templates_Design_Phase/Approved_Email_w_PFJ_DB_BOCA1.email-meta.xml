@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up to VM about CL being Approved. BOCA</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>Approved - Email w PFJ DB ---- BOCA</name>
+    <style>freeForm</style>
+    <subject>Your Fleet One PrePay Fuel Card Application - Approved!</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+Congratulations! {!Account.Name} has been qualified for a PrePay Fleet One Edge Fuel Card with attached Pilot/Flying J Direct Bill (PFJ credit line is pending completion of PFJ paperwork).
+
+
+Your welcome packet and new fuel cards should arrive via UPS within the next 2-4 days. Please note your New Account Setup Fee of $75 will be automatically drafted from your checking account within the next 1-4 business days.
+
+
+
+The PFJ Credit Line is only usable at Pilot/Flying J locations for fuel purchases, oil/additives, and scales. The credit line (Direct Bill) will be added to these fuel cards once you have turned in their paperwork.
+
+
+
+If you would like to use cash advances, moneycodes, or to fuel outside of Pilot/Flying J, you will need to Western Union or Wire Transfer funds into your new Fleet One account. Please wait until you have received your AR Number and instructions on how to make this transfer before funding your account. Prefunding your account is completely OPTIONAL and only needed if you want to take advantage of the above services in this paragraph.
+
+
+Thank you for your interest in Fleet One. If you have any questions about the application or your new fuel card program, please don’t hesitate to call or email me.
+
+
+Also...did you know that WEX Fleet One has FACTORING?
+
+
+Grow your business by:
+
+* Accelerating cash flow - turn your invoices into cash 24 hours after your loads are delivered.
+
+* Keeping your cash flow worry-free so you can
+Focus on delivering more loads.
+
+* Reducing overhead and time consuming collections.
+
+*With Fleet One Factoring you never have to send in originals, we fund off of copies for all of our customers.
+
+
+
+
+For more information, please contact Brian Perkins at 615-523-6545 or reply to this email with your interest!!
+
+
+
+Warm Regards,
+
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone:  {!User.Phone} | Fax: {!User.Fax}
+KHaywood@FleetOne.com | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

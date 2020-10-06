@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For Acct Management Use Only! Document to provide existing F1 customer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>ACCT MGMT ONLY-Referral</name>
+    <style>freeForm</style>
+    <subject>WEX Fleet One&apos;s value added partners to enhance your WEX Fleet One card program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Thank you for speaking with me today. Per our discussion, I am forwarding information regarding the Fleet One® Partner Referral Program. It contains a brief summary of the major benefits offered to fleets by our value-added partners, when used in conjunction with the Fleet One Over The Road (OTR) program. &lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+Please review the attached information and select the Partner whose program or services would prove the most beneficial for your fleet’s fueling requirements. As you will notice, this is a fantastic opportunity for maximizing your fuel savings by joining over 25,000 satisfied customers across the country.
+
+
+After making your selection, please reply to this email with your selection partner name or return the form provided back to me either by fax or email {!User.Fax}; or mail to my attention at 613 Bakertown Road, Antioch, TN 37013. I will handle all the details for you. Thank you for your interest in Fleet One. I look forward to assisting you.
+
+
+
+National Association of Small Trucking Companies (NASTC)
+
+NASTC is a provider of multiple services to small trucking companies
+
+
+o Contact: Erik Lamb
+
+o Phone: (800) 264-8580
+
+o Email: Erik.Lamb@nastc.com
+
+o Discounts: QPN Network
+
+
+RTS Carrier Services
+
+Ryan Transportation Carrier Services is a full service transportation brokerage that offers shipper and brokerage credit monitoring services and third party logistics. Fleet must be an active RTS Carrier, RTS factoring client or must join RTS credit monitoring program.
+
+
+o Contact: Rick Albright
+
+o Phone: (913) 310-1457
+
+o Email: ralbright@rtscredit.com
+
+o Discounts: TravelCenters of America, Petro Stopping Centers, Pilot Flying J
+
+o Discounts reflected at time of purchase or rebated
+
+o Discounts offered are “Better Of” – cost-plus or Retail minus with no “ceiling” on discount
+
+
+National Fuel Negotiators
+National Fuel Negotiators has been negotiating discounted fuel pricing for trucking companies for over 50 years. National Fuel Negotiators’ clients receive a daily price list of participating truck stops showing the discounted price.
+
+
+o Contact: Ken Mac Donald
+
+o Phone: (541) 773-2471
+
+o Email: ken@nfueln.com
+
+o Discounts: TravelCenters of America, Petro Stopping Centers, Pilot Flying J, Love’s and many other truck stop vendors
+
+o Discounts average 2¢ or more off the cash retail price
+
+o Low cost-plus pricing is also available
+
+
+360 Fuels
+360 offers cash price and discounts at over 1,500 truck stops across the USA. With 360, fleets have reduced fraud, no lost/stolen cash, and unauthorized purchases are a thing of the past.
+
+
+o Contact: Steve Fowler
+
+o Phone: (877) 360-3835
+
+o Email: sfowler@360fuelcard.com
+
+o Discounts: A variety of truck stop vendors
+
+o 300 locations offering cost-plus pricing
+
+o Over 300 locations offering between 5 and 8¢ off the cash retail price
+
+o Over 1,200 locations offering an average of 2¢ back per gallon
+
+
+Trans-Alliance
+
+Helps truckers trim their costs and maximize net profits.
+
+
+o Contact: Jesse Singh
+
+o Phone: (510) 875-3279
+
+o Email: jesse@trans-alliance.com
+
+o Discounts: A variety of truck stop vendors
+
+o Rebates range from 4¢ to 18¢ per gallon based upon volume
+
+
+OTR Savings
+
+OTR Savings is a company offering discounted services and rebate programs for truck fleets and transportation businesses.
+
+
+o Contact: Dutch Cowgill
+
+o Phone: (956) 605-9911
+
+o Email: dutch@otrsavings.com
+
+o Discounts: A variety of truck stop vendors
+
+o Rebates and discounts are offered as well as fuel discount network management
+
+
+Schneider Carrier Purchasing Program
+The Schneider Transportation Management’s Carrier Purchasing Program offers small and mid-sized carriers savings on fuel.
+
+
+o Contact: Schneider Rep
+
+o Phone: (800) 558-1179
+
+o Email: carrierpurchasing@schneider.com
+
+o Discounts: TravelCenters of America and Petro Stopping Centers
+
+o Save approximately 5¢ per gallon on fuel
+
+o Rebates and discounts of up to 15¢ per gallon
+
+
+Truckers B2B
+
+Provides services to transportation companies
+
+o Contact: Danielle Vidaurre, Director of Sales
+
+o Phone: (888) 937-6334
+
+o Email: dvidaurre@truckersb2b.com
+
+o Discounts: Pilot Flying J, TravelCenters of America and Petro Stopping Centers
+
+o Rebates up to 5¢ per gallon, based upon volume
+
+
+
+Fleet Saving$
+
+FleetSavings helps your company drive down trucking operation costs and save money. Whether your company owns one truck or hundreds of trucks, you are always faced with rising costs to operate your company and improve profits.
+
+
+o Contact: Michele Van Cleave
+
+o Phone: (800) 264-0119
+
+o Email: vanmic@fleetsavings.net
+
+o Discounts: A variety of truck stop vendors including Love’s, Pilot Flying J and Roady’s
+
+o Rebates range from 3¢ to 5¢ based upon volume.
+
+
+I look forward to the opportunity to assist you with your fuel card needs.
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Fleet One LLC
+
+{!User.Phone} Office
+
+{!User.Fax} Fax
+
+{!User.Email}
+
+www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

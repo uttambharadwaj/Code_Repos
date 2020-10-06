@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Generic template with survey link for phone cases</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Generic Phone Survey</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Hello {!Case.Contact},
+
+Thank you for contacting us today. When you have a moment, please let us know how we did by responding to this survey: {!Case.SurveyInclusionHTML__c}. Your feedback is important to us. We appreciate your business,
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,9 @@
+{!Case.SuppliedName},   
+
+Thank you for your email requesting additional information from Fleet One.  One of our representatives will be in contact within one business day.
+
+Sincerely,
+
+Fleet One Account Management
+
+{!Case.Thread_Id}

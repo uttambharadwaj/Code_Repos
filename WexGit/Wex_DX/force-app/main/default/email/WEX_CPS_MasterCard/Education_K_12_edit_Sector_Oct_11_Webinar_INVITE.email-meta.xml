@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>October 2011 Webinar INVITE, modified for K-12</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MAsterCard_Education</letterhead>
+    <name>Education (K-12 edit) Sector (Oct &apos;11) Webinar INVITE</name>
+    <style>freeForm</style>
+    <subject>Upcoming University Business Webinar on ePayments</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+You may have heard about the emergence of ePayment solutions across America&apos;s college and university business offices.  These solutions help replace inefficient paper check payments to your vendors, and pay you cash rebates to do so.  In fact, your school district could benefit in a similar way.
+
+University Business and Wright Express will host a discussion exploring recent developments in the ePayables industry. You will learn how colleges and universities can use ePayments to improve efficiencies and generate a revenue stream while paying their bills. The webinar is set for 2 p.m. EDT, Thursday, October 27th. 
+ 
+During this session, you will hear tips—and potential traps to avoid—when evaluating the spectrum of electronic payable solutions. Panelists will share first-hand accounts of recent market trends in higher education A/P automation and strategies for partnering with vendors for mutual benefit in the payments process. In addition, you will be able to identify the advantages and disadvantages of ePayment methods and learn specific strategies for evaluating ePayment opportunities and providers.
+
+Panelists include:
+Henry Ijams, Managing Director, PayStream Advisors 
+Jim Pratt, Vice President, Wright Express 
+Diane Parker, Assistant Vice President for Finance, Lasell College
+
+The event is presented by Wright Express. You can register at: 
+http://www.universitybusiness.com/webseminar/assessing-epayables-options-vendor-payments
+ 
+I hope you are able to join this session.
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} {!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com/education
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

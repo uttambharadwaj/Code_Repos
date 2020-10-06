@@ -1,0 +1,112 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><p class="MsoNormal" style=""><font face="Arial, sans-serif" style="">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"><font face="Arial, sans-serif">Thank you for your interest
+in our GetGo Fleet Card Program!<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"><font face="Arial, sans-serif">To enroll in an account
+with us, please send in a <b style="mso-bidi-font-weight:normal">deposit</b> to
+secure the account along with the attached Deposit form. You may either <b style="mso-bidi-font-weight:normal">mail</b> the deposit to our bank or <b style="mso-bidi-font-weight:normal">wire</b> us the funds. <br>
+<br>
+<u>Sending the deposit by mail:</u><o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><ul><li><font face="Arial, sans-serif">Complete and sign the attached <b style="">deposit agreement</b><span style="background-color: white;"> (the minimum deposit
+is $500)</span></font></li><li><font face="Arial, sans-serif">Send the form to our bank
+(address below) with a <b style="background-color: white;">certified check</b><span style="background-color: white;">,
+</span><b style="background-color: white;">money order</b><span style="background-color: white;"> or </span><b style="background-color: white;">cashier’s check</b><span style="background-color: white;"> for the deposit amount you would like to put on
+deposit.</span></font></li><li><font face="Arial, sans-serif"><b style="">Reference opportunity #</b> <span style="background:yellow;mso-highlight:yellow">(insert number here)</span> and
+mention the check is for a <b>secured
+deposit</b> in the memo section of the check.</font></li><li><font face="Arial, sans-serif">Either scan/email or fax a copy of the completed
+and signed <b style="">deposit agreement</b> to me
+at the email noted below or {!User.Fax}</font></li></ul></p>
+
+
+
+
+
+
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><font face="Arial, sans-serif"><b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">Bank Address:<br>
+WEX Bank<br>
+7090 Union Park Center, Suite 350<br>
+Midvale, UT 84047<br>
+<span style="color:#3F3F3F"><br>
+</span></span></b><u><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black;mso-bidi-font-weight:bold">Wire
+Transfer Instructions:</span></u><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><ul><li><font face="Arial, sans-serif">Account Name: &nbsp;<b style="">WEX Inc.</b></font></li><li><font face="Arial, sans-serif">Account Number: &nbsp;<b style="background-color: white;">4539508</b></font></li><li><font face="Arial, sans-serif">Receiving Instructions:
+&nbsp;<b style="background-color: white;">Harris Bank (311 West Monroe,
+Chicago, IL &nbsp;60606)</b></font></li><li><font face="Arial, sans-serif">ABA/Routing Number: &nbsp;<b style="background-color: white;">071000288</b></font></li><li><font face="Arial, sans-serif">Please reference
+opportunity <b style="background-color: white;">#</b><span style="background-color: white;"> (</span><span style="background: yellow;">insert number here</span><span style="background-color: white;">)</span></font></li><li><font face="Arial, sans-serif">Memo Section: &nbsp;Please
+mention the check is for a <b style="background-color: white;">secured
+deposit</b></font></li><li><font face="Arial, sans-serif">Either scan/email or fax a
+copy of the completed and signed <b style="background-color: white;">deposit
+agreement</b><span style="background-color: white;"> to me at the email noted below or {!User.Fax}</span></font></li></ul></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black">When the deposit is received your account will
+be set up and the deposit applied will become your line of credit.<br>
+<br>
+Feel free to scan and email the verification to me at the email noted below, or
+if you prefer, you can fax it to me at {!User.Fax}.&nbsp; You can also call me
+at {!User.Phone} if you have any questions.<br>
+<br>
+Sincerely,&nbsp;<br>
+</span><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:black"><br>
+{!User.FirstName} {!User.LastName}<br>
+{!User.Title}<br>
+Phone - {!User.Phone}<br>
+Fax - {!User.Fax}<br>
+{!User.Email}<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:black"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is
+prohibited. If you have received this message in error, please notify sender
+immediately by telephone or reply by e-mail and delete the entire message and
+any attachments."</span></i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:black"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><i style=""><span style="color: gray;"><font face="Arial, sans-serif" style=""><font size="1">This is an advertisement from WEX Inc. If you no longer wish to
+receive future email advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the emai</font>l.</font></span></i></p></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,15 @@
+{!Contact.FirstName}
+
+Thank you for the call today, I appreciate your time. Just confirming that <SALES REP NAME HERE>, WEX’s Regional Manager will be giving you a call within the next few days to discuss your needs. HE/SHE specializes in cost savings and fueling needs for large fleets, which it sounds like your business might be able to benefit from.
+
+In the meantime, you can find more information about the WEX Fleet program and view some of our customer testimonials here: 
+
+http://www.wexinc.com/fleet/large-fleets/learn-more/ 
+
+If you would like to reach out to <SALES REP FIRST NAME HERE>, you can reach <HIM/HER> at <SALES REP EMAIL HERE> or <PHONE HERE>.
+
+Regards,
+{!User.FirstName} {!User.LastName}
+WEX Fleet Specialist
+Phone: {!User.Phone}
+Email: {!User.Email}

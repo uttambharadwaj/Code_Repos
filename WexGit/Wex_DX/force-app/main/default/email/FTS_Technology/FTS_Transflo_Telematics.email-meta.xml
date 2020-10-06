@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/PTTSalesSheetTransfloTelematics_03242017_FTS_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>FTS Transflo Telematics Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FTS Transflo Telematics</name>
+    <style>none</style>
+    <subject>Transflo Telematics: ELD Solution</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

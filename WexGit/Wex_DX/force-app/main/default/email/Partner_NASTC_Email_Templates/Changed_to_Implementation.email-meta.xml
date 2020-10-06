@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>NASTC_Letterhead1</letterhead>
+    <name>Changed to Implementation</name>
+    <style>freeForm</style>
+    <subject>NASTC Fuel Card Status</subject>
+    <textOnly>{!OnlineApplication__c.Contact_Name__c}
+
+Congratulations, your new NASTC account has been created and the fleet cards are in the process of being printed. Cards will be delivered to the physical address used on your application  within 3-5 business days via UPS. Once you receive your cards, we encourage you to perform a test transaction by utilizing the driver number listed on your application. If there are no issues with the test transaction, you’re ok to begin using your card and take advantage of the benefits provided by  being a NASTC member. Remember, there is no reason to pay more for your fuel than you have to!
+
+
+Thank you for your business and safe driving!!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

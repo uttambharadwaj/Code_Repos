@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Publish new version of the Agenda!!  Send to Participants.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>OLD 02. South Portland Onboarding Agenda Complete Reminder</name>
+    <style>freeForm</style>
+    <subject>Your Sales Onboarding is starting on {!Training_Class__c.Date__c} in South Portland Maine!</subject>
+    <textOnly>Start the WEX Sales Learning Journey!
+
+Your Sales Onboarding is starting on {!Training_Class__c.Date__c}. Download the class schedule here: Sales Onboarding Agenda.
+
+Items to remember:
+
+If you are attending on-site, arrive and be ready to start by 9:30 am at 95 Darling Avenue, South Portland, ME 04106.
+If you are attending WebEx, dial in and be ready to start by 9:30 am.
+You must finalize all your paperwork with HR before attending WEX Sales Onboarding. You will not be able to participate until this is completed.
+The dress policy is business casual. Jeans can be worn on Fridays.
+
+Reach out to me with any questions.
+{!User.Name} | {!User.Phone} | {!User.MobilePhone}
+WEX Global Sales Training Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

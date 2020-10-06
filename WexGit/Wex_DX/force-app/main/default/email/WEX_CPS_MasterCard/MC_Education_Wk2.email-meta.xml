@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Wk2 introduction to AP direct for prospects in the education sector</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MAsterCard_Education</letterhead>
+    <name>Education Sector Wk2 Intro</name>
+    <style>freeForm</style>
+    <subject>Follow-up on Wright Express Opportunity</subject>
+    <textOnly>AP Direct Integrates Easily into your Existing Systems and Processes
+
+Dear {!Contact.FirstName},
+
+I am following up on last week’s message introducing Wright Express’ 
+ePayments solution for your Accounts Payable department.  As I had 
+outlined, our no-cost solution delivers financial benefits that are real
+ and immediate. 
+
+Here’s how it works:
+- Wright Express AP Direct:Your vendors enroll as participating vendors—We lead the charge in enrolling them
+- You manage and approve invoices from your vendors in your existing ERP system as you do today
+- Vendors are flagged as participating vendors in your system
+- Upon approval, payments to flagged vendors are automatically included in an electronic file transfer to our system, and payment can be automatically
+ pushed to your vendors
+
+If your system supports check file runs today, chances are it supports an 
+electronic file run to our system.  Our solution integrates with over 
+150 existing ERP systems and counting.
+
+With continued financial pressures, you cannot afford to pass up this 
+opportunity within your payments department—it’s like cash back for 
+payments you already make.  I would appreciate an opportunity to meet 
+with you for an initial discovery session.  
+
+I will call you in the next few days to see about availability.  In the meantime, please do not hesitate to contact me with questions.
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

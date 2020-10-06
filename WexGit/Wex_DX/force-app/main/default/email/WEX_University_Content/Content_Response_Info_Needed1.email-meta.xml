@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to respond to the Business Requestor when and where the document is published.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Salesforce_Support_letterhead</letterhead>
+    <name>Content Response - Info Needed</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.CaseNumber} {!Case.Case_Reason__c} {!Case.Subject}</subject>
+    <textOnly>{!Case.User__c},
+
+I need additional information on your request to: {!Case.Case_Reason__c} {!Case.Document_Name__c}.
+
+{!Case.Description}
+
+Please reply to this email with your response or any questions.
+
+Thank you,
+{!Case.OwnerFullName}
+Content Management
+Sales Operations &amp; Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

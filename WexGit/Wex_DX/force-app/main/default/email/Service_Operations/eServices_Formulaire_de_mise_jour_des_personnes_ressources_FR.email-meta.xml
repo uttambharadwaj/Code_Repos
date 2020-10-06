@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Contact Update form French</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Contact Update form  Formulaire de mise à jour des personnes-ressource</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Ci-joint le formulaire de mise à jour des contacts. Vous pouvez ajouter et/ou supprimer un contact autorisé au compte et ensuite procédez aux modificatifs nécessaires pour votre accès en ligne à: www.essoparcautoenligne.com. Afin que nous puissions apporter les modifications demandées, ce formulaire doit être signé par un contact figurant sur le compte ou une personne ayant autorité signataire au sein de votre entreprise. Le titre de la personne qui signe ce formulaire doit être inclus. Veuillez retourner le formulaire à cette adresse. 
+
+Cordialement,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

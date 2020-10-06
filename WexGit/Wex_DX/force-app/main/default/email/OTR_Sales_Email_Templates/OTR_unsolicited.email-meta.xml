@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>OTR unsolicited</name>
+    <style>freeForm</style>
+    <subject>We can help!</subject>
+    <textOnly>Dear {!Contact.FirstName}
+
+As an industry leader in providing fuel and funds to the transportation industry I thought you might be interested to see why companies choose WEX Fleet One and how we might benefit your company.
+
+Most companies are looking for methods to reduce their fuel cost, improve driver retention, control driver expenditures, and save time through process improvement efficiencies.
+
+Benefits to using WEX Fleet One include:
+
+· Cash Price at the Pump
+
+· Discounts and Rebates
+
+· Control Features by Account and by Card
+
+· Access to Controlled Cash Advances
+
+· Zero Transaction Fees
+
+· Free Access to Online Account Management Tools
+
+· Daily, Weekly or Monthly Detailed Activity Report
+
+· Easy Fuel Tax Reporting with our Online System Reporting
+
+· Flexible Terms with Easy Credit Approval or Deposit Funds as Needed
+
+· 24/7 Access to Customer service
+
+· High Rating in Customer Service Satisfaction Surveys
+
+I look forward to learning more about your business and discussing in greater detail the benefits we provide.  Please feel free to contact me directly or simply respond to this email.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

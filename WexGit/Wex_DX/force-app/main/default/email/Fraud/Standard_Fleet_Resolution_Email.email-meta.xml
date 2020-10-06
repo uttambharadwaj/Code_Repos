@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Standard Fleet Resolution Email</name>
+    <style>freeForm</style>
+    <subject>Dispute Claim Resolution - {!Claim__c.Account_Name__c}</subject>
+    <textOnly>Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+
+This letter is being sent in response to your recent dispute claim for transactions totaling ${!Claim__c.Allowable_Dispute_Dollars__c} on card {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) on the {!Claim__c.Partner_Formal_Name__c} account ending {!Claim__c.Program_Account_Masked__c}.  The occurrence of fraud, misuse or abuse on our card program is extremely unfortunate and we are sensitive to the potential business and financial hardships it can cause to our customers.
+
+
+
+As a result of your dispute and our review of your claim, we are processing a credit to your account for allowable disputed charges totaling ${!Claim__c.Allowable_Dispute_Dollars__c}.  This constitutes final resolution to the dispute claim identified above and does not apply to any other outstanding and/or future balances on the account.
+
+
+Please feel free to contact us at disputes@fleetfraudservices.com should you have any questions.  We appreciate your business and look forward to maintaining our relationship.
+
+
+
+Sincerely,
+
+
+
+Fleet Fraud Services
+
+Enclosure(s): Fleet Security Measures</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

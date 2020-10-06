@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Customer_Service_Banner_Letterhead</letterhead>
+    <name>CS Agent TL Development Survey</name>
+    <style>freeForm</style>
+    <subject>Your Feedback is Needed! Team Lead Development Survey</subject>
+    <textOnly>Team Lead Development Survey
+
+Global Talent Development is committed to giving WEX Customer Service Professionals the tools and knowledge they need to succeed on the job and grow professionally. Investing in our people is our number one goal to ensure long-term growth and success for our business.  In an effort to develop our Team Leads we are very interested in hearing your feedback. As part of the Team Lead Development Program we would like to gather useful information about your experience with your Team Lead. 
+
+Please complete the anonymous Team Lead Development Survey by [ENTER DATE].
+https://docs.google.com/forms/d/e/1FAIpQLSf8oZc8MUHm--n-4L3Uyym2F2AXFybjer-1si9nXN7iq2xCRA/viewform?usp=sf_link
+
+The Survey has 10 questions and should take you approximately 5 minutes to complete.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

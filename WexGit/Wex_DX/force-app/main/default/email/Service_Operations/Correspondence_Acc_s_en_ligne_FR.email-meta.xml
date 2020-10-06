@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Accès en ligne</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Accès en ligne</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Pour s’inscrire en ligne, veuillez aller à notre site web: www.essoparcautoenligne.com et cliquer sur le lien: &lt;&gt; Si on peut vous aider en plus, n’hésitez pas à nous contacter. 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

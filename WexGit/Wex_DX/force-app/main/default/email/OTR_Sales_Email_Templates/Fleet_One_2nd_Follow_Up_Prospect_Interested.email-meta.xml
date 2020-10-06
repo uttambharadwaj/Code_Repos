@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>4th Attempt, no contact - allow them to book a meeting</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One 2nd Follow Up - Prospect Interested</name>
+    <style>freeForm</style>
+    <subject>Fleet One:  Missed you again!</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+
+
+I&apos;m trying to connect with you regarding your recent request for more information on the Fleet One EDGE fuel card.
+
+Our fuel card can provide you with all benefits to help your fleet grow. As a reminder, the Fleet One EDGE card offers the most extensive and comprehensive fuel discount network available.
+
+Fuel discounts at over 3,600 sites with an average savings of 15 cents per gallon* and receive no fuel transaction fees within the EDGE network**. Plus, get access to thousands of additional savings, including tires, maintenance, wireless and much more. Please give me a call back at {!User.Phone}, reply to this email, or use the link below to book a time for us discuss.
+
+Book a Meeting with Me in 1 Click
+
+Thank you again for interest, and I look forward to speaking with you soon.
+
+
+{!User.Name}
+
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.
+
+*The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network pricing at all.
+
+**In-network sites include Pilot Flying J, AMBEST, Circle K, Quick Fuel, Petroleum Wholesale, Sapp Bros., Speedway, and many more.”</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>APA Earn 1 Free RCH</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM APA Earn 1 Free RCH</name>
+    <style>freeForm</style>
+    <subject>I thought 1 Free RCH might interest you...</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

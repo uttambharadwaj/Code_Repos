@@ -1,0 +1,7 @@
+{!Contact.FirstName},
+
+In order to get your fuel card application processed,  I have sent your application back to you. It needs to have your COMPLETE signature  - first and last name - and must match the name listed as the Proprietor, Partner, or Corporate Officer.  Please update and send back as soon as possible.
+
+Thank you!
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

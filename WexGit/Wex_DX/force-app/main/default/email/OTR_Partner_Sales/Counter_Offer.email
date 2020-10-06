@@ -1,0 +1,13 @@
+{!Contact.FirstName},
+
+Thank you for your recent application for the {!OnlineApplicationOffer__c.Name} fuel card account for {!OnlineApplication__c.Account__c}. 
+
+WEX EFS is currently not able to extend the full requested credit line, however after review we are able to offer you a credit line of {!OnlineApplication__c.Credit_Line_Approved__c}.  If you wish to move forward please respond to this email with your acceptance. 
+
+If you have any questions, please email me at {!User.Email}.  We can determine the best option for you and then get you the necessary documents. 
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+Direct: {!User.Phone} 
+{!User.Email}

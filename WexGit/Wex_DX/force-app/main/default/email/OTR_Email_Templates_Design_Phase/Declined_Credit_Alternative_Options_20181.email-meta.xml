@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>declined only</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Letterhead</letterhead>
+    <name>Declined Credit/Alternative Options - 2018</name>
+    <style>freeForm</style>
+    <subject>Fleet One Edge - Credit Notification</subject>
+    <textOnly>{!Contact.FirstName},
+
+Thank you for your interest in the Fleet One Edge fuel card program. Your application has been processed.
+
+After evaluating the credit history of the guarantor (the person who is financially responsible for the account) listed on your application, we are not able to approve a credit line through WEX Bank at this time.
+
+There are several other options for opening a fuel card account with us:
+
+- Apply with a new application signer (personal guaranty)
+
+
+- This person does not have to be a member of the company, they just have to be an adult that is willing to have their personal credit checked on our application.
+
+- If you chose this option, I will email your application back to you, and you will have your new signer complete their information (social security number, date of birth, and so on), and sign the application with both their first and last name, then resubmit the application.
+
+
+- Open a Secured Credit Line fuel card account
+
+
+- This is where you send in secured funds (such as a bank wire or ACH) and we hold those funds and invoice you against them as if they were your credit line with us. (example: If you send us a bank wire for $1,000 then we would issue you a $1,000 secured line of credit)
+
+- This reports to the business credit bureaus as a secured credit line for your business.
+
+
+-  Open a PrePay fuel card account
+
+
+- PrePay accounts receive all of the same benefits as our credit line accounts
+
+- Your company would send in bank wires, bank ACH’s, or Western Union transactions to fund the account. Your company would then use those funds to make purchases with the fuel cards. You would then have to send in more funds to replenish the account. This works similarly as many checking accounts, where you are depositing money, using that money, and then making more deposits to keep going.
+
+
+- Open a PrePay fuel card account with attached Pilot/Flying J Direct Bill
+
+
+- This is our PrePay account, but with a credit line funded by Pilot/Flying J that will build your company’s business credit.
+
+- With this type of account, when you make fuel or scale purchases at Pilot/Flying J with your Fleet One Edge fuel card, you will then pay them directly (typically autopay twice per week.)
+
+- Opening a Pilot/Flying J Direct Bill account requires some additional paperwork that a representative of Pilot will provide to you via email.
+
+
+If any of these options interest you, please reply to this email and let me know. I am happy to provide additional information or assist you with the next steps in opening your new Fleet One Edge fuel card account.
+
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Office (615) 523-6496 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

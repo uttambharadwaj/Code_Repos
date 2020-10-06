@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Mise à jour adresse courriel</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Mise à jour adresse courriel</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Nous avons mis à jour votre adresse courriel. Si vous désirez effectuer ces changements par vous-même et vérifier que l&apos;information est exacte, veuillez cliquer sur  et  sur www.essofleetonline.com 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

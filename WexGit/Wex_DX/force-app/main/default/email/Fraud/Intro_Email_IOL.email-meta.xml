@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Intro Email - IOL</name>
+    <style>freeForm</style>
+    <subject>Intro Email - {!Claim__c.Account_Name__c} - {!Claim__c.Program_Account__c}</subject>
+    <textOnly>Dear {!Claim__c.Account_Contact_Name__c},
+
+Thank you for your letter regarding disputed transactions on fleet account {!Claim__c.Program_Account__c}.  Claim resolution will take, on average, 60-90 days to complete.  Additionally, please understand the company is obligated to keep the account current per the terms and conditions of the fuel card agreement, any credit due will be granted at the resolution of the case.
+
+“Please review all transactions on your most recent statement to ensure the activity is legitimate”.
+
+In the meantime, we suggest that a police report be filed and the stations involved be contacted immediately to obtain possible video surveillance evidence as most stations keep surveillance tape for only a short period of time.  If you have any questions regarding the dispute or have any additional information to provide, please feel free to call 888 691-0361 ext 8992 and we will be happy to answer any questions you may have.
+
+Esso e-Account Manager gives you the control, flexibility, and information you need to manage your fleet more effectively and efficiently.  If you have not already done so, we encourage you to visit the site at www.essofleetonline.com to sign up for this tool.
+
+Fleet Fraud Services
+
+
+Toll Free: 888-691-0361
+
+Fax: 207-791-1655</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

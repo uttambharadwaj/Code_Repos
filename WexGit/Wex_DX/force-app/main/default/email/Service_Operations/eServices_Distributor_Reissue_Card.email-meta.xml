@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Distributor Card Reissue</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Distributor Reissue Card</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. You can replace cards online under Account Maintenance &gt; Cards &gt; View/Manage/Replace. Click Replace to the right of a card, and then on the following screen select the Reason for Replacement in the dropdown menu. Lost or Stolen will cancel the existing card, whereas Damaged will keep it active. Please let me know if you have any questions.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

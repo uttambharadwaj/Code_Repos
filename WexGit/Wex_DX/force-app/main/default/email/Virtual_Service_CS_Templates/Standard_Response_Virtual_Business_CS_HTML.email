@@ -1,0 +1,15 @@
+Dear {!Case.Contact}, <br>
+<br>
+Thank you for your email.<br> 
+<br>
+Should you have any further questions, please do not hesitate to contact us.<br> 
+<br>
+Kind regards<br> 
+{!User.Name} <br>
+
+WEX Account Management Team<br>
+<b><font color="red">WEX</font></b><br>
+4th floor, East Building,  1 London Bridge, London SE1 9BG
+Phone: +44 (0) 2070 719602<br>
+business.support@wexeurope.com<br>
+wexvirtualpayments.com<br>

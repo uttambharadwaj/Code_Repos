@@ -1,0 +1,29 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+
+<p>Please complete the attached Contact Update form and return it to us here to update our files. In order to access your Esso account online, please follow these directions:</p>
+<p>Using Internet Explorer for most reliable results, go to our website: <a href="http://www.essofleetonline.com/">www.essofleetonline.com</a>.</p>
+<p>Click on the link to &ldquo;Enrol as a new user.&rdquo; Complete the enrollment. An email will be sent to your fleet manager with a temporary password. You will enter this with the Username you have chosen and then create your own password.</p>
+
+<p>Once you are online, please let us know if you have further questions, or we can be of further assistance.</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

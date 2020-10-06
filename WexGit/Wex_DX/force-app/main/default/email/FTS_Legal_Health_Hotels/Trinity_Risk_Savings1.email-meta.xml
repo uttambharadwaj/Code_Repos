@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/FTS_TrinityDriverSavings_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>Trinity Risk Savings</name>
+    <style>freeForm</style>
+    <subject>Occupational accident insurance for your drivers</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our exclusive occupational accident insurance with Trinity Risk and AON Risk Solutions. As an FTS Plus+ member, you and your employees have access to a full range of occupational accident and workers compensation benefits for as low as $119.90 per month.
+
+Great coverage at a great price
+Pay and bind coverage immediately
+Standardized pricing
+No exclusions for per-existing conditions
+Occupational accident benefits
+Contingent workers compensation
+Month to month coverage- cancel at anytime
+
+
+Your drivers are important. Help them save on their occupational accident insurance by calling 855-848-9594, or direct them to ftsplus.com/trinitydrivers. I have also attached a driver handout for you to provide to your employees. If you have any questions, please feel free to email or call me at your convenience.
+
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Nancy Gustafson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

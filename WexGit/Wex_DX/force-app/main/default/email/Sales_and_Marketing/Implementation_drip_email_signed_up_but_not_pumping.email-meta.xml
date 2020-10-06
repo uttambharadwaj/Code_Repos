@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Signed up but not pumping</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Implementation drip email – signed up but not pumping</name>
+    <style>freeForm</style>
+    <subject>Valued WEX Fleet One Customer</subject>
+    <textOnly>Dear Valued Fleet One® Cardholder:&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Your new Fleet One fuel cards are activated and ready for use, but it appears you haven’t begun to use your account. It’s time to break them out and break them in! Take your new cards for a test drive at your favorite fuel retailer today.
+
+Finding Fleet One acceptance locations is a snap. Just visit the home page of www.FleetOne.com, and there are links in the top left corner. We also have location finder apps for iPhone and Android to let you and your drivers see sites, on-the-go. Find the links to those apps on the home page of www.FleetOne.com, as well.
+
+Keep up with purchases in real-time with our free Online Account Management. You can view line-item detail on transactions, make changes to card limits, order new cards and more. It’s all part of the way Fleet One helps you keep your fuel costs down and save time on administrative tasks.
+
+If you have any questions about your Fleet One fuel card account, please call our Customer Care department, anytime, at 800.359.7587.
+
+We look forward to providing all of your fleet-related solutions.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

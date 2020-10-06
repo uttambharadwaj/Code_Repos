@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to respond to the Business Requestor when a case is closed.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Salesforce_Support_letterhead</letterhead>
+    <name>Content Response - Resolution Closed</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.CaseNumber} {!Case.Subject}</subject>
+    <textOnly>{!Case.User__c},
+
+{!Case.Resolution_Description__c}
+
+Thank you,
+{!Case.OwnerFullName}
+Content Management
+Sales Operations &amp; Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

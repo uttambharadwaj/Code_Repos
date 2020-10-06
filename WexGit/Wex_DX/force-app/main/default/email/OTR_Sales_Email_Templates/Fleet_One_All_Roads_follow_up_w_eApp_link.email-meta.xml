@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>All Roads phone follow up with eApp link</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One All Roads follow up w/eApp link</name>
+    <style>freeForm</style>
+    <subject>All Roads Fuel Card Services</subject>
+    <textOnly>{!Contact.FirstName}
+
+I appreciate you taking the time to speak with me today.  I have included a link to our online application and I hope you will find the information below helpful in regards to our All Roads Fuel Card services.
+
+Zero in-network fuel transaction fees
+Cash price at both c-stores and truck stops
+Broad Acceptance at convenience stores and truck stops
+Zero monthly card fees
+Free Online Account management
+Cash Services - Cash advances, Pluschek® services &amp; ATM access available
+Fuel Rebates at over 2,000 truck stops and discounts at over 15,000 gas stations
+Flexible billing terms available
+
+When you are ready to get started, please click here and follow the instructions to complete your application process for the All Roads fuel card program.
+
+Thanks for your interest, and please don’t hesitate to contact me directly with any questions. I look forward to working with you!
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

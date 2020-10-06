@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Day 2 Email Template for use with the DeBree prospecting method</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>DeBree Day 2 Email</name>
+    <style>freeForm</style>
+    <subject>Per my voice mail message - information on Wright Express Corporate Payment Solutions</subject>
+    <textOnly>{!Contact.FirstName}, 
+
+Hopefully you received the email I sent you the other day.  In case you didn’t, I am taking the liberty of sending you another copy.
+ 
+I am looking for your advice. We help organizations like {!Account.Name} with streamlining your payables system. We are not looking to replace your treasury bank relationship, simply see if there are areas we can assist you with a custom built payment solution that costs you nothing. I don’t know whom I need to speak with to see if we can help you in this area. 
+
+This is where I need some help from you.  Who would be the individual within your organization (if not you) that you would recommend I meet with to look at our services to see if there’s a potential fit?
+ 
+Specifically what we do is:
+ 
+  - Give you insight - track and manage business travel and entertainment expenses with real-time visibility and online ease. 
+  - Give you control – instant single use ghost card technology allows you to instantly pay vendors for the exact agreed upon amount.
+  - Give you efficiencies - advanced &quot;epayables&quot; technology automates your vendor payments and simplifies your reconciliation without changing your AP process or software.
+  - Give you savings – control who can spend, how much and where with our intuitive web based account control dashboard.
+ 
+Attached are testimonials from a few of our customers that show:
+ 
+  - Wright Express provides the most flexible program in the industry.
+  - Wright Express Customer Service is unparalleled in the industry.
+  - Wright Express customers realize significant cost savings.
+ 
+I don’t know if we could duplicate these kinds of results with your company, but wouldn’t it be interesting to find out?
+ 
+I look forward to speaking with you. And, thank you for any advice you can give me.
+
+Sincerely, 
+
+{!User.FirstName} {!User.LastName} 
+
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress360.com 
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

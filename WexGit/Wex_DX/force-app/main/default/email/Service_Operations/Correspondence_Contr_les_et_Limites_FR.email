@@ -1,0 +1,33 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Vous pouvez change les limites de vos cartes en allant sur l’onglet : 
+Contrôles>>Gestionnaire de profils>. 
+Cliquez d’abord sur la loupe sous le nom de votre compagnie ou sous votre nom et cliquez sur la ligne bleue apparaissant dans la boîte intitulée : < explorateur de hiérarchie>. </br>
+Par défaut les profils standards sont :</br>
+Carburants et liquides </br>
+Carburants, liquides et entretien </br>
+Sans restriction <br></br>
+
+Si vous cliquez sur le lien désiré, vous pourrez voir en détail chacune des limites et pourrez les changer selon vos besoins. N’oubliez pas de cliquer sur « soumettre » pour les rendre actifs. 
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Mass Email for Unsolicited Leads-OTR</name>
+    <style>freeForm</style>
+    <subject>We can help!</subject>
+    <textOnly>Hello,
+
+My name is {!User.Name}, a consultant with WEX Fleet One and it is my responsibility to help companies similar to yours when it comes to fleet-related expenses. I understand your time is valuable but I wanted to reach out to you because I believe {!Contact.Account_Name_Text__c} would be a great fit for the services provided by WEX Fleet One.
+
+We excel at helping fleet owners just like yourself in every aspect of business by providing:
+
+Fuel Cards with Zero Transaction Fees, Discounts and Rebates
+Factoring Services
+Permit Services
+Telematics
+Fuel Management
+
+Here you can review several testimonials and videos from our customers sharing their positive experiences with WEX Fleet One.
+
+I look forward to speaking with you personally. Please call or email me directly at your earliest convenience. You will find my contact information below.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,40 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P style="LINE-HEIGHT: 25px; FONT-FAMILY: Calibri, Arial, Helvetica, sans-serif; COLOR: #414141; FONT-SIZE: 12pt"><STRONG>Good&nbsp;Day {!Contact.FirstName},</STRONG></P>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<TABLE style="BACKGROUND: #fff" border=0 cellSpacing=0 cellPadding=0 width=650 bgColor=#fff align=center>
+<TBODY>
+<TR vAlign=top>
+<TD style="BACKGROUND: #fff" bgColor=#fff vAlign=top width=560>
+<P style="LINE-HEIGHT: 25px; FONT-FAMILY: Calibri, Arial, Helvetica, sans-serif; COLOR: #414141; FONT-SIZE: 12pt">Fuel prices are constantly in flux. Your best buy on Monday morning could be the most expensive site in the area by Monday night. Price hikes are hard on everyone, but tougher for fleet managers. But there’s good news: we have something to help you get the lowest fuel prices — our Octane mobile fuel/price locator app.</P></TD>
+<TD width=45></TD></TR></TBODY></TABLE>
+<TABLE style="BACKGROUND: #8c0c04" border=0 cellSpacing=0 cellPadding=0 width=650 bgColor=#8c0c04 align=center>
+<TBODY>
+<TR height=59>
+<TD width=45>&nbsp;</TD>
+<TD height=59 width=237>
+<P style="FONT-FAMILY: Arial, Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 13pt"><STRONG>Download the free app now!</STRONG></P></TD>
+<TD style="BACKGROUND: #ffffff" bgColor=#ffffff height=59 width=163 align=middle><A style="COLOR: #913535; TEXT-DECORATION: none" href="http://itunes.apple.com/us/app/fuel-site-locator/id480887516?mt=8&amp;ls=1"><IMG style="DISPLAY: block" border=0 alt="Download for iPhone" src="file:///Y:/MARCOM_JOBS/list%20of%20MarCom%20projects/WEX%20U/WEXU-217%20Octane%20Fleet%20Email/images/btn-itunes.gif" width=163 height=59></A></TD>
+<TD style="BACKGROUND: #ffffff" bgColor=#ffffff height=59 width=160 align=middle><A style="COLOR: #913535; TEXT-DECORATION: none" href="https://market.android.com/details?id=com.wrightexpress.fuelsitelocator"><IMG style="DISPLAY: block" border=0 alt="Download for Android" src="file:///Y:/MARCOM_JOBS/list%20of%20MarCom%20projects/WEX%20U/WEXU-217%20Octane%20Fleet%20Email/images/btn-android.gif" width=151 height=59></A></TD>
+<TD width=45>&nbsp;</TD></TR></TBODY></TABLE>
+<TABLE style="BACKGROUND: #fff" border=0 cellSpacing=0 cellPadding=0 width=650 bgColor=#fff align=center>
+<TBODY>
+<TR vAlign=top>
+<TD width=45></TD>
+<TD style="BACKGROUND: #fff" bgColor=#fff vAlign=top width=560>
+<P style="LINE-HEIGHT: 25px; FONT-FAMILY: Calibri, Arial, Helvetica, sans-serif; COLOR: #414141; FONT-SIZE: 12pt">Sure, there are other site location apps out there. <STRONG>But our technology and national reach give us a giant edge.</STRONG> Every time a driver fills up using a Wright Exress card, the price details feed back electronically to our database, providing real-time price intelligence. Your driver can compare prices, choose a particular site, and then let the mobile app’s map lead the way. Our <STRONG style="COLOR: #8c0c04">text-to-speech technology</STRONG> enables hands-free use.</P>
+<P style="LINE-HEIGHT: 25px; FONT-FAMILY: Calibri, Arial, Helvetica, sans-serif; COLOR: #414141; FONT-SIZE: 12pt">Use the FREE app. Visit <A style="COLOR: #8c0c04; TEXT-DECORATION: none" href="http://www.wexinc.com/">www.wexinc.com</A>. Think about all the ways we could help your company’s bottom line. Then, I hope you’ll get in touch!</P>
+<P style="LINE-HEIGHT: 25px; FONT-FAMILY: Calibri, Arial, Helvetica, sans-serif; COLOR: #414141; FONT-SIZE: 12pt">&nbsp;</P>
+<P style="LINE-HEIGHT: 25px; FONT-FAMILY: Calibri, Arial, Helvetica, sans-serif; COLOR: #414141; FONT-SIZE: 12pt">Sincerely,<BR><STRONG>{!User.FirstName} {!User.LastName}</STRONG><BR>{!User.Title}<BR>{!User.Phone}<BR>{!User.Email}</P></TD>
+<TD width=45></TD></TR>
+<TR>
+<TD width=45></TD></TR></TBODY></TABLE>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[]]></td>
+</tr>
+</table>

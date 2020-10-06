@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Truckers Advantage Non-Transacting Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>BLANK</letterhead>
+    <name>Truckers Advantage Non-Transacting Email</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name} Fleet One Truckers Advantage Fuel Account</subject>
+    <textOnly>You&apos;re missing out on fuel savings...
+
+
+Hi {!Contact.FirstName},
+
+I am following up regarding your Truckers Advantage fuel card through Fleet One and OOIDA. I noticed that you have not been using the fuel card and was curious why. Do you need a little help getting started, or are there any questions I can answer? 
+
+As a reminder, you could be saving 10 cents per gallon at all Pilot and Flying J locations, as well as 6 cents per gallon at Speedway and Quick Fuel locations. On top of that, you enjoy zero transaction fees and 5X MyRewards points at Pilot.
+
+Please let me know if I can be of any assistance. I look forward to hearing from you. 
+
+ 
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName} 
+
+Partner Sales, Truckers Advantage
+
+Fleet One 
+Ph:{!User.Phone} 
+Fx:{!User.Fax} 
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

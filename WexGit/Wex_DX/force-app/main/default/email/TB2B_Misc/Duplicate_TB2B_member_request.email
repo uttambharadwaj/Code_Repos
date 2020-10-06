@@ -1,0 +1,15 @@
+{!Account.Name}
+
+Someone recently requested that your company join TruckersB2B.  Please be advised you have an existing membership.  Below is your Member ID.
+
+Your Member ID: {!Account.Member_ID__c}
+
+Should you have any questions, or would like to learn more about any of our savings programs, please contact us. 
+ 
+Thank you,
+
+TruckersB2B
+888-937-6334
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

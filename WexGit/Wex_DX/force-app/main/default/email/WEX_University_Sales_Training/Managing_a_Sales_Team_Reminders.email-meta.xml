@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to employees who have signed up for Managing a Sales Team Training.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Managing a Sales Team Reminders</name>
+    <style>freeForm</style>
+    <subject>2019 Managing a Sales Team Reminder</subject>
+    <textOnly>2019 MANAGING A SALES TEAM TRAINING PROGRAM
+
+
+
+Hello everyone,
+
+
+I am really looking forward to seeing you all the week of September 23 for the “Managing a Sales Team” training program here in Maine. We have a great mix of sales managers and sales professionals from all product lines attending this year!
+
+
+Just a couple of logistic reminders:
+
+
+Training is Monday, September 23 through Thursday, September 26. We have a large group this year, which may cause a long training but thought it would be better than having to schedule us for training on Friday too.
+The final outline will be emailed a week before class.
+We will begin promptly at 8:30AM each morning, please arrive by 8:15 to get settled in the Little Diamond Training Room located at 95 Darling Avenue, South Portland Maine 04106. You will need a badge to enter the building, as there is no receptionist. Please text me at 207-939-3700 if you need access to 95 Darling Ave.
+We will provide Coffee, light snacks and lunch - Breakfast will be on your own.
+Training attire is Business Casual, but keep in mind you will be presenting your plan on Thursday; you may want to dress accordingly.
+Maine temps cool down in the evening, so bring coat and dress for cool weather
+We will have one group dinner scheduled for Tuesday, September 24.  Other evenings are open to catch up on emails or schedule time with home office resources - great time to network!
+
+
+
+
+Pre-Work Assignment:
+
+
+David Stearns from Dale Carnegie will be contacting you regarding the pre-work assignment. Please remember to complete your pre-work assignment prior to your arrival on Monday. (See Attached)
+For those of you who do not have a Sales Performance Assessment on file, you will be invited to complete one prior to class.  You will receive an email from Quest on behalf of Deanna Sullivan.  If you receive this email, please give it your prompt attention.
+
+
+
+Please contact me if you have any questions. My cell phone is 207-939-3700.
+
+
+Cheers,
+
+Kathryn Connolly</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,23 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Hi&nbsp;{!Contact.FirstName},</font><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif"><br></font></div><div style=""><p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif">I
+have attached the necessary paperwork required to move forward. If you are
+applying for a line of credit, you will need to sign the attached PG form. The
+other form attached is needed to set up payment from your bank to EFS. <o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif">Please
+sign pages 1,5,7</font></p><p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">&nbsp;</span></p>
+
+<p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif">Fill
+in ALL fields, including Tax ID, DOT, MC#, SSN, Date of Birth. <o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style="">Please
+include a copy of the owner’s Driver’s License and The Articles of
+Incorporation (if possible).<span style="font-size: 10pt;"><o:p></o:p></span></font></p><p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style=""><br></font></p><p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style="">Sincerely,</font></p><p class="MsoPlainText" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style=""><br></font></p><p class="MsoPlainText" style=""><font face="arial">{!User.FirstName} {!User.LastName}</font></p><p class="MsoPlainText" style=""><span style="font-size: 12pt;">{!User.Phone}</span></p><p class="MsoPlainText" style=""><font face="arial">{!User.Email}</font></p></div>]]></td>
+</tr>
+</table>

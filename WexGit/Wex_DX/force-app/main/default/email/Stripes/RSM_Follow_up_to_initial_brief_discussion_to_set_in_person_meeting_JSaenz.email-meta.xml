@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use after speaking w/a prospect &amp; to set an in-person meeting.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Stripes_eLetterhead</letterhead>
+    <name>RSM: Follow-up to initial (brief) discussion &amp; to set in-person meeting_JSaenz</name>
+    <style>freeForm</style>
+    <subject>Thank you for discussing The Stripes Fleet Card Program.</subject>
+    <textOnly>{!Contact.FirstName},
+
+Thank you for taking the time to speak with me today. I think you’ll find The Stripes Fleet Card Program an ideal solution for your company’s vehicle fueling needs. Whether you’re looking for a fleet card program with robust rebates or nationwide acceptance, Stripes has a fleet card for you.
+
+Stripes&apos; valuable fuel rebate program is just one of the ways you’ll save money as a cardholder. You&apos;ll also be able to leverage our easy, online tools to help your business save time and money.
+
+Powerful Reporting – Know who bought what, when, where and for how much.
+Broad Acceptance – Always find a Stripes fuel site, with over 700 convenient locations. And if you travel outside of the Stripes area, our Stripes Universal Fleet Card is accepted nationwide.
+Purchase Controls – Help eliminate any misuse of company vehicles by easily setting purchase limits for individual drivers if needed.
+U.S. Based Customer Service – 24/7 assistance for you and your drivers whenever you need it.
+
+I’m confident that your current fleet card provider can’t bring you the breadth of tools that we can. If you have 30 minutes, I&apos;d like to meet face to face to discuss what our Program can do for your business.
+
+I will be following up with you next week. In the meantime, please feel free to contact me anytime.
+
+I look forward to meeting with you about your needs.
+
+
+Sincerely,
+
+
+John Saenz
+Authorized Representative - Stripes Fleet Accounts
+210.372.0346 Mobile
+207.253.1343 Fax
+john.saenz@wexinc.com
+www.stripesfleetcards.com/john
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+
+Stripes Fleet Card Program Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

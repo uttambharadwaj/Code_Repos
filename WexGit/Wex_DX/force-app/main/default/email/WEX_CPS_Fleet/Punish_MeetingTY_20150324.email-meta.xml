@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow-up email for face-to-face meeting</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Punish-MeetingTY-20150324</name>
+    <style>none</style>
+    <subject>Thank you for taking the time to meet</subject>
+    <textOnly>Per my voice mail, I&apos;d love to speak with you about all that WEX offers. We’ve got one of the lowest attrition rates and highest customer satisfaction levels in the industry.
+What does that mean for your business? We’ve been doing this since 1983, and service everyone from the U.S. Government to The Orkin Man. Here’s just a sample of what we offer:
+
+•    WEX Fleet: Level III Data, Product Type Controls, and one of the largest acceptance networks
+•    WEX Over-The-Road: Acceptance at 7,800 truck stops with NO transaction fees
+•    WEX Fuel Advisors: Fuel inventory management
+
+Don’t trust what I tell you — listen to what our customers are saying. Amerigas, Renzenberger, Rollins . . . these fleets rave about us. Hear what they are saying.
+https://www.youtube.com/watch?v=18D_l88snKE
+
+I look forward to speaking with you soon. In the meantime, take a look at this white paper on what makes Closed Loop Fleet Cards like WEX different.
+http://www.wexhosted.com/esp_assets/campaigns/sfdc/Closed Loop Whitepaper_webFINAL.pdf
+And please, don’t hesitate to call me with questions.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+Phone: {!User.Phone} | {!User.Email}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

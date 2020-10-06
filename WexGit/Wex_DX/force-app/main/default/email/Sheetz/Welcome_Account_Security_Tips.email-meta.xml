@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>New Customers:  Security Tips</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Welcome:  Account Security Tips</name>
+    <style>freeForm</style>
+    <subject>Account Security Tips - Sheetz Business Edge</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks for choosing the Sheetz Business Edge card program. Ensure your account stays secure with our four security tips.
+
+1. Remind drivers that if an attendant swipes the card in the card reader, they should keep it in their sight and make sure the same card is returned to them.
+
+2. Always review your reports or better yet, check transaction details at Sheetz Fleet Online to watch for discrepancies or unusual purchase patterns.
+
+3. Control access to your account by notifying us of changes to the authorized fleet contact(s).
+
+4. When a vehicle will be out of use for a period of time, collect the card to keep it secure. If a vehicle is sold or retired, immediately cancel and destroy the assigned card.
+
+We&apos;re here for you 24/7, so be sure to give us call at 1-800-353-3842 if you have any questions. Thanks again, and welcome to the Sheetz Business Edge card program!
+
+
+Best regards,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

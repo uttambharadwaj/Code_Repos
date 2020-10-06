@@ -1,0 +1,106 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[Greetings,]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><u><span style="font-size:12.0pt;mso-bidi-font-size:11.0pt">Company Name</span></u></b><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">:&nbsp;<o:p></o:p></span><font face="arial">{!Account.Name}</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><span style="font-size:12.0pt;mso-bidi-font-size:
+11.0pt">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><u><span style="font-size:12.0pt;mso-bidi-font-size:11.0pt">Company Authorized Contact</span></u></b><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">:&nbsp;</span><font face="arial">{!Contact.Full_Name__c}</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><span style="font-size:12.0pt;mso-bidi-font-size:
+11.0pt">&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;">Below are the instructions for sending <u>bank wire/ACH
+payments</u>&nbsp;to fund your EFS account:<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b>Bank Name:&nbsp;</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fifth Third Bank<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 38 Fountain Square<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Cincinnati, OH 45263<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b>Account Name:&nbsp;&nbsp;</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;WEX BANK<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1104 Country Hills Drive<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Ogden, Utah 84403<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b>Account Number: &nbsp;&nbsp;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7361767473<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b>&nbsp;</b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b>Wire Routing
+Number:  042000314<o:p></o:p></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b><span style="color:#C60C30">ACH Routing Number:&nbsp; 064103833<o:p></o:p></span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b><i>Please note that Fifth Third uses different
+routing number for wires and <span style="color:#C60C30">ACH</span>. If the incorrect
+routing number is used, <u>the payment will be rejected by the bank</u>.<o:p></o:p></i></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;">Please make sure to include your <b>AR #</b>&nbsp;<i>_______</i>&nbsp;in
+the payment remittance information ("OBI Fields"). <u>We cannot apply
+your payment without this information</u>. Please follow the example
+illustrated below:<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><o:p>&nbsp;</o:p></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 0pt;" class="MsoNormal">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b><span style="font-size:12.0pt;mso-bidi-font-size:11.0pt;color:#262626;mso-themecolor:
+text1;mso-themetint:217;background:yellow;mso-highlight:yellow">OBI Line 1:&nbsp;</span></b><b style="font-size: 12pt;"><span style="font-size:10.0pt;font-family:&quot;roboto&quot;,serif;
+color:navy;background:#D8D8E9">&nbsp;AR# XXXXXXXX</span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><b><span style="font-size:10.0pt;font-family:&quot;roboto&quot;,serif;
+color:navy;background:#D8D8E9"><o:p></o:p></span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><span style="font-size:12.0pt;mso-bidi-font-size:11.0pt">&nbsp;&nbsp;</span><o:p></o:p></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 0pt;" class="MsoNormal"><br></p><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Calibri">
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="text-align: justify; font-family: arial; font-size: 12pt;">If you have any questions, please let me know.</span></p><p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="text-align: justify; font-family: arial; font-size: 12pt;"><br></span></p><p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="text-align: justify; font-family: arial; font-size: 12pt;">Kind Regards,</span></p><p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="text-align: justify; font-family: arial; font-size: 12pt;"><br></span></p></font></span>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<p class="MsoNormal"><b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif">Katie Haywood&nbsp;</span></b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif">|&nbsp; Sr. Account Executive</span><o:p></o:p></p><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal">
+
+</p><p class="MsoNormal"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif">3102 West End Avenue, Suite 900&nbsp; |&nbsp; Nashville, TN 37203</span><o:p></o:p></p><p class="MsoNormal"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif">Phone: 615.523.6496&nbsp;</span><span style="font-family: Verdana, sans-serif; font-size: 13.3333px;">&nbsp;</span><span style="font-family: Verdana, sans-serif; font-size: 13.3333px;">|&nbsp; Fax: 615.858.6496</span></p><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal">
+
+</p><p class="MsoNormal"><a href="mailto:KHaywood@FleetOne.com"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:
+minor-latin;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:
+minor-fareast;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#0563C1;mso-no-proof:yes">KHaywood@FleetOne.com</span></a><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:
+minor-latin;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:
+minor-fareast;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;mso-no-proof:yes"> | </span><a href="http://www.fleetone.com/"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-fareast-theme-font:minor-fareast;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:#0563C1;mso-no-proof:yes">www.FleetOne.com</span></a><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:
+minor-latin;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-theme-font:
+minor-fareast;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;mso-no-proof:yes"> | </span><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-fareast-theme-font:minor-fareast;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:#0563C1;mso-no-proof:yes"><a href="http://www.efsllc.com/">www.efsllc.com</a></span></p><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><a name="Text10"></a></p>]]></td>
+</tr>
+</table>

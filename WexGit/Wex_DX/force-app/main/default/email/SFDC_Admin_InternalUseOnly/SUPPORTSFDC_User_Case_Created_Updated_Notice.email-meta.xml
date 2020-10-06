@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>template that can be sent to your SFDC internal users to notify them a case was created or a public comment has been added to their case.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT:  SFDC User Case Create or Update Notice</name>
+    <style>none</style>
+    <subject>Your case {!Case.CaseNumber} has been updated</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

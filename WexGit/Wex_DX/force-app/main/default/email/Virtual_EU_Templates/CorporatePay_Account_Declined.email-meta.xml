@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay Account Declined</name>
+    <style>freeForm</style>
+    <subject>Account Approval Declined - {!Account_Asset__c.Name}</subject>
+    <textOnly>Hi {!Account_Asset__c.OwnerFirstName},
+
+Your approval for the account asset {!Account_Asset__c.Name} has not been given.
+
+Please view the comments in the Approval History list for the account asset.
+
+
+
+
+
+
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>MUFC email #1</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM  MUFC email #1</name>
+    <style>freeForm</style>
+    <subject>2014 Multi-Unit Franchising Conference</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+It&apos;s 2014: Isn’t it time to stop dealing with paper paychecks?
+How many paper checks are handing out each and every payday?  Probably 1000’s a year, and that equals thousands of missed opportunities, to save money and increase efficiencies.
+
+Isn’t time for you to think about paying all of your employees, with the simple push of a button!
+
+Franchisees like you across the country are now paying thousands of employees using the ZERO Cost WEX rapid! PayCard because…
+
+PayCards Allow Managers to Focus on More Productive Activities on Payday
+PayCards Greatly Reduce Overall Payroll Costs
+PayCards Minimize Exposure to Check Fraud
+PayCards Reduce Non-Customer Traffic
+PayCards Benefit your Employees Financially
+
+
+We wanted to take the time to reach out and invite you to visit rapid! PayCard Booth#526 at the Multi-Unit Franchise Conference.  We would love the opportunity to speak to you about our no cost, zero risk payroll card solution designed not only to save your company money and increase efficiencies, but also provide a tremendous benefit to those amongst your employee population that are receiving paper checks.
+
+If you would like to schedule a time to meet with us at the show, please Matt Merriam at matt.merriam@wexinc.com, or call him at 678-381-1733.
+
+Please click here to a link to a brief case study that illustrates how franchisees nationwide are benefiting with the rapid! PayCard Program.  We hope you will be able to visit us!
+
+Best wishes,
+
+The rapid! PayCard Team
+rapid! PayCard</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

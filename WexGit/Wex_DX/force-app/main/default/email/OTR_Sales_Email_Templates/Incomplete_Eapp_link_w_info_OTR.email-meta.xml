@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Incomplete Eapp link w/ info- OTR</name>
+    <style>freeForm</style>
+    <subject>Thanks for your interest</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in the WEX Fleet One fuel card. It appears you began the application process, but have not completed it.  For your convenience, I’ve attached a link to our online application so that you may complete the process at your earliest convenience.
+
+Click here and follow the instructions to complete your application process.
+
+I hope you will find the below information helpful regarding our fuel card services here at WEX Fleet One.
+
+· Zero Transaction Fees
+
+· Cash Price at all Truck Stops
+
+· Immediate Cash Services
+
+· Credit line, Prepay, Factoring or Deposit Accounts Available
+
+· Free Online Account Management
+
+· Detailed Reporting
+
+· Control Features
+
+· Discounts and Rebates
+
+Again, thank you for your interest in our fuel card.  If you have any questions about the application or our fuel card program, please don’t hesitate to call or email me.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

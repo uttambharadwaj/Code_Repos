@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Partner - Truckers Advantage</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <allInternalUsers/>
+        <portalRole>TruckersB2BPartnerManager</portalRole>
+        <portalRole>TruckersB2BPartnerUser</portalRole>
+        <portalRoleAndSubordinates>OOIDATRUCKERSADVANTAGEPartnerManager</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>OOIDATRUCKERSADVANTAGEPartnerUser</portalRoleAndSubordinates>
+        <role>Marketing</role>
+    </sharedTo>
+</EmailFolder>

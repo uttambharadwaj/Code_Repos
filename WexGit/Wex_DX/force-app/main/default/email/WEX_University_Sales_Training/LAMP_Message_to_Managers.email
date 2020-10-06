@@ -1,0 +1,55 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style=""><div style=""><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" style="" size="2">WEX
+Global Sales Operations and Training is about to make an investment in
+strengthening our sales process disciplines. This initiative will begin with a
+WebEx launch meeting the week of <b style="background-color: rgb(255, 255, 102);">DATE</b><span style="background-color: rgb(255, 255, 255);">&nbsp;</span>and will
+continue throughout 2019 and beyond. <o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" size="2"><font style="color: rgb(0, 0, 0);"><font style="color: rgb(0, 0, 0);">The
+initial structured sales methodology to be taught and adopted will be Miller
+Heiman’s <b>Large Account Management Process (LAMP)</b>. Our ultimate objective
+is to achieve sustainable, long-term competitive advantage through the
+differentiation of our sales organizations. The two-day&nbsp;<b>LAMP </b>training has been
+scheduled for&nbsp;</font><b>{!Case.Class_Start_Date_del__c}</b><span style="color: rgb(0, 0, 0);">&nbsp;</span><span style="color: rgb(0, 0, 0);">and
+will be offered in the&nbsp;</span></font><b>{!Case.Location__c}</b><span style="color: rgb(0, 0, 0);">&nbsp;office located at </span><font color="#222222" style="color: rgb(0, 0, 0);"><span style="background-color: rgb(255, 255, 102);"><b>ADDRESS.</b></span></font></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">To
+the extent we do this well, we build “<i style="">currency”</i> with our customers and
+prospects. To the degree we do it tangibly better than the competition, we
+distinguish ourselves in the market and build sustainable advantage. With the
+right tools, training and reinforcement, I believe we will induce new behaviors
+that will elevate our stature in the eyes of all of our constituencies.&nbsp;To
+be thought leaders in the changing times ahead, we must demonstrate three broad
+capabilities:&nbsp;</font></p></div></div><blockquote style="color: rgb(0, 0, 0); margin: 0px 0px 0px 40px; border: none; padding: 0px;"><div style=""><div style=""><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">1) a clear and early view of market needs</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">2) a thorough
+understanding of the implication of those needs</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">3) the agility to satisfy
+them more rapidly than our competitors</font></p></div></div></blockquote><div style="color: rgb(0, 0, 0);"><div style=""><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><b><font face="Verdana, Helvetica, sans-serif" size="2" style="">Next
+Steps:<i><o:p></o:p></i></font></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">A
+description of the program is attached. You will soon be contacted by <span style="background-color: rgb(255, 255, 102);"><b>Manager&nbsp;</b></span>to schedule an initial discovery call with managers. I urge you
+to communicate to you team your expectations to participate in this learning
+experience.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">I am
+counting on your commitment and thank you in advance for your support of this
+important initiative.<o:p></o:p></font></p></div></div><div style="color: rgb(0, 0, 0);"><div style=""><p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style=""><font style="" face="Verdana, Helvetica, sans-serif" size="2">Thank You,<br>{!Case.OwnerFullName}<br>WEX Global Sales Training</font></p></div></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></div>]]></td>
+</tr>
+</table>

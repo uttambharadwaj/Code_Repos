@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>Community:  Application Approved Notification to Partner</name>
+    <style>freeForm</style>
+    <subject>{!Application_Request__c.Opportunity_Name_Text__c} is Approved</subject>
+    <textOnly>{!Application_Request__c.External_Referring_Contact__c},
+
+The Application for your submitted opportunity has been approved. Details below:
+
+
+
+
+
+
+
+Stage: {!Application_Request__c.Sales_Stage__c}
+
+App Submitted Date: {!Application_Request__c.CreatedDate}
+
+App Approved Date: {!Application_Request__c.App_Approved_Date__c}
+
+Sales Person: {!Application_Request__c.Sales_Person__c}
+
+Requested Credit Limit: {!Application_Request__c.Requested_Credit_Limit__c}
+
+
+
+Click here for more information: https://wexinc.force.com/partners/{!Application_Request__c.Id}
+
+
+Thank you,
+
+
+
+WEX Partner Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

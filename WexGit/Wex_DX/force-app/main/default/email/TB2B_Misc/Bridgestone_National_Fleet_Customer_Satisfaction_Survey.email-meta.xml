@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Survey to send to Bridgestone National Fleet customers after customer service call</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Bridgestone_and_WF1</letterhead>
+    <name>Bridgestone National Fleet Customer Satisfaction Survey</name>
+    <style>freeForm</style>
+    <subject>How was your recent experience with us?</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+You recently placed a call to WEX Fleet One regarding your Bridgestone National Fleet account. We are constantly trying to improve our customer experience and would greatly appreciate your feedback from the call. 
+
+Please click the link below to complete a short 1-minute survey.
+https://www.surveymonkey.com/r/WEXBSNF
+
+
+Thank you for your time and your business,
+
+WEX Bridgestone National Fleet Support Team
+(844) 275-7099, Option 2
+bridgestonesupport@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

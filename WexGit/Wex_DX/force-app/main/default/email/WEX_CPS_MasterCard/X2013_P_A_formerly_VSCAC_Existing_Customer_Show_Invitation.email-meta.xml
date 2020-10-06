@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2013 Sept P&amp;A/VSCAC Show invite to existing WEX customers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_Claims</letterhead>
+    <name>2013 P&amp;A (formerly VSCAC) Existing Customer Show Invitation</name>
+    <style>freeForm</style>
+    <subject>Stop by the WEX Booth (#509) and enter to win an iPad</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+WEX will be attending and exhibiting at the P&amp;A Summit (formerly VSCAC) at the Paris, Las Vegas. I wanted to {!Account Name} to stop by our booth to take advantage of some of our giveaways and enter to win an iPad. We value your business and would be happy for the opportunity to say hello.
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+http://www.wexinc.com/payment-solutions/electronic-insurance-claims
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc.. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

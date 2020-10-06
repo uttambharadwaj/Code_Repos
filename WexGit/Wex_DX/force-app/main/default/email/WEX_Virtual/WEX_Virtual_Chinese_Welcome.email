@@ -1,0 +1,32 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p>Dear {!Contact.FirstName},</p><p><br></p><p><font face="Times New Roman">
+
+<br></font></p><p style="margin: 0in 0in 0pt;"><span lang="ZH-CN" style="font-family: SimSun;">我是</span><font face="Calibri">WEX
+Asia </font><span lang="ZH-CN" style="font-family: SimSun;">的亚太区商业总监。</span></p><p><font face="Times New Roman">
+
+<br></font></p><p style="margin: 0in 0in 0pt;"><span lang="ZH-CN" style="color: black; font-family: SimSun;">冒昧打扰，我是从新加坡旅游局的同事得到您的联络。</span></p><p><font face="Times New Roman">
+
+</font><font face="Times New Roman"><br></font></p><p style="margin: 0in 0in 0pt;"><span lang="ZH-CN" style="color: black; font-family: SimSun;">我司是美国一家上市公司专门提供虚拟信用卡。目前除了以全球大型的在线旅游公司如</span><span style='color: black; font-family: "Arial","sans-serif";'>Priceline, </span><span style='color: black; font-family: "Arial","sans-serif";'>Agoda
+</span><span lang="ZH-CN" style="color: black; font-family: SimSun;">及</span><span style='color: black; font-family: "Arial","sans-serif";'>Expedia</span><span lang="ZH-CN" style="color: black; font-family: SimSun;">合作，我们也和国内一些旅游公司合作。</span></p><p><font face="Times New Roman">
+
+</font><font face="Times New Roman"><br></font></p><p style="margin: 0in 0in 0pt;"><span lang="ZH-CN" style="color: black; font-family: SimSun;">我们的虚拟信用卡以</span><span style='color: black; font-family: "Arial","sans-serif";'> Mastercard </span><span lang="ZH-CN" style="color: black; font-family: SimSun;">为平台，备受许多家酒店接收为结算平台，特别是境外。</span></p><p><font face="Times New Roman">
+
+</font><font face="Times New Roman"><br></font></p><p style="margin: 0in 0in 0pt;"><span lang="ZH-CN" style="color: black; font-family: SimSun;">附上我司简介册子并希望您能转发并介绍您的应帐或结算部。</span></p><p><font face="Times New Roman">
+
+<br></font></p><p style="margin: 0in 0in 0pt;"><span style='color: black; font-family: "Arial","sans-serif";'>&nbsp;</span><span style='color: black; font-family: "Arial","sans-serif";'><a href="http://www.wexinc.com/travel/"><font color="#0000ff">http://www.wexinc.com/travel/</font></a></span></p><p><font face="Times New Roman">
+
+</font><font face="Times New Roman"><br></font></p><p style="margin: 0in 0in 0pt;"><span lang="ZH-CN" style="color: black; font-family: SimSun;">非常感谢，希望我们能有后续进一步合作</span></p><p><font face="Times New Roman">
+
+<br></font></p><p><br></p><p><br></p><p>{!User.FirstName} {!User.LastName}</p><p>{!User.Title}</p><p>Office: {!User.Phone}</p><p>Cell: {!User.MobilePhone}</p><p>{!User.Email}</p><p><br></p><p><br></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[]]></td>
+</tr>
+</table>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay Prospect Activity Alert - Contact</name>
+    <style>freeForm</style>
+    <subject>Your Prospect {!Contact.Name} From {!Contact.Account_Name_Text__c} Is On Our Website</subject>
+    <textOnly>Hi {!Lead.OwnerFirstName},
+
+Your prospect {!Lead.Name} From {!Lead.Company} is currently browsing our website.
+
+You can see which pages they have visited by viewing the Prospect Activity list on their record.
+
+
+Lead Status - {!Lead.Status}
+
+Title - {!Lead.Title}
+Sales Group - {!Lead.Sales_Group__c}
+Sales Type - {!Lead.Sales_Type__c}
+Industry - {!Lead.Industry}
+
+Lead Source - {!Lead.LeadSource}
+Partner Referrer - {!Lead.00N70000003TZoP}
+
+Pardot Score - {!Lead.pi__score__c}
+Product Interest - {!Lead.Product_Interest__c}
+
+
+For more information about what triggers these emails, click this link http://www.pardot.com/faqs/crm/last-activity-field/
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

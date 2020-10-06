@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to Auto Respond when a Legal Support Case is opened</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Legal Support Auto Response</name>
+    <style>none</style>
+    <subject>WEX Legal Support Case - {!Case.Subject} - {!Case.CaseNumber}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+We appreciate you being a customer of The Gold Program national account tire program.   As part of our ongoing goal of improving our program, we have recently rolled out our Gold Customer Portal, where you can view your invoices. 
+
+You can register for this portal by visiting  goldprogramonline.com.  You will need your Gold ID which is {!Account.Gold_ID__c}. 
+
+If there is anything else we can do to improve your purchase experience, please let me know.  We appreciate your business.
+
+Thank you,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+Gold Line: 866-354-7322

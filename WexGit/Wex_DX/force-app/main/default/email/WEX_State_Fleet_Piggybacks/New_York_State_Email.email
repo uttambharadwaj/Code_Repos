@@ -1,0 +1,26 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[The State has done all the homework and paperwork. As a state agency or political subdivision, you may be eligible for the state of New York’s Fuel Card, contract PS65802 and <STRONG>save as much as 15%* off </STRONG>your overall fleet budget. <BR>
+<P>Sign up and take advantage of these unique benefits: </P>
+<UL>
+<LI><STRONG style="LINE-HEIGHT: 20px; FONT-FAMILY: Verdana, Geneva, sans-serif; COLOR: #600; FONT-SIZE: 10pt"><FONT face="">NO setup fees or card fees</FONT></STRONG> 
+<LI><STRONG style="LINE-HEIGHT: 20px; FONT-FAMILY: Verdana, Geneva, sans-serif; COLOR: #600; FONT-SIZE: 10pt"><FONT face="">Valuable monthly discounts</FONT></STRONG> 
+<LI><STRONG style="LINE-HEIGHT: 20px; FONT-FAMILY: Verdana, Geneva, sans-serif; COLOR: #600; FONT-SIZE: 10pt"><FONT face="">Tax exemption and reporting for qualified fleets</FONT></STRONG> 
+<LI><STRONG style="LINE-HEIGHT: 20px; FONT-FAMILY: Verdana, Geneva, sans-serif; COLOR: #600; FONT-SIZE: 10pt"><FONT face="">Online account access and easy-to-read reports</FONT></STRONG> 
+<LI><STRONG style="LINE-HEIGHT: 20px; FONT-FAMILY: Verdana, Geneva, sans-serif; COLOR: #600; FONT-SIZE: 10pt"><FONT face="">Fuel and associated products </FONT></STRONG>
+<LI><STRONG style="LINE-HEIGHT: 20px; FONT-FAMILY: Verdana, Geneva, sans-serif; COLOR: #600; FONT-SIZE: 10pt"><FONT face="">Customer Service 24 hours a day</FONT></STRONG></LI></UL>
+<P>Use the Fuel Card Services contract <STRONG>#PS65802 </STRONG>to fuel your vehicles at <STRONG><BR>over 90% of fuel stations nationwide. </STRONG><BR></P>
+<P>Don’t miss out on your State’s FREE money-saving solution.</P>
+<P>&nbsp;</P>
+<P>Sincerely,</P>
+<P>&nbsp;</P>
+<P>{!User.FirstName} {!User.LastName}<BR>{!User.Title}<BR>{!User.Phone}</P>
+<P>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN-BOTTOM: 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'">CONFIDENTIALITY NOTICE: "This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</SPAN></I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN-BOTTOM: 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 7.5pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'">&nbsp;</SPAN></I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN-BOTTOM: 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 7.5pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'">Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106</SPAN></I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN-BOTTOM: 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 7.5pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'">&nbsp;</SPAN></I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"></SPAN></P>
+<P style="LINE-HEIGHT: normal; MARGIN-BOTTOM: 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 7.5pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'">This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email},</SPAN></I><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'"><A href="mailto:info@wexnews.com?subject=Unsubscribe"><SPAN style="COLOR: gray; FONT-SIZE: 7.5pt; mso-bidi-font-size: 11.0pt"> </SPAN><SPAN style="COLOR: #3333ff; FONT-SIZE: 7.5pt; mso-bidi-font-size: 11.0pt">email us to unsubscribe</SPAN></A></SPAN></I><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 7.5pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'">. Please be sure to include your name, company name and email address in the email.</SPAN></I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"></SPAN></P>]]></td>
+</tr>
+</table>

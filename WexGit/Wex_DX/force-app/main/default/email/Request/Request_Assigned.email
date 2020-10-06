@@ -1,0 +1,5 @@
+The following request has been assigned to you.
+
+{!Request__c.Description__c}
+
+https://na12.salesforce.com/{!Request__c.Id}

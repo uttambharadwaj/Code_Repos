@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send follow-up to participants who have had their 1x1 with Kathryn.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>SPA 3x1 Read Out</name>
+    <style>freeForm</style>
+    <subject>Sales Performance Assessment Follow-Up</subject>
+    <textOnly>Background: Kathryn Connolly met with you to provide a 30-minute interpretation of your profile to discuss the following:
+
+Reviewed scores above 70% and below 30%
+Reviewed certain sets which may affect the overall profile
+Reviewed specific combinations of Sales Practices
+Reviewed specific combinations of Sales Motivators
+Discussed personal strengths and development opportunities identified by the individual
+Discussed next steps in developing your Sales Action Plan
+
+Our goal is to capitalize on the strengths you bring to the team as well as put in place a Sales Action Plan related to your identified development opportunities.  We want to ensure your continued success and grow your skills and talents as it relates to your work at WEX.
+
+
+Next Steps: As we discussed during your 1x1, we asked you to identify one or two behaviors to develop. During this meeting, you will share with your manager/team lead the actions steps you have outlined for yourself.
+
+
+In preparation of this meeting, please review your SPA results and complete your Sales Action Plan. See attached document.
+Review the Action Steps provided by Management Research Group providing suggestions on development.
+During the 3x1 meeting, you will discuss your Sales Action Plan with your manager. We will also review what support you need from sales training to move forward.
+
+
+Thank You,
+{!Case.OwnerFullName}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

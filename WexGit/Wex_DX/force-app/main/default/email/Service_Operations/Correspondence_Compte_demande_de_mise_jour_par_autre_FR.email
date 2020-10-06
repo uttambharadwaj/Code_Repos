@@ -1,0 +1,25 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Pour faire les changements du compte d’Esso Carte d’Affaire, il faut être contact autorisé. Ci-joint le formulaire de mise à jour des contacts. Vous pouvez ajouter et/ou supprimer un contact autorisé au compte et ensuite procédez aux modificatifs nécessaires pour votre accès en ligne à: www.essoparcautoenligne.com. Afin que nous puissions apporter les modifications demandées, ce formulaire doit être signé par une personne ayant autorité signataire au sein de votre entreprise (propriétaire , contrôleur, etc. ou un contact existant).  Le titre de la personne qui signe ce formulaire doit être inclus. Veuillez retourner le formulaire à cette adresse.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

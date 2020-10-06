@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Canada_Documents/Shell_Canada_Direct_Debit_PAD_Form_FR.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Approuvé sous prélèvement mensuel.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Credit Direct Debit Monthly_FR</name>
+    <style>freeForm</style>
+    <subject>Votre compte Shell est approuvé</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Vous pouvez maintenant profiter de notre programme de prélèvement automatique pour votre carte de carburant Shell. Ce programme nous permet de débiter le solde de votre carte directement de votre compte-chèques le 5e ou 26e jour de chaque mois pour les opérations du mois précédent.
+
+J’ai joint à la présente un formulaire obligatoire pour ce service. Veuillez prendre un moment pour le remplir, puis télécopiez-le-moi au {!User.Fax}, avec un chèque annulé.
+
+Une fois que j’aurai reçu le formulaire rempli, je vous appellerai afin de vérifier la configuration de votre compte avant l’émission de vos cartes. D’ici là, n’hésitez pas à communiquer avec moi si vous avez des questions.
+
+Merci d’avoir choisi le programme de carte de carburant Shell.
+
+Cordialement,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité  pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

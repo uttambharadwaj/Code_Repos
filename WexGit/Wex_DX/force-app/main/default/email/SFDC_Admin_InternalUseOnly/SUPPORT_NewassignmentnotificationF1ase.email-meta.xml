@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Internal notification to case owner when case is assigned. This is a copy of the original now in the Partner Global Templates folder for Partner and Internal User access, kept this here where It was originally before I locked down access to this folder.  TDM</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SUPPORT:  New assignment notification (F1 Case)</name>
+    <style>none</style>
+    <subject>Case # {!Case.CaseNumber}: {!Case.Subject} has been assigned to you.</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

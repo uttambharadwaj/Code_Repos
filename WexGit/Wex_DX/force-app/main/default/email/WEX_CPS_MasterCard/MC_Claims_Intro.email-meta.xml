@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>MasterCard ePayments for Claims introduction</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_Claims</letterhead>
+    <name>Claims Sector Intro</name>
+    <style>freeForm</style>
+    <subject>re: Wright Express ePayments for Claims</subject>
+    <textOnly>Pay Claims Faster &amp; Earn Financial Rebates
+
+Dear {!Contact.FirstName},
+
+I would like 30 minutes to introduce you to the easiest new revenue opportunity that you could start collecting this quarter.  Wright Express’ ePayment solution for claims payments provides you with a new payment option that replaces checks.  It’s a no-cost, solution that delivers money to your bottom line.  Even better—it integrates directly into your existing claims management and accounting systems.
+
+Key Benefits:
+
+    * Pay and close claims up to 7 days faster
+    * Reduce incidences of payment fraud and disputes
+    * Improve your team’s efficiency with automated reconciliations
+    * Interface with your existing claims management and accounting systems
+
+Wright Express is the only commercially chartered bank fully dedicated to addressing your business to business payment needs.   As such, you can expect continued investment in solutions, consultations and services to meet your needs.  Don’t let this revenue opportunity pass you by.
+
+I will follow up with a phone call to see about scheduling an initial discovery session.  In the meantime, please do not hesitate to contact me with questions.
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/claims
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

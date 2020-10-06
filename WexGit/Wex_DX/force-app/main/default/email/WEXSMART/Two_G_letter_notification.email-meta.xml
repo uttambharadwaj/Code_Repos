@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Information regarding AT and T shutdown of the 2G network</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Two_G_letter</name>
+    <style>none</style>
+    <subject>12G Network Shutdown - ACTION REQUIRED</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fleet version Welcome Email to new customer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Welcome Fleet - New Customer</name>
+    <style>freeForm</style>
+    <subject>Getting Started With Your Sheetz Business Edge Cards</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Welcome to the Sheetz Business Edge Card Program! With a few easy clicks you&apos;ll be up and running, saving money and time with the industry&apos;s leading fleet card program.
+
+Getting Started
+
+Get Online! Register at Sheetz Fleet Online and you can log in anytime, anywhere to review your account, set controls, cancel cards, schedule payments and more. It&apos;s the easiest way to manage your fuel and vehicle expenses.
+
+Distribute your cards and Driver IDs (DIDs). If they haven&apos;t yet arrived in the mail, please call me at {!User.Phone}.
+
+Start fueling and saving! The Sheetz Business Edge Card is accepted at over 450 Sheetz locations. Find accepting locations now.
+
+Thanks again, and welcome to the Sheetz Business Edge Card Program!
+
+
+Best regards,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

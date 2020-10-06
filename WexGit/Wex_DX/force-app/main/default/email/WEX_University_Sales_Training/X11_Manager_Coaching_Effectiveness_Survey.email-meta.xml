@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to Field Sales participants about receiving a Coaching</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>11. Manager Coaching Effectiveness Survey</name>
+    <style>freeForm</style>
+    <subject>Tell Us About Your Manager Coaching Experience</subject>
+    <textOnly>Manager Coaching Effectiveness
+
+Manager Coaching Program is an important part of achieving success throughout your Onboarding Journey and to help you become fully ramped as soon as possible.
+
+In order to continue to improve the program and enhance the Learning Journey for all our sales professionals, we are asking you to answer a brief survey based on your experience.
+
+Select https://wex.qualtrics.com/jfe/form/SV_26a5yuAz5E1WVzn to take the survey.
+Please complete this by next Friday.
+
+Email Sales Training with any questions.
+
+Thank You,
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

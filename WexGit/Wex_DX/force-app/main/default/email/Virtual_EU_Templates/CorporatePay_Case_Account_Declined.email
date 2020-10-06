@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><br></div><div><br></div><div>Hi {!Case.OwnerFirstName},</div><div><br></div><div>Your approval for the Case&nbsp;<a href="https://na5.salesforce.com/{!Case.Id}">{!Case.Subject}</a>&nbsp;has not been given.</div><div><br></div><div>Your manager has added these comments -</div><div><br></div><div>"{!ApprovalRequest.Comments}"</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font></i></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Prospect-facing email. &quot;Smarter than a credit card. Safer than cash. Savings on Every Gallon...&quot;</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>Sunoco: Smarter Than A Credit Card -- TYLER LAPLANTE</name>
+    <style>freeForm</style>
+    <subject>The Sunoco Fleet Program: Smarter than a Credit Card, Safer than Cash, Savings on Every Gallon at Sunoco</subject>
+    <textOnly>The Sunoco Fleet Program: Smarter than a Credit Card, Safer than Cash. And savings on every gallon at Sunoco.
+
+
+Whether you have one vehicle or one-thousand, take charge of your fueling expenses with the Sunoco Fleet Program.
+
+A Sunoco commercial fuel card is the perfect way to simplify your vehicle fueling and eliminate hours of paperwork.
+
+CONTROL WHAT YOU SPEND. Better security and controls -- like guardrails on your fuel spend.
+
+SEE WHAT YOU SPEND. The reporting you need, when you need it.
+
+MANAGE WHAT YOU SPEND. Simple online &amp; mobile account management.
+
+SAVE WHEN YOU SPEND. Save on every gallon at Sunoco.
+
+All backed by Sunoco-quality fuels and the confidence of having a local business relationship with your neighborhood Sunoco.
+
+The Sunoco Fleet Program will deliver smart fuel management and savings for your company. Don&apos;t wait any longer, act today.
+
+As incentive for your strong consideration, Sunoco is offering 25¢ off per gallon for the first 60 days followed by our competitive monthly fuel rebate of up to 6¢ off per gallon purchased at Sunoco-branded locations.
+
+You can reach me at 207-420-7472 or via email at tyler.laplante@wexinc.com.
+
+Sincerely,
+
+Tyler Laplante
+Channel Sales Manager | Sunoco Fleet Card Program
+WEX Inc. | 97 Darling Avenue, S. Portland, ME 04106
+(O) 207-523-6903 | (M) 207-420-7472
+tyler.laplante@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

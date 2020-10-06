@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Claim Review and Resolution Comments - Standard</name>
+    <style>freeForm</style>
+    <subject>Claim Review and Resolution Comments - Standard</subject>
+    <textOnly>CLAIM REVIEW AND RESOLUTION COMMENTS
+
+
+
+Fleet Credit Comments (WP or TILA):
+
+
+
+Account Comments - Credit Adjustment Request:
+
+**Adj req submitted in the amt of ${!Claim__c.Allowable_Dispute_Dollars__c} for dispute claim  {!Claim__c.Name}.
+
+
+
+Account Comments Credit Resolution:
+
+**Resolution email sent for dispute claim {!Claim__c.Name} w determination that fleet is receiving a credit due to WP for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}).The claim is closed.** Fleet Fraud Services.
+
+
+**Resolution email sent for dispute claim {!Claim__c.Name} w determination that fleet is receiving a credit due to TILA for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}).The claim is closed.** Fleet Fraud Services.
+
+
+Credit Resolution Email:
+
+
+
+Re: Dispute Claim No {!Claim__c.Name}
+
+
+
+Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+
+This letter is being sent in response to your recent dispute claim for transactions totaling ${!Claim__c.Allowable_Dispute_Dollars__c} on card {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) on the {!Claim__c.Partner_Formal_Name__c} account ending {!Claim__c.Program_Account_Masked__c}.  The occurrence of fraud, misuse or abuse on our card program is extremely unfortunate and we are sensitive to the potential business and financial hardships it can cause to our customers.
+
+
+
+As a result of your dispute and our review of your claim, we are processing a credit to your account for allowable disputed charges totaling ${!Claim__c.Allowable_Dispute_Dollars__c}.  This constitutes final resolution to the dispute claim identified above and does not apply to any other outstanding and/or future balances on the account.
+
+We appreciate your business and look forward to maintaining our relationship.
+
+
+Sincerely,
+
+Fleet Fraud Services
+
+Enclosure(s): Fleet Security Measures
+
+
+
+XX
+
+
+Fleet Liable Letter Verbiage and Account Comments
+
+
+
+Standard:
+
+Research and analysis by {!Claim__c.Partner_Formal_Name__c} Fraud Department produced the following information:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}, in combination with driver identification number (“DIN”) {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.
+There is no indication that any DIN guessing was attempted prior to the onset of the abuse which signifies that the perpetrator had knowledge of the DIN or that the DIN was not kept in a confidential manner.
+All disputed transactions occurred at an outside payment terminal (“OPT”),  the card was swiped with a valid DIN being keyed in the OPT; therefore there is no evidence of merchant involvement.
+
+**Resolution letter sent for claim {!Claim__c.Name} w determination that fleet is liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c}. on card  {!Claim__c.Abbreviated_Card__c} with DIN {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” per T&amp;Cs. All disputed trans were OPT, no DIN guessing, no indication of merchant involvement. The claim is closed** Fleet Fraud Services.
+
+Standard W/60-Day Verbiage for a portion of disputed sales:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c}  (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Claim_Dispute_End_Date__c}, in combination with driver identification number (“DIN”) {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}”. However, pursuant to the contractual agreement governing use of the account, the 60-day dispute period is limited to {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c} for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.
+
+
+**Resolution letter sent for claim {!Claim__c.Name} w determination that fleet is liable for allowable disputed charges on card(s)  {!Claim__c.Abbreviated_Card__c}  with DIN {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” per T&amp;Cs. Disputed transactions occurred between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Claim_Dispute_End_Date__c} however, pursuant to the contractual agreement governing use of the account, the allowable 60-day dispute period is limited to transactions that occur after {!Claim__c.Allowable_Dispute_Start_Date__c} totaling ${!Claim__c.Allowable_Dispute_Dollars__c}.  The claim is closed** Fleet Fraud Services.
+
+
+Total Dispute Exceeds 60-Days:
+
+**Dispute received from fleet for transactions on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Claim_Dispute_End_Date__c}. Resolution email sent to fleet to adv that pursuant to the contractual agreement governing use of the account, this is outside of the 60-Day allowable dispute period, therefore dispute claim {!Claim__c.Name} has been closed.** Fleet Fraud Services.
+
+
+Terminal Reporting Issue:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. The transactions in question appear to be legitimate fueling, but reporting an incorrect location due to a terminal data issue at the pump. The claim has been closed as no fraud detected.
+
+
+**Dispute received from fleet for transactions on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Resolution email sent to fleet to adv that the transactions in question appear to be legitimate fueling, but reporting an incorrect location due to a terminal data issue at the pump. The claim has been closed as no fraud detected.
+
+
+
+Disputed Transactions Never Posted to Account:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. It appears that the transactions in question did not post to the account; therefore there is nothing to dispute. The claim has been closed.
+
+
+**Dispute received from fleet for transactions on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Resolution email sent to fleet to adv that the transactions in question did not post to the account; therefore there is nothing to dispute. The claim has been closed.
+
+
+WP Declined Transactions – Nothing to Dispute:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between v. It appears that the transactions in question were declined and did not post to the account; therefore there is nothing to dispute. The claim has been closed.
+
+
+**Dispute received from fleet for transactions on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Resolution email sent to fleet to adv that the transactions in question were declined and did not post to the account; therefore there is nothing to dispute. The claim has been closed.
+
+
+Data Error File Issues (Trans Type = COR):
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. It appears that a file error issue occurred where the disputed transactions all posted to the account on the same date in a correction file.  Transactions appear to be consecutive and legitimate fueling; a data issue is not fraudulent activity. The claim has been closed as “no Fraud Detected”.
+
+
+**Dispute received from fleet for transactions on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Resolution email sent to fleet to adv that there appears to have been a file error issue where the disputed transactions all posted to the account on the same date in a correction file.  Transactions appear to be legitimate fueling; a data issue is not fraudulent activity. The claim has been closed as “no Fraud Detected”.
+
+
+
+Fleet disputed Auth Controls but No Auth controls on card:
+
+Research and analysis by {!Claim__c.Partner_Formal_Name__c} Fraud Department produced the following information:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c}  between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}, in combination with driver identification number (“DIN”) {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}”.
+There is no indication that any DIN guessing was attempted prior to the onset of the abuse which signifies that the perpetrator had knowledge of the DIN or that the DIN was not kept in a confidential manner.
+All disputed transactions occurred at an outside payment terminal (“OPT”),  the card was swiped with a valid DIN being keyed in the OPT; therefore there is no evidence of merchant involvement.
+Our records revealed there were no controls assigned to the card prior to the abuse on your account.
+
+
+**Resolution letter sent for claim {!Claim__c.Name} w determination that fleet is liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card  {!Claim__c.Abbreviated_Card__c} with DIN {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” per T&amp;Cs. No indication of DIN guessing prior to the onset of the abuse which signifies that the perp had knowledge of the DIN, all disputed trans were OPT, no indication of merch inv, Research revealed no controls were assigned to the card prior to the onset of abuse. Adv to contact e-services for online control assistance.** Fleet Fraud Services.
+
+
+Apparent Authority (all OPT):
+
+**Resolution letter sent for claim {!Claim__c.Name} w determination that fleet is liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) with DIN {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” per T&amp;Cs. No DIN guessing prior to the onset of the abuse, all disputed trans were OPT, no indication of merchant involvement. No other factors presented to indicate that anyone other than a driver for {!Claim__c.Account_Name__c} (who would be authorized users of the account) made the purchases.** Fleet Fraud Services.
+
+
+Ordered Receipts for some sales:
+
+Research and analysis by {!Claim__c.Partner_Formal_Name__c} Fraud Department produced the following information:
+
+Disputed transactions occurred on card  {!Claim__c.Abbreviated_Card__c} (ID: {!Claim__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}, in combination with driver identification number (“DIN”) {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.
+No attempt to guess at the DIN was made prior to the onset of the abuse.  This would indicate that the perpetrator had knowledge of the DIN or that the DIN was not kept in a confidential manner.
+Disputed transactions totaling {!Claim__c.Ticket_Request_Amount__c} occurred inside merchant locations and as a result, we have requested copies of those receipts on your behalf.  Once received, the copies will be mailed to your attention.
+The remaining disputed transactions occurred at an outside payment terminal (“OPT”), the card was swiped and a valid DIN was keyed in the OPT. Therefore, there is no available evidence of merchant involvement.
+
+
+**Resolution letter sent for claim {!Claim__c.Name} w determination that fleet is liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card  {!Claim__c.Abbreviated_Card__c} with DIN {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” per T&amp;Cs. No indication of DIN guessing prior to the onset of the abuse which signifies that the perp had knowledge of the DIN. Adv fleet that ${!Claim__c.Ticket_Request_Amount__c} of trans were inside trans, tickets ordered. Adv fleet that remaining disputed trans were OPT, no indication of merchant inv.** Fleet Fraud Services.
+
+
+Tickets Charged back to Merchant:
+
+**Resolution sent for claim {!Claim__c.Name}, Allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card(s) {!Claim__c.Abbreviated_Card__c} has been charged back to the merchant. The dispute claim is closed.** Fleet Fraud Services.
+
+
+Closed – No Contact:
+
+**Dispute claim {!Claim__c.Name} has been closed as the information requested in order to proceed has not been received. Pursue collections BAU.** Fleet Fraud Services.
+
+
+Resolution Settlement Offer:
+
+**Resolution Settlement Offer Letter sent for dispute claim {!Claim__c.Name} w/ determination that the fleet is liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c}. However, WEX has extended a settlement offer of $XXXX.XX, with the Acknowledgment/ Acceptance Copy to be signed by the fleet and returned to WEX no later than XX/XX/XXXX. (Disputed trans occurred on card  {!Claim__c.Abbreviated_Card__c} between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Claim_Dispute_End_Date__c}. Pursuant to the contractual agreement governing use of the account, the 60-day dispute period is limited to {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c} for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.)** Fleet Fraud Services.
+
+
+Rebuttal Resolution:
+
+**Rebuttal resolution letter sent to fleet w/ final determination that fleet remains liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} on card {!Claim__c.Abbreviated_Card__c} with DIN {!Claim__c.DIN__c} assigned to &quot;{!Claim__c.Driver_Name__c}” per T&amp;Cs. The claim is closed.** Fleet Fraud Services.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

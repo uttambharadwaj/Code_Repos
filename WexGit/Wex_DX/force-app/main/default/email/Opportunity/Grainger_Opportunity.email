@@ -1,0 +1,34 @@
+The following opportunity has been entered in SalesForce.  In order for Grainger/BiZUnite to receive and follow up, the information must be re-entered at: https://truckersb2b.bizunite.com/marketplace/pages/External.html#id=542
+
+******************************************************************
+
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Estimated Volume: {!Opportunity.Estimated_Volume__c}
+Shipping Address Same As Billing: {!Opportunity.Shipping_Address_Same_As_Billing__c}
+New or Existing Grainger Account: {!Opportunity.New_or_Existing_Grainger_Account__c}
+
+Current Business with:
+Grainger : {!Opportunity.Current_Grainger_Business__c}
+Fastenal: {!Opportunity.Current_Fastenal_Business__c}
+McMaster-Carr: {!Opportunity.Current_McMaster_Carr_Business__c}
+MSC: {!Opportunity.Current_MSC_Business__c}
+Lowes: {!Opportunity.Current_Lowes_Business__c}
+Home Depot: {!Opportunity.Current_Home_Depot_Business__c}
+Local Cleaning Supplier: {!Opportunity.Current_Local_Cleaning_Supplier_Business__c}
+Local Misc Supplier: {!Opportunity.Current_Local_Misc_Supplier_Business__c}
+Other: {!Opportunity.Current_Other_Business__c}
+
+Comments: {!Opportunity.Vendor_Comments__c}

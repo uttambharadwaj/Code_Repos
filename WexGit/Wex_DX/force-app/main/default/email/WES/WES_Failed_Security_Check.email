@@ -1,0 +1,8 @@
+<p>The Application for {!WES_Application_Request__c.Company_Name__c} failed the Security Check by {!User.Name} due to the following reason.</p> 
+
+<p>Security Check Failure Reason: <b>{!WES_Application_Request__c.Security_Check_Failure_Reason__c}</b><br/>
+{!ApprovalRequest.Comments}
+</p>
+
+
+<p>Please update the <a href="{!WES_Application_Request__c.Link}">Application</a> and resubmit an Approval request once the issue has been resolved.

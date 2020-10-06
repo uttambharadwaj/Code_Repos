@@ -1,0 +1,19 @@
+Hi {!Lead.FirstName},
+
+I just tried calling, but I wanted to send you a quick email in case this is more convenient for you. I'm following up on your recent interest in our fuel card. 
+
+The Fleet One EDGE OTR card offers the most extensive and comprehensive fuel discount network available with fuel discounts at over 3,600 sites and average savings of 15 cents per gallon*, plus thousands of additional savings to keep your fleet moving.
+
+I'd love to go over the fuel card and its benefits in detail with you and answer any questions you may have. Feel free to give me a call back or reply to this email at your earliest convenience, otherwise I will try you back tomorrow. 
+
+Thank you, and I look forward to speaking with you.
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+
+
+*The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network pricing at all.

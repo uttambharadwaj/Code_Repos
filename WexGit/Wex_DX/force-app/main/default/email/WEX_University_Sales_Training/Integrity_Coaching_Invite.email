@@ -1,0 +1,57 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial;"><p class="MsoNormal" align="center" style="text-align: center; font-family: arial; color: rgb(0, 0, 0); line-height: 150%;"><span style="line-height: 150%;"><font face="Verdana, Helvetica, sans-serif"><font size="1">Watch for your Outlook Calendar invite for</font><br></font></span><b style="font-size: 12pt;"><span style="line-height: 150%;"><font face="Verdana, Helvetica, sans-serif"><font size="2">WEX
+Sales University’s Integrity Coaching® Course<br></font></font></span></b><font size="1"><span style="font-family: Verdana, Helvetica, sans-serif;">DATE:{!Case.Class_Start_Date_del__c}&nbsp;<br></span><span style="font-family: Verdana, Helvetica, sans-serif;">TIME FRAME: 8:30 am- 5:00 pm&nbsp;<br></span><font face="Verdana, Helvetica, sans-serif" style="font-family: Verdana, Helvetica, sans-serif;">WEX Campus:&nbsp;</font><font face="Verdana, Helvetica, sans-serif" style="font-family: Verdana, Helvetica, sans-serif;">{!User.City},&nbsp;{!User.State}&nbsp;<br></font><font face="Verdana, Helvetica, sans-serif" style="font-family: Verdana, Helvetica, sans-serif;">Your Host:&nbsp;</font><font face="Verdana, Helvetica, sans-serif" style="font-family: Verdana, Helvetica, sans-serif;">{!Case.OwnerFullName}</font></font></p></div><div align="center" style="font-size: 12pt; font-family: arial; text-align: left;"><font size="1"><b style="color: rgb(0, 0, 0); font-family: Verdana, Helvetica, sans-serif;">What is <span style="color: rgb(54, 95, 145);">Integrity Coaching?<br><br></span></b><b style="color: rgb(0, 0, 0); font-family: Verdana, Helvetica, sans-serif; background-color: white;"><span style="color: rgb(54, 95, 145);">Integrity Coaching®</span></b><b style="color: rgb(0, 0, 0); font-family: Verdana, Helvetica, sans-serif; background-color: white;">&nbsp;</b><span style="font-family: Verdana, Helvetica, sans-serif;"><span style="background-color: white;">is a
+developmental process that equips managers with the knowledge, skills, and
+tools to improve sales performance and develop people to their highest
+potential.&nbsp; It is based on the belief that coaching begins with building
+people.</span><span style="background-color: rgb(255, 255, 255);"><br></span></span></font><b style="color: rgb(0, 0, 0); font-size: 12pt;"><font face="Verdana, Helvetica, sans-serif" size="1"><font color="#365f91">Integrity Coaching Includes:</font></font></b></div><div align="center" style="color: rgb(0, 0, 0); font-size: 12pt; text-align: center;"><ul><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1"><font>A simple 5-step coaching system</font></font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Strategies for coaching
+     different Behavioral Styles</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">An <u>eight-week follow-up</u>
+     course with accountability for application</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">A leadership model that focuses
+     on achieving a balance between developing people and reaching goals</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1"><font>Strategies for breakin<font face="arial" style="color: rgb(0, 0, 0);">g the Law
+     of Limited Performance</font></font></font></li></ul><p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; text-align: left; line-height: 18pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="1"><b><span style="color: rgb(54, 95, 145);">Sales Leaders who
+participate in Integrity Coaching will</span></b><span style="font-weight: bold;">:</span><br></font></p><ul style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Develop stronger coaching
+     skills</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Build performance through
+     building people</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Empower people to solve
+     problems and make decisions</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Keep people from plateauing</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Help people develop strong goal
+     clarity</font></li></ul><p style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; text-align: left; line-height: 18pt; background: white;"><b><span style="color: rgb(54, 95, 145);"><font face="Verdana, Helvetica, sans-serif" size="1">Integrity Coaching
+Principles:<o:p></o:p></font></span></b></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; text-align: left; line-height: 18pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="1">Integrity Coaching is based on the
+fundamental beliefs that coaching is:<o:p></o:p></font></p>
+
+<ul type="disc" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;">
+ <li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Building people and helping
+     them build your team and organization</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Identifying potential in people</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Helping people set goals and
+     accomplish them</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Believing in someone at a
+     greater level than they believe in themselves</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Equipping people to become
+     self-sufficient in their growth</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Sincerely caring about the
+     success of others and investing time and energy to promote that success</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Helping others develop a sense
+     of purpose and vision for their professional and personal life</font></li><li style="text-align: left;"><font face="Verdana, Helvetica, sans-serif" size="1">Working with someone to
+     identify meaningful, tangible, and attainable goals</font></li>
+ 
+ 
+ 
+ 
+ 
+ 
+</ul>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; text-align: left; line-height: 18pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="1"><b><span style="color: rgb(54, 95, 145);">Timeline for Behavior
+Change:</span></b><b><span style="color: rgb(31, 73, 125);"><o:p></o:p></span></b></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; text-align: left; line-height: 115%;"><span style="line-height: 115%;"><font face="Verdana, Helvetica, sans-serif" size="1">The objective to
+Integrity Coaching is to support the consistent application of new coaching
+behaviors.&nbsp; Coaching processes and tools are introduced in highly
+interactive one-day seminar.<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; text-align: left; line-height: 115%;"><font size="1" face="Verdana, Helvetica, sans-serif">Skills are reinforced
+during a structured <u>eight-week follow-up course</u> where participants
+practice developmental coaching, report on progress, and learn from coaching
+experiences of their peers.&nbsp; These one-hour follow-up modules will be
+delivered through classroom, teleconference, or webinar.</font></p></div><div style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"></div>]]></td>
+</tr>
+</table>

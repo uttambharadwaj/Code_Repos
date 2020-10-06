@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to update the Business Requestor on status of System Access Verification.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Salesforce_Support_letterhead</letterhead>
+    <name>System Access Verification Update</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.CaseNumber} {!Case.Subject}</subject>
+    <textOnly>{!Case.LastModifiedDate}
+
+{!Case.User__c},
+
+Here&apos;s an update on the verification of the System Access Request for {!Case.Participant__c}:
+
+{!Case.Content_Info_Needed__c}
+
+Thank you,
+{!Case.OwnerFullName}
+Sales Operations &amp; Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

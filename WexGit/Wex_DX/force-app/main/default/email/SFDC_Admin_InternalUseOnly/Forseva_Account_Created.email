@@ -1,0 +1,9 @@
+The following Account record has been created as a result of the Forseva Online Credit Application process.
+
+Please review and process this account:
+
+{!Account.Name}
+{!Account.Link}
+
+
+Thank you.

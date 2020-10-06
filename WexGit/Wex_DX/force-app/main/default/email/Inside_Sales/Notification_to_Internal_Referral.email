@@ -1,0 +1,10 @@
+Hi {!Opportunity.Internal_Referral__c}, 
+
+The opportunity your referred, "{!Opportunity.Name}," has been marked as {!Opportunity.StageName}. 
+
+Telematics Rep: {!Opportunity.Telematics_Rep__c} 
+Number of Units: {!Opportunity.Number_of_Units__c} 
+
+Please follow this link {!Opportunity.Link} to view the opportunity 
+
+Thank you

@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>WEX Fleet Card Advantages</title>
+      <style type="text/css">
+         /* Client-specific Styles */
+         /* Force Outlook to provide a "view in browser" menu link. */
+         #outlook a {padding:0;}
+         /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+         body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
+         /* Force Hotmail to display emails at full width */
+         .ExternalClass {width:100%;} 
+         /* Force Hotmail to display normal line spacing.  */
+         .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+         #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+         img {outline:none; text-decoration:none;border:none; -ms-interpolation-mode: bicubic;}
+         a img {border:none;}
+         .image_fix {display:block;}
+         p {margin: 0px 0px !important;}
+         table td {border-collapse: collapse;}
+         table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;}
+         /*STYLES*/
+         table[class=full] { width: 100%; clear: both; }
+         /*IPAD STYLES*/
+         @media only screen and (max-width: 640px) {
+         a[href^="tel"], a[href^="sms"] {
+         text-decoration: none;
+         color: #9ec459; /* or whatever your want */
+         pointer-events: none;
+         cursor: default;
+         }
+         .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+         text-decoration: default;
+         color: #9ec459 !important;
+         pointer-events: auto;
+         cursor: default;
+         }
+         table[class=devicewidth] {width: 440px!important;text-align:left!important;}
+         td[class=devicewidth] {width: 440px!important;text-align:left!important;}
+         img[class=devicewidth] {width: 440px!important;text-align:left!important;}
+         img[class=banner] {width: 440px!important;height:103px!important;}
+         table[class=devicewidthinner] {width: 420px!important;text-align:left!important;}
+         table[class=icontext] {width: 345px!important;text-align:left!important;}
+         img[class="colimg2"] {width:420px!important;height:243px!important;}
+         img[class="colimg3"] {width:291px!important;height:218px!important;padding-left:80px;}
+         table[class="emhide"]{display: none!important;}
+         img[class="logo"]{width:440px!important;height:110px!important;}
+         }
+         /*IPHONE STYLES*/
+         @media only screen and (max-width: 480px) {
+         a[href^="tel"], a[href^="sms"] {
+         text-decoration: none;
+         color: #9ec459; /* or whatever your want */
+         pointer-events: none;
+         cursor: default;
+         }
+         .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+         text-decoration: default;
+         color: #9ec459 !important; 
+         pointer-events: auto;
+         cursor: default;
+         }
+         table[class=devicewidth] {width: 310px!important;text-align:left!important;}
+         td[class=phonewidth] {width: 300px!important;text-align:left!important;}
+         td[class="emhide"]{display: none!important;}
+         img[class=devicewidth] {width: 310px!important;text-align:left!important;}
+         img[class=banner] {width: 310px!important;height:73px!important;}
+         table[class=devicewidthinner] {width: 300px!important;text-align:left!important;}
+         table[class=icontext] {width: 200px!important;text-align:left!important;}
+         img[class="colimg2"] {width:420px!important;height:243px!important;}
+         img[class="colimg3"] {width:291px!important;height:218px!important;padding-left:80px;}
+         table[class="emhide"]{display: none!important;}
+         img[class="logo"]{width:310px!important;height:110px!important;}
+         }
+      </style>
+   </head>
+   <body style="background-color:#E8EAED;font-family:'Opens Sans', Arial, sans-serif;font-size:14px;">
+      <!-- here we go... -->
+      <table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="font-family:'Opens Sans', Arial, sans-serif;">
+         <tbody>
+            <tr>
+               <td>
+                  <table width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                     <tbody>
+                        <tr>
+                           <td width="100%">
+                              <!-- 1 column headers /-->
+                              <table bgcolor="#ffffff" width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <table width="640" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                                             <tbody>
+                                                <!-- Header 1-->
+                                                <tr>
+                                                   <td width="100%" style="color: #333333; text-align:center;">
+                                                      <img src="http://www.wexhosted.com/esp_assets/campaigns/mvf/header.jpg" width="640" height="150" alt="WEX Fleet Card" style="margin:0;display: block;" class="banner">
+                                                   </td>
+                                                </tr>
+                                                <!-- /header 1 -->
+                                                <!-- spacing -->
+                                                <tr height="20">
+                                                   <td width="100%" height="20" bgcolor="#3a97b5" style="width: 100%; height: 20px; background-color: #3a97b5;"></td>
+                                                </tr>
+                                                <tr height="20">
+                                                   <td width="100%" height="20" bgcolor="#ffffff" style="width: 100%; height: 20px; background-color: #ffffff;"></td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                              <!-- End headers /-->
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <!-- end of textbox-with-title -->
+      <!-- start textbox-with-title -->
+      <table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+         <tbody>
+            <tr>
+               <td align="center">
+                  <table width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                     <tbody>
+                        <tr>
+                           <td width="100%" align="center">
+                              <table bgcolor="#ffffff" width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                 <tbody>
+                                    <tr>
+                                       <td align="center">
+                                          <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                                             <tbody>
+                                                <!-- Title -->
+                                                <tr>
+                                                   <td width="100%" align="center" bgcolor="#ffffff" style="line-height:24px;font-family:'Opens Sans', Arial, sans-serif;color:#e51935;font-size: 23px;background-color: #ffffff;"><strong>WEX FLEET CARD ADVANTAGES</strong>
+                                                   </td>
+                                                </tr>
+                                                <tr>
+                                                   <td style="font-family: Helvetica, arial, sans-serif; font-size: 16px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
+                                                      Thank you for your interest in our fleet card programs. Apply today and get on the road to cutting your fleet fuel costs! 
+                                                   </td>
+                                                </tr>
+                                                <!-- End of Title -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                   <td width="100%" height="10"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                         		<tr>
+                                                    <td>
+                                                        <table border="0" cellspacing="0" cellpadding="0" align="center">
+                                                            <tr>
+                                                                <td align="center" style="-webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;" bgcolor="#fec524">
+                                                                    <a href="https://www.universal.wexinc.com/boca/public_gotoCreditFlow.do?_flowId=flow-creditApp&locationCode=&couponCode=HQX" target="_blank" style="font-size: 18px; font-family: Arial, sans-serif; font-weight: bold; color: #333333; text-decoration: none; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; padding: 12px 18px; border: 1px solid #333333; display: inline-block;">
+                                                                        <!--[if mso]>&nbsp;<![endif]-->APPLY TODAY<!--[if mso]>&nbsp;<![endif]-->
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                   <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                             	<tr>
+                                                   <td style="font-family: Helvetica, arial, sans-serif; font-size: 16px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
+                                                      In addition to our WEX Fleet Card, we also manage the fleet card programs for many oil companies and regional c-stores, many offering some of the best fuel rebates available.  
+                                                   </td>
+                                                </tr>
+                                             	<!-- Spacing -->
+                                                <tr>
+                                                   <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <!-- end of textbox-with-title -->
+      <!-- Start of 2-columns -->
+      <table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+      <tbody>
+         <tr>
+            <td>
+               <table bgcolor="#ffffff" width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <table width="400" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <!-- start of column 1 -->
+                                       <table width="390" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                          <tbody>
+                                             <tr>
+                                                <td width="390" style="font-family: Helvetica, arial, sans-serif; font-size: 14px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;"> All our universal cards offer the following advantages:</td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr>
+                                                <td width="100%" height="10" colspan="2"></td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr>
+                                                <td width="100%" align="left" bgcolor="#ffffff" class="devicewidth">
+                                                   <table align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="325" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;font-size: 14px" class="phonewidth">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/universal-acceptance?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important">FUEL ACROSS US AND CANADA</a><br>
+                                                               <strong>Our fleet cards are accepted at over 90% of gas stations.</strong><br>
+                                                               Your drivers can fill up almost anywhere and choose the lowest price station.  <a href="http://www.wexcard.com/fleet/swipe-smarter/universal-acceptance?cc=HQX" style="color: #000000;font-size:14px; font-weight: bold; text-decoration: underline!important">Learn&nbsp;more&nbsp;&#187;</a>
+                                                            </td>
+                                                            <td width="65" class="emhide">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/universal-acceptance?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important"><img src="http://www.wexhosted.com/esp_assets/campaigns/mvf/Icon_Pinpoint57x65.png" alt="fuel-map" width="57" height="65"></a>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr height="20">
+                                                <td width="100%" height="20" colspan="2"></td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr>
+                                                <td width="390" height="100" align="left" class="devicewidth" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;background-color: #ffffff;font-size: 14px">
+                                                   <table align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="65" class="emhide">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/reduced-paperwork?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important"><img src="http://www.wexhosted.com/esp_assets/campaigns/mvf/Icon_Report65x65.png" alt="no-receipts" width="65" height="65"></a>
+                                                            </td>
+                                                            <td width="325" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;background-color: #ffffff;font-size: 14px" class="phonewidth">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/reduced-paperwork?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important">SIMPLIFY YOUR RECEIPT TRACKING</a><br>
+                                                               <strong>No need to collect paper receipts. Compile automatic tax reports.</strong><br>
+                                                               Save yourself and your bookkeeper time and money.  <a href="http://www.wexcard.com/fleet/swipe-smarter/reduced-paperwork?cc=HQX" style="color: #000000;font-size:14px; font-weight: bold; text-decoration: underline!important">Learn&nbsp;more&nbsp;&#187;</a>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr height="20">
+                                                <td width="100%" height="20">
+                                                </td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr>
+                                                <td width="100%" height="100" align="left" class="devicewidth" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;background-color: #ffffff;font-size: 14px">
+                                                   <table align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="339" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;background-color: #ffffff;font-size: 14px">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/tracking-spending-controls?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important">PREVENT UNAUTHORIZED PURCHASES</a><br>
+                                                               <strong>Define what your drivers are allowed to purchase, when, where and how much.</strong><br>
+                                                               Ensure your expenses are legitimate.  <a href="http://www.wexcard.com/fleet/swipe-smarter/tracking-spending-controls?cc=HQX" style="color: #000000;font-size:14px; font-weight: bold; text-decoration: underline!important">Learn&nbsp;more&nbsp;&#187;</a>
+                                                            </td>
+                                                            <td width="51" class="emhide">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/tracking-spending-controls?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important"><img src="http://www.wexhosted.com/esp_assets/campaigns/mvf/Icon_Lock51x65.png" alt="lock" width="51" height="65"></a>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr height="20">
+                                                <td width="100%" height="20">
+                                                </td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <tr>
+                                                <td width="100%" height="100" align="left" class="devicewidth" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;background-color: #ffffff;font-size: 14px">
+                                                   <table align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td width="70" align="left" class="emhide">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/no-pain-at-the-pump?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important"><img src="http://www.wexhosted.com/esp_assets/campaigns/mvf/Icon_Laptop70x58.png" alt="laptop" width="70" height="58"></a>
+                                                            </td>
+                                                            <td width="320" style="line-height:20px;font-family:'Opens Sans', Arial, sans-serif;background-color: #ffffff;font-size: 14px">
+                                                               <a href="http://www.wexcard.com/fleet/swipe-smarter/no-pain-at-the-pump?cc=HQX" style="color: #e51935;font-size:14px; font-weight: bold; text-decoration: underline!important">EASY ONLINE ACCOUNT MANAGEMENT</a><br>
+                                                               <strong>Quickly activate or deactivate cards and drivers. Pay online and view invoices.</strong><br>
+                                                               You’re in control with 24/7 access.  <a href="http://www.wexcard.com/fleet/swipe-smarter/no-pain-at-the-pump?cc=HQX" style="color: #000000;font-size:14px; font-weight: bold; text-decoration: underline!important">Learn&nbsp;more&nbsp;&#187;</a>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </td>
+                                 </tr>
+                                 <!-- Spacing -->
+                                 <tr height="10">
+                                    <td width="100%" height="10"></td>
+                                 </tr>
+                                 <!-- Spacing -->
+                              </tbody>
+                           </table>
+                           <!-- end of column 1-->
+                           <!-- start of column 2-->
+                           <table width="220" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                              <tbody>
+                                 <!-- Spacing -->
+                                 <tr>
+                                    <td width="200" style="width: 200px;">
+                                       <!-- start of text content table -->
+                                       <table width="212" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                          <tbody>
+                                             <tr>
+                                                <td>
+                                                   <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+                                                      <tbody>
+                                                         <tr>
+                                                            <td align="center"><img src="http://www.wexhosted.com/esp_assets/campaigns/mvf/MVFpartnerlogos.png"></td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </td>
+                                             </tr>
+                                             <!-- Spacing -->
+                                             <!-- Spacing -->
+                                          </tbody>
+                                       </table>
+                                    </td>
+                                 </tr>
+                                 <!-- end of text content table -->
+                              	<!-- Spacing -->
+                                 <tr>
+                                    <td width="100%" height="10"></td>
+                                 </tr>
+                                 <!-- Spacing -->
+                              	<tr>
+                                    <td>
+                                        <table border="0" cellspacing="0" cellpadding="0" align="center">
+                                            <tr>
+                                                <td align="center" style="-webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;" bgcolor="#3a97b5">
+                                                    <a href="http://www.wexinc.com/fleet/?cc=HQX" target="_blank" style="font-size: 18px; font-family: Arial, sans-serif; color: #ffffff; text-decoration: none; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; padding: 12px 18px; border: 1px solid #333333; display: inline-block;">
+                                                        <!--[if mso]>&nbsp;<![endif]-->Pick Your Card<!--[if mso]>&nbsp;<![endif]-->
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                 <!-- Spacing -->
+                                 <tr>
+                                    <td width="100%" height="10"></td>
+                                 </tr>
+                                 <!-- Spacing -->
+                              </tbody>
+                           </table>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+         </tr>
+      </table>
+      <!-- End of 2-columns --> 
+      <!-- start textbox-with-title -->
+      <table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+         <tbody>
+            <tr>
+               <td align="center">
+                  <table width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                     <tbody>
+                        <tr>
+                           <td width="100%" align="center">
+                              <table bgcolor="#ffffff" width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                 <tbody>
+                                    <tr>
+                                       <td align="center">
+                                          <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                                             <tbody>
+                                                <!-- Title -->
+                                                <tr>
+                                                   <td style="font-family: Helvetica, arial, sans-serif; font-size: 16px; font-weight:bold; color: #333333; text-align:left;line-height: 24px;">
+                                                      A representative will be calling you shortly to discuss your needs and help recommend which program fits you best.  In the meantime, if you’d like to see which of our programs are offered in your market and some details on their locations and rebates, <a href="http://www.wexinc.com/fleet/?cc=HQX" targe="_blank" style="color: #e51935">visit our card configurator</a>. <br><br>
+                                                      Again, thank you for your interest in our programs.  
+                                                   </td>
+                                                </tr>
+                                                <!-- End of Title -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                   <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <!-- end of textbox-with-title -->
+      <!-- footer here -->
+      <table width="100%" bgcolor="#e8eaed" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+         <tbody>
+            <tr>
+               <td align="center">
+                  <table width="640" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                     <tbody>
+                        <tr>
+                           <td width="100%" align="center">
+                              <table width="100%" bgcolor="#3a97b5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="font-family:'Opens Sans', Arial, sans-serif;font-size:12px">
+                                 <tbody>
+<tr><td height="15"></td></tr>
+                                    <tr>
+                                       <td height="30" bgcolor="#3a97b5" width="100%" style="padding:10px;font-family: Arial, sans-serif;font-size:10px;color:#ffffff;">
+
+This email was sent to {!Contact.Email}. We sent you this email in response to a fleet card inquiry. If you no longer wish to receive future email messages from WEX, Inc., you may instantly <a href="http://app.response.wexinc.com/e/f2.aspx?elqFormName=WEXInc_Unsubscribe_FooterForm&elqSiteID=2439&EmailAddress={!Contact.Email}">unsubscribe.</a> <br />
+            <br />
+            WEX, Inc.|&nbsp; 97 Darling Avenue&nbsp; |&nbsp; South Portland, ME 04106&nbsp; |&nbsp; USA&nbsp; |&nbsp; <a href="http://www.wexinc.com/privacy-policy" title="Fleet Services Privacy Policy">Privacy Policy</a>
+                                       </td>
+                                    </tr>
+<tr><td height="15"></td></tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>

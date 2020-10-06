@@ -1,0 +1,14 @@
+{!Contact.FirstName}
+
+In order to finalize your {!OnlineApplicationOffer__c.Name} fuel card set up, we will need the following scanned and emailed to me at {!User.Email} :
+
+* Voided check from the the bank account you listed on your application.
+(If you do not have checks, please request a letter from your financial institution with the name/owner of the account and the routing and checking account number listed on it.)
+
+
+Any questions, email or call me.
+
+Thank you!
+{!User.FirstName} {!User.LastName}
+{!User.Phone}
+{!User.Email}

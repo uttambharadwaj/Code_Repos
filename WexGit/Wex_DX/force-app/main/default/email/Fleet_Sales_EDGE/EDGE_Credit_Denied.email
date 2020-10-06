@@ -1,0 +1,11 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><font size="2"><br></font></div>
+<div style="color: rgb(0, 0, 0); font-family: arial;"><font style="color: rgb(0, 0, 0); font-family: arial;" size="2" face="Arial, sans-serif">Hello&nbsp;</font><font size="2" face="Arial, sans-serif">{!OnlineApplication__c.Contact_Name__c}<br><br><font face="arial">Thank you for your interest in the </font><b style="color: rgb(0, 0, 0); font-family: arial;">Fleet One EDGE</b><font face="arial"> discount network. At this time, we are unable to approve a line of credit with the information you provided. You may still open an account for your company by choosing one of the following options:</font><br><br>
+<ul style="color: rgb(0, 0, 0); font-family: arial;">
+<li><strong>Add a second Guarantor.</strong> For example, a business partner, co-owner, spouse or anyone who would be willing to provide their information to establish a credit line for your business. If you choose this option, I can re-send your application for your co-signer to complete.<br><br>
+</li><li><strong>Start a Pre-Funded fuel account.</strong> You may send guaranteed funds to prefund your account via bank wire, Western Union or 3rd party industry checks (Comchecks, Tcheks). With this option, you will receive the same immediate benefits as our credit line accounts including rebates, reporting, security and control.<br><br></li></ul>
+<div style="color: rgb(0, 0, 0); font-family: arial;">Once you've selected your preferred option, or if you should have any additional questions, please feel free to contact me directly or simply respond to this email.<br><br>Thank you,<br>{!OnlineApplication__c.OwnerFullName}<br>{!OnlineApplication__c.OwnerTitle}<br>WEX Fleet One<br>Phone:&nbsp;{!OnlineApplication__c.OwnerPhone} | Fax:&nbsp;{!OnlineApplication__c.Owner_Fax__c}<br>{!OnlineApplication__c.OwnerEmail} | www.fleetoneedge.com<br><br></div></font></div>]]></td>
+</tr>
+</table>

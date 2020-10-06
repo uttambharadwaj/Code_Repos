@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to training managers to inform about LAMP</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>LAMP Message to Managers</name>
+    <style>freeForm</style>
+    <subject>Large Account Management Process Training Managers</subject>
+    <textOnly>WEX Global Sales Operations and Training is about to make an investment in strengthening our sales process disciplines. This initiative will begin with a WebEx launch meeting the week of DATE and will continue throughout 2019 and beyond.
+
+
+The initial structured sales methodology to be taught and adopted will be Miller Heiman’s Large Account Management Process (LAMP). Our ultimate objective is to achieve sustainable, long-term competitive advantage through the differentiation of our sales organizations. The two-day LAMP training has been scheduled for {!Case.Class_Start_Date_del__c} and will be offered in the {!Case.Location__c} office located at ADDRESS.
+
+To the extent we do this well, we build “currency” with our customers and prospects. To the degree we do it tangibly better than the competition, we distinguish ourselves in the market and build sustainable advantage. With the right tools, training and reinforcement, I believe we will induce new behaviors that will elevate our stature in the eyes of all of our constituencies. To be thought leaders in the changing times ahead, we must demonstrate three broad capabilities:
+
+1) a clear and early view of market needs
+2) a thorough understanding of the implication of those needs
+3) the agility to satisfy them more rapidly than our competitors
+
+Next Steps:
+A description of the program is attached. You will soon be contacted by Manager to schedule an initial discovery call with managers. I urge you to communicate to you team your expectations to participate in this learning experience.
+
+I am counting on your commitment and thank you in advance for your support of this important initiative.
+
+
+Thank You,
+{!Case.OwnerFullName}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

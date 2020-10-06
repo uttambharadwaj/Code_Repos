@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2014 APA Congress #1</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>2014 APA Congress #1</name>
+    <style>freeForm</style>
+    <subject>Are you headed to Minneapolis for Congress?</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+WEX rapid! PayCard is once again a proud sponsor of the APA Congress.  We have many great events planned during the week...
+
+Kicking things off. we are sponsoring the Opening General Session Keynote Speaker, Connie Dieken!
+
+But that&apos;s just the beginning... as we speak, plans are being finalized for many fun &amp; exciting happenings throughout the week of Congress.
+
+Are you, or any of your co-workers planning on attending this year?  If so, please respond to this email. I&apos;ll have you/them added to an exclusive list of attendees, and keep you updated on all we have planned.
+
+Can&apos;t make it this year? No problem... WEX rapid! PayCard, sponsors other virtual events in our partnership with the APA.  Besides being packed with useful information, most of these events offer free RCH credits. If you&apos;d be interested in email updates as those events are scheduled, please let me know that as well.
+
+Best wishes and we hope to see you next month,
+
+
+{!User.FirstName} {!User.LastName}
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: {!User.Phone} • C: {!User.MobilePhone} • F: 727.828.4444
+
+E: {!User.Email}
+
+W: www.wexinc • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

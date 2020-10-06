@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to use when sales initiates an Online App. Contains a link to the partially completed App.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Letterhead</letterhead>
+    <name>1. EDGE INFO w APP LINK</name>
+    <style>freeForm</style>
+    <subject>Fleet One Edge - Fuel Card Information &amp; Application!</subject>
+    <textOnly>Hello {!OnlineApplication__c.Contact_Name__c},
+
+My name is {!User.FirstName}, an Account Executive with WEX Fleet One EDGE®. I tried to reach you today to discuss how I can help you save a great deal on your fueling expenses. I look forward to speaking with you personally regarding the specific benefits of Fleet One’s EDGE fuel card program and how the one of kind discounts network can relate to your business.
+
+
+
+EDGE is the Fastest Growing fuel card provider in the US!
+
+I have discounts of $0.10 off the cash price at Pilot/Flying J &amp; TA/Petro.  Also, amazing COST-PLUS discounts at AmBest, Kangaroo, Sapp Bros &amp; more!
+
+Average savings of $0.30 off the cash price!!
+
+§ Over 3000 discount locations, in-network
+
+§ Daily price &amp; locations email plus free mobile app with pricing
+
+§  Coming soon, Money Code express checks (currently PlusChecks)
+
+§ $40 per tire savings discount
+§ Free on-line account management
+§ Free on-line reporting with information that can be used for IFTA
+§ Free invoicing to your email
+§ Zero interest charges
+§ Zero transaction fees for in-network locations - ($2 out of network)
+
+§ One-time application fee of $75
+
+
+§ $8/month membership fee per activated fuel card
+
+
+Please click here and follow the instructions to complete your application process.
+
+If you have any questions, please don’t hesitate to call or email me.  I look forward to the opportunity to assist you with your fuel card needs.
+
+Thank you,
+
+
+{!User.Name}
+
+{!User.Title}
+
+WEX Fleet One | EFS a WEX Company
+
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Phone: {!User.Phone}  | Fax:  {!User.Fax}
+
+{!User.Email} | www.efsllc.com | www.fleetone.com | www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

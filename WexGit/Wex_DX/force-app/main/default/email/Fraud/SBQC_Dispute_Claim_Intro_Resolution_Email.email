@@ -1,0 +1,81 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="line-height: 115%;">Re: Claim No&nbsp;</span></font><font face="Arial, sans-serif">{!Claim__c.Name}</font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><font face="arial"><span style="font-size: 12pt;"><br></span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><font face="arial"><span style="font-size: 12pt;">Dear </span></font><span style="font-family: Arial, sans-serif;">{!Claim__c.Account_Contact_Name__c}</span><font face="arial"><span style="font-size: 12pt;">:</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: arial; font-size: 12pt; line-height: 115%;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: arial; font-size: 12pt; line-height: 115%;">Thank you for your letter regarding disputed transactions
+on fleet account ending&nbsp;</span><span style="font-family: Arial, sans-serif; line-height: 115%;">{!Claim__c.Program_Account_Masked__c}<font face="arial"><span style="font-size: 12pt;">.</span></font></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">This letter confirms that we have reviewed your claim of
+disputed transactions. The occurrence of fraud, misuse or abuse on our card
+program is extremely unfortunate and we are sensitive to the potential busi</span><span style="font-family: Arial, sans-serif; font-size: 12pt; background-color: rgb(255, 255, 255);">ness
+and financial hardships it can cause to our customers.&nbsp; Following are our findings and
+recommendations:</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><ul><li>Disputed transactions
+occurred on card&nbsp;<span style="text-indent: -0.25in; font-family: Arial, sans-serif; line-height: 115%;">{!Claim__c.Abbreviated_Card__c}<font face="arial"><span style="font-size: 12pt;">&nbsp;</span></font></span><span style="text-indent: -0.25in; font-family: arial; font-size: 12pt; line-height: 115%;">&nbsp;between <span style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Allowable_Dispute_Start_Date__c}</span></span><span style="text-indent: -0.25in; font-family: arial; font-size: 12pt; line-height: 115%;">&nbsp;and&nbsp;</span><span style="text-indent: -0.25in; line-height: 115%;"><font face="arial">{!Claim__c.Allowable_Dispute_End_Date__c}<span style="font-size: 12pt;">&nbsp;for approximately $</span></font><span style="font-family: arial; font-size: 12pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Allowable_Dispute_Dollars__c}</span></span><span style="text-indent: -0.25in; font-family: arial; font-size: 12pt; line-height: 115%;">.</span></li><li><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in; line-height: 115%;"><span style="background-color: rgb(255, 255, 255);">Disputed transactions
+were conducted using a valid Card(s) and Driver Identification Number(s).</span></span></li><li><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in; line-height: 115%;">The disputed
+transactions occurred at Outside Payment Terminals (OPT).&nbsp; No signature is required for OPT purchases as
+the swipe of the card into the card reader establishes the card was present at
+the time of the sale.</span></li></ul><span style="font-family: Arial, sans-serif; font-size: 12pt; text-indent: -0.25in; line-height: 115%;">{</span><font face="Arial, sans-serif">Claim__c.Account_Name__c}</font><span style="font-family: arial; font-size: 12pt; line-height: 115%;">&nbsp;h<span style="background-color: rgb(255, 255, 255);">as a commercial card account using the&nbsp;</span></span><span style="background-color: rgb(255, 255, 255);"><span style="line-height: 115%;"><font color="#2b2826" face="arial">{!Claim__c.Partner_Formal_Name__c}</font><font face="arial"><span style="font-size: 12pt;">&nbsp;Card Program with WEX Bank.&nbsp;&nbsp; Use of your </span></font></span><span style="font-family: arial; color: rgb(43, 40, 38); font-size: 12pt; line-height: 115%; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Partner_Formal_Name__c}</span><span style="font-family: arial; font-size: 12pt; line-height: 115%;"> fleet cards is governed at all times by the </span><span style="font-family: arial; color: rgb(43, 40, 38); font-size: 12pt; line-height: 115%; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.TC_s_Formal_Name__c}</span><span style="font-family: arial; font-size: 12pt; line-height: 115%;">
+(the “Agreement”).&nbsp; The Agreement
+addresses unauthorized use and associated responsibilities (refer to section
+10).</span></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><font face="Arial, sans-serif" style="font-size: 12pt;"><span style="background-color: rgb(255, 255, 255);"><br></span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><font face="Arial, sans-serif" style="font-size: 12pt;"><span style="background-color: rgb(255, 255, 255);">In summary, pursuant to the terms of our Agreement and in
+</span>conjunction with the reasons listed above,&nbsp;</font><span style="font-family: Arial, sans-serif;">{!Claim__c.Account_Name__c}</span><font face="Arial, sans-serif" style="font-size: 12pt;">&nbsp;is liable for payment in
+full of the disputed transactions.&nbsp; This
+constitutes final resolution to the dispute claim sufficiently identified above
+and does not apply to any other outstanding and/or future balances on the
+account.</font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><i style="font-family: arial; font-size: 12pt; text-align: justify;"><font face="Arial, sans-serif"><br></font></i></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><i style="font-family: arial; font-size: 12pt; text-align: justify;"><font face="Arial, sans-serif">If you currently do not have account Authorization Controls assigned to
+your cards, we strongly encourage you to do so.&nbsp; For assistance with
+adding these controls, please contact Customer Service.</font></i></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">To reduce the risk of similar circumstances occurring
+in the future, we recommend that you review the enclosed security measures
+document and immediately implement any measures conducive to your
+business.</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">Please feel free to contact us at </span><span class="MsoHyperlink" style="font-family: Arial, sans-serif; font-size: 12pt;"><a href="mailto:Disputes@fleetfraudservices.com">Disputes@fleetfraudservices.com</a></span><span style="font-family: Arial, sans-serif; font-size: 12pt;">
+should you have any questions.&nbsp; We
+appreciate your business and look forward to maintaining our relationship.</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">Sincerely,</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: large; font-family: &quot;Lucida Calligraphy&quot;;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: large; font-family: &quot;Lucida Calligraphy&quot;;">Fleet Fraud Services</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt;"><i style=""><span style="line-height: 115%;"><font face="Arial, sans-serif">Attachments/Enclosure(s):&nbsp;</font></span></i><span style="color: rgb(43, 40, 38); background-color: rgb(255, 255, 0);">{!Claim__c.TC_s_Formal_Name__c}</span><i style=""><span style="line-height: 115%;"><font face="Arial, sans-serif">, Fleet Security Measures</font></span></i><i style="font-family: arial; font-size: 12pt;"><span style="font-size:8.0pt;line-height:115%"><o:p></o:p></span></i></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></p>]]></td>
+</tr>
+</table>

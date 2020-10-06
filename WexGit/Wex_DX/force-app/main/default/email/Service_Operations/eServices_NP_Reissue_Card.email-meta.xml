@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>NP Card Reissue</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - NP Reissue Card</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. You can replace cards online under Fleet Manager &gt; Cards &gt; View Cards. Click Select &gt; Reissue to the right of a card, and on the following screen select a Reason for Reissue in the dropdown menu. Lost or Stolen will cancel the existing card, whereas Damaged will keep it active. Please let me know if you have any questions. 
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

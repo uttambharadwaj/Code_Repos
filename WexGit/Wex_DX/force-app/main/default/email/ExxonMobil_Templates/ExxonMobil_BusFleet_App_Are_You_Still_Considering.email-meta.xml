@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/ExxonMobil_App_Alone1.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Last ditch effort to get application. Attach and send application form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_card</letterhead>
+    <name>ExxonMobil BusFleet App Are You Still Considering</name>
+    <style>freeForm</style>
+    <subject>Are you still considering the ExxonMobil Business Fleet card</subject>
+    <textOnly>I am checking in with you one last time to see if you are still considering the ExxonMobil Business Fleet card program. It’s easy to enroll. Simply complete the attached application form and fax it to me at {!User.Fax} or scan and email it to me at {!User.Email}.
+
+
+The ExxonMobil Business Fleet card program is accepted at more than 10,000 Exxon- or Mobil-branded stations in the U.S. To find accepting locations close to you, visit http://www.exxonmobilstations.com/
+
+
+Please call me if you have any questions.
+
+
+Thank you for your interest in the ExxonMobil Business Fleet card program.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

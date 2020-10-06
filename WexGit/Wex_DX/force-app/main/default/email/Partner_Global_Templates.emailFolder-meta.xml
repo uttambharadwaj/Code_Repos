@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Partner Global Templates</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <allInternalUsers/>
+        <role>Manager_Partner_and_Channel</role>
+        <role>Partner_Acquisition_Manager</role>
+        <role>Partner_Acquisition_Sales</role>
+    </sharedTo>
+</EmailFolder>

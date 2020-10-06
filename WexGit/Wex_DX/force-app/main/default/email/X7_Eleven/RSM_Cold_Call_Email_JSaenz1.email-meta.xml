@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use when reaching out to a prospect for the first time (by email, or perhaps after not having luck connecting by phone). ATTACH PROGRAM INFO!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Fleet_Program</letterhead>
+    <name>RSM: Cold Call/Email_JSaenz</name>
+    <style>freeForm</style>
+    <subject>Control your vehicle expenses with the 7-Eleven Fuel Card Program.</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+My name is John Saenz and I&apos;m the Regional Sales Manager for the 7-Eleven Fuel Card Program.
+
+We help businesses like yours save upwards of 15% on overall vehicle management and fueling costs, including competitive fuel rebates on every gallon whenever you fuel at 7-Eleven, regardless of the fuel brand at the pumps.
+
+Whether you’re looking for a fuel card program with easy-set cost controls, in-depth reporting, robust rebates, nationwide card acceptance, or the ability to save hours of administrative time managing your fleet vehicles and expenses, 7-Eleven has an ideal fuel card solution for your business.
+
+I would like to share some additional information about the 7-Eleven Fuel Card Program and speak with you about your current fuel program and needs. I&apos;ll be in touch to schedule some time to meet.
+
+Many thanks,
+
+John Saenz
+7-Eleven Fuel Card Program - Regional Sales Manager
+210.372.0346 Mobile
+207.253.1343 Fax
+john.saenz@wexinc.com
+
+
+
+
+
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

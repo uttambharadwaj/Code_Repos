@@ -1,0 +1,18 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">Dear {!Contact.FirstName}, </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'">&nbsp;<o:p></o:p></SPAN></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">Thank you for your interest in Quik<EM>SMART</EM>.&nbsp; Please find information attached to help answer some initial questions you may have.&nbsp; </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'">&nbsp;<o:p></o:p></SPAN></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">I would love to spend 20 minutes with you for a live demo of our solution&nbsp;-- it's the best way to see the many ways you can save with Quik<EM>SMART</EM>.&nbsp; </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'">&nbsp;<o:p></o:p></SPAN></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">Please let me know if I can answer any questions.&nbsp; I will follow up in next 5 days.</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'">&nbsp;<o:p></o:p></SPAN></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">Sincerely, </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">{!Opportunity.OwnerFullName}</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">{!User.Title}</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">{!User.Phone}</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="FONT-SIZE: 13.5pt; COLOR: black"><FONT face="Times New Roman">{!User.Email}</FONT></SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></P>]]></td>
+</tr>
+</table>

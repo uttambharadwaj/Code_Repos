@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>BK conference follow-up  with attached</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM BK Meeting Follow-Up with attached</name>
+    <style>freeForm</style>
+    <subject>Burger King Conference Follow Up...</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

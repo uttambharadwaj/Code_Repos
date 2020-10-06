@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to use when sales initiates an England Logistics - Online eApp. Contains a link to the partially completed eApp.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>England_Logistics_Letterhead</letterhead>
+    <name>EL eApp Conversion</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest in {!OnlineApplication__c.Application_Title__c}</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Please click on this link and review information. If everything looks correct, please check terms and conditions box acknowledging your approval to move forward and click submit.  Your application will be sent to underwriting to review and match information with the original Fleet One guarantor.  Your credit will not be run for this process.
+
+Again, thank you for your interest in England Logistics Fleet Card.  If you have any questions about the application, please don’t hesitate to call or email me.
+
+
+Sincerely,
+
+Mai Zaldana
+ECS Fuel Account Specialist
+England Logistics, Inc.
+
+Phone: (801) 656-6062
+Fax: (385) 722-3858</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

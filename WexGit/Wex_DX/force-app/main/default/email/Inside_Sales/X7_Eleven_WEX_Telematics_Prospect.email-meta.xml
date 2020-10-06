@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>7-Eleven WEX Telematics info for prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Letterhead</letterhead>
+    <name>7-Eleven WEX Telematics Prospect</name>
+    <style>freeForm</style>
+    <subject>Take Control of Your Vehicles With WEX Telematics</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+We would like to introduce you to our Telematics GPS vehicle tracking tool.
+
+
+WEX Telematics is an easy to use, smart vehicle tracking management solution that helps you increase efficiency, improve safety and save money. Installing WEX Telematics units in your vehicles can help you:
+
+
+§ Reduce fuel consumption an average of 11-15% annually*
+
+§ Increase driver productivity an average of 26%*
+
+§ Reduce Insurance premiums an average of 10-20% annually*
+
+
+Current WEX Telematics customers have reported significant savings on fuel costs alone from the moment they installed the units. And our reports and online alerts keep you informed in real time so you can act quickly.
+
+
+If you are interested in learning more about WEX Telematics, or scheduling a live demonstration, please just let me know and I’ll have a WEX Telematics consultant contact you.
+
+
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+
+Fax - {!User.Fax}
+
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

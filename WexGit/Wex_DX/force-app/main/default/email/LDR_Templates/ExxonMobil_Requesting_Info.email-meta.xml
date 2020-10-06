@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>ExxonMobil Request Information from Prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>ExxonMobil Requesting Info</name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Fleet card program</subject>
+    <textOnly>Hello, {!Lead.FirstName}-
+
+I would like to see if we can potentially save you both time and money! My name is {!User.FirstName} {!User.LastName}, I work for the ExxonMobil Fleet card program.
+
+The ExxonMobil Fleet card program helps fleets save up to 15% in their overall fuel costs. Before I dive deeper into our program I would like to find out a little bit more about your business to make sure you would be able to maximize the benefits of our program.
+
+How many vehicles does your company currently have in use?
+
+What method do you use to purchase fuel for those vehicles?
+
+Who would be the best person to speak with about your fleet?
+
+
+Thank you for taking the time to look through this and I look forward to speaking with you soon!  My name is {!User.FirstName} {!User.LastName}, I work for the ExxonMobil Fleet card program.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

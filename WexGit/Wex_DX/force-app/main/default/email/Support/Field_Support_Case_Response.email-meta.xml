@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to respond when Set Up Account is complete</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Salesforce_Support_letterhead</letterhead>
+    <name>1.Field Support Set Up Account Response</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.Siebel_Opportunity__c} {!Case.Opportunity__c} {!Case.Siebel_Oppty__c}</subject>
+    <textOnly>{!Case.LastModifiedDate}
+
+Hi {!Case.OwnerFullName},
+
+Account Set Up complete.
+
+{!Case.Resolution_Description__c}
+
+# of Cards Ordered: {!Case.Cards__c}
+
+Thanks,
+{!Case.Case_Assigned_To_User__c}
+Field Support
+
+
+
+
+
+
+
+
+CONFIDENTIAL AND PROPRIETARY</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>New Sales Engineer Case Notification</name>
+    <style>freeForm</style>
+    <subject>New Sales Engineer Case {!Case.CaseNumber}</subject>
+    <textOnly>Hi Danielle,
+
+A new Case has been added to the Virtual Sales Engineer Queue.
+
+Please assign this Case {!Case.CaseNumber} to one of the Sales Engineers (they can also assign them Case to themselves).
+
+Case Subject - {!Case.Subject}
+
+
+
+
+
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

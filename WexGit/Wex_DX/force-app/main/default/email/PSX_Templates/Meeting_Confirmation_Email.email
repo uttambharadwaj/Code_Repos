@@ -1,0 +1,19 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">{!Contact.Salutation} {!Contact.LastName},<?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">&nbsp;<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">Thank you for your interest in the Conoco® Fleet Card Program.<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">&nbsp;<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">I am emailing you to confirm our meeting on &lt;date&gt; at &lt;time&gt;. If this date will not work for you please let me know, I would be happy to reschedule. <o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">&nbsp;<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">I look forward to meeting with you to discuss the benefits of the Conoco Fleet Card Program. I think you will find the program ideal for your company’s vehicle fueling needs.<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">&nbsp;<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">If you have any questions before our meeting, please to do not hesitate to call me at {!User.Phone}.<BR>&nbsp;<BR>Sincerely, <o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">{!User.FirstName} {!User.LastName}<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; COLOR: black; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin; mso-bidi-font-family: Arial">{!User.Title}<BR>Phone - {!User.Phone}<BR>{!User.Email}<o:p></o:p></SPAN></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin"><o:p>&nbsp;</o:p></SPAN></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin"><o:p>&nbsp;</o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; FONT-SIZE: 8pt; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font: minor-latin"><o:p>&nbsp;</o:p></SPAN></P>]]></td>
+</tr>
+</table>

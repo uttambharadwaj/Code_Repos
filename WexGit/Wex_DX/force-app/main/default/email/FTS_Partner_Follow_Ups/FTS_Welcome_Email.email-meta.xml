@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>FTS Welcome Email</name>
+    <style>freeForm</style>
+    <subject>Welcome to the EFS Fleet-Tech Fuel Program!</subject>
+    <textOnly>Hello {!Account.Name}
+
+
+
+Welcome to the EFS Fleet-Tech Fuel Program!
+
+
+We have processed your application and have ordered your cards. You should receive your welcome package within the next 2-5 business days. You should have already received a separate email with your www.fleet-tech.com password. Your login credentials and account details are listed below.
+
+
+Your package will contain both purchase cards and control cards. For security purposes, you will need your control card number and PIN (access code-see below) when calling EFS Fleet-Tech or when performing account and card maintenance online via the customer portal. Control cards are solely used for security identification purposes, and to identify the account administrator who is authorized to make changes on your behalf. At no time will EFS update an account/card or provide account details without proper security credentials (control card, PIN/access code).
+
+
+We are also pleased to provide you with a daily email detailing the discounts that you are subject to. The email is sent at approximately 10:00 CST daily, 7 days per week. If you do not wish to receive the daily price email, please select the ‘unsubscribe’ option; your email address will be removed.
+
+
+YOUR ACCOUNT DETAILS:
+
+
+Customer Portal:   www.fleet-tech.com
+
+
+Your Fleet Number:  {!Opportunity.F1_Account__c}
+
+Your Username (case sensitive):  Admin
+
+(Please note your password has been sent via separate email)
+
+
+Your Control Card (for security/identification purposes): {!Opportunity.Description}
+
+
+Your Control Card access code/PIN:  {!Opportunity.NAT_Number__c}
+
+
+YOUR PURCHASE CARD DETAILS:
+
+
+Please note that your cards have been preset with specific limits and point-of-sale prompts. When activating your fuel/purchase cards, you must update each card with a UNIT NUMBER (cards are set to exact match, meaning your driver must enter the unit number that you have updated on the card). Web portal instructions for card activation functions have also been included as an attachment with this email notification. Please follow the instructions how to assign a truck/unit number and how to activate the card. Our customer service team is also available to help you activate your purchase cards. We also strongly suggest that you assign an employee number/driver ID to each card for validation purposes. If you would like to set up driver ID/PIN numbers on your cards, please contact customer service; once set up, you will then be able to add the ID numbers to the cards by updating the EMPLOYEE ID NUMBER field on the card screen.
+
+
+
+
+YOUR PRESET LIMITS:
+
+
+Your preset daily fuel limit (per card) in US dollars:  $1000.00
+
+
+Your preset cash advance options: Authorized advances only (control card holder has the capability of adding a 1-time cash advance that does not reset after the driver receives the cash advance). Cash advances up to $250.00 USD per transaction.
+
+
+
+Your preset fuel types authorized for purchase: Diesel 1-2, low Sulphur diesel, ultra-low Sulphur, bio-diesel, winter diesel, reefer fuel
+
+
+Your preset Transcheck money code limit in US dollars:  $1500.00 per money code
+
+
+
+If you did not receive a separate e-mail with your customer portal PASSWORD, please contact our customer support at 1-800-749-1724.
+
+
+Thank you for choosing EFS for your payment needs.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

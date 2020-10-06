@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X25_for_8</letterhead>
+    <name>Follow up from VM-.25/8</name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Follow up from Voicemail</subject>
+    <textOnly>Per my voice mail, I wanted to give you an overview of the ExxonMobil Fleet card program. I know you will find it the perfect tool to help you save money and time when it comes to managing your business vehicles.
+
+
+Savings
+
+Save 25 cents/gallon for 8 weeks,* then up to 6 cents per gallon** every time you fuel at any Exxon or Mobil-branded stations
+No set up, monthly or annual fees
+Plus you can use the free loyalty program Plenti to help you reward and retain your drivers
+
+Convenience &amp; Control
+
+Accepted at nearly 11,000 Exxon- and Mobil-branded stations nationwide
+Easy online controls so you can set spending limits and monitor driver behavior
+Smart phone app to make managing your program while on the go even easier
+
+
+I will be following up with you next week. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to helping you save time and money for your business.
+
+
+Sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

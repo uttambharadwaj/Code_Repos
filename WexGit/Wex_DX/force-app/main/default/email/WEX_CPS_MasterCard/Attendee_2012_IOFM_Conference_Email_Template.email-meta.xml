@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For conference attendees of the Fall 2012 IOFM conference in Las Vegas</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>Attendee 2012 IOFM Conference Las Vegas</name>
+    <style>promotionRight</style>
+    <subject>Thank you for attending the IOFM Conference in Las Vegas</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+I hope you enjoyed attending the IOFM Conference in Las Vegas. I wanted to reach out to you regarding electronic payment options for both accounts payable and purchasing transactions for {!Account.Name}. In addition to improving operational efficiencies, {!Account.Name} could realize a new source of revenue as rebates are available based on annual transactional volume and billing/repayment terms.
+
+
+The virtual payment programs offered by WEX can be implemented with no out-of-pocket cost, and interface directly with your existing systems and payment processes.
+
+
+Key Benefits:
+
+Improve payment controls
+Maximize financial incentives—think cash back—while paying your bills electronically
+Improve working capital—pay your vendors faster and pay us later
+Improve your team’s efficiency with automated reconciliations
+
+WEX is the only commercially chartered bank fully dedicated to addressing your business to business payment needs. As such, you can expect continued investment in solutions, consultations and services to meet your needs.
+
+
+For nearly 30 years, WEX (NYSE: WXS) has been one of the premier commercial payment providers in the U.S. with a suite of &apos;best-in-class’ ePayables solutions.  For the 4th consecutive year Forbes has ranked us in its list of America&apos;s 100 Best Small Companies.
+
+
+I will be following up in the next couple of days to see if we can schedule an initial introduction meeting.  In the meantime, please feel free to contact me as well via email or phone.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone - {!User.Phone}
+
+Cell - {!User.MobilePhone}
+
+{!User.Email}
+
+
+www.wexinc.com/epayables
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.
+
+
+Wright Express Corporation Changes Name to WEX Inc.&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+New brand reflects Company’s evolution to an international provider of physical, digital and virtual corporate card payment solutions.
+
+
+Wright Express Corporation (NYSE: WXS), announced its name change to WEX Inc. October 25th. The new name reflects the Company’s transformation and growth strategies which are focused on physical, digital and virtual corporate card payment solutions for businesses internationally. The Company will continue to be listed on the New York Stock Exchange under the ticker WXS.
+
+
+“Today begins a new chapter in our Company’s evolution with the launch of our new, international brand, WEX Inc. This new brand is built on a foundational set of Company values ― integrity, innovation and execution ― that have remained constant as we have grown,” said Michael E. Dubyak, chairman, president and CEO of WEX Inc. “Over the last 30 years, we have achieved a leadership position in the rapidly changing corporate payments industry through our passion to deliver precision solutions, combined with our persistence in delivering an exceptional customer experience. The ongoing execution of our growth strategy further enables WEX Inc. to diversify its business and expand our international footprint.”</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

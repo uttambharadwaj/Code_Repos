@@ -1,0 +1,21 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<FONT size=2 face="Arial, sans-serif"><FONT face=arial><BR>Hello </FONT>{!Contact.Name}<BR><BR><FONT face=arial>Interested in finding out more about what the </FONT><B style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)">Fleet One EDGE </B><FONT face=arial>Discount Network</FONT><B style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)"> </B><FONT face=arial>can do for you?</FONT><B style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)">&nbsp;</B><FONT face=arial>Here is a list of great benefits and features that can help give your fleet the EDGE.</FONT><BR><BR><FONT face=arial>With Fleet One EDGE you get:</FONT><BR></FONT>
+<DIV style="FONT-FAMILY: arial; COLOR: rgb(0,0,0); FONT-SIZE: 12pt">
+<UL style="FONT-FAMILY: arial; FONT-SIZE: 12pt">
+<LI><FONT size=2 face=Arial,Sans-Serif>Fuel discounts and rebates at over 3,000 sites - average savings<SPAN style="FONT-FAMILY: Arial, sans-serif; FONT-SIZE: 10pt">¹</SPAN>&nbsp;of 12 cents per gallon</FONT>
+<LI><FONT face=Arial,Sans-Serif><FONT size=2>No fees in network<SPAN style="FONT-FAMILY: Arial, sans-serif; FONT-SIZE: 10pt">²</SPAN></FONT></FONT>
+<LI><FONT size=2 face=Arial,Sans-Serif>Acceptance at over 8,000 Truck Stops</FONT>
+<LI><FONT size=2 face=Arial,Sans-Serif>Nationwide discounts on major tire brands</FONT>
+<LI><FONT size=2 face=Arial,Sans-Serif>Thousands of additional savings on parts, service, hotels, breakdown, and more</FONT>
+<LI><FONT size=2 face=Arial,Sans-Serif>IFTA Fuel tax reporting and permit services</FONT>
+<LI><FONT size=2 face=Arial,Sans-Serif>Credit to fund your operations and financing solutions to help you grow</FONT></LI></UL>
+<DIV style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)"><SPAN style="BACKGROUND-COLOR: rgb(255,255,255); FONT-SIZE: 12pt"><FONT size=2 face="Arial, sans-serif">I look forward to speaking with you! Feel free to call or send me an email. My contact information is listed below.<BR><BR></FONT></SPAN><FONT size=1><SPAN style="FONT-FAMILY: Arial, sans-serif"><B>¹</B><FONT color=#939393>The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network </FONT><FONT color=#939393>pricing at all. <BR></FONT></SPAN><SPAN style="FONT-FAMILY: Arial, sans-serif">²<FONT color=#939393>In-network sites include Pilot Flying J, AMBEST, Circle K, Quick Fuel, Petroleum Wholesale, and many more. </FONT>
+<P style="TEXT-ALIGN: center"><FONT color=#939393><BR></FONT></P></SPAN><SPAN style="FONT-FAMILY: Arial, sans-serif"></SPAN></FONT></DIV>
+<DIV style="FONT-FAMILY: arial; COLOR: rgb(0,0,0); FONT-SIZE: 12pt"><FONT size=2 face="Arial, sans-serif"><BR></FONT></DIV>
+<DIV style="COLOR: rgb(0,0,0); FONT-SIZE: 12pt"><FONT size=2 face="Arial, sans-serif">{!User.Name}<BR>{!User.Title}<BR>WEX Fleet One<BR>Phone: {!User.Phone} | Fax: {!User.Fax}<BR>{!User.Email} | www.FleetOne.com&nbsp;</FONT></DIV>
+<P style="FONT-FAMILY: arial; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=2><BR></FONT></P>
+<P style="FONT-FAMILY: arial; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=1><SPAN style="LINE-HEIGHT: 12px; FONT-FAMILY: Verdana, sans-serif; COLOR: rgb(153,153,153)">To opt out of all email marketing messages from WEX Fleet One,<SPAN class=apple-converted-space>&nbsp;<BR></SPAN></SPAN><A style="COLOR: rgb(0,0,0)" href="mailto:marketing@fleetone.com?subject=Unsubscribe%20me%20from%20all%20WEX%20Fleet%20One%20email%20marketing"><SPAN style="LINE-HEIGHT: 12px; FONT-FAMILY: Verdana, sans-serif">click here</SPAN></A><SPAN class=apple-converted-space><SPAN style="LINE-HEIGHT: 12px; FONT-FAMILY: Verdana, sans-serif; COLOR: rgb(153,153,153)">&nbsp;</SPAN></SPAN><SPAN style="LINE-HEIGHT: 12px; FONT-FAMILY: Verdana, sans-serif; COLOR: rgb(153,153,153)">from the email address you wish to unsubscribe.<BR><BR><BR></SPAN></FONT></P></DIV>]]></td>
+</tr>
+</table>

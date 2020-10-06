@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>OTR intro email solicited</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Global_Fleet_letterhead</letterhead>
+    <name>Global OTR intro email solicited</name>
+    <style>freeForm</style>
+    <subject>Thank you for your interest in our Fuel Card program</subject>
+    <textOnly>Dear 
+
+My name is _______ a consultant with WEX Fleet One, I attempted to reach you today to give you more information regarding our fuel card program and answer any questions you may have.
+
+The Fleet One Fuel Card provides:
+
+· No transaction fees
+
+· Cash Price at all Truck Stops
+
+· Detailed Reporting and Control
+
+· Free Online Account Management
+
+· Checks and Cash advances
+
+· Credit lines to fit your business needs
+
+· Discounts and Rebates
+
+Here you will find several testimonials and videos of our customers sharing their experiences with WEX Fleet One.
+
+I look forward to speaking with you personally, feel free to call or shoot me an email, my contact information is listed below.
+
+Sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

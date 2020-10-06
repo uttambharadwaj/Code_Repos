@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Reminder email from Preshow calls from Acquirent</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Travel1</letterhead>
+    <name>2013 PhocusWright REMINDER Email</name>
+    <style>freeForm</style>
+    <subject>Follow up from our conversation: Free $25 MasterCard</subject>
+    <textOnly>PhoCusWright Conference Attendee:
+
+Just sending a friendly reminder to make sure to stop by our WEX Travel booth at the PhoCusWright Conference to pick up your free $25 MasterCard gift card. Below you will find your unique code to redeem at the booth for the card. While you are there, you can also enter to win an iPad mini.
+
+It was a pleasure speaking with you. I hope you have a chance to connect with us at our booth to discuss your business needs. Enjoy the PhoCusWright Conference!
+
+--------------------------------------------------------------------------------------------------
+FREE $25 MASTERCARD GIFT CARD
+
+Especially for:
+{!Opportunity.Name}
+
+Unique code: {!Opportunity.Opportunity_Number__c}
+
+--------------------------------------------------------------------------------------------------
+
+About WEX Travel
+
+With WEX Travel, you can pay the right amount, at the right time, to the right supplier through your existing systems all while generating additional revenue for your business.
+
+Additional benefits include:
+
+99.9% reconciliation
+Automate processes
+Optimize cash flow
+International and Domestic payments
+Control Spend
+
+
+For over a decade, WEX has been leading the way in single-use payment technology to the travel industry. Several of the largest online travel agencies payments are powered by WEX Travel. To learn more, visit our Resource Center: http://www.wexinc.com/virtual-payments/insights/videos/
+
+
+Sincerely,
+
+Spencer Woodbury
+on behalf of the entire WEX Travel Team
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information WEX Inc.. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.
+
+WEX Bank, 97 Darling Avenue, South Portland, Maine 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

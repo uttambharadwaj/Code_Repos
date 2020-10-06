@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send this to an Agent when they have an Audit Review</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Quality_Assurance_Customer_Service</letterhead>
+    <name>CS QA OTR SF/WEXTER</name>
+    <style>freeForm</style>
+    <subject>Action Needed - Salesforce-WEXTER Utlilization Audit</subject>
+    <textOnly>{!Training_Event__c.Attendee__c},
+
+As part of the recent roll-out of Salesforce and WEXTER for OTR, the training team has performed a required audit of your phone calls.
+
+Review the attached report detailing your utilization of Salesforce and WEXTER over the past week.
+
+Please let me know if you have any questions.
+
+Thank you,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

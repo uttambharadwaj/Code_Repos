@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Burger King Conference Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM Burger King Conference</name>
+    <style>freeForm</style>
+    <subject>Burger King Conference Follow Up</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+I had just left you a voicemail and thought it might help if I followed with some additional info.
+
+As I mentioned when I called, while at the APA Congress you had stopped by our booth.  I&apos;m contacting you as follow up to see if... A) you&apos;re still issuing and distributing &quot;paper paychecks&quot;, and B) to see if you&apos;re interested in investigating whether paycards might fulfill a need for {!Lead.Company}.
+
+
+If you’d like to learn more on how the rapid! PayCard can benefit {!Lead.Company} and it’s employees, please let me know, and I’ll respond accordingly. If not, please let me know that as well and I’ll be sure to take you off my contact list.
+
+
+Assuming paycards are of interest, I&apos;ve attached a product review and below are a few links to additional information that you might find of value.
+
+
+Ø rapid! PayCard Overview
+
+Ø Cost Savings &amp; Environmental Impact Calculator:
+
+Ø Employer Benefits of ePayroll:
+
+Ø Employer Frequently Asked Questions:
+
+Ø The rapid! PayCard Features:
+
+
+
+Yours sincerely,
+
+
+Matt Merriam
+
+VP of Business Development
+
+Wright Express Corporation
+
+rapid! PayCard
+
+
+T: 678.381.1733 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt_merriam@wrightexpress.com
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

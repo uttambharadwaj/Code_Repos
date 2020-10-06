@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to participants who have completed SPA and are learning about their results.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>SPA 1x1 Read Out</name>
+    <style>freeForm</style>
+    <subject>Sales Performance Assessment Results</subject>
+    <textOnly>Background: Sales Intelligence is a process designed to aid an organization to better understand its current sales culture; to articulate the ideal sales profile required to move forward; to select candidates better matched to the ideal; to evaluate each individual salesperson to determine a Sales Action Plan; and finally, to establish an organizational structure to continuously support the process. The entire intervention is based on Management Research Groups Sales Performance Assessment (SPA).
+
+SPA provides in–depth feedback on the behaviors and sales drivers of the contemporary sales professional. The model represents 18 sales behaviors and 6 sales drivers. Once you have completed the assessment you will be given multiple opportunities.
+
+Next Steps: Sales Training will meet with individuals to provide a 30-minute interpretation of your profile to discuss the following:
+
+Review scores above 70% and below 30%
+Review certain sets which may affect the overall profile
+Review specific combinations of Sales Practices
+Review specific combinations of Sales Motivators
+Discuss personal strengths and development opportunities identified by the individual
+Discuss next steps in developing your Sales Action Plan
+
+Our goal is to capitalize on the strengths you bring to the team as well as put in place a Sales Action Plan related to your development opportunities.  We want to ensure your continued success and grow your skills and talents as it relates to your work at WEX.
+
+Preparation: In preparation of this meeting, please review your SPA results and come prepared with specific questions you may have about your results, some ideas for areas of development and ideas of how to capitalize on your strengths.
+
+
+
+Thank You,
+{!Case.OwnerFullName}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

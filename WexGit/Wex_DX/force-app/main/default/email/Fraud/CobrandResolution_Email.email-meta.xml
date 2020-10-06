@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>CobrandResolution Email</name>
+    <style>freeForm</style>
+    <subject>Claim Resolution - {!Claim__c.Account_Name__c}, {!Claim__c.Program_Account_Masked__c}</subject>
+    <textOnly>Hello,
+
+
+
+
+Please see the resolution outlined below for dispute claim # {!Claim__c.Name}.  Please feel free to contact us to discuss any questions you may have.
+
+
+Customer
+
+{!Claim__c.Account_Name__c}
+
+Account
+
+{!Claim__c.Program_Account_Masked__c}
+
+Card
+
+{!Claim__c.Abbreviated_Card__c}, ({!Claim__c.CO_ID_STD_EMB_GTag__c})
+
+Driver Identification Number (DID)
+
+DIN {!Claim__c.DIN__c} assigned as “{!Claim__c.Driver_Name__c}”
+
+Allowable Dispute Period
+
+Between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}
+
+Allowable Dispute Amount
+
+${!Claim__c.Allowable_Dispute_Dollars__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

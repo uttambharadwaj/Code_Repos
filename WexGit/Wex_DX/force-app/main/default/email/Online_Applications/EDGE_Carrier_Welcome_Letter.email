@@ -1,0 +1,61 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<h1 style="color: rgb(0, 0, 0); font-family: arial; margin-top: 5.05pt;"><font size="2"><font style="color: rgb(0, 0, 0); font-family: arial;" face="Arial, sans-serif"><span style="color: rgb(35, 31, 32);">Your Carrier ID:&nbsp; {!OnlineApplication__c.Carrier_ID_Number__c}<br></span></font><font color="#231f20" style="" face="Arial, sans-serif"><font color="#000000" style="color: rgb(0, 0, 0); font-family: arial;">Your AR ID:&nbsp;&nbsp;</font></font><font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial;">{!OnlineApplication__c.AR_ID_Number__c}</font></font></h1><p class="MsoNormal" style="color: rgb(0, 0, 0); margin: 11.7pt 0in 0.0001pt; line-height: 12.6pt;"><font size="2"><font face="Arial, sans-serif" style=""><span style="color: rgb(35, 31, 32);">Welcome to the&nbsp;</span><b style=""><span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#CC0000">Fleet One EDGE Fuel
+Card Program</span></b><span style="color: rgb(35, 31, 32);">! We look forward to making your
+payments easier to manage through innovative solutions and dynamic service.</span></font><font face="arial" style=""><o:p></o:p></font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin: 11.7pt 0in 0.0001pt; line-height: 12.6pt;"><font face="Arial, sans-serif" style="" size="2"><b style=""><span style="color: rgb(204, 0, 0); background: white;">Your New Account and Cards</span></b><b style=""><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#CC0000">:</span></b><b style="">&nbsp;</b><span style="color: rgb(35, 31, 32);">You will soon receive your Fleet One EDGE cards, issued by WEX
+Bank (a member of FDIC). Please follow these simple steps to successfully
+manage your&nbsp;</span>password and security credentials<span style="color: rgb(35, 31, 32);">:<br>
+<!--[if !supportLineBreakNewLine]--><br>
+<!--[endif]--></span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif" size="2"><b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#CC0000">1</span></b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#CC0000">.&nbsp;<b>Access Your Account Login
+Credentials:</b></span><b>&nbsp;</b>Soon you will receive an email from eManager with a link to set up
+your password and security credentials. For a more comprehensive, step-by-step
+guide to setting up your account, please&nbsp;<u><span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:blue"><span style="color:blue"><a href="https://www.wexdrive.com/otr/pdf/F1-eMgr-Login-and-UserGuide.pdf">click here</a></span></span></u><a href="https://www.efsllc.com/wp-content/uploads/2019/02/EDGE_CredGuide.pdf">.</a><br><br>
+<!--[endif]--><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif" size="2"><b>Note</b>:&nbsp;<span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:#231F20;letter-spacing:-.35pt">When
+contacting customer service please have your User ID, Employee Number, and
+Security Code ready. </span>Both User ID and Password are required
+to access your Fleet One EDGE account via eManager. I<span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#222222;background:white">f you do not receive your password setup link
+within the next 24 hours</span>, contact Customer Support at
+1-800-359-7587.<br>
+<!--[if !supportLineBreakNewLine]--><br>
+<!--[endif]--><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin: 0in 16.75pt 0.0001pt 0in; line-height: 12.6pt;"><font face="Arial, sans-serif" size="2"><b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#CC0000">2</span></b><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#CC0000">.&nbsp;<b><span style="letter-spacing:
+-.3pt">Your&nbsp;</span>new cards should arrive active&nbsp;and ready to use.</b></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin: 0in 16.75pt 0.0001pt 0in; line-height: 12.6pt;"><font face="Arial, sans-serif" size="2"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:#CC0000"><b><br></b></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif" size="2"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:#231F20">Please note that your cards are preset with the per-card limits
+indicated on your application. Adding additional products and validation
+prompts can be completed via eManager.&nbsp;For further instructions, refer to
+the eManager Quick Reference Guide&nbsp;or simply call 1-800-359-7587.<br>
+<!--[if !supportLineBreakNewLine]--><br>
+<!--[endif]--></span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin: 0in 4.1pt 0.0001pt 0in; line-height: 12.6pt;"><font face="Arial, sans-serif" size="2"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:#231F20">For your convenience, we have also enclosed the following
+reference items:</span></font></p><ul style="font-family: arial;"><li style=""><font face="Arial, sans-serif" size="2" style="" color="#3333ff"><span style="text-indent: -8.9pt;"><a href="http://emgr.efsllc.com/common/pdf/administrator.pdf">eManager Quick Reference Guide&nbsp;</a></span></font></li><li style=""><font face="Arial, sans-serif" size="2" style="" color="#3333ff"><a href="http://www.wexdrive.com/otr/pdf/Edge_ATM-PIN-eBroch.pdf">ATM PIN Setup Guide</a></font></li><li style="color: rgb(0, 0, 0);"><u style="font-family: Arial, sans-serif; text-indent: -24px;"><span style="color: rgb(17, 85, 204);"><a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_CarrierControl_Guide.pdf"><span style="color: blue;"><font size="2">CarrierControl Mobile App User Guide</font></span></a></span></u></li><li style="color: rgb(0, 0, 0);"><u style="font-family: Arial, sans-serif; text-indent: -24px;"><span style="color: rgb(17, 85, 204);"><a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_CardControl_Guide.pdf"><span style="color: blue;"><font size="2">CardControl MobileApp User Guide</font></span></a></span></u></li><li style="color: rgb(0, 0, 0);"><u style="font-family: Arial, sans-serif; text-indent: -24px;"><span style="color: blue;"><span style="color: blue;"><font size="2"><a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_FAQs.pdf">Frequently Asked<span style="letter-spacing: -1pt;">&nbsp;</span>Questions</a></font></span></span></u></li></ul>
+
+
+
+<p class="MsoBodyText" style="color: rgb(0, 0, 0); margin: 11.7pt 0in 0.0001pt 5.3pt; line-height: 16.8px;"><font face="Arial, sans-serif" style="" size="2"><span style="color: rgb(35, 31, 32);"><br></span><span style="color: rgb(35, 31, 32);">Once
+again, thank you for choosing the&nbsp;</span><b style="color: rgb(35, 31, 32);">Fleet One EDGE Fuel Card Program</b><span style="color: rgb(35, 31, 32);">.
+Please contact Customer Support at 1-800-359-7587 with any questions or
+concerns</span><span style="color: rgb(35, 31, 32);">:<br><br></span></font></p><span style="color: rgb(0, 0, 0); font-family: arial; background: white;"><font face="Arial, sans-serif" size="2">&nbsp; Thank you,&nbsp;</font></span><div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2"><font style=""><br></font><span style="font-family: Arial, sans-serif;">&nbsp;</span><font face="Arial, sans-serif">&nbsp;{!OnlineApplication__c.OwnerFullName}<br></font><font face="Arial, sans-serif">&nbsp;&nbsp;</font><font face="Arial, sans-serif">{!OnlineApplication__c.OwnerTitle}&nbsp; &nbsp;&nbsp;</font></font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font face="Arial, sans-serif" style="" size="2">&nbsp;&nbsp;{!OnlineApplication__c.OwnerPhone}&nbsp;|&nbsp;{!OnlineApplication__c.Owner_Fax__c}<br>&nbsp;&nbsp;{!OnlineApplication__c.OwnerEmail}&nbsp;| www.fleetoneedge.com</font></div>]]></td>
+</tr>
+</table>

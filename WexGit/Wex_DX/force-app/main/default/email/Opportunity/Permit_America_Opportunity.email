@@ -1,0 +1,23 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Does your company currently use a permit provider? {! IF(Opportunity.Use_Permit_Provider__c, "Yes", "No") }
+Have you had any problems with your previous permit provider? {!Opportunity.Permit_Provider_Problems__c}
+Does your permit provider utilize new technology? {!Opportunity.Permit_Provider_Technology__c}
+Can your permit provider set you up with pilot cars? {! IF(Opportunity.Pilot_Cars__c, "Yes", "No") }
+Who is your current permit provider? {!Opportunity.Current_Permit_Provider__c}
+What is the current permit provider rate? {!Opportunity.Current_Permit_Provider_Rate__c}
+What type of loads does the potential client normally move? {!Opportunity.Load_Types__c}
+On average how many permits will you need a day/week/month? {!Opportunity.AR_Financer__c}
+Comments: {!Opportunity.Vendor_Comments__c}

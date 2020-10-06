@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Race Trac</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <roleAndSubordinatesInternal>Head_of_Marketing</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>Marketing</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>MarketingReporting</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>Marketing_Manager</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>Outbound_Channel_Marketing</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>RaceTrac_RSM</roleAndSubordinatesInternal>
+    </sharedTo>
+</EmailFolder>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>LAMP Next Steps and Expectations</name>
+    <style>freeForm</style>
+    <subject>Large Account Management Process Training Completion</subject>
+    <textOnly>First, I want to say Thank You for participating in the two-day LAMP Training. I recognize how difficult it is to be away from your desks and daily work. I am very pleased with your engagement and dedication to learning and individual development.
+
+
+We have made an investment in strengthening our sales process discipline by implementing the Miller Heiman – Large Account Management Program here at WEX. We are confident this new discipline will fundamentally change the way we manage our key accounts while elevating the quality of every interaction we have with clients and prospects moving forward. We chose this particular methodology for its proven ability to elevate key customer relationships on a sustained basis.
+
+Transferring the knowledge gained into practice will be both challenging and critical. It will take commitment and superior dedication by you and your manager to adopt the principles and concepts and incorporate them into your daily business routines moving forward. I urge you to vigorously embrace this new sales process methodology.
+
+To keep momentum, please access the Salesforce Large Account Management Process Chatter Group. Use this group to share ideas, post tips and ask questions to your peer group! Some of the best learning from the training has been what you all taught each other!
+
+Important Next Steps &amp; Expectations: Each manager will follow up with additional expectations on key performance indicators (i.e. how many accounts, review process and expectations)
+
+The next step with LAMP is the review of the account you started in training. Key milestones for this include:
+
+1. Obtain additional information to complete and finalize Gold Sheet
+2. Obtain alignment on the plan with the team members listed on the WEX team
+3. Schedule meeting to review with Management to obtain approval of the plan. Schedule meeting with your manager no later than DATE. (Note: Bigger accounts with larger $$$ focus investment resource commitments likely would need to be approved at higher levels)
+4. Meet and communicate key aspects of the plan with the customer to obtain buy-in no later than DATE. (Some elements of the Situation Appraisal, Charter Statement, Goals and Focus Investments should be discussed)
+5. Submit updated gold sheets to Kathryn Connolly
+6. Complete and/or progress on action items in the Gold Sheet plan
+7. Schedule reviews every 90 days with the team selected on Gold Sheet
+
+
+Please contact me if you have any questions or concerns on next steps and expectations. I look forward to seeing your Gold Sheet Plans!
+
+
+
+Thank You,
+{!Case.OwnerFullName}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

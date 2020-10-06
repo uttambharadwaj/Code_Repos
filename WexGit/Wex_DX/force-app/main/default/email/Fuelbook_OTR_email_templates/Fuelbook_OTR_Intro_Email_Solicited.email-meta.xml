@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>OTR Intro Email Solicited</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fuelbook</letterhead>
+    <name>Fuelbook OTR Intro Email Solicited</name>
+    <style>freeForm</style>
+    <subject>Fuelbook Select Can Help!</subject>
+    <textOnly>My name is {!User.Name} a consultant with Fuelbook Select, I attempted to reach you today to give you more information regarding our fuel card program and answer any questions you may have.
+
+The Fuelbook Select Card provides:
+
+       Save 6 cent per gallon off retail posted cash price
+         5 Pilot Flying J MyRward loyalty points per gallon
+         Zero fuel transaction fees at Pilot Flying J locations
+         No credit check required
+         Accepted at over 7,000 truck stops
+I look forward to speaking with you personally, feel free to call or shoot me an email, my contact information is listed below.
+
+Sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

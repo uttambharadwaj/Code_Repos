@@ -1,0 +1,36 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style=""><div style=""><p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" style="" size="2"><font style="color: rgb(0, 0, 0);">In preparation of rolling out
+the Sales Performance Assessment (<b style="">SPA</b>) for the&nbsp;</font>{<span style="background: yellow;">ENTER NAME OF
+TEAM},</span>&nbsp;management needs to
+identify <u style="">at least</u> 5 top Sales Professionals to create composite sales
+success profiles.&nbsp;Please identify sales
+professionals and email me names by&nbsp;{!Case.MGR_Pre_Call_Date__c}.&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2"><b>Please review the attached documents:</b></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"></p><ul style=""><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="text-indent: -0.25in;"><b>Sales Performance
+Assessment Overview: </b></span><i style="text-indent: -0.25in;">Overview to help understand what the assessment tool is
+and the 18 behaviors and 6 drivers assessed.</i></font></li><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="text-indent: -0.25in;"><b>Sales
+Intelligence:</b></span><i style="text-indent: -0.25in;"> Defines the Composite Profile.</i></font></li></ul><p style=""></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">Click the link if you are
+interested in learning more about the company <span class="MsoHyperlink"><a href="http://www.mrg.com/">Management Research Group</a></span> we collaborate
+with to administer the Sales Performance Assessment. <o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">I really encourage you to
+take time to become familiar with the company and the available tools for
+employee development. As a WEX Leader, you will be a mentor and talent
+multiplier for your team.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">Thank you and give me a call
+if you like to chat more about this.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></p></div><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" style="" size="2">Thank you,&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">{!Case.OwnerFullName}</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" style="" size="2">WEX University Global Training</font></span></p></div><div style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"></div>]]></td>
+</tr>
+</table>

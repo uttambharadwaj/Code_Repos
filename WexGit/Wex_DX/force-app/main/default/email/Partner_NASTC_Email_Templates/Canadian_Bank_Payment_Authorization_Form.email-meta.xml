@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>To send Authorization Form to Canadian fleets</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Canadian Bank Payment Authorization Form</name>
+    <style>freeForm</style>
+    <subject>Follow Up: NASTC Fuel Card Program</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+
+
+I have attached a form that I need filled out. Please do so and attached a copy of avoided check. Please secure from your bank a note with your acct # ( US FUNDS ACCT) and routing #.
+
+
+I apologize for the extra items but we have a specific  problem getting all this correct with the Canadian banking system and We want to avoid any problems that  would interrupt us giving perfect service in the future.
+
+
+
+Thank you!!
+
+
+
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

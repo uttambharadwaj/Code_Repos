@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template you can send to a prospect after your meeting with them.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>CP NA OPTY - Travel Meeting Thank You</name>
+    <relatedEntityType>Opportunity</relatedEntityType>
+    <style>none</style>
+    <subject>Thank you for your time today</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

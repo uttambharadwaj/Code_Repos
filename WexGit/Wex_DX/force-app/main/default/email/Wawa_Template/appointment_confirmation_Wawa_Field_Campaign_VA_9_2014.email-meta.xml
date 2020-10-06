@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Acquirent use only. Confirm appointment for Wawa VA Field Campaign 9.2014</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>appointment confirmation- Wawa Field Campaign (VA 9.2014)</name>
+    <style>none</style>
+    <subject>meeting confirmation</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>May &apos;12 Webinar ATTENDEE through Claims Magazine</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>Claims Sector Webinar ATTENDEE - May 2012</name>
+    <style>freeForm</style>
+    <subject>Thank you for attending the  webinar</subject>
+    <textOnly>Dear {!Contact.Salutation} {!Contact.LastName},
+
+Thank you for joining the recent Claims webinar -- &quot;Paying Claims Electronically: Lessons from the Field&quot; -- sponsored by Wright Express. Hopefully you found the information valuable.
+
+Wright Express (NYSE: WXS) is the only commercially chartered bank fully dedicated to addressing your business to business payment needs. Recently, Forbes ranked Wright Express on its list of America&apos;s 100 Best Small Companies for the fourth consecutive year. As such, you can expect continued investment in solutions, consultations and services to meet your needs.
+
+For our current customers, we have integrated our single-use ‘virtual’ account technology with their claim system to apply a ‘unique’ 16-digit MasterCard account number to each claim payment. The unique account number is automatically faxed to the vendor to pay for the repair (service contract cost) with the credit limit set at the exact dollar amount due to prevent fraud or overcharging. The account number is then discarded by Wright Express and never again used after the payment has posted. This payment process helps these companies immensely in terms of reconciliation within their claim system, speed of paying their vendors and most importantly—it can generate significant rebate dollars back to their companies.
+
+I would appreciate an opportunity to discuss any questions you may have about single-use accounts or Wright Express. Would next week work for you? In addition, I have attached some additional materials for your review. Finally, feel free to review an archive of this recent webinar by clicking here.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/claims
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Account with no transactions yet posted</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One Implementation - Has Not Yet Fueled</name>
+    <style>freeForm</style>
+    <subject>Valued WEX Fleet One Customer</subject>
+    <textOnly>Dear {!Contact.FirstName}
+
+Did you know your new WEX Fleet One fuel cards are active and ready for use? If you have any questions or concerns, please do not hesitate to contact me directly.  You may review our online tutorials by visiting www.fleetone.com/customer-links. Remember, once you start using your cards you will receive these immediate benefits:
+
+Nationwide acceptance
+Cash price at the pump
+Free mobile app to locate the lowest priced fuel in your vicinity
+Daily reporting on card activity
+Discounts or rebates below the cash price
+
+I appreciate your business and look forward to hearing from you.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

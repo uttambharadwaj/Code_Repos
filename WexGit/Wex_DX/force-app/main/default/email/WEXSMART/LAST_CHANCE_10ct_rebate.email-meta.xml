@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Inside sales last nootice follow-up for introducing WS 10 ct rebate offer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_WEXSMART</letterhead>
+    <name>LAST CHANCE 10ct rebate</name>
+    <style>freeForm</style>
+    <subject>Reminder: 10 cent fuel rebate offer ends June 30th</subject>
+    <textOnly>Save 10 cents per gallon for three months* with WEXSMART
+
+Dear {!Contact.FirstName},
+
+I wanted to remind you about a unique savings opportunity with Wright Express&apos;s GPS telematics solution -- WEXSMART.  Through June 30, 2011, qualifying orders can help you earn a 10 cent rebate on your fleet&apos;s fueling purchases for three months.
+
+
+Hopefully you have had a chance to review the materials we sent you.  These materials are only a starting point to see how you can save on your fleet&apos;s operating cost and improve productivity.
+
+I would like to set up a FREE 20 minute personal demo next week and answer any specific questions you may have.  I will call you next week to schedule a time.  
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+* All units must be purchased by June 30th, 2011. Offer includes a 10¢ rebate per gallon fueled for three months. To qualify for the gallon rebate, you must fulfill an order that is equal to at least 50% of your account&apos;s fuel cards that are open to charge at the time of order. A minimum 2 year contract is required. Credits for fuel rebates earned will be applied monthly in arrears, following your WEXSMART contract effective date. Additional terms and fees apply. Ask your sales representative for details.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

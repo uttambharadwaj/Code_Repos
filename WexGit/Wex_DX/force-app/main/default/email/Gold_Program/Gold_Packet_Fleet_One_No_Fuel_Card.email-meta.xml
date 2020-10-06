@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Gold_Program/GoldEnrollment_FleetOne_NOFC_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Gold Packet with Fleet One Credit Application (fleet does not have a Fleet One Card)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Gold Packet - Fleet One No Fuel Card</name>
+    <style>none</style>
+    <subject>Thank you for your interest in The Gold Program</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

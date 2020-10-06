@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For use as the initial communication for the 2014 R2 Encompass release</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Virtual_Payments_Product_Information</letterhead>
+    <name>2014 R2 Release Initial Communication</name>
+    <style>freeForm</style>
+    <subject>2014 WEX Virtual Payments Product Information Update</subject>
+    <textOnly>WEX Virtual will release EnCompass functionality on Sunday, November 9th. Encompass will be down briefly starting at midnight ET, Saturday, November 8th. These new features are designed to enhance the user experience, increase automation, and drive efficiencies in your organization.
+
+International Intended Currency
+
+Currently: When users are working with international vendors, there is the possibility that transactions will settle in a currency other than the currency in which the cards are issued. This could cause merchant confusion, and necessitates wider authorization tolerances due to currency fluctuations.
+
+After November 9th: Users will be able to specify a local currency when creating a merchant or purchase log.  EnCompass will automatically update the purchase or merchant log value when currencies fluctuate, to be consistent with the local (contracted) currency amount. PLog and AP Remittance Subject Line 
+
+Customization for Email and Fax
+
+Currently: Remittance emails and faxes provide standard subject lines referencing the purchase or merchant log ID number, which is generally irrelevant to the receiving merchant. Users need a way to customize the subject line of emails and the headings of faxes to better communicate the content of the remittance advice to recipients.
+
+After November 9th: New settings are available within Super Admin Utilities to customize the subject lines of emails and headings of faxed remittances. To  make the remittance notifications more meaningful up to two UDFs can be included in the fax heading or email subject line. 
+
+SecureFunds Variation: Payer-Initiated Funding
+
+Currently: Some SecureFunds clients prefer to push payments via ACH or wire in advance of processing logs. In these cases, it is important to check the available balance on the account prior to processing the logs. If there are insufficient funds to cover the payments, clients must be notified that they need to make a deposit to cover the payments. 
+
+After November 9th: Payer-Initiated Funding is a modification of the existing SecureFunds functionality to support payments from AP customers.  If there are insufficient funds available to cover the Merchant Log(s), a notice is sent to the client to deposit a sufficient amount to cover the cost of the Merchant Log(s) in full.  This will also expedite payments, and because the payment is pushed by the payer, payments will be processed more quickly, since there is no chance of insufficient funds.
+
+Include Card Details in Merchant Log Upload
+
+Currently: Users lack the ability to export the results grid on the Manage Merchant Logs and Manage Purchase Logs pages.
+
+After November 9th: Users can now export the Manage Merchant Log or Manage Purchse Logs search results grid from EnCompass in .xlsx, .xls, and .csv. When exporting, users have the option of including additional card details by using the &quot;Include Card Details,&quot; option next to the export icon on top of the results grid. If selected, the exported file will include account numbers, expiration dates, and CSC for records in which the account has no posted transactions.  A new system notification will be sent when card account details for logs created via AP File Upload or Purchase Log Upload is available for export. Typically, card details are available for inclusion in grid export within one (1) hour of file upload.  The ability to export card details will provide EnCompass users with more flexibility in how they provider merchants with the data necessary to accept and authorize payments.
+
+Export Detail Records from Report Studio
+
+Currently: Report Studio permits users to export summary records, but does not provide a way to support further analysis of data by exporting detail records. 
+
+After November 9th: Report Studio provides users the option to include detail record data through the use of a new &quot;Data Format&quot; drop- down field at the top of the export grid. This drop-down displays below the &quot;Export Type&quot; field in the &quot;Schedule Information&quot; section (Step 6) of the Report Wizard. The new Data Format drop-down allows users to select either &quot;None&quot; (summary only) or &quot;Summary/Record&quot; (summary with record detail). If Summary/Record is selected, the detail provided upon export will match that which is provided within EnCompass in the UI.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

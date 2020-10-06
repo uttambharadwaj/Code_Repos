@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Factoring Recourse Proposal (95/1.5%,1%)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Final_WEX_Factoring</letterhead>
+    <name>WEX Factoring Blank template</name>
+    <style>freeForm</style>
+    <subject>Thank you from WEX Factoring!</subject>
+    <textOnly>Attention:  {!Contact.FirstName},
+Thank you again for your interest in the financial services of Fleet One Factoring (FOF).  We have evaluated your request for financing, and are pleased to present the following proposal to {!Account.Name}.
+	Advance Rate: Ninety-five Percent (95%) 
+	Discount Fee Structure: 1.5% for the first 30 days and an additional 1 % 31-90 days thereafter.
+	Monthly Minimum:  $0
+	Flexible Funding Options: 
+o	Fleet One fuel transfer $0
+o	ACH transfer $3
+o	Wire Transfer $15
+In addition, you will also benefit from:
+	90 Day Recourse
+	Credit Checks- Free and Unlimited
+	Free Postage for billing
+	No original invoices needed
+	No per invoice fees, no monthly fees,  no hidden fees
+By virtue of your signature below, you authorize FOF to file on your behalf any financing statements, UCC’s or other documents and instruments that FOF may require to perfect, protect or establish a security interest described in any present or future Purchase and Sale Agreement. Please bear in mind this is a proposal and not a binding offer.
+
+Sincerely,
+
+Ashli Leonardo 
+Manager, Financial Sales Division
+P:  615.523.6583
+F:  615.858.6583
+aleonardo@fleetone.com
+
+Agreed and accepted on this _____day, 2016.
+
+
+_______________________________
+{!Account.OwnerFullName}
+{!Account.Name}
+
+
+
+Sincerely, 
+
+{!User.Name}
+Fleet One Factoring, LLC
+{!User.Title}
+{!User.Phone} 
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

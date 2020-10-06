@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Attach Agenda!  Send to Participants</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>02. Onboarding Agenda Complete Reminder</name>
+    <style>freeForm</style>
+    <subject>Your WEX Sales Onboarding is starting on {!Training_Class__c.Date__c} in Nashville Tennesee!</subject>
+    <textOnly>Start the WEX Sales Learning Journey!
+
+Your Sales Onboarding is starting on {!Training_Class__c.Date__c}. See agenda attached.
+
+Items to remember:
+
+Nashville, TN -
+
+If you are attending on-site, arrive and be ready to start by 8:30 am CST at 3100 West End Avenue, Nashville, TN 37203.
+If you are attending via WebEx, dial in and be ready to start by 8:30 am CST.
+
+South Portland, ME -
+
+If you are attending on-site, arrive and be ready to start by 9:30 am EST at 95 Darling Avenue, South Portland, ME 04106.
+If you are attending WebEx, dial in and be ready to start by 9:30 am EST.
+
+
+Reach out to me with any questions.
+
+{!User.Name} | {!User.Phone} | {!User.MobilePhone}
+WEX Global Sales Training Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

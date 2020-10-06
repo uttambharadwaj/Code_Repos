@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>10 cents off a gallon email intro</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_WEXSMART</letterhead>
+    <name>AE - 10 Cents Off A Gallon</name>
+    <style>freeForm</style>
+    <subject>Get 10¢ off a gallon for 90 days when you purchase WEX Telematics</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+
+ 
+
+I wanted to make sure you are aware of a unique savings opportunity with our GPS telematics solution -- WEX Telematics.  Now through &lt;INSERT OFFER END DATE&gt;, qualifying orders can help you earn a 10 cent rebate on your fleet account&apos;s fueling purchases for three months*.
+ 
+
+
+
+WEX Telematics can help you save year round by:
+ •Reducing unauthorized vehicle uses like idling, speeding or off-hours use
+•Decreasing vehicle maintenance costs
+•Improving fleet productivity and re-deploying resources
+•Easily identify potential fuel card misuse.  Spot situations where your Wright Express fuel card is used an unreasonable distance from your vehicle locations.
+•NEW mobile app to track your vehicle from your smart phone or tablet 
+ 
+I will follow-up by phone in &lt;INSERT FOLLOW UP PROTOCOL&gt;to see if you would be interested in hearing more about how WEX Telematics can help your fleet.  Please let me know if there is someone else I should talk to at your organization regarding this opportunity. 
+
+
+
+
+
+Sincerely, 
+
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+
+
+
+
+www.wexinc.com
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+* All units must be purchased by offer date listed above. Offer includes a 10¢ rebate per gallon fueled with your WEX Fleet Card program for three months. Max rebate capped at $100 for every unit purchased. A minimum 3 year contract is required. Credits for fuel rebates earned will be applied at the end of 90 day promo period following your WEX Telematics contract effective date. Account must be in good standing to recieve rebate . Additional terms and fees apply. Ask your account executive for details.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

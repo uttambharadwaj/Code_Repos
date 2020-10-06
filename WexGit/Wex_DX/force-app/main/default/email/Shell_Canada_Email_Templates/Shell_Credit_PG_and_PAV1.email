@@ -1,0 +1,67 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom: 0.0001pt; background: white;"></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif" style="">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></font></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-font-style:italic">Thank you
+for applying for our Shell Fuel Card Program!</span><span style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">&nbsp;<br><br><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><font face="Times New Roman, Times, serif">In order to enroll, you must submit a <b style="mso-bidi-font-weight:normal">Personal Authorization</b>, attached. An officer of your
+company must complete and sign the form, which you can either scan/email or fax
+back to me once completed.<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><font face="Times New Roman, Times, serif">&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><font face="Times New Roman, Times, serif">To comply with the Patriot Act, our bank is
+requesting you<b style="mso-bidi-font-weight:normal"> verify your physical
+address</b> for approval. &nbsp;Please provide documentation from a third party
+to verify your business is located at the correct address listed on your
+application. <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><font face="Times New Roman, Times, serif">To pass verification, the bank requires a copy
+of&nbsp;<b style="mso-bidi-font-weight:normal"><u>one</u></b>&nbsp;of the
+following documents:<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="line-height: normal;"></p><ul><li><font face="Times New Roman, Times, serif"><b style="">Utility bill</b> or <b>insurance document</b>&nbsp;showing that the bill is mailed to the
+physical street address or that it services the physical address of the
+business</font></li><li><font face="Times New Roman, Times, serif"><b style="">Lease agreement</b> which
+identifies the business and the physical address of the office</font></li><li><b style=""><font face="Times New Roman, Times, serif">Certified articles of incorporation</font></b></li><li><font face="Times New Roman, Times, serif">An unexpired <b style="">government-issued business license</b></font></li></ul><p></p>
+
+
+
+
+
+<p class="MsoNormal" style="line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black"><font face="Times New Roman, Times, serif">
+<br>
+Feel free to scan and email the verification to me at the email address noted
+below, or if you prefer, you can fax it to me at {!User.Fax}.&nbsp; You can
+also call me at {!User.Phone} if you have any questions.<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:black"><font face="Times New Roman, Times, serif">Sincerely,<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:black"><font face="Times New Roman, Times, serif"><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:black"><font face="Times New Roman, Times, serif">Fax - {!User.Fax}<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:black"><font face="Times New Roman, Times, serif">{!User.Email}<o:p></o:p></font></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+Arial;color:black"><font face="Times New Roman, Times, serif"><br></font></span></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><span style="font-style: italic;">©2019 Shell Fleet Solutions. All rights reserved.&nbsp;</span></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><span style="font-style: italic;">Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106, USA</span></p><p style="margin: 0in;"><br></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><span style="font-style: italic;">The Shell Fleet Solutions Card Program is issued and administered by WEX Canada, Ltd. and is not an obligation of Shell Canada Limited, Shell Canada Products, or any Shell affiliate.&nbsp;</span><span style="font-size: 8pt; font-style: italic;">We respect your privacy. Please review our&nbsp;</span><a href="http://tx.e1.fleetservicesonline.com/track.aspx?3802467.187188.14348713688.7410.1060408_4513_H" style="font-size: 8pt;"><span style="font-style: italic;">privacy policy</span></a><span style="font-size: 8pt; font-style: italic;">&nbsp;for more information</span><span style="font-size: 8pt; color: black;">&nbsp;</span><span style="font-size: 8pt; font-style: italic;">about click activity with WEX Inc. and links included in this email.</span></p><p style="margin: 0in; font-family: &quot;Times New Roman&quot;; font-size: 8pt;">&nbsp;</p><p style="margin: 0in; color: rgb(165, 165, 165); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><span style="font-style: italic;">CONFIDENTIALITY NOTICE: "This email is generated by WEX on behalf of Shell and Shell Fleet Plus™ are trademarks of&nbsp;</span><span style="font-size: 10.6667px; font-style: italic;">Shell Brands International AG. Used under license.&nbsp;</span><span style="font-style: italic; font-size: 8pt;">This message contains confidential information and it is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify the sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.”</span></p><p style="margin: 0in; color: rgb(165, 165, 165); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><span style="font-style: italic;"><br>Shell</span><span style="font-style: italic; vertical-align: super;">®&nbsp;</span><span style="font-style: italic;">and Shell Fleet Plus™&nbsp;are trademarks of Shell Brands International AG. Used under license.&nbsp;&nbsp;</span></p><p style="margin: 0in; font-family: Calibri; font-size: 11pt;">&nbsp;</p><p style="margin: 0in; font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><span style="font-style: italic; color: rgb(151, 151, 151);">This email was sent to&nbsp;{!Contact.Email}.&nbsp;We sent you this email because of your recent Shell Fleet Solutions card application.&nbsp;If you no longer wish to receive future emails at {!Contact.Email}</span><span style="font-style: italic; color: rgb(102, 102, 102);">,</span><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="font-style: italic;">&nbsp;email us to unsubscribe</span></a><span style="font-style: italic; color: rgb(102, 102, 102);">.&nbsp;</span><span style="font-style: italic; color: rgb(151, 151, 151);">Please be sure to include your name, company name and email address in the email.</span></p><p></p>]]></td>
+</tr>
+</table>

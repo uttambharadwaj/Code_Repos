@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to salesperson that Customer Services have added a comment to the Case</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay Case Application - New CS Comment</name>
+    <style>freeForm</style>
+    <subject>Application - New Comment - {!Case.Opportunity__c}</subject>
+    <textOnly>Hi {!Opportunity.OwnerFirstName},
+
+{!Opportunity.LastModifiedBy} has requested further information for {!Opportunity.Name}.
+
+Please view the notes on this opportunity to see what&apos;s been requested and attach any additional documents in the attachments section.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

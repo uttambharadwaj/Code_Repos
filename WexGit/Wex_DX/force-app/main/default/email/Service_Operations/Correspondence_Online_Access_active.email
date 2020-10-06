@@ -1,0 +1,25 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+
+<p>As you can see above, the status for your online access is active. You may have been able to login successfully by now, but we have a couple of suggestions if you're still having trouble.<br /><br /> 1. Please make sure you're on the exact website: <a href="http://www.essofleetonline.com/">www.essofleetonline.com</a>. Internet Explorer is the best browser to use as Google Chrome will sometimes take you to other Esso sites.<br /> 2. Please don't use a username/password save program, as this doesn't communicate well with our website.<br /> <br /> If we can be of further assistance with your new Esso Business Card account, please let us know.</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

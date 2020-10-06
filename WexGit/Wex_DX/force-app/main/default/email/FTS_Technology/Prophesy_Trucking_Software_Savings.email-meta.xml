@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>Prophesy Trucking Software Savings</name>
+    <style>freeForm</style>
+    <subject>Save on Trucking Software with Prophesy</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our savings on trucking software from Prophesy Transportation Solutions. As an FTS Plus+ member, you can get a 10% rebate on Prophesy&apos;s software solutions or additional software.
+
+To learn about Prophesy and your exclusive benefits, please visit ftsplus.com/prophesytrucking.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+{!User.FirstName} {!User.LastName}
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

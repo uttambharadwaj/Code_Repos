@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Claim Review and Resolution Comments - Template Only</name>
+    <style>freeForm</style>
+    <subject>CLAIM REVIEW AND RESOLUTION COMMENTS</subject>
+    <textOnly>Initial Claim Review Comments: {!Claim__c.Account_Name__c}, {!Claim__c.WEX_Account__c}/{!Claim__c.Program_Account__c}
+
+
+
+SBWO:
+
+**Formal customer dispute claim received, Fraud dispute claim #{!Claim__c.Name} assigned to Fleet Fraud Services. The fleet disputed transactions on card {!Claim__c.CO_ID_STD_EMB_GTag__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c} for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}. Intro &amp; Resolution email sent to adv the account is being credited for the allowable disputed charges as a goodwill adjustment in recognition of our relationship. Resolution is final; pursue all other collections as BAU. Fleet Fraud Services**
+
+**Adj Req submitted in the amt of ${!Claim__c.Allowable_Dispute_Dollars__c} for dispute claim {!Claim__c.Name}.
+
+
+
+SBQC:
+
+**Formal customer dispute claim received, Fraud dispute claim #{!Claim__c.Name} assigned to Fleet Fraud Services. Intro &amp; resolution sent to fleet w/ determination that fleet is liable for allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and  {!Claim__c.Allowable_Dispute_End_Date__c} on card(s) {!Claim__c.CO_ID_STD_EMB_GTag__c} per T&amp;Cs. Disputed trans were OPT, no indication of merchant involvement. The dispute claim is closed, pursue all other collections as BAU.** Fleet Fraud
+
+
+
+Total Dispute Exceeds 60-Days:
+
+**Dispute received from fleet for transactions on card(s) {!Claim__c.CO_ID_STD_EMB_GTag__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Intro &amp; resolution email sent to fleet to adv that pursuant to the contractual agreement governing use of the account, this is outside of the 60-Day allowable dispute period, therefore dispute claim {!Claim__c.Name} has been closed.** Fleet Fraud.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

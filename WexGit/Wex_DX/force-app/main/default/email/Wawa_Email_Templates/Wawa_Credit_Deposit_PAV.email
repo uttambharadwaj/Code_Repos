@@ -1,0 +1,149 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white">Thank you for your interest
+in our&nbsp;<span style="font-size: 11pt; line-height: 107%; font-family: Arial, sans-serif; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">Wawa Fuel Card Program</span>!<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white">To enroll in an account
+with us, please send in a <b>deposit</b> to
+secure the account along with the attached Deposit form. You may either <b>mail</b> the deposit to our bank or <b>wire</b> us the funds. <br>
+<br>
+<u>Sending the deposit by mail:</u><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;tab-stops:list .75in"><ul><li>Complete
+and sign the attached <b style="font-size: 12pt;">deposit agreement</b><span style="background-color: white; font-size: 12pt;">
+(the minimum deposit is $500)</span></li><li>Send the form to our bank (address
+below) with a <b style="font-size: 12pt;">certified check</b><span style="background-color: white; font-size: 12pt;">, </span><b style="font-size: 12pt;">money order</b><span style="background-color: white; font-size: 12pt;"> or </span><b style="font-size: 12pt;">cashier’s check</b><span style="background-color: white; font-size: 12pt;"> for the deposit amount you would like to put on
+deposit.</span></li><li><b style="font-size: 12pt;">Reference opportunity #</b><span style="background-color: white; font-size: 12pt;"> </span><span style="font-size: 12pt; background: yellow;">(insert number here)</span><span style="background-color: white; font-size: 12pt;"> and
+mention the check is for a </span><b style="font-size: 12pt;">secured
+deposit</b><span style="background-color: white; font-size: 12pt;"> in the memo section of the check.</span></li><li>Either scan/email or fax a copy of the completed
+and signed <b style="font-size: 12pt;">deposit agreement</b><span style="font-size: 12pt;"> to me
+at the email noted below or {!User.Fax}</span></li></ul><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><b>Bank Address:<br>
+WEX Bank<br>
+7090 Union Park Center, Suite 350<br>
+Midvale, UT 84047<br>
+<span style="color:#3F3F3F"><br>
+</span></b><u>Wire
+Transfer Instructions:</u><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><ul><li>Account Name: &nbsp;<b style="font-size: 12pt;">WEX Inc.</b></li><li>Account Number: &nbsp;<b style="font-size: 12pt;">4539508</b></li><li>Receiving Instructions:
+&nbsp;<b style="font-size: 12pt;">Harris Bank (311 West Monroe,
+Chicago, IL &nbsp;60606)</b></li><li>ABA/Routing Number: &nbsp;<b style="font-size: 12pt;">071000288</b></li><li>Please reference
+opportunity <b style="font-size: 12pt;">#</b><span style="background-color: white; font-size: 12pt;"> (</span><span style="font-size: 12pt; background: yellow;">insert number here</span><span style="background-color: white; font-size: 12pt;">)</span></li><li>Memo Section: &nbsp;Please
+mention the check is for a <b style="font-size: 12pt;">secured
+deposit</b></li><li>Either scan/email or fax a
+copy of the completed and signed <b style="font-size: 12pt;">deposit
+agreement</b><span style="background-color: white; font-size: 12pt;"> to me at the email noted below or {!User.Fax}</span></li></ul><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">When the deposit is received your account will
+be set up and the deposit applied will become your line of credit.<br>
+<br>
+To comply with the Patriot Act, our bank is needs you to<b> verify your physical address</b> for approval. &nbsp;Please provide
+documentation from a third party to verify your business is located at the
+correct address listed on your application. <o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">To pass verification, the bank requires a copy
+of&nbsp;<b><u>one</u></b>&nbsp;of the
+following documents:<o:p></o:p></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal;tab-stops:list .75in"><ul><li><b style="font-size: 12pt;">Utility bill</b><span style="font-size: 12pt;"> or </span><b style="font-size: 12pt;">insurance document</b><span style="font-size: 12pt;">&nbsp;showing that the bill is mailed to the
+physical street address or that it services the physical address of the
+business</span></li><li><b style="font-size: 12pt;">Lease agreement</b><span style="font-size: 12pt;"> which
+identifies the business and the physical address of the office</span></li><li><b style="font-size: 12pt;">Certified articles of incorporation</b></li><li>An unexpired <b style="font-size: 12pt;">government-issued business license.</b></li></ul><o:p></o:p></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+line-height:normal"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal">Feel free to scan and email the verification to
+me at the email noted below, or if you prefer, you can fax it to me at
+{!User.Fax}.&nbsp; You can also call me at {!User.Phone} if you have any
+questions.<br>
+<br>
+Sincerely,&nbsp;<br>
+<br>
+{!User.FirstName} {!User.LastName}<br>
+{!User.Title}<br>
+Phone - {!User.Phone}<br>
+Fax - {!User.Fax}<br>
+{!User.Email}<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal;background:white"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is
+prohibited. If you have received this message in error, please notify sender
+immediately by telephone or reply by e-mail and delete the entire message and
+any attachments."</span></i><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; background: white;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<i><span style="font-size:11.0pt;line-height:115%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-hansi-theme-font:minor-latin;mso-bidi-font-family:Arial;color:gray;
+mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</span></i></p>]]></td>
+</tr>
+</table>

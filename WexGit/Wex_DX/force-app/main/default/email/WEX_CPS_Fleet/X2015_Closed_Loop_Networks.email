@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>Closed Loop Networks for Higher Savings - WEX</title>
+    <meta name="title" content="">
+    <meta name="description" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/CSS">
+        body, #body_style {
+            background:#f1f1f1; 
+            min-height:1000px; 
+            color:#000000; 
+            font-family:Arial, Helvetica, sans-serif; 
+            font-size:13px;}  
+        .ExternalClass {width:100%;} 
+        .yshortcuts {color: #F00;}
+        #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+        /* Client-specific Styles */
+        #outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
+        body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;}
+        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+        .ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */ 
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+        #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}
+        /* End reset */
+        img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;}
+        a img {border:none;}
+        .image_fix {display:block;}
+        p {margin: 1em 0;}
+        table td {border-collapse: collapse;}
+    </style>
+</head>
+<body style="background:#e2e3e4; min-height:1000px; color:#000000;font-family:Arial, Helvetica, sans-serif; font-size:13px" alink="#FF0000" link="#FF0000" bgcolor="#e2e3e4" text="#000000"> 
+<!--wrapper span-->    <span id="body_style" style="padding:15px; display:block"> 
+<!--wrapper table-->
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+    <tr>
+        <td>
+<!--begin email content-->
+<!--text header-->
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="640">
+    <tbody>
+        <tr>
+            <td valign="top" style="color:#666666;font-family: Arial, sans-serif ;font-size:12px; -webkit-text-size-adjust: none; line-height: 16px;padding-bottom: 8px;" width="600">Hello {!Contact.FirstName},<br>
+                <br>
+                Many of our current customers have found value in keeping tuned in to industry trends. I thought you might find this interesting.<br>
+                <br>
+                Let me know if you have any questions.<br>
+                {!User.Name} | Phone: {!User.Phone} | Email: {!User.Email}
+            </td>
+        </tr>
+        <tr height="5">
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<!--body-->
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="650px" style="width:640px; margin:0 auto;" bgcolor="#ffffff">
+    <tr height="145">
+        <td colspan="2" width="640" height="145" style="height: 145px;">
+            <img width="640" height="145" src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{ff14fd80-c709-4d25-9de3-3100cb08b68b}_WEXLF-Nov2014-header.jpg" alt="WEX We see corporate payments differently.">        </td>
+    </tr>
+    <tr bgcolor="#3997b5" height="30">
+        <td width="20"></td>
+        <td width="620" style="vertical-align:middle;font-family:Arial, Helvetica, sans-serif;color:#ffffff;font-size:18px;" valign="center"></td>
+    </tr>
+    <tr bgcolor="#ffffff" height="20">
+        <td colspan="2" style="height:20px;"></td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="650px" style="width:640px; margin:0 auto;" bgcolor="#ffffff">
+    <tr align="center" style="text-align: center;">
+        <td width="10">
+        </td>
+        <td width="620">
+        <table width="620"><tbody><tr>
+        <td align="right" style="text-align: right;">
+                <img src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{ae9280de-a3d7-4d35-9318-796803850f92}_WEXLF-Nov2014-loop-open.jpg" alt="open loop">
+            </td>
+            <td>
+                <span style="margin:0;font-family:Arial, Helvetica, sans-serif;font-size: 20px; color: #000000;line-height: 24px;">
+                <strong>CLOSED LOOP NETWORKS<br>
+                    FOR HIGHER SAVINGS</strong>
+                </span>
+            </td>
+            <td align="left" style="text-align: left;">
+                <img src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{92742de9-c1d2-45c0-befb-f7dae520bad8}_WEXLF-Nov2014-loop-closed.jpg" alt="closed loop">
+            </td>
+        </tr></tbody></table>
+        </td>
+        <td width="10">
+        </td>
+    </tr>
+    <tr>
+        <td width="10">
+        </td>
+        <td width="620" style="margin:0;font-family:Arial, Helvetica, sans-serif;font-size: 14px; color: #000000;line-height: 16px;">
+        <br>Closed Loop Networks are built for business use, and don’t run on the credit card networks that were built for consumers. Our whitepaper shows how fleet cards can help your business. <br><br>
+        </td>
+        <td width="10">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" width="640" height="30" style="">
+            <a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{e67210fb-4cbe-4693-bdbc-99fddb688ab7}_LFClosedLoopWhitepaper.pdf" style="text-decoration:none;color:#000000;"><img src='http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{1a5b8682-b87d-4d93-ab29-f067a3f0a08e}_WEXLF-Nov2014-arrow.jpg' style="display:block"></a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" width="640" style="width: 640px;">
+          <a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{e67210fb-4cbe-4693-bdbc-99fddb688ab7}_LFClosedLoopWhitepaper.pdf" style="text-decoration:none;color:#000000;"><img src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{f4a8a3b4-cacc-4e6c-a66a-67e7a1a1ed32}_WEXLF-Nov2014-loop-chart.jpg" alt="WEX Closed Loop System"></a>
+        </td>
+    </tr>
+    <tr>
+        <td width="10">
+        </td>
+        <td width="620" style="margin:0;font-family:Arial, Helvetica, sans-serif;font-size: 14px; color: #000000;line-height: 16px;">
+        <br>Learn about how you can control which products your drivers can purchase, where they can purchase them, and the total dollar amount of the purchase. Reduce your risk of fraud or misuse, and increase your ability to keep expenses in check. Not all fleet cards are the same! <br><br><br>
+        </td>
+        <td width="10">
+        </td>
+    </tr>
+        <tr>
+        <td colspan="3" width="640" height="30">
+            <a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{e67210fb-4cbe-4693-bdbc-99fddb688ab7}_LFClosedLoopWhitepaper.pdf" style="text-decoration:none;color:#000000;"><img src='http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{1a5b8682-b87d-4d93-ab29-f067a3f0a08e}_WEXLF-Nov2014-arrow.jpg' style="display:block"></a>
+        </td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="650px" style="width:640px; margin:0 auto;background-color:#807f7f;-webkit-text-size-adjust: none;" bgcolor="#333333">
+    <tr height="5">
+        <td width="640" colspan="4" style="height: 5px;"></td>
+    </tr>
+
+    <tr>
+        <td width="20">
+        </td>
+        <td width="600" colspan="2" style="padding-bottom: 20px;padding-top: 15px;">
+            <center style="color: #ffffff;">
+            <div align="left">
+            <font style="font-family: Arial; font-size: 10px;">WEX, Inc.|&nbsp; 97 Darling Avenue&nbsp; |&nbsp; South Portland, ME 04106&nbsp; |&nbsp; USA&nbsp; |&nbsp; <a href="http://www.wexinc.com/privacy-policy" title="Fleet Services Privacy Policy" style="color:#ffffff">Privacy Policy</a></font></font></div>
+            </center>
+        </td>
+        <td width="20">
+        </td>
+    </tr>
+</table>
+<!--wrapper closing tags-->
+</td>
+
+</tr></table>
+</span>
+
+</body>
+</html>

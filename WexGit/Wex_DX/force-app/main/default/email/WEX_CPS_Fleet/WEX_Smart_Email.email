@@ -1,0 +1,38 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font size="2" face="Verdana,Helvetica,Sans-Serif">{!Contact.Salutation} {!Contact.LastName},</font></p>
+<p><br><font size="2" face="Verdana,Helvetica,Sans-Serif">I wanted to thank you for selecting WEX as your fleet fueling program. As I</font><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;mentioned during your account set up, we also offer a unique telematics program, <strong>WEX<i>&nbsp;Telematics</i></strong>. </font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p align="left"><font size="2" face="Verdana,Helvetica,Sans-Serif"></font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">Using GPS vehicle tracking and diagnostics, our innovative solution allows you to get up-to-the-minute reports on the location, speed, and actual operating condition of your vehicles.&nbsp;These are just some of the available features:</font></p>
+<ul>
+<li><font size="2" face="Verdana,Helvetica,Sans-Serif">Vehicle location history </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">Engine problem alerts </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">In-vehicle display with two-way messaging </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">Email alerts for excessive idling, speeding, etc. </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">Driver behavior scoring</font></li></ul>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">Many of our customers have reported:</font></p>
+<ul>
+<li><font size="2" face="Verdana,Helvetica,Sans-Serif">An increase in driver productivity (customers average a 26% increase) </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">A reduction in vehicle fuel consumption (customers average an 11%-15% savings) </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">A reduction in overtime paid</font></li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">Elimination of unauthorized vehicle use </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">Reduction in vehicle repair costs with diagnostic alerts </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">Recovery of stolen vehicles and supplies </font>
+</li><li><font size="2" face="Verdana,Helvetica,Sans-Serif">A reduction in annual insurance premiums</font></li></ul>
+<p><font size="2" face="Verdana"></font>&nbsp;</p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">Get a handle on where your vehicles are, how they’re running, and what your employees have been doing with them.</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif"></font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">Please review the attached sheet for details<i>.</i> If you would like a demonstration&nbsp;please call me at {!User.Phone}.</font></p><p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">Sincerely, </font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">{!User.FirstName} {!User.LastName}</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">{!User.Title}<br>Phone - {!User.Phone}<br>{!User.Email}</font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif"></font>&nbsp;</p>
+<p><font size="2" face="Verdana"><a href="http://www.wrightexpress.com">www.wexinc.com</a></font></p>
+<p>&nbsp;</p>
+<p><font size="1" face="Verdana,Helvetica,Sans-Serif">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</font></p>]]></td>
+</tr>
+</table>

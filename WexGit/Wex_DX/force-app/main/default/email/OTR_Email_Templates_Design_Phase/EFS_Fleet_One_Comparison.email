@@ -1,0 +1,51 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0);">{!Contact.FirstName},<o:p></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);">&nbsp;</p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="font-size: 12pt;">As&nbsp;</span><span style="font-size: 12pt;">your new<b> </b>WEX Fleet One / EFS
+Account Executive for the sunshine state of Florida, I will be working with you
+to provide your business with all of the support and information you need in
+making decisions concerning one of your largest expenses – <b>fuel</b>.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);">As you may know, Fleet One and EFS
+have a fuel card solution for virtually every fueling need. Whether you are an
+owner operator or own a large fleet of trucks, Fleet One and EFS combine the
+expertise, technology, relationships, and resources of highly complementary
+companies to bring unique and innovative payment solutions that are
+unparalleled in the industry. <o:p></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);">When the time comes for you to
+evaluate how your business purchases fuel and handles the reporting, driver
+controls, and payments that accompany a fuel card program, please keep me in
+mind. <o:p></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><b><i>Fleet One &amp; EFS… which card is right for
+me?</i></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><b><i><br></i></b></p><p class="MsoNormal" style="text-align: center; color: rgb(0, 0, 0);"><img src="https://c.na64.content.force.com/servlet/servlet.ImageServer?id=0150g000004NhZ0&amp;oid=00D700000009EOI" border="0" align="left" alt=""><br></p><p class="MsoNormal" style="text-align: center; color: rgb(0, 0, 0);"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="font-size: 12pt;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="font-size: 12pt;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="font-size: 12pt;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="font-size: 12pt;">&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><span style="font-size: 12pt;">I am at your service and happy to answer any questions you may have regarding our fuel card programs. Please f</span><span style="font-size: 12pt;">eel
+free to email me anytime or call me directly at </span><b style="font-size: 12pt;">615-523-6496.</b></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">&nbsp;&nbsp;<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">If you would like to go ahead
+and fill out an application, please click on the below link for Fleet One <i style="">EDGE </i>or complete and return the attached
+documents to start the EFS application process.&nbsp;<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><b><br></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">
+
+
+
+
+
+</p><p class="MsoNormal" style=""><b style="">FLEET ONE<i> EDGE</i> APPLICATION: <font color="#3366ff" style="background-color: rgb(255, 255, 153);"><a href="https://onlineservices.secure.force.com/appl/ApplicationCompanyInformation?noFrame=true&amp;offer=a3L700000002GaB" style="background-color: rgb(255, 255, 153);">CLICK HERE</a></font></b></p><p class="MsoNormal" style=""><b style=""><br></b></p><p class="MsoNormal" style=""><b>EFS APPLICATION: </b>Please complete attached documents.</p><p class="MsoNormal" style=""><br></p><p class="MsoNormal">Kind Regards,<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">{!User.Name}<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">{!User.Title}<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">WEX Fleet One &amp; EFS<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">Phone: &nbsp;{!User.Phone}
+|&nbsp;Fax: {!User.Fax}<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0);">{!User.Email}
+|&nbsp;www.FleetOne.com&nbsp;<span style="font-size: 12pt;">| www.EFSllc.com&nbsp;</span><span style="font-size: 12pt;">&nbsp;&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><br></p>]]></td>
+</tr>
+</table>

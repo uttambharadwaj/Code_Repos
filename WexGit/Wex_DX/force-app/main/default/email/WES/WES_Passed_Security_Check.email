@@ -1,0 +1,5 @@
+<p>The Application for {!WES_Application_Request__c.Company_Name__c} passed the Security Check by {!User.Name}.</p> 
+
+<p>The application has now been passed to Credit for Assignment.</p>
+
+<p>Click <a href="{!WES_Application_Request__c.Link}">Here</a> for the application details.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>OTR Email Templates:  Design Phase</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <role>DirectorDirectOTRSales</role>
+        <role>F1_Director_Marketing</role>
+        <role>OTR_IS_Sales_Inbound_West</role>
+        <role>OTR_IS_Sales_Manager_West</role>
+        <role>OTR_IS_Sales_Outbound_West</role>
+        <role>OTR_IS_Sales_Retention_West</role>
+        <role>OTR_Outbound_Channel_2</role>
+        <role>OTR_Outbound_Channel_Sales</role>
+        <role>OTR_Outbound_Channel_Sales_TL</role>
+        <role>Outbound_Channel_Marketing</role>
+    </sharedTo>
+</EmailFolder>

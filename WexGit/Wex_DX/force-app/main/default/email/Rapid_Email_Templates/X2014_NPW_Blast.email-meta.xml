@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2014 NPW Blast</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>2014 NPW Blast</name>
+    <style>freeForm</style>
+    <subject>Happy National Payroll Week</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I just wanted to drop you a quick note and wish you, and your payroll team a Happy National Payroll Week!!!
+
+WEX rapid! Paycard is proud to be a Platinum Sponsor of the American Payroll Association, and in particular the NationalPayrollWeek.com website. We encourage you to share the NPW website link with all of your employees, and with all of those in your payroll department.
+
+The website will provide employees with a variety of tools so they can learn ways in which to manage and better understand their earnings.
+
+In today’s economy, and with many employees living from paycheck to paycheck… providing tools and information to aid employees in realizing the full potential of their earnings, has never been more important.
+
+We hope you’ll promote throughout your organization a visit to the NationalPayrollWeek.com, website, and that your employees will make use of the many tools, as well as the valuable tips on how to manage withholding&apos;s, set aside money for retirement, and a whole lot more!!!
+
+
+Best wishes and Happy National Payroll Week,
+
+{!User.Name}
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: {!User.Phone} • C: {!User.MobilePhone} • F: 727.828.4444
+
+E: {!User.Email}
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,147 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style=""><a name="lt_pId002"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Bonjour {!Contact.FirstName},</span></a><font face="Times New Roman, Times, serif" style=""><br><br><o:p></o:p></font></p>
+
+<p class="MsoNormal" style=""><a name="lt_pId003" style="font-size: 12pt;"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Merci d’avoir soumis une demande de carte de
+carburant</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;"> Shell.</span></p><p class="MsoNormal" style=""><span style="font-family: &quot;Times New Roman&quot;, Times, serif; font-size: 12pt;"><br></span></p><p class="MsoNormal" style=""><a name="lt_pId004"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Avant que nous puissions traiter votre demande,
+nous avons besoin que vous remplissiez le formulaire d’<b>autorisation
+personnelle</b> ci-joint.</span></a></p><p class="MsoNormal" style=""><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-font-style:italic"><font face="Times New Roman, Times, serif"><br><o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style=""><a name="lt_pId005"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Vous pouvez ensuite le numériser et me l’envoyer
+par courriel à l’adresse indiquée ci-après ou, si vous préférez, me le
+télécopier directement au<span style="background:white"> {!User.Fax}.</span></span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif; background: white;">&nbsp;&nbsp;</span><font face="Times New Roman, Times, serif"><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+background:white"><br><br><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style=""><a name="lt_pId006"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;">Si vous avez des questions, n’hésitez pas à
+m’appeler au {!User.Phone}.</span></a></p><p class="MsoNormal" style=""><a name="lt_pId006"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif;"><br></span></a></p>
+
+<p class="MsoNormal" style=""><a name="lt_pId007"><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif; background: white;">Cordialement,</span></a><span lang="FR-CA" style="font-size: 12pt; line-height: 107%; font-family: &quot;Times New Roman&quot;, serif; background: white;"><br>
+<br>
+<a name="lt_pId008">{!User.FirstName} {!User.LastName}</a><br>
+<a name="lt_pId009">{!User.Title}</a><br>
+<a name="lt_pId010">Téléphone&nbsp;: {!User.Phone}</a><br>
+<a name="lt_pId011">Télécopieur&nbsp;:{!User.Fax}</a><br>
+<a name="lt_pId012">{!User.Email}</a></span></p><p class="MsoNormal" style=""><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;background:white"><a name="lt_pId001"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA"><br></span></i></a></span></p><p class="MsoNormal" style=""><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;background:white"><a name="lt_pId001"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">©&nbsp;Shell Fleet Solutions, 2019.</span></i></a><i><span lang="FR-CA" style="font-size:8.0pt;
+line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:#979797;mso-ansi-language:FR-CA;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA"> <a name="lt_pId002">Tous droits réservés.</a></span></i></span></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><a name="lt_pId003" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Shell Fleet Solutions,
+97 Darling Avenue, South Portland, ME 04106 </span></i></a><i style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">ÉTATS-UNIS</span></i></p><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><br></p><p style="margin: 0in;"><a name="lt_pId004"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Le programme Solutions
+Shell pour parc est offert et administré par WEX&nbsp;Canada,&nbsp;Ltd et n’est
+pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou
+d’une société affiliée de Shell.</span></i></a><a name="lt_pId005"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> Nous respectons votre vie
+privée.</span></i></a><i><span lang="FR-CA" style="font-size:8.0pt;line-height:
+107%;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:#979797;mso-ansi-language:FR-CA;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA"> <a name="lt_pId006">Veuillez consulter </a><a>notre
+</a></span></i><a href="http://tx.e1.fleetservicesonline.com/track.aspx?3802467.187188.14348713688.7410.1060408_4513_H"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;mso-ansi-language:FR-CA;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA">politique de confidentialité</span></i></a><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">&nbsp;pour en savoir plus sur
+l’activité de clics de WEX Inc. et les liens qui figurent dans le présent
+courriel.</span></i>
+
+</p><div><!--[if !supportAnnotations]-->
+
+<div><div id="_com_1" class="msocomtxt" language="JavaScript"><br>
+
+<!--[if !supportAnnotations]--></div><div id="_com_1" class="msocomtxt" language="JavaScript"><a name="lt_pId007"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#A5A5A5;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">AVIS DE
+CONFIDENTIALITÉ&nbsp;: «&nbsp;Ce courriel est envoyé par WEX à la demande de
+Shell. Shell<sup>md</sup>, et Shell Fleet Plus<sup>mc</sup> sont des marques
+déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une
+licence.</span></i></a><i><span lang="FR-CA" style="font-size:8.0pt;line-height:
+107%;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:#A5A5A5;mso-ansi-language:FR-CA;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA"> <a name="lt_pId009">Ce message contient des renseignements
+confidentiels et est destiné uniquement à l’usage du ou des destinataire(s)
+désigné(s) ci-dessus. Sa diffusion est interdite. </a><a name="lt_pId010">Si
+vous avez reçu ce message par erreur, veuillez en aviser immédiatement
+l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message
+en entier ainsi que toute pièce jointe.&nbsp;»</a></span></i></div>
+
+<!--[endif]--></div>
+
+</div><p style="margin: 0in; color: rgb(151, 151, 151); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><br></p><p style="margin: 0in; color: rgb(165, 165, 165); font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><a name="lt_pId011"><i><span lang="FR-CA" style="font-size: 8pt; line-height: 107%; font-family: Calibri, sans-serif;">Shell<sup>md&nbsp;</sup>&nbsp;et Shell Fleet Plus<sup>mc</sup> sont des marques
+déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une
+licence.</span></i></a></p><p style="margin: 0in; font-family: Calibri; font-size: 11pt;">&nbsp;</p><p style="margin: 0in; font-family: &quot;Times New Roman&quot;; font-size: 8pt;"><a name="lt_pId013"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Ce courriel a été envoyé à
+{!Contact.Email}</span></i></a><a name="lt_pId014"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">. Vous le recevez parce que
+vous avez récemment soumis une demande de carte auprès des Solutions Shell pour
+parc.</span></i></a><a name="lt_pId015"><i><span lang="FR-CA" style="font-size:
+8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:
+minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;
+mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> Si vous ne souhaitez plus
+recevoir de courriels à l’adresse {!Contact.Email}</span><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#666666;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">,</span></i></a><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;
+font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+mso-ansi-language:FR-CA;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">
+écrivez-nous afin de vous désinscrire de notre liste</span></i></a><i><span lang="FR-CA" style="font-size:8.0pt;
+line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi;
+color:#979797;mso-ansi-language:FR-CA;mso-fareast-language:EN-US;mso-bidi-language:
+AR-SA">.</span></i><a name="lt_pId016"><i><span lang="FR-CA" style="font-size:8.0pt;line-height:107%;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;color:#979797;mso-ansi-language:FR-CA;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA"> Assurez-vous d’indiquer
+votre nom, de même que le nom et le courriel de votre entreprise dans votre
+message.</span></i></a></p><font face="Times New Roman, Times, serif"><span style="color:black"></span></font><p></p>]]></td>
+</tr>
+</table>

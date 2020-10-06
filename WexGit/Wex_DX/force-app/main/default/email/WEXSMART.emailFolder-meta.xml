@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>WEX Telematics</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>AccountExecutive</group>
+        <group>Marketing1743636</group>
+        <group>Telematics</group>
+        <role>AquarientSalesRep</role>
+        <role>TelamaticsInsideSales</role>
+        <role>TelapointDirectorofSales</role>
+        <role>TelematicsDataAdministrator</role>
+        <role>TelematicsSalesManager</role>
+    </sharedTo>
+</EmailFolder>

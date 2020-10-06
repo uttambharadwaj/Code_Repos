@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to request a document draft validated by the Business Requestor</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Salesforce_Support_letterhead</letterhead>
+    <name>Content Response - Validate</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.CaseNumber} {!Case.Case_Reason__c} {!Case.Subject}</subject>
+    <textOnly>Hi {!Case.User__c},
+
+I&apos;ve attached for your review a draft of the document you requested.
+
+Please reply to this email with any changes, questions or to approve this draft.
+
+Thank you,
+{!Case.OwnerFirstName}
+Sales Operations &amp; Training Content Management</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

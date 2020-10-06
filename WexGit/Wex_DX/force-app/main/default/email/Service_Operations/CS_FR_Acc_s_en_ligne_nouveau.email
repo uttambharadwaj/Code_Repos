@@ -1,0 +1,25 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Votre mot de passe temporaire a été envoyé à l'adresse e-mail dans le fichier. Si cela ne vous a pas été transmis par le gestionnaire de flotte, nous pouvons avoir besoin de mettre à jour les informations de contact sur le compte. Veuillez remplir le formulaire de mise à jour de contact ci-joint, le faire signer par un contact autorisé actuel ou un dirigeant de l'entreprise, et nous le retourner avec votre demande de mot de passe temporaire.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Claim Review and Resolution Comments - Co Brand</name>
+    <style>freeForm</style>
+    <subject>CLAIM REVIEW AND RESOLUTION COMMENTS-CO BRAND</subject>
+    <textOnly>CO-BRAND WP CLAIM RESOLUTION COMMENTS:  {!Claim__c.Name} /{!Claim__c.Acct_For_Email_Merge__c}
+
+
+
+Account comments:
+
+**Adj/CHECK Req submitted in the amt of ${!Claim__c.Allowable_Dispute_Dollars__c} for dispute claim {!Claim__c.Name} for allowable disputed charges on card(s) {!Claim__c.Abbreviated_Card__c}, {!Fraud_Purchase_Device__c.CO_ID_STD_EMB_GTag__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}.
+
+
+**Resolution email sent for dispute claim {!Claim__c.Name} w determination that fleet is receiving a credit in the amt of ${!Claim__c.Allowable_Dispute_Dollars__c} due to WP. The claim is closed.** Fleet Fraud Services.
+
+
+Claim File Comments (header):
+
+
+Claim File Comments
+
+
+
+
+FT #: {!Claim__c.Name}
+
+Fleet: {!Claim__c.Account_Name__c}
+
+Account #: {!Claim__c.Acct_For_Email_Merge__c}
+
+Program Acct #: {!Claim__c.Program_Account_For_Email_Merge__c}
+
+Card #: {!Claim__c.Abbreviated_Card__c}
+
+DIN: {!Claim__c.DIN__c}
+
+Claim Start:{!Claim__c.Claim_Dispute_Start_Date__c}
+
+Claim End:{!Claim__c.Allowable_Dispute_End_Date__c}
+
+Claim Amount:${!Claim__c.Total_Claim_Dollars__c}
+
+Allowable Amt:${!Claim__c.Allowable_Dispute_Dollars__c}
+
+
+
+FT Summary:
+
+
+
+
+
+
+
+CO-BRAND WP Resolution Email:
+
+
+Hello,
+
+
+Please see the resolution outlined below for dispute claim # {!Claim__c.Name}.  Please feel free to contact us to discuss any questions you may have.
+
+
+Customer
+
+{!Claim__c.Account_Name__c}
+
+Account
+
+{!Claim__c.Program_Account_Masked__c}
+
+Card
+
+{!Claim__c.Abbreviated_Card__c}, {!Claim__c.CO_ID_STD_EMB_GTag__c}
+
+Driver Identification Number (DID)
+
+DIN {!Claim__c.DIN__c} assigned as “{!Claim__c.Driver_Name__c}”
+
+Allowable Dispute Period
+
+Between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}
+
+Allowable Dispute Amount
+
+${!Claim__c.Allowable_Dispute_Dollars__c}
+
+
+Research and analysis by WEX Fraud Department produced the following information:
+
+ATTACH COPY OF CHECK
+
+A check was sent via regular mail delivery to the attention of {!Claim__c.Account_Contact_Name__c} in the amount of ${!Claim__c.Allowable_Dispute_Dollars__c}. The dispute claim is closed.
+A copy of the check is attached.
+
+
+Thank you
+
+
+Fleet Fraud Services
+
+Toll Free: 888-691-0361
+
+Fax: 207-791-1655
+
+
+XX
+
+
+
+CO-BRAND LIABLE COMMENTS:
+
+
+Research and analysis by WEX Fraud Department produced the following information:
+
+Include bullets that apply &amp; add any additional applicable details if needed.
+
+No attempt to guess at DIN was made prior to the onset of the abuse.  This would indicate that the perpetrator had knowledge of the DIN or that the DIN was not kept in a confidential manner.
+Transaction(s) totaling $ {!Claim__c.Ticket_Request_Amount__c} occurred inside a merchant location therefore a signature may have been obtained.  On the customer’s behalf WEX requested copies of the receipts, and once received WEX will forward the copies to {!Claim__c.Partner_Formal_Name__c}.
+The remaining  / All disputed transactions were made at outside payment terminals (“OPT”).  No signature is required for OPT purchases as the swipe of the card into the card reader establishes that the card was present at the time of the sale.
+There were no declined attempts to use the card after cancelling.  This would indicate that the perpetrator had knowledge the card was canceled or no longer had access to the card.
+No further information to help identify or confirm the perpetrator(s) was available.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

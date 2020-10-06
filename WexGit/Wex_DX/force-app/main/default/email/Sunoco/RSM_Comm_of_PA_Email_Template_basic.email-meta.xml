@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>RSM: General email template for emails to Comm of PA prospects &amp; customers.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco_PA</letterhead>
+    <name>RSM: Comm of PA Email Template (basic)</name>
+    <style>freeForm</style>
+    <subject>Information: The Commonwealth Universal Fleet Card Program</subject>
+    <textOnly>Enter content....
+
+
+
+
+
+
+
+
+All my best,
+
+
+Jason Chubb
+Sunoco Regional Sales Manager
+484.467.8383
+jason.chubb@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

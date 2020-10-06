@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<FONT face=Verdana,Helvetica,Sans-Serif>Dear Business Owner,<BR><BR>Thank you for your interest in the Fuelbook Fleet Card. Did you know a fuel card can give you the tools you need to reduce your administrative hassles, saving you valuable time and resources? <A href="http://www.fuelbook.com/fuelcard.html">Click here</A>&nbsp;to learn more about how the Fuelbook Fleet Card program can help you manage your fuel costs.<BR><BR>Again, thank you for your interest in the Fuelbook Fleet Card. I look forward to the opportunity to assist you with your fuel card needs.</FONT><FONT face=Verdana,Helvetica,Sans-Serif><BR><BR>Sincerely,<BR><BR>{!User.Name}<BR>{!User.Title}<BR>WEX Fleet One<BR>Phone: {!User.Phone}<BR>Fax: {!User.Fax}<BR>Email: {!User.Email}</FONT>]]></td>
+</tr>
+</table>

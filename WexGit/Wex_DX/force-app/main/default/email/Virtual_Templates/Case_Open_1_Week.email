@@ -1,0 +1,7 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><br></div><div><br></div><div>Hi Diane,</div><div><br></div><div>The below Case has been open for 1 week -</div><div><br></div><div>Link -&nbsp;<a href="https://na5.salesforce.com/{!Case.Id}
+">{!Case.CaseNumber}</a></div><div>Subject -&nbsp;{!Case.Subject}</div><div>Owner -&nbsp;{!Case.OwnerFullName}</div><div>Reason -&nbsp;{!Case.Reason}</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif"><br></font></i></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif"><br></font></i></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font></i></div>]]></td>
+</tr>
+</table>

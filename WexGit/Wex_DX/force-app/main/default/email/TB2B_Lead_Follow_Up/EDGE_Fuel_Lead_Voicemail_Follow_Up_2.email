@@ -1,0 +1,20 @@
+{!Lead.FirstName},
+
+I'm still trying to connect with you regarding your recent request for more information on the Fleet One EDGE fuel card. I'm confident our fuel card can give your fleet a real edge.
+
+As a reminder, the Fleet One EDGE card offers the most extensive and comprehensive fuel discount network available. Get fuel discounts at over 3,600 sites with average savings of 15 cents per gallon* and no fuel transaction fees in the EDGE network**. Plus access to thousands of additional savings, including tires, maintenance, wireless and much more.  
+
+Please give me a call back at {!User.Phone}, or reply to this email to get the ball rolling. If I don't hear back from you today, I will attempt to connect with you tomorrow.
+
+Thanks,
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+
+*The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network pricing at all.
+
+**In-network sites include Pilot Flying J, AMBEST, Circle K, Quick Fuel, Petroleum Wholesale, Sapp Bros., Speedway, and many more.

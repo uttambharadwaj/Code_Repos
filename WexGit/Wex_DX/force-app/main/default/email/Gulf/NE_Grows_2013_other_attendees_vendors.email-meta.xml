@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Post-show email to show attendees/vendors who did *not* visit booth.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>RSM: NE Grows 2013: other attendees/vendors</name>
+    <style>freeForm</style>
+    <subject>SPECIAL OFFER from Gulf if you attended New England Grows!</subject>
+    <textOnly>Great news! If you recently attended New England Grows 2013, you could save a significant amount of money each time you fuel your company vehicle at Gulf!
+
+With helpful expense controls, convenient reporting tools and savings of up to 5¢* off on every gallon of fuel purchased at Gulf, businesses can save significantly on the cost to fuel – and manage – company vehicles. Plus, as a participant in New England Grows 2013, you could save another 10¢ off per gallon for the first 3 months when you apply for a Gulf Fleet Card by March 31, 2013!**
+
+To learn more and to apply, visit www.gulffleetcard.com/grows. Or call me at 781.467.9492.
+
+All my best,
+
+
+Bob Everts
+Gulf Fleet Program Regional Sales Manager
+Cell 781-467-9492
+Fax 207-874-1576
+www.gulffleetcard.com/grows
+
+
+
+
+*Applicable to Commercial Fleet and Universal Fleet accounts only. Rebates are subject to change at any time without prior notice.
+
+**Only for qualified New England Grows 2013 participants who apply for a Gulf Commercial Fleet Card or a Gulf Universal Fleet Card by March 31, 2013, and are approved. Savings will commence the day the account is opened, then revert to the standard rebate offer after the initial 3-month period. Rebate will appear as a credit on the monthly billing statement.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

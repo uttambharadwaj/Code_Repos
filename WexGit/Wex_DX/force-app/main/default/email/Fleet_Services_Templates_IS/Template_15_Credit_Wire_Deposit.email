@@ -1,0 +1,86 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style='line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt; mso-bidi-font-style: italic;'>Dear
+{!Contact.FirstName},<i><span style="color: gray; mso-themecolor: background1; mso-themeshade: 128;"><br>
+<br>
+</span></i>Thank you again for your application for our fuel card program. <?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt; text-indent: 0.5in;" class="MsoNormal"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'>As we discussed,
+in order to finalize your account there are two more things that we will<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;need.&nbsp;&nbsp; </span></p><font face="Times New Roman">
+
+</font><p style="margin: 1em 0in 1em 0.75in; text-indent: -0.25in; mso-list: l0 level1 lfo1;" class="MsoListParagraph"><em><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt; font-style: normal; mso-fareast-font-family: Arial;'><span style="mso-list: Ignore;">1.<span style='font: 7pt/normal "Times New Roman"; font-size-adjust: none; font-stretch: normal;'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span></em><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>A copy of a completed deposit form faxed back
+to me at <em><span style='font-family: "Arial","sans-serif";'>{!User.Fax}.</span></em><em><span style='font-family: "Arial","sans-serif"; font-style: normal;'><o:p></o:p></span></em></span></p><font face="Times New Roman">
+
+</font><p style="margin: 1em 0in 1em 0.75in; text-indent: -0.25in; mso-list: l0 level1 lfo1;" class="MsoListParagraph"><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt; mso-fareast-font-family: Arial;'><span style="mso-list: Ignore;">2.<span style='font: 7pt/normal "Times New Roman"; font-size-adjust: none; font-stretch: normal;'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>A wire transfer rather than a certified check.<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'>Please find the
+attached form with all the necessary information you need to send a deposit via
+wire (rather than a certified check). If you would, please also notify me the
+amount and the date you wire the funds so we can ensure transfer on our end.<br style="mso-special-character: line-break;">
+<br style="mso-special-character: line-break;">
+<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><b style="mso-bidi-font-weight: normal;"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'>Wire Transfer Instructions:</span></b><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpFirst"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>Account Name</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>:<span style="mso-spacerun: yes;">&nbsp; </span>WEX
+Bank<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpMiddle"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>Account Number</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>:<span style="mso-spacerun: yes;">&nbsp;
+</span>4539508<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpMiddle"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>Receiving Institution</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>:<span style="mso-spacerun: yes;">&nbsp;
+</span>Harris Bank<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpMiddle"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>Address</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>:<span style="mso-spacerun: yes;">&nbsp; </span>311 West Monroe, Chicago,
+IL 60606<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpMiddle"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>Telephone Number</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>:<span style="mso-spacerun: yes;">&nbsp;
+</span>(312) 461-3036<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpMiddle"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>ABA/Routing Number</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>:<span style="mso-spacerun: yes;">&nbsp;
+</span>071000288<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.75in; text-indent: -0.25in; mso-add-space: auto;" class="MsoListParagraphCxSpLast"><u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>Reference</span></u><span style='color: black; font-family: "Arial","sans-serif"; font-size: 9pt;'>: Please list account number that payment/deposit needs to be
+applied to<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'>&nbsp;<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'>Please call me
+if you have any questions. <o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'><br>
+<em><span style='font-family: "Arial","sans-serif";'>Sincerely, </span></em><i><br>
+<br>
+<em><span style='font-family: "Arial","sans-serif";'>{!User.FirstName}
+{!User.LastName} </span></em><br>
+<em><span style='font-family: "Arial","sans-serif";'>{!User.Title} </span></em><br>
+<em><span style='font-family: "Arial","sans-serif";'>Phone - {!User.Phone} </span></em><br>
+<em><span style='font-family: "Arial","sans-serif";'>Fax - {!User.Fax}&nbsp;</span></em><br>
+<em><span style='font-family: "Arial","sans-serif";'>{!User.Email}&nbsp;<o:p></o:p></span></em></i></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 9pt;'><o:p>&nbsp;</o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><i><span style='color: gray; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 8pt;'>CONFIDENTIALITY
+NOTICE: "This message contains confidential information of WEX Inc. It is intended
+only for the use of the designated recipient(s) stated above and further
+distribution of the information is prohibited. If you have received this
+message in error, please notify sender immediately by telephone or reply by
+e-mail and delete the entire message and any attachments."</span></i><span style='line-height: 115%; font-family: "Arial","sans-serif"; font-size: 8pt;'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><i><span style='color: gray; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 8pt;'>WEX Inc., 97
+Darling Avenue, South Portland, ME 04106</span></i><span style='line-height: 115%; font-family: "Arial","sans-serif"; font-size: 8pt;'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><i><span style='color: gray; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 8pt;'>This is an
+advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},</span></i><span style='line-height: 115%; font-family: "Arial","sans-serif"; font-size: 8pt;'><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="color: gray;">
+</span></i><i><span style="color: rgb(51, 51, 255);">email us to unsubscribe</span></i></a><i><span style="color: gray;">. Please be sure to include your name, company name and
+email address in the email.</span></i><o:p></o:p></span></p><font face="Times New Roman">
+
+</font>]]></td>
+</tr>
+</table>

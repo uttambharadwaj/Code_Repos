@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Sprint Sales Opportunity to 3D Communications</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Sprint TCH Opportunity</name>
+    <style>none</style>
+    <subject>Sales Opportunity for Sprint 3D Communications</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

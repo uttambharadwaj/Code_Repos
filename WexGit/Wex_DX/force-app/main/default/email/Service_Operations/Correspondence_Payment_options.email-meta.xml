@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Payment: options</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Other than mailing a check, there are 3 online banking payment options for your Esso Business Card account.
+
+On your bank’s website, you can set up “Esso Business Card” as a Payee and use your Esso Customer number: 0000112865 for the account number.
+
+On our website: essofleetonline.com, you can go to:
+
+Invoice &amp; Payment on the red bar
+
+Direct Debit Enrollment – if you wish automatic payments to be taken each month
+
+Set Up Bank Information - if you wish to submit your payments yourself each month
+
+After making your choice between these 2, you:
+
+Add Bank Account
+
+Then follow the directions in the gray box to print off the Pre-authorized Debit Agreement, complete it, and return it to us with a voided check. The fax number is there, or you can send it by email to: iol_pad@wexinc.com
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

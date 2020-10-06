@@ -1,0 +1,27 @@
+Hi {!Contact.FirstName}! 
+
+In order to assist you in completing the online application for the EFS/FTS fuel card, I'm including a few "pointers" that will help with certain fields on the application:
+* Your company legal name as listed in SAFER or secretary of state
+
+* Your Legal Structure should be {!Opportunity.Legal_Structure__c} (based on what you have listed in SAFER) 
+
+* Use the business physical address, not mailing. 
+
+* Use the address on your current drivers license for the Beneficial Owner and Control Person 
+
+* Select "Open Line of Credit" if you are applying for credit. Otherwise, your account will be set up as prepay. 
+
+* For the Policy section, add all driver information for card setup, such as name assigned to each card & a corresponding driver id number. Assigning this information enhances card security. Add unit information (truck number) only if Unit # has been selected as a prompt. 
+
+* The Security Number is a 4-digit number you will have to remember when the cards arrive. 
+
+* Password needs to have at least 8 but no more than 10 characters, with at least one upper case letter.
+
+If you have any questions, please do not hesitate to call me with question. Also, if you can email me a business proof of address and voided check, that will help speed up your application processing as well.
+
+Thank you 
+{!User.FirstName} {!User.LastName} 
+Relationship Manager Strategic Partners 
+WEX Inc. 
+{!User.Email} 
+{!User.Phone}

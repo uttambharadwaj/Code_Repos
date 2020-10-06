@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>UNI-MAXX Sales Opportunity</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>UNI-MAXX Opportunity</name>
+    <style>none</style>
+    <subject>Sales Opportunity for UNI-MAXX</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

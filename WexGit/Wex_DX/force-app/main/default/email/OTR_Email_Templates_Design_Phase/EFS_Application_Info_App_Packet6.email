@@ -1,0 +1,535 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><b><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Greetings
+{!Contact.FirstName},<o:p></o:p></span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><b><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F"><br></span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:#4C4D4F">Thank you for taking the time to talk with me
+today about opening an EFS account for {!Account.Name}.&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><span style="font-size:10.5pt;line-height:107%;
+font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;mso-ansi-language:EN-US;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">I hope the information I
+have provided below is useful in making your decision. Please let me know if
+you have any questions.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:#4C4D4F"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:#4C4D4F"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.25in; line-height: 22.5pt; background: white;"><!--[if gte vml 1]><v:line id="Straight_x0020_Connector_x0020_2"
+ o:spid="_x0000_s1028" style='position:absolute;z-index:251661312;visibility:visible;
+ mso-wrap-style:square;mso-width-percent:0;mso-wrap-distance-left:9pt;
+ mso-wrap-distance-top:0;mso-wrap-distance-right:9pt;
+ mso-wrap-distance-bottom:0;mso-position-horizontal:left;
+ mso-position-horizontal-relative:margin;mso-position-vertical:absolute;
+ mso-position-vertical-relative:text;mso-width-percent:0;mso-width-relative:margin'
+ from="0,23.6pt" to="404.3pt,23.6pt" o:gfxdata="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
+alpUjVSHpVX3fCZlOSNpljXTyiqqarqzmLVCXgbmbHm1Im9olZsYcppZ4dPUPZ9y1/JcN9cnFFUC
+DF7Yz1F1L1AQDNXKxSzVlMaLaVjl7Ixq1458g+eodpEiYWT9Zi52zm5FjXAuB8QrVX7gm49aIE3y
+vlJb2nWwvYcSbxhU2z4cLsNw8BlcwfG0D7RVRVtVNLiCM2coF+lBcdvPLnIKPE8pBaaWU2o5pp5T
+6jmlkVMaOaWZU5q+p09U4RRfHab6Xn5gCjUsO2DNegv79H/jXwAAAP//AwBQSwMEFAAGAAgAAAAh
+AJxmRkG7AAAAJAEAACoAAABjbGlwYm9hcmQvZHJhd2luZ3MvX3JlbHMvZHJhd2luZzEueG1sLnJl
+bHOEj80KwjAQhO+C7xD2btJ6EJEmvYjQq9QHCMk2LTY/JFHs2xvoRUHwsjCz7DezTfuyM3liTJN3
+HGpaAUGnvJ6c4XDrL7sjkJSl03L2DjksmKAV201zxVnmcpTGKSRSKC5xGHMOJ8aSGtHKRH1AVzaD
+j1bmIqNhQaq7NMj2VXVg8ZMB4otJOs0hdroG0i+hJP9n+2GYFJ69elh0+UcEy6UXFqCMBjMHSldn
+nTUtXYGJhn39Jt4AAAD//wMAUEsBAi0AFAAGAAgAAAAhALvlSJQFAQAAHgIAABMAAAAAAAAAAAAA
+AAAAAAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECLQAUAAYACAAAACEArTA/8cEAAAAyAQAACwAA
+AAAAAAAAAAAAAAA2AQAAX3JlbHMvLnJlbHNQSwECLQAUAAYACAAAACEAUtu/8dMBAABiBAAAHwAA
+AAAAAAAAAAAAAAAgAgAAY2xpcGJvYXJkL2RyYXdpbmdzL2RyYXdpbmcxLnhtbFBLAQItABQABgAI
+AAAAIQC5O+lGHwcAAEkgAAAaAAAAAAAAAAAAAAAAADAEAABjbGlwYm9hcmQvdGhlbWUvdGhlbWUx
+LnhtbFBLAQItABQABgAIAAAAIQCcZkZBuwAAACQBAAAqAAAAAAAAAAAAAAAAAIcLAABjbGlwYm9h
+cmQvZHJhd2luZ3MvX3JlbHMvZHJhd2luZzEueG1sLnJlbHNQSwUGAAAAAAUABQBnAQAAigwAAAAA
+" strokecolor="#c00000" strokeweight="1pt">
+ <v:stroke joinstyle="miter"/>
+ <w:wrap anchorx="margin"/>
+</v:line><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:251661312;margin-left:0px;margin-top:31px;width:541px;
+height:2px"><img width="541" height="2" src="file:///C:/Users/kdean/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" v:shapes="Straight_x0020_Connector_x0020_2"></span><!--[endif]--><b><span style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;
+letter-spacing:.75pt"><u>The EFS Fleet Card advantage:</u><o:p></o:p></span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Best-in-class
+purchase and financial controls<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Consolidated
+transactions on a single card<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Better
+authorization controls<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Card-level
+programming<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Superior
+fraud prevention tools<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Real-time
+online account reconciliation<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">24/7
+online and mobile access<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; margin-bottom: 0.0001pt; text-indent: -12pt; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">Seamless
+system integration with leading third-party software providers</span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:0in;margin-left:
+31.5pt;margin-bottom:.0001pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:
+l0 level1 lfo1;tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F"><b>Fuel
+discounts </b>available without extra costs or gallon commitments!<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; margin-bottom: 0.0001pt; line-height: 16.5pt; background: white;"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.25in; line-height: 22.5pt; background: white;"><!--[if gte vml 1]><v:line id="Straight_x0020_Connector_x0020_3"
+ o:spid="_x0000_s1027" style='position:absolute;z-index:251663360;visibility:visible;
+ mso-wrap-style:square;mso-width-percent:0;mso-wrap-distance-left:9pt;
+ mso-wrap-distance-top:0;mso-wrap-distance-right:9pt;
+ mso-wrap-distance-bottom:0;mso-position-horizontal:left;
+ mso-position-horizontal-relative:margin;mso-position-vertical:absolute;
+ mso-position-vertical-relative:text;mso-width-percent:0;mso-width-relative:margin'
+ from="0,23pt" to="404.3pt,23pt" o:gfxdata="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
+Ua1qWlSNVIelVfd8JmU5I2mWNdPKKqpqurOYtUJeBuZsebUib2iVmxhymlnh09Q9n3LX8lw31ycU
+VQIMXtjPUXUvUBAM1crFLNWUxotpWOXsjGrXjnyD56h2kSJhZP1mLnbObkWNcC4HxCtVfuCbj1og
+TfK+UlvadbC9hxJvGFTbPhwuw3DwGVzB8bQPtFVFW1U0uIIzZygX6UFx288ucgo8TykFppZTajmm
+nlPqOaWRUxo5pZlTmr6nT1ThFF8dpvpefmAKNSw7YM16C/v0f+NfAAAA//8DAFBLAwQUAAYACAAA
+ACEAnGZGQbsAAAAkAQAAKgAAAGNsaXBib2FyZC9kcmF3aW5ncy9fcmVscy9kcmF3aW5nMS54bWwu
+cmVsc4SPzQrCMBCE74LvEPZu0noQkSa9iNCr1AcIyTYtNj8kUezbG+hFQfCyMLPsN7NN+7IzeWJM
+k3ccaloBQae8npzhcOsvuyOQlKXTcvYOOSyYoBXbTXPFWeZylMYpJFIoLnEYcw4nxpIa0cpEfUBX
+NoOPVuYio2FBqrs0yPZVdWDxkwHii0k6zSF2ugbSL6Ek/2f7YZgUnr16WHT5RwTLpRcWoIwGMwdK
+V2edNS1dgYmGff0m3gAAAP//AwBQSwECLQAUAAYACAAAACEAu+VIlAUBAAAeAgAAEwAAAAAAAAAA
+AAAAAAAAAAAAW0NvbnRlbnRfVHlwZXNdLnhtbFBLAQItABQABgAIAAAAIQCtMD/xwQAAADIBAAAL
+AAAAAAAAAAAAAAAAADYBAABfcmVscy8ucmVsc1BLAQItABQABgAIAAAAIQBFPBkI1QEAAGIEAAAf
+AAAAAAAAAAAAAAAAACACAABjbGlwYm9hcmQvZHJhd2luZ3MvZHJhd2luZzEueG1sUEsBAi0AFAAG
+AAgAAAAhALk76UYfBwAASSAAABoAAAAAAAAAAAAAAAAAMgQAAGNsaXBib2FyZC90aGVtZS90aGVt
+ZTEueG1sUEsBAi0AFAAGAAgAAAAhAJxmRkG7AAAAJAEAACoAAAAAAAAAAAAAAAAAiQsAAGNsaXBi
+b2FyZC9kcmF3aW5ncy9fcmVscy9kcmF3aW5nMS54bWwucmVsc1BLBQYAAAAABQAFAGcBAACMDAAA
+AAA=
+" strokecolor="#c00000" strokeweight="1pt">
+ <v:stroke joinstyle="miter"/>
+ <w:wrap anchorx="margin"/>
+</v:line><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:251663360;margin-left:0px;margin-top:30px;width:541px;
+height:2px"><img width="541" height="2" src="file:///C:/Users/kdean/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" v:shapes="Straight_x0020_Connector_x0020_3"></span><!--[endif]--><b><span style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;
+letter-spacing:.75pt"><u>Standard Fees:</u></span></b><b><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:#4C4D4F;mso-no-proof:yes"> </span></b><b><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;letter-spacing:.75pt"><o:p></o:p></span></b></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$50.00
+– New Account Setup Fee (one-time fee)<o:p></o:p></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$3.50 –
+EFS Check / MoneyCode fee (per $1,000)&nbsp;&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$1.80 –
+Fuel transaction fee<o:p></o:p></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$2.00 –
+Fuel with Cash Advance transaction fee<o:p></o:p></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$3.00 –
+Cash Advance without fuel purchase transaction fee<o:p></o:p></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$3.00 –
+ATM transaction <o:p></o:p></span></p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">$55.99
+– Monthly Account Maintenance Fee (MAMF)<o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; margin-left: 31.5pt; text-indent: -12pt; line-height: 16.5pt; background: white;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:31.5pt;text-indent:-12.0pt;line-height:16.5pt;mso-list:l0 level1 lfo1;
+tab-stops:list .5in;background:white"><!--[if !supportLists]--><span style="font-size:10.0pt;mso-bidi-font-size:10.5pt;font-family:Wingdings;
+mso-fareast-font-family:Wingdings;mso-bidi-font-family:Wingdings;color:#4C4D4F">§<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">For the
+complete fee table, please see page 2 of the EFS Application and Agreement<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 31.5pt; line-height: 16.5pt; background: white;"><span style="font-size:
+10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F">&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.25in; line-height: 22.5pt; background: white;"><!--[if gte vml 1]><v:line id="Straight_x0020_Connector_x0020_4"
+ o:spid="_x0000_s1026" style='position:absolute;z-index:251665408;visibility:visible;
+ mso-wrap-style:square;mso-width-percent:0;mso-wrap-distance-left:9pt;
+ mso-wrap-distance-top:0;mso-wrap-distance-right:9pt;
+ mso-wrap-distance-bottom:0;mso-position-horizontal:left;
+ mso-position-horizontal-relative:margin;mso-position-vertical:absolute;
+ mso-position-vertical-relative:text;mso-width-percent:0;mso-width-relative:margin'
+ from="0,24.15pt" to="404.3pt,24.15pt" o:gfxdata="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
+alpUjVSHpVX3fCZlOSNpljXTyiqqarqzmLVCXgbmbHm1Im9olZsYcppZ4dPUPZ9y1/JcN9cnFFUC
+DF7Yz1F1L1AQDNXKxSzVlMaLaVjl7Ixq1458g+eodpEiYWT9Zi52zm5FjXAuB8QrVX7gm49aIE3y
+vlJb2nWwvYcSbxhU2z4cLsNw8BlcwfG0D7RVRVtVNLiCM2coF+lBcdvPLnIKPE8pBaaWU2o5pp5T
+6jmlkVMaOaWZU5q+p09U4RRfHab6Xn5gCjUsO2DNegv79H/jXwAAAP//AwBQSwMEFAAGAAgAAAAh
+AJxmRkG7AAAAJAEAACoAAABjbGlwYm9hcmQvZHJhd2luZ3MvX3JlbHMvZHJhd2luZzEueG1sLnJl
+bHOEj80KwjAQhO+C7xD2btJ6EJEmvYjQq9QHCMk2LTY/JFHs2xvoRUHwsjCz7DezTfuyM3liTJN3
+HGpaAUGnvJ6c4XDrL7sjkJSl03L2DjksmKAV201zxVnmcpTGKSRSKC5xGHMOJ8aSGtHKRH1AVzaD
+j1bmIqNhQaq7NMj2VXVg8ZMB4otJOs0hdroG0i+hJP9n+2GYFJ69elh0+UcEy6UXFqCMBjMHSldn
+nTUtXYGJhn39Jt4AAAD//wMAUEsBAi0AFAAGAAgAAAAhALvlSJQFAQAAHgIAABMAAAAAAAAAAAAA
+AAAAAAAAAFtDb250ZW50X1R5cGVzXS54bWxQSwECLQAUAAYACAAAACEArTA/8cEAAAAyAQAACwAA
+AAAAAAAAAAAAAAA2AQAAX3JlbHMvLnJlbHNQSwECLQAUAAYACAAAACEANbenhdMBAABiBAAAHwAA
+AAAAAAAAAAAAAAAgAgAAY2xpcGJvYXJkL2RyYXdpbmdzL2RyYXdpbmcxLnhtbFBLAQItABQABgAI
+AAAAIQC5O+lGHwcAAEkgAAAaAAAAAAAAAAAAAAAAADAEAABjbGlwYm9hcmQvdGhlbWUvdGhlbWUx
+LnhtbFBLAQItABQABgAIAAAAIQCcZkZBuwAAACQBAAAqAAAAAAAAAAAAAAAAAIcLAABjbGlwYm9h
+cmQvZHJhd2luZ3MvX3JlbHMvZHJhd2luZzEueG1sLnJlbHNQSwUGAAAAAAUABQBnAQAAigwAAAAA
+" strokecolor="#c00000" strokeweight="1pt">
+ <v:stroke joinstyle="miter"/>
+ <w:wrap anchorx="margin"/>
+</v:line><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout;position:
+absolute;z-index:251665408;margin-left:0px;margin-top:31px;width:541px;
+height:3px"><u><img width="541" height="3" src="file:///C:/Users/kdean/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" v:shapes="Straight_x0020_Connector_x0020_4"></u></span><!--[endif]--><b><span style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;
+letter-spacing:.75pt"><u>Application Instructions, by attachment:</u></span></b><b><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:#4C4D4F;mso-no-proof:yes"> </span></b><b><span style="font-size:12.0pt;font-family:
+&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;
+letter-spacing:.75pt"><o:p></o:p></span></b></p><p class="MsoListParagraph" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 0.5in; text-indent: -0.25in; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.5pt;font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;color:#4C4D4F">Ø<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><b><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;color:#4C4D4F">EFS Application and Agreement<o:p></o:p></span></b></p><ul type="square" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ 
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">This
+      is the APPLICATION for the new account, and the most important document.<o:p></o:p></span></li>
+ 
+</ul><p class="MsoListParagraph" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 0.5in; text-indent: -0.25in; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.5pt;font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;color:#4C4D4F">Ø<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><b><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;color:#4C4D4F">EFS Account Data Sheet<o:p></o:p></span></b></p><ul type="square" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ 
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">general
+      setup questions for how you want your limits set up.<o:p></o:p></span></li>
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">When
+      in doubt, write “default.”<o:p></o:p></span></li>
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Any
+      decision you make here can be easily changed later when an Implementation
+      Specialist calls you and walks you through your online account.<o:p></o:p></span></li>
+ 
+</ul><p class="MsoListParagraph" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 0.5in; text-indent: -0.25in; line-height: 16.5pt; background: white;"><!--[if !supportLists]--><span style="font-size:10.5pt;font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;color:#4C4D4F">Ø<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><b><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;color:#4C4D4F">EFS Pre-Fund Agreement (only for PrePay
+accounts)<o:p></o:p></span></b></p><ul type="square" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ 
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">This
+      is the form acknowledging that you want a PREPAY account.<o:p></o:p></span></li>
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Please
+      sign and return the second page back to me.<o:p></o:p></span></li>
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Please
+      wait to fund your new account until I have provided you an&nbsp;Application
+      ID#. VERY IMPORTANT!<o:p></o:p></span></li>
+ 
+</ul><p class="MsoListParagraph" style="margin-left:.5in;text-indent:-.25in;
+line-height:16.5pt;mso-list:l1 level1 lfo2;background:white"><!--[if !supportLists]--><span style="font-size:10.5pt;font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;color:#4C4D4F">Ø<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><b><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;color:#4C4D4F">Direct Debit Form (only for Credit Line
+accounts)<o:p></o:p></span></b></p><ul type="square">
+ 
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Form
+      Required to set up direct debit (ACH) if you chose this option on the
+      application<o:p></o:p></span></li>
+ 
+</ul><p class="MsoListParagraph" style="margin-left:.5in;text-indent:-.25in;
+line-height:16.5pt;mso-list:l1 level1 lfo2;background:white"><!--[if !supportLists]--><span style="font-size:10.5pt;font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;color:#4C4D4F">Ø<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &quot;Times New Roman&quot;;">&nbsp; </span></span><!--[endif]--><b><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;color:#4C4D4F">Personal Guaranty (only for Credit Line
+accounts)<o:p></o:p></span></b></p><p class="MsoListParagraph" style="font-family: arial; font-size: 12pt; margin-left: 0.5in; text-indent: -0.25in; line-height: 16.5pt; background: white;">
+
+
+
+
+
+</p><ul type="square">
+ 
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Form
+      used if you would like to apply for a credit line using a personal
+      guaranty<o:p></o:p></span></li>
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">This
+      form is <b><i>optional</i></b><o:p></o:p></span></li>
+  <li class="MsoNormal" style="color:#4C4D4F;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;line-height:16.5pt;mso-list:l0 level2 lfo1;tab-stops:list 1.0in;
+      background:white"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+      mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">Although
+      not required, a personal guaranty often helps your chances of credit approval,
+      especially if your business is less than 2 years old and your company
+      does not have financial statements (income statement and balance sheet)
+      readily available</span><span style="font-size:12.0pt;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:Arial;color:black">&nbsp;</span><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:
+      &quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ 
+</ul><ul type="square" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+ 
+</ul><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 16.5pt; background: white;"><span style="font-size:10.5pt;font-family:
+&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;color:#4C4D4F">If you have any questions about the
+application or your new fuel card program, please don’t hesitate to call or
+email me.&nbsp;</span><o:p></o:p><span style="color: rgb(76, 77, 79); font-family: Helvetica, sans-serif; font-size: 10.5pt;">We look forward to a long
+relationship with {!Account.Name}.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 12pt;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:#4C4D4F">Kind Regards,</span><span style="font-size: 12pt;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><span style="font-size:10.5pt;font-family:&quot;Helvetica&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:#4C4D4F">{!User.Name}<br></span><span style="color: rgb(76, 77, 79); font-family: Helvetica, sans-serif; font-size: 14px;">{!User.Title}</span><br><span style="font-size:10.5pt;line-height:107%;
+font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;mso-ansi-language:EN-US;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">EFS LLC &amp; WEX Fleet One</span></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><span style="font-size:10.5pt;line-height:107%;
+font-family:&quot;Helvetica&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:#4C4D4F;mso-ansi-language:EN-US;
+mso-fareast-language:EN-US;mso-bidi-language:AR-SA">Phone: {!User.Phone}&nbsp;</span>|&nbsp;<span style="color: rgb(76, 77, 79); font-family: Helvetica, sans-serif; font-size: 14px;">Fax: {!User.Fax}</span></b></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><b><font color="#4c4d4f" face="Helvetica, sans-serif"><span style="font-size: 14px;">{!User.Email}&nbsp;</span></font><span style="font-family: arial; font-size: 16px;">|&nbsp;</span><font color="#4c4d4f" face="Helvetica, sans-serif"><span style="font-size: 14px;">www.efsllc.com&nbsp;</span></font><span style="font-family: arial; font-size: 16px;">|</span><span style="font-size: 14px; color: rgb(76, 77, 79); font-family: Helvetica, sans-serif;">&nbsp;www.fleetone.com&nbsp;</span></b></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><br></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br></p>]]></td>
+</tr>
+</table>

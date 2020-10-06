@@ -1,0 +1,60 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Times New Roman" style="font-size: 12pt; font-family: arial;">
+
+</font><p style="margin-left: 0.5in;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p style="margin-left: 0.5in;"><font face="Verdana, Helvetica, sans-serif" size="2">Dear {!Contact.FirstName},</font></p><p style="margin-left: 0.5in;"><font face="Verdana, Helvetica, sans-serif" size="2"><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p>&nbsp;</font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">Attached please see information on our Speedway Business Card Program. Please take a few
+minutes to look through the accompanying information. I’m confident that you’ll
+find the widely accepted Speedway Business Card the one-card solution for all
+your fueling needs.<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><blockquote><ul><li><font face="Verdana, Helvetica, sans-serif" size="2"><b style="mso-bidi-font-weight: normal;">We save you money</b>. Potential to earn valuable rebates!<o:p></o:p></font></li></ul></blockquote><blockquote><ul><li><font face="Verdana, Helvetica, sans-serif" size="2"><b style="mso-bidi-font-weight: normal;">We save you time</b>. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read invoice. You can also easily download transaction data from the web right to QuickBooks or Excel each month.<o:p></o:p></font></li></ul></blockquote><blockquote><ul><li><font face="Verdana, Helvetica, sans-serif" size="2"><b style="mso-bidi-font-weight: normal;">We give you control</b>. Detailed reports show how and where fueling money was spent, so you can account for every penny.<o:p></o:p></font></li></ul></blockquote><blockquote><ul><li><font face="Verdana, Helvetica, sans-serif" size="2"><b style="mso-bidi-font-weight: normal;">We make it convenient</b>. Your drivers only need to carry one card to fuel at any participating location.<o:p></o:p></font></li></ul></blockquote><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">You will find a complete list of
+accepting locations at <a href="http://www.speedway.com">www.speedway.com</a>.<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">It’s easy to enroll. Simply
+complete the attached application form and scan/email it back to me.<br>
+&nbsp;<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">Thank you for your interest in the
+Speedway Business Card Program.<o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp; <o:p></o:p></font></p><font face="Verdana, Helvetica, sans-serif" size="2">
+
+</font><p style="margin: 0in 0in 10pt 0.5in; line-height: normal;" class="MsoNormal"><font><font face="Verdana, Helvetica, sans-serif" size="2">Sincerely, <br>
+<br>
+<i>{!User.FirstName} {!User.LastName} <br>
+{!User.Title} <br>
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email}</i></font> <font face="arial" style="font-size: 10pt;"><o:p></o:p></font></font></p><font face="Arial,Sans-Serif" style="font-size: 12pt; font-family: arial;">
+
+</font><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt; line-height: normal;" class="MsoNormal"><font face="Arial,Sans-Serif"><span style="font-size: 12pt;">&nbsp;</span></font></p><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt; line-height: normal;" class="MsoNormal"><br><font face="Arial,Sans-Serif"><span style="font-size: 12pt;"><o:p></o:p></span></font></p><font face="Arial,Sans-Serif" style="font-size: 12pt; font-family: arial;">
+
+</font><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Arial,Sans-Serif"><i><span style="color: gray; font-size: 8pt;">CONFIDENTIALITY NOTICE: "This message
+contains confidential information of WEX Inc. It is intended only for the use
+of the designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><span style="font-size: 8pt;"><o:p></o:p></span></font></p><font face="Arial,Sans-Serif" style="font-size: 12pt; font-family: arial;">
+
+</font><span style="font-size: 12pt;"><font face="arial"></font></span><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Arial,Sans-Serif"><i><span style="color: gray; font-size: 8pt;">&nbsp;</span></i><span style="font-size: 8pt;"><o:p></o:p></span></font></p><font face="Arial,Sans-Serif" style="font-size: 12pt; font-family: arial;">
+
+</font><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><font face="Arial,Sans-Serif"><i><span style="color: gray; font-size: 8pt;">This is an advertisement from WEX Inc. If you no
+longer wish to receive future email advertisements from {!User.Email},</span></i><span style="font-size: 8pt;"><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="color: gray; mso-fareast-font-family: &quot;Times New Roman&quot;;"> </span></i><i><span style="color: rgb(51, 51, 255); mso-fareast-font-family: &quot;Times New Roman&quot;;">email us to unsubscribe</span></i></a></span><i><span style="color: gray; font-size: 8pt;">. Please be sure to include your name, company
+name and email address in the email.</span></i><span style="font-size: 8pt;"><o:p></o:p></span></font></p><font face="Arial,Sans-Serif" style="font-size: 12pt; font-family: arial;">
+
+</font><p style="font-size: 12pt; font-family: arial; margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><font face="Arial,Sans-Serif"><b style="mso-bidi-font-weight: normal;"><o:p>&nbsp;</o:p></b></font></p><font face="Times New Roman" style="font-size: 12pt; font-family: arial;">
+
+</font>]]></td>
+</tr>
+</table>

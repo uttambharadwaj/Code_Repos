@@ -1,0 +1,17 @@
+{!Contact.FirstName},
+
+Now that you have established a {!OnlineApplicationOffer__c.Name} fuel card account, you will need to contact our credit department to request the credit line from your previous WEX fuel card account be moved to your new fuel card account.  In order to do so, please do the following:
+
+1) Email ftsam@efsllc.com
+2) Subject line: Credit Line Move Request for {!Account.Name}
+3) Email contact: "Please move my credit line from my existing account number ###### to my new {!OnlineApplicationOffer__c.Name} fuel card account #####. " (you will need to provide those 2 account numbers)
+
+You should make this request only after you have received your new cards and are ready to begin using the new account.  Please note this change may take up to two business days.
+
+Once the credit department has confirmed this move has been done, you can then begin to use your new fuel cards.
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Email}
+{!User.Phone}

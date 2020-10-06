@@ -1,0 +1,19 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Total Number of Drivers/Owner operators {!Opportunity.Total_Drivers_and_Owner_Operators__c}
+Total Number of Office Personnel {!Opportunity.Total_Office_Personnel__c}
+Do you currently make benefits available to your owner operator fleet? {!Opportunity.Benefits_available_to_OO__c}
+Would you be willing to setttlement deduct for benefits? {!Opportunity.Settlement_Deduct_Available__c}
+Comments: {!Opportunity.Vendor_Comments__c}

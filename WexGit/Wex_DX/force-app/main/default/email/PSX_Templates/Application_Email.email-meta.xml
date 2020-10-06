@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Conoco_Letterhead_new</letterhead>
+    <name>Conoco Application Email</name>
+    <style>freeForm</style>
+    <subject>Conoco Fleet Card:  Application Attached</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+Let me first take a moment to say thank you for choosing the Conoco® Fleet Card Program. I know you’ll find our card program both convenient and cost-effective.
+
+
+As you requested, I am forwarding the application for our fleet card program. Please complete as indicated and either fax it back to me at {!User.Fax} or email it to me at {!User.Email}. This application is the first step in getting your fleet account up and running.
+
+
+I look forward to working with you to finalize the setup details as soon as your account is approved.
+
+
+If you have any questions, please feel free to contact me at {!User.Phone}.
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+
+Conoco, Phillips 66, 76 logos are trademarks of Phillips 66 Company or one of its subsidiaries. ©2013 Phillips 66 Company.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

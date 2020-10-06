@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to participants of Salesforce for Managers course- version 2019</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Salesforce for Managers Course: Survey</name>
+    <style>freeForm</style>
+    <subject>Feedback Requested | Sales Effectiveness - Salesforce for Managers Course</subject>
+    <textOnly>Your Feedback Is Important!
+
+We hope you enjoyed the Salesforce for Managers Course.
+
+It is our goal to ensure the Global Sales Operations Training Team delivers world class training programs. In order to continue to improve the program and meet the needs of our growing sales force, we are asking you to answer a brief survey based on your experience.
+
+The survey will only take a few minutes by computer or mobile device:
+
+Follow this link to the Salesforce for Managers Survey: https://wex.qualtrics.com/jfe/form/SV_eQFhLIgWc9OB3wx
+
+Please complete this survey by the end of next week.
+
+
+Thank You,
+
+Jennifer Roney
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

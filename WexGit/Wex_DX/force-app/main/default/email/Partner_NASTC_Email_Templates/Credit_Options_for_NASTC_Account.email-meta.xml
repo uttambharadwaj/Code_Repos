@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alternative options to setup a NASTC Fuel card Account</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Credit Options for NASTC Account</name>
+    <style>freeForm</style>
+    <subject>Credit Options for NASTC Account</subject>
+    <textOnly>Dear {!Contact.Name},
+
+I am contacting you to discuss your application for the NASTC fuel card program. As I understand it,  you applied for a credit line and for whatever reason was declined .
+
+
+
+Please understand that there are still several additional methods you have to get the NASTC fuel card with the discounts .
+
+
+1. Resend the application with another signer.
+
+2. Obtain Letter of  credit from your bank (sample attached)
+
+3. Do a prepaid account. (call for exact details)
+
+4. Do a cash Deposit account (call for details)
+
+5. Contact your NASTC Rep asking concerning their factoring program.
+
+
+
+
+
+If completing a new Electronic Application please do not complete on a cell phone.
+
+
+
+All of these methods are good and all will allow you to take advantage of the great savings offered by the good people at NASTC.
+
+
+
+Thank you!!!
+
+
+John</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

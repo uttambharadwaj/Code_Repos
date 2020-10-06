@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Shell phase 4 announcement</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header</letterhead>
+    <name>Shell Announcement Email Phase 4 EN</name>
+    <style>freeForm</style>
+    <subject>Your new Shell Fleet Solutions Card Program</subject>
+    <textOnly>Dear Valued Customer,
+
+We are pleased to announce that your current Shell Fleet Card® program will soon be upgraded to a new, more convenient fleet card program issued by WEX Canada, Ltd., a wholly owned subsidiary of WEX Bank.
+
+You will continue to receive the same great controls and convenience you enjoy today as well as enhanced features and benefits that will help you to run your business more efficiently.
+
+-Enhanced Online Account Management Tool: Increased functionality and improved user experience.
+
+-Fleet SmartHub Mobile App: Manage your account on the go. Make payments, track spending, and manage cards.
+
+-10% off at Jiffy Lube®: Save on all of your oil changes and other products and services at Jiffy Lube.®*
+
+You can expect your new cards to arrive within the next month. For your convenience, your cards will be active upon arrival. Once you receive your Driver IDs (PINs), you can begin using your cards immediately. For security purposes, you will receive a separate communication containing important account details, including Driver IDs. Please continue using your existing cards as you normally would until you receive your new cards.
+
+We truly value your business and look forward to introducing this improved fleet card program to you. In the meantime, if you have any questions during the card transition process, please visit www.newshellfuelcard.ca.
+
+Thank you for being a loyal customer. If you should have any additional questions, please call our Conversion Service team at 1-855-886-6705.
+
+Sincerely,
+Conversion Advisor Team
+
+Phone: 1-855-886-6705
+Fax: 1-207-761-3590
+Email: ShellInfoReturn@wexinc.com
+Mail: 97 Darling Avenue, South Portland, Maine 04106 |USA|
+
+
+©2019 Shell Fleet Solutions. All rights reserved.
+
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 |USA|
+
+Shell® and Shell Fleet Plus™ are trademarks of Shell Brands International AG. Used under license. The Shell Fleet Plus™ card program is issued and administered by WEX Canada, Ltd, a subsidiary of WEX Inc. We respect your privacy. Please review our privacy policy for more information about click activity with WEX Inc. and links included in this email.
+
+If you no longer wish to receive email messages about Shell Fleet Solutions, you may instantly unsubscribe. All unsubscribe request will be honored within ten business days of receipt.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

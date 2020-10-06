@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>Cards have Shipped-EDGE</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name} FLEET ONE EDGE CARDS have shipped!</subject>
+    <textOnly>Hello {!OnlineApplication__c.Contact_Name__c}
+
+Thank you for choosing Fleet One EDGE, and welcome to the family! For your convenience, your new cards will be mailed active and they will be ready for immediate use.
+
+As a valued customer, we want to make it easy for you to maintain your account.  Please visit www.fleetoneedge.com for full program details and a list of valuable resources. You may also visit www.fleetone.com and click on the customer self-service link to find the most up-to-date forms and information about your discount network.
+
+Please keep the following information accessible at all times as it will not be mailed to you:
+
+Online user info. You will need this information to manage your account online.
+Supervisor/authorized contact security codes. You will need these codes whenever you call into our 24 hour customer care.
+
+Important information about your account -
+
+UPS Tracking #: {!OnlineApplication__c.UPS_Tracking_Number__c}
+Fleet One EDGE acct#: {!OnlineApplication__c.F1_Account_Number__c}
+Security Code:  Created at the time of application (I cannot see on my end)
+Online password:  Create at the time of application (I cannot see on my end)
+
+Thank you for allowing us to provide this important service for you and your company. It is with great enthusiasm that I welcome you, once again, to the Fleet One EDGE family. Please feel free to contact me if I can help you in any way.
+
+
+Thank you,
+
+{!OnlineApplication__c.OwnerFullName}
+{!OnlineApplication__c.AO_Title__c}
+WEX Fleet One
+Phone: {!OnlineApplication__c.OwnerPhone} | Fax: {!OnlineApplication__c.Owner_Fax__c}
+{!OnlineApplication__c.OwnerEmail} | www.fleetoneedge.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Requesting financials from NASTC fleet</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Financials Needed</name>
+    <style>freeForm</style>
+    <subject>Follow Up: NASTC Fuel Card Program</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+
+The underwriters are requesting Financials (profit/loss and a balance sheet) to approve your requested credit line.
+
+
+Please forward to me as soon as possible.
+
+
+
+Thank you!!!
+
+
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

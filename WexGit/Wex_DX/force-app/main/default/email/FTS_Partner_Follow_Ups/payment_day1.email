@@ -1,0 +1,6 @@
+In order to finalize your EFS fuel card account, I need to know which day of the week you want us to draft your checking account?
+
+Thank you
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

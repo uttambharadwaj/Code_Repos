@@ -1,0 +1,18 @@
+Dear {{{Recipient.FirstName}}},<br />
+<br />
+I&rsquo;ve enjoyed learning about {{{Recipient.Company}}} through your website and other articles I&rsquo;ve come across. Your focus on customer service meshes well with our priorities. I&rsquo;m interested in learning more about your company&rsquo;s pain points with regard to supplier payments. While WEX has a long history in the payments industry, we also understand individual companies have individual needs and challenges.&nbsp;<br />
+<br />
+WEX Inc. is a commercial bank and Mastercard/Visa issuer focused on B2B payments utilizing single use virtual credit cards.&nbsp;&nbsp;<br />
+<br />
+Do you have 15 minutes to chat with me about how WEX could take the complexity out of your payments process and help you maximize cash flow . . . all while earning a rebate? Please let me know what times you are available over the next week or two, or if there is someone else within your organization I should talk to. I look forward to hearing from you.<br />
+<br />
+Sincerely,<br />
+<br />
+{{{Sender.Name}}}<br />
+{{{Sender.Title}}}<br />
+{{{Sender.Email}}}<br />
+{{{Sender.Phone}}}<br />
+www.wexinc.com<br />
+<br />
+<br />
+<i>This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</i>

@@ -1,0 +1,44 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style="font-size: 12pt; color: rgb(0, 0, 0); font-family: arial;"><p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!OnlineApplication__c.Contact_Name__c},</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Your application has
+been&nbsp;<b>reviewed</b>&nbsp;for&nbsp;the&nbsp;new&nbsp;<b>Fleet One EDGE</b>&nbsp;fuel
+card discount network program.&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Provided that no additional
+information is required,</span></b><b><span style="font-size: 12pt; font-family: Arial, sans-serif;"> </span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">you can expect to receive your welcome packet
+and fuel card(s) in approximately 7-10 business days<b>.&nbsp;</b>Specific
+information regarding your credit decision will be sent in a separate email. If
+additional information is required an account executive will contact you
+directly via phone and/or email and discuss what is needed.&nbsp;&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">If your company does not
+have an assigned DOT# - reply to this email with a copy of your&nbsp;<u>driver's
+license</u>.&nbsp;</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">If you have already
+provided your driver's license to your account executive during the application
+process, there is no need to send it in again.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Please note, when you
+receive your Fleet One EDGE fuel cards, they will arrive ACTIVE. You will not
+need to call Customer Service in order to activate the cards; all you need to
+do is pass the card(s) out to your driver(s) and start taking advantage of the
+EDGE savings! &nbsp;<br>
+<br>
+As a reminder, your one-time setup fee will be billed to you within the first
+month of service (after your cards are received.) Thank you for choosing Fleet
+One EDGE. If you have any questions about your new account or benefits, please
+do not hesitate to contact me directly.</span></p><p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><br>
+<br>
+Thank you,</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><br></span></p><p class="MsoNormal"><br></p></div><div style="font-size: 12pt;"><font size="2"><font style="color: rgb(0, 0, 0); font-family: arial;"><font face="Arial, sans-serif">{!OnlineApplication__c.OwnerFullName}</font><br><font face="arial">{!OnlineApplication__c.OwnerTitle}</font><br><font face="arial" style="font-family: Arial, sans-serif;">WEX Fleet One</font><br><font><font face="Arial, sans-serif">Phone:</font></font></font><font face="Arial, sans-serif">{!OnlineApplication__c.OwnerPhone} |</font><font face="Arial, sans-serif">&nbsp;</font><font style="font-family: arial;"><font face="Arial, sans-serif">Fax:&nbsp;</font></font><font style="font-family: arial;">{!OnlineApplication__c.Owner_Fax__c}</font></font></div><div style="font-size: 12pt;"><font size="2"><font face="Arial, sans-serif">{!OnlineApplication__c.OwnerEmail}</font><font face="arial" style="color: rgb(0, 0, 0); font-family: Arial, sans-serif;">&nbsp;| www.fleetoneedge.com</font><br></font><br><br><font size="1" style="color: rgb(0, 0, 0); font-family: arial;"><br><font style="font-family: arial;">To opt out of all email marketing messages from Fleet One EDGE, <a href="marekting@fleetone.com">click here</a> from the email address you wish to unsubscribe.</font><br></font><br><br><br></div>]]></td>
+</tr>
+</table>

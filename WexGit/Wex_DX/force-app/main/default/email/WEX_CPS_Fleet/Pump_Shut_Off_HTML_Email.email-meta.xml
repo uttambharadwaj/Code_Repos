@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email offering pump shut off video</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RSM Outreach - Pump Shut Off</name>
+    <style>none</style>
+    <subject>Control Driver Spend, With Automatic Pump Shut-Off</subject>
+    <textOnly>Wright Express
+
+Good Morning {!Contact.FirstName},
+
+I wanted to follow up with you on your fleet&apos;s needs, and share information about some tools that have been useful to many of my new clients. Wright Express has added some leading-edge technology to our suite of fleet management solutions. There&apos;s one in particular I&apos;d like to tell you about today. It&apos;s Automatic Pump Shut-Off, a feature of WEXOnline®
+
+Our new pump shut-off feature can help you to control costs, by offering a versatile way to control driver spend. The pump will stop when the purchase amount reaches the limit you pre-set for that driver and/or vehicle.
+
+I think you&apos;ll be impressed by the potential for savings. You may not be able to control the cost of fuel but you can certainly control the amount your company buys. And, with Automatic Pump Shut-Off*, you can control it real-time. Want to see how it works? Just go to the demo.
+
+If you&apos;d like to know more after watching, please give me a call. I&apos;m excited about everything going on at Wright Express. In fact, I&apos;ll reach out to you again soon to see if you have any questions about the Automatic Pump Shut-Off and to share some other news.
+
+My job is to help fleet managers save money. I&apos;d like the chance to do that for you.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+*
+
+Pump shut-off feature available at most participating merchants, like 76®, BP, Citgo, Conoco®, Phillips 66®, ExxonMobil®, Marathon, Sheetz, QuikTrip and more!
+
+**
+
+Actual savings may vary. Exxon and Mobil are registered trademarks of Exxon Mobil Corporation. Phillips 66, Conoco &amp; 76 are trademarks of Phillips 66 or one of its subsidiaries. © 2012 Phillips 66 Company</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

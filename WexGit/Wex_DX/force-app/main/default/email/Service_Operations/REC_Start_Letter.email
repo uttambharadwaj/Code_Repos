@@ -1,0 +1,39 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" style=""><br></font></div><div style=""><font face="Arial, sans-serif"><span style="color: rgb(0, 0, 0);">Account Name:&nbsp;</span>{!Case.Account}</font></div>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><span class="pseditboxdisponly1"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">We
+received authorization to set up your fleet account on our Direct Debit
+program.</font></p><p class="MsoNormal" style=""></p><ul style="color: rgb(0, 0, 0);"><li><font face="Arial, sans-serif">Your
+Direct Debit begins effective today.</font></li><li><font face="Arial, sans-serif">If
+you have a current unpaid invoice, the amount of the invoice will be
+automatically debited via Direct Debit on the invoice due date or with the
+first regularly scheduled debit after the invoice due date.</font></li><li><font face="Arial, sans-serif">The
+frequency of your debits is as follows:</font></li></ul><ul style="color: rgb(0, 0, 0);"><ul><li><font face="Arial, sans-serif">Daily Direct Debit
+(debits occur daily)</font></li><li><font face="Arial, sans-serif">Weekly Direct Debit
+(debits occur every Friday).</font></li><li><font face="Arial, sans-serif">Tri-monthly Direct
+Debit (debits occur on the 1<sup style="">st</sup>, 10<sup style="">th</sup> and 20<sup style="">th</sup>
+of each month).</font></li><li><font face="Arial, sans-serif">Monthly 5<sup style="">th </sup>(debits
+occur the 5<sup style="">th</sup> day of each month).</font></li><li><font face="Arial, sans-serif">Monthly 26<sup style="">th</sup>
+(debits occur the 26<sup style="">th</sup> day of each month).</font></li></ul></ul><p style=""></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">Please
+note that debits may vary by a day or two, depending on weekends and holidays.<span style="mso-spacerun:yes">&nbsp; </span>In the event a scheduled payment should fall
+on a weekend or holiday, debits may occur on the next business day.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">If
+you have questions, please call us at 866-755-1033.<span style="mso-spacerun:yes">&nbsp; </span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">Sincerely,<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">Global
+Credit Maintenance<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><br></p><br>]]></td>
+</tr>
+</table>

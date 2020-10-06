@@ -1,0 +1,13 @@
+Dear {!Contact.FirstName},
+
+Thank you for your interest in WEX Fleet ClearView, our new fleet analytics platform. As we launch this new feature, we are currently implementing this tool on a select group of customers. However, we plan to kick off a ClearView pilot program for fleets like yours in 2016. 
+
+If you are interested in participating in this 2016 pilot program, please send an email to support@wexclearview.com.
+
+Thank you for your business.
+
+Sincerely,
+{!User.Name}
+{!User.Title}
+{!User.Email}
+{!User.Phone}

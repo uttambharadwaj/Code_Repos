@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Shipped Fuel Cards, NAT Activation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One Shipped Fuel Cards</name>
+    <style>freeForm</style>
+    <subject>Your fuel cards have shipped!</subject>
+    <textOnly>{!Contact.FirstName},
+
+Your fuel cards have shipped!  Please follow this link to view your tracking information - http://www.ups.com/tracking/tracking.html
+
+Your new fuel cards will arrive active and ready for use.  Please refer to the information sent to you previously for account and card set up options.
+
+Once your cards are received you will have access to your WEX Fleet One online account to pay invoices, monitor transactions, update card information, dispatch funds or run reports. To log in visit www.FleetOne.com and click “Customer Login”.  Enter your 6 digit WEX Fleet One account number (Customer ID) and your password that was selected by you either on your online application or during the account set up questionnaire.  If you do not remember your password you can contact the Customer Service department 24/7 at 800.359.7587 to have it reset.
+
+These links to WEX Fleet One YouTube tutorial videos can be helpful in navigating your Online Account. http://www.fleetone.com/OTRtutorials
+
+Your one time set up fee will be billed to you during your 1st month of service.
+
+Thank you for choosing WEX Fleet One.  Should you have any questions, please feel free to contact me directly or simply respond to this email.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone:{!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

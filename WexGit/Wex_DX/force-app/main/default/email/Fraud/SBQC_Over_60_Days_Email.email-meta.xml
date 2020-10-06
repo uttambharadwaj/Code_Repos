@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>SBQC Over 60 Days (Email)</name>
+    <style>freeForm</style>
+    <subject>Intro &amp; Resolution - {!Claim__c.Acount_Name__c}</subject>
+    <textOnly>Re: Dispute Claim No. {!Claim__c.Name}
+
+Hello,
+
+Thank you for your letter regarding disputed transactions on fleet account ending {!Claim__c.Program_Account_Masked__c}.
+
+Research and analysis by WEX Fraud Department produced the following information:
+
+Disputed transactions occurred on card {!Claim__c.Abbreviated_Card__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Pursuant to the contractual agreement governing use of the account, this time frame is outside of the 60-Day allowable dispute period and the transactions are no longer eligible for dispute. Therefore the claim has been closed.
+
+If you currently do not have account Authorization Controls assigned to your cards, we strongly encourage you to do so.  For assistance with adding these controls, please contact Customer Service.
+
+Please feel free to contact us at Disputes@fleetfraudservices.com should you have any questions. We appreciate your business and look forward to maintaining our relationship.
+
+Regards,
+
+Fleet Fraud Services
+Fax: 207-791-1655</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

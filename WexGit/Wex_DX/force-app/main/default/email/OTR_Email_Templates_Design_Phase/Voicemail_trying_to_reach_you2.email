@@ -1,0 +1,33 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><FONT face=Verdana,Helvetica,Sans-Serif>{!Contact.FirstName},<BR><BR></FONT></SPAN>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><font face="Verdana,Helvetica,Sans-Serif"></font></span>&nbsp;</p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><font face="Verdana,Helvetica,Sans-Serif"></font></span>&nbsp;</p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><font face="Verdana,Helvetica,Sans-Serif">My name&nbsp;is {!Contact.OwnerFullName}, an Account Executive with EFS and T-Chek.&nbsp; I attempted to contact you to discuss how our fuel card program can save you time, money and provide you the account security you need.<br><br></font></span><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><font face="Verdana,Helvetica,Sans-Serif">As I mentioned in my message, I look forward to speaking with you personally&nbsp;regarding the specific benefits of our fuel card program and how they relate to your business.<br><br></font></span><font face="Verdana,Helvetica,Sans-Serif"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial">I realize how valuable your time is.&nbsp; Please let me know when a good time to connect would be and I will be happy to get in touch with you.<br><br></span><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial">Sincerely,</span></font>&nbsp;</p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<a name="Text10"><p class="MsoNormal"></p><p class="MsoNormal"><b><span style="font-size:12.0pt;font-family:&quot;Myriad Pro&quot;;
+color:#3D3D3D">Katie Haywood</span></b><b><span style="font-size:10.0pt;
+font-family:&quot;Myriad Pro&quot;;color:#3D3D3D"><br>
+</span></b><span style="font-size:9.0pt;font-family:&quot;Myriad Pro&quot;;color:#3D3D3D">Sr
+Account Executive -&nbsp; Inside Sales OTR<br>
+</span><b><span style="font-family:&quot;Myriad Pro&quot;;color:#C40A2E">WEX Inc.<br>
+</span></b><span style="font-size:8.0pt;font-family:&quot;Myriad Pro&quot;;color:#3F3F3F">3102
+West End Ave., Suite 900, Nashville, TN 37203<br>
+Office (615) 523-6496 </span>| <span style="font-size:8.0pt;font-family:&quot;Myriad Pro&quot;;
+color:#3F3F3F">Fax (615) 850-0799</span></p><p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Myriad Pro&quot;;
+color:#3F3F3F">khaywood@fleetone.com&nbsp;</span></p></a><p class="MsoNormal">
+<a href="http://www.efsllc.com/"><span style="font-size:8.0pt">www.efsllc.com</span></a><span style="font-size:8.0pt"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><a href="http://www.fleetone.com/"><span style="font-size:
+8.0pt">www.fleetone.com</span></a><span style="font-size:8.0pt"> <o:p></o:p></span></p>
+
+<p class="MsoNormal"><a href="http://www.wexinc.com/"><span style="font-size:
+8.0pt">www.wexinc.com</span></a><o:p></o:p></p><br><p></p>]]></td>
+</tr>
+</table>

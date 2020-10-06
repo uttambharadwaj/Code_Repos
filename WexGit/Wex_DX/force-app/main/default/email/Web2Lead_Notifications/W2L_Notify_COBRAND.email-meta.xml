@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notifies Cobrand web form owner of new submission</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Generic_Letterhead</letterhead>
+    <name>W2L Notify - COBRAND</name>
+    <style>freeForm</style>
+    <subject>New Contact Us Submission (WEBCOBRAND)</subject>
+    <textOnly>Someone just completed the Contact Us form for Custom Card Programs.  A new lead is available for you in the WEB Contact Forms - Cobrand view at https://na5.salesforce.com/00Q?fcf=00B7000000846fS.
+
+Company: {!Lead.Company}
+State: {!Lead.State}
+
+Name: {!Lead.Name}
+Phone: {!Lead.Phone}
+Email: {!Lead.Email}
+
+How Can we Help You:
+{!Lead.Description}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

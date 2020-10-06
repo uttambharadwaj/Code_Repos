@@ -1,0 +1,36 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<span style="font-size: 12pt;"><font face="arial"></font></span><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Congratulations!
+You have been approved for our <b>Direct Debit
+Program</b> on your&nbsp;<em><span style="font-size: 11pt; line-height: 107%; font-family: Arial, sans-serif; background: white; font-style: normal;">RaceTrac
+RaceWay Fleet&nbsp;Card</span></em>. <br><br><o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">With this plan, we simply debit your
+fleet program balance directly from your checking account daily for the
+previous day’s transactions<span style="font-size: 12pt;">.<br><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;">You
+will need to complete the attached form to get set up on <b>Direct Debit</b>. Please take a few moments to fill this out and then
+either scan/email it to me at the email address noted belowor fax it back to me
+at&nbsp;{!User.Fax}. <b>Please be sure to
+include a voided check</b>. <o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;">Once
+I receive the completed form, I will call you to verify the setup of your
+account prior to issuing your cards. Meanwhile, please feel
+free to give me a call if you have any questions.<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;">Thank
+you for choosing the&nbsp;<em><span style="font-size: 11pt; line-height: 107%; font-family: Arial, sans-serif; background: white; font-style: normal;">RaceTrac
+RaceWay Fleet&nbsp;Card Program</span></em>.<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;">Sincerely,<o:p></o:p></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><br>
+<i>{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+{!User.Email}<o:p></o:p></i></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><i>&nbsp;</i></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; margin-bottom: 12pt; line-height: normal;"><font size="1"><i style=""><span style="color: gray;">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is prohibited.
+If you have received this message in error, please notify sender immediately by
+telephone or reply by e-mail and delete the entire message and any
+attachments."</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font size="1"><font style="font-family: arial;" color="#999999"><i style="">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</i></font><font face="arial"><br></font><i style="color: rgb(0, 0, 0); font-family: arial;"><span style="line-height: 115%; font-family: Calibri, sans-serif; color: gray;">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</span></i></font></p><span style="color: black; font-family: Verdana, sans-serif; font-size: 10pt;"><font face="Times New Roman">
+
+</font></span>]]></td>
+</tr>
+</table>

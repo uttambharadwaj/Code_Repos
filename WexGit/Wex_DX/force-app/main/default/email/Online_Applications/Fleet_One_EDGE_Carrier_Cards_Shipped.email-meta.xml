@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Letterhead</letterhead>
+    <name>EDGE Carrier Cards Shipped</name>
+    <style>freeForm</style>
+    <subject>{!OnlineApplication__c.Account__c} FLEET ONE EDGE CARDS have shipped!</subject>
+    <textOnly>Your Carrier ID: {!OnlineApplication__c.Carrier_ID_Number__c}
+
+
+
+Congratulations! Your fuel cards are on the way and have been shipped to:
+
+{!OnlineApplication__c.Business_Street_Address__c}
+{!OnlineApplication__c.AO_City__c}, {!OnlineApplication__c.AO_State__c} {!OnlineApplication__c.AO_Zip_Code__c}
+
+
+
+
+
+Thank you for choosing Fleet One EDGE, and welcome to the family! Your new cards have shipped and will need to be activated once received. Below is a list of options to help you easily activate your new fuel card.
+
+Automated IVR:  Call toll-free, 24/7, 877.208.2195.
+– NOTE: Convert your password to the equivalent letters on your number
+keypad.
+
+eManager: To access eManager, click here and enter your Carrier ID and Password.
+-Select Program&gt;Manage Cards&gt;View/Update Cards
+-Select a Card #
+-Select Card Status to Activate
+
+Mobile App: Fleet One Card Control and Fleet One Carrier Control, our mobile smartphone applications for iPhone and Android devices. Simply visit the app stores and search &quot;Fleet One&quot; to download Mobile Manager Source.
+
+
+
+As a valued customer, we want to make it easy for you to maintain your account.  Please visit www.fleetoneedge.com for full program details and a list of valuable resources.
+
+
+
+
+The tracking number is:
+
+
+UPS Tracking #: {!OnlineApplication__c.UPS_Tracking_Number__c}.  You may use the following link to check the status of your shipment: Click here to check UPS Status
+
+
+
+eManger has online tutorials to help you learn to manage your new online account. Here you can learn how to dispatch a MoneyCode, change driver information on the cards, and even run reports to help manage your fleet&apos;s purchases.
+
+eManager Quick Reference Guide
+CarrierControl Moble App User Guide
+Frequently Asked Questions
+
+
+Thank you,
+
+
+{!OnlineApplication__c.OwnerFirstName}
+
+{!OnlineApplication__c.OwnerTitle}
+
+{!OnlineApplication__c.OwnerPhone} | {!OnlineApplication__c.Owner_Fax__c}
+
+{!OnlineApplication__c.OwnerEmail} |  www.fleetoneedge.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

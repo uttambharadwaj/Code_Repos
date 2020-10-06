@@ -1,0 +1,10 @@
+Hello {!Case.Contact},
+
+	This is {!Case.OwnerFullName} from {!NullValue(Case.Program__c, "WEX Fleet")} Services. I have closed your fuel card account as you requested. We valued the relationship we had with your business and are sorry to lose you. Please do not hesitate to reach out to me if you ever need anything or would like to reopen your account. 
+
+Sincerely,
+
+{!Case.OwnerFullName}
+{!NullValue(Case.Program__c, "WEX")} {!Case.OwnerTitle}
+{!Case.OwnerEmail}
+{!Case.OwnerPhone}

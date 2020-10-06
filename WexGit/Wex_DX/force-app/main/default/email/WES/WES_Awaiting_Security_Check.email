@@ -1,0 +1,7 @@
+<p>The Application for {!WES_Application_Request__c.Company_Name__c} was marked as <b>{!WES_Application_Request__c.Application_Status__c} </b>
+by {!User.Name}.</p> 
+
+Here are the approval request comments:
+{!ApprovalRequest.Comments}
+
+<p>Please <b>Approve</b> or <b>Deny</b> the Approval Request</a> by reviewing <a href="{!WES_Application_Request__c.Link}">Application {!WES_Application_Request__c.Name}</a> and clicking the Approve or Reject buttons on the top right of the record.

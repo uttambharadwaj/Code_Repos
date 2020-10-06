@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Promo offer of 15¢ for 5 months - May &amp; June 2016 ONLY</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Promo Offer:  15¢</name>
+    <style>freeForm</style>
+    <subject>Sheetz Business Edge Card - Don&apos;t Miss Out</subject>
+    <textOnly>Don’t Miss Out!!
+Get 15¢ off per gallon for the next 5 months.
+
+
+Dear {!Contact.FirstName},
+
+Whether your business is large or small, take charge of your fueling expenses with the Sheetz Business Edge card program. For a limited time only, Sheetz is offering 15¢ off on EVERY gallon purchased at a Sheetz with the Sheetz Business Edge card!
+
+The Sheetz Business Edge card is the perfect way to simplify your vehicle fueling and eliminate hours of paperwork.
+
+- Rebates of 25¢ on every gallon* for the first 5 months
+
+- Accepted at over 500 Sheetz retail locations
+
+- Helps prevent unwanted spending with pre-set controls
+
+- 24/7 U.S. based customer services – for you and your drivers
+
+I will be following up with you next week. In the meantime, you can reach me at {!User.MobilePhone} or via email at {!User.Email}.
+
+I look forward to meeting with you about the needs of your business.
+Don’t wait any longer to start saving 15¢ per gallon on fuel.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Cell: {!User.MobilePhone}
+Email: {!User.Email}
+
+
+*Subject to credit approval. New accounts only. The 5 month promotional period is valid for applications received May 1st, 2016 through June 30th, 2016. Rebates are not applied at the time of purchase – they will appear as an account credit on your monthly billing statement. Standard rebates of up to 6¢ per gallon of fuel will be applied after the promotional offer. Rebates are subjected to change at any time without prior notice.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

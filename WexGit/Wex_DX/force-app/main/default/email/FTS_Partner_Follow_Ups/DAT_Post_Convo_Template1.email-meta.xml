@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/DAT_MSA.doc</attachedDocuments>
+    <attachedDocuments>FTS/WEX_Bank_Direct_Debit_Authorization.pdf</attachedDocuments>
+    <attachedDocuments>FTS/WEX_Bank_PG.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Template for when the customer wants to move forward</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>DAT- Post Convo Template</name>
+    <style>freeForm</style>
+    <subject>DAT FTS Fuel Card</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I have attached the necessary paperwork required to move forward. If you are applying for a line of credit, you will need to sign the attached PG form. The other form attached is needed to set up payment from your bank to EFS.
+
+Please sign pages 1,5,7. (must be listed on page 5)
+
+Fill in Tax ID, DOT, MC#, and Date of Birth.
+
+Please include a copy of the owner’s Driver’s License and The Articles of Incorporation (if possible).
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+Fleet Consultant
+WEX/ FTS+/ TruckersB2B
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

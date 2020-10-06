@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Réinitialisation de mot de passe</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Réinitialisation de mot de passe</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Nous avons réinitialisé  votre mot de passe pour le nom d’utilisateur  BLANK Vous recevrez par courriel un nouveau mot de passe  temporaire. Vous pourrez alors vous rendre sur www.essofleetonline.com et accédez au site.
+
+Svp, prendre note que l’utilisation d’un téléphone intelligent ou une tablette ne fonctionnera pas sur le site.
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+{!Contact.FirstName},
+
+In order to process your completed Truckers Advantage fuel card application, I need your OOIDA membership number as well as your DOT number.  Please email me back with that information at your earliest convenience.
+
+Thank you in advance,
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.

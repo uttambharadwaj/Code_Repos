@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fortune 1K Prospecting Email template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>Kayrn Wild Template</name>
+    <style>freeForm</style>
+    <subject>Would you be available next week?</subject>
+    <textOnly>Good Afternoon {!Lead.FirstName},
+
+My name is {!User.Name} and I am with WEX, Inc, providers of the rapid! Visa Payroll Card.
+
+The rapid! PayCard provides companies nationwide with the most comprehensive PayCard benefit. An ePayroll program designed for employers choosing to eliminate, costly &amp; inefficient paper checks from their payroll process. This ZERO cost program was created for those employees currently not on direct deposit and who may not qualify for, or want, a bank account.
+
+I wanted to take a moment to reach out to you to see if we can schedule a time to chat briefly on the phone sometime next week.  The purpose of the call would be to determine if our program might fulfill a need for {!Lead.Company}, and provide you with some additional information if warranted.
+
+How does your calendar look for next week?  If a particular day and time works best for you, please let me know and I will work around your schedule.
+
+I look forward to the opportunity to speak with you.
+
+{!User.Name}
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: {!User.Phone} • C: {!User.MobilePhone} • F: 727.828.4444
+
+E: {!User.Email}
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

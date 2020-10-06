@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email for when a new case is created</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Telematics_New_Logo_Letterhead</letterhead>
+    <name>Telematics Case Opened</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.Subject} - WEX Telematics Support Case {!Case.CaseNumber} has been created</subject>
+    <textOnly>The WEX Telematics Support team has received your request and will be in touch with you as soon as possible.  Please send all emails regarding this case to the telematics.support@wexinc.com mailbox and reference your Case Number {!Case.CaseNumber}.
+
+Thanks,
+The WEX Telematics Support Team
+
+From: {!Case.SuppliedEmail}
+Subject: {!Case.Subject}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Attach Agenda!!  Sent to new hires when the Onboarding agenda is completed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>OLD_07. South Portland Salesforce Onboarding Agenda Complete Reminder</name>
+    <style>freeForm</style>
+    <subject>Your Sales Onboarding is starting on {!Case.Class_Start_Date_del__c}!</subject>
+    <textOnly>Hello!
+
+Your Sales Onboarding is starting on {!Case.Class_Start_Date_del__c}.
+
+I want to take this opportunity to welcome you and say how excited I am that you will be a part of the WEX Family.
+
+You are getting ready to undertake the incredible learning process through WEX Sales University. By the end of training, you will have a greater understanding of WEX and it&apos;s processes.
+
+Items to remember:
+
+On Day One, arrive at 8:00am at {!User.Street} {!User.City}, {!User.State} {!User.PostalCode}.
+If you have NOT finalized your paperwork with HR, bring your two forms of ID to complete the Federal I-9 Employment Eligibility Verification form.
+The dress policy is business professional.  You may wear business casual attire during training but we do have you role play a sales meeting that many past Reps have preferred to wear business attire to complete.
+A group dinner has been scheduled for Wednesday night.  All other dinners will be on your own at any of the many fine area restaurants.
+
+
+Please don’t hesitate to call me or Salestraining@wexinc.com with any questions. I look forward to our training next week.
+
+{!User.Name} | {!User.Phone}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

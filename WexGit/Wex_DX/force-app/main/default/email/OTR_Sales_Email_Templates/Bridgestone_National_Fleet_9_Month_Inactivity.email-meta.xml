@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Bridgestone_National_Fleet</letterhead>
+    <name>Bridgestone National Fleet_9 Month Inactivity</name>
+    <style>freeForm</style>
+    <subject>Your Bridgestone National Fleet Account – We Miss You!</subject>
+    <textOnly>Dear (Fleet Main Contact),
+
+We are sending this letter because your Bridgestone National Fleet account with WEX Fleet One hasn’t shown purchase activity in over nine months.  Our normal program maintenance procedure calls for accounts to be inactivated upon one year of non-use.  We miss you and would like the opportunity to earn your business and keep your account active.
+
+If you have questions about your account or would like to speak to someone about your tire program, please contact us using the options below:
+
+Sales or Tire Program Information – Call your Bridgestone Commercial Sales Manager (CSM). If you need contact information for your CSM, please email nationalfleetadmin@bfusa.com and we will be happy to provide it for you.
+
+WEX Fleet One Credit or Billing Information – Call 844-275-7099, or email bsfscredit-collections@fleetone.com.
+
+To find a participating dealer, visit www.notifyben.com.
+
+
+Thank you for your business,
+The Bridgestone National Fleet and WEX Fleet One Teams</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

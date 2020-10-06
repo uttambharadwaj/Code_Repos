@@ -1,0 +1,374 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><b style=""><font face="Arial, sans-serif" style="">CLAIM REVIEW AND RESOLUTION COMMENTS</font></b></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><b style=""><u><font face="Arial, sans-serif"><br></font></u></b></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><b style=""><u><font face="Arial, sans-serif">Fleet Credit Comments (WP or TILA):</font></u></b></p>
+
+<p class="MsoNormal" style="line-height: normal;"><b style=""><u><span style="color: rgb(0, 112, 192);"><font face="Arial, sans-serif"><br></font></span></u></b></p><p class="MsoNormal" style="line-height: normal;"><b style=""><u><span style="color: rgb(0, 112, 192);"><font face="Arial, sans-serif">Account Comments - Credit Adjustment
+Request:</font></span></u></b></p>
+
+<p class="MsoNormal" style="line-height: normal;"><font face="Arial, sans-serif"><span style="color: black; background: white;">**Adj
+req submitted in the amt
+of&nbsp;${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;for dispute
+claim&nbsp;&nbsp;{!Claim__c.Name}.</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="line-height: normal;"><b style=""><u><span style="color: rgb(0, 112, 192); background: white;"><font face="Arial, sans-serif"><br></font></span></u></b></p><p class="MsoNormal" style="line-height: normal;"><b style=""><u><span style="color: rgb(0, 112, 192); background: white;"><font face="Arial, sans-serif">Account Comments
+Credit Resolution:</font></span></u></b></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif" style=""><span style="color: black; background: white;">**Resolution email sent for dispute
+claim&nbsp;{!Claim__c.Name}&nbsp;w determination that fleet is receiving a
+credit due to&nbsp;</span><span style="color: black; background: yellow;">WP</span><span style="color: black; background: white;">&nbsp;for allowable disputed
+charges of ${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on
+card&nbsp;{!Claim__c.Abbreviated_Card__c}&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">).The claim is closed.** Fleet
+Fraud, xt 88571.</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: black; background: white;">&nbsp;</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black; background: white;">**Resolution email sent for dispute
+claim&nbsp;{!Claim__c.Name}&nbsp;w determination that fleet is receiving a
+credit due to&nbsp;</span><span style="color: black; background: yellow;">TILA</span><span style="color: black; background: white;">&nbsp;for allowable disputed
+charges&nbsp;of ${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on
+card&nbsp;{!Claim__c.Abbreviated_Card__c}&nbsp;(ID:&nbsp;{!Claim__c.CO_ID_STD_EMB_GTag__c}).The
+claim is closed.** Fleet Fraud, xt 88571.</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><b style="font-family: Arial, sans-serif;"><u><span style="color: rgb(0, 112, 192);"><br></span></u></b></p><p class="MsoNormal" style="text-align: justify; line-height: normal;"><b style="font-family: Arial, sans-serif;"><u><span style="color: rgb(0, 112, 192);">Credit Resolution
+Email:</span></u></b></p>
+
+<p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;">Re: Dispute C</span><span style="font-family: Arial, sans-serif; background: white;">laim No&nbsp;{!Claim__c.Name}</span></p>
+
+<p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif; background: white;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif; background: white;">Dear&nbsp;</span><span style="font-family: Arial, sans-serif;">{!Claim__c.Account_Contact_Name__c}<span style="background:white">:&nbsp;</span></span></p>
+
+<p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif; background: white;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif; background: white;">This
+letter is being sent in response to your recent dispute claim for transactions
+totaling&nbsp;${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on card&nbsp;</span><span style="font-family: Arial, sans-serif; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="font-family: Arial, sans-serif; background: white;">&nbsp;(ID:&nbsp;</span><span style="font-family: Arial, sans-serif; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="font-family: Arial, sans-serif; background: white;">)&nbsp;on&nbsp;the&nbsp;{!Claim__c.Partner_Formal_Name__c}&nbsp;account
+ending&nbsp;{!Claim__c.Program_Account_Masked__c}.&nbsp;&nbsp;The occurrence of
+fraud, misuse or abuse on our card program is extremely unfortunate and we are
+sensitive to the potential business and financial hardships it can cause to our
+customers.</span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif; background: white;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif; background: white;">As a
+result of your dispute and our review of your claim, we are processing a credit
+to your account for allowable disputed charges totaling
+${!Claim__c.Allowable_Dispute_Dollars__c}.&nbsp;&nbsp;This constitutes final
+resolution to the dispute claim identified above and does not apply to any oth</span><span style="font-family: Arial, sans-serif;">er outstanding and/or future balances on the
+account.</span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;">Please feel free to
+contact us at (888) 691-0361 should you have any questions.&nbsp;&nbsp;We
+appreciate your business and look forward to maintaining our
+relationship.</span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;">Sincerely,</span></p><p class="MsoNormal" style="line-height: normal;"><span style="color: rgb(64, 64, 64); font-family: Arial, sans-serif;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="color: rgb(64, 64, 64); font-family: Arial, sans-serif;">Fleet Fraud Services</span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;">Enclosure(s): Fleet Security Measures</span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;"><br></span></p><p class="MsoNormal" style="line-height: normal;"><span style="font-family: Arial, sans-serif;">XX</span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: black;">Fleet Liable Letter Verbiage and
+Account Comments</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><b style="font-family: Arial, sans-serif;"><u><span style="color: rgb(0, 112, 192);"><br></span></u></b></p><p class="MsoNormal" style="text-align: justify; line-height: normal;"><b style="font-family: Arial, sans-serif;"><u><span style="color: rgb(0, 112, 192);">Standard:</span></u></b></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">Research and analy<span style="background:white">sis
+by&nbsp;{!Claim__c.Partner_Formal_Name__c}&nbsp;Fr</span>aud Department
+produced the following information:<o:p></o:p></font></span></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l3 level1 lfo1;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span>&nbsp;<span style="background:white">(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)</span>&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c},
+     in combination with driver identification number (“DIN”)&nbsp;{!Claim__c.DIN__c}&nbsp;assigned
+     to "{!Claim__c.Driver_Name__c}” for approximately
+     ${!Claim__c.Allowable_Dispute_Dollars__c}.&nbsp;<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l3 level1 lfo1;tab-stops:list .5in"><font face="Arial, sans-serif">There is no indication that any DIN guessing was
+     attempted prior to the onset of the abuse which signifies that the
+     perpetrator had knowledge of the DIN&nbsp;or that the DIN was not kept in
+     a confidential manner.<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l3 level1 lfo1;tab-stops:list .5in"><font face="Arial, sans-serif">All disputed transactions occurred at an outside
+     payment terminal (“OPT”),&nbsp; the card was swiped with a valid DIN being
+     keyed in the OPT; therefore there is no evidence of merchant involvement.</font></li></ul>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution letter sent for claim&nbsp;<span style="background:
+white">{!Claim__c.Name}</span>&nbsp;w determination that fleet is liable for
+allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c}.&nbsp;
+on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">with DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned
+to "{!Claim__c.Driver_Name__c}” per T&amp;Cs. All disputed trans were OPT,
+no DIN guessing, no indication of merchant involvement. The claim is closed**
+Fleet Fraud, xt 88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Standard
+W/60-Day Verbiage for a portion of disputed sales:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l2 level1 lfo2;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;</span>&nbsp;<span style="background:white">(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)</span>&nbsp;between
+     {!Claim__c.Claim_Dispute_Start_Date__c} and
+     {!Claim__c.Claim_Dispute_End_Date__c}, in combination with driver
+     identification number (“DIN”)&nbsp;{!Claim__c.DIN__c}&nbsp;assigned to
+     "{!Claim__c.Driver_Name__c}”. However, pursuant to the contractual
+     agreement governing use of the account, the 60-day dispute period is
+     limited
+     to&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}&nbsp;
+     for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.&nbsp;&nbsp;<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="margin-left: 0.25in; text-align: justify; text-indent: -0.25in; line-height: normal;"><span style="color: black;"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution letter sent for claim&nbsp;<span style="background:
+white">{!Claim__c.Name}</span>&nbsp;w determination that fleet is liable for
+allowable disputed charges on card(s)&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">&nbsp;with DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned
+to "{!Claim__c.Driver_Name__c}” per T&amp;Cs. Disputed transactions
+occurred between {!Claim__c.Claim_Dispute_Start_Date__c}
+and&nbsp;{!Claim__c.Claim_Dispute_End_Date__c}&nbsp;however, pursuant to the
+contractual agreement governing use of the account, the allowable 60-day
+dispute period is limited to transactions that occur
+after&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;totaling
+${!Claim__c.Allowable_Dispute_Dollars__c}.&nbsp; The claim is closed** Fleet
+Fraud, xt 88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Total
+Dispute Exceeds 60-Days:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Dispute received from fleet for transactions on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">)</span><span style="color: black;">&nbsp;between&nbsp;{!Claim__c.Claim_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Claim_Dispute_End_Date__c}.
+Resolution email sent to fleet to adv that pursuant to the contractual
+agreement governing use of the account, this is outside of the 60-Day allowable
+dispute period, therefore dispute claim&nbsp;<span style="background:white">{!Claim__c.Name}</span>&nbsp;has
+been closed.** Fleet Fraud xt 88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Terminal
+Reporting Issue:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l1 level1 lfo3;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)</span>&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+     The transactions in question appear to be legitimate fueling, but reporting
+     an incorrect location due to a terminal data issue at the pump. The claim
+     has been closed as no fraud detected.<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Dispute received from fleet for transactions on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">)</span><span style="color: black;">&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+Resolution email sent to fleet to adv that the transactions in question appear
+to be legitimate fueling, but reporting an incorrect location due to a terminal
+data issue at the pump. The claim has been closed as no fraud detected.<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">&nbsp;</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">&nbsp;</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Disputed
+Transactions Never Posted to Account:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l7 level1 lfo4;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)</span>&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+     It appears that the transactions in question did not post to the account;
+     therefore there is nothing to dispute. The claim has been closed.<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Dispute received from fleet for transactions on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">)</span><span style="color: black;">&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+Resolution email sent to fleet to adv that the transactions in question did not
+post to the account; therefore there is nothing to dispute. The claim has been
+closed.<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">WP
+Declined Transactions – Nothing to Dispute:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l0 level1 lfo5;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)</span>&nbsp;between
+     v. It appears that the transactions in question were declined and did not
+     post to the account; therefore there is nothing to dispute. The claim has
+     been closed.<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Dispute received from fleet for transactions on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">)</span><span style="color: black;">&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+Resolution email sent to fleet to adv that the transactions in question were
+declined and did not post to the account; therefore there is nothing to
+dispute. The claim has been closed.<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Data
+Error File Issues (Trans Type = COR):</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l4 level1 lfo6;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)</span>&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+     It appears that a file error issue occurred where the disputed
+     transactions all posted to the account on the same date in a correction
+     file.&nbsp; Transactions appear to be consecutive and legitimate fueling;
+     a data issue is not fraudulent activity. The claim has been closed as “no
+     Fraud Detected”.<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Dispute received from fleet for transactions on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">)</span><span style="color: black;">&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}.
+Resolution email sent to fleet to adv that there appears to have been a file
+error issue where the disputed transactions all posted to the account on the
+same date in a correction file.&nbsp; Transactions appear to be legitimate
+fueling; a data issue is not fraudulent activity. The claim has been closed as
+“no Fraud Detected”.<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Fleet
+disputed Auth Controls but No Auth controls on card:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">Research and analysis
+by&nbsp;{!Claim__c.Partner_Formal_Name__c}&nbsp;Fraud Department produced the
+following information:<o:p></o:p></font></span></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l5 level1 lfo7;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;</span>&nbsp;between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c},
+     in combination with driver identification number
+     (“DIN”)&nbsp;{!Claim__c.DIN__c}&nbsp;assigned to
+     "{!Claim__c.Driver_Name__c}”.<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l5 level1 lfo7;tab-stops:list .5in"><font face="Arial, sans-serif">There is no indication that any DIN guessing was
+     attempted prior to the onset of the abuse which signifies that the perpetrator
+     had knowledge of the DIN&nbsp;or that the DIN was not kept in a
+     confidential manner.<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l5 level1 lfo7;tab-stops:list .5in"><font face="Arial, sans-serif">All disputed transactions occurred at an outside
+     payment terminal (“OPT”),&nbsp; the card was swiped with a valid DIN being
+     keyed in the OPT; therefore there is no evidence of merchant
+     involvement.&nbsp;<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l5 level1 lfo7;tab-stops:list .5in"><font face="Arial, sans-serif">Our records revealed there were no controls assigned to
+     the card prior to the abuse on your account.<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="margin-left: 0.25in; text-align: justify; text-indent: -0.25in; line-height: normal;"><span style="color: black;"><o:p><font face="Arial, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution letter sent for claim&nbsp;<span style="background:
+white">{!Claim__c.Name}</span>&nbsp;w determination that fleet is liable for
+allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on
+card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">with DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned
+to "{!Claim__c.Driver_Name__c}” per T&amp;Cs. No indication of DIN
+guessing prior to the onset of the abuse which signifies that the perp had knowledge
+of the DIN, all disputed trans were OPT, no indication of merch inv, Research
+revealed no controls were assigned to the card prior to the onset of abuse. Adv
+to contact e-services for online control assistance.** Fleet Fraud, xt 88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Apparent
+Authority (all OPT):</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution letter sent for claim&nbsp;<span style="background:
+white">{!Claim__c.Name}</span>&nbsp;w determination that fleet is liable for
+allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on
+card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;(ID:&nbsp;</span><span style="color: black; background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="color: black; background: white;">)</span><span style="color: black;">&nbsp;with DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned to
+"{!Claim__c.Driver_Name__c}” per T&amp;Cs. No DIN guessing prior to the
+onset of the abuse, all disputed trans were OPT, no indication of merchant
+involvement. No other factors presented to indicate that anyone other than a
+driver for&nbsp;{!Claim__c.Account_Name__c}&nbsp;(who would be authorized users
+of the account) made the purchases.** Fleet Fraud, xt 88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: black;">&nbsp;</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Ordered
+Receipts for some sales:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">Research and analysis
+by&nbsp;{!Claim__c.Partner_Formal_Name__c}&nbsp;Fraud Department produced the
+following information:<o:p></o:p></font></span></p>
+
+<ul type="disc" style="">
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l6 level1 lfo8;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions occurred on card&nbsp;<span style="background:white">&nbsp;</span><span style="background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="background: white;">&nbsp;(ID:&nbsp;</span><span style="background: white;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span><span style="background: white;">)&nbsp;</span>between&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c},
+     in combination with driver identification number
+     (“DIN”)&nbsp;{!Claim__c.DIN__c}&nbsp;assigned to
+     "{!Claim__c.Driver_Name__c}” for approximately
+     ${!Claim__c.Allowable_Dispute_Dollars__c}.<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l6 level1 lfo8;tab-stops:list .5in"><font face="Arial, sans-serif">No attempt to guess at the DIN was made prior to the
+     onset of the abuse.&nbsp; This would indicate that the perpetrator had
+     knowledge of the DIN or that the DIN was not kept in a confidential
+     manner.<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l6 level1 lfo8;tab-stops:list .5in"><font face="Arial, sans-serif">Disputed transactions
+     totaling&nbsp;{!Claim__c.Ticket_Request_Amount__c}&nbsp;occurred inside
+     merchant locations and as a result, we have requested copies of those
+     receipts on your behalf.&nbsp; Once received, the copies will be mailed to
+     your attention.<o:p></o:p></font></li>
+ <li class="MsoNormal" style="color:black;mso-margin-top-alt:auto;mso-margin-bottom-alt:
+     auto;line-height:normal;mso-list:l6 level1 lfo8;tab-stops:list .5in"><font face="Arial, sans-serif">The remaining disputed transactions occurred at an
+     outside payment terminal (“OPT”), the card was swiped and a valid DIN was
+     keyed in the OPT. Therefore, there is no available evidence of merchant
+     involvement.&nbsp;<o:p></o:p></font></li>
+</ul>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">&nbsp;<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution letter sent for claim&nbsp;<span style="background:
+white">{!Claim__c.Name}</span>&nbsp;w determination that fleet is liable for
+allowable disputed charges of ${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on
+card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">with DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned
+to "{!Claim__c.Driver_Name__c}” per T&amp;Cs. No indication of DIN
+guessing prior to the onset of the abuse which signifies that the perp had
+knowledge of the DIN. Adv fleet that
+${!Claim__c.Ticket_Request_Amount__c}&nbsp;of trans were inside trans, tickets
+ordered. Adv fleet that remaining disputed trans were OPT, no indication of
+merchant inv.** Fleet Fraud, xt 88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: black;">&nbsp;</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Tickets
+Charged back to Merchant:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution sent for claim&nbsp;<span style="background:white">{!Claim__c.Name}</span>,
+Allowable disputed charges o<span style="background:white">f ${!C</span>laim__c.Allowable_Dispute_Dollars__c}&nbsp;on
+card(s)<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">has been charged back to the merchant. The
+dispute claim is closed.** Fleet Fraud, xt 88571.<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Closed
+– No Contact:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><span style="color: black;"><font face="Arial, sans-serif">**Dispute claim&nbsp;<span style="background:white">{!Claim__c.Name}</span>&nbsp;has
+been closed as the information requested in order to proceed has not been
+received.&nbsp;Pursue collections BAU.** Fleet Fraud, xt 88571<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Resolution
+Settlement Offer:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Resolution Settlement Offer Letter sent for dispute claim&nbsp;<span style="background:white">{!Claim__c.Name}</span>&nbsp;w/ determination that the
+fleet is liable for allowable disputed charges of
+${!Claim__c.Allowable_Dispute_Dollars__c}. However, WEX has extended a
+settlement offer of $<span style="background:yellow">XXXX.XX</span>, with the
+Acknowledgment/ Acceptance Copy to be signed by the fleet and returned to WEX
+no later than&nbsp;<span style="background:yellow">XX/XX/XXXX</span>. (Disputed
+trans occurred on card&nbsp;<span style="background:white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">between&nbsp;{!Claim__c.Claim_Dispute_Start_Date__c}&nbsp;and
+{!Claim__c.Claim_Dispute_End_Date__c}. Pursuant to the contractual agreement
+governing use of the account, the 60-day dispute period is limited
+to&nbsp;{!Claim__c.Allowable_Dispute_Start_Date__c}&nbsp;and&nbsp;{!Claim__c.Allowable_Dispute_End_Date__c}&nbsp;for
+approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.)** Fleet Fraud, xt
+88571<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><b><u><span style="color: rgb(0, 112, 192);">Rebuttal
+Resolution:</span></u></b><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify; line-height: normal;"><font face="Arial, sans-serif"><span style="color: black;">**Rebuttal resolution letter sent to fleet w/ final determination
+that fleet remains liable for allowable disputed charges of
+${!Claim__c.Allowable_Dispute_Dollars__c}&nbsp;on card<span style="background:
+white">&nbsp;</span></span><span style="color: black; background: white;">{!Claim__c.Abbreviated_Card__c}</span><span style="color: black; background: white;">&nbsp;</span><span style="color: black;">with DIN&nbsp;{!Claim__c.DIN__c}&nbsp;assigned
+to "{!Claim__c.Driver_Name__c}” per T&amp;Cs. The claim is closed.** Fleet
+Fraud, xt 88571<o:p></o:p></span></font></p><br></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>BOCA - PrePay Instructions with PFJ DB</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Letterhead</letterhead>
+    <name>*BOCA - PrePay - w/ PFJ DB</name>
+    <style>formalLetter</style>
+    <subject>Fleet One Edge - PREPAY INSTRUCTIONS (OPTIONAL)</subject>
+    <textOnly>{!OnlineApplication__c.Card_Shipping_First_Name__c},
+**IMPORTANT NOTE** This email is ONLY for if you WANT to send in PREPAID FUNDS to use locations outside of Pilot/Flying J, cash advances, moneycodes, or other services. You do NOT need to do this if you only plan to fuel at Pilot or Flying J.
+
+
+
+~~~~~Instructions for funding a PrePay account~~~~~
+
+
+
+Carrier ID: {!OnlineApplication__c.Carrier_ID_Number__c}
+
+
+AR Number: {!OnlineApplication__c.AR_ID_Number__c}
+
+
+Thank you for choosing a Pre-Paid Fleet One EDGE account. Please remember that you, the customer, are responsible to make sure that the funds are in the account before attempting to use the cards. When the available balance hits $0.00, the account will be shut-off from further use until more funds are added.
+
+
+
+In order to fund your account, you may make payments by bank wire, ACH, or Western Union. All payments must be received by 3:30 PM CST in order for those funds to be available that day.
+
+
+WEX / Fleet One Fees for payment methods:
+
+Bank Wire: $15
+
+ACH: $0 (free)
+
+Western Union: $20
+
+
+
+
+
+
+INSTRUCTIONS for WIRE/ACH:
+
+
+When sending funds, please include the AR Number for your account with us as an addendum so that your funds may be more quickly applied to your account. Below are the instructions for bank wires:
+
+
+Bank Name:
+
+Fifth Third Bank
+
+38 Fountain Square
+
+Cincinnati, OH 45263
+
+
+Account Name:
+
+WEX Bank
+
+1104 Country Hills Drive
+
+Ogden, Utah 84403
+
+
+Bank Account Number: 7361767473
+
+Wire Routing Number: 042000314
+
+ACH Routing Number: 064103833
+
+
+Please note that Fifth Third uses a different routing number for wires and ACH’s. If the incorrect routing number is used, the payment will be rejected by the bank.
+
+Please make sure to include your AR# NUMBER ( {!OnlineApplication__c.AR_ID_Number__c} ) in the payment remittance information (“OBI Fields”) – we cannot apply your payment without this information. Please follow the example illustrated below:
+
+
+OBI Line 1: #  {!OnlineApplication__c.AR_ID_Number__c}
+
+
+Wires are done through the Federal Reserve System and most banks do charge a fee for this. Please ask your bank what fee they charge.
+
+
+
+
+
+
+WESTERN UNION INSTRUCTIONS:
+
+
+WESTERN UNION QUICK COLLECT
+
+PAY TO: ELECTRONIC FUNDS SOURCE
+
+CODE CITY: ELECFS UT STATE: UTAH
+
+YOUR AR NUMBER WITH US: {!OnlineApplication__c.AR_ID_Number__c}
+
+
+Please make sure to include your 13 digit AR Number so that the funds can be applied to your account. If your AR Number includes leading “0”’s please include the 0’s in order for funds to be properly applied.
+
+
+
+
+
+
+If you have any questions, please contact the Credit Department at the information listed below.
+
+
+
+WEX / Fleet One Collections and Receivables
+
+1-877-239-2381
+
+collections@fleetone.com
+
+
+
+
+
+
+
+Kind Regards,
+{!User.Name}
+
+{!User.Title}
+
+Fleet One, LLC
+
+Phone: {!User.Phone}
+
+Fax: {!User.Fax}
+
+Email: {!User.Email}
+www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,16 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P>{!Contact.FirstName},</P>
+<P>&nbsp;</P>
+<P>Thank you&nbsp;again for taking the time to meet with me&nbsp;regarding <STRONG>Sunoco's Fuel Management&nbsp;Program.</STRONG> If you have further questions about the information we reviewed together,&nbsp;please don't hesitate to contact me. I'm here to provide you with whatever guidance you may need&nbsp;as you&nbsp;consider the Sunoco Program for your business.</P>
+<P>&nbsp;</P>
+<P><STRONG>It'd&nbsp;be our sincerest pleasure to work with you&nbsp;toward&nbsp;more cost-effectively and efficiently managing and fueling your&nbsp;business vehicles.</STRONG>&nbsp;The Sunoco Fuel Management Program is&nbsp;a significantly powerful&nbsp;solution&nbsp;toward this goal. I hope you'll take advantage of the Program, including&nbsp;our initial savings of 20-cents off per gallon at any Sunoco for your first 60 days (our competitive rebate tiers apply thereafter). </P>
+<P>&nbsp;</P>
+<P>I've also attached a copy of our <STRONG>"Level III Data"</STRONG> white paper, which provides great insight into the data and controls behind the Sunoco Program -- and why they matter to businesses managing&nbsp;a fleet of vehicles.</P>
+<P>&nbsp;</P>
+<P>Thanks again, {!Contact.FirstName}. I'll touch base soon to see if I may be of&nbsp;help in any way.</P>
+<P>&nbsp;</P>
+<P>All the best,</P>]]></td>
+</tr>
+</table>

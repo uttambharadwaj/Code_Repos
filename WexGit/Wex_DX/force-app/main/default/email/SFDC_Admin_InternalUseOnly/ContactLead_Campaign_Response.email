@@ -1,0 +1,13 @@
+This Lead or Contact has responded to a Campaign and is interested in the applicable product or service. Please view the record for details and take the appropriate action.
+
+Note that an Open Task has NOT been created for this. You must create a new Task or use Log a Call.
+
+Contact/Lead: {!CampaignMember.FirstName} {!CampaignMember.LastName}
+Company: {!CampaignMember.CompanyOrAccount}
+Phone: {!CampaignMember.Phone}
+Campaign Responded To: {!CampaignMember.Campaign}
+
+Click here to view details in salesforce.com:
+{!CampaignMember.Link}
+
+Thanks!

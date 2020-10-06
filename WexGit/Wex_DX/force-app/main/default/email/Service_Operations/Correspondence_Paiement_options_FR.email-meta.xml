@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Paiement : options</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Paiement : options</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Il existe plusieurs façons d’effectuer vos paiements:
+
+Par chèque : Veuillez compter 10 jours ouvrables pour la réception par la poste.
+Par guichet automatique : Veuillez compter 48 à 72 heures ouvrables pour la réception.
+Paiement en ligne sur le site web de votre banque. Veuillez compter 2 jours ouvrables pour la réception.
+Paiement en ligne sur notre site web : www.essoparcautoenligne.com.
+
+Sur l’onglet de : Facture &amp; paiement, il y a deux choix :
+
+Inscription au service de prélèvement automatique (Débit Direct)
+Définir les renseignements bancaires (Paiements effectuer en ligne par vous chaque mois)
+
+Pour ces deux choix, il faut :
+
+Ajouter le compte bancaire en ligne. *N’oubliez pas à cliquez sur le bouton : Envoyer.
+Envoyer le formulaire trouvé à la page d’inscription avec un spécimen de chèque.
+par courriel : iol_pad@wexinc.com
+
+b. par faxe : 207.253.1475
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>for securing prepay or cash deposit option</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Denied Credit Options</name>
+    <style>none</style>
+    <subject>{!OnlineApplication__c.Offer__c} Fuel Card Credit Options for {!Account.Name}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

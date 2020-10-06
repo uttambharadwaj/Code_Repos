@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Financials Request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Marathon Letterhead</name>
+    <style>formalLetter</style>
+    <subject>Credit Line Increase Financials Request</subject>
+    <textOnly>Dear Kristie,
+
+Per your request.
+
+Would you please provide me with 2 years of audited financials. This way I can provide them to WEX Bank for a credit line increase.
+
+Jason Duke
+Regional Sales Manager
+WEX Inc.
+2066 Cornell Rd Middleburg, FL 32068
+o 904-203-7322 | c 904-315-3176 | f 207-253-1490
+
+Jason.Dukes@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to employees who attended the Managing a Sales Team Training.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Managing a Sales Team Next Step</name>
+    <style>freeForm</style>
+    <subject>Managing a Sales Team| Next Steps</subject>
+    <textOnly>Thank you so much for your passion, commitment to your development, your team’s development and the success of WEX! I had such a great week with you all and I look forward to seeing your final plans. As promised, here is the email capturing your next steps in completing the program. The 2020 Strategic Plan Template is attached. I also attached the PowerPoint version for those managers who would like to present this to your teams at the sales meeting in 2020. 
+
+
+
+I will go ahead and schedule a reminder on your calendars for the dates below. As we discussed during training, blocking time on your calendar will allow you to focus and complete your plan.
+ 
+
+PHASE 3: Follow -Through
+
+ 
+A. Follow-Through Project:
+
+ ·         Email David Stearns and Kathryn Connolly first draft plan by November 1, 2019 for feedback.
+
+ ·         Submit Final 8-Step Plan to Direct Manager, David Stearns and Kathryn Connolly by December 1, 2019.
+
+ ·         Review your plan (1x1) with manager by December 6, 2019.
+
+ 
+
+I hope you all enjoy rest and relaxation this weekend. Please don’t hesitate to call me with questions.
+
+ 
+
+Thank you
+
+Kathryn</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Reminder for Account Assets - Cards Received</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CorporatePay Cards Received Reminder</name>
+    <style>none</style>
+    <subject>9 Days Cards not received</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

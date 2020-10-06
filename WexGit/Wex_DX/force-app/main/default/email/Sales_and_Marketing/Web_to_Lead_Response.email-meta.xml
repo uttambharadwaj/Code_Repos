@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Auto-responds to prospect after completion of the online form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Web-to-Lead Response</name>
+    <style>freeForm</style>
+    <subject>Thank You For Contacting WEX Fleet One</subject>
+    <textOnly>Dear {!Lead.FirstName},
+
+Thank you for your interest in the Fleet One® fuel card program.  Fleet One can make your job easier, save you money and protect your bottom line with reduced fraud.
+
+I will personally follow-up with you regarding the specific benefits of Fleet One’s fuel card program and how they relate to your business.        
+
+For your convenience, I am including links to our program’s features and benefits.  Feel free to review the online information about Fleet One.  I will be happy to answer any questions and to further explain the benefits of our programs.   
+
+Over the road programs:
+10¢ Rebate Promotion: http://www.fleetone.com/rebate
+Over The Road Services: http://www.fleetone.com/OTR/OTR-FleetApplication: http://www.fleetone.com/Apply-Now
+FAQs:  http://www.fleetone.com/Contact-Us/FAQ   
+
+Local programs:
+10¢ Rebate Promotion: http://www.fleetone.com/save
+Local Services:  http://www.fleetone.com/Local/
+Local-Fleet Application:  http://fleetone.com/Apply-Now
+FAQs:  http://fleetone.com/Contact-Us/FAQ 
+
+Sincerely,  
+
+{!Lead.OwnerFullName}
+{!Lead.OwnerTitle}
+{!Lead.OwnerPhone}{!Lead.OwnerEmail}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

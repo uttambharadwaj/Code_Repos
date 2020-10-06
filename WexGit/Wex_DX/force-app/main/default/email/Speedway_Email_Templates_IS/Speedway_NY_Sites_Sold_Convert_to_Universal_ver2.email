@@ -1,0 +1,39 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style="">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">Greetings from the&nbsp;<span style="background-color: white;">Speedway Business Fleet Card Program</span>!</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" style=""><font face="arial"><span style="font-size: 12pt;">We want to let you know that the Speedway station at </span></font>2811 US Highway 11 in Whitney Point<font face="arial"><span style="font-size: 12pt;">&nbsp;where your drivers have been fueling is changing hands, and as a result that location will no longer be able to accept the Speedway Business Fleet Card after January 29, 2019.</span></font></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" style=""><font face="arial"><span style="font-size: 12pt;">The good news is that there is another Speedway location less than a mile away at&nbsp;</span></font>2972 NY Route 11<font face="arial"><span style="font-size: 12pt;">&nbsp;</span></font><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">where you and your drivers can continue to fuel and </span><font face="arial"><span style="font-size: 12pt;">enjoy&nbsp;</span></font><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">all the benefits of the Speedway Business Fleet Card</span></font><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">If you have any questions about this change, please contact me directly at the number below.</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><span style="font-family: Arial, sans-serif; font-size: 12pt;">Thank you for choosing the&nbsp;</span><span style="font-family: Arial, sans-serif; font-size: 12pt; background-color: white;">Speedway Business Fleet Card Program</span><span style="font-family: Arial, sans-serif; font-size: 12pt;">.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif"><i>Sincerely,&nbsp;<br>
+</i><i><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+{!User.Email}<o:p></o:p></i></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is
+prohibited. If you have received this message in error, please notify sender
+immediately by telephone or reply by e-mail and delete the entire message and
+any attachments."</span></i><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></font></p>
+
+<i style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="line-height: 115%; color: gray;"><font face="Arial, sans-serif" style="" size="1">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</font></span></i><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Times New Roman">
+
+</font></p>]]></td>
+</tr>
+</table>

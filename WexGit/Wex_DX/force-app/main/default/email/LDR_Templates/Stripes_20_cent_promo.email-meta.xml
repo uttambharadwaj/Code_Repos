@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Stripes_Application.docx</attachedDocuments>
+    <available>true</available>
+    <description>20-cent promo for Stripes -- cold to close only</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Stripes_eLetterhead</letterhead>
+    <name>Stripes 20 cent promo</name>
+    <style>freeForm</style>
+    <subject>Stripes Fuel Card Program</subject>
+    <textOnly>Now is the best time to apply for the Stripes Fuel Card Program! Receive 20¢ off per gallon for 60 days.
+
+Dear {!Contact.FirstName},
+
+Whether your business is large or small, take charge of your fueling expenses with the Stripes Fuel Card Program. For a limited time only, Stripes is offering 20¢ off EVERY gallon purchased at Stripes with the Stripes commercial fuel card!
+
+The Stripes fuel card is the perfect way to simplify your vehicle fueling and eliminate hours of paperwork.
+
+-  Rebate of 20¢ on every gallon for the first 60 days*
+
+- Card acceptance and monthly fuel rebates at every Stripes store; acceptance nationwide with our Universal card
+
+- Pre-set card controls to help prevent fraud and unwanted spending
+
+- Online and mobile account management to alleviate hours of receipt collection, sorting and reimbursing drivers
+
+You can reach me at {!User.Phone} or via email at {!User.Email}.
+
+Don’t wait any longer to start saving 20¢ per gallon on fuel.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+*For new accounts only, subject to credit approval. The 60-day promotional rebate applies to all fuel purchased at Stripes® Stores regardless of fuel brand. Promotional period begins the date your account is opened. Fuel savings will appear as an account credit on your monthly billing statement. When the promotional period ends, standard monthly program rebates will apply. Rebates are subject to change at any time without prior notice.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

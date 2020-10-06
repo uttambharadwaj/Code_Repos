@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Intro Email - PFS</name>
+    <style>freeForm</style>
+    <subject>Intro Email - {!Claim__c.Account_Name__c}</subject>
+    <textOnly>{!Claim__c.Name}
+
+Hello,
+
+Thank you for your correspondence concerning disputed transactions on the fleet account ending {!Claim__c.Program_Account_Masked__c}, card ending {!Claim__c.Abbreviated_Card__c}. We received your documentation and have begun our investigation.
+
+If you have not already done so, we suggest that a police report be filed and the stations involved be contacted immediately to obtain possible video surveillance evidence as most stations keep surveillance tape for only a short period of time.
+
+If you currently do not have authorization controls assigned to your cards, we strongly encourage you to do so via your online account.  If you need assistance with adding these controls, please contact Customer Service. In addition to the transactions currently being disputed, we also suggest that you review your account activity online. The online account can be accessed through the web address located on the back of your billing statement and Customer Service is available for online assistance with this process.
+
+Please also understand that the company is obligated to keep the account current per the terms and conditions of the Agreement.  Any credit due will be granted at the resolution of the claim.
+
+While in most instances it may take significantly less time, please allow us up to 90 days to resolve your claim.  We will contact you if additional information is required.  If you have further questions regarding the claim, please feel free to call (888) 691-0361 and we will be happy to speak with you.
+
+Fleet Fraud Services
+
+
+Toll Free: 888-691-0361
+
+Fax: 207-791-1655</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

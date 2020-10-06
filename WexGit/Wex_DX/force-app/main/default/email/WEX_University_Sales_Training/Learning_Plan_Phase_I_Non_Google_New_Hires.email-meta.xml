@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send from Training Event to all/any new hires that do NOT have gmail</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Learning Plan Phase I: Non-Google New Hires</name>
+    <style>freeForm</style>
+    <subject>Start Your WEX Learning Plan</subject>
+    <textOnly>Get a head start on your Learning Journey!
+
+As you embark on your new journey with WEX, we challenge you to take advantage of all the learning resources provided, including this Learning Plan. 
+
+
+The Global Training Team has developed self-directed and self-paced Learning Plans to jump start your success in your new role. 
+
+Your Phase I Learning Plan can be found here:
+https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/0g0000005hDB/aLRAlW3gEjgtR7E0L3L5LuDxVAZjjwURRy8k.Tojbxk
+
+Within the next two weeks, complete the Learning Plan Knowledge Check (https://wex.qualtrics.com/jfe/form/SV_3EO1QBPhVZm5Gjr) to ensure your comprehension of the content. 
+
+Thank You,
+{!User.Name}
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

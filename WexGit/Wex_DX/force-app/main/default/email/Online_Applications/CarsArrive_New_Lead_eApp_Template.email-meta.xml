@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Marketing/CarsArrive_Over_the_Road_Fuel_Card.pdf</attachedDocuments>
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CarsArrive</letterhead>
+    <name>CarsArrive New Lead eApp Template</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest, {!OnlineApplication__c.Application_Title__c} Instructions</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in the CarsArrive OTR fleet card. Attached with this email is a document detailing the features and benefits of our program.  If you would like to speak with a representative about how a CarsArrive OTR fleet card can benefit you, please dial 866.457.2277.
+
+For your convenience, I&apos;ve also attached a link to our online application which you may complete when the time best fits your schedule. Please click on this link and follow the instructions to complete your application process.
+
+We look forward to a long relationship with {!OnlineApplication__c.Legal_Business_Name__c}. And again, thank you for your interest in CarsArrive. If you have any questions about the application or your new fuel card program, please call 866.457.2277.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

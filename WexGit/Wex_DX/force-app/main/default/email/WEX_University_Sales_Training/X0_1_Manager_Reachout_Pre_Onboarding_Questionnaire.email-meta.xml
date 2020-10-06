@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send from the Training Event to Managers ONLY if you couldn&apos;t contact for the Pre-Onboarding Reachout.  There is OPT OUT instructions included.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>0.1 Manager Reachout Pre-Onboarding Questionnaire</name>
+    <style>freeForm</style>
+    <subject>Sales Onboarding Manager Questionnaire</subject>
+    <textOnly>Congratulations on your new hire!
+
+
+Please follow this link to complete Sales Onboarding Manager Questionnaire and return to me as soon as possible: https://docs.google.com/forms/d/e/1FAIpQLScW_BPEQkAddvQkKsAr8YV5ccdTKXVVDpG39jb5VSloHljC4Q/viewform?authuser=0
+
+If your new hire will not be attending Sales Onboarding, please respond &quot;OPT OUT&quot; to this email.
+
+Contact me with any questions.
+
+{!User.Name}
+
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

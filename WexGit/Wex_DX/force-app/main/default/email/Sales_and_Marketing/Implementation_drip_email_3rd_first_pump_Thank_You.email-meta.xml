@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Implementation drip email 3rd – first pump Thank You (html)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Implementation drip email 3rd – first pump Thank You</name>
+    <style>freeForm</style>
+    <subject>Valued WEX Fleet One Customer</subject>
+    <textOnly>Congratulations on making your inaugural purchase with your new Fleet One {!Account.Card_Product_del__c} fuel card. Our goal is to make EVERY Fleet One card swipe another reason for you to value our company even more. &lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+REMINDER: Our Customer Care department is always open and here for you at 800.359.7587, if you have any questions or if you need a little help along your route. Agents can also help you set up your Online Account Management, so you can make changes to your cards, view transactions in real-time and more.
+
+Thank you for choosing Fleet One for your fleet management solutions!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

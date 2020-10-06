@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Marathon_Collatorals.pdf</attachedDocuments>
+    <available>true</available>
+    <description>includes promo offer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Marathon Voicemail attempt #1- PROMO OFFER</name>
+    <style>freeForm</style>
+    <subject>per my voicemail- Marathon Fleet Program</subject>
+    <textOnly>{!Contact.FirstName},
+
+Per my voicemail, I&apos;m following up to see how {!Opportunity.Account} is currently managing their vehicle fleet operations. I&apos;d like to talk to you to see if the Marathon Fleet Program may be a good fit. Below is more information on our savings and features:
+
+
+REAL SAVINGS
+
+Apply by September 30, 2019 and save 10¢ per gallon* for 6 months
+Also, save up to 15% off your overall fuel management costs with purchase control features and added efficiencies.*
+
+
+
+EASE OF USE and ACCEPTANCE
+
+Enjoy easy online controls so you can set spending limits and monitor driver behavior.
+Enjoy convenient access to over 5,400 locations in 19 states. Ask for our Universal Card, and you’ll have acceptance at over 90% of all U.S. fueling sites.
+Best-in-class customer service available 24 hours a day, 7 days a week.
+
+I will be following up with you next week. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to meeting with you about the needs of your business.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+*Subject to credit approval, new accounts only. Must apply by March 31, 2019. The 6-month promotional period begins on the date your account is opened and expires 6 months from that date. After 6 months, standard rebates up to 7-cents with apply. See www.marathonfleetcard.com or ask your sales representative for details. All rebates earned will be credited to your account(s). This offer is subject to change without prior notice to you. Rebates are not applied at time of purchase – they will appear as an account credit on the same billing statement with your monthly purchases. Rebates issued if payment is made in accordance with the terms of the Marathon Fleet or Universal Charge Account Agreement. Rebates may not be allowed where prohibited by law and apply only to fuel purchases made with the Marathon Fleet or Universal Card at participating Marathon locations in the U.S.
+
+
+
+**Actual savings may vary.
+
+
+©2019 Marathon Petroleum Corporation</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Paiement Confirmé</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Paiement Confirmé</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Merci de nous avoir contacté pour confirmer votre paiement. Nous recommandons environ 10 jours ouvrables pour l’acheminement de votre chèque, ou un seul jours ouvrable  si vous effectuez votre paiement directement sur notre site gratuit.
+
+Cordialement,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

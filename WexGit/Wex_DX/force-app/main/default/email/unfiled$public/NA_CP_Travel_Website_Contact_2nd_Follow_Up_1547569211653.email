@@ -1,0 +1,17 @@
+Dear {{{Recipient.FirstName}}},<br />
+<br />
+Just following up again on your interest in WEX and streamlining travel payments. Thank you for exploring our website and reaching out for more information. In case you missed it, here is a <a href="https://www.youtube.com/watch?v=ntxwtKzWcWE&list=PL179qYIjfZpCnRVrkxGnBam9GCmEcOd05&index=7">one minute testimonial</a>&nbsp;from Travelliance about how WEX &nbsp;has helped them maximize efficiency and cash flow.&nbsp;<br />
+<br />
+I&rsquo;d love to have a 15 minute chat with you to see if there are strategic opportunities for {{{Opportunity.Account_Name__c}}} to benefit from WEX payment solutions. Please let me know what times you are available over the next week or two, or if there is someone else within your organization I should talk to. I look forward to hearing from you.<br />
+<br />
+<br />
+Sincerely,<br />
+<br />
+{{{Sender.Name}}}<br />
+{{{Sender.Title}}}<br />
+{{{Sender.Email}}}<br />
+{{{Sender.Phone}}}<br />
+www.wexinc.com<br />
+<br />
+<br />
+<span style="font-size:10px;"><i>This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</i></span>

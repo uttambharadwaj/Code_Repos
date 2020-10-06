@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to Orientation Participants before day 2</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Customer_Service_Banner_Letterhead</letterhead>
+    <name>CS Orientation Desk Time Activities</name>
+    <style>freeForm</style>
+    <subject>Customer Service Orientation Desk Time Activities</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

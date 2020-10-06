@@ -1,0 +1,15 @@
+Hello {!Credit_Line_Adjustment__c.Change_User__c},
+
+Your user was identified making an unauthorized change to a Credit Limit on account {!Credit_Line_Adjustment__c.Customer_ID__c} in the {!Credit_Line_Adjustment__c.Platform__c} system on {!Credit_Line_Adjustment__c.CL_Change_Date__c}.
+
+Upon further review, the credit limit change has been rejected with the following comments: 
+
+{!Credit_Line_Adjustment__c.Rejection_Comments__c}
+
+Please return to the AR system and restore the credit limit to the original amount of {!Credit_Line_Adjustment__c.Previous_CL__c}.
+
+For reference your change record can be found here:
+
+{!Credit_Line_Adjustment__c.Link}
+
+Please contact WEX Bank if you have any questions.

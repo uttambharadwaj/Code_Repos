@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Auto email sent after the 1st voicemail is left for a prospect record. Stale.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Voicemail Follow Up Auto Email #1</name>
+    <style>none</style>
+    <subject>WEX Fleet One Fuel Card and 10¢ Off Per Gallon*</subject>
+    <textOnly>Dear {!Lead.FirstName},
+
+My name is {!Lead.OwnerFullName}, an Account Executive with Fleet One®.  I attempted to contact you to discuss how Fleet One’s fuel card program can save you time, money and provide you the account security you need.
+ 
+Fleet One saves you time, money and fleet-related headaches with:
+• Online Services - You can make changes to your account anywhere you have an internet connection.
+• Control - You decide who uses your fuel card, where they may use it and for what products/services.
+• Security - Drivers must enter a 4-digit driver ID for authorization for purchases. 
+• Reports -  We provide line-item transaction detail on all purchases, available in real-time.
+• 10¢  Per Gallon Savings* - We&apos;re offering, for a limited time, 10¢ per gallon rebates for new customers that sign up by December 31st, 2011.
+
+As I mentioned in my message, I look forward to speaking with you personally regarding the specific benefits of Fleet One’s fuel card program and how they relate to your business. 
+ 
+Sincerely,
+  
+{!User.Name}
+{!User.Title}
+{!User.Phone}   
+ 
+*Inquire for details. Restrictions and limitations may apply.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

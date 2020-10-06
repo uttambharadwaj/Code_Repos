@@ -1,0 +1,22 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0);"><font size="2" face="Verdana, Helvetica, sans-serif">Dear {!OnlineApplication__c.Contact_Name__c},</font></div>
+<div style="color: rgb(0, 0, 0);"><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></div><font size="2"><font face="Verdana, Helvetica, sans-serif">Thank you for your interest in the WEX Fleet One fuel card.&nbsp;It appears you&nbsp;began&nbsp;the application process, but have not&nbsp;completed it.&nbsp;For your convenience,&nbsp;I've&nbsp;included a link to our online application so that you may&nbsp;complete the process at your convenience. Please note that the name listed on the Business Service Agreement (BSA) must be&nbsp;<u style="COLOR: rgb(0,0,0)">exactly</u><span style="COLOR: rgb(0,0,0)">&nbsp;</span><span style="COLOR: rgb(0,0,0)">the same as the individual whose electronic signature is on the EchoSign.</span></font>
+</font><div style="color: rgb(0, 0, 0);"><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></div>
+<div style="color: rgb(0, 0, 0);"><font size="2"><font face="Verdana, Helvetica, sans-serif">Please <a href="{!OnlineApplication__c.External_Application_URL__c}">click here</a>&nbsp;and follow the instructions to complete your application process.&nbsp;</font>
+</font><div><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></div>
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><span style="BACKGROUND-COLOR: rgb(255,255,255)"><font size="2" face="Verdana, Helvetica, sans-serif">We look forward to a long relationship with {!OnlineApplication__c.Legal_Business_Name__c}.&nbsp; <span style="font-family: Verdana, sans-serif; color: black; background: white;">And again, thank you for your interest in WEX Fleet One.<span style="mso-spacerun: yes">&nbsp; </span>If you have any questions about the application or your new fuel card program, please don’t hesitate to call or email me.<span style="mso-spacerun: yes">&nbsp; </span></span><span style="font-family: 'Times New Roman', serif; color: black;"><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></span></font></span></p><span style="BACKGROUND-COLOR: rgb(255,255,255)"><font size="2" face="Verdana"></font></span></div>
+<div style="color: rgb(0, 0, 0);"><font size="2"><span style="background-color: rgb(255, 255, 255);"></span><font face="Verdana, Helvetica, sans-serif">
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal">&nbsp;</p>
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><br>&nbsp;</p></font>
+</font><div><font size="2" face="Verdana, Helvetica, sans-serif">Sincerely,&nbsp;</font></div>
+<div><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></div>
+<div><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></div>
+<div><font size="2" face="Verdana, Helvetica, sans-serif">{!User.Name}</font></div>
+<div><font size="2" face="Verdana, Helvetica, sans-serif">{!User.Title}</font></div>
+<div><font size="2" face="Verdana, Helvetica, sans-serif">WEX Fleet One</font></div>
+<div><font size="2" face="Verdana, Helvetica, sans-serif">Phone: &nbsp;{!User.Phone} |&nbsp;Fax: &nbsp;{User.Fax}</font></div>
+<div><font size="2"><font face="Verdana, Helvetica, sans-serif">{!User.Email} |</font><font face="Verdana, Helvetica, sans-serif">&nbsp;www.FleetOne.com &nbsp;<font style="FONT-FAMILY: arial">&nbsp;</font></font><br></font><br><br></div></div>]]></td>
+</tr>
+</table>

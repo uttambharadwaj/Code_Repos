@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>New format as requested</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CarsArrive</letterhead>
+    <name>CarsArrive Incomplete eApp Email</name>
+    <style>freeForm</style>
+    <subject>Incomplete Fuel Card Application – ACTION Needed</subject>
+    <textOnly>Welcome {!OnlineApplication__c.Contact_Name__c}-{!OnlineApplication__c.Account__c}
+Thanks for your interest in the CarsArrive Fuel Card!
+
+Your Application Status ({!OnlineApplication__c.CreatedDate}): INCOMPLETE/SAVED
+
+*Your application has been saved for your convenience! Click on the link below to complete the application process, and start saving $.10-$.92 per gallon on diesel
+
+click here
+
+
+For questions about your application, please call 866.457.2277.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

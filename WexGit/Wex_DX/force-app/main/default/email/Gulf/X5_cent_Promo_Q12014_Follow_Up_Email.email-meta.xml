@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Use when following up on back-pocket offer to Commercial/Univ. prospects. INCLUDE APPLICATION.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>5-cent Promo - Q12014 - Follow-Up Email</name>
+    <style>freeForm</style>
+    <subject>GET STARTED: Fleets Save 5-cents Per Gallon at Gulf!</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Thank you for talking with me about the Gulf Fleet Fueling Program and our introductory offer of 5 cents off of every Gulf gallon*. This savings begins with gallon one – and applies to new Gulf Commercial Fleet Card and Gulf Universal Fleet Card customers. Our traditional rebate tiers apply thereafter to bring your business long-term savings.
+
+As I mentioned, the Gulf Fleet Fueling Program helps businesses like yours save upwards of 15%** on overall vehicle management costs. The Program not only includes competitive commercial fuel rebates at Gulf, but also:
+
+Powerful Fleet Reporting – Know who bought what, when, where and for how much. Track vehicle performance at-a-glance.
+Broad Acceptance – At over 2,500 convenient Gulf locations, or more than 90% of all fueling locations nationwide with our Universal Fleet Card.
+Purchase Controls – Help eliminate misuse of company vehicles by setting purchase limits for individual drivers. Set Purchase Alerts to stay informed.
+U.S.-based Customer Service – 24/7 assistance for you and your drivers whenever you need it.
+
+So whether you’re looking for a fleet card program with robust rebates, nationwide card acceptance, or tools to give you tighter control over your company vehicles, Gulf has the ideal solution for you.
+
+Please contact me if I can answer any additional questions for you. In the meantime, I&apos;ve attached a Program application for you in the event you&apos;d like to move forward. If your application is approved by month-end, we can get you started with our introductory offer for your first 60 days.
+
+Bob Everts
+Regional Fleet Manager
+Gulf Oil Fleet Services
+Cell 781-467-9492 Fax 207-874-1576
+robert.everts@wexinc.com
+www.gulffleetcard.com/bob
+
+
+
+
+*Ask Regional Fleet Manager for introductory offer and Gulf Fleet Fueling Program details.
+**Savings may vary by customer.
+
+
+Code: ZGU
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Gulf Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

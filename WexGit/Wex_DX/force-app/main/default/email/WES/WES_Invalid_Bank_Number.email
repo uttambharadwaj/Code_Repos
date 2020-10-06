@@ -1,0 +1,6 @@
+<p>The Application for {!WES_Application_Request__c.Company_Name__c} has a bank Account that failed the MOD 10 check.</p>
+
+<p>Please review Approve or Reject this <a href="{!ApprovalRequest.Internal_URL}">Approval Request</a> for this <a href="{!WES_Application_Request__c.Link}">Application</a>.</p>
+
+<p><b>Approval Comments</b></p>
+{!ApprovalRequest.Comments}

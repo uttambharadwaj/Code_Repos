@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>When leaving a vm</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>DAT- Had to leave vm</name>
+    <style>formalLetter</style>
+    <subject>DAT FTS Fuel Card</subject>
+    <textOnly>Hi {!Contact.FirstName}, 
+
+I tried calling earlier, but I was unable to get in contact with you. Below you will find some information on the DAT fuel card. If you have any additional questions, please do not hesitate to reach out to me.
+
+The DAT Fuel Card is a private label fuel card powered by EFS with discounts managed by FTS.
+
+The DAT Fuel Card is accepted at over 6000 locations across the US and Canada.
+
+You will receive CASH PRICE at all accepted locations and get additional discounts at the locations mentioned below.
+
+The DAT Fuel Card offers aggressive discounts, averaging 20 Cents per gallon, within the FTS Cost Plus Network, which provides Cost Plus Pricing at various chains through out the Country. That network includes; AmBest, Speedway, Kangaroo, Kwik Trip, Sapp Brothers, Quick Fuel, and Petroleum Wholesale.
+
+In addition to the cost plus discounts, the card also offers discounts at Pilot and Flying J ($.10/gallon), TA and Petro ($0.055/gallon), and Loves ($0.055/gallon).
+
+Instructions for Paperwork
+
+Please have the Owner, President, VP or CEO sign pages 1,5,7. (must be listed on page 5)
+Fill in Tax ID, DOT, MC#, and Date of Birth.
+Please include a copy of the owner’s Driver’s License and The Articles of Incorporation (if possible).
+
+NO Monthly Fees with the DAT Fuel Card.
+
+There is a one time $50.00 set up fee.  For expedited service you can request overnight delivery for $12.95. These fees will be added to your card balance once the card is activated.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+P: {!User.Phone}
+E: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>NP Change DID</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - NP Change Driver ID</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. You can create a new driver ID number with the same driver name under Fleet Manager &gt; View Drivers. Click Clone in the Actions column for that driver, and then you will be prompted to add a new driver, but with the name already filled in. Designate a new driver ID number and then submit the record. Then go back to Fleet Manager &gt; View Drivers and click Terminate next to the old number to ensure it cannot be used again. Please let me know if you have any questions. 
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

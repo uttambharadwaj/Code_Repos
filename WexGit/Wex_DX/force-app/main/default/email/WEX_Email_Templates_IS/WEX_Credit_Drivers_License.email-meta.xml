@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Needing to verify the PG signer&apos;s DOB via gaining copy of driver&apos;s license</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX Credit PG DOB Verification</name>
+    <style>freeForm</style>
+    <subject>WEX - Additional Information Requested</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Credit is requesting verification of the Personal Guaranty signer’s date of birth.
+ 
+Please email or fax a copy of a third party document such as a driver’s license that contains both the name of the person who signed the Person Guaranty and their date of birth. 
+ 
+As soon as I receive it, I will forward it to credit so they can finalize the review of your application so we can get your new cards ordered.
+ 
+Again, thank you for choosing WEX! 
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

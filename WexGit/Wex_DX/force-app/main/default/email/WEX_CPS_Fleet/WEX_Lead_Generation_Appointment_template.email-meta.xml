@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Acquirent use only- for confirming an appointment for WEX Large Fleet Lead Gen program</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>WEX Lead Generation Appointment template</name>
+    <style>none</style>
+    <subject>appointment confirmation- WEX Fleet</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,31 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+What percentage of business is Truckload? {!Account.Truckload__c}
+What percentage of business is LTL? {!Account.LTL__c}
+What percentage of business is Brokerage? {!Account.00Ne0000001s1OQ}
+What percentage of business is in Other categories? {!Account.Other__c}
+Territory Covered? {!Account.Service_Coverage__c}
+Are your rates customer specific? {!Opportunity.00NU0000001P4he}
+Number of dispatchers? {!Opportunity.Dispatcher_Count__c}
+Number of PCs that need software access? {!Opportunity.PC_Count__c}
+What is your current accounting software? {!Opportunity.Current_Accounting_Software__c}
+What is your current dispatch software? {!Opportunity.Current_Dispatch_Software__c}
+What is your current mileage software? {!Opportunity.Current_Mileage_Software__c}
+Mobile Communications: {!Account.Mobile_Communication_Types__c}
+Mobile Communication Providers: {!Account.Mobile_Communications_Provider__c}
+Fuel Purchase System: {!Account.OTR_Purchase_System__c}
+Prophesy Software Interest: {!Opportunity.Prophesy_Software_Interest__c}
+Hot Lead: {! IF(Opportunity.Hot_Lead__c, "Yes", "No") }
+Comments: {!Opportunity.Vendor_Comments__c}

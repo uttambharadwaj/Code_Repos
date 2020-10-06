@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Non-contact asking to unlock</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Wrong Username</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. The username you provided is assigned to someone else. If you would like your own username, you can request one by clicking “Enroll as a new user” on the login page. If you need further assistance, please fill out the attached form, have it signed by an existing contact or company officer, and then fax or email it back to us. 
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

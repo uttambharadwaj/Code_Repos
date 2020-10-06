@@ -1,0 +1,52 @@
+<messaging:emailTemplate subject="New Account Information {!relatedTo.Account__r.Name}" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+
+<br></br><br></br>
+
+{!relatedTo.Contact_Name__c},
+<br></br><br></br>
+
+Congratulations! Your account for the {!relatedTo.Offer__r.Application_Title__c} has been created and your new account number is {!relatedTo.F1_Account_Number__c}.
+<br></br><br></br>
+
+Please keep the following information accessible at all times as it will not be mailed to you – 
+<br></br><br></br>
+
+<ul>
+  <li><b> Online user info.</b>You will need this information to manage your account online.  </li>
+  <li><b> Supervisor/authorized contact security codes. </b> You will need these codes whenever you call in to our 24 hour customer care.  </li>
+</ul>
+<br></br><br></br>
+
+Thank you for your interest in {!relatedTo.Offer__r.Application_Title__c}. If you have any questions about the application, please don’t hesitate to call or email me.
+<br></br><br></br>
+
+{!relatedTo.Offer__r.Additional_Text__c}
+<br></br><br></br>
+
+Sincerely, 
+<br></br><br></br>
+
+<apex:outputPanel >
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), 'Fleet Fuel Card Sales Team' , If(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Contact_Name__c,relatedTo.Owner.FirstName+" "+relatedTo.Owner.LastName))}"/><br></br>
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Phone_Number__c,relatedTo.Owner.Phone))}"/><br></br>
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Email__c,relatedTo.Owner.Email))}"/><br></br>
+</apex:outputpanel>
+
+<br></br><br></br>
+
+Sent to:  {!relatedTo.Email__c}<br></br>
+Reference #: {!relatedTo.Name}<br></br>
+Terms and Conditions Version:  {!relatedTo.Terms_and_conditions_version__c}<br></br>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

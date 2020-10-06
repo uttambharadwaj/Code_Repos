@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send Agreement</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM Enrollment Agreement</name>
+    <style>freeForm</style>
+    <subject>rapid! PayCard Enrollment Agreement</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Please find attached for review and possible signature the rapid! PayCard enrollment agreement and fee schedule.
+
+When you’re ready, please sign the agreement and initial all pages of the fee schedule. Please then scan all pages, into a single document, and email back to me.
+
+As soon as I receive both the arrangement back, I will get you set up with one of our enrollment specialists who will guide you through training and implementation.
+
+Of course, I will always be a resource to you as well.  Please don’t hesitate to call on me with any questions.
+
+
+Best Regards,
+
+Matt Merriam
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: 470.545.3219 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt.merriam@wexinx.com
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

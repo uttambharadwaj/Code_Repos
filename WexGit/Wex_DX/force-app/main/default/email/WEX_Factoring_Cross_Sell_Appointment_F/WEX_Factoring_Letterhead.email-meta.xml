@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to use for follow-up after initial Factoring call</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Final_WEX_Factoring</letterhead>
+    <name>WEX Factoring (initial follow-up)</name>
+    <style>freeForm</style>
+    <subject>Thank you from WEX Factoring!</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you for your interest in WEX Fleet One Factoring!
+
+We are excited to share some unique benefits of factoring with us. Currently, WEX Fleet One Factoring is offering a brand new Factoring service. We have customized our accounts receivable financing program designed exclusively for you!
+
+Grow your business by:
+
+* Accelerating cash flow - turn your invoices into cash 24 hours after your loads are delivered.
+
+* Keeing your cash flow worry-free so you can
+focus on delivering more loads.
+
+* Reducing overhead and time consuming collections.
+
+We look forward to speaking with you more about how WEX Fleet One Factoring can keep your business running strong!
+
+{!Contact.OwnerFullName}
+
+
+
+
+
+
+What Our Customers Say!
+
+I&apos;ve been with two other factoring companies and there is no comparison in the quality of services or relationship.&quot; Ezell Scruggs VP of Operations S.E.S. Transportation</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

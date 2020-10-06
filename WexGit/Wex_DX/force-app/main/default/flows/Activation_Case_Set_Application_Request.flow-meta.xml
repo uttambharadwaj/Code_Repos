@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Set_Contact</name>
+        <label>Set Contact</label>
+        <locationX>982</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ContactId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Opportunity.Primary_Contact__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Opportunity_has_Campaign_Program</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Default_Contact</name>
+        <label>Default Contact</label>
+        <locationX>776</locationX>
+        <locationY>62</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>has_primary_contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Primary_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Contact</targetReference>
+            </connector>
+            <label>has primary contact</label>
+        </rules>
+        <rules>
+            <name>does_not_have_primary_contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Primary_Contact__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Opportunity_has_Campaign_Program</targetReference>
+            </connector>
+            <label>does not have primary contact</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Activation_Case_With_Opportunity</name>
+        <label>Is Activation Case With Opportunity</label>
+        <locationX>229</locationX>
+        <locationY>195</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Application_Request_Relationship</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>0120g0000009usPAAQ</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Opportunity__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Application_Request</targetReference>
+            </connector>
+            <label>Update Application Request Relationship</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Opportunity_has_Campaign_Program</name>
+        <label>Opportunity has Campaign Program</label>
+        <locationX>974</locationX>
+        <locationY>209</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>has_campaign_program</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity.Campaign_Program__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Campaign_Program</targetReference>
+            </connector>
+            <label>has campaign program</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Activation Case Set Application Request {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Activation Case Set Application Request</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Application_Request</name>
+        <label>Get Application Request</label>
+        <locationX>470</locationX>
+        <locationY>195</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Opportunity</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Get_Opportunity</targetReference>
+        </faultConnector>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <object>Application_Request__c</object>
+        <outputAssignments>
+            <assignToReference>$Record.ContactId</assignToReference>
+            <field>Billing_Contact__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>$Record.App_Request_This_Case__c</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>$Record.Account_Number__c</assignToReference>
+            <field>WEX_Account_Nbr__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Campaign_Program</name>
+        <label>Get Campaign Program</label>
+        <locationX>1152</locationX>
+        <locationY>193</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Opportunity.Campaign_Program__c</elementReference>
+            </value>
+        </filters>
+        <object>Campaign_Program__c</object>
+        <outputAssignments>
+            <assignToReference>$Record.Card_Program__c</assignToReference>
+            <field>Program__c</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Opportunity</name>
+        <label>Get Opportunity</label>
+        <locationX>669</locationX>
+        <locationY>199</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Default_Contact</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+    </recordLookups>
+    <startElementReference>Is_Activation_Case_With_Opportunity</startElementReference>
+    <status>Active</status>
+</Flow>

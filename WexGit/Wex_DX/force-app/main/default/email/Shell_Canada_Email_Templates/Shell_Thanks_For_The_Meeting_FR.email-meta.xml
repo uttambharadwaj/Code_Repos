@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Merci pour votre temps</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Thanks For The Meeting_FR</name>
+    <style>freeForm</style>
+    <subject>Merci pour votre temps</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Je voulais effectuer un suivi et vous remercier d’avoir répondu à mon appel au sujet des Shell Fleet Solutions. Ce fut intéressant d’en apprendre davantage sur votre entreprise, et j’ai la certitude que vous trouverez notre programme de carte novateur très avantageux.
+
+Pour résumer, voici les piliers du programme et toutes les façons dont il vous permettra de réduire vos coûts :
+
+
+Économies
+- Rabais sur chaque litre de carburant acheté à une station Shell
+- Milles de récompense AIR MILESmd*
+- Jusqu’à 32 %** de rabais sur les lavages d’auto aux stations Shell participantes
+- Rabais de 10 %*** sur les vidanges d’huile et d’autres produits et services chez Jiffy Lubemd
+
+
+Sécurité
+- Annulez immédiatement les cartes perdues ou volées.
+- Limitez les risques d’usage inapproprié ou frauduleux grâce aux mesures de contrôle des achats et aux identifiants de chauffeur.
+- Profitez d’une protection supplémentaire grâce à la carte à puce et à NIP.
+
+Commodité
+- Utilisez la carte aux quelque 1 350 stations Shell ou choisissez la carte Shell Fleet Navigatormd, acceptée partout où l’on accepte Mastercardmd.
+- Appelez en tout temps notre service à la clientèle ou communiquez avec un directeur de compte attentionné.
+- Accédez à votre compte en ligne partout et à toute heure.
+
+Contrôle
+- Fixez des limites et faites le suivi des dépenses (endroit, moment et montant).
+- Consultez les rapports détaillés de consommation en carburant intégrés ou créez des rapports personnalisés.
+- Faites activer, suspendre ou annuler des cartes grâce à notre programme de gestion de compte en ligne.
+
+Je communiquerai de nouveau avec vous la semaine prochaine afin de vous en dire plus sur ce que les Shell Fleet Solutions peuvent faire pour aider votre entreprise à économiser temps et argent. D’ici là, vous pouvez me joindre par téléphone au {!User.Phone} ou par courriel à {!User.Email}.
+
+
+Au plaisir de vous parler bientôt.
+
+
+Cordialement,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+* Toutes les récompenses offertes sont assujetties aux Conditions générales du Programme de récompense AIR MILES et peuvent être modifiées ou supprimées sans préavis. 1 Pour échanger des milles contre des récompenses liées aux voyages ou des articles divers, vous devez avoir accumulé suffisamment de milles de récompense AIR MILES dans votre solde Rêves. Certaines restrictions peuvent s’appliquer. Les quantités peuvent être limitées. Les adhérents doivent payer les taxes, les suppléments pour le carburant ainsi que les autres frais et droits imposés sur les récompenses liées aux voyages (billets d’avion, chambres d’hôtel et location de véhicules). L’octroi des récompenses liées aux voyages pourrait dépendre de leur disponibilité chez les fournisseurs participants, et un délai minimal pourrait devoir être respecté pour les réservations de voyage. Il n’est pas possible d’annuler, d’échanger ou de se faire rembourser un billet, un certificat ou un article une fois qu’une réservation a été effectuée ou qu’une commande a été passée. Pour plus de renseignements, consultez les Conditions générales actuelles du Programme à airmiles.ca ou appelez le Centre de service à la clientèle d’AIR MILES au 1-888-AIR MILES (ou au 416-226-5171 si vous êtes à Toronto). 2 Vous pourrez échanger les milles de récompense du solde Argent AIR MILES de votre compte d’adhérent en magasin. Vous obtiendrez une réduction de 10 $ par tranche de 95 milles de récompense sur vos achats chez les commanditaires AIR MILES participants, jusqu’à concurrence de 750 $ par jour. Visitez airmiles.ca/argent pour en savoir plus. Vous devez avoir accumulé suffisamment de milles de récompense dans le solde Argent de votre compte d’adhérent pour pouvoir les échanger au moment d’effectuer vos achats chez les commanditaires participants. Toutes les récompenses offertes sont assujetties aux Conditions générales du Programme de récompense AIR MILES et peuvent être modifiées ou supprimées sans préavis. Pour obtenir plus de renseignements, visitez airmiles.ca. md/mc Marque déposée/ de commerce d’AM Royalties Limited Partnership, utilisée en vertu d’une licence par LoyaltyOne, Co. et par Produits Shell Canada.
+
+** Dans les établissements participants. Certaines restrictions s’appliquent.
+
+*** Certaines restrictions s’appliquent. Présentez votre carte Shell Fleet Plus dans les établissements Jiffy Lube pour obtenir un rabais, et fournissez un mode de paiement autre. Valide pour les vidanges d’huile Jiffy Lube Signature Servicemd et pour d’autres services d’entretien préventif, qui peuvent varier selon l’établissement. Visitez www.jiffylube.ca pour trouver un centre de service Jiffy Lube près de chez vous et connaître les services offerts. Jiffy Lubemd et Jiffy Lube Signature Servicemd sont des marques déposées de Jiffy Lubemd International, Inc. Les centres de service Jiffy Lube appartiennent à des franchisés indépendants, qui en assurent l’exploitation.
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité  pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

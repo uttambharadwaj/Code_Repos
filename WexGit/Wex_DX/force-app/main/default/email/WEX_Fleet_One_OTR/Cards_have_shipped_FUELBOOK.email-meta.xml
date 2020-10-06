@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Cards have shipped - FUELBOOK</name>
+    <style>freeForm</style>
+    <subject>Your FUELBOOK FUEL CARDS have shipped!!</subject>
+    <textOnly>Hello 
+
+Thank you for choosing our FUELBOOK CARD PROGRAM and WEX Fleet One to service your fuel card needs. For your convenience, your new cards will be mailed active and they will be ready for immediate use.
+
+
+As a valued customer, we want to make it easy for you to maintain your account.  Please visit www.FleetOne.com/welcome for full program details and a list of valuable resources. You may also visit www.FeetOne.com and click on the customer self-service link to find the most up-to-date forms and information about your fuel card program, including online account management tutorials http://www.fleetone.com/OTRtutorials.
+
+
+Please keep the following information accessible at all times as it will not be mailed to you –
+
+
+Online user info. You will need this information to manage your account online.
+Supervisor/authorized contact security codes. You will need these codes whenever you call in to our 24 hour customer care.
+
+Important information about your account -
+
+
+UPS Tracking #:
+
+
+Fleet One acct#:
+Security Code:  Created at the time of application (I cannot see on my end)
+Online password:  Create at the time of application (I cannot see on my end)
+Driver ID#s:
+Unit #:
+
+I thank you for allowing us to provide this important service for you and your company, and it is with great enthusiasm that I welcome you to the WEX Fleet One family.  Please feel free to contact me if I can help you in any way.
+
+
+Thank you &amp; best regards,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

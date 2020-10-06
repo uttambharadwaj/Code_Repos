@@ -1,0 +1,11 @@
+Congratulations on using The Gold Program—the premier tire buying program that provides you with national account pricing for both your local stock purchases and over-the-road emergency tire needs.
+ 
+We welcome your feedback regarding your first purchase so we can continue to improve the program or share your testimonial with other trucking companies.   Also, if you have not already registered for our Gold Customer Portal, please register by visiting goldprogramonline.com.  The portal provides you with access to your invoices.  You will need to enter your Gold ID which is {!Account.Gold_ID__c}.
+
+We appreciate your business and also appreciate your referrals. 
+
+Thank you,
+{!Opportunity.OwnerFullName} 
+{!Opportunity.OwnerTitle}
+{!Opportunity.OwnerPhone}
+Gold Line: 866-354-7322

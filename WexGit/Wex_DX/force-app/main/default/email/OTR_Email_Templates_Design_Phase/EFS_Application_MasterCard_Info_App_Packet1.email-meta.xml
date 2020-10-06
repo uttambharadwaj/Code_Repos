@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS Application - MasterCard Info &amp; App Packet</name>
+    <style>freeForm</style>
+    <subject>EFS MasterCard Account Information and Application</subject>
+    <textOnly>Greetings {!Contact.FirstName},
+
+
+
+Thank you for taking the time to talk with me today about opening an EFS account for {!Account.Name}.
+
+
+
+I hope the information I have provided below is useful in making your decision. (Please note there is an attachment that is just informational in nature.)
+
+
+
+Please let me know if you have any questions.
+
+
+
+
+
+The EFS Fleet MasterCard advantage:
+
+§ Best-in-class purchase and financial controls
+
+§ Consolidated transactions on a single card
+
+§ Better authorization controls
+
+§ Card-level programming
+
+§ Superior fraud prevention tools
+
+§ Real-time online account reconciliation
+
+§ 24/7 online and mobile access
+
+
+
+
+Standard Fees:
+
+§ $0.00 – No Standard Fees
+
+§ *Late Fees and failed payment fees (NSF) are in the new account agreement
+
+
+Application Instructions, by attachment:
+
+Ø EFS WEX Payables Account Application
+
+This is the APPLICATION for the new account, and the most important document. We only need you to complete pages 1-3.
+
+
+Ø Data Sheet
+
+Please make sure to sign this form.
+When in doubt, write &quot;default.&quot;
+
+Ø Direct Debit Form
+
+Form Required to verify banking information.
+
+Ø Personal Guaranty (only for Credit Line accounts)
+
+
+Form used if you would like to apply for a credit line using a personal guaranty
+This form is optional
+Although not required, a personal guaranty often helps your chances of credit approval, especially if your business is less than 2 years old and your company does not have financial statements (income statement and balance sheet) readily available
+
+
+If you have any questions about the application or your new MasterCard program, please don’t hesitate to call or email me. We look forward to a long relationship with {!Account.Name}.
+
+
+Kind Regards,
+
+
+{!User.Name}
+{!User.Title}
+EFS LLC &amp; WEX Fleet One
+
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+{!User.Email} | www.efsllc.com | www.fleetone.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

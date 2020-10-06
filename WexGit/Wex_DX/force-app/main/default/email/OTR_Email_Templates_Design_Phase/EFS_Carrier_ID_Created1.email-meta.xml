@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS - Carrier ID# Created!</name>
+    <style>freeForm</style>
+    <subject>EFS Application Status - New Account Created!</subject>
+    <textOnly>Greetings {!Contact.FirstName},
+
+
+
+Great news!!
+
+
+Y’all have made it through the EFS application process. Your new Carrier ID# {!Account.Carrier_ID__c}. This is your account number in other terms.
+
+
+A member of our Implementation Team will be reaching out to you to teach you to go over your card order and teach you on how to use your new EFS online account. This Implementation Representative should be able to provide you information on when the cards will be arriving. Once they get your cards in your hands and train you on your new online account, you will have them as a resource for future questions.
+
+
+Thank you for bearing with us as we made it through the application process and I look forward to having you in the EFS family.
+
+
+
+Kind Regards,
+
+
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+Office (615) 523-6496 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

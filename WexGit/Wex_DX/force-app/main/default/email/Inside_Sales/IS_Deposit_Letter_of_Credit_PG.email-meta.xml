@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/FSC_Billing_Deposit_Agreement_NEW_02_2013.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/FSC_Billing_Personal_Guaranty_Form_2013.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/WEX_Bank_Letter_of_Credit_Fleet_NEW_REV_1_2013.doc</attachedDocuments>
+    <available>true</available>
+    <description>Need a deposit, letter of credit or Personal Guarantee. for account approval. Attach Paperwork for letter of credit and deposit, and Personal Guarantee..</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX Credit Dep, LOC, PG, &amp; PAV</name>
+    <style>freeForm</style>
+    <subject>Your WEX Fuel Card Application Status</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+
+
+You can obtain an account with WEX by either providing a deposit or completing a letter of credit with your bank. The amount you provide would become your credit limit. I am attaching the necessary paperwork for both the letter of credit and deposit.
+
+
+For the letter of credit, one form needs to be signed by you and the other needs to be completed by your bank on their letterhead. Both must have original signatures. Then mail them back to Credit at: 7090 South Union Park Avenue, Suite 350, Salt Lake City, UT 84047.
+
+
+Or, if you choose to send a deposit, the Deposit Agreement must be completed. Please fax the agreement to me at {!User.Fax}, and mail a certified check to Credit at the above address.
+
+
+If you prefer, you may submit a Personal Guarantee. An officer of the company must complete and sign the form, which can then be faxed back to me.
+
+
+Also, as required by the Patriot Act, Credit is requesting “physical address verification”. We need a copy of a utility bill or other formal document listing your legal business name and the physical address you provided on the application.
+
+
+Please call me with any questions.
+
+
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+{!User.Fax}
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Temporary password sent to the email address on file.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Online Access : new</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Your temporary password was sent to the email address on file. If that was not forwarded to you by the fleet manager, we may need to update the contact information on the account. Please complete the attached Contact Update form, have it signed by a current authorized contact or an officer of the company, and return it to us with your request for a temporary password.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

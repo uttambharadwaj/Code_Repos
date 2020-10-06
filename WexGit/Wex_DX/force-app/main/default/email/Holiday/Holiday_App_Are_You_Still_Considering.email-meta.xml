@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Last ditch effort to get application. Send Application Form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Holiday_Footeraddress</letterhead>
+    <name>Holiday App Are You Still Considering</name>
+    <style>freeForm</style>
+    <subject>Are You Still Considering the Holiday Fleet Card Program?</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I wanted to reach out to you one last time to see if you are still considering the Holiday Fleet Card Program.
+
+It’s easy to enroll. Simply complete the attached application form, and fax it to me at {!User.Fax}. You can also scan and then email the form back to me at the email noted below.
+
+You can find a complete list of accepting locations at http://www.wexinc.com/accepting-locations .
+
+Feel free to give me a call if you have any questions.
+
+Thank you for your interest in the Holiday Fleet Card Program.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

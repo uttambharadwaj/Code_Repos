@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>INCLUDE COMPLETED FLEET DATA FORM. Send after you&apos;ve gone through fleet data/card set-up with the prospect. Explain arrival of cards, etc.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>RSM: Card Set-up Confirmation</name>
+    <style>freeForm</style>
+    <subject>Gulf Fleet Fueling Program – Card Set-up Confirmation</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you for taking the time to go through the card set-up process. I have attached the Fleet Data Form I completed while we were talking. Please keep this for your records.
+
+
+You should receive a package in the mail in the next few days. The package will contain your new cards. Instructions on how to access your online account will be included.
+
+
+Just a reminder: The cards are active when you receive them, but without the driver PINs they cannot be used to make purchases. Each driver is required to enter their unique PIN and their vehicle odometer reading in order to make a purchase.
+
+
+Please feel free to call me if any questions come up. As your dedicated Gulf Regional Fleet Manager, my ability to help at this stage is limited, but I will do what I can to provide assistance. Alternatively, you may also call the Customer Service number that will be located on the back of your cards. They’re available 24/7 to serve your needs.
+
+
+Thank you for your business. We’re looking forward to working with you.
+
+
+Toni Clemens
+Regional Sales Manager – New England and New York
+Gulf Fleet Card Program ▪ WEX Inc.
+Hartford, CT
+Office/Cell: (203) 233-0349
+Fax: (207) 791-1618
+Email: toni.clemens@wexinc.com
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Gulf Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

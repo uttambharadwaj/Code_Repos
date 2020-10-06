@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>testing add driver</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>&lt;center&gt;
+&lt;header&gt;
+&lt;table border=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;tr valign=&quot;top&quot;&gt;
+&lt;!-- logo  --&gt;
+&lt;td&gt;&lt;img src=&quot;{!Case.Service_Program_Logo__c}&quot; alt=&quot;Program Logo&quot; &gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/header&gt;
+&lt;/center&gt;
+&lt;br&gt;&lt;/br&gt;
+Case #: {!Case.CaseNumber}
+&lt;br&gt;&lt;/br&gt;
+Thank you for contacting us. Please select and open the attached URL link and submit you requested changes fro Driver Add. The link will expire in 48 hours.
+&lt;br&gt;&lt;/br&gt;
+https://{!$Label.External_Instance_URL}/FleetMaintenance/AccountMaintenance?recordId={!Case.Id}&amp;key={!Case.Secondary_Key__c}&amp;c__action=driver
+&lt;br&gt;&lt;/br&gt;
+When you are finished, we would like you to fill out a simple survey you will find here. This feedback is appreciated and critical to how we expand features in the future.
+
+&lt;br&gt;&lt;/br&gt;
+
+Regards,&lt;br&gt;&lt;/br&gt;
+{!User.FirstName}&lt;br&gt;
+{!Case.Service_Program_Name__c}&lt;br&gt;
+{!Case.Service_Program_Email__c}&lt;br&gt;
+{!Case.Service_Program_Phone__c}&lt;br&gt;
+&lt;a href=&quot;{!Case.Service_Program_Website__c}&quot;&gt;{!Case.Service_Program_Website__c}&lt;/a&gt;&lt;br&gt;
+&lt;br&gt;&lt;/br&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

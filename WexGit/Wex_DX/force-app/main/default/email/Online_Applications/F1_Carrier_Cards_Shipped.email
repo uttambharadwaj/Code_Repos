@@ -1,0 +1,67 @@
+<messaging:emailTemplate subject="{!relatedTo.Account__r.Name} {!relatedTo.Offer__r.Application_Title__c} cards have shipped" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+
+Your Carrier ID:  {!relatedTo.Carrier_ID_Number__c}
+<br></br><br></br>
+
+Congratulations! Your {!relatedTo.Offer__r.Application_Title__c} fuel cards are on the way and have been shipped to:
+
+<table>
+       <tr> 
+           <td>
+                {!relatedTo.Legal_Business_Name__c} 
+           </td>
+       </tr>   
+       <tr> 
+           <td>
+                {!relatedTo.AO_Name__c}
+           </td>
+       </tr> 
+       <tr> 
+           <td>
+              {!relatedTo.AO_Address__c}
+           </td>
+       </tr> 
+        <tr> 
+           <td>
+              {!relatedTo.AO_City__c}   {!relatedTo.AO_State__c}   {!relatedTo.AO_Zip_Code__c}
+           </td>
+       </tr> 
+           
+   </table>
+ 
+<br></br><br></br>
+
+
+Your new cards will arrive ready to use. Cards are preset with the limits indicated on your application. Adding additional products and validation prompts can be completed via eManager. For further instructions, refer to the <a href="https://protect-us.mimecast.com/s/Zwq8CrkNZ9srW81wu7zXr8?domain=emgr.efsllc.com">eManager Quick Reference Guide</a> or call 1-800-359-7587
+<br></br><br></br>
+Please note, if you did not supply card prompts or driver information during the account set up process, your cards have been deactivated for security purposes. <a href="https://protect-us.mimecast.com/s/l-83Cv27qZSER72OIXIxI8?domain=wexdrive.com">Click here</a> for instructions on how to activate and assign your cards before they can be used.
+
+<br></br><br></br>
+eManager has online tutorials to help you learn to manage your new online account. Here you can learn how to dispatch a MoneyCode® , change driver information on the cards, and even run reports to help manage your fleet's purchases! 
+<ul>
+  <li> <a href="https://emgr.efsllc.com/common/pdf/administrator.pdf"> eManager Quick Reference Guide </a>  </li>
+  <li> <a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_CarrierControl_Guide.pdf"> CarrierContral Mobile App User Guide</a></li>
+  <li> <a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_CardControl_Guide.pdf"> CardControl Mobile App User Guide </a>  </li> 
+  <li> <a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_FAQs.pdf"> Frequently Asked Questions </a>  </li>
+</ul> 
+<br></br>
+The tracking number is {!relatedTo.UPS_Tracking_Number__c} . You may use the following link to check the status of your shipment: <a href="https://wwwapps.ups.com/WebTracking/track?track=yes&trackNums=">Click here to check UPS Status </a>
+
+<br></br><br></br>
+
+Sent to:  {!relatedTo.Email__c}<br></br>
+Reference #: {!relatedTo.Name}<br></br>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

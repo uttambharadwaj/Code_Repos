@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>REC - EFPS Need New Acct - Payment Options</name>
+    <style>freeForm</style>
+    <subject>EFPS Need New Account Payment Options</subject>
+    <textOnly>Thank you for contacting us.
+
+Enrolling in auto pay will require that we set you up with a new account and issue new cards. If you would like to proceed, please fill out the attached form and return it to our credit department.
+
+Sincerely,
+Global Credit Maintenance
+1-866-755-1033</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

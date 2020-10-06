@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Service Operations - Negative Transactional Survey Dispositioning</name>
+    <style>none</style>
+    <subject>Attention Required - Negative Transactional Survey Dispositioning</subject>
+    <textOnly>Please follow the link below to address the negative customer feedback  {!Service_Operations_Survey_Response__c.Link}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

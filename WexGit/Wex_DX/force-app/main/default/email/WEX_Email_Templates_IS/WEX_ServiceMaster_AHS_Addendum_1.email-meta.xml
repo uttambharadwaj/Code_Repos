@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/ServiceMaster_Addendum.docx</attachedDocuments>
+    <available>true</available>
+    <description>Addendum attached</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX ServiceMaster AHS Addendum 1</name>
+    <style>freeForm</style>
+    <subject>AHS Preferred Contractors - WEX Fuel Card Program</subject>
+    <textOnly>Introducing our Preferred National Account Fuel Card Program courtesy of American Home Shield’s new vendor relationship with WEX.  All Preferred Contractors will have access to the following:
+
+Save Money
+
+• 1.7% rebate on your monthly fuel spend
+• Credited monthly 30 days in arrears via your fuel statement
+
+Control Fuel
+
+• Know who, what, where and how much your drivers spend
+• Control spending &amp; security through by customizing your cards  online
+
+Convenience
+
+• Your drivers only need to carry one card to purchase fuel  and service at any participating location
+
+Save Time
+
+• Convenience of a single card for all fuel &amp; service needs
+• Easy to read invoices
+• Transaction data easily downloaded to QuickBooks or Excel
+
+Please fill out the attached one page credit application entitled ServiceMaster Addendum, and WEX will contact you regarding account set-up.
+
+Monthly Invoice = 30 days
+
+Payment terms = 26 days
+Credit line based on approval
+
+{!User.FirstName} {!User.LastName}
+
+
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

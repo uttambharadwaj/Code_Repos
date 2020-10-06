@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>CircleK WEX Telematics info for prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Circle_K_Letterhead</letterhead>
+    <name>Circle K WEX Telematics Info Prospect</name>
+    <style>freeForm</style>
+    <subject>Take Control of Your Vehicles With WEX Telematics</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+We would like to introduce you to our Telematics GPS vehicle tracking tool.
+
+WEX Telematics is an easy to use, smart vehicle tracking management solution that helps you increase efficiency, improve safety and save money. Installing WEX Telematics units in your vehicles can help you:
+
+
+§ Reduce fuel consumption an average of 11-15% annually*
+
+§ Increase driver productivity an average of 26%*
+
+§ Reduce Insurance premiums an average of 10-20% annually*
+
+
+Current WEX Telematics customers have reported significant savings on fuel costs alone from the moment they installed the units. And our reports and online alerts keep you informed in real time so you can act quickly.
+
+
+If you are interested in learning more about WEX Telematics, or scheduling a live demonstration, please just let me know and I’ll have a WEX Telematics consultant contact you.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Circle K Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

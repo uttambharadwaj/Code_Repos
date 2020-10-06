@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email providing information about active cards</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>England_Logistics_Letterhead</letterhead>
+    <name>England Logistics Fleet Active Card</name>
+    <style>freeForm</style>
+    <subject>Important information about your WEX Fleet One account</subject>
+    <textOnly>{!Account.Name}
+
+Attn: {!Account.00N70000002Q8Hi}
+
+{!Account.BillingStreet}
+
+{!Account.BillingCity}, {!Account.BillingCity} {!Account.BillingPostalCode}
+
+
+
+
+
+Dear {!Account.00N70000002Q8Hi},
+
+
+Thank you for choosing England Logistics and WEX Fleet One to service your fuel card needs. Your application for our fuel card has been approved. For your convenience, your new cards will be mailed active and they will be ready for immediate use.
+
+
+As a valued customer, we want to make it easy for you to maintain your account. Please visit www.FleetOne.com/welcome for full program details and a list of valuable resources. You may also visit www.FeetOne.com and click on the customer self-service link to find the most up-to-date forms and information about your fuel card program, including online account management tutorials.
+
+
+Please keep the following information accessible at all times as it will not be mailed to you –
+
+
+· Online user info. You will need this information to manage your account online.
+
+· Supervisor/authorized contact security codes. You will need these codes whenever you call in to our 24 hour customer care.
+
+
+
+If you have any questions, please do not hesitate to contact our 24/7/365 call center at 800.359.7587.
+
+
+
+{!User.Name}
+
+{!User.Title}
+
+
+{!User.CompanyName}
+
+Phone: {!User.Phone}
+
+Fax: {!User.Fax}
+
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

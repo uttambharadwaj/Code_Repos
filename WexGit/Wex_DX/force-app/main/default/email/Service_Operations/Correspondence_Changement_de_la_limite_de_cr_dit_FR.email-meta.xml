@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Changement de la limite de crédit</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Changement de la limite de crédit</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Par mesure de prévention et de sécurité, votre limite de crédit est évaluée en fonction de la moyenne des achats mensuels effectués au compte. Si vous prévoyez une augmentation de vos achats dans un futur prochain, nous vous invitons à communiquer avec nous afin de réajuster votre limite selon vos besoins.
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

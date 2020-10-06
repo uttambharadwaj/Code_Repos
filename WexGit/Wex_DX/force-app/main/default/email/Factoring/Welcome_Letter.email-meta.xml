@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Welcome Letter</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Factoring_Letterhead</letterhead>
+    <name>Welcome Letter</name>
+    <style>formalLetter</style>
+    <subject>Your account is approved</subject>
+    <textOnly>Welcome to WEX Fleet One Factoring. 
+
+
+
+We are very excited to partner with you! As a diversified financial services company, we take pride in our ability to provide working capital to companies nationwide. Our goal every day is to fund our clients with the liquidity they need to run and grow their businesses as well as provide prudent credit advice. 
+
+WEX is a global leader in corporate payments solutions.  WEX simplifies the complexities of payments systems across continents, and industries – including fleet, travel, healthcare and corporate payments. 
+
+With over 3,800 associates in the Americas, Europe, Australia, and Asia, we give our customers in industries across the globe greater control over their business, providing visibility and actionable insight so our clients can focus on taking their business to the next level. By creating solutions that sit at the intersection of payments, data and technology, we’re bringing the future of commerce to today’s businesses and unleashing the potential behind payments.  WEX Bank is an industrial bank operated out of Midvale, UT. 
+
+All of us at WEX Fleet One Factoring look forward to serving your needs and hope to build a long term relationship with you and your company. If you have an idea or suggestion to help us improve our level of service, please don’t hesitate to let us know.
+
+Sincerely, 
+
+
+
+Tim Valdez 
+Vice President 
+WEX Fleet One Factoring</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

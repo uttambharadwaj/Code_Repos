@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Partner - D&amp;S Fuel Card Templates</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>D_S_Fuel_Card_Partner_Group</group>
+        <portalRoleAndSubordinates>DSFuelCardPartnerManager</portalRoleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

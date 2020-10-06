@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use to confirm a phone meeting that has been scheduled.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Letterhead</letterhead>
+    <name>7-Eleven Phone Meeting Confirmation</name>
+    <style>freeForm</style>
+    <subject>Meeting Confirmation - 7-Eleven Fleet Card Program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks again for your interest in the 7-Eleven Universal Fleet Card Program.
+
+I&apos;m emailing to confirm our scheduled phone meeting on &lt;date&gt; at &lt;time&gt;. I&apos;ll plan to call you at &lt;number___________&gt; as discussed, and look forward to talking with you about your fleet fueling and management needs. I think you&apos;ll find the 7-Eleven  UniversalFleet Card Program an ideal fit for your business.
+
+If you have any questions before our meeting, please to do not hesitate to call. Otherwise I&apos;ll plan to talk with you soon.
+
+
+Many thanks,
+
+Tracy Suh
+Regional Sales Manager
+7-Eleven / WEX Inc.
+PO Box 802794 Dallas, TX 75380
+Office (972) 803-4181  Cell (469) 571-5873   Fax (207) 761-3536
+
+www.tracy.suh@wexinc.com
+www.wexinc.com
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+7-Eleven Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

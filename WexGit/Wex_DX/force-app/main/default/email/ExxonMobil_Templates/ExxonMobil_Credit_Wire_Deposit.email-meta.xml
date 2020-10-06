@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Fleet_Deposit_Wire_Instructions.xls</attachedDocuments>
+    <available>true</available>
+    <description>Need a deposit via wire.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Credit Wire Deposit</name>
+    <style>freeForm</style>
+    <subject>Exxon Mobil - Send A Deposit Via Wire</subject>
+    <textOnly>As we discussed, I am attaching the form with necessary information to send a deposit via wire (rather than a certified check).
+
+
+Wire Transfer Instructions:
+
+Account Name: WEX Bank
+Account Number: 4539508
+Receiving Institution: Harris Bank
+Address: 311 West Monroe, Chicago, IL 60606
+Telephone Number: (312)461-3036
+ABA/Routing Number:  071000288
+Reference: Please list account number that payment/deposit needs to be applied to
+
+Please notify me of the amount and the date you wire the funds.
+
+
+Also, please fax the deposit form to me at {!User.Fax}.
+
+
+Thank you for choosing the ExxonMobil Fleet card program.
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

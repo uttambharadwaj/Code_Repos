@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Wawa_Letterhead</letterhead>
+    <name>Wawa It&apos;s Been A While Follow Up</name>
+    <style>freeForm</style>
+    <subject>Wawa Fleet Card Program Follow Up</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+It has been a while since we last spoke, but I wanted to reconnect and see if your business situation has changed.
+
+We have had a busy couple of months and I wanted to highlight a few particulars:
+
+We save you money. Our programs give you the tools to restrict unauthorized purchases down to the card and/or product level
+
+We save you time. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read monthly invoice.
+
+We give you the control. Detailed reports show how and where fueling money was spent, so you can account for every penny.
+
+Wawa fleet is helping customers lower costs, increase efficiency, and get ahead. May I ask if you have moved forward with another industry solution? If another person would be more appropriate for this discussion, please refer me to him or her.
+
+Best regards,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+
+This communication may contain confidential, proprietary or legally privileged information. It is intended only for the person(s) to whom it is addressed. If you are not an intended recipient, you may not use, read, retransmit, disseminate or take any action in reliance upon it. Please notify the sender that you have received it in error and immediately delete the entire communication, including any attachments. This communication is not intended to create or modify any obligation, contract or warranty of Wawa, Inc., unless Wawa, Inc. clearly expresses such an intent.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

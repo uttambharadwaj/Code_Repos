@@ -1,0 +1,32 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+<p>On our website: <a href="http://www.essofleetonline.com/">www.essofleetonline.com</a>, you can go to: Invoice &amp; Payment on the red bar &gt;&gt;</p>
+<ol>
+<li>Direct Debit Enrollment</li>
+</ol>
+<p style="padding-left: 30px;">Add Bank Account information. Click OK. Then click Submit on the Direct Debit Enrollment page to save it online.</p>
+<ol start="2">
+<li>Then follow the directions in the gray box to print off the Pre-authorized Debit Agreement, complete it, and return it to us with a voided check. The fax number is there, or you can send it by email to: <a href="mailto:iol_pad@wexinc.com">iol_pad@wexinc.com</a></li>
+</ol>
+<p>Please let us know if we can be of further assistance.</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

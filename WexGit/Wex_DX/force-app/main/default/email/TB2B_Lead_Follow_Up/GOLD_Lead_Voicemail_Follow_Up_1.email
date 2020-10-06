@@ -1,0 +1,15 @@
+Hi {!Lead.FirstName},
+
+I just tried calling, but I wanted to send you a quick email in case this is more convenient for you. I'm following up on your recent interest in our tire savings. The Gold Program gives you access to our national accounts with most major tire brands, allowing you to purchase premium tires at national account pricing. Customers can save up to $120/tire.
+
+I'd love to go over the program in detail with you and get a few questions answered so I can establish your customized tire pricing, which can be used for both your local stock purchases and over-the-road breakdown needs. 
+
+Feel free to give me a call back or reply to this email at your earliest convenience, otherwise I will try you back tomorrow. 
+
+Thank you, and I look forward to helping you with your tire needs.
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

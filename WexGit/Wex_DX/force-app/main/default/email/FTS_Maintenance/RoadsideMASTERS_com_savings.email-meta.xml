@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/FTS_RSM_Flyer_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>RoadsideMASTERS.com overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>RoadsideMASTERS.com savings</name>
+    <style>freeForm</style>
+    <subject>Commercial Emergency Roadside Membership with RoadsideMASTERS.com</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+When you need Truck and Trailer Towing, RoadsideMASTERS .com is the only emergency roadside membership program that offers up to 50 miles towing.  Out of RoadsideMASTERS .com’s growing list of roadside membership benefits, the top 4 “most in-demand” continues to be Truck &amp; Trailer Towing, Flat tire assistance, mobile mechanic and jump-starts.
+
+RoadsideMASTERS .com continues to offer  best in class heavy-duty commercial vehicle emergency roadside membership to customers in the USA and Canada. Members avoid on the spot out-of-pocket expense with RoadsideMASTERS .com “Sign and Drive Convenience”…simply sign the roadside service invoice and drive away. Easy 1 year payment plans are available to help you save time and money and ensure that you get back on the road faster.
+
+Get your discounted 1 year membership through FTS Plus+ now for only $350/year (reg. $499/year) or $44.99/month for $12 months! This membership gets you towing assistance, mobile mechanic service, oil, fluid delivery service, and so much more. Visit http://ftsplus.com/roadsidemasters to learn more and sign up for these great services now.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Jennifer Nelson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

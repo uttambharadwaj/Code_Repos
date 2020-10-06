@@ -1,0 +1,23 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div style="text-align: center;"><div style="text-align: left;"><font face="Arial, sans-serif" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font size="2">Dear</font><font size="2" style="font-size: medium;">&nbsp;</font></font><font face="Arial, sans-serif"><font size="2"><font><font>{!Contact.Name}<font face="arial" size="3">,</font></font></font></font></font><font style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;" size="2"><span style="FONT-SIZE: 10pt"></span></font><font size="2" style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><br><br></font><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 9pt; line-height: 115%; background-color: white;">I am following up on our communication around
+WEX Telematics. Our telematics solution integrates seamlessly with your WEX
+fuel card, creating a powerful tool that provides greater control and allows
+you to:</span></div></div><font size="2" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="FONT-SIZE: 10pt"></span></font>
+<ul style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><li><span style="font-size: small;"><p class="MsoNormal"><span style="font-size: 9pt; line-height: 115%; font-family: Arial, sans-serif; background-color: white; background-position: initial initial; background-repeat: initial initial;">Better coach drivers,
+resulting in reduced fuel costs, lower insurance premiums, and increased
+safety.</span></p></span></li><li><p class="MsoNormal"><span style="background-color: white; font-family: Arial, sans-serif; font-size: 9pt; line-height: 115%;">Track assets to prevent
+theft.</span></p></li><li><p class="MsoNormal"><span style="background-color: white; font-family: Arial, sans-serif; font-size: 9pt; line-height: 115%;">Take greater control of
+maintenance scheduling to avoid costly breakdowns and keep your fleet running
+optimally.</span></p></li></ul>
+<p style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><span style="font-size: 9pt; line-height: 115%; font-family: Arial, sans-serif; background-color: white; background-position: initial initial; background-repeat: initial initial;">I would love to have a conversation with you
+about how WEX Telematics can simplify your job and save your company money.
+When would be a good time to reach out to you?</span></p>
+<p style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><font size="2"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 10pt"><br></span></font></p>
+<p style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><font size="2"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 10pt">Sincerely, <br></span></font></p>
+<p style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><font style="FONT-FAMILY: Arial,Sans-Serif" size="2"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 10pt">{!User.FirstName} {!User.LastName} <br>{!User.Title} <br>{!User.Phone} <br>{!User.Email} </span></font><font size="2"><a href="http://www.wrightexpress.com/payment-solutions" target="_BLANK????"><span style="COLOR: black; FONT-SIZE: 10pt"><br></span></a></font></p>
+<p style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><font size="2"><a href="http://www.wrightexpress.com/payment-solutions" target="_BLANK????"><span style="COLOR: black; FONT-SIZE: 10pt"><br></span></a></font></p>
+<p style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;"><font size="2"><a href="http://www.wrightexpress.com/payment-solutions" target="_BLANK????"><span style="COLOR: black; FONT-SIZE: 10pt">www.wextelematics.com</span></a></font></p><br>]]></td>
+</tr>
+</table>

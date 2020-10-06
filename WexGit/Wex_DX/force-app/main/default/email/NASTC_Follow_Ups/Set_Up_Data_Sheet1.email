@@ -1,0 +1,14 @@
+{!Contact.FirstName},
+
+Congratulations on being approved for a NASTC Fleet One fuel card. In order to get the cards finalized, we need some information for the specific set up of your fleet cards.  
+
+Please complete the attached document to finish the setup of your new NASTC fleet card account.  Creating driver ID's or capturing your unit numbers is a critical layer of security that is important to keep your account safe.  Failure to provide this information will delay our ability to create your new cards.
+
+Please complete this form and email back to me at {!User.Email}. 
+
+Also, please confirm what day of the week you want to have funds drafted from your checking account if you selected to pay by ACH or Auto Draft.
+
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

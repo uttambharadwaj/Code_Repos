@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_CPS_Fleet/Web_Based_Fuel_Price_Mapping_from_Wright_Express.doc</attachedDocuments>
+    <available>true</available>
+    <description>Email highlighting saving with Fuel Site Locator</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Fleet_Letterhead</letterhead>
+    <name>Fleet - Fuel Price Mapping</name>
+    <style>freeForm</style>
+    <subject>Save upwards of 15 cents per gallon with WEX!</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+
+In the last 36 months, fuel prices have been as low as $1.85 and as high as $4.25 per gallon. I am sure you are not surprised by this news as it is affecting every business operating vehicles to get their business done.
+
+
+What you may not be aware of is the gas stations within a 5 mile radius of downtown {!Contact.MailingCity}, {!Contact.MailingState} had an average price in the last 24 hours of $3.315 per gallon for unleaded fuel. Do you know where the station selling fuel at $3.198 is? Do you want your drivers to know? Does your current fuel card have you tied into the one selling fuel at $3.659 per gallon?
+
+
+Would the possibility of saving up to 34 cents per gallon on unleaded fuel in your area be worth spending 30 minutes speaking to a fleet fueling consultant from WEX, a proven leader in the fleet fueling industry for the last 25 years?
+
+
+Fleets like Asplundh Tree Experts, the Cleveland Clinic, and AT &amp; T use the card now. With over four million cards outstanding, we are the single largest fuel card provider in the U. S. No other program offers all these benefits:
+
+
+Savings: Save by reducing costly premium fueling, monitoring and eliminating unapproved fill-ups, and consolidated invoicing and reports from multiple vendors.
+
+
+Convenience: The WEX Fleet Card is America&apos;s most widely accepted electronic fleet card welcomed at over 180,000 locations and more than 170 brands such as Shell, ExxonMobil, Texaco, Sunoco, Hess and Sheetz.
+
+
+Security: Drivers are assigned Driver Identification Numbers. Only approved users can make purchases. This saves you money by reducing your exposure to fraud.
+
+
+Control: Cards can be restricted to &quot;fuel only&quot; and cards or drivers can be cancelled &quot;real time.&quot; You can limit the number of transactions per day or restrict purchases by type of product (fuel and fluids, fuel and oil changes, fuel and general repairs, fuel and roadside assistance, etc.).
+
+
+The WEX card helps you know what you&apos;re spending and where it&apos;s being spent by giving you the information you need to manage your fleet fueling. I will be calling you in the coming days to see if you have any questions about the WEX Universal Fleet Card program. In the meantime, I can be reached at {!Opportunity.OwnerPhone} or by e-mail at {!Opportunity.OwnerEmail}.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+www.wexinc.com
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

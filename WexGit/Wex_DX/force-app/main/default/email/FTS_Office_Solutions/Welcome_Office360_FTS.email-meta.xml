@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/FTS_Hot.pdf</attachedDocuments>
+    <attachedDocuments>FTS/Office360SavingsOverview_FTS.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Email sharing the savings available to FTS members with Office360</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>Welcome Office360_FTS</name>
+    <style>freeForm</style>
+    <subject>Savings with Office360°</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+
+I wanted to take a moment to let you know about our new opportunity with Office360°, where we provide ultimate savings on office supplies, coffee and breakroom, cleaning supplies, and more...along with no minimum orders and free, next-day delivery.
+
+Please take a moment to review the attached information and let me know if you have any questions, or would like more information.
+
+You can also visit http://ftsplus.com/office360 to learn more and sign up for an account today.
+
+
+Thank you,
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Jennifer Nelson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sunoco promo error email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>Sunoco promo error email- voicemail followup</name>
+    <style>freeForm</style>
+    <subject>Your Sunoco Fuel Rebates</subject>
+    <textOnly>{!Contact.FirstName},
+
+I have left you a voicemail in regards to your Sunoco Fuel Card rebates. The initial promotion that you were promised upon opening your account was not applied to your invoice(s). We have identified the issue and moving forward you will be receiving the promised promotion of &lt;CENTS per gallon for X TIME&gt;, starting on &lt;START DATE&gt; and ending on &lt;END DATE&gt;. You will see the promotional rebates reflected on your invoice, not at the pump.
+
+We apologize for any inconvenience this may have caused. If you need further assistance please contact us at 1-866-755-1032.
+
+Thank you for your business.
+
+{!User.FirstName} {!User.LastName}
+Sunoco Fleet Services
+WEX Inc.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

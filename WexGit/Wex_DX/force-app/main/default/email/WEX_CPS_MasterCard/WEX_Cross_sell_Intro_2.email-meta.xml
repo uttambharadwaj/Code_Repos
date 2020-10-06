@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_MasterCard/General_1pg_Overview.pdf</attachedDocuments>
+    <attachedDocuments>WEX_MasterCard/MC_About_Wright_Express.pdf</attachedDocuments>
+    <available>true</available>
+    <description>WEX Payment Solutions technology &amp; service focus for existing wex u customers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>WEX Cross-sell Intro#2</name>
+    <style>freeForm</style>
+    <subject>Wright Express Solutions -- Beyond Your Fleet Account</subject>
+    <textOnly>Payments Technology &amp; Service For A/P Too!
+
+Dear {!Contact.FirstName},
+
+Did you know the payments technology and service your fleet team has come to appreciate from Wright Express is available for your Accounts Payable department?  With a unique focus on delivering value added commercial e-payment solutions, Wright Express has quickly grown to become a top 10 issuer of MasterCard payment solutions, processing over 30 million transactions annually for our customers!
+ 
+Here are a few ways to save: 
+
+- Improve working capital and earn cash back on payments with AP Direct
+- Eliminate overcharges, unexplained charges and charges without approvals. Enjoy streamlined controls and 100% reconciliations with Purchase Log, our single-use virtual payment program. Perfect for one-off fleet maintenance and repairs – and hundreds of other scenarios! 
+- Drive efficiencies and savings in A/P without draining IT resources; WEX ePayment solutions interface directly with your existing systems and processes.
+
+I would appreciate 20 minutes of your time to explore ALL the ways Wright Express can serve your payment needs.  We’ll serve your custom payment needs better than your existing treasury relationship can.  I will follow up within the next week to schedule a time to connect.
+ 
+Sincerely, {!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} {!User.Email} 
+
+www.wrightexpress.com/ePayables
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Questions for cost &amp; environmental savings...</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM Questions for cost &amp; environmental savings...</name>
+    <style>freeForm</style>
+    <subject>Questions for cost &amp; environmental savings...</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+
+It was nice speaking with you today.
+
+
+As we discussed, I’d like to prepare an  estimated cost &amp; environmental savings analysis for {!Account.Name} . In order to do so, I’ll need you answer a few questions (see below).  If there are any questions you are not comfortable responding to just skip them. As for the ones you’re not sure on, a reasonable guess will do.
+
+
+1. Total employees?
+
+2. Total employees receiving paper check?
+
+3. How many locations are checks sent to?
+
+4. How are they sent, regular mail, 2nd day or overnight mail?
+
+5. How often to do process payroll (i.e. weekly, bi-weekly etc.)?
+
+6. Average check amount for employees not on direct deposit?
+
+7. Estimated rate of employee turnover?
+
+8. How many people process payroll?
+
+9. Annual gross revenue?
+
+10. Net Profit % (if you’re not comfortable responding to this one leave blank)?
+
+
+Once you’ve responded, I’ll get to work and should have a response for you pretty quickly.  I’ll also make available to you the spreadsheet I use to calculate the savings. That way you’ll have the ability to fine tune the numbers and come to a more exact conclusion.
+
+
+Thanks for your help,
+
+
+
+Matt Merriam
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: 470.545.3219 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt.merriam@wexinc.com
+
+W: www.wexinc • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

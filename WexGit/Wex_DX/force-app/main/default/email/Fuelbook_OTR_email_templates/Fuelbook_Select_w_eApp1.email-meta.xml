@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Fuelbook Select email eApp assistance</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FuelBook_Select_Letterhead2</letterhead>
+    <name>Fuelbook Select (w/eApp)</name>
+    <style>freeForm</style>
+    <subject>Fuelbook Select exclusive offer</subject>
+    <textOnly>Thank you for your interest in the Fuelbook Select card. I’m reaching out to you to offer my assistance with getting your account set up. The link below will direct you to your Fuelbook Select application that you can be completed at your earliest convenience. 
+&lt;Link to online application&gt;
+Here are some features and benefits you will have immediate access to when you start using your Fuelbook Select Card. 
+
+•	Save 6 cent per gallon off retail posted cash price
+•	5 Pilot Flying J MyRward loyalty points per gallon 
+•	Zero fuel transaction fees at Pilot Flying J locations
+•	No credit check required 
+•	Accepted at over 7,000 truck stops
+
+Feel free to contact me with any questions regarding your application. I look forward to working with you!
+Sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

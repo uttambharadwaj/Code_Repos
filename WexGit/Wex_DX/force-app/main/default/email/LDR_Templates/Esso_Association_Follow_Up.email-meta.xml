@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Esso_Fleet_Data_EN.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/Esso_Sell_Sheet_EN.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/Esso_application_EN.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Esso with Assoc Group code PC and PCG</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_Current_Letterhead_EN</letterhead>
+    <name>Esso Association Follow Up</name>
+    <style>freeForm</style>
+    <subject>Esso Fleet Card:  Thank you for your request!</subject>
+    <textOnly>Thanks for taking my call today, I enjoyed the opportunity to speak with you about your business. I know you will find that our Esso Fleet Card Program is a great tool to help you save money and time.
+
+Savings
+
+Save 3 ¢ per litre every time you fuel at Esso stations.
+No set up, monthly or annual fees
+
+Convenience &amp; Control
+
+Enjoy Canada&apos;s largest retail fueling network.
+Use Driver IDs to prevent unauthorized use or fraud.
+Track spending online without collecting receipts.
+
+I will be following up with you next week to schedule a meeting.  In the mean time, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+I look forward to helping you meet the needs of your business.
+
+Sincerely,
+
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone: {!User.Phone}
+
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

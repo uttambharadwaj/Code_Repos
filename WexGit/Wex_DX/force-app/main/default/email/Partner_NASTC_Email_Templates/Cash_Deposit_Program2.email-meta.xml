@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Cash Deposit Program</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Cash Deposit Program</name>
+    <style>freeForm</style>
+    <subject>NASTC Cash Deposit Program</subject>
+    <textOnly>{!Contact.FirstName}, 
+
+Good News!! 
+
+WEX Fleet One has designed a new policy for potential Customers That for whatever reason has not met the credit standards. This new program is designed to give these accounts the ability to receive the discounts offered by the NASTC discount fuel card . We are referring to the Cash Deposit program. 
+
+Under the terms of this program the customer can Bankwire funds to WEX bank and those funds will be held in escrow and act as security on the account. The total dollar figure will be the account total credit line. This program is established with a once per week auto draft from your bank account. That will clear all cumulated invoices. 
+
+Please find attached the required documents Please fill out and return to me. All security funds should be wired to : 
+
+WEX Bank C/oHarris Bank 
+311 West Monroe 
+Chicago IL 60606 
+Routing # 071000288 
+Acct # 4539508 
+
+Receipt of that wire should be returned to John Randles Jrandles@fleetone.com alone with the attached documents. 
+
+Thank you!! 
+
+
+{!User.FirstName} {!User.LastName} 
+
+{!User.Title} 
+Phone: {!User.Phone} | Fax: {!User.Fax} 
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

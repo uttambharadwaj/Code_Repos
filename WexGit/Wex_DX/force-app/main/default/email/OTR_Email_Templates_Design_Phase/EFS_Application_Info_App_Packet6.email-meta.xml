@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS Application - Info &amp; App Packet</name>
+    <style>freeForm</style>
+    <subject>EFS Account Information and Application</subject>
+    <textOnly>Greetings {!Contact.FirstName},
+
+
+
+Thank you for taking the time to talk with me today about opening an EFS account for {!Account.Name}.
+
+I hope the information I have provided below is useful in making your decision. Please let me know if you have any questions.
+
+
+
+
+
+The EFS Fleet Card advantage:
+
+§ Best-in-class purchase and financial controls
+
+§ Consolidated transactions on a single card
+
+§ Better authorization controls
+
+§ Card-level programming
+
+§ Superior fraud prevention tools
+
+§ Real-time online account reconciliation
+
+§ 24/7 online and mobile access
+
+§ Seamless system integration with leading third-party software providers
+
+§ Fuel discounts available without extra costs or gallon commitments!
+
+
+Standard Fees:
+
+§ $50.00 – New Account Setup Fee (one-time fee)
+
+§ $3.50 – EFS Check / MoneyCode fee (per $1,000)
+
+§ $1.80 – Fuel transaction fee
+
+§ $2.00 – Fuel with Cash Advance transaction fee
+
+§ $3.00 – Cash Advance without fuel purchase transaction fee
+
+§ $3.00 – ATM transaction
+
+§ $55.99 – Monthly Account Maintenance Fee (MAMF)
+
+
+§ For the complete fee table, please see page 2 of the EFS Application and Agreement
+
+
+Application Instructions, by attachment:
+
+Ø EFS Application and Agreement
+
+This is the APPLICATION for the new account, and the most important document.
+
+Ø EFS Account Data Sheet
+
+general setup questions for how you want your limits set up.
+When in doubt, write “default.”
+Any decision you make here can be easily changed later when an Implementation Specialist calls you and walks you through your online account.
+
+Ø EFS Pre-Fund Agreement (only for PrePay accounts)
+
+This is the form acknowledging that you want a PREPAY account.
+Please sign and return the second page back to me.
+Please wait to fund your new account until I have provided you an Application ID#. VERY IMPORTANT!
+
+Ø Direct Debit Form (only for Credit Line accounts)
+
+Form Required to set up direct debit (ACH) if you chose this option on the application
+
+Ø Personal Guaranty (only for Credit Line accounts)
+
+
+Form used if you would like to apply for a credit line using a personal guaranty
+This form is optional
+Although not required, a personal guaranty often helps your chances of credit approval, especially if your business is less than 2 years old and your company does not have financial statements (income statement and balance sheet) readily available
+
+
+If you have any questions about the application or your new fuel card program, please don’t hesitate to call or email me. We look forward to a long relationship with {!Account.Name}.
+
+
+Kind Regards,
+
+
+{!User.Name}
+{!User.Title}
+EFS LLC &amp; WEX Fleet One
+
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+{!User.Email} | www.efsllc.com | www.fleetone.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

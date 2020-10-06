@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>RSM: Use to send program info &amp; app after a prospect has expressed interest. ATTACH COLLATERAL &amp; APP!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>RSM: Sending Program Info (Follow-up to a Conversation)</name>
+    <style>freeForm</style>
+    <subject>Start Saving with Sunoco Commercial Fleet Cards</subject>
+    <textOnly>{!Contact.FirstName} {!Contact.LastName},
+
+Thank you for your interest in the Sunoco Fleet Card Program.
+
+Enclosed is the information you requested and our Business Account Application. The Application is the first step in getting set up.
+
+I think you’ll find the Sunoco Fleet Card Program an ideal solution for your company’s vehicle fueling needs. Whether you’re looking for a fleet card program with robust fuel rebates or nationwide card acceptance, Sunoco has the fleet card for you.
+
+Sunoco’s valuable fuel rebate program is just one of the ways you’ll save money as a cardholder. Our program offers multiple tools to help you save hours of administrative time and drive down your fleet costs:
+
+
+· Powerful Reporting – know who bought what, when, where and for how much
+
+· Broad Acceptance – always find a Sunoco fuel site with over 5,000 convenient locations; and if you travel outside of the Sunoco area, our Sunoco Universal card is accepted nationwide
+
+· Purchase Controls – help eliminate any misuse of company vehicles by easily setting purchase limits for individual drivers if needed
+
+· Live U.S. Based Customer Service – 24/7 assistance for you and your drivers whenever you need it
+
+If you have any questions, please don&apos;t hesitate to contact me. Otherwise, I will touch base soon to follow up.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Sunoco Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106
+
+
+If you no longer wish to receive future email advertisements from WEX, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

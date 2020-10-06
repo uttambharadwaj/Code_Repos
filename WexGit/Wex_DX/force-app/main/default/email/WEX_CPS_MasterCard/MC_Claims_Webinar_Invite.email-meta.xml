@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>May &apos;11 Webinar invite through AMBest</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>Claims Sector Webinar Invite</name>
+    <style>freeForm</style>
+    <subject>Upcoming Webinar on Electronic Claims Payments</subject>
+    <textOnly>Webinar: Options for Paying Claims Electronically
+
+Dear {!Contact.Salutation} {!Contact.LastName},
+
+Best’s Review magazine and Wright Express will host a roundtable discussion exploring how property/casualty insurers can use electronic-payment methods for greater control and quicker turnaround of claims. The webinar is set for 2 p.m. EDT, Thursday, May 5.
+
+A panel of experts will talk about what they learned from successful pilot
+projects and what economic factors are making electronic payment options
+for policyholders and service providers more popular in today’s
+marketplace.
+
+Panelists include:
+-- Jim Dean, Vice President, R. E. Nolan
+-- Jim Pratt, Vice President, Wright Express
+-- Chris Klemann, Product Director, Nationwide Bank
+-- David Baker, Claims Manager, Mercury Select Management Co. Inc.
+
+The event is presented by Wright Express. Register at no charge at
+http://www.bestreview.com/webinars/claims11/index.html .
+
+Attendees can submit questions or comments for the discussion by e-mailing
+news@ambest.com. Questions and comments will be discussed before and during the live event. Coverage of the webinar will be featured in an upcoming
+issue of Best&apos;s Review. For more information about the webinar, please call
+(908) 439-2200, ext. 5561, or e-mail lee.mcdonald@ambest.com.
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

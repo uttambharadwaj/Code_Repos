@@ -1,0 +1,11 @@
+{!Contact.FirstName},
+
+Your application for credit on your existing {!OnlineApplicationOffer__c.Name} fuel card has been approved.  The completion of the set up to finalize the availability is nearly done.  Please watch your email for a welcome letter as well as a credit letter detailing payment instructions for your account.  When you receive those materials the funds will be available for use.
+
+If you have any questions, please contact me at {!User.Email}.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

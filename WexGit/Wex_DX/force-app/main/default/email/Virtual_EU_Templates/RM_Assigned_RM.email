@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><br></div><div><br></div><div>Hi&nbsp;{!Account.Assigned_Relationship_Manager__c},</div><div><br></div><div>The account&nbsp;<a href="https://na5.salesforce.com/{!Account.Id}">{!Account.Name}</a>&nbsp;has been assigned to you by {!Account.LastModifiedBy}.</div><div><br></div><div>You will be made the account owner if a related opportunity reaches stage 6. The current owner is&nbsp;{!Account.OwnerFullName}.</div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif"><br></font></i></div><div><i style="background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font><font style="font-size: 12pt; font-weight: bold;">&nbsp;</font></i></div>]]></td>
+</tr>
+</table>

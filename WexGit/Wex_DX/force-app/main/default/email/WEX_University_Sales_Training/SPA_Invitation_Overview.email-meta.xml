@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to employees who have been invited to participate in SPA.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>SPA Invitation Overview</name>
+    <style>freeForm</style>
+    <subject>Sales Performance Assessment Invitation</subject>
+    <textOnly>Please hold this time for Kathryn Connolly to roll out the Sales Performance Assessment (SPA) and hand out individual results.
+
+SPA provides in–depth feedback on the behaviors and sales drivers of the contemporary sales professional. The model represents 18 sales behaviors and 6 sales drivers. The application can be used to develop sales professionals, develop sales teams and may also be used as a component in the sales selection process. The MRG certified in-house Sales Trainer uses the results of the assessment to help develop individuals through training and development, coaching, and talent management programs directly.
+
+Background: Sales Intelligence is a process designed to aid an organization to better understand its current sales culture; to articulate the ideal sales profile required to move forward; to select candidates better matched to the ideal; to evaluate each individual salesperson to determine a Sales Action Plan; and finally, to establish an organizational structure to continuously support the process.
+
+Sales success profiles for WEX sales roles have been created and will be used in multiple ways to help meet our sales goals moving forward by:
+
+
+Creating a sales success profile that allows current employees to build a more meaningful sales action plan
+Helping individuals line up their own talents and skills with the appropriate job at WEX
+
+
+Our goal is to capitalize on the strengths you bring to the team as well as put in place a Sales Action Plan related to your development opportunities.  We want to ensure you continued success and grow your skills and talents as it relates to your work at WEX.
+
+
+
+Thank you,
+
+{!Case.OwnerFullName}
+
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

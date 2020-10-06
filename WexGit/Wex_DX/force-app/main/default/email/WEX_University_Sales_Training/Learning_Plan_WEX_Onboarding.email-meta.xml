@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Sent form Participant Case to the new hire after week 1 Onboarding completed.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>OLD 04. Learning Plan Phase 2: WEX Onboarding</name>
+    <style>freeForm</style>
+    <subject>Your WEX Onboarding Learning Plan</subject>
+    <textOnly>Continue on the WEX Sales Learning Journey!
+
+The Global Sales Training Team has developed this Phase 2 Learning Plan to build on your learning in Sales Onboarding.  These modules will be continue your growth as part of the WEX team.
+
+Your Learning Plan can be found in https://wexinc.skillport.com/skillportfe/login.action by clicking the View Learning Plan hyperlink. Please complete your Learning Plan within 30 days of hire.
+
+Email Sales Training with any questions regarding Skillport or your Learning Plan.
+
+
+
+Thank You,
+{!User.Name}
+
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

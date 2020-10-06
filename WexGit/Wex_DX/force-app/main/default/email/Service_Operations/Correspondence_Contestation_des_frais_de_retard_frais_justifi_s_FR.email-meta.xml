@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Contestation des frais de retard/frais justifiés</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Contestation des frais de retard/frais justifiés</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Nous comprenons les désagréments que cette situation engendre. Cependant, les conditions générales de vente auxquelles vous avez souscrites en activant les cartes Esso mentionnent que le solde doit être acquitté  en totalité à la date due,  au risque d’avoir des frais de retard et une éventuelle suspension du compte jusqu’à ce que le solde soit payé en totalité. 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

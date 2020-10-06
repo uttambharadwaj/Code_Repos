@@ -1,0 +1,61 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><font face="Verdana, Helvetica, sans-serif" size="2"><font><font>Dear {!Contact.FirstName},<br><br></font></font><font>Please see information on our ExxonMobil Fleet card program.&nbsp;</font></font><ul><li><font face="Verdana, Helvetica, sans-serif" size="2"><b>Reduce administrative time</b> by eliminating the</font></li><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="mso-bidi-font-weight:normal">need to collect paper receipts and expense reports</span></font></li><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="mso-bidi-font-weight:normal"><b>Reduce monthly fuel usage </b>— with automatic<br>pump shut off capabilities</span></font></li><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="mso-bidi-font-weight:normal"><b>See driver spending habits</b> that may be costing<br>you money with downloadable reports</span></font></li><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="mso-bidi-font-weight:normal"><b>Manage your account online</b> in real time: set<br>purchase restrictions, update card and driver<br>information, pay your invoice and more</span></font></li><li><font face="Verdana, Helvetica, sans-serif" size="2"><span style="mso-bidi-font-weight:normal"><b>Avoid late fees</b> with pay-by-phone services if a<br>last minute payment becomes necessary</span></font></li><li><font face="Verdana, Helvetica, sans-serif" size="2">It’s easy to enroll.
+Simply complete the attached application form and scan/email it back to me.</font></li></ul><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Thank you for your
+interest in the ExxonMobil Fleet card program.</font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><i><span style="color: gray;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp; </font></span></i></p>
+
+<p class="MsoNormal" style="line-height: normal;"><i><span style="color: black;"><font face="Verdana, Helvetica, sans-serif" size="2">Sincerely, <br>
+<br>
+{!User.FirstName} {!User.LastName} <br>
+{!User.Title} <br>
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email} </font></span></i><i style="font-size: 12pt; font-family: arial;"><span style="font-size:8.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:gray"></span></i></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Invitation to Attend Webinar</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM Invitation to Attend Webinar</name>
+    <style>freeForm</style>
+    <subject>Should we schedule a meeting?</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

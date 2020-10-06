@@ -1,0 +1,11 @@
+<p>Claim: {!Claim__c.Name}</p>
+<p>Claim Link: {!Claim__c.Link}</p>
+<p>Platform: {!Claim__c.Platform__c}</p>
+<p>Product: {!Claim__c.Product__c}</p>
+<p>Carrier Name/Account: {!Claim__c.Carrier_Name_Account__c}</p>
+<p>Carrier ID/Company: {!Claim__c.Carrier_ID_Company__c}</p>
+<p>Card #: {!Claim__c.Abbreviated_Card__c}</p>
+<p>Fraud Type: {!Claim__c.Fraud_Type__c}</p>
+<p>Resolution: {!Claim__c.Resolution__c}</p>
+<p>Allowable Dispute Dollars: {!Claim__c.Allowable_Dispute_Dollars__c}</p>
+<p>Origination Point: {!Claim__c.Origination_Point_EFS__c}</p>

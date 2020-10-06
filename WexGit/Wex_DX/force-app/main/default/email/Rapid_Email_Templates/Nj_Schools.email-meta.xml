@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>Nj Schools</name>
+    <style>freeForm</style>
+    <subject>Payroll - Reducing Costs</subject>
+    <textOnly>Good Afternoon {!Contact.FirstName},
+
+
+
+With July 1st rapidly approaching do you have a plan in place to help your company save thousands of dollars by eliminating the paper checks that you are distributing?
+
+
+
+The Assembly Bill that Governor Christie signed will let all public school districts and county colleges mandate direct deposit for employee pay and compensation.
+
+
+
+So why can&apos;t you just make everyone sign up for direct deposit? There are over 21 million people in the US, of which over 1.3 million live in the state of New Jersey that are unbanked. They either don&apos;t wan or can not sign up for a bank account.
+
+
+What&apos;s the solution? Partner with a pay card provider so those employees can sign up for a pay card and have their pay electronically deposited right to their Visa or MasterCard branded prepaid debit card.
+
+
+
+The WEX rapid! PayCard is legally compliant in all 50 states by allowing your employees 5 different ways to access their pay down to the penny and 2 other ways to access smaller amounts of their money.
+
+
+
+Take a look at the attached article from PayTech magazine April 2014, where the WEX rapid! PayCard is the Featured Product review.
+
+
+
+I would love the opportunity to discuss this solution in more detail with you. Please let me know what your availability is over the next couple of weeks to schedule a phone call.
+
+
+
+Thank You,
+Art Kimball
+WEX Inc. 
+rapid! PayCard
+o| 813.344.2894 c| 813.714.3716 f| 727.828.4444 
+e| arthur.kimball@wexinc.com
+www.wexinc.com • www.rapidpaycard.com
+ 
+ 
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

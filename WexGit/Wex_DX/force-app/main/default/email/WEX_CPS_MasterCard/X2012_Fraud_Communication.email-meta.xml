@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Communication around fraud policies during peak trends</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>2012 Fraud Communication</name>
+    <style>promotionRight</style>
+    <subject>To better serve you - information regarding WEX Fraud Policy</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+In order to help protect our clients against fraud losses, we have implemented strict fraud strategies based on recent trends. These strategies may impact your holiday purchasing this year, especially if you are planning to make multiple or large-dollar purchases in card-present transactions at retail stores. As a result, your cardholders may experience declines or card suspensions. Card Program Administrators may contact WEXMCFRAUD@wexinc.com during EST business hours with questions or concerns  or to notify the Fraud Team of planned, large or unusual purchases. They may also call our 24-hour Customer Service Department at 877-557-6415 to assist with declines or card suspensions.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone - {!User.Phone}
+
+Cell - {!User.MobilePhone}
+
+{!User.Email}
+
+
+www.wexinc.com
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.
+
+Questions about
+potential fraud?
+
+
+
+Email our Fraud Team
+
+during business hours (ET):
+
+WEXMCFRAUD@wexinc.com
+
+or call our 24-hour Customer Service Department at
+
+877-557-6415.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

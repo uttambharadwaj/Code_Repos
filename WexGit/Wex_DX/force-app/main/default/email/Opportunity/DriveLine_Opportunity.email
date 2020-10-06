@@ -1,0 +1,21 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+Contact: {!Opportunity.Opportunity_Contact__c}
+
+What is your current fuel tax process? {!Opportunity.Current_Fuel_Tax_Process__c}
+What is your current fuel purchase method? {!Opportunity.Current_Fuel_Purchase_Method__c}
+What is your current dispatch software? {!Opportunity.Current_Dispatch_Software__c}
+What is your current GPS solution? {!Opportunity.Current_GPS_Solution__c}
+What is your approximate cost to prepare fuel tax reports each quarter? {!Opportunity.Quarterly_Fuel_Tax_Report_Cost__c}
+Comments: {!Opportunity.Vendor_Comments__c}

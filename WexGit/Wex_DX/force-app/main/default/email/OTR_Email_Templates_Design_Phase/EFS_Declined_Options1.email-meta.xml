@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS - Declined - Options</name>
+    <style>freeForm</style>
+    <subject>EFS Application Status - Credit Notification</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+
+
+
+Unfortunately, we were unable to get your EFS application approved for a credit line based on the business credit and personal guaranty provided.
+
+
+Your choices are now the following:
+
+
+- Provide a new personal guaranty (individual in which we can run their personal credit score) so we can try again for an unsecured line of credit (like what we just did...but with a new person.) I have gone ahead and attached this document to this email in case you need it.
+
+
+- Open a secured line of credit. This is where you would send in a bank wire and complete the secured deposit form (attached to this email in case you need it) and we would treat your account as though it is a credit account. For example, if you wired in $5,000 we would convert that into a $5,000 secured credit line. We would then invoice you against this credit line as you used the fuel cards and EFS checks, making purchases with your EFS account. Please note, It is especially important that you send me a copy (via email) of the wire confirmation and secured deposit form before you mail it in to the address on the form as the instructions will say. This will help me ensure your account is set up correctly.
+
+
+- Open a prepay account. This is where you prefund your account with guaranteed funds (such as a wire transfer, bank ACH (initiated from your bank and sent to ours), or Western Union transfer.) You would then use the EFS account and have to keep sending in guaranteed funds to replenish the account as the balance depletes over time with use. This is similar to how a checking account works.
+
+
+Additional info on prepay accounts: If have already received your prefund agreement (if not, please find it attached, complete, and return the agreement), all that would be needed to move forward with this option is a bank wire transfer for a minimum of $500 sent in to open your account. The $500 would be applied to your account once it is created and you will be able to use those funds immediately.
+
+
+To open a Prepay account (not Secured Deposit), please send your initial funding ($500 min) to:
+
+
+Bank Name:                       Fifth Third Bank
+
+38 Fountain Square
+
+Cincinnati, OH 45263
+
+
+Account Name:                 Electronic Funds Source LLC
+
+1104 Country Hills Drive
+
+Ogden, Utah 84403
+
+
+Account Number:             7361767473
+
+Wire Routing Number:     042000314
+
+
+Please make sure to include your Application # in the payment remittance information (&quot;OBI Fields&quot;). We cannot apply your payment without this information. Please follow the example illustrated below:
+
+
+OBI Line 1: appl 0000000000000 (insert your application number)
+
+Your Application # {!Opportunity.NAT_Number__c}
+
+
+
+If you have any questions, please let me know.
+
+
+
+Kind Regards,
+
+
+
+
+
+
+Katie Haywood
+
+Sr. Inside Account Executive
+
+3100 West End Avenue, Suite 1150 | Nashville, TN 37203
+
+Phone: 615.523.6496|Fax: 615.858.6496
+
+KHaywood@FleetOne.com | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Approbation conditionnelle</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Approbation conditionnelle</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Un nom d’utilisateur a été créé pour vous. Par contre, puisque vous ne figurerez pas sur la liste des personnes ressources, votre mot de passe a été envoyé à la personne autorisée au compte. Celle-ci peut vous le communiquer ou nous contacter directement. Vous pouvez également nous retourner le formulaire ci-joint et mettre à jour les personnes autorisées au dossier, signé d’une personne officiellement responsable dans votre société (président, propriétaire, trésorier, comptable, contrôleur etc...) 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

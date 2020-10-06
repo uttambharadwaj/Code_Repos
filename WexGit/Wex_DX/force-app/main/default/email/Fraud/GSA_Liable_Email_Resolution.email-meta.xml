@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>GSA Liable Email Resolution</name>
+    <style>freeForm</style>
+    <subject>Dispute Claim Resolution - {!Claim__c.Account_Name__c} / {!Claim__c.CO_ID_STD_EMB_GTag__c}</subject>
+    <textOnly>Hello {!Claim__c.Account_Contact_Name__c},
+
+The following dispute claim has been closed.
+
+
+
+Fleet Name
+
+Account #
+
+PDID
+
+G-Tag
+
+Claim #
+
+Total Claim
+
+{!Claim__c.Account_Name__c}
+
+{!Claim__c.Program_Account_Masked__c}
+
+{!Claim__c.Abbreviated_Card__c}
+
+{!Claim__c.CO_ID_STD_EMB_GTag__c}
+
+{!Claim__c.Name}
+
+${!Claim__c.Allowable_Dispute_Dollars__c}
+
+
+There is no evidence to indicate physically impossible transactions or suggest compromised activity on the card in question.
+No attempt to guess at DIN was made prior to the onset of the disputed activity.  This would indicate that the perpetrator had knowledge of the DIN or that the DIN was not kept in a confidential manner.
+Disputed transactions were made at outside payment terminals (“OPT”).  No signature is required for OPT purchases as the swipe of the card into the card reader establishes that the card was present at the time of the sale.
+There were no declined attempts to use the card after cancelation. This would indicate that the perpetrator had knowledge the card was canceled or no longer had access to the card.
+Sequential odometer entry indicates legitimate activity or possible driver misuse/abuse. Driver abuse is not considered Fraudulent activity.
+No further information to help identify or confirm the perpetrator(s) was available.
+
+
+If you have further questions please let me know.
+
+
+Regards,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

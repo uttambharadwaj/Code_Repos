@@ -1,0 +1,21 @@
+{!Contact.FirstName}
+
+I am following up on the message I left today; would you have some time to learn more about WEX Telematics?
+
+Our telematics solution integrates seamlessly with your WEX fuel cards so you can have a powerful tool that will provide greater control and allow you to:
+
+• Better coach drivers, resulting in reduced fuel costs, lower insurance premiums, and increased safety.
+• Take greater control of maintenance scheduling to avoid costly breakdowns and keep the fleet running optimally.
+• Track assets to prevent theft.
+
+If you would like to learn more, please feel free to respond to me directly or check out the videos at: 
+http://www.wextelematics.com/videos.
+
+When would be a good time to reach out to you?
+
+Best,
+
+{!Lead.OwnerFullName}
+WEX Telematics Specialist
+Direct phone: {!Lead.OwnerPhone}
+Email: {!Lead.OwnerEmail}

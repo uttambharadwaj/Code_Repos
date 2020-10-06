@@ -1,0 +1,16 @@
+Hi {!Contact.FirstName}, 
+
+I have attached your customized pricing as well as the program overview and an instruction sheet that can go in the truck glove box. The gold program is exclusive to WEX, EFS, and Fleet One, and is powered by TruckersB2B. 
+
+We understand the importance of local business, with our program you will be able to continue to buy from your local dealer and get our discounted pricing. 
+
+If you have any questions, or if you would like to receive additional pricing on other tires, please contact me. I look forward to helping you with your tire needs. 
+
+Thank you, 
+
+{!User.Name} 
+The Gold Program 
+Phone- {!User.Phone} 
+{!User.Email} 
+Fax- 866.354.7322 
+After Hours, Weekends, and Road Calls- 1.866.354.7322 Dial 4

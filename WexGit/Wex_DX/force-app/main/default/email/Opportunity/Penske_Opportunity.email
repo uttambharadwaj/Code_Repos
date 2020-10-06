@@ -1,0 +1,49 @@
+Savings Consultant: {!User.Name}
+Savings Consultant contact info: {!User.Email}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+------------------------------------------------------------------------------------
+Equipment Interested in Purchasing:
+
+Number of Trucks: {!Opportunity.Qty_of_trucks_to_purchase__c}
+Number of Tractors: {!Opportunity.Qty_of_tractors_to_purchase__c}
+Number of Trailers: {!Opportunity.Qty_of_trailers_to_purchase__c}
+
+------------------------------------------------------------------------------------
+Truck Specifications:
+
+Make of Trucks: {!Opportunity.Make_of_trucks__c}
+Truck Engine Manufacturer: {!Opportunity.Truck_Engine_Manufacturer__c}
+Number of Axles: {!Opportunity.Number_of_Axles_Truck__c}
+Truck Body Type: {!Opportunity.Truck_body_type__c}
+Truck Body Size: {!Opportunity.Truck_body_size__c}
+
+------------------------------------------------------------------------------------
+Tractor Specifications:
+
+Make of Tractor: {!Opportunity.Make_of_tractors__c}
+Tractor Engine Manufacturer: {!Opportunity.Tractor_Engine_Manufacturer__c}
+Number of Axles: {!Opportunity.Number_of_Axles_Tractor__c}
+Sleeper or Daycab: {!Opportunity.Sleeper_or_Daycab__c}
+
+------------------------------------------------------------------------------------
+Trailer Specifications:
+{!Opportunity.Trailer_Type__c}
+
+------------------------------------------------------------------------------------
+Who makes the purchasing decision? {!Opportunity.Who_makes_the_purchasing_decision__c}
+
+Purchasing Timeframe: {!Opportunity.Purchsing_timeframe__c}
+
+Comments: {!Opportunity.Vendor_Comments__c}

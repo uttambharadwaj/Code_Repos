@@ -1,0 +1,20 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><font face="Verdana, Helvetica, sans-serif" size="2">{!OnlineApplication__c.Contact_Name__c},</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">Thank you for your interest in the WEX Fleet One Fuel Card system. For your convenience, I have included a link to our online application.&nbsp;Please note that the name listed on the Business Service Agreement (BSA) must be&nbsp;<u>exactly</u>&nbsp;the same as the individual whose electronic signature is on the EchoSign.</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></div><font size="2"><font face="Verdana, Helvetica, sans-serif">Please <a href="{!OnlineApplication__c.External_Application_URL__c}">click here</a>&nbsp;and follow the instructions to complete your application process.&nbsp;</font>
+</font><div><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">Again, thank you for your interest in WEX Fleet One.&nbsp; If you have any questions about the application, please do not hesitate to call or email me.&nbsp;&nbsp;&nbsp;</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">Sincerely,&nbsp;</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">{!User.Name}</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">{!User.Title}</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">WEX Fleet One</font></div>
+<div><font face="Verdana, Helvetica, sans-serif" size="2">Phone: &nbsp;{!User.Phone}&nbsp;|&nbsp; Fax: {!User.Fax}</font></div>
+<div><font size="2"><font face="Verdana, Helvetica, sans-serif">{!User.Email} &nbsp;|&nbsp;&nbsp;www.FleetOne.com &nbsp;&nbsp;<br></font><br></font><br></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Gold_Program/GoldPurchaseInstructions_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Auto email/fax that goes out when Gold opportunity=credit card stored/rtb</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Credit Card Stored welcome</name>
+    <style>none</style>
+    <subject>Welcome to The Gold Program, {!Account.Name}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

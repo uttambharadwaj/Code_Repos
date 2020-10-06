@@ -1,0 +1,10 @@
+*** NEW CASE ASSIGNMENT NOTIFICATION ***  
+
+The following case has been assigned to you.  
+Case #:  {!Case.CaseNumber} 
+
+Subject:  {!Case.Subject} 
+Priority: {!Case.Priority}
+Description: {!Case.Description}  
+
+Click on the link to access the case:  {!Case.Link}

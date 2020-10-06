@@ -1,0 +1,7 @@
+Drew,
+
+Opportunity {!Opportunity.Name} owned by {!Opportunity.OwnerFullName} has been changed to {!Opportunity.StageName}
+
+Thanks
+
+WEX Salesforce Integration

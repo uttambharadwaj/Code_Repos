@@ -1,0 +1,18 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<FONT size=1><SPAN style="COLOR: gray; FONT-SIZE: 8pt"><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><FONT size=3 face=Calibri>
+<P><EM>Dear {!Contact.FirstName},</EM></P>
+<P style="MARGIN: 0in 0in 10pt" class=MsoNormal>&nbsp;</P>
+<P style="MARGIN: 0in 0in 10pt" class=MsoNormal>YOUR TEXT HERE</FONT><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p><FONT size=3 face=Calibri>&nbsp;</FONT></o:p></P></SPAN><SPAN style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black">
+<P><EM><BR></EM>&nbsp;</P>
+<P><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><BR><EM>Sincerely, <BR><BR>{!User.FirstName} {!User.LastName} <BR>{!User.Title} <BR>Phone - {!User.Phone}&nbsp; <BR>{!User.Email}&nbsp;<BR></EM></SPAN></SPAN></P>
+<P><EM>&nbsp;</EM></P></SPAN></FONT>
+<P style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class=MsoNormal><FONT size=1><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt"></SPAN></I></FONT>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class=MsoNormal><FONT size=1><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</SPAN></I><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt"></SPAN></I></FONT></P>
+<P style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class=MsoNormal><FONT size=1><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</SPAN></I></FONT></P>
+<P style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class=MsoNormal><FONT size=1><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</SPAN></I></FONT></P>
+<P style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class=MsoNormal><FONT size=1><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</SPAN></I></FONT></P>
+<P style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class=MsoNormal><FONT size=1><I><SPAN style="COLOR: gray; FONT-SIZE: 8pt">This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email},<A href="mailto:info@wexnews.com?subject=Unsubscribe"><SPAN style="COLOR: gray"> <SPAN style="COLOR: rgb(51,51,255)">email us to unsubscribe</SPAN></SPAN></A>. Please be sure to include your name, company name and email address in the email.</SPAN></I></FONT></P><BR>]]></td>
+</tr>
+</table>

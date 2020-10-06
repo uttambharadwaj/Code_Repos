@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>SFDC_Tips_and_Training_for_Fleet_One/FleetOne_PresentationDeck.pptx</attachedDocuments>
+    <available>false</available>
+    <description>test</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>scvAJ&apos;s test</name>
+    <style>freeForm</style>
+    <subject>Hello {!Contact.FirstName}</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

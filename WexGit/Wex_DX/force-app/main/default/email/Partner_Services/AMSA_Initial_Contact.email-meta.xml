@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>AMSA Initial Contact</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AMSA</letterhead>
+    <name>AMSA Initial Contact</name>
+    <style>freeForm</style>
+    <subject>AMSA Fleet Discount Card Program - Member Discounts &amp; Rebates for Fuel, Maintenance and Tires</subject>
+    <textOnly>{!Lead.Salutation} {!Lead.FirstName} {!Lead.LastName}, 
+
+You are in your Peak Season, now is the time to take advantage of these great AMSA membership benefits! 
+
+As an AMSA member, {!Lead.Company} is pre-qualified for the brand new AMSA Fleet Discount Card program that provides you discounts and rebates per gallon on fuel purchases locally and all across North America. 
+
+Accepted Nationwide, the AMSA Fleet Discount cards will give you and edge on being more profitable! 
+
+Fuel, Maintenance, Tire, Check and Contactor Advance programs available. 
+
+Not only will you receive discounts and rebates on fuel purchases with the AMSA Fleet Discount Card, you also gain discounts on Bridgestone / Firestone tires, and Nationwide Discounts on Tractor / Trailer / Straight Truck and Pack Van repair services and OEM parts at National, Regional, Local and Specialty Shops to keep your trucks Moving and Making you Money! 
+
+Don&apos;t let another season slip by without taking advantage of the cost savings opportunities provided to {!Lead.Company} by the American Moving and Storage Association. 
+
+For more information or get signed up and start saving today, please call me at {!User.Phone}. 
+
+Best regards, 
+
+{!User.FirstName} {!User.LastName} 
+AMSA Fleet Discount Card Specialist 
+{!User.CompanyName} 
+Ph:{!User.Phone} 
+Fx:{!User.Fax} 
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

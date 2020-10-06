@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to use when the customer needs to send in their DL.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>Approved - Need DL for Credit</name>
+    <style>freeForm</style>
+    <subject>Fleet One Fuel Card Application - Received - Need Driver&apos;s License</subject>
+    <textOnly>{!Contact.Name},
+
+
+Thank you for applying for our Fleet One Edge Fuel Card Program!
+
+We have received your application, but our credit department has requested a copy of your driver’s license in order to finish processing your application.
+
+
+
+Please send a picture (taken with your phone is ok) of your driver&apos;s license directly back to me via email at your earliest convenience.
+
+
+Thanks!
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Office (615) 523-6496 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

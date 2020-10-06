@@ -1,0 +1,76 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:12.0pt;line-height:normal">Congratulations! Your ExxonMobil Business Fleet Card account has been
+approved.<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">As the next step, please take a few
+moments to complete the attached form, following the steps below:<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">Recommended Program Setup:<o:p></o:p></p><p class="MsoListParagraphCxSpFirst" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><ul><li>Drivers IDs (or PIN #s) are linked to
+employees/drivers</li><li>Fuel Cards are linked to vehicles</li><li><b style="font-size: 12pt;">Any</b><span style="font-size: 12pt;">&nbsp;driver can use his/her Driver ID number
+on&nbsp;</span><b style="font-size: 12pt;">any</b><span style="font-size: 12pt;">&nbsp;card on your account</span></li></ul><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><o:p></o:p></p><p class="MsoListParagraphCxSpLast" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">Information needed on the Fleet Card
+Information Form:<o:p></o:p></p><p class="MsoListParagraphCxSpFirst" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><ul><li>Please choose&nbsp;<b style="font-size: 12pt;"><u>ONE</u></b><span style="font-size: 12pt;">&nbsp;field
+that you would like to have appear on the second line of your card, beneath
+your company name</span></li><li>Vehicle description&nbsp;<b style="font-size: 12pt;">or</b></li><li>License plate number&nbsp;<b style="font-size: 12pt;">or</b></li><li>Unit number</li><li>Leave the rest of the fields on the
+bottom portion of the form blank</li></ul><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><o:p></o:p></p><p class="MsoListParagraphCxSpLast" style="margin-top:0in;margin-right:0in;
+margin-bottom:6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">Driver Information:<o:p></o:p></p><p class="MsoListParagraph" style="margin-top:0in;margin-right:0in;margin-bottom:
+6.0pt;margin-left:0in;mso-add-space:auto;line-height:normal"><ul><li>Please provide a list of your driver
+names along with a separate four- or six-digit Driver ID number for each
+driver. If you prefer for us to assign the Driver ID number(s), just leave that
+section blank.</li></ul><o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">Please either scan/email the completed
+form to me at the email address noted below or fax it to {!User.Fax} at your
+earliest convenience. <o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">Once I receive this information, I will
+be in touch to review the account set-up with you before issuing your cards.<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">If you need help filling out the form, please
+watch our 5 minute informational video. <span class="MsoHyperlink"><a href="http://www.wexcard.com/tutorial">http://www.wexcard.com/tutorial</a></span> <o:p></o:p></p><p class="MsoNormal" style="margin-bottom:6.0pt;line-height:normal">Feel free to give me a call if you have any questions.<o:p></o:p></p><p style="margin-left:.25in">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-top:5.0pt;margin-right:0in;margin-bottom:12.0pt;
+margin-left:0in;line-height:normal">Sincerely,&nbsp;<br>
+<i><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}<br>
+{!User.Email}<o:p></o:p></i></p><font face="Arial,Sans-Serif"></font>]]></td>
+</tr>
+</table>

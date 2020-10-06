@@ -1,0 +1,9 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P><SPAN style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 10pt">This month marks your anniversary as a valued WEX Fleet One cardholder, and we wanted to mark the occasion with a sincere “Thank You” for your loyalty. It is our goal to make EVERY cardholder a LIFETIME cardholder. <?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><BR>REMINDER: Our Customer Care department is always open and here for you at 800.359.7587, if you have any questions or if you need a little help along your route. <o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 10pt"><BR>Thank you for allowing us to meet your fleet management needs. It is our sincere pleasure to do business with {!Account.Name}.<o:p></o:p></SPAN></P>
+<P>&nbsp;</P>]]></td>
+</tr>
+</table>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Quick recap after speaking to a prospect.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>CALL OUT DAY NEW - Phone Conversation</name>
+    <style>freeForm</style>
+    <subject>WEX (per our conversation)</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks for taking my call today, I enjoyed the opportunity to speak with you. I’m sure you’re familiar with WEX, but we’ve evolved since we first created the fleet card market back in 1983.
+
+
+We now service over 9.7 million vehicles, have a telematics business, and a suite of B2B payment solutions. My fleet customers have leveraged some of our new innovations to help their business’ save time and money. Here are a few of the top ones:
+
+
+· http://www.wexinc.com/wex-mobile/octane-fuel-finder-app
+· http://www.wexinc.com/fleet-operators-and-managers/gps-vehicle-tracking
+· http://www.wexinc.com/wex-fleet-management-demo
+
+
+I realize that you probably get lots of calls from vendors that want your business. Anyone can claim to be better, but you should demand the proof to back it up. Our customers are loyal, which is why we have an extremely low attrition rate. See what our customers are saying about us on You Tube: http://www.youtube.com/watch?v=6TJn_lCobhc
+
+
+I’m confident that your current fleet card provider can’t bring you the breadth of tools that we can. If you have 30 minutes, we&apos;d like to meet face to face and discuss what WEX can do for your business.
+
+
+I will be following up with you next week. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to meeting with you about the needs of your business.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template to send to LKQ locations to have BSA completed and returned</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>LKQ Corp - Bridgestone</name>
+    <style>none</style>
+    <subject>Bridgestone Account for your location - Please add information and return asap</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

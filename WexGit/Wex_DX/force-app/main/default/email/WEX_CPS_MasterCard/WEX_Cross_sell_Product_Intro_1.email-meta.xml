@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_MasterCard/AP_Direct_1pg_Benefits_Overview1.pdf</attachedDocuments>
+    <attachedDocuments>WEX_MasterCard/Purchase_Log_1pg_Benefits_Overview.pdf</attachedDocuments>
+    <available>true</available>
+    <description>WEX Payment Solutions Introduction for existing WEX universal fleet customers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>WEX Cross-sell Intro#1</name>
+    <style>freeForm</style>
+    <subject>Wright Express Solutions -- Beyond Your Fleet Account</subject>
+    <textOnly>Turn Accounts Payable into a Profit Center
+
+Dear {!Contact.FirstName},
+
+Your company already saves every day with the Wright Express Universal Card, one of the most successful fleet card programs around.
+ 
+Now you can drive even greater savings in your Finance department—even earn extra revenue — with our electronic payment solutions. For over 28 years, Wright Express has helped businesses like yours make an easy transition to ePayments. Our best-in-class solutions make it easy to streamline operations and reduce processing costs.
+ 
+AP Direct — The easiest way to generate a new revenue stream.
+Replacing paper checks with ePayments improves your working capital and increases the efficiency of your A/P team. Receive cash back as a percentage of payments in the form of revenue sharing. Start turning payments into profits!
+
+Purchase Log — We’ve simplified complex payment transactions. Eliminate overcharges, unexplained charges and charges without approvals. Enjoy streamlined controls for reviewing and approving payments and 100% reconciliation for each payment transaction. Perfect for on-the-spot maintenance and repairs!
+ 
+Both solutions communicate easily with your existing ERP system and have NO up-front purchasing costs or licensing fees. A dedicated Wright Express team works with you every step of the way to ensure a smooth, successful transition to ePayments. We even take the lead in signing up your vendors.
+ 
+I will follow up with a phone call to see about scheduling an initial discovery session.  In the meantime, please do not hesitate to contact me with questions.
+
+Sincerely, {!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com/ePayables
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

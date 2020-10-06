@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>*RaceTrac Email Templates IS</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>InsideSales</group>
+        <group>InsideSalesDataEntry</group>
+        <group>InsideSalesManager</group>
+        <group>RaceTrac_Sales_Group</group>
+        <group>Racetrac_Partners</group>
+        <portalRoleAndSubordinates>RaceTracPartnerManager</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>RaceTracPartnerUser</portalRoleAndSubordinates>
+        <role>Fleet_Outbound_Channel_Sales</role>
+        <role>Fleet_Outbound_Channel_Sales_2</role>
+        <role>Fleet_Outbound_Channel_Sales_3</role>
+        <role>Fleet_Outbound_Channel_Sales_STL</role>
+        <role>Fleet_Outbound_Channel_Sales_TL</role>
+        <role>ISSalesRep</role>
+        <role>Outbound_Channel_Marketing</role>
+        <role>Product_Manager</role>
+        <role>VP_Customer_Acquisitions</role>
+    </sharedTo>
+</EmailFolder>

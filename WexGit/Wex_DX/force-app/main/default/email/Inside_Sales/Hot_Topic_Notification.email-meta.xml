@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Hot Topic Notification</name>
+    <style>none</style>
+    <subject>Hot Topic Alert</subject>
+    <textOnly>Knowledge Users, A new issue has been validated in Client Service Operations (CSO) that  may or may not apply to you, your department, and your customers. To view details, go to &quot;Articles&quot; tab in Salesforce. Thank you, KB Editors</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

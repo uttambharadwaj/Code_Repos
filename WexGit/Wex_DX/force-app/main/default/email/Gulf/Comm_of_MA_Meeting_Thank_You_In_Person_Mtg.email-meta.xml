@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send after you&apos;ve met in person with a prospective customer; FOLLOW-UP ON APP.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Comm_of_MA1</letterhead>
+    <name>RSM: Comm of MA - Meeting Thank-You (In-Person Mtg)</name>
+    <style>freeForm</style>
+    <subject>Thank you for our meeting re: the Comm of MA Fleet Program.</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks again for your interest in the Commonwealth of MA Fleet Fueling Program, and for taking the time to meet with me.
+
+I think you’ll find the Commonwealth Fleet Fueling Program an ideal solution for your business, helping you more cost-effectively manage your fleet of vehicles. Whether you’re looking for a fleet card program with robust rebates or nationwide card acceptance, a Commonwealth of MA Fleet Card is an extremely powerful tool.
+
+As we discussed, our Program also includes a suite of online tools to help you save hours of administrative time and significantly drive down your fleet costs, including:
+
+· Powerful Reporting. Know who bought what, when, where and for how much available in hard copy and online.
+
+· Broad Acceptance. Fuel and save at more than 2,300 Gulf sites nationwide, with card acceptance at over 90% of all U.S. fueling locations with the Commonwealth of MA Universal Fleet Card.
+
+· Purchase Controls. Help eliminate any misuse of company vehicles by setting purchase limits for each driver, with purchase alerts to keep you well informed.
+
+· Live U.S.-based Customer Service. Award-winning customer assistance for you and your drivers 24/7.
+
+
+As you review our Program information, and complete the application, feel free to contact me with any questions at all. I’ll also plan to follow up with you soon.
+
+
+Thanks again for your time. We’ll look forward to working with you.
+
+
+Toni Clemens
+Regional Sales Manager – New England and New York
+Gulf Fleet Card Program ▪ WEX Inc.
+Hartford, CT
+Office/Cell: (203) 233-0349
+Fax: (207) 791-1618
+Email: toni.clemens@wexinc.com
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Gulf Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

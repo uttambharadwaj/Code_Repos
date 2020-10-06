@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X25_for_4</letterhead>
+    <name>Follow Up from Call .25/4</name>
+    <style>freeForm</style>
+    <subject>Following up on our call</subject>
+    <textOnly>Thanks for taking my call today; I enjoyed the opportunity to speak with you about your business. I know you will find that our ExxonMobil Fleet card program is a great tool to help you save money and time.
+
+
+Savings
+
+Not only will you receive an attractive promotional rebate upon signing up, you’ll also save up to 6 cents per gallon* after your promotional period has ended
+No set up, monthly or annual fees
+Plus you can use the free loyalty program Plenti to help you reward and retain your drivers
+
+Convenience &amp; Control
+
+Accepted at nearly 11,000 Exxon- and Mobil-branded stations nationwide
+Easy online controls so you can set spending limits and monitor driver behavior
+Smart phone app to make managing your program while on the go even easier
+
+I will be following up with you next week.  In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to helping you meet the needs of your business.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

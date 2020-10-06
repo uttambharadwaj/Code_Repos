@@ -1,0 +1,75 @@
+<html>
+<head>
+</head>
+<body style="background-color: #e2e3e4">
+  <table border="0" cellspacing="0" cellpadding="0" align="center">
+    <tbody>
+        <tr>
+            <td valign="top" style="color:#666666;font-family: Arial, sans-serif ;font-size:12px; -webkit-text-size-adjust: none; line-height: 16px;padding-bottom: 8px;" width="600">Hello {!Contact.FirstName},<br>
+                <br>
+                Many of our current customers have found value in keeping tuned in to industry trends. I thought you might find this interesting.<br>
+                <br>
+                Let me know if you have any questions.<br>
+                {!User.Name} | Phone: {!User.Phone} | Email: {!User.Email}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table width="600" align="center" bgcolor="#ffffff">
+    <tr>
+      <td>
+        <img src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{c7c5ce49-24d8-4838-958e-0ee1ca69cfd6}_banner.jpg" alt="WEX Fleet"></td>
+      </tr>
+    <tr>
+      <td style="height:25px;background-color:#32819b"></td>
+      </tr>
+    <tr>
+      <td style="font-family:arial,sans-serif;color:#333333;font-size:24px;text-align:center">Fleet management best practices<br>can help optimize your fleet.</td>
+      </tr>
+    <tr>
+      <td><img src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{90236ab1-abf2-47ef-a147-e4b2a3288440}_img1.jpg" alt="Pre-Implementation, Implementation, Post-Implementation"></td>
+      </tr>
+    <tr>
+      <td>
+        <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff">
+            <tr>
+              <td width="300" style="color:#ee1118;font-size:16px;font-family:arial,sans-serif;padding-left:40px;">Customer Testimonial<br>
+                <a href="https://www.youtube.com/watch?v=fk0WguUhJyE"><img src="http://images.response.wexinc.com/EloquaImages/clients/WrightExpressCorporation/{7fb633c7-552e-4327-ac6f-028663d97430}_video.jpg" alt="Customer Testimonial Video" style="border:none"></a></td>
+              <td width="280">
+                
+                <table align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff">
+                  <tr>
+                    <td style="font-family:arial,sans-serif;color:#333333;font-size:14px;padding-bottom: 15px;">Download The Fleet Manager’s Handbook whitepaper to learn more about fleet industry best practices.</td>
+                
+                  </tr>
+                  <tr>
+                    <td>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                        <tr>
+                          <td>
+                            <table border="0" cellspacing="0" cellpadding="0" align="left">
+                              <tr>
+                                <td align="center" style="-webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px;" bgcolor="#fec524">
+                                  <a href="http://images.response.wexinc.com/Web/WrightExpressCorporation/{9989e33a-6489-4af2-94d2-ec9da21db5ca}_FleetMgrHandbook_WhitePaper_web.pdf" target="_blank" style="font-size: 24px; font-family: Arial, sans-serif; color: #333333; text-decoration: none; -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; padding: 8px 18px; border: 1px solid #333333; display: inline-block;"><!--[if mso]>&nbsp;<![endif]-->Download Now &#9654;<!--[if mso]>&nbsp;<![endif]--></a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              
+              
+
+            </td>
+              <td width="20"></td></tr>
+        </table>
+
+    </td></tr>
+    <tr><td>&nbsp;</td></tr>
+    
+</table>
+</body>
+</html>

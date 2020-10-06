@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/WEX_App_Millennium_docx.docx</attachedDocuments>
+    <available>true</available>
+    <description>Prospect interested in controls and preventing misuse. App &amp; info Attached (WOLNP Millennium WEX Small Business)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX App Control Misuse</name>
+    <style>freeForm</style>
+    <subject>WEX - Take Control Of Your Vehicles</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+
+Thank you for your interest in the WEX Fuel Card program. As we discussed, we offer several levels of control over your fueling activity to help you prevent potential misuse.
+
+Our WEX Fuel Card program allows you to set a range of controls over when, where, what and how much your drivers can purchase. You simply establish your set of rules for each driver and the card will be rejected if a driver attempts to purchase outside of your guidelines.
+
+
+Additionally, our Purchase Alerts keep a close watch on your purchases - both fuel and service (where applicable). Utilize Purchase Alerts to start receiving email notification when a card violates one of your preset guidelines.
+
+
+To view more detail about WEX’s industry best controls, visit www.wexinc.com/fleet-operators-and-managers/fleet-cards.
+
+
+It’s easy to enroll. Simply complete the attached application form and fax it back to me at {!User.Fax}.
+
+
+Meanwhile, please call me with any questions.
+
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

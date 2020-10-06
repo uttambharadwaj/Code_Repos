@@ -1,0 +1,5 @@
+{!Receiving_User.Name},
+
+A new lead has been assigned to the Short App Queue.  Please follow the link to access it adn assign it to a sales rep.
+
+{!Lead.Link}

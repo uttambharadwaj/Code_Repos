@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Truckers_Advantage</letterhead>
+    <name>Welcome Email for Trevor</name>
+    <style>formalLetter</style>
+    <subject>Welcome email</subject>
+    <textOnly>Welcome to The Truckers Advantage Fuel Card; the only fuel card designed exclusively for OOIDA members!
+
+You will soon receive an email with instructions detailing how to use your card(s), and set up your eManager Portal and mobile device app. Your cards will arrive within two days, following receipt of the instruction email.
+
+You can also visit: https://www.fleetonesupport.com/ and view the ‘how to setup your new card’ tutorial. If you have any questions, please feel free to reach out to customer support at 1-800-359-7587.
+
+The Truckers Advantage Fuel Card is issued by Wex Bank®, (Member, FDIC).</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

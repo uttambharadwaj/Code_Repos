@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>FTS Fuel Card Not Using</name>
+    <style>freeForm</style>
+    <subject>EFS/FTS Fuel Card Inactivity</subject>
+    <textOnly>{!Contact.FirstName},
+
+Although you received your FTS fuel cards for account number {!Account.FTS_Account_Number__c}, and may or may not have activated them, we noticed you are not fueling with that billing card any longer.
+
+As a reminder, the FTS fuel card gives you access to premium fuel discounts at more than 1,900 locations nationwide, including all major chains - Pilot, Flying J, Love&apos;s and TA/Petro.  It also includes discounts at Kangaroo, Speedway, Wilco Hess, Ambest, Sapp Brothers, Quick Fuel, KwikTrip, and more.   For small and medium sized trucking companies, the FTS discount program is an open door to lower fuel costs and purchasing fees, keeping drivers satisfied, and most importantly- improving your bottom line.
+
+If you need assistance with your FTS fuel card account, such as funding or activating the card, please call an Implementation Specialist at 800-749-1724, ext 1.
+
+If you have no plans of using the FTS fuel card, I would still love to hear from you to see if we can perhaps still help you with fuel savings through another program we offer that works with Comdata, EFS/TCH/T-Chek, and Fleet One fuel cards.
+
+I look forward to hearing from you.
+
+Thank you,
+
+FTS Fuel Specialist
+800-749-1724, ext. 2
+
+
+To see all the FTS Plus+ benefits, visit ftsplus.com.
+
+As an FTS card holder, you are also automatically enrolled in FTS Plus+, a free benefits program that provides savings on everything needed to run your business, including new and used trucks, tires, maintenance, wireless services and so much more. The savings go right back on your fuel card.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

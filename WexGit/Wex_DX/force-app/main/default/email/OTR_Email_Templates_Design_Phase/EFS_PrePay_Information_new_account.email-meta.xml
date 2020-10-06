@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>EFS - PrePay Information for new account</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Logo_Letterhead</letterhead>
+    <name>EFS - PrePay Information (new account)</name>
+    <style>formalLetter</style>
+    <subject>EFS Application - Next Step: Pre-funding your account!</subject>
+    <textOnly>Greetings,
+Company Name: {!Account.Name}
+
+
+Company Authorized Contact: {!Contact.Full_Name__c}
+
+
+
+
+The next step is your initial payment of $500 minimum to fund and establish your EFS account. This payment must be made via bank wire or the Automated Clearing House (ACH) Network. Please note, this payment is required in order to establish and fund the new EFS account.
+
+
+Below are the instructions for sending bank wire/ACH payments:
+
+
+Bank Name:  Fifth Third Bank
+
+38 Fountain Square
+
+Cincinnati, OH 45263
+
+
+Account Name:  WEX BANK
+
+1104 Country Hills Drive
+
+Ogden, Utah 84403
+
+
+Account Number:  7361767473
+
+
+Wire Routing Number:  042000314
+
+ACH Routing Number:  064103833
+
+
+Please note that Fifth Third uses different routing number for wires and ACH. If the incorrect routing number is used, the payment will be rejected by the bank.
+
+
+Please make sure to include your Application # {!Opportunity.NAT_Number__c} in the payment remittance information (&quot;OBI Fields&quot;). We cannot apply your payment without this information. Please follow the example illustrated below:
+
+
+
+OBI Line 1: {!Opportunity.NAT_Number__c}
+
+
+
+
+
+If you have any questions, please let me know.
+
+
+
+Kind Regards,
+{!User.Name}
+
+{!User.Title}
+
+Fleet One, LLC
+
+Phone: {!User.Phone}
+
+Fax: {!User.Fax}
+
+Email: KHaywood@FleetOne.com
+www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

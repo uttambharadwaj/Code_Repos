@@ -1,0 +1,27 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<span style="background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif" style="" size="2">{!Contact.Salutation} {!Contact.LastName},&nbsp;</font></span>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">Hello,<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><br></font></p>
+
+<p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><span style="background: white;"><font face="Verdana, Helvetica, sans-serif" size="2">With fuel prices trending up, it becomes even more important
+to find cost-saving opportunities which can help absorb the impact. WEX is at
+the intersection of payments, data and technology, and we offer a variety of
+solutions specifically designed to reduce fuel spend and cut operating costs.<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><span style="background: white;"><font face="Verdana, Helvetica, sans-serif" size="2">One starting point is considering using the mobile app called
+WEX Connect. See attached flyer. Would you have interest in a half-hour meeting
+with me, as your WEX representative, to discuss how we can benefit your organization?
+If so, can you please provide some dates and times that would be good for you
+in the next 2-3 week period? <o:p></o:p></font></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><span style="background: white;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></span></p>
+
+<p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><span style="background: white;"><font face="Verdana, Helvetica, sans-serif" size="2">Thank you!<o:p></o:p></font></span></p><br><div style=""><p style=""><font size="2" face="Verdana,Helvetica,Sans-Serif" style="">Sincerely,&nbsp;<br><br>{!User.FirstName} {!User.LastName}&nbsp;<br></font></p><p style=""><font face="Verdana, Helvetica, sans-serif" style=""><font size="2" style="">{!User.Title}&nbsp;<br>Phone - {!User.Phone}&nbsp;<br>{!User.Email}&nbsp;<br><br></font><a href="http://www.wexinc.com/" style=""><font size="2" style="">http://www.wexinc.com/</font></a></font></p></div>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[]]></td>
+</tr>
+</table>

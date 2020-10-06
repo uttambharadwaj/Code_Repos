@@ -1,0 +1,20 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Telephone: {!Account.Phone}
+Contact phone: {!Contact.Phone}
+{!Contact.Email}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Do you perform maintenance on any your vehicles or do you use a 3rd party?: {!Opportunity.Self_vehicle_maintenance_or_3rd_party__c}
+Do you have your own maintenance shop?: {!Opportunity.Do_you_have_your_own_maintenance_shop__c}
+Are you purchasing any parts/components for your vehicles from a 3rd party?: {!Opportunity.Buying_parts_from_a_3rd_party__c}
+
+Comments: {!Opportunity.Vendor_Comments__c}

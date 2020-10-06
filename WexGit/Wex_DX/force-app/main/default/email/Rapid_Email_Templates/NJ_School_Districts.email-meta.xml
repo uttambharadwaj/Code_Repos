@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>rapid_PayCard_Letterhead</letterhead>
+    <name>NJ School Districts</name>
+    <style>freeForm</style>
+    <subject>Direct Deposit and ePayroll Initiative</subject>
+    <textOnly>July 1, 2014
+
+
+What is significant about this date?  This is the day that Assembly Bill No.720 goes into effect and you will be able to mandate direct deposit for all employee compensation.
+
+
+In 2013, the Federal Government chose to go paperless eliminating all Federal Benefits, SSI, and Income Tax checks for an estimated 1 Billion dollars in savings over the next few years!
+
+
+Not only does being 100% direct deposit have many benefits for the employer, but offering a pay card has many benefits for the employees as well.
+
+
+With the WEX rapid! PayCard program you will be able to offer a FREE employee benefit. There is absolutely no cost to you the employer and pratically nothing for the employee as well.  In some cases it is even cheaper than traditional banking!
+
+
+WEX Inc was founded almost 40 years ago. We are a publically owned company traded on the NYSE as WEX. We are a leading provider of physical, digital and virtual payment card solutions.
+
+
+WEX rapid PayCard services over 20 Public (County and District) school systems throughout the US. The 8th largest school district, Hillsbourough County Public Schools, has been a big advocate of ours for years (See attached document.)
+
+
+I would greatly appreaciate the opportunity to answer your questions and explain more!
+If there is a more appropriate person that I should talk to please forward them this email, or respond to me whom I should speak with.
+
+
+
+Thank You,
+
+
+Art Kimball&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+&lt;?xml:namespace prefix = v ns = &quot;urn:schemas-microsoft-com:vml&quot; /&gt;
+
+T: 813-344-2894 • F: 727-828-4444 • C: 813-714-3716
+
+E: arthur.kimball@wexinc.com
+
+W: www.wexinc.com • www.rapidpaycard.com
+
+LindedIn: http://www.linkedin.com/pub/art-kimball/54/aa/58
+
+
+SEE WHAT OUR CUSTOMER&apos;S ARE SAYING ABOUT US!!
+
+
+
+
+The &quot;Earth&quot; without &quot;Art&quot; is just &quot;Eh&quot;.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

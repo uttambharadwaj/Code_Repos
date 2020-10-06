@@ -1,0 +1,49 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Times New Roman" style="font-size: 12pt; font-family: arial;">
+
+</font><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif" style="">Dear
+{!Contact.FirstName},<br><br><o:p></o:p></font></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Thank you
+for applying for our fuel card program!<br><br><o:p></o:p></font></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Before we
+are able to process your application, we need you to fill out the attached <b>Personal Guaranty</b> form.<br><br><o:p></o:p></font></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Once
+completed, you can either scan and email the document to me at the email
+address noted below, or if you prefer, fax it directly to <span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+background:white">me at {!User.Fax}. &nbsp;<br><br><o:p></o:p></span></font></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">Feel free to give me a call at
+{!User.Phone} if you have any questions.<o:p></o:p></font></p><p class="MsoNormal" style=""><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;background:white"><font face="Times New Roman, Times, serif">Sincerely,<br>
+<br>
+{!User.FirstName} {!User.LastName}<br>
+{!User.Title}<br>
+Phone - {!User.Phone}<br>
+Fax - {!User.Fax}<br>
+{!User.Email}<br><font size="1"><br><o:p></o:p></font></font></span></p><p class="MsoNormal" style=""><font face="Times New Roman, Times, serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:Arial;color:gray">CONFIDENTIALITY NOTICE: "This
+message contains confidential information of WEX Inc. It is intended only for
+the use of the designated recipient(s) stated above and further distribution of
+the information is prohibited. If you have received this message in error,
+please notify sender immediately by telephone or reply by e-mail and delete the
+entire message and any attachments."</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></font></p><p style="margin: 0in 0in 0pt; line-height: normal;" class="MsoNormal">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><i style=""><span style="color: gray;"><font face="Times New Roman, Times, serif" style="" size="1">This is an advertisement from WEX Inc. If you no longer wish to
+receive future email advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</font><font face="arial" style="font-size: 12pt;"><o:p></o:p></font></span></i></p><font face="Times New Roman" style="font-size: 12pt; font-family: arial;">
+
+</font>]]></td>
+</tr>
+</table>

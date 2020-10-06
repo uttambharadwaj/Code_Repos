@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Gold_Program/GoldOverview_XPO_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>use for workflow rule to remind fleets earning discounts from us</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>XPO Post Fuel Card Sale Follow Up</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name} XPO Fuel Card</subject>
+    <textOnly>{!Contact.FirstName},
+
+By now you should be on the road to savings with your XPO fuel card. To increase the savings, be sure to check out the XPO Savings Locations in the link below:
+
+https://www.google.com/url?hl=en&amp;q=https://www.google.com/maps/d/viewer?mid%3D16RVAUoO7ZYWwgrFNsujHoXQleXg%26ll%3D35.0414511172241%252C-83.39113483818355%26z%3D7&amp;source=gmail&amp;ust=1526003561713000&amp;usg=AFQjCNGwCcG6Ow3z27lTuCuQRTIwFAPuoQ
+
+
+In addition to the fuel savings, I thought you might also be interested in our national account tire program which provides you with your own negotiated pricing for your over-the-road needs as well as your local stock purchases. Brands include Michelin, Goodyear, Continental, Yokohama, Cooper, and Oliver. More information is attached.
+
+We value your business. If you have any questions, please do not hesitate to call us at 800-749-1724 for customer service.
+
+Thank you,
+Marti Watson
+Relationship Manager, EFS
+Phone: 901-474-0825 | F: 801-624-3049
+marti.watson@efsllc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,27 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font size="2" face="Verdana, Helvetica, sans-serif">Dear {!Contact.FirstName},<br><br>
+<p><span style="color: black;">Per my voice mail, I wanted to give you an overview of WEX. I’m sure you’re familiar with WEX, but we’ve evolved since we first created the fleet card market back in 1983.</span><span style="color: black;"><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></span></p>
+<p><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p><span style="color: black;">We now service over 10.3 million vehicles. Our fleet customers have leveraged some of our new innovations to help their business’ save time and money. Here are a few of the top ones:<o:p></o:p></span></p>
+<p><span style="color: black;"><o:p>&nbsp;</o:p></span></p><p style="text-indent: -0.25in; margin-left: 0.5in;"><font size="2">·&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.wexinc.com/wex-mobile/octane-fuel-finder-app" style="text-indent: -0.25in;">http://www.wexinc.com/wex-mobile/octane-fuel-finder-app</a></font></p><p style="text-indent: -0.25in; margin-left: 0.5in;"><font size="2"><br></font></p><p class="MsoNormal"><span style="color: rgb(31, 73, 125);"><o:p></o:p></span></p><font size="2"><p style="text-indent: -0.25in; margin-left: 0.5in;">·&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://www.wexinc.com/fleet-operators-and-managers/gps-vehicle-tracking">http://www.wexinc.com/fleet-operators-and-managers/gps-vehicle-tracking</a></p><p style="text-indent: -0.25in; margin-left: 0.5in;"><br></p></font><p class="MsoNormal"><span style="color: rgb(31, 73, 125);"><o:p></o:p></span></p><font size="2"><p style="text-indent: -0.25in; margin-left: 0.5in;">·&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b></b><a href="http://www.wexinc.com/wex-fleet-management-demo">http://www.wexinc.com/wex-fleet-management-demo</a></p></font>
+<p><span style="color: black;"><o:p>&nbsp;</o:p></span></p></font><p><font face="Verdana, Helvetica, sans-serif" size="2"><o:p></o:p></font></p><font size="2"><font face="Verdana, Helvetica, sans-serif">
+</font><p></p><p><font face="Verdana, Helvetica, sans-serif">Our call center recently ranked #20 in Top 100 US Call
+Center study, and my new customers coming from competitors have raved about the
+difference.</font></p><p><font face="Verdana, Helvetica, sans-serif"><br><o:p></o:p></font></p>
+
+<font face="Verdana, Helvetica, sans-serif"><u1:p></u1:p></font><p></p>
+<p><font face="Verdana,Helvetica,Sans-Serif"><span style="color: black;">I’m confident that your current fleet card provider can’t bring you the breadth of tools that we can. If you have 20 minutes, I'd like to meet face to face and discuss what <font face="Verdana,Helvetica,Sans-Serif">WEX</font> can do for your business.</span><span style="color: black;"><o:p></o:p></span></font></p>
+<p><span style="color: black;"><o:p><font face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></o:p></span></p>
+<p><font face="Verdana,Helvetica,Sans-Serif"><span style="color: black;">I will&nbsp;be following up with you next week. In the meantime, you can&nbsp;reach&nbsp;me at {!User.Phone} or via email at {!User.Email}.</span><span style="color: black;"><o:p></o:p></span></font></p>
+<p><span style="color: black;"><o:p><font face="Verdana,Helvetica,Sans-Serif">&nbsp;</font></o:p></span></p>
+<p><font face="Verdana,Helvetica,Sans-Serif"><span style="color: black;">I&nbsp;look forward to&nbsp;meeting with you about the needs of your business.</span><span style="color: black;"><o:p></o:p></span></font></p>
+<p><font face="Verdana,Helvetica,Sans-Serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+<p><font face="Verdana,Helvetica,Sans-Serif"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+<p><font face="Verdana,Helvetica,Sans-Serif"><span style="color: black;">Sincerely,<br><br>{!User.FirstName} {!User.LastName}<br>{!User.Title}<br>Phone: {!User.Phone} <br>Email: {!User.Email} </span><span style="font-size: 12pt; font-family: Arial, sans-serif; color: black;"><o:p></o:p></span></font></p></font>
+<p style="font-size: 12pt; font-family: Arial, sans-serif;" class="MsoNormal"><font size="2"><br><font face="Verdana,Helvetica,Sans-Serif"></font></font></p>
+<p style="font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><font face="Verdana,Helvetica,Sans-Serif"><i><span style="COLOR: gray; FONT-SIZE: 8pt">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</span></i><i><span style="COLOR: gray; FONT-SIZE: 8pt"></span></i></font></font></p>
+<p style="font-size: 12pt; font-family: Arial, sans-serif; margin: 0in 0in 0pt;" class="MsoNormal"><font face="Verdana,Helvetica,Sans-Serif" size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</span></i></font></p>]]></td>
+</tr>
+</table>

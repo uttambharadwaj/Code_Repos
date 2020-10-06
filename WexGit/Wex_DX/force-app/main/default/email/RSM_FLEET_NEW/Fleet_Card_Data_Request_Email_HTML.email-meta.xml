@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up for fleet data after app is approved.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_CPS</letterhead>
+    <name>Fleet - Fleet Data Request</name>
+    <style>freeForm</style>
+    <subject>WEX Universal Fleet Card Account Set Up</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+
+Congratulations, your WEX account has been approved.
+
+
+Before your account can be setup, I will need your driver and vehicle information. Please fill out and email the attached Fleet Information Form back to me as soon as possible. The Customer Vehicle ID information you provide will appear on the second line of your cards, under your company name.
+
+
+A card will be assigned to each vehicle you list. You can provide Driver ID numbers on the form, or you can let our computer assign them.  Each Driver’s ID will work with any of your vehicle cards.
+
+
+
+Again, congratulations on your new WEX account. I look forward to helping you run your business more efficiently. Please feel free to contact me with any questions.
+
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+www.wexinc.com
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

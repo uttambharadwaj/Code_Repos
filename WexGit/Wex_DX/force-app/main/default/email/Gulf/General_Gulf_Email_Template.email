@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">&nbsp;{!Contact.FirstName}</p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">&nbsp;</p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">&nbsp;</p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial"><span style="font-size: 16px;">{!User.Name}</span></font></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial"><span style="font-size: 16px;">{!User.Title}</span></font></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial"><span style="font-size: 16px;">{!User.Phone}|{!User.MobilePhone}</span></font></p><p><font face="arial"><span style="font-size: 16px;">{!User.Email}</span></font></p>]]></td>
+</tr>
+</table>

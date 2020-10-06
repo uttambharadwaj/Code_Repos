@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><div><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif"><font style="color: rgb(0, 0, 0);">Hi&nbsp;</font>{!Case.User__c},<br><br><font>Please review the attached&nbsp;Assessment and Instructor Evaluation&nbsp;from Sales Onboarding for&nbsp;</font><font>{!Case.Onboarding_Participant__c}</font><font>&nbsp;in preparation for our call scheduled on&nbsp;</font><font>{!Case.MGR_Post_Call_Date__c}.<br><br></font>Thank You,</font></p></div><div style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">{!Case.OwnerFullName}</font><font face="Arial, sans-serif" style="color: rgb(0, 0, 0);">&nbsp;</font></div><div style="color: rgb(0, 0, 0); text-align: left;"><font face="Arial, sans-serif">WEX Global Sales Training</font></div></div><div style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"></div>]]></td>
+</tr>
+</table>

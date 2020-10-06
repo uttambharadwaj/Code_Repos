@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>A quick note to inquire about no activation on a fleet.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_CPS</letterhead>
+    <name>Fleet Activation Email</name>
+    <style>freeForm</style>
+    <subject>Following up on your WEX Fleet Card Account</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+
+I hope this message finds you well.
+
+
+I just wanted to check in with you as my latest report shows you have not begun to use your WEX Universal Fleet Cards. Is there something that I can do to help facilitate roll out of the program to your fleet drivers?  As I am sure you are aware, having inactive cards put’s your fleet at risk for fraud.  Additionally, you aren’t able to take advantage of all the cost savings and valuable tools you signed up for!
+
+My main priority is your satisfaction. If there is a problem with the cards or if you have questions about the program itself, please call me directly anytime at {!User.Phone}. I am more than happy to assist you in any way I can.
+
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+http://www.wexinc.com/
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

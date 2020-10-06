@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Mapco_Letterhead</letterhead>
+    <name>Mapco</name>
+    <style>freeForm</style>
+    <subject>Info on the Mapco fuel card!</subject>
+    <textOnly>Thank you for your interest in our Mapco fuel card, where we will give you 4¢ off every Mapco gallon!  Plus, if you scan your Mapco rewards card at the pump, you will get an additional 3¢ off every Mapco gallon! 
+
+We offer both a private label card, as well as a universal card. 
+
+Our Fleet Advantage private label card is good at Mapco stations only and is a free service. 
+
+The Fleet Advantage Universal card is good at other stations too, (well over 90% of ALL gas stations in the nation!) and is only $2 per month, per card. Plus, you get a service network available as well. 
+
+Know exactly what your drivers are purchasing in the c-store! You can easily find out where your employees fueled, how much they paid for the fuel, even track miles per gallon, all while making sure that every drop of fuel you are buying is going into your vehicles. 
+
+No more saving receipts. Just pull your account up online and monitor the activity on your account. You can order new fuel cards at any time, or deactivate a fuel card online if you happen to let an employee go and forget to get his fuel card from him! 
+
+Fees: If you went to TA, Loves, Flying J, or Pilot and purchased diesel, you would see an extra $1.25 pump fee for that.  So we tell folks to get their diesel elsewhere.  Note, this does not apply to gas purchases.
+
+The only other fee you would ever incur would be if you want to be sent a paper bill.  They will start charging you a $3 fee for mailing you bills, but if you get them emailed to you, there is no charge. 
+
+Of course we have late fees too, so I tell everyone to pay their bill on time, and you will never see a late fee!  (We also have auto-pay available in case you would need that feature.) 
+
+I hope that answers your question.  There is no interest or swipe fees either, if that is something you wondered about.
+
+Please look at the enclosed details. I will follow up with a phone call over the next several days, or feel free to call me Monday through Friday, 8 to 5 central time! 
+
+Thank you! 
+
+Sincerely, 
+
+
+Lori Parr 
+WEX Inc. 
+Phone: 1.615.523.6433 | Fax: 615.843.4180</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Card_Update_Form.doc</attachedDocuments>
+    <attachedDocuments>Inside_Sales/Driver_Update_form.doc</attachedDocuments>
+    <available>true</available>
+    <description>Wex How to make card / driver updates</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX How to Make Updates to your Account</name>
+    <style>freeForm</style>
+    <subject>How to Make Changes to your Wex Account</subject>
+    <textOnly>Now that you have an established account with us, you can easily make changes to your WEX account in three ways:
+
+
+By Phone: Customer Services is available 7 days a week, 24 hours a
+day at 1-800-492-0669
+
+Online: You can make changes online anytime by visiting www.wexonline.com
+
+Via Fax: I am attaching forms that you can use to make changes to your account. Simply fax them back to 1-800-395-0809
+
+
+Welcome to the WEX Fuel Card program.
+
+
+
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+{!User.Fax}
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

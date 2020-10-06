@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/WEX_Fleet_Data_Form_excel_version.xlsx</attachedDocuments>
+    <available>true</available>
+    <description>Sent via workflow when App Request is successful.  Includes Excel Fleet Data Form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX Fleet Data App Received (Excel)</name>
+    <style>freeForm</style>
+    <subject>Action Required | Your Application Is Being Processed</subject>
+    <textOnly>Thank you for returning your application.  We will respond to your request within 5 days.
+
+Attached is a form to list your vehicle and driver information necessary to set up your account. If you have already submitted this information, please disregard this message.
+
+Driver Information:
+
+Please provide a list of your driver names with four or six-digit driver ID numbers.  If you prefer to have us assign your driver ID numbers, simply leave that field blank.  Your driver will be required to enter this number when they fuel the vehicles.  This feature lets you easily view who made the transaction.
+
+Vehicle Information:
+
+At least one column must be completed for the tracking reports to be established.  Remaining columns are optional and can remain blank.
+
+Please select one field that you would like to see appear on the second line of your card, beneath your company name.
+
+This field of information is meant to be a means of identification so you will know which vehicle is being fueled.
+
+Please email or fax the form back to me at {!Opportunity.Opportunity_Owner_Fax__c} at your earliest convenience.
+
+Need help filling out the form?  Watch our 5 minute information video.
+
+http://www.wexcard.com/wexfleettutorial
+
+Sincerely,
+
+{!Opportunity.OwnerFirstName} {!Opportunity.OwnerLastName}
+{!Opportunity.OwnerTitle}
+Phone - {!Opportunity.OwnerPhone}
+Fax - {!Opportunity.Opportunity_Owner_Fax__c}
+
+{!Opportunity.OwnerEmail}
+
+Application # : {!Opportunity.Id} - {!Opportunity.Opportunity_Number__c}
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

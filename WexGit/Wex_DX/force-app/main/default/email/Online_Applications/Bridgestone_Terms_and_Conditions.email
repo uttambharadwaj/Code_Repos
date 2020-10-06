@@ -1,0 +1,11 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style=""><font face="Arial, sans-serif" style=""><font style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Dear&nbsp;</font>{!OnlineApplication__c.Contact_Name__c},<br><br><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">You have been approved for a WEX
+Fleet One Bridgestone National Fleet account.&nbsp; Please see the attached
+terms and conditions.&nbsp; Your Bridgestone Commercial Sales Manager will be
+in contact with additional account information shortly.</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif">Thank you for applying for the
+Bridgestone National Fleet Program.&nbsp; If you have questions about your
+application, please call us at 844-275-7099.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" style=""><br>Sincerely,<br><br>WEX Fleet One<br></font><font face="Arial, sans-serif"><br><br></font></p>]]></td>
+</tr>
+</table>

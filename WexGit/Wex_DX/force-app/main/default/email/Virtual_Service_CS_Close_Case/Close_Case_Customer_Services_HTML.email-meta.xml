@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Close Case - Customer Services - HTML</name>
+    <style>none</style>
+    <subject>Thank you for contacting Customer Services.</subject>
+    <textOnly>Thank you for contacting Customer Services, your query has now been resolved and we have closed your case {!Case.CaseNumber}. If you feel there is further support required in this matter please respond to this email or call the team on 0845 508 4580 / 0203 051 4149.
+
+Kind regards
+WEX Customer Services
+WEX Europe Limited
+66 Hammersmith Road, London, W14 8UD
+Phone: 0845 508 4580 / +44 (0) 203 051 4149
+customer.services@wexeurope.com
+www.wexeurope.com</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

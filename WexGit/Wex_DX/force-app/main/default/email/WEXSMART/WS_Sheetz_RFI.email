@@ -1,0 +1,24 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<SPAN style="FONT-SIZE: 13.5pt; COLOR: black; FONT-FAMILY: 'Times New Roman','serif'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Dear {!Contact.FirstName}, </SPAN>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">Thank you for your interest in Sheetz Smartview.&nbsp; Please find information attached to help answer some initial questions you may have.&nbsp; </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'">&nbsp;<o:p></o:p></SPAN></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">I would love to spend 20 minutes with you for a live demo of our solution&nbsp;-- it's the best way to&nbsp;see how&nbsp;you can save with Sheetz Smartview.&nbsp; </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'">&nbsp;<o:p></o:p></SPAN></P>
+<P><SPAN style="FONT-SIZE: 13.5pt; COLOR: black; FONT-FAMILY: 'Times New Roman','serif'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">Please let me know if I can answer any questions.&nbsp; I will follow up in next 5 days.</SPAN></P>
+<P><SPAN style="FONT-SIZE: 13.5pt; COLOR: black; FONT-FAMILY: 'Times New Roman','serif'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA"></SPAN>&nbsp;</P><SPAN style="FONT-SIZE: 13.5pt; COLOR: black; FONT-FAMILY: 'Times New Roman','serif'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">Sincerely, </SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">{!Opportunity.OwnerFullName}</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">{!User.Title}</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><FONT face="Times New Roman"><SPAN style="FONT-SIZE: 13.5pt; COLOR: black">{!User.Phone}</SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></FONT></P>
+<P><SPAN style="FONT-SIZE: 13.5pt; COLOR: black"><FONT face="Times New Roman">{!User.Email}</FONT></SPAN><SPAN style="COLOR: black; FONT-FAMILY: 'Arial','sans-serif'"><o:p></o:p></SPAN></P></SPAN>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[<P>&nbsp;</P>]]></td>
+</tr>
+</table>

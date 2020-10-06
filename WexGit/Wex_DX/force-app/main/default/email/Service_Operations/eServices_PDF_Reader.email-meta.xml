@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Garbled PDF issue</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - PDF Reader</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. Please follow these steps to correct this issue.Open your PDF reader. Under the Edit menu, select Preferences. Page Display should automatically be highlighted on the left hand menu. To the right, you will see a section called Rendering. Under that, there is a checkbox marked “Use local fonts” and you should uncheck that box if it is currently checked. Click OK at the bottom to save your changes, and then try opening the report from online again.If this does not resolve the issue, you may need to seek technical assistance from your help desk, or contact the Adobe customer service team. Please let me know if you have any questions.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

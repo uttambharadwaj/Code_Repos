@@ -1,0 +1,33 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Nous avons ajouté l’option « inscription au service de  prélèvement automatique » à votre accès en ligne. 
+<br></br>
+Dirigez-vous sur l’onglet: </br>
+Facture et paiement/Inscription au service de prélèvement automatique </br>
+Entrez vos informations bancaires </br>
+Téléchargez la Convention de débit préautorisé (DPA)</br>
+Remplir le formulaire et envoyez par fax accompagné d’un spécimen de chèque.
+<br></br>
+Vous recevrez une confirmation par courriel vous avisant que nous avons bien reçu et traitée la demande.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

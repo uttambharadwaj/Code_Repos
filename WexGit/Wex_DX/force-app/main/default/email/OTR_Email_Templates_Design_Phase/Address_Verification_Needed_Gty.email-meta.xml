@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to use when the customer needs to verify their address.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>Address Verification Needed (Gty)</name>
+    <style>freeForm</style>
+    <subject>Fleet One Fuel Card Application - Received - Need Address Verification</subject>
+    <textOnly>{!Contact.Name},
+
+
+Thank you for applying for our Fleet One Edge Fuel Card Program!
+
+We have received your application, but we need a copy of your driver’s license to verify your address.
+
+
+
+If the address on your license is NOT the same as the below address, please provide a copy of a utility bill or your liability insurance with the below address present for verification. Your name must be present along with the address.
+
+
+
+The address on the document your provide must match:
+
+
+
+{!Contact.MailingAddress}
+
+
+
+Please send a copy of your verifying document (picture taken with your phone is fine) back to me directly at your earliest convenience by Email (khaywood@fleetone.com) or Fax at (615) 850-0799 or Text at (615) 246-7476.
+
+
+Thanks!
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Office (615) 523-6496 | TEXT ONLY (615) 246-7476 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to anyone participating in LAMP</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>LAMP Launch Meeting Notice Message</name>
+    <style>freeForm</style>
+    <subject>Large Account Management Process Training Launch</subject>
+    <textOnly>The Global Sales Training Team is excited to be offering onsite the Miller Heiman’s Large Account Management Process (LAMP) training. We chose this particular methodology for its proven ability to elevate key customer relationships on a sustained basis. It is specifically aimed at addressing the challenges of maintaining and growing large accounts involving multiple decision makers and, as such, should serve the needs of our business very well.
+
+
+Transferring the knowledge gained into practice will be both challenging and critical. This won’t happen in the classroom no matter how talented and engaging the instructors. It will take a commitment to prepare prior to training, active participation during the workshops, and superior dedication by you to adopt the principles and concepts and incorporate them into your daily business routines.
+
+
+I urge you to embrace this new process. You will find it to be simple, intuitive, and highly effective for managing your large accounts. It also represents the first of several steps we will take along the path to achieving our strategic objective of becoming the partner of choice for our customers by consistently outperforming our competition.
+
+
+Action Required: We have scheduled a Launch Session. Participation in the launch session is required to review the pre-work for the upcoming classroom training scheduled for {!Case.Class_Start_Date_del__c}. The LAMP training will be hosted in {!Case.Location__c}. More information will follow regarding travel arrangements and final agenda. If for any reason you cannot attend this training please contact Kathryn Connolly immediately.
+
+
+Please accept the meeting invite sent for the WebEx Launch Session scheduled for DATE.
+
+
+
+Please contact me if you have any questions.
+
+
+
+Thank You,
+{!Case.OwnerFullName}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Robs deck of cards email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Fleet_Letterhead</letterhead>
+    <name>WEX Fuel Options</name>
+    <style>freeForm</style>
+    <subject>WEX Business Fleet Cards:Save Time and Money</subject>
+    <textOnly>Hi ,
+I was asked to reach out to you regarding your interest in our *** fuel card program.
+Your business will have access to our industry leading fleet software providing:
+convenience in fueling with no cash or receipts to touch, guard against fraud with our
+card controls, and avoid wasting time collecting/saving receipts using our real-time
+downloadable itemized reporting!
+This brief video will show you how our cards work along with sample reporting -
+https://www.youtube.com/watch?v=p-aaarfzbHA
+
+I will send you a separate email with the program details. 
+Please look for it in your
+inbox or spam folder.
+Please feel free to contact me with any questions. 
+My direct number is 207-523-6066. I can also be reached via email.
+I look forward to helping you control some fixed costs!
+Thank you for your consideration.
+
+Ehrika Martin
+Business Development
+Direct: 207-523-6066
+Fax: 207-874-1731                                                                                        
+Providing Speedy Solutions to running your business.
+ Powered by:
+fleet SmartHub App
+ *fuel savings are approximate</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

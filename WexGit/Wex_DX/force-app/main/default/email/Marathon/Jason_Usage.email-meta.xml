@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Your Marathon Account</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Jason Usage</name>
+    <style>freeForm</style>
+    <subject>Your Marathon Account</subject>
+    <textOnly>Hope you are doing well. I ran some usage reports and noticed that several of your cards were not being used. In addition your gallon usage has gone down. I wanted to see if there was anything I could do or answer for you. Thanks</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

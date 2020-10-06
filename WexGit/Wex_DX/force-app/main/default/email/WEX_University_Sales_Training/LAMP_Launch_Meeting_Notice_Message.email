@@ -1,0 +1,51 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style=""><div style=""><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" style="" size="2">The
+Global Sales Training Team is excited to be offering onsite the Miller Heiman’s
+<b style="">Large Account Management Process (LAMP)</b><i style=""> </i>training<i style="">. </i>We chose this
+particular methodology for its proven ability to elevate key customer
+relationships on a sustained basis. It is specifically aimed at addressing the
+challenges of maintaining and growing large accounts involving multiple
+decision makers and, as such, should serve the needs of our business very well.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">Transferring
+the knowledge gained into practice will be both challenging and critical. This
+won’t happen in the classroom no matter how talented and engaging the
+instructors. It will take a commitment to prepare prior to training, active
+participation during the workshops, and superior dedication by you to adopt the
+principles and concepts and incorporate them into your daily business routines.
+<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">I
+urge you to embrace this new process. You will find it to be simple, intuitive,
+and highly effective for managing your large accounts. It also represents the
+first of several steps we will take along the path to achieving our strategic
+objective of becoming the partner of choice for our customers by consistently
+outperforming our competition. <o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2"><b><span style="color: red;">Action Required:&nbsp;</span></b><font style="">We
+have scheduled a Launch Session. Participation in the launch session is
+required to review the pre-work for the upcoming classroom<span style="color:#1F497D"> </span>training scheduled for&nbsp;</font><b style="">{!Case.Class_Start_Date_del__c}</b>.<b style="">&nbsp;</b>The <b>LAMP</b>&nbsp;training&nbsp;will be hosted in&nbsp;<b style="">{!Case.Location__c}</b>. More information will follow
+regarding travel arrangements and final agenda. If for any reason you cannot
+attend this training please contact <span class="MsoHyperlink" style=""><a href="mailto:Kathryn.Connolly@wexinc.com">Kathryn Connolly</a></span>
+immediately.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<font face="Verdana, Helvetica, sans-serif" size="2">Please
+accept the meeting invite sent for the <b>WebEx
+Launch Session scheduled for <span style="background:yellow;mso-highlight:yellow">DATE</span></b>.</font></p></div></div><div style="color: rgb(0, 0, 0);"><div style=""><p class="MsoNormal" style=""><font style="" face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" size="2">Please
+contact me if you have any questions.<o:p></o:p></font></p><p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style=""><font style="" face="Verdana, Helvetica, sans-serif" size="2">Thank You,<br>{!Case.OwnerFullName}<br>WEX Global Sales Training</font></p></div></div><div style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"></div>]]></td>
+</tr>
+</table>

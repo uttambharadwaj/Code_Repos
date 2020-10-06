@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fleet Lead:  Not spoken in a while</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Its been a while</name>
+    <style>freeForm</style>
+    <subject>It&apos;s Been a While - Sheetz Business Edge</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+It has been a while since we last spoke, but I wanted to reconnect and see if your business situation has changed.
+
+
+We have had a busy couple of months and I wanted to highlight a few particulars:
+
+We save you money. Our programs give you the tools to restrict unauthorized purchases down to the card and/or product level
+We save you time. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read monthly invoice.
+We give you the control. Detailed reports show how and where fueling money was spent, so you can account for every penny.
+
+Sheetz Business Edge is helping customers lower costs, increase efficiency, and get ahead. May I ask if you have moved forward with another industry solution? If another person would be more appropriate for this discussion, please refer me to him or her.
+
+
+Best regards,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

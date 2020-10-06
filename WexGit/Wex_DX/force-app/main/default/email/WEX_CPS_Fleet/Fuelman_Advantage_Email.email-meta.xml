@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_CPS_Fleet/Audit_Your_Fuelman_bill_in_three_simple_steps_doc.doc</attachedDocuments>
+    <attachedDocuments>WEX_CPS_Fleet/Fax_of_Fuelman_Receipt_Comparison_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Email for Fuelman users with instructions on how to audit their bill.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FleetCor_letterhead</letterhead>
+    <name>Competition - Fuelman Audit</name>
+    <style>freeForm</style>
+    <subject>Is Fuelman really giving you an &quot;Advantage&quot;?</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+
+
+There are many imitators out there but only one WEX. It&apos;s our simple formula for savings that keeps the competition scrambling to catch up.
+
+
+Our Universal Fleet Card program is the only program in the market combining best in class features and enhancements, a universal acceptance network and fair, easily understood terms.
+
+
+FREE best in class features
+
+· Fuel price mapping (know where the best price fuel is in your area with real time pump price information)
+
+· 24/7 customer support (a live WEX customer service reprentative answering your call, 24 hours a day, seven days a week)
+
+· Product Type and Purchase Controls (establish limits on what your driver can buy, not where your driver can use the card)
+
+· Detailed reporting (paper or electronic)
+
+UNIVERSAL acceptance
+
+·  More than 180,000 retail fueling sites... five times the sites some of our competitors offer. This means no driver diversion looking for sites in a “rebate” network
+
+· No complicated math figuring out your fueling costs... the price of fuel is detailed right on your report. (One of the biggest complaints we hear from fleets leaving our competitors is they couldn’t tell if they were actually saving any money with a rebate network).
+
+Fair, easily understood terms
+
+· No hidden fees. Some of our competition assess over 20 different types of fees for normal and expected occurrences in an account.  These fees immediately offset any potential rebate savings.
+
+· You’ll know the cost of your fuel.  Sometimes it seems this is too much to ask with complicated rebate or cost plus programs.  With the WEX Universal Fleet Card, the price your driver sees on the pump is the one that will show up on your bill.
+
+
+Don’t just take my word for it—let me put you in touch with some of our customers who will tell you how they saved more with us after switching from a pennies per gallon &quot;discount&quot; network.
+
+
+If you think it’s unfair to be charged for paying your bill or receiving standard reports you rely on, call us. If you don’t understand why your fuel bill can be up to 8% higher than retail prices with your current &quot;rebate&quot; program, call us. We want to help and we stake our reputation on solving these types of problems for businesses like yours.
+
+
+You can contact me through any of the channels listed below or you can reach out to {!Opportunity.OwnerFirstName} at {!Opportunity.OwnerPhone}. We&apos;d like to speak to you about what WEX can do to really help you save money on your fueling, every month.
+
+
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+
+
+{!User.Title}
+Phone - {!User.Phone}
+
+{!User.Email}
+
+
+www.wexinc.com
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX, Inc, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

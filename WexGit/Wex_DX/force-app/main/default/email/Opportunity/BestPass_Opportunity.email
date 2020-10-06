@@ -1,0 +1,26 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Fleet_Size__c}
+Year Started: {!Account.Year_Founded__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+
+Contact: {!Opportunity.Primary_Contact__c}
+Email: {!Opportunity.Primary_Contact_Email__c}
+
+Do you use any toll roads? {! IF(Opportunity.Use_Toll_Road__c, "Yes", "No") } 
+Do you pay cash? {! IF(Opportunity.Pay_Cash__c, "Yes", "No") } 
+Do you participate in weigh station bypass? {! IF(Opportunity.Weight_Station_Bypass__c, "Yes", "No") } 
+Please select the systems that you currenlty use: {!Opportunity.Toll_System_Used__c}
+Please list your estimated monthly totals for each listed toll road:
+New York State Thruway: {!Opportunity.New_York_State_Thruway_Toll__c}
+Pennsylvania Turnpike: {!Opportunity.Pennsylvania_Turnpike_Toll__c}
+Ohio Turnpike: {!Opportunity.Ohio_Turnpike_Toll__c}
+Maryland Tolls: {!Opportunity.Maryland_Tolls__c}
+List states you run in most often: {!Opportunity.States_Most_Often_Run_In__c}
+Comments:{!Opportunity.Description}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Options de paiement</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Options de paiement</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Il existe plusieurs façons d’effectuer vos paiements:
+
+Par chèque : Veuillez compter 7 à 10 jours ouvrables pour la réception par la poste. Par guichet automatique : Veuillez compter 48 à 72 heures ouvrables pour la réception Paiement en ligne ou par téléphone: Sur notre site web ou via votre banque. Veuillez compter 24 à 48 heures ouvrables pour la réception. Vous devez choisir « Carte d’affaires Esso » comme fournisseur et entrer votre numéro de client (10 positions). 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

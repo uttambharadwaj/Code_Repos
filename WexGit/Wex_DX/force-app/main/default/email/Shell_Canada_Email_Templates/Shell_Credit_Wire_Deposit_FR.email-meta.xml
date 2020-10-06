@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Canada_Documents/Payment_Instructions_for_CAD_dollars_for_WEX_Fleet_Cards_Lockbox_activity_FR.docx</attachedDocuments>
+    <available>true</available>
+    <description>Besoin d&apos;un dépôt par fil.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Credit Wire Deposit_FR</name>
+    <style>freeForm</style>
+    <subject>Shell – Dépôt effectué par virement</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Comme nous en avons discuté, j’ai joint à la présente le formulaire dans lequel vous devez inscrire les renseignements nécessaires pour effectuer un dépôt par virement (plutôt qu’au moyen d’un chèque certifié).
+
+Veuillez communiquer avec moi pour m’informer du montant du dépôt et de la date à laquelle vous avez viré les fonds.
+
+De plus, je vous prie de m’envoyer le formulaire de dépôt par télécopieur au {!User.Fax}.
+
+Merci d’avoir choisi le programme de carte de carburant Shell.
+
+Cordialement,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

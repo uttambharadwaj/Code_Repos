@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to HPI attendees</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>2014 HPI email</name>
+    <style>freeForm</style>
+    <subject>Virtual Payments in Healthcare Driving Cost Savings</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+The migration to electronic payments is rapidly building momentum as the Healthcare industry reacts to the Affordable Care Act.  Research indicates that 80-90% of payment transactions are historically made by paper check but a significant transformation is under way.
+
+
+WEX Inc. (NYSE:WEX) has been a leading provider of commercial payment products for 30-years and processed over $31 billion in commercial payments in 2012. WEX’s virtual payment solutions offer a paperless alternative to reimburse providers that is faster and more efficient than check, and offers more data capabilities than ACH.
+
+
+WEX pioneered the virtual payment technology in 2000 and today many clients have realized the following key benefits with our suite of virtual payment solutions:
+
+
+· Streamline and automate payments and reconciliations to Providers
+
+· Earn revenue share on payments which is considered ‘non’ premium based revenue in the healthcare industry, a major bonus!!
+
+· Lower operational costs, averaging a minimum of $10 reduction per claim payment
+
+· No-cost, straightforward integration with existing systems
+
+· Virtually eliminate fraud risk via transaction specific, one-to-one payment process
+
+· Increase payment visibility and insight, through extensive claim-level data capture and robust reporting features
+
+
+I’d appreciate the chance to meet with you and your colleagues to discuss the program and how it can help {!Account.Name} continue to excel in your field of processing and paying claims.  I’ve attached a brochure that provides an overview of the program as I look forward to the opportunity of talking with you soon.
+
+
+Regards,
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone - {!User.Phone}
+
+Cell - {!User.MobilePhone}
+
+{!User.Email}
+
+
+www.wexinc.com/wex-health
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2013 Northstar APA Conference</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>2013 Northstar APA Conference</name>
+    <style>freeForm</style>
+    <subject>Don&apos;t  Forget to Register...</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

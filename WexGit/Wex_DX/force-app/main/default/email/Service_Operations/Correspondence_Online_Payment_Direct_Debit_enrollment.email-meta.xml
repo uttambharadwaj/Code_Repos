@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Online Payment: Direct Debit enrollment</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+On our website: www.essofleetonline.com, you can go to: Invoice &amp; Payment on the red bar &gt;&gt;
+
+Direct Debit Enrollment
+
+Add Bank Account information. Click OK. Then click Submit on the Direct Debit Enrollment page to save it online.
+
+Then follow the directions in the gray box to print off the Pre-authorized Debit Agreement, complete it, and return it to us with a voided check. The fax number is there, or you can send it by email to: iol_pad@wexinc.com
+
+Please let us know if we can be of further assistance.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

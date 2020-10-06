@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Online Payment: Direct Debit change</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+To change Direct Debit bank accounts, you need to cancel out the current Active bank account first. If you go to our website: www.essofleetonline.com to Invoice &amp; Payment &gt;&gt; Direct Debit Enrolment and see your current bank account as Active and under Invoice &amp; Payment &gt;&gt; Review Payments, a payment is scheduled, this account will have to be suspended. Please follow these directions:
+
+On the Invoice &amp; Payment &gt;&gt; Direct Debit Enrolment page, in the section that says Direct Debit Information, click the down arrow in the box that says Process beside Direct Debit Status: and change it to Suspend. Click on the Submit button at the bottom of the page.
+
+Then on that same page in the Bank Information section, click the box at the end of the current bank Account under the Delete column. Click on the Submit button at the bottom of the page.
+
+Then you’re ready to add your new bank account information by clicking on Add Bank Account. Be sure to click Submit at the bottom of this page when finished so that it’s saved online.
+
+Next, you’ll need to look in the gray box on this page and download the PAD agreement and send that to us with a copy of your check. There is a fax number there, but you can also send it to iol_pad@wexinc.com.
+
+If you have any further questions, please let us know.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

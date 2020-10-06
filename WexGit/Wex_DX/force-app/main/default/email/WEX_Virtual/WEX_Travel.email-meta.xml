@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>WEX Travel Banner</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Travel1</letterhead>
+    <name>WEX Travel</name>
+    <style>formalLetter</style>
+    <subject>WEX Travel</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

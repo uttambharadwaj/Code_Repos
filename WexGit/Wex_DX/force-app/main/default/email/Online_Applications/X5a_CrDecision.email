@@ -1,0 +1,16 @@
+Credit Decision: {!OnlineApplication__c.Credit_Decision__c}     		            Decisioned Date: {!OnlineApplication__c.Date_Decisioned__c}
+
+
+     Credit Line Approved:      {!OnlineApplication__c.Credit_Line_Approved__c}
+     Credit Line Requested:   {!OnlineApplication__c.Credit_Line_Requested__c}
+     Comments: {!OnlineApplication__c.Decision_Comments__c}
+
+Billing Cycle:  {!OnlineApplication__c.Billing_Cycle__c}
+Payment Method:   {!OnlineApplication__c.Payment_Method__c}
+Day of Payment:  {!OnlineApplication__c.Day_of_Payment__c}
+
+BPAV:  {!OnlineApplication__c.BPAV_Check__c}
+
+GIACT Failure Next Steps:  {!OnlineApplication__c.GIACT_Failure_Next_Steps__c}
+
+Online Application Link: {!OnlineApplication__c.Link}

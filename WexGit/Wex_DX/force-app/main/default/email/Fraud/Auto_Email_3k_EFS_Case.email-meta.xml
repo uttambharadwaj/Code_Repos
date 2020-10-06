@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Auto email for Fraud EFS cases with $3k+</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Auto Email $3k+ EFS Case - OLD</name>
+    <style>none</style>
+    <subject>Fraud EFS Case $3k+</subject>
+    <textOnly>Claim: {!Claim__c.Name}
+
+Claim Link: {!Claim__c.Link}
+
+Platform: {!Claim__c.Platform__c}
+
+Product: {!Claim__c.Product__c}
+
+Carrier Name/Account: {!Claim__c.Carrier_Name_Account__c}
+
+Carrier ID/Company: {!Claim__c.Carrier_ID_Company__c}
+
+Card #: {!Claim__c.Abbreviated_Card__c}
+
+Fraud Type: {!Claim__c.Fraud_Type__c}
+
+Resolution: {!Claim__c.Resolution__c}
+
+Allowable Dispute Dollars: {!Claim__c.Allowable_Dispute_Dollars__c}
+
+Origination Point: {!Claim__c.Origination_Point_EFS__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

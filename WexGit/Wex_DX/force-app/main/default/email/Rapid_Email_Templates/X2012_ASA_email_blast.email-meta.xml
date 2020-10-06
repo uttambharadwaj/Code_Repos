@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2012 TPC email blast</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>2012 ASA email blast</name>
+    <style>freeForm</style>
+    <subject>2012 Staffing World Conference</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

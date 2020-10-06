@@ -1,0 +1,24 @@
+{!Contact.FirstName},
+
+Thanks for the phone call today. Per your request, I’ve attached some information regarding Alon's new cardless fueling technology, AVii. 
+
+Alon's Fleet Program Manager, Keith Morgan, will be in the local area on February 4th-6th. If you would like to demo the cardless fueling technology, or to meet with him at your office, please give me a call and we can set up a time.
+
+It was a pleasure speaking with you.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+Alon Fleet Fuel Services
+Phone: {!User.Phone}
+Email: {!User.Email}  
+
+-------------------------------
+
+Key reasons why our customers have chosen to use Alon to help manage their business vehicles:
+
+•	Security: Alon customers can be confident that the fuel program they give to their drivers can be easily monitored, and are backed by an extremely high level of security and fraud protection. Also, with our AVii cardless fueling technology, they can be assured that every drop of fuel goes only into their fleet vehicle.
+
+•Convenience: Those businesses already using one of our fleet program benefit from having a single fueling card program with one, easy-to-read monthly invoice. Also, the Alon Universal program allows the convenience of fueling at over 900 Alon locations plus over 90% of ALL U.S. fueling locations.
+
+•	Control: Fleets are able to control when and how fuel is purchased by their drivers – they can monitor and restrict where purchases are made, for how much, by whom, and on what date/time. And these controls can be easily set anytime using Alon’s online management tools.

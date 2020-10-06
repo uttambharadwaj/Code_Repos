@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FILL IN DATE &amp; TIME! Use to confirm a scheduled telephone meeting you&apos;ve discussed with a prospect.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Stripes_eLetterhead</letterhead>
+    <name>RSM: Telephone Meeting Confirmation_JSaenz</name>
+    <style>freeForm</style>
+    <subject>Meeting Confirmation - Stripes Fleet Program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks again for your interest in The Stripes Fleet Card Program.
+
+I&apos;m emailing to confirm our scheduled telephone meeting on &lt;date&gt; at &lt;time&gt;. I look forward to talking with you about your fleet fueling and management needs, and how the Stripes Program can help. I think you&apos;ll find the Program an ideal fit for your business.
+
+If you have any questions before our call, please do not hesitate to contact me. Otherwise I&apos;ll look forward to speaking with you soon.
+
+Many thanks,
+
+
+John Saenz
+Authorized Representative - Stripes Fleet Accounts
+210.372.0346 Mobile
+207.253.1343 Fax
+john.saenz@wexinc.com
+www.stripesfleetcards.com/john</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

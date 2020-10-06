@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Bank_Letter_of_Credit_Irrevocable_Bank.doc</attachedDocuments>
+    <attachedDocuments>Inside_Sales/FSC_Billing_Deposit_Agreement_NEW_02_2013.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/FSC_Billing_Personal_Guaranty_Form_2013.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/WEX_Bank_Letter_of_Credit_Fleet_NEW_REV_1_2013.doc</attachedDocuments>
+    <available>true</available>
+    <description>Need a deposit, letter of credit or Personal Guarantee for account approval. Attach Paperwork for letter of credit and deposit, and Personal Guarantee.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>Sunoco Credit Deposit, LOC, PG, &amp; PAV</name>
+    <style>freeForm</style>
+    <subject>Your Sunoco Fuel Card Application Status</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+
+Thank you for your interest in our Sunoco Fuel Card Program!
+
+
+To enroll for an account, you can either provide a deposit or complete a letter of credit with your bank. The amount you provide will become your credit limit as soon as you complete the attached forms for the option of your choice pending approval.
+
+
+Letter of Credit
+
+For the letter of credit, you need to sign one form and your bank must complete the other on their letterhead. Both must have original signatures. Once complete, mail them back to Credit at: 7090 Union Park Center, Suite 350, Midvale, UT 84047.
+
+
+Deposit
+
+Or, if you choose to send a deposit, complete the last page of the form. Please either scan/email the form to me at the email address noted below or fax the agreement to me at {!User.Fax}, and mail a certified check to Credit at the above address.
+
+
+Personal Guaranty
+
+If you prefer, you may submit a Personal Guaranty. An officer of the company must complete and sign the form, which you can fax, or if you prefer, you can scan and email it back to me at the email address noted below.
+
+
+Physical Address Verification
+
+Also, to comply with the Patriot Act, our bank needs you to verify your physical address for approval.  Please provide documentation from a third party verifying your business is located at the correct address listed on your application.
+
+
+To pass verification, the bank requires a copy of one of the following documents:
+
+
+Utility bill or insurance document showing that the bill is mailed to the physical street address or that it services the physical address of the business
+Lease agreement which identifies the business and the physical address of the office
+Certified articles of incorporation
+An unexpired government-issued business license.
+
+
+
+
+Feel free to scan and email the verification to me, or if you prefer, you can fax it to me at {!User.Fax}.  You can also call me at {!User.Phone} if you have any questions.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+
+Fax - {!User.Fax}
+
+{!User.Email}
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

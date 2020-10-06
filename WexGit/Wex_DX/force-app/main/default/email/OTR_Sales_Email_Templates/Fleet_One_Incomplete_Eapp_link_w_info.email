@@ -1,0 +1,55 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="arial"><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Dear&nbsp;</span>{!OnlineApplication__c.Contact_Name__c}<span style="font-size: 12pt;">,</span></font></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><span style="font-size: 12pt;">Thank you for your interest in the WEX Fleet One fuel card.
+It appears you began the application process, but have not completed it.&nbsp; For your convenience, I’ve attached a link to
+our online application so that you may complete the process at your earliest
+convenience.</span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt;"><span style="font-size: 12pt;"><br><a href="{!OnlineApplication__c.External_Application_URL__c}" style="color: blue; text-decoration: underline;">Click here</a></span><span style="color: rgb(0, 0, 0); font-size: 12pt;"> and follow
+the instructions to complete your application process.</span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt;"><span style="font-size: 12pt;"><br>I hope you will find the below information helpful regarding
+our fuel card services here at WEX Fleet One.</span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><o:p></o:p></p><blockquote style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); margin: 0px 0px 0px 40px; border: none; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; padding: 0px;"><p class="MsoListParagraphCxSpFirst" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Zero Transaction Fees</p><p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Cash Price at all Truck Stops</p><p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Immediate Cash Services</p><p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Credit line, Prepay, Factoring or Deposit
+Accounts Available</p><p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Free Online Account Management</p><p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Detailed Reporting</p><p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Control Features</p><p class="MsoListParagraphCxSpLast" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Discounts and Rebates</p></blockquote><p class="MsoListParagraphCxSpFirst" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpMiddle" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoListParagraphCxSpLast" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-indent: -0.25in;"><o:p></o:p></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);">Again, thank you for your interest in our fuel card.&nbsp; If you have any questions about the
+application or our fuel card program, please don’t hesitate to call or email
+me.&nbsp;</p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><span style="font-size: 12pt;">Sincerely,</span></p><p class="MsoNormal"><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">{!User.Name}<br></span><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">{!User.Title}<br></span><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">WEX Fleet One<br></span><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Phone: {!User.Phone} | Fax: {!User.Fax}<br></span><font face="arial"><span style="font-size: 12pt;">{!User.Email} | www.FleetOne.com&nbsp;</span></font></p><p class="MsoNormal"><span style="color: rgb(153, 153, 153); font-family: Verdana, sans-serif; font-size: 8pt; line-height: 115%;">To opt out of all email marketing
+messages from WEX Fleet One,<span class="apple-converted-space">&nbsp;</span></span><a href="mailto:marketing@fleetone.com?subject=Unsubscribe%20me%20from%20all%20WEX%20Fleet%20One%20email%20marketing" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:8.0pt;line-height:115%;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">click
+here</span></a><span class="apple-converted-space" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:8.0pt;
+line-height:115%;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#999999">&nbsp;</span></span><span style="color: rgb(153, 153, 153); font-family: Verdana, sans-serif; font-size: 8pt; line-height: 115%;">from the email address you wish to unsubscribe.</span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="arial"><br></font></p>]]></td>
+</tr>
+</table>

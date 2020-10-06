@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>Goodyear Commercial Tire &amp; Service Centers Savings</name>
+    <style>freeForm</style>
+    <subject>Save with Goodyear Commercial Tire &amp; Service Centers</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our maintenance savings with Goodyear Commercial Tire &amp; Service Centers. As an FTS Plus+ member, you can save up to $20 on PM and DOT services at Goodyear Commercial Tire &amp; Service Centers.
+
+Tractor PMs — Save $20.00
+DOT Truck Inspections — Save $5.00
+DOT Trailer Inspections — Save $5.00
+DOT Tractor &amp; Trailer Combo — Save $12.00
+
+
+Simply visit any Goodyear Commercial Tire &amp; Service Centers location, purchase an approved PM or DOT service, and fax a copy of your invoice to us at 877.902.1498. We will process your invoice(s), and the rebate will appear as a credit on your FTS card.
+
+For full details and to find a Goodyear CTSC location, please visit ftsplus.com/goodyearctsc.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Jennifer Nelson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

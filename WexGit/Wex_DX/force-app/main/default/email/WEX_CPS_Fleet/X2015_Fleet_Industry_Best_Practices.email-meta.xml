@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email with industry tips and link to download The Fleet Managers Handbook white paper</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>2015 Fleet Industry Best Practices</name>
+    <style>none</style>
+    <subject>Optimize your fleet with fleet management best practices</subject>
+    <textOnly>Ensure your sucess with our guide to best practices.
+
+Fleet management best practices can help optimize your fleet.
+
+Download The Fleet Manager’s Handbook whitepaper to learn more about fleet industry best practices.
+
+Download Now ▶
+
+http://images.response.wexinc.com/Web/WrightExpressCorporation/{9989e33a-6489-4af2-94d2-ec9da21db5ca}_FleetMgrHandbook_WhitePaper_web.pdf</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

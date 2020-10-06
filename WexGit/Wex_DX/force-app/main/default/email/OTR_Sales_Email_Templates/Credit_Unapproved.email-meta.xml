@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Options for Fleets when credit was not approved</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Credit Decline</name>
+    <style>freeForm</style>
+    <subject>Follow Up: WEX Fleet One Fuel Card Services</subject>
+    <textOnly>{!Contact.FirstName},
+
+Thank you for your interest in the WEX Fleet One OTR Fuel Card Program.  At this time we are unable to approve a line of credit with the information provided.  You may still open an account for your company by choosing one of the following options:
+
+Add a second Guarantor.  For example, a business partner, co-owner, spouse or anyone who would be willing to provide their information to establish a credit line for your business.  If you choose this option, I can re-send your application for your co-signer to complete.
+
+Start a Pre-Funded fuel account. You may send guaranteed funds to pre-fund your account via bank wire, Western Union or 3rd party industry checks (Comcheks, Tcheks).  With this option, you will receive the same immediate benefits as our credit line accounts including rebates, reporting, security and control.
+
+Take advantage of WEX Fleet One Factoring. Our factoring program is the safe and easy way to get the capital you need to operate your business. Choose between recourse and non-recourse factoring and enjoy accelerated cash flow, powerful real-time reporting, fuel card funding and a flexible pricing structure with no hidden fees. Plus, your approved invoices are delivered within 24 hours.
+
+Once you&apos;ve selected your preferred option, or if you should have any additional questions, please feel free to contact me directly or simply respond to this email.
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

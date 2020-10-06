@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Claim Review and Resolution Comments - SB</name>
+    <style>freeForm</style>
+    <subject>Claim Review and Resolution Comments - SB</subject>
+    <textOnly>SMALL BALANCE CLAIM REVIEW AND RESOLUTION EMAIL COMMENTS
+
+
+Claim Review and Resolution Comments:  {!Claim__c.Account_Name__c}, {!Claim__c.Program_Account_Masked__c}
+
+
+SBWO:
+
+**Fraud group review regarding claim # {!Claim__c.Name} - emailed claim introduction and resolution email.  The fleet disputed transactions on card {!Claim__c.Abbreviated_Card__c} {!Claim__c.CO_ID_STD_EMB_GTag__c} between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c} for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.  Account credited in full for allowable disputed charges as a goodwill adjustment in recognition of our relationship.  Resolution is final; pursue all other collections as BAU.** Fleet Fraud.
+
+
+
+Re: Dispute Claim No {!Claim__c.Name}
+
+
+Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+This letter is being sent in response to your recent dispute claim for transactions totaling ${!Claim__c.Allowable_Dispute_Dollars__c} on your {!Claim__c.Partner_Formal_Name__c} account ending {!Claim__c.Program_Account_Masked__c}.  The occurrence of fraud, misuse or abuse on our card program is extremely unfortunate and we are sensitive to the potential business and financial hardships it can cause to our customers.
+
+
+Use of your {!Claim__c.Partner_Formal_Name__c} fleet cards is governed at all times by the {!Claim__c.Partner_Formal_Name__c} Business Charge Card Agreement (the “Agreement”) with WEX Bank.  The Agreement addresses unauthorized use and associated responsibilities (refer to section 10).
+
+
+We are crediting your account in full for the allowable disputed charges totaling ${!Claim__c.Allowable_Dispute_Dollars__c}.  This constitutes a goodwill adjustment in recognition of our mutually beneficial relationship and is considered final resolution to the dispute claim identified above and does not apply to any other outstanding and/or future balances on the account.  You will see this reflected on your next billing statement.
+
+
+If the card(s) that had disputed transactions had not already been terminated when you discovered the misuse, we have terminated them as part of the resolution of your claim to prevent any future unauthorized activity.  You may order a new card at any time either by accessing your Online Account or contacting our Customer Service Department at the number on your billing statement.
+
+
+We appreciate your business and look forward to maintaining our relationship.
+
+
+Sincerely,
+
+
+Fleet Fraud Services</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

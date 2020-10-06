@@ -1,0 +1,21 @@
+{!Contact.FirstName},
+
+Thank you for your recent application for the NASTC fuel card account for {!OnlineApplication__c.Account__c}. 
+
+WEX Fleet One is currently not able to extend the requested credit line, however, we want you to benefit from the great savings of this NASTC fuel card program.  
+
+We offer the same program with the same great savings and advantages on a "Cash Deposit" basis or a line of credit can be established by obtaining a Letter of Credit from your bank.   
+
+A brief explanation of the options available to you other than the original requested credit line are:
+
+1.	Cash Deposit account: You are also approved for a cash deposit account. By securing your credit line through deposit, you would send in a dollar amount equivalent to the amount of credit line you believe you will need to get you through each billing cycle.  We hold those funds as security and will apply those funds to any outstanding balance if you fail to pay. A credit limit equal to the security deposit will be applied, with invoices sent to you for payment just like a regular account. 
+
+2.	Letter of Credit (LOC): You can submit a letter of credit from your bank to guarantee a credit limit.   Final approval by WEX Bank is still contingent upon final review of the issuing bank creditworthiness as well as the verbiage contained in the letter of credit provided. 
+
+If you have any questions about these options, please email me at {!User.Email} or call me at {!User.Phone}.  We can determine the best option for you and then get you the necessary documents. 
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+Direct: {!User.Phone} 
+{!User.Email}

@@ -1,0 +1,11 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="1" aEditID="c1r1" >
+<![CDATA[<P><FONT face=Verdana,Helvetica,Sans-Serif>Dear {!Contact.Name}:</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>I just attempted to reach you again to tell you about the Hess Fleet Card and how it can save {!Account.Name} time and money.<BR><BR>As I mentioned in my message, I look forward to speaking with you personally regarding the specific benefits of the Hess Fleet Card program and how they relate to {!Account.Name}.<BR><BR>I realize how valuable your time is. Please let me know when a good time to connect would be, and I will be happy to get in touch with you when it is convenient for you.<BR><BR></FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>Sincerely,</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>&nbsp;</FONT></P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif>{!User.FirstName} {!User.LastName}<BR>{!User.Phone}<BR>{!User.Email}</FONT></P>]]></td>
+</tr>
+</table>

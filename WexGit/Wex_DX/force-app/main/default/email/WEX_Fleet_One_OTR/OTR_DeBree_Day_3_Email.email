@@ -1,0 +1,8 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font size="2" face="Verdana,Helvetica,Sans-Serif">Dear&nbsp;{!Contact.FirstName},&nbsp;<br><br>I'd invite you to review</font><font size="2" face="Verdana,Helvetica,Sans-Serif"> several&nbsp;<a href="http://www.fleetone.com/content/customer-testimonials">testimonials and videos</a> from some of our satisfied customers. </font></p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif"></font>&nbsp;</p>
+<p><font size="2" face="Verdana,Helvetica,Sans-Serif">I look forward to talking with you soon. <br><br>Sincerely, <br><br>{!User.FirstName} {!User.LastName} <br><br>{!User.Title} <br>Phone - {!User.Phone}&nbsp; <br>{!User.Email} <br><br></font><a href="http://www.fleetone.com" target="_blank"><font color="#000000" size="2" face="Verdana,Helvetica,Sans-Serif">www.fleetone.com</font></a><font size="2" face="Verdana,Helvetica,Sans-Serif"> <br><br><font size="1">CONFIDENTIALITY NOTICE: "This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</font></font></p>]]></td>
+</tr>
+</table>

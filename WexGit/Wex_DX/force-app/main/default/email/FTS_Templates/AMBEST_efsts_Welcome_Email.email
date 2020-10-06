@@ -1,0 +1,52 @@
+Hello {!OnlineApplication__c.Account__c},
+
+Welcome to the {!OnlineApplication__c.Program__c} Fuel Card Program, offering you acceptance at over 7000 locations.  
+
+We have processed your application and have ordered your cards. You should receive your welcome package within 2-5 business days. You should have already received a separate email with your www.fleet-tech.com password. Your login credentials and account details are listed below. 
+
+Your package will contain both purchase cards and control cards. For security purposes, you will need your full control card number and PIN (access code, see below) when calling EFS Fleet-Tech or when performing account and card maintenance online via the customer portal. Control cards are solely used for security identification purposes, and to identify the account administrator who is authorized to make changes on your behalf. At no time will EFS update an account/card or provide account details without proper security credentials (full control card number, PIN/access code).
+
+We are also pleased to provide you with a daily email detailing applicable discounts to your account. The email is sent at approximately 10:00 CST daily, 7 days per week. If you do not wish to receive the daily price email, please select the ‘unsubscribe’ option; your email address will be removed.
+
+YOUR ACCOUNT DETAILS: 
+
+Customer Portal: 	www.fleet-tech.com
+
+Your Fleet Number:  {!OnlineApplication__c.FTS_Account__c}
+
+Your Username:  {!OnlineApplication__c.FTS_Account__c}
+
+Please note your portal password has been sent via separate email)
+
+Your Control Card:  {!OnlineApplication__c.Membership_Number__c}
+(for security/identification purposes)	
+
+Your Control Card access code/PIN: Will be forwarded via separate email
+
+Credit Limit:	{!OnlineApplication__c.Credit_Line_Approved__c}
+
+Payment Method:	{!OnlineApplication__c.Payment_Method__c}
+
+Payment Frequency:     {!OnlineApplication__c.Payment_Frequency__c}
+
+Day of Payment:   {!OnlineApplication__c.Days_Of_Payment__c} 
+
+YOUR PURCHASE CARD DETAILS:
+
+Please note that your purchase cards have been preset with specific driver names, limits and point-of-sale prompts. Your purchase cards are currently on “HOLD” and must be “ACTIVATED”. Web portal instructions for card activation functions have also been included as an attachment with this email notification. Please follow the instructions on how to activate your purchase cards. Our customer service team is also available to help you activate your purchase cards. Payment instruction options are also attached for your convenience.
+
+We also strongly suggest that you assign an employee number/driver ID to each card for validation purposes. If you did not provide driver ID numbers when completing the online customer application and would like to set up driver ID/PIN numbers on your cards, please contact customer service; once set up, you will then be able to add the ID numbers to the cards by updating the EMPLOYEE ID NUMBER field on the card screen.
+YOUR PRESET LIMITS:
+
+Your preset daily fuel limit (per card) in US dollars:{!OnlineApplication__c.Daily_Fuel_Limit__c}  
+
+Your preset daily cash limit (per card) in US dollars: {!OnlineApplication__c.Daily_Cash_Limit__c}
+
+Your preset fuel types authorized for purchase:	Diesel 1-2, low Sulphur diesel, ultra-low Sulphur, bio-diesel, winter diesel, reefer fuel.
+
+Your preset Transcheck money code limit in US dollars:		$1500.00 per money code.
+
+
+If you did not receive a separate e-mail with your customer portal PASSWORD, please contact our customer support at 1-800-749-1724.
+
+Thank you for choosing EFS for your payment needs.

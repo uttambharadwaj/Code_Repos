@@ -1,0 +1,17 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Number of Trailers: {!Account.Trailer_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Monthly Tires Purchased: {!Opportunity.New_Tires_Purchased_Per_Month__c}
+Tire Brands: {!Opportunity.Tire_Preference__c}

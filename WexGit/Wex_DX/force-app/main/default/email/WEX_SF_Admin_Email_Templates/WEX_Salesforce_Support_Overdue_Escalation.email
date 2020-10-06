@@ -1,0 +1,14 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><span style="background-color: rgb(255, 255, 255); ">The following case has been escalated because it is overdue:</span></div><div><span style="background-color: rgb(255, 255, 255); "><br></span></div><span style="font-size: 12pt; background-color: rgb(255, 255, 255); "><font face="arial" size="3">Case Number: {!Case.CaseNumber}&nbsp;</font></span><div>Assigned to: {!Case.OwnerFullName}</div><div><font face="arial" size="3" style="font-size: 16.363636016845703px; ">Target Completion Date:&nbsp;</font><font face="arial" style="font-size: 16.363636016845703px; ">{!Case.Target_Completion_Date__c}</font>&nbsp;</div><div><span style="background-color: rgb(255, 255, 255); ">Subject: {!Case.Subject} &nbsp;</span></div>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<br>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[]]></td>
+</tr>
+</table>

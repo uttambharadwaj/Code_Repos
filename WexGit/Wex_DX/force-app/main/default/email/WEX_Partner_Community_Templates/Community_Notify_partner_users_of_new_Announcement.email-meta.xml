@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Fleet_Letterhead</letterhead>
+    <name>Community: Notify partner users of new Announcement</name>
+    <style>freeForm</style>
+    <subject>{!Announcements__c.Name}</subject>
+    <textOnly>{!Announcements__c.Name}
+
+{!Announcements__c.Date_Posted__c}
+
+Summary:
+{!Announcements__c.Summary__c}
+
+Go to {!Announcements__c.URL__c} for additional details</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

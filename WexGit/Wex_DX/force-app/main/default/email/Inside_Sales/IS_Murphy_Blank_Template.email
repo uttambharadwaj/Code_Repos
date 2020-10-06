@@ -1,0 +1,13 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial">Dear {!Contact.FirstName},</span></i><i><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-fareast-font-family: 'Times New Roman'"><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></span></i></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><o:p>&nbsp;</o:p></span></i></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i><span style="FONT-FAMILY: 'Times New Roman','serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'">Here is some information for your review. Thank you.&nbsp;<o:p></o:p></span></i></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i><span style="FONT-FAMILY: 'Times New Roman','serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'">&nbsp;<o:p></o:p></span></i></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i><span style="FONT-FAMILY: 'Times New Roman','serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"><br>{!User.FirstName} {!User.LastName} <br>{!User.Title} <br>Phone - {!User.Phone} <br></span></i></p><i>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i><span style="FONT-FAMILY: 'Times New Roman','serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'">Fax - {!User.Fax} <o:p></o:p></span></i></p>
+</i><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><i>{!User.Email} <o:p></o:p></i></p>
+<p style="MARGIN: 0in 0in 10pt" class="MsoNormal"><o:p><font face="Calibri">&nbsp;</font></o:p></p>]]></td>
+</tr>
+</table>

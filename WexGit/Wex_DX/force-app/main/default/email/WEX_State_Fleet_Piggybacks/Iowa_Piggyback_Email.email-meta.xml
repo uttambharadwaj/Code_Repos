@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Iowa_Letterhead</letterhead>
+    <name>Iowa Piggyback Email</name>
+    <style>freeForm</style>
+    <subject>Take Advantage of the State of Iowa Government Fleet Program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Did you know your state has a Fleet Card Program that offers discounted rates on fuel and service that you’re eligible for?
+
+As a government entity, you’re eligible to participate in the Wright Express Government Fleet Card Program that makes fueling easy for your drivers and makes fuel expense management fast and easy for you.
+
+Save Money
+- Up to 15%* off overall fuel management costs
+- Plus, it’s free to get started – no setup fees or monthly card fees
+
+Save Time
+Administrative time is reduced and fiscal reporting is made easier with detailed reporting
+
+Easy-to-Use
+24/7 customer service, plus full account online self-service
+
+The sooner you act, the sooner you’ll start saving! To learn more about how you can participate in the Wright Express Government Fleet Card Program, visit http://www.wrightexpress.com/iowa.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+
+---------------------------------------------------------------------------------------------
+*Actual savings may vary
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments.&quot;
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from Wright Express Corporation. If you no longer
+wish to receive future email advertisements from {!User.Email}, email us at info@wexnews.com to unsubscribe. Please be sure to include &quot;unsubscribe&quot; in the subject line and your name, company name and email address in the body of the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

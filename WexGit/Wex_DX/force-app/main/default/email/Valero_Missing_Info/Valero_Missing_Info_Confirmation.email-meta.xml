@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Valero Missing Info Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Valero_Letterhead1</letterhead>
+    <name>Valero Missing Info Confirmation</name>
+    <style>freeForm</style>
+    <subject>Confirmation: We&apos;ve received your updated information.</subject>
+    <textOnly>Dear Valued Customer,
+
+Thank you! We have received the necessary updated documentation for your Valero Fleet Card account and have submitted for processing.
+
+For now, there is nothing more for you to do. However, if you should have any additional questions, please call our Customer Service team at 1-855-830-8220.
+
+Sincerely,
+
+Your Valero Fleet Activation Team
+
+Phone: 1-855-830-8220
+Fax: 207-874-1526
+Email: valeroinforeturn@wexinc.com
+
+
+©2020 Valero Fleet Services. All rights reserved.
+Valero Fleet Services, 97 Darling Avenue, South Portland, ME 04106
+
+The Valero Fleet Card, Valero Fleet Plus Card and Valero Fleet Select Card are issued by WEX Bank. The Valero Fleet Services program is administered by WEX, and is not an obligation of Valero Energy Corporation or any of its affiliates.
+
+If you no longer wish to receive email messages about Valero Cards, you may instantly unsubscribe. Any unsubscription request will be honored within ten business days of receipt.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

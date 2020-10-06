@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Contrôles et Limites</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Contrôles et Limites</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Vous pouvez change les limites de vos cartes en allant sur l’onglet : Contrôles&gt;&gt;Gestionnaire de profils&gt;. Cliquez d’abord sur la loupe sous le nom de votre compagnie ou sous votre nom et cliquez sur la ligne bleue apparaissant dans la boîte intitulée : &lt; explorateur de hiérarchie&gt;.  Par défaut les profils standards sont : Carburants et liquides  Carburants, liquides et entretien  Sans restriction
+
+Si vous cliquez sur le lien désiré, vous pourrez voir en détail chacune des limites et pourrez les changer selon vos besoins. N’oubliez pas de cliquer sur « soumettre » pour les rendre actifs.
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,4 @@
+<p>The Application for {!WES_Application_Request__c.Company_Name__c} was marked as {!WES_Application_Request__c.Application_Status__c} 
+by {!User.Name} because the <b>Company House check as FAIL</b>.
+
+<p>Click <a href="{!WES_Application_Request__c.Link}">Here</a> for the application details.

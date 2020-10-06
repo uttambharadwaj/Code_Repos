@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Fleetcor News</name>
+    <style>none</style>
+    <subject>Some Fleet Card Provider news of interest</subject>
+    <textOnly>Please take a look at this information.  Listen to what made the recent news concerning a fleet provider you may be using: https://www.bloomberg.com/news/videos/2017-04-05/andrew-left-s-citron-goes-short-on-fleetcor-video  I look forward to speaking to you again. In the meantime, if you wish to setup a meeting to review the WEX program offerings, don’t hesitate to call me.  Sincerely, {!User.Name} {!User.Title} Phone: {!User.Phone} | {!User.Email}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

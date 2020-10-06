@@ -1,0 +1,9 @@
+*** NEW ONLINE APPLICATION NOTIFICATION *** 
+
+The following Online Application has been submitted. 
+
+Company: {!OnlineApplication__c.Account__c}
+Status: {!OnlineApplication__c.Status__c}
+
+
+Click on the link to access the lead directly: {!OnlineApplication__c.Link}

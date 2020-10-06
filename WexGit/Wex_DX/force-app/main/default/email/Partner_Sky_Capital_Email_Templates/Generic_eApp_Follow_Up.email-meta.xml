@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Generic version of eApp Follow Up email. Use to test with.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Generic eApp Follow Up</name>
+    <style>freeForm</style>
+    <subject>{!OnlineApplication__c.Application_Title__c} Instructions</subject>
+    <textOnly>Please click on this link and follow the instructions to complete your application process.  Thank you.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

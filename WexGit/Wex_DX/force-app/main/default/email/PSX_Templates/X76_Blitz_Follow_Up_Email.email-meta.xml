@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>76 Blitz Follow Up Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X76_Letterhead_new</letterhead>
+    <name>76 Blitz Follow Up Email</name>
+    <style>freeForm</style>
+    <subject>Limited Time Offer - - 76 Fleet Card</subject>
+    <textOnly>Limited Time Offer!&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+20¢ off every gallon of gas for 3 months! *
+
+
+Dear {!Contact.FirstName},
+
+As you may know, the 76® team was in your area last week promoting our FLEET CARD PROGRAM and as a follow up I would like to introduce myself to you as your local 76 Fleet representative.
+
+
+I wanted to let you know that it’s not too late to take advantage of the special offer and save 20¢ per gallon* for the next 3 months! Sign up by August 31st, 2013 and enjoy one of the best savings in the industry.
+
+
+Whether you have 2 or 200 company vehicles, the savings and convenience is tremendous:
+
+· Save 20¢ per gallon from now until the end of the year every time you use your card at any 76® location.
+
+· Enjoy easy online controls so you can set spending limits and monitor driver behavior.
+
+· Sign up to receive Instant alerts when drivers purchase outside of company policy.
+
+· Enjoy convenient access to over 7400 76®,  Phillips 66®and Conoco® locations nationwide.  Ask for our Universal Card, and you’ll have acceptance at over 90% of all U.S. fueling sites.
+
+· Best-in-class customer service available 24 hours a day, 7 days a week.
+
+Our FLEET CARD is the perfect tool to help you save time and money when it comes to your vehicle fleet operations. Simply call me at {!User.Phone} or via email at {!User.Email} to learn more.
+
+
+I look forward to meeting with you about the needs of your business.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+*Subject to credit approval, new accounts only. The 20 cents per gallon for 3 months promotional offer is valid for applications received between June 24th through August 31, 2013. The promotional period begins on the date your account is opened and expires 3 months from that date. All rebates earned will be credited directly to your account(s). This offer is subject to change without prior notice to you. Rebates are not applied at time of purchase – they will appear as an account credit on the same billing statement with your monthly purchases. Rebates issued if payment is made in accordance with the terms of the Conoco®, 76® and Phillips 66® Fleet or Universal Charge Account Agreement. Rebates may not be allowed where prohibited by law and apply only to fuel purchases made with the Conoco®, 76® and Phillips 66® Fleet or Universal Card at participating Conoco, 76 and Phillips 66 branded locations in the U.S.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

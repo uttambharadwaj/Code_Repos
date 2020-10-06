@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>REC - Start Letter</name>
+    <style>freeForm</style>
+    <subject>Confirming Direct Debit for your Fleet Account</subject>
+    <textOnly>Account Name: {!Case.Account}
+
+We received authorization to set up your fleet account on our Direct Debit program.
+
+Your Direct Debit begins effective today.
+If you have a current unpaid invoice, the amount of the invoice will be automatically debited via Direct Debit on the invoice due date or with the first regularly scheduled debit after the invoice due date.
+The frequency of your debits is as follows:
+
+     Daily Direct Debit (debits occur daily)
+     Weekly Direct Debit (debits occur every Friday).
+     Tri-monthly Direct Debit (debits occur on the 1st, 10th and 20th of each month).
+     Monthly 5th (debits occur the 5th day of each month).
+     Monthly 26th (debits occur the 26th day of each month).
+
+Please note that debits may vary by a day or two, depending on weekends and holidays. In the event a scheduled payment should fall on a weekend or holiday, debits may occur on the next business day.
+
+If you have questions, please call us at 866-755-1033.
+
+Sincerely,
+Global Credit Maintenance</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

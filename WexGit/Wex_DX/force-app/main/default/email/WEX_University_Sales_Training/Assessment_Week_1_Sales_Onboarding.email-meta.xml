@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Sent to participants of Onboarding</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>OLD_03. New Hire Onboarding: Assessment</name>
+    <style>freeForm</style>
+    <subject>Action Required:  Week 1 Sales Onboarding Assessment</subject>
+    <textOnly>The WEX Sales Onboarding - Week 1 is a robust week of informational overviews and skill development. The questions in the assessment are taken directly from the content of the Week 1 program.
+
+REMINDERS: The Assessment is open book and all answers can be found on the WEX Inc. website and in your training materials.  Keep in mind also there is NO back button so read the questions carefully.
+
+Copy the below link into your web browser to complete the assessment by next Friday. Good luck!
+
+https://wex.qualtrics.com/jfe/form/SV_6Yhx4oBOtzdIStD
+
+
+Thank You,
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

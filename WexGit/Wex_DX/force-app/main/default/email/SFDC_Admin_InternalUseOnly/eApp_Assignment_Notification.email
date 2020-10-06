@@ -1,0 +1,10 @@
+*** NEW eApp ASSIGNMENT NOTIFICATION *** 
+
+The following eApp has been assigned to you. 
+
+Company: {!OnlineApplication__c.Account__c}
+eApp ID: {!OnlineApplication__c.Name}
+Status: {!OnlineApplication__c.Status__c}
+
+
+Click on the link to access the lead directly: {!OnlineApplication__c.Link}

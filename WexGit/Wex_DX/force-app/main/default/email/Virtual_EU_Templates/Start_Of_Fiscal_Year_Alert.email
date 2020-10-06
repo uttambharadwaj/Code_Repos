@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Hi {!Virtual_FEP__c.OwnerFirstName},</div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div><font face="arial">{!Virtual_FEP__c.Account_Name__c}'s new year begins on {!Virtual_FEP__c.Start_Of_Fiscal_Year__c}. You may wish to request their new financials.</font></div><div><font face="arial"><br></font></div><div><font face="arial">This notification has been sent because of the date that is saved in the customer's Virtual FEP which you can view <a href="https://na5.salesforce.com/{!Virtual_FEP__c.Id}">here</a>.</font></div><div><font face="arial"><br></font></div><div><font face="arial">If this date&nbsp;</font><span style="font-family: arial;">{!Virtual_FEP__c.Start_Of_Fiscal_Year__c} is not today's date, you will receive another notification on the date which is displayed.</span></div>]]></td>
+</tr>
+</table>

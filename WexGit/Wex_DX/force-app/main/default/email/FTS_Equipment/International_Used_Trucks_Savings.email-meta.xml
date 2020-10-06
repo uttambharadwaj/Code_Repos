@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>International Used Trucks Savings</name>
+    <style>freeForm</style>
+    <subject>Used Truck Savings with International Used Truck Centers</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our used trucks savings with International Used Truck Centers. As an FTS Plus+ member, you can receive a $500 rebate on any used make or model purchased at an approved International Used Truck Center. No matter what price you pay, the rebate stays the same.
+
+Simply visit an approved International Used Truck Center, negotiate your best price on any used truck, and fax a copy of your invoice to us at 877.902.1498. We will process your invoice(s), and the rebate will appear as a credit on your FTS card.
+
+For full details and to find an authorized dealer, please visit ftsplus.com/iutc.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Nancy Gustafson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

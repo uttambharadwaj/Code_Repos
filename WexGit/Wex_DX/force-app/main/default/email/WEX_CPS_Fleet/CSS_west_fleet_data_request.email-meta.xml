@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>CSS west - fleet data request</name>
+    <style>freeForm</style>
+    <subject>My Role at Wex Inc - Will Bailey</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Good Day! First and foremost, welcome to WEX Superfleet! I will be
+your Customer Success Specialist for the next 90 days. I will help get your
+account implemented,  get you familiar with WEX-Online, and make sure you
+are comfortable with managing the WEX program.  My goal is to make sure
+everything is set up for you accordingly and your are able to take full
+advantage of all the value that WEX has to offer.
+
+First things first, to get your cards ready for your fleet, I am attaching your fleet data template with multiple tabs for the information for your cards and drivers. Are there any changes to the data? Additionally I’m attaching a form for card limits starting point.
+Please get this information back to me at your earliest convenience –
+once I get everything back we can get those cards shipped! Finally to set auto-pay tri-monthly please complete and return the attached form along with a copy of your check.
+
+I look forward to hearing from you and working with you for the next few months!  Going forward if you need anything at all, please reach out to me directly.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

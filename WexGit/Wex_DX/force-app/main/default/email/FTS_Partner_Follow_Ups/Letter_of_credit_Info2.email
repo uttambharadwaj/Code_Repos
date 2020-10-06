@@ -1,0 +1,17 @@
+{!Contact.FirstName},
+
+Per our conversation, you have opted to send in a letter of credit from your bank to guarantee a credit limit up to a certain dollar amount.  You will need  to mail the completed WEX Fleet One Letter of Credit Agreement (see attachment) and the letter of credit obtained from your bank (see sample format) to the following address:
+
+WEX Bank
+Attention: Ben Moss
+7090 Union Park Center, Suite 350
+Midvale, UT  84047
+
+Please reference Application-xxxxxx on your paperwork so it gets routed appropriately.  If you could, email me a copy of both once you have it as well.
+
+If you have any questions, please give me a call.
+
+Thank you!
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

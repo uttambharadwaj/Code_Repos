@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>** LDR Templates</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>Fleet_Outbound_Channel_Sales_STL</role>
+        <role>Fleet_Outbound_Channel_Sales_TL</role>
+        <role>ISTeamLeader</role>
+        <role>Lead_Development_Role</role>
+        <role>LearningandDevelopment</role>
+        <role>MarketingReporting</role>
+        <role>Outbound_Channel_Marketing</role>
+        <role>Product_Manager</role>
+        <role>SalesSupportDataEntry</role>
+    </sharedTo>
+</EmailFolder>

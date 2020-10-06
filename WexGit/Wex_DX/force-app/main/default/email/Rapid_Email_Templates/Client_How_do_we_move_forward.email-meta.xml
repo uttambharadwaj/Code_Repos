@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>How do we move forward</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM Client - How do we move forward</name>
+    <style>freeForm</style>
+    <subject>How do we move forward?</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I have tried to reach you by phone a couple of phone without success. Figuring you are very busy, I thought I would try emailing.
+
+I just wanted to check in with you on where you are with respect to rolling out your WEX rapid! PayCard program.  If I recall, when you originally came on board, you were excited at the prospect of achieving 100% direct-deposit.  The lack of cards being issued, leads one conclude, that something has come along to temper that excitement, and I’d like to discover, what?
+
+I am contacting you today to see if we can schedule a conference call?  I’d like to discuss any reservations and/or concerns you may have with moving forward with rapid!. Your concerns may be entirely well founded.  Or more likely, we’ve poorly demonstrated how we overcome that concern.  Either way, I’d like to find out and make sure we’re all on the same page.
+
+Would you be available for a call some time within the next week?  Please let me know a day and time that works well for you, and I’ll respond accordingly.
+
+Best Wishes,
+
+Matt Merriam
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: 678.381.1733 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt.merriam@wexinc.com
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

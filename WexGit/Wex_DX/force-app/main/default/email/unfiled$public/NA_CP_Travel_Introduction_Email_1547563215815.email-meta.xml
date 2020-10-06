@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Travel vertical introductory email for an opportunity record.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>CP NA OPTY - Travel Introduction Email</name>
+    <relatedEntityType>Opportunity</relatedEntityType>
+    <style>none</style>
+    <subject>Can I help?</subject>
+    <type>custom</type>
+    <uiType>SFX</uiType>
+</EmailTemplate>

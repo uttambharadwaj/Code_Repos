@@ -1,0 +1,17 @@
+{!Contact.FirstName},
+
+Now that you have established an XPO EFS  fuel card account, you will need to contact our credit department to request the credit line from your previous fuel card account be moved to your new XPO fuel card account.  In order to do so, please do the following:
+
+1) Email underwriting@wexinc.com 
+2) Subject line: Credit Line Move Request for {!Account.Name}
+3) Email contact: "Please move my credit line from my existing account number ###### to my new XPO EFS fuel card account #####. " (you will need to provide those 2 account numbers)
+
+In order to locate your existing carrier id, it can be found on any transaction or billing statement, as the last 6 digits of the account number, such as Account # 3770017123456, where the carrier id is 123456.
+
+Once the credit department has confirmed this move has been done, you can then begin to use your new fuel cards.
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Email}
+{!User.Phone}

@@ -1,0 +1,33 @@
+{!Contact.FirstName},
+
+Congratulations on your new EFS/FTS fuel card account!  In order to fund your prepaid account, please load funds via customer-initiated ACH or wire.  ACH payments will be applied the following business day. PLEASE email me a copy of your wire receipt or ACH transfer confirmation so you can start using the fuel cards and saving on fuel!
+
+Fees incurred on your account will be removed from the funds that have been loaded to your account.   
+
+Instructions for ACH or Wire: (information also attached below)
+
+Bank Name: 
+Wells Fargo Bank 
+420 Montgomery St.  
+San Francisco, CA 94101   
+
+Account Name: 
+WEX Bank
+Telephone: 901-371-8000
+
+Bank Account Number: 4124811134 
+ACH Routing Number: 121000248
+
+For Further Credit to: 180083{!OnlineApplication__c.FTS_Account__c}00
+Amount: ($ to be determined)
+Originator: {!Account.Name}/{!OnlineApplication__c.FTS_Account__c}00) 
+
+I have attached instructions for wire/ACH funding as well as Western Union if you choose to do that.  Either way, please email me a copy of your wire/ACH or Western Union receipt so I can closely monitor the funds being ready for you to use.
+
+If you have any questions, please give me a call.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

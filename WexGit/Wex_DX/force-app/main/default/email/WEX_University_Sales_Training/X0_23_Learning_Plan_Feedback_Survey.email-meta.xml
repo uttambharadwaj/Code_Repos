@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send survey to anyone who has completed a Learning Plan</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Learning Plan Feedback Survey</name>
+    <style>freeForm</style>
+    <subject>Learning Plan Survey</subject>
+    <textOnly>Congratulations!
+
+You have completed your WEX Learning Plans! Along with the completion of the self-directed Learning Plans you have gained a depth of knowledge about WEX. These primary learning tools have prepared you for your future with WEX. We appreciate your time focused towards the Learning Plans. We hope you enjoyed this experience and as we continue to develop these plans your feedback is essential to our success.
+
+Please take a few minutes to complete the following survey:
+https://wex.qualtrics.com/jfe/form/SV_6sSBfF8VBvGHEFf
+
+Thank You,
+{!Case.OwnerFullName}
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

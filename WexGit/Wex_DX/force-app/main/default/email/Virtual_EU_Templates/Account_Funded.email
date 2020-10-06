@@ -1,0 +1,17 @@
+This Account Asset shows that the account has not been funded.
+
+Please check the account on the portal and if the account is still unfunded change the Account Funded field to "No". This will send a notification to the opportunity owner.
+
+
+Account Asset Name - {!Account_Asset__c.Name}
+
+Account Funded - {!Account_Asset__c.Account_Funded__c}
+
+Client Account Number - {!Account_Asset__c.Client_Account_Number__c}
+
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator.
+
+Salesforce application automated email

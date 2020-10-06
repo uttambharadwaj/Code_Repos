@@ -1,0 +1,44 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+<p>Il existe plusieurs fa&ccedil;ons d&rsquo;effectuer vos paiements:</p>
+<ol>
+<li>Par ch&egrave;que&nbsp;: Veuillez compter 10 jours ouvrables pour la r&eacute;ception par la poste.</li>
+<li>Par guichet automatique&nbsp;: Veuillez compter 48 &agrave; 72 heures ouvrables pour la r&eacute;ception.</li>
+<li>Paiement en ligne sur le site web de votre banque. Veuillez compter 2 jours ouvrables pour la r&eacute;ception.</li>
+<li>Paiement en ligne sur notre site web&nbsp;: <a href="http://www.essoparcautoenligne.com/">www.essoparcautoenligne.com</a>.</li>
+</ol>
+<p>Sur l&rsquo;onglet de&nbsp;: Facture &amp; paiement, il y a deux choix&nbsp;:</p>
+<ol>
+<li>Inscription au service de pr&eacute;l&egrave;vement automatique (D&eacute;bit Direct)</li>
+<li>D&eacute;finir les renseignements bancaires (Paiements effectuer en ligne par vous chaque mois)</li>
+</ol>
+<p>Pour ces deux choix, il faut&nbsp;:</p>
+<ol>
+<li>Ajouter le compte bancaire en ligne. *N&rsquo;oubliez pas &agrave; cliquez sur le bouton&nbsp;: Envoyer.</li>
+<li>Envoyer le formulaire trouv&eacute; &agrave; la page d&rsquo;inscription avec un sp&eacute;cimen de ch&egrave;que.</li>
+<li>par courriel&nbsp;: <a href="mailto:iol_pad@wexinc.com">iol_pad@wexinc.com</a></li>
+</ol>
+<p>b. par faxe&nbsp;: 207.253.1475</p>
+
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

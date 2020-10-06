@@ -1,0 +1,62 @@
+<messaging:emailTemplate subject="New {!relatedTo.Offer__r.Application_Title__c} Account Information" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+
+<br  /><br  />
+
+<p><strong>Your Carrier ID: {!relatedTo.Carrier_ID_Number__c}
+<br />
+Your AR ID: {!relatedTo.AR_ID_Number__c}</strong></p>
+
+<p>Welcome to the <strong><span style="color:red">{!relatedTo.Offer__r.Application_Title__c} Fuel Card Program</span> from Fleet One!</strong> We look forward to making your payments easier to manage through innovative solutions and dynamic service.</p>
+
+<p><strong><span style="color:red">Your New Account and Cards:</span></strong> You will soon receive your {!relatedTo.Offer__r.Application_Title__c} cards, issued by WEX Bank (a member of FDIC). Please follow these simple steps to successfully manage your password and security credentials:</p>
+
+<p><strong><span style="color:red">1. Access Your Account Login Credentials: </span></strong> Soon you will receive an email from eManager with a link to set up your password and security credentials. For a more comprehensive, step-by-step guide to setting up your account, please <a href="https://www.efsllc.com/wp-content/uploads/2019/01/F1-CredGuide.pdf">click here</a>.</p>
+
+<p><strong>Note:</strong> When contacting customer service please have your User ID, Employee Number, and Security Code ready. Both User ID and Password are required to access your {!relatedTo.Offer__r.Application_Title__c} account via eManager. If you do not receive your password setup link within the next 24 hours, contact Customer Support at 1-800-359-7587.</p>
+
+<p style="color:red"><strong>2. Your new cards should arrive active and ready to use.</strong></p>
+
+<p>Please note that your cards are preset with the per-card limits indicated on your application. Adding additional products and validation prompts can be completed via eManager. For further instructions, refer to the eManager Quick Reference Guide or simply call 1-800-359-7587.</p>
+
+<p>For your convenience, we have also enclosed the following reference items:
+<ul>
+  <li> <a href="https://emgr.efsllc.com/common/pdf/administrator.pdf">eManager Quick Reference Guide</a></li>
+  <li> <a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_CarrierControl_Guide.pdf">CarrierControl Mobile App User Guide</a></li>
+  <li> <a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_CardControl_Guide.pdf">CardControl Mobile App User Guide</a></li>
+  <li> <a href="https://www.efsllc.com/wp-content/uploads/2017/12/WF1_FAQs.pdf">Frequently Asked Questions</a></li>
+</ul>
+</p>
+
+<apex:outputPanel >
+  <apex:outputText value="{!relatedTo.Offer__r.Additional_Text__c}" />
+</apex:outputPanel>
+<br />
+
+<p>We noticed that the application you submitted referenced an outdated version of the {!relatedTo.Offer__r.Application_Title__c} Program account terms and conditions. We have enclosed the current terms and conditions for your card program. Your initial or continued use of any {!relatedTo.Offer__r.Application_Title__c} Program card constitutes your agreement that the enclosed terms and conditions apply to your {!relatedTo.Offer__r.Application_Title__c} Program account and transactions.</p>
+<br />
+
+<p>Thank You,</p>
+
+<apex:outputPanel >
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), 'Fleet Fuel Card Sales Team' , If(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Contact_Name__c,relatedTo.Owner.FirstName+" "+relatedTo.Owner.LastName))}"/><br />
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Phone_Number__c,relatedTo.Owner.Phone))}"/><br />
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Email__c,relatedTo.Owner.Email))}"/><br />
+</apex:outputpanel>
+
+<p>Sent to:  {!relatedTo.Email__c}<br />
+Reference #: {!relatedTo.Name}<br />
+Terms and Conditions Version: {!relatedTo.Terms_and_Conditions_Version__c}</p>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

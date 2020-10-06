@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Meeting Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Meeting Confirmation</name>
+    <style>freeForm</style>
+    <subject>Meeting Confirmation:  Sheetz Business Edge</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+
+Thank you for your interest in the Sheetz Business Edge card program.
+
+
+I am emailing you to confirm our meeting on &lt;date&gt; at &lt;time&gt;. If this date will not work for you please let me know, I would be happy to reschedule.
+
+
+I look forward to meeting with you to discuss the benefits of the Sheetz Business Edge card program. I think you will find the program ideal for your company’s vehicle fueling needs.
+
+
+If you have any questions before our meeting, please to do not hesitate to call me at {!User.Phone}.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

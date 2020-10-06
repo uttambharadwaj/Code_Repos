@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>NR 97/3 Template - please clone and save to your personal folder</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WF1_Factoring</letterhead>
+    <name>NR - 3.0%</name>
+    <style>freeForm</style>
+    <subject>Fleet One - Non-Recourse Factoring Offer</subject>
+    <textOnly>Good Morning 
+
+Thank you for your interest in Fleet One&apos;s Fuel Program, and any opportunity to work with your fleet on our factoring side would be greatly appreciated.
+ 
+Based on your number of trucks and anticipated monthly volume, we are able to offer you the following: 
+
+Non-Recourse Fee Structure &amp; Benefits: 
+• Ninety-Seven Percent Advance Rate (97.0%) 
+• Three Percent Flat Rate (3.0%) 
+• Free Invoice Generation 
+• Same-Day Funding 
+• No originals needed - only a copy of your BOL and Rate Confirmation is required for funding 
+• Free and unlimited broker/shipper credit checks 
+• Immediate posting of funds to your Fleet One fuel account 
+• Flexible Funding Options: 
+             o           Fleet One fuel transfer $0 
+             o           ACH transfer $3 
+             o           Wire transfer $15 
+
+In order to set up your new factoring account, please send to me the following items: 
+• W-9 Request for Taxpayer Identification Number 
+• Driver’s License copy 
+• Copy of your Insurance Certificate 
+
+
+Again, thank you for your time. I look forward to working with you during the account setup process and helping you with anything that you need. 
+
+
+
+Respectfully, 
+
+Natalie L. Duke 
+WEX Fleet One 
+Business Development Officer 
+(615) 523-6543 Office 
+(615) 830-6375 Mobile 
+(615) 858-6543 Fax 
+nduke@fleetone.com 
+
+ 
+
+ 
+ 
+This email communication (including any attachments) is intended only for the use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. Any unauthorized reading, distribution, copying, or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

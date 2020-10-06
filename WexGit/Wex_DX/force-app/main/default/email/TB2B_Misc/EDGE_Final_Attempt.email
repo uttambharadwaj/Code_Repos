@@ -1,0 +1,15 @@
+Hi {!Contact.FirstName},
+
+I have been unable to contact you in regard to the benefits of your EDGE account. I do not want to be a bother or waste your time, so this will be my final attempt.
+
+Along with the fuel discounts you are receiving, you also have access to most of the major tire brands (Michelin, Yokohama, Good Year, General, BF Goodrich, and Roadmaster). The pricing is good nationwide and you can use your EDGE card, credit card or you can apply for a separate line of credit dedicated to tires.
+
+Tire pricing is valid at all locations accepting National Accounts, so odds are you can still work with your preferred tire dealer. If you decide you would like to utilize our tire pricing, give me a call and I will send you out a price sheet that includes the type of tire(s) you are looking for. You can also just email me back the brand, size, type of tire and I will send you over customized tire pricing.
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+Fleet Consultant
+Phone: {!User.Phone}
+Email: {!User.Email}
+1104 Country Hills Dr #600 Ogden, UT 84403

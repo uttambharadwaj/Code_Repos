@@ -1,0 +1,12 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p>Hello, {!Case.SuppliedName}</p>
+<p>&nbsp;</p>
+<p>The WEX Salesforce.com Support Team has&nbsp;received&nbsp;your request and has a target completion date of {!Case.Target_Completion_Date__c} and is assigned to {!Case.OwnerFullName}</p>
+<p>&nbsp;</p>
+<p>If you have further questions please reply to this e-mail and reference your Case Number {!Case.CaseNumber} and Case ID {!Case.Thread_Id}.<br><br>Thanks,</p>
+<p><br>The WEX Salesforce.com Support Team<br style="FONT-WEIGHT: bold"><br style="FONT-WEIGHT: bold"></p>
+<div style="MARGIN-LEFT: 40px"><font size="3"><br></font>&nbsp;</div><br><br><br>]]></td>
+</tr>
+</table>

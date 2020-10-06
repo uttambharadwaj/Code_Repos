@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to Manager if Participant is OPT OUT</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>0.3 OPT OUT</name>
+    <style>freeForm</style>
+    <subject>We&apos;ll miss {!Training_Event__c.Attendee__c} in Sales Onboarding!</subject>
+    <textOnly>Dear {!Case.User__c},
+
+We&apos;re sorry to hear that {!Case.Onboarding_Participant__c} is opting out of the Sales Onboarding program.  Sales Onboarding is the first step in a year long Learning Journey here at WEX.
+
+If you should reconsider and would like {!Case.Onboarding_Participant__c} to participate, please review the Sales Onboarding Schedule https://na64.salesforce.com/sfc/p/700000009EOI/a/0g0000005Wkz/KrJshbcGquQkZZN3wywvMQwZTIB52LqRqbOoPeiJE7s and contact me to enroll in a future class.
+
+Thank you,
+{!User.Name} {!User.Phone} | {!User.MobilePhone}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

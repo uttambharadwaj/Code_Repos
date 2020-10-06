@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Fleet Card v Credit Card</title>
+</head>
+
+<body style="background: #e0e0e0;" bgcolor="#e0e0e0">
+<table style="background: #e0e0e0;" align="center" bgcolor="#e0e0e0" border="0" cellpadding="12" cellspacing="0" width="95%">
+<tr>
+<td>
+    <table style="background: none repeat scroll 0% 0% #ffffff);" align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="650">
+    <tr>
+    <td style="background: none repeat scroll 0% 0%;" bgcolor="#ffffff" width="650"><a href="http://customer.wrightexpress.com/marcom/docs/wexu-201/fleet-card-vs-credit-card.pdf" style="color: #e61f31;"><img src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001Lctj&oid=00D700000009EOI&lastMod=1358355661000" alt="WEX - The Advantages of Fleet Cards vs. Credit Cards" style="display: block;" border="0" height="330" width="650" /></a></td>
+    </tr>
+    </table>
+
+	<table style="background: none repeat scroll 0% 0% #ffffff);" align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="650">
+    <tr>
+    <td width="50">&nbsp;</td>
+    <td width="407">
+    <p style="font-size:12pt;font-family: Arial, Helvetica, sans-serif; line-height:20px; color:#5b5a5a;"><strong>Dear {!Contact.FirstName},</strong></p>
+    
+    <h1 style="font-family: Arial, Helvetica, sans-serif; font-size: 14pt; color: #5b5a5a; font-weight: normal;">Happy New Year!</h1>
+    
+    <p style="font-size:11pt;font-family: Arial, Helvetica, sans-serif; color:#5b5a5a; line-height: 20px;">It's 2013 but the same pressure to tightly monitor and contain your fleet's expenses continues. New technologies can help you to control your driver's behaviors &mdash; but not all card programs offer the same tools. If your business is using a general credit card to manage fuel spend, you could be spinning your wheels trying to figure out new ways to control expenses.</p>
+    </td>
+    <td width="173" valign="bottom"><img src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001Lctt&oid=00D700000009EOI&lastMod=1358355720000" alt="" style="display: block;" border="0" height="73" width="173" /></td>
+    <td width="20">&nbsp;</td>    
+    </tr>
+    <tr bgcolor="#6f6a64" style="background:#6f6a64;">
+    <td width="50">&nbsp;</td>
+    <td width="407">
+    <p style="font-size:10pt;font-family: Arial, Helvetica, sans-serif; color:#ffffff; margin: 0;">Learn about the differences between Fleet Cards and Credit Cards</p>
+    </td>
+    <td width="173"><p style="font-size:11pt;font-family: Arial, Helvetica, sans-serif; color:#e61f31; margin: 0;"><a href="http://customer.wrightexpress.com/marcom/docs/wexu-201/fleet-card-vs-credit-card.pdf" style="text-decoration:underline; color:#e61f31"><img src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001Lcu3&oid=00D700000009EOI&lastMod=1358355820000" alt="DOWNLOAD NOW >>" style="display: block;" border="0" height="37" width="173" /></a></p></td>
+    <td width="20">&nbsp;</td>    
+    </tr>
+    <tr>
+    <td width="50">&nbsp;</td>
+    <td width="407">
+    <p style="font-size:11pt;font-family: Arial, Helvetica, sans-serif; color:#5b5a5a; line-height: 20px;"><a href="http://customer.wrightexpress.com/marcom/docs/wexu-201/fleet-card-vs-credit-card.pdf" style="text-decoration:underline; color:#e61f31">Our latest whitepaper</a> compares and contrasts the practicality of both fleet cards and credit cards for managing fleet fuel spend. Learn how fleet cards offer in-depth transaction data, greater flexibility and tighter controls. Not all programs are alike &mdash; and now you can learn more about what to look for in a program.</p>
+    
+    <p style="font-size:11pt;font-family: Arial, Helvetica, sans-serif; color:#5b5a5a; line-height: 20px;">If you have any questions on the white paper, feel free to contact me, and I would be happy to speak to you in detail about your fleets needs.</p>
+    
+    <p style="font-size:12pt;font-family: Arial, Helvetica, sans-serif; line-height:20px; color:#5b5a5a;"><strong>Sincerely,</strong></p>
+    <p style="font-size:10pt;font-family: Arial, Helvetica, sans-serif; line-height:20px; color:#5b5a5a;">{!User.FirstName} {!User.LastName}</p>
+    </td>
+    <td width="173" valign="top"><img src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001Lcty&oid=00D700000009EOI&lastMod=1358355759000" alt="" style="display: block;" border="0" height="84" width="173" /></td>
+    <td width="20">&nbsp;</td>    
+    </tr>
+    <tr>
+    <td colspan="4"><p style="margin: 0; height: 20px;">&nbsp;</p></td>
+    </tr>
+    <tr>
+    <td colspan="4" width="650" style="background: #6f6a65;" bgcolor="#6f6a65"><p style="margin: 0; height: 8px;">&nbsp;</p></td>
+    </tr>
+    <tr>
+    <td colspan="4" width="650"><p style="margin: 0; height: 2px;">&nbsp;</p></td>
+    </tr>
+    <tr>
+    <td colspan="4" width="650" style="background: #6f6a65;" bgcolor="#6f6a65"><p style="margin: 0; height: 57px;">&nbsp;</p></td>
+    </tr>
+    </table>
+    
+	<table align="center" border="0" cellpadding="0" cellspacing="0" width="650">
+    <tr>
+    <td width="20"></td>
+    <td width="610">
+        <p style="font-family:arial; font-size:8pt; color:#999999;">&copy; 2013 WEX Inc. All rights reserved.</p>
+        
+        <p style="font-family:arial; font-size:8pt; color:#999999;">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</p></td>
+    <td width="20"></td>
+    </tr>
+    </table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

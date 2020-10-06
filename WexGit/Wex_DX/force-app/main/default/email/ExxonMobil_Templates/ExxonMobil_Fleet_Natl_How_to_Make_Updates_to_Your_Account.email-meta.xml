@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Card_Update_Form.doc</attachedDocuments>
+    <attachedDocuments>Inside_Sales/Driver_Update_form.doc</attachedDocuments>
+    <available>true</available>
+    <description>ExxonMobil Fleet Natl how to make card / driver updates</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Fleet_National_card</letterhead>
+    <name>ExxonMobil Fleet Natl How to Make Updates to Your Account</name>
+    <style>freeForm</style>
+    <subject>How to Make Changes to your ExxonMobil Fleet National account</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Welcome to the ExxonMobil Fleet National Card Program!
+
+Now that you have an established account with us, you can easily make changes to your Fleet National Card account in three ways:
+
+Via Phone: Customer Service is available 7 days a week, 24 hours a day at 1-888-531-3698 for assistance.
+
+Via Fax: Use the attached forms to make changes to your account. Simply complete and fax the forms back to us at 1-800-395-0809.
+
+Online: Make changes online anytime by visiting https://www.exxonmobiluniversalonline.com/online/ . For guidance, please refer to the attached pdf for tutorials on our online tools!
+
+Thank you for choosing the ExxonMobil Fleet National Card Program.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>E-App and Edge Info - NO EAPP (BOCA)</name>
+    <style>freeForm</style>
+    <subject>Fleet One EDGE Fuel Card - Information on Benefits, Discounts, and Fees</subject>
+    <textOnly>Greetings {!Contact.FirstName},
+
+
+Thank you for your interest in the Fleet One EDGE Discount Network. For your convenience, I have sent a link to our online application in a separate email. (Please note that if you haven&apos;t seen the application email in your email&apos;s inbox, please check the junk/spam folders and see if it is there.)
+
+Below I have provided some additional information on the EDGE card that I thought you might find helpful in making your decision.
+
+
+
+Benefits of the Fleet One EDGE card:
+
+No fees in network
+Acceptance at over 8,000 Truck Stops and cash price on fuel purchases
+Largest nationwide fuel DISCOUNT NETWORK - over 3,000 sites including:
+
+- Pilot 10 cents off per gallon
+
+- Flying J 10 cents off per gallon
+
+- TA  10 cents off per gallon
+
+- Petro 10 cents off per gallon
+
+- Sapp Brothers 06 cents off per gallon
+
+- Speedway, Kangaroo, Kwik Trip, Quick Fuel, Wilco/Hess, Petroleum Wholesaler, Ambest and MORE have an average savings of 12 cents off per gallon. The actual discount on these independent locations will very based on location.
+
+Nationwide discounts on major tire brands, save an average of $40 per tire!
+Thousands of additional savings on parts, service, hotels, breakdown, and more
+IFTA Fuel tax reporting and permit services
+Credit to fund your operations and financing solutions to help you grow
+Fleet One Factoring services that integrate free of charge!
+
+
+Standard Fees:
+
+
+• $75.00 – New Account Setup Fee
+
+• $8.00 – Card Fee/month (active/using cards only! Spares are free!)
+
+• $0.00 – Fuel trans in network (Includes discount locations)
+
+• $2.00 – Fuel transaction fee out of network
+
+• $1.50 – Cash with Fuel
+
+• $3.00 – Cash only transaction
+
+• $3.00 – ATM transaction
+
+• $3.00 – Pluschek fee (per $1,000)
+
+
+
+Give your fleet the EDGE!
+
+
+
+We look forward to a long relationship with {!Account.Name}. And again, thank you for your interest in Fleet One. If you have any questions about the application or your new fuel card program, please don’t hesitate to call or email me.
+
+
+Warm Regards,
+
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone:  {!User.Phone} | Cell: (615) 246-7476 | Fax: {!User.Fax}
+{!User.Email} |  www.fleetone.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

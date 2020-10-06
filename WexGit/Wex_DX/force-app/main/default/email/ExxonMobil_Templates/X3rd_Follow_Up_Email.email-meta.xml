@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>3 rd Follow Up Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>3rd Follow Up Email</name>
+    <style>freeForm</style>
+    <subject>Limited Time Special Offer... PHCC Benefits: ExxonMobil Fleet Program</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,26 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Nous ne pouvons effectuer les changements  demandés du faite que votre nom ne figure pas sur la liste des personnes autorisées au compte. Vous devez nous retourner le document  ci-joint pour mettre à jour la liste des contacts ( courriel ou fax 800.395.0809).
+Ce document  doit être signé par un officier de la compagnie  (propriétaire , contrôleur  etc. ou un contact existant.)
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

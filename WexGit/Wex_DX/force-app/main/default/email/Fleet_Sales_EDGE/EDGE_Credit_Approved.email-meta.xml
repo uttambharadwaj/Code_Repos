@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>EDGE Credit Approved</name>
+    <style>freeForm</style>
+    <subject>Fleet One EDGE Card Services - Application has been Reviewed</subject>
+    <textOnly>{!OnlineApplication__c.Contact_Name__c},
+
+
+Your application has been reviewed for the new Fleet One EDGE fuel card discount network program.
+
+
+Provided that no additional information is required, you can expect to receive your welcome packet and fuel card(s) in approximately 7-10 business days. Specific information regarding your credit decision will be sent in a separate email. If additional information is required an account executive will contact you directly via phone and/or email and discuss what is needed.
+
+
+If your company does not have an assigned DOT# - reply to this email with a copy of your driver&apos;s license. If you have already provided your driver&apos;s license to your account executive during the application process, there is no need to send it in again.
+
+
+Please note, when you receive your Fleet One EDGE fuel cards, they will arrive ACTIVE. You will not need to call Customer Service in order to activate the cards; all you need to do is pass the card(s) out to your driver(s) and start taking advantage of the EDGE savings!
+
+As a reminder, your one-time setup fee will be billed to you within the first month of service (after your cards are received.) Thank you for choosing Fleet One EDGE. If you have any questions about your new account or benefits, please do not hesitate to contact me directly.
+
+
+
+Thank you,
+
+
+
+
+
+{!OnlineApplication__c.OwnerFullName}
+{!OnlineApplication__c.OwnerTitle}
+WEX Fleet One
+Phone:{!OnlineApplication__c.OwnerPhone} | Fax: {!OnlineApplication__c.Owner_Fax__c}
+{!OnlineApplication__c.OwnerEmail} | www.fleetoneedge.com
+
+
+
+To opt out of all email marketing messages from Fleet One EDGE, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

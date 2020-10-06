@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>To be used by LDR</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead</letterhead>
+    <name>CITGO Requesting Info</name>
+    <style>freeForm</style>
+    <subject>CITGO FLEET SPECIAL OFFER</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I would like to see if we can potentially save you both time and money! The CITGO Fleet card program has been able to save companies up to 15% in their overall fuel costs*.
+
+Before I dive deeper into our program I would like to find out a little more about your business to make sure you would be able to maximize the benefits of our program.
+
+How many vehicles does your company have in use?
+What method do you use to purchase fuel for those vehicles?
+Who would be the best person to speak with about your fleet needs?
+
+LOWER FUEL COSTS
+
+Prevent unauthorized card use by using our detailed transaction reports which identify unique driver spending.
+
+SAVE TIME
+
+Eliminate administrative time sorting through receipts and reimbursing drivers.
+
+Reduce time spent on fiscal reporting with our month to-date and year-to-date reporting.
+
+
+
+CONVENIENCE &amp; SAVINGS
+
+Access to over 5,500 CITGO locations in 27 states, and the option for more flexibility with our Universal Card welcome at over 90% of all U.S. fueling locations.
+
+Earn valuable rebates of up to 5 cents per gallon when fueling at CITGO locations**.
+
+
+You can reach me at {!User.Phone} or via email at {!User.Email}. I look forward to speaking with you about the needs of your business.
+
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+CITGO and the CITGO logo are trademarks of CITGO Petroleum.
+
+*Actual savings may vary.
+
+** Rebates earned only on gallons fueled at CITGO branded stations and are subject to change at any time without prior notice</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

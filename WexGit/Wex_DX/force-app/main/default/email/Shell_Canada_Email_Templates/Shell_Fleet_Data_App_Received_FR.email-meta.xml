@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Canada_Documents/Fleet_Data_Form_EN.xlsx</attachedDocuments>
+    <available>true</available>
+    <description>Envoyé via le workflow lorsque la demande d&apos;application est réussie. Inclut le formulaire de données de flotte.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Fleet Data App Received_FR</name>
+    <style>freeForm</style>
+    <subject>Votre demande de carte Shell est en cours de traitement | Action requise</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Merci d’avoir choisi le programme de carte de carburant Shell.
+
+Nous avons reçu votre demande et son traitement pourrait nécessiter jusqu’à cinq jours ouvrables.
+
+Entre-temps, veuillez remplir le formulaire ci-joint en y indiquant les renseignements nécessaires à la configuration de votre compte :
+
+Renseignements sur les chauffeurs :
+- Veuillez fournir la liste des noms de vos chauffeurs, de même qu’un identifiant de quatre ou de six chiffres pour chacun d’eux. Si vous préférez que nous assignions les identifiants, laissez simplement cette section vide.
+- Pour des raisons de sécurité et de prévention de la fraude, chaque chauffeur doit entrer son identifiant au point de vente. Ce numéro permet de retrouver le nom du chauffeur ainsi que toutes ses opérations.
+
+Renseignements sur les véhicules :
+- Une seule colonne est obligatoire; les autres (comme le numéro d’immatriculation et le NIV) sont facultatives.
+- Veuillez choisir un champ que vous aimeriez voir apparaître à la deuxième ligne de votre carte, sous le nom de votre entreprise. Cette information figurera aussi sur vos relevés de suivi du ravitaillement des véhicules.
+
+Numérisez le formulaire rempli et envoyez-le-moi par courriel à l’adresse indiquée ci-après ou télécopiez-le au {!Opportunity.Opportunity_Owner_Fax__c} dès que possible.
+
+Une fois que votre compte sera approuvé, un spécialiste communiquera avec vous afin de régler certains autres détails avant l’émission de vos cartes.
+
+Si vous avez des questions, n’hésitez pas à m’appeler.
+
+Cordialement,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

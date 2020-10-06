@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Classic Card Reissue</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Classic Reissue Card</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. You can replace cards online under Account Maintenance &gt; Card &gt; Reissue. Selecting Lost or Stolen as the reason will permanently cancel the existing card, whereas Replacement will keep the existing card active (use this if the card is secured but damaged). Please let me know if you have any questions.  
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

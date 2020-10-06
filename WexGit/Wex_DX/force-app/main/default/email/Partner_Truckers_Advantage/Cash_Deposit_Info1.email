@@ -1,0 +1,10 @@
+{!Contact.FirstName},
+
+In order to facilitate a security deposit account I will need these two forms filled out. I will also need a voided check copy in order set up your ACH draft payments and a copy of your bank wire receipt.  Please be sure to include this, "Application-(type in number of app)" on the notes section of your wire or certified check so the funds get applied correctly.  I will start processing your cards as soon as I get these 4 documents.
+
+If you have any questions, please give me a call.
+
+Thank you!
+{!User.FirstName} {!User.LastName}
+{!User.Phone}
+{!User.Email}

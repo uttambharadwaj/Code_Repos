@@ -1,0 +1,48 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style=""><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]-->
+
+<p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" size="2"><font style="color: rgb(0, 0, 0);">We're sorry to hear that&nbsp;</font>{!Training_Event__c.Attendee__c}<font style="">&nbsp;is opting out of the Sales Onboarding program. &nbsp;Sales Onboarding is the first step in a year long Learning Journey here at WEX.</font><br><br>If you should reconsider and would like {!Training_Event__c.Attendee__c}&nbsp;to participate, please review the <a href="https://na64.salesforce.com/sfc/p/700000009EOI/a/0g0000005Wkz/KrJshbcGquQkZZN3wywvMQwZTIB52LqRqbOoPeiJE7s" style="color: rgb(0, 0, 0);">Sales Onboarding Schedule</a><font style=""> and contact me to enroll in a future class.</font></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2" style=""><br>Thank you,<br>{!User.Name} {!User.Phone} |&nbsp;{!User.MobilePhone}<br>WEX Global Sales Training</font></p></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></div>]]></td>
+</tr>
+</table>

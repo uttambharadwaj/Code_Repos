@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Inscription au service de prélèvement automatique</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Inscription au service de prélèvement automatique</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Nous avons ajouté l’option « inscription au service de  prélèvement automatique » à votre accès en ligne.
+
+Dirigez-vous sur l’onglet:  Facture et paiement/Inscription au service de prélèvement automatique  Entrez vos informations bancaires  Téléchargez la Convention de débit préautorisé (DPA) Remplir le formulaire et envoyez par fax accompagné d’un spécimen de chèque.
+
+Vous recevrez une confirmation par courriel vous avisant que nous avons bien reçu et traitée la demande.
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

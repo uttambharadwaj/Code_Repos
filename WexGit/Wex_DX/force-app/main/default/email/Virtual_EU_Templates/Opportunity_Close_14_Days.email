@@ -1,0 +1,13 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif">Hi&nbsp;{!Opportunity.OwnerFirstName},</font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif">It's great to see that your opportunity&nbsp;<a href="https://na5.salesforce.com/{!Opportunity.Id}">{!Opportunity.Name}</a> is closing in the next 14 days.</font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif">This is just a gentle reminder to make sure that you have time to complete the following activities in that time. Please consider the following -</font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></div><div style="color: rgb(0, 0, 0);"><div style="background-color: rgb(255, 255, 255);"><ul><li><font size="2" face="Arial, sans-serif">Does the customer have an executable contract?</font></li><li><font size="2" face="Arial, sans-serif">Are we expecting more contract feedback?</font></li><li><font size="2" face="Arial, sans-serif">How long do you think this will take?</font></li><li><font size="2" face="Arial, sans-serif">Do we have the necessary support for all outstanding tasks?</font></li></ul><p></p></div><div style="background-color: rgb(255, 255, 255);"><p class="MsoNormal"><font size="2" face="Arial, sans-serif">If you’re not sure that the remaining activities can be completed in the time remaining, please adjust the close date accordingly.</font></p></div></div><div><p></p>
+
+
+
+
+
+</div><div><p class="MsoNormal"><font size="2" face="Arial, sans-serif">If you’re not sure the remaining activities can be completed in
+the time remaining, please adjust the close date accordingly.<font color="#1f497d"><o:p></o:p></font></font></p></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif"><br></font></div><div style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif">Thank you.</font></div>]]></td>
+</tr>
+</table>

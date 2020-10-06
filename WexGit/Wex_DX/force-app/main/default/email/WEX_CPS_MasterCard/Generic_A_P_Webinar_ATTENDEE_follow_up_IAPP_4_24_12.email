@@ -1,0 +1,36 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<FONT size=3><SPAN style="FONT-FAMILY: Times New Roman,Times,Serif">
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Dear {!Contact.FirstName},</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Thank you for joining IAPP’s recent webinar -- "Lessons from Two Practical Virtual Payment Programs" -- sponsored by Wright Express. Hopefully you found the information valuable, and understand the dynamics leading to increased adoption of virtual payment solutions by both buyers and suppliers.</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Wright Express’ virtual payment programs can be implemented with no out-of-pocket cost, and interface directly with your existing systems and payment processes. <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Key Benefits:<o:p></o:p></P>
+<UL>
+<LI>
+<DIV style="MARGIN: 0in 0in 0pt" class=MsoNormal>Improve payment controls</DIV>
+<LI>
+<DIV style="MARGIN: 0in 0in 0pt" class=MsoNormal>Maximize financial incentives—think cash back—while paying your bills electronically</DIV>
+<LI>
+<DIV style="MARGIN: 0in 0in 0pt" class=MsoNormal>Improve working capital—pay your vendors faster and pay us later</DIV>
+<LI>
+<DIV style="MARGIN: 0in 0in 0pt" class=MsoNormal>Improve your team’s efficiency with automated reconciliations<o:p></o:p></DIV></LI></UL>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Wright Express is the only commercially chartered bank fully dedicated to addressing your business to business payment needs.<SPAN style="mso-spacerun: yes">&nbsp;&nbsp; </SPAN>As such, you can expect continued investment in solutions, consultations and services to meet your needs.<o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>I would appreciate an opportunity to discuss any questions you may have. Would next week work for you? <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>Feel free to review an archive of this recent webinar <A href="https://www1.gotomeeting.com/register/550985793">here</A>.</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Sincerely, <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.FirstName} {!User.LastName} <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Title} <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Phone - {!User.Phone} <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Cell - {!User.MobilePhone} <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Email} <o:p></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><A href="http://www.wrightexpress.com/epayables">www.wrightexpress.com/epayables<o:p></o:p></A></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT size=2>CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</FONT></P></SPAN></FONT>]]></td>
+</tr>
+</table>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay SLA Exceeded - Last Updated</name>
+    <style>freeForm</style>
+    <subject>SLA Deadline Reached - {!Opportunity.Account_Asset__c}</subject>
+    <textOnly>This is a notification that it has now been 24 hours since the Sales / Relationship Management team provided additional information for account asset {!Account_Asset__c.Name} so that the account could be set up on the portal.
+
+Application Status - {!Account_Asset__c.Account_form_status__c}
+
+Application Submitted Date - {!Account_Asset__c.00N70000003T7lS}
+
+Information Last Updated Date - {!Account_Asset__c.Information_Last_Updated_Date__c}
+
+
+
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

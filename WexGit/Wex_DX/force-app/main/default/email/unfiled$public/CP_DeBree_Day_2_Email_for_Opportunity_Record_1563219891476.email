@@ -1,0 +1,37 @@
+<span style="font-family:Verdana,Geneva,sans-serif;">Dear {{{Recipient.FirstName}}},<br />
+<br />
+Hopefully you received the&nbsp;email I sent you&nbsp;the other day.&nbsp;&nbsp;In case you didn&rsquo;t, I am taking the liberty of sending you another copy.<br />
+<br />
+Again, I am wondering if you could give me some advice.&nbsp;We help organizations like {{{Opportunity.Account_Name__c}}} with reducing the operating cost of their vendor payments.&nbsp;&nbsp;I don&rsquo;t know whom I need to speak with to see if we can help you in this area.<br />
+<br />
+This is where I need some help from you.&nbsp;&nbsp;Who would be the individual (within your organization), if not you, that you would recommend I meet with to look at our services to see if there&rsquo;s a potential fit?<br />
+<br />
+<b>Specifically what we do is:</b><br />
+&nbsp;<br />
+&nbsp;&nbsp;-&nbsp;Optimize processes and improve workflow automation and reduce cost.<br />
+&nbsp;&nbsp;-&nbsp;Mitigate risk and protect data with tokenization.<br />
+&nbsp;&nbsp;-&nbsp;Generate revenue.<br />
+&nbsp;&nbsp;-&nbsp;Enrich buyer and supplier relationships.<br />
+&nbsp;&nbsp;-&nbsp;Better manage and limit spending.<br />
+&nbsp;<br />
+<b>So you can understand what we do and how we do it:</b><br />
+&nbsp;<br />
+&nbsp;&nbsp;- An&nbsp;</span><a href="https://protect-us.mimecast.com/s/lbauCpY6w2ixQG5ySDe5NO?domain=youtu.be"><span style="font-family:Verdana,Geneva,sans-serif;">80-second video</span></a>&nbsp;<font face="Verdana, Geneva, sans-serif">providing&nbsp;an overview of WEX&#39;s virtual credit card technology.</font><br />
+<font face="Verdana, Geneva, sans-serif">&nbsp;&nbsp;- A testimonial from&nbsp;</font><a href="https://protect-us.mimecast.com/s/-SDeCqxXRZU7LD9RfQrgLZ?domain=youtube.com"><span style="font-family:Verdana,Geneva,sans-serif;">Travelliance</span></a><span style="font-family:Verdana,Geneva,sans-serif;">.<br />
+&nbsp;&nbsp;- A partner testimonial from&nbsp;</span><a href="https://protect-us.mimecast.com/s/EBiGCrkNZ9sDwpx6CyahQc?domain=youtube.com"><span style="font-family:Verdana,Geneva,sans-serif;">Mastercard</span></a><span style="font-family:Verdana,Geneva,sans-serif;">.<br />
+&nbsp;<br />
+I don&rsquo;t know if we could duplicate the kind of results we have seen with our customers and partners with your company, but wouldn&rsquo;t it be interesting to find out?<br />
+&nbsp;<br />
+I look forward to speaking with you. And, thank you for any advice you can give me.<br />
+<br />
+<br />
+Sincerely,<br />
+<br />
+{{{Sender.Name}}}<br />
+{{{Sender.Title}}}<br />
+{{{Sender.Email}}}<br />
+{{{Sender.Phone}}}<br />
+www.wexinc.com<br />
+<br />
+<br />
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</span>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Claim Account Comments</name>
+    <style>freeForm</style>
+    <subject>Claim Account Comments</subject>
+    <textOnly>Claim Account Comments
+
+
+
+
+FT #: {!Claim__c.Name}
+
+Fleet: {!Claim__c.Account_Name__c}
+
+Account #: {!Claim__c.Acct_For_Email_Merge__c}
+
+Program Acct #: {!Claim__c.Program_Account_For_Email_Merge__c}
+
+Card #: {!Claim__c.Abbreviated_Card__c}
+
+DIN: {!Claim__c.DIN__c}
+
+Claim Start: {!Claim__c.Claim_Dispute_Start_Date__c}
+
+Claim End:{!Claim__c.Allowable_Dispute_End_Date__c}
+
+Claim Amount:${!Claim__c.Total_Claim_Dollars__c}
+
+Allowable Amt:${!Claim__c.Allowable_Dispute_Dollars__c}
+
+
+
+ACCOUNT COMMENTS:</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

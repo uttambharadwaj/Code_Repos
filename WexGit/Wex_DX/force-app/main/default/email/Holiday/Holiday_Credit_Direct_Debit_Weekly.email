@@ -1,0 +1,60 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>Your&nbsp;Holiday Universal WEX Fleet Card account has been approved
+under our Direct Debit Program. With this plan, we simply debit your fleet
+program balance directly from your checking account weekly for the previous
+week’s transactions. <?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>&nbsp;<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>I am attaching the form you need to complete to
+get set up on Direct Debit. Please take a few moments to fill this out and then
+fax it back to me at </span><span style='color: rgb(31, 73, 125); font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>{!User.Fax}</span><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>, <b style="mso-bidi-font-weight: normal;">along
+with a voided check</b>.<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>&nbsp;<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>Once I receive the form, I will call you to
+verify the setup of your account prior to issuing your cards. Meanwhile, if you
+have any questions please just give me a call.<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>&nbsp;<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>Thank you for choosing the&nbsp;Holiday&nbsp;Universal WEX Fleet&nbsp;program.<o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'><br>
+</span><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'>{!User.FirstName} {!User.LastName} </span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'><br>
+</span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'>{!User.Title} </span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'><br>
+</span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'>Phone - {!User.Phone} </span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'><br>
+</span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'>Fax - {!User.Fax} </span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'><br>
+</span></i><i><span style='color: black; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'>{!User.Email} </span></i><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt; line-height: normal;" class="MsoNormal"><span style='color: gray; font-family: "Times New Roman","serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'><o:p>&nbsp;</o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style='color: gray; font-family: "Arial","sans-serif"; font-size: 8pt; mso-fareast-font-family: "Times New Roman";'>CONFIDENTIALITY NOTICE: "This message
+contains confidential information of WEX Inc. It is intended only for the use
+of the designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><span style='font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style='color: gray; font-family: "Arial","sans-serif"; font-size: 8pt; mso-fareast-font-family: "Times New Roman";'>&nbsp;</span></i></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style='color: gray; font-family: "Arial","sans-serif"; font-size: 8pt; mso-fareast-font-family: "Times New Roman";'>&nbsp;</span></i><span style='font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><i><span style='color: gray; font-family: "Arial","sans-serif"; font-size: 8pt; mso-fareast-font-family: "Times New Roman";'>This is an advertisement from WEX Inc. If you no
+longer wish to receive future email advertisements from {!User.Email},</span></i><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style='color: gray; font-family: "Arial","sans-serif"; font-size: 8pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman";'> </span></i><i><span style='color: rgb(51, 51, 255); font-family: "Arial","sans-serif"; font-size: 8pt; mso-bidi-font-size: 11.0pt; mso-fareast-font-family: "Times New Roman";'>email us to unsubscribe</span></i></a><i><span style='color: gray; font-family: "Arial","sans-serif"; font-size: 8pt; mso-fareast-font-family: "Times New Roman";'>. Please be sure to include your name, company
+name and email address in the email.</span></i><span style='font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'><o:p></o:p></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><o:p><font face="Calibri">&nbsp;</font></o:p></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 0pt 0.5in; line-height: normal;" class="MsoNormal"><b style="mso-bidi-font-weight: normal;"><font face="Calibri">&nbsp;</font></b></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><o:p><font face="Calibri">&nbsp;</font></o:p></p><font face="Times New Roman">
+
+</font>]]></td>
+</tr>
+</table>

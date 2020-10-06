@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Use to promote the Telematics webinar on 2/20/13</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Telematics_Webinar</letterhead>
+    <name>Webinar Promo - Feb13</name>
+    <style>promotionRight</style>
+    <subject>Live Webinar: Fuel Cost Savings with GPS Telematics</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

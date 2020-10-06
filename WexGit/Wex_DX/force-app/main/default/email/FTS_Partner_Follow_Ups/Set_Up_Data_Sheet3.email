@@ -1,0 +1,12 @@
+{!Contact.FirstName},
+
+Congratulations on being approved for an EFS/FTS fuel card. In order to get the cards finalized, we need some information for the specific set up of your fleet cards.  This is very important to identify your driver id or unit number set up so your card activation will go smoothly.
+
+Please complete this form and email back to me at {!User.Email}. 
+
+Also, please confirm what day of the week you want to have funds drafted from your checking account if you selected to pay by ACH or Auto Draft.
+
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

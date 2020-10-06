@@ -1,0 +1,15 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal">Thank you for contacting WEX
+Telematics. We have received your request and a member of our Telematics
+Customer Service team has been assigned to resolve the matter for you. We will
+contact you if any additional information is needed. &nbsp;Our hours of operation
+are Monday through Friday, 8:00am – 5:00pm EST.<o:p></o:p></p>
+
+<p class="MsoNormal">&nbsp;</p>
+
+<span style="font-size: 12pt;">Thank you for contacting WEX
+Telematics Support.</span><br><br><font face="arial" style="color: rgb(0, 0, 0);">Thanks,</font><br><font face="arial" style="color: rgb(0, 0, 0);">The WEX Telematics Support Team</font><br><br style="font-weight: bold;"><br style="font-weight: bold;"><div style="color: rgb(0, 0, 0); margin-left: 40px;"><font style="font-size: 12pt;"><span style="font-weight: bold;">From:</span>&nbsp;{!Case.SuppliedEmail}<br><b>Case #</b>&nbsp;{!Case.CaseNumber}.<br><span style="font-weight: bold;">Subject:</span>&nbsp;{!Case.Subject}</font></div>]]></td>
+</tr>
+</table>

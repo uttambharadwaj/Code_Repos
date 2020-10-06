@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template for rapid! PayCard Cross-Sell</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>rapid_PayCard_Letterhead</letterhead>
+    <name>RSM Outreach - rapid! PayCard</name>
+    <style>freeForm</style>
+    <subject>Reduce Payroll Costs with rapid! PayCard</subject>
+    <textOnly>Dear [First Name],
+
+I wanted to touch base and share a way you can reduce costs. Many of my customers still have some employees that receive paper checks, creating expensive and logistical challenges for their finance and accounting teams. The rapid!® PayCard is a Visa® Debit Card with no enrollment or card acquisition fees to your company. Employers benefit by eliminating paper checks while employees gain immediate access to pay. Employees will have the ability to use the PayCard anywhere Visa Debit is accepted.
+
+
+The win-win benefits of moving away from paper paychecks to a rapid! PayCard start immediately:
+
+Dramatic company savings — including decreases in &apos;stop payment&apos; fees and processing fees
+High employee satisfaction — funds are available immediately and the cards are simple to use
+Conversion is easy — many customers report being able to convert employees from paper to cards in less than a week
+
+
+Take a look at our quick-read materials to see how rapid! PayCard could work for [company name]. Then, get in touch with me via phone or email. I look forward to hearing from you!
+
+Sincerely,
+[Rep First Name] [Rep Last Name]
+[Phone]
+[Email]</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

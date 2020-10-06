@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Canada_Documents/Shell_Canada_BPAV_Missing_Information_Form_FR.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Modèle de conversion BPAV Shell - pour l&apos;équipe de conversion uniquement!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Conversion BPAV Template_FR</name>
+    <style>freeForm</style>
+    <subject>Renseignements requis pour votre carte Shell Fleet</subject>
+    <textOnly>Bonjour {!Customer_Conversion_Data__c.First_Name__c},
+
+Ce fut un plaisir de parler avec vous aujourd’hui.
+
+En tant qu’institution financière répertoriée, WEX Canada est assujettie à certaines exigences réglementaires, dont la législation fédérale, qui oblige toute institution financière à demander une adresse réelle d’entreprise ainsi qu’un numéro d’identification aux fins de l’impôt.
+
+Nous vous prions de remplir le formulaire ci-joint et de l’envoyer aux coordonnées qui y sont indiquées. Vous pouvez également fournir les renseignements requis sur notre site Web sécurisé, à newshellfuelcard.ca/fr.
+
+Si vous avez des questions, veuillez communiquer avec le service à la clientèle au 1-866-627-7994. Nous sommes impatients d’offrir à votre entreprise un programme de carte amélioré.
+
+
+Cordialement,
+
+Services de cartes Shell pour parc
+{!User.FirstName} {!User.LastName}
+Téléphone : 1-855-886-6705
+Télécopieur : 1-207-761-3590
+Courriel : shellinforeturn@wexinc.com
+Adresse postale : 97 Darling Avenue, South Portland, Maine 04106, ÉTATS-UNIS
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité  pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

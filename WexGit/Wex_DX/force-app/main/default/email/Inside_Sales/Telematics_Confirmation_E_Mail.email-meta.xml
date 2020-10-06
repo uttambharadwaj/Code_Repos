@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEXTelkematics_Logo</letterhead>
+    <name>Telematics Confirmation E Mail</name>
+    <style>freeForm</style>
+    <subject>WEX Telematics Call Confrimation</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Thank you for your interest in the WEX Telematics System.  The WEX Telematic’s Specialist will call you on DATE at 9:00 AM/1:00PM EST to go over the WEX Telematic’s unique features, attractive cost savings and our new promotion. If you should have any questions before this meeting, you can contact Kristine Martinez and she can help you. She can be reached at 207-523-6641 or by emailing her at Kristine.martinez@wexinc.com.
+
+It was a pleasure talking to you.
+
+
+Sincerely,
+
+Brian Fitzpatrick
+
+WEX Telematics Service</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Need Authorization Signature</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. In order for us to complete this request, please have the form signed by an existing contact listed on your account, or someone with signatory authority within your organization clearly stating his/her title.  The following titles are considered to have signatory authority:  President Chief Executive Officer (CEO) Operation Manager Human Resource Manager Vice President (VP) Treasurer Corporate Secretary General Manager Director Finance Officer Chief Finance Officer (CFO) Chief Operating Officer (COO) Owner Controller Titled Government Official (e.g., Governor, Mayor, City Clerk, Commissioner)  Once signed, please fax your request to 800-395-0809. Please do not sign and return this form.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

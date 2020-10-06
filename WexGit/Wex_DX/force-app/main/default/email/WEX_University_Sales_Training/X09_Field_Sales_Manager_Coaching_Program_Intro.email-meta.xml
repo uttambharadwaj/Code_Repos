@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to Field Sales Managers with a participant in Onboarding</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>03. Field Sales Manager Coaching Program Intro</name>
+    <style>freeForm</style>
+    <subject>Put me in Coach, I&apos;m ready!</subject>
+    <textOnly>Guidance along the Learning Journey
+
+Congratulations, your Regional Sales Manager has completed Sales Onboarding!  This is an important milestone on the Learning Journey with WEX.
+
+Now with your help and coaching, they can be successful in the field.  The Field Sales Manager Coaching Program will help sales professionals fully ramp as soon as possible.
+
+For information and expectations of this program, select the link below: https://na64.salesforce.com/sfc/p/700000009EOI/a/700000005UfE/NmHUJl7ywLdMwM_FtD69TWTrnJT2qEgphnUt_xHucmY 
+
+Please email SalesTraining@wexinc.com with any questions. 
+
+Thank You,
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

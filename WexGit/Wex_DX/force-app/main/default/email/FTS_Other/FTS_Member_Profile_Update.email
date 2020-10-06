@@ -1,0 +1,17 @@
+{!Account.Name},
+
+As an FTS Plus+ member, we want to make sure we have the correct information on your fleet so that we can better serve you. 
+
+Please take a moment to review and update your profile information at http://ftsplus.com/myprofile 
+
+Your login information is:
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+ 
+Should you have any questions about your membership, or our savings, please contact me.  
+
+Thank you,
+
+FTS Plus+ Representative 
+Phone: 800.749.1724, Opt. 2
+info@ftsplus.com

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up for attendees that visted booth</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MAsterCard_Education</letterhead>
+    <name>Education Sector NACUBO 2012 followup</name>
+    <style>freeForm</style>
+    <subject>Is your campus missing out on revenue opportunities?</subject>
+    <textOnly>Start Turning Payments into Profits
+
+
+Dear {!Contact.FirstName},
+
+
+Thank you for visiting the Wright Express booth at the 2012 NACUBO annual meeting in National Harbor, MD. Wright Express offers a suite of payment solutions to meet your campus&apos; unique needs. We are committed to identifying cost-savings effeciencies and are focused on delivering &apos;best-in-class&apos; solutions. We&apos;ll take on the projects your traditional bank won&apos;t touch.
+
+Why choose Wright Express?
+
+There are two important points of differentiation between Wright Express and traditional banks. 
+
+·    Our B2B focused industrial bank allows us to concentrate on specialized solutions that cater to the unique needs of businesses and institutions, as opposed to other banks that have a split focus on consumers and businesses.
+
+·    We focus exclusively on corporate payment solutions and do not offer deposit accounts or treasury services. This specialized focus gives us the opportunity to devote our resources to best-in-class solutions whereas our competitors tend to cross- or up-sell payment solutions as an add-on to treasury services.
+
+I&apos;d like to share with you a benchmark report on ePayments within higher education and a case study of an ePayment implementation that had a positive impact on a campus&apos; internal effeciencies and provided an additional source of revenue. This no-cost solution simply interfaced with the campus&apos; existing ERP system for vendor payments.
+
+I will follow up with a phone call to see about scheduling an initial discovery session. In the meantime, please do not hesitate to contact me with questions.
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com/payment-solutions/education
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

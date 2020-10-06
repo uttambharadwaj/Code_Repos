@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Standard Response - Virtual Credit - HTML</name>
+    <style>none</style>
+    <subject>Thank you for your email - Wex Europe Ref {!Case.CaseNumber}</subject>
+    <textOnly>Dear {!Case.Contact},
+
+Thank you for your email.
+
+Should you have any further questions, please do not hesitate to contact us.
+
+Kind regards
+{!User.Name}
+
+WEX Account Management Team
+WEX
+4th floor, East Building,  1 London Bridge, London SE1 9BG
+Phone: +44 (0) 2070 719601
+vcsupport@wexeurope.com
+wexvirtualpayments.com</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

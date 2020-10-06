@@ -1,0 +1,29 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Il existe plusieurs façons d’effectuer vos paiements:
+<br></br>
+Par chèque : Veuillez compter 7 à 10 jours ouvrables pour la réception par la poste.
+Par guichet automatique : Veuillez compter 48 à 72 heures ouvrables pour la réception
+Paiement en ligne ou par téléphone: Sur notre site web ou via votre banque. Veuillez compter 24 à 48 heures ouvrables pour la réception. Vous devez choisir « Carte d’affaires Esso » comme fournisseur et entrer votre numéro de client (10 positions).  
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

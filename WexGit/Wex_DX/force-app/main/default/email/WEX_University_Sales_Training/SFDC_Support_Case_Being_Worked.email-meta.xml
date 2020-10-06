@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>An email alert notifying requester that their case is being worked</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SFDC Support Case Being Worked</name>
+    <style>none</style>
+    <subject>Your case: {!Case.Subject} is being worked</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

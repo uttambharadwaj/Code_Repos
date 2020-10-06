@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Local_Fleet_New_Account/Local_Business_Services_Agreement.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Use this template for sending follow up email to a prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Sales Call Follow Up - Local Version</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest In WEX Fleet One Local</subject>
+    <textOnly>Dear {!Lead.FirstName},
+ 
+Thank you for taking the time to speak with me today about your interest in Fleet One®. I hope this additional information will help you make an informed decision about managing your fuel costs with a fuel card.
+ 
+At Fleet One, our goal is to give you the tools to reduce your administrative hassles, saving you valuable time and resources. Once you’ve had a chance to review the attached information, please don’t hesitate to call me with questions. I would also be happy to walk you through the application process.
+ 
+I have included the following documents for your review and the application for you to complete:
+
+Application 
+Features &amp; Benefits 
+Sample Report 
+Experience The Difference 
+
+To submit your application, you may fax it to {!User.Fax}; or mail to my attention at {!User.Street}, {!User.City}, {!User.State} {!User.PostalCode}.
+ 
+I look forward to the opportunity to assist you with your fuel card needs.
+ 
+Thank you,
+ 
+{!User.Name}
+{!User.Title}
+Fleet One, LLC
+Phone: {!User.Phone}   
+Fax: {!User.Fax}
+Email: {!User.Email}
+www.FleetOne.com </textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

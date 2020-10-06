@@ -1,0 +1,17 @@
+{!Contact.FirstName}, 
+
+Thanks for the phone conversation. Keith Morgan, Alon’s Fleet Program Manager, will meet with you on:
+ 
+<INSERT DAY OF WEEK, MONTH, DAY> at <TIME HERE> 
+at <LOCATION HERE- INCL. STATION ADDRESS IF APPLICABLE> 
+
+Keith will go over the details of the program – and how it can save your business money and more effectively manage your fleet. 
+
+It was a pleasure talking with you. 
+
+Sincerely, 
+
+{!User.FirstName} {!User.LastName} 
+Alon Fleet Fuel Services 
+Phone: {!User.Phone} 
+Email: {!User.Email}

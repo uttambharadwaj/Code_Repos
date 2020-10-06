@@ -1,0 +1,34 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+<p>Other than mailing a check, there are 3 online banking payment options for your Esso Business Card account.</p>
+<ol>
+<li>On your bank&rsquo;s website, you can set up &ldquo;Esso Business Card&rdquo; as a Payee and use your Esso Customer number: 0000112865 for the account number.<br /><br /></li>
+<li>On our website: <a href="http://www.essofleetonline.com/">essofleetonline.com</a>, you can go to:</li>
+</ol>
+<p style="padding-left: 30px;">Invoice &amp; Payment on the red bar</p>
+<p style="padding-left: 60px;">Direct Debit Enrollment &ndash; if you wish automatic payments to be&nbsp;taken each month</p>
+<p style="padding-left: 60px;">Set Up Bank Information - if you wish to submit your payments&nbsp;yourself each month</p>
+<p style="padding-left: 30px;">After making your choice between these 2, you:</p>
+<p style="padding-left: 60px;">Add Bank Account</p>
+<p style="padding-left: 60px;">Then follow the directions in the gray box to print off the Pre-authorized Debit Agreement, complete it, and return it to us with a voided check. The fax number is there, or you can send it by email to: <a href="mailto:iol_pad@wexinc.com">iol_pad@wexinc.com</a></p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

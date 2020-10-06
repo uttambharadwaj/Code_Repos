@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>AUSharedDocuments/WEX_Australia_Logo.png</attachedDocuments>
+    <available>true</available>
+    <description>Email to TPA prospect list</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_MasterCard</letterhead>
+    <name>April 2013 WEX Health TPA</name>
+    <style>freeForm</style>
+    <subject>Virtual Payments in Healthcare Driving Cost Savings</subject>
+    <textOnly>{!Account.Name}Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+The migration to electronic payments is rapidly building momentum as the Healthcare industry reacts to the Affordable Care Act.  Research indicates that 80-90% of payment transactions are historically made by paper check.  A significant transformation is under way.
+
+
+WEX Bank is a leading provider of commercial payment processing. WEX Virtual offers a paperless alternative to reimburse providers that is faster and more efficient than check, and offers more data capabilities than ACH. We pioneered this payment technology in 2000 and processed over $31 billion in commercial payments in 2012.
+
+
+WEX Virtual can help you realize these key benefits:
+
+· Streamline and automate payments and reconciliations
+
+· Earn revenue share on payments
+
+· Lower operational costs, averaging a minimum of $10 reduction per transaction
+
+· No-cost, straightforward integration with existing systems
+
+· Virtually eliminate fraud risk via transaction specific, one-to-one payment process
+
+· Increase payment visibility and insight, through extensive invoice-level data capture and robust reporting features
+
+
+
+I’ve attached a brochure which highlights some of the program features.  Ideally, I’d appreciate the chance to meet with you and your colleagues to discuss the program and how it can help {!Account.Name} continue to excel in your field of processing and paying claims.  My contact information can be found below, and I look forward to hearing back from you soon.
+
+
+Regards,
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone - {!User.Phone}
+
+Cell - {!User.MobilePhone}
+
+{!User.Email}
+
+
+www.wexinc.com/wex-health
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

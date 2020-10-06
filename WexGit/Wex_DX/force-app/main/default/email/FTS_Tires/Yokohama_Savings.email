@@ -1,0 +1,9 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div align="left"><br></div><font size="2">Hi {!Contact.FirstName},</font><br><br><font size="2">I wanted to make sure you knew about our Yokohama tire rebate program. You can save&nbsp;<b>$12 per tire</b> on all Yokohama commercial truck tires. </font><br><br><font size="2">It's simple. All you have to do is visit an authorized Yokohama
+dealer, negotiate your best price on any approved tire, and fax a copy 
+of your invoice to us at <b>877.902.1498</b>. We will process your invoice(s), and the rebate will appear as a credit on your FTS card.&nbsp;<br></font><br><div align="left"><font size="2">For full details and to find an authorized dealer, please visit <a href="http://ftsplus.com/yokohama">ftsplus.com/yokohama</a></font>. <br></div><font size="2"><br>Your Member ID: {!Account.Member_ID__c}</font><br><font size="2"> Your Password: {!Account.Web_Password__c}
+<br><br>Thank you,<br></font><span style="font-size: small; background-color: rgb(255, 255, 255);">{!User.FirstName}&nbsp;{!User.LastName}</span><font size="2"><br>FTS Plus+ Representative <br>Phone: 800.749.1724<br>info@ftsplus.com<br></font>]]></td>
+</tr>
+</table>

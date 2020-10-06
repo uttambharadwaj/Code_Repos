@@ -1,0 +1,14 @@
+*** SFDC USER CASE DUE NOTIFICATION ***  
+
+The following case is due to be resolved by tomorrow:  
+Company:  {!Account.Name} 
+Contact Name:  {!Contact.Name} 
+Case #:  {!Case.CaseNumber} 
+
+Type: {!Case.Type}
+Functional Area: {!Case.Functional_Area__c}
+Subject:  {!Case.Subject} 
+Priority: {!Case.Priority}
+Description: {!Case.Description}  
+
+Click on the link to access the case:  {!Case.Link}

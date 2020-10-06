@@ -1,0 +1,24 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><span style="background-color: rgb(255, 255, 255);">{!Contact.FirstName},</span><span style="background-color: rgb(255, 255, 255);">&nbsp;</span></font></p><p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><br></font></p><p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Thank you for your recent application for a fuel card
+account! <o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><o:p><font face="Arial, sans-serif" size="2">&nbsp;</font></o:p></p>
+
+<p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">We currently are not able to extend the requested credit
+line, however, we want you to benefit from the great savings of this NASTC fuel
+card program! <o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><o:p><font face="Arial, sans-serif" size="2">&nbsp;</font></o:p></p>
+
+<p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">We offer the same program with the same great savings and
+advantages on a "Prepay" or a cash deposit basis. Opening either account is fast
+and easy! The other option is a Letter of Credit from your bank. I am attaching
+a sample LOC for your bank's understanding, if you choose this route. <o:p></o:p></font></p>
+
+<p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><o:p><font face="Arial, sans-serif" size="2">&nbsp;</font></o:p></p>
+
+<p class="MsoPlainText" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Please call 800.859.8329 or 615.523.6226 for a complete understanding of these programs. I will be glad to discuss complete details of each program.</font></p><p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2"><br></font></p><p class="MsoPlainText" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Thank you!!!</font></p><p class="MsoPlainText" style="font-family: arial; font-size: 12pt;"><font face="Arial, sans-serif" size="2"><font style="background-color: rgb(255, 255, 255);">{!User.FirstName}&nbsp;{!User.LastName}<br>{!User.Title}&nbsp;<br>Phone: {!User.Phone} | Fax: {!User.Fax}&nbsp;<br>{!User.Email} |&nbsp;</font><a href="http://www.fleetone.com/" style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"><span style="color: blue;"><font>www.FleetOne.com</font></span></a></font></p>]]></td>
+</tr>
+</table>

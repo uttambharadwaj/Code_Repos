@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email follow up for PLog Virtual product as maintenace solution.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>WEX Virtual PLog follow-up</name>
+    <style>none</style>
+    <subject>Thank you for meeting</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+Thank you for meeting with me to discuss your fleets fueling needs. I wanted to follow up and let you know more about a way to manage your vehicle maintenance. Many of my customers have used this product to reduce bottlenecks and increase security.
+
+Fund maintenance and get 100% reconciliation – safely and securely! A single use MasterCard™ number will be generated to pay your vendor.
+
+Let’s speak about how this product can save you time. Please contact me, or I will follow up shortly to further discuss this product.
+
+Thanks for your time.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Email}
+Phone: {!User.Phone}
+
+If you no longer wish to receive future email messages, send me a message and I will remove you from my list.
+
+WEX Inc. | 97 Darling Avenue | South Portland, ME 04106 | USA</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Assignment Consent</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>Assignment Consent</name>
+    <style>freeForm</style>
+    <subject>Important Information About Your rapid! Paycard Agreement</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I am writing to inform you that WEX, the owner of rapid! Paycard, has entered into an agreement to sell the rapid! Paycard program to UniRush.  In anticipation of this change in ownership, we ask that you sign and return the attached letter indicating your consent for WEX to assign to UniRush the [Employer Enrollment Agreement]/[Payroll Card Program Agreement]  detailing the terms of your company’s participation in the rapid! Paycard program.
+
+Following the change in ownership, the same rapid! PayCard team that currently manages your account will continue to provide you the same high-level service.  To ensure seamless service and to facilitate the transfer to UniRush of the contract between your company and rapid! PayCard, it is important that your company complete, sign and return the attached letter immediately, and in no event later than December 26th, 2014.  The completed letter may be scanned and emailed directly to me at {!User.Email} , or faxed to 727.828.4444.
+
+If you have any questions, please don’t hesitate to contact me directly at {!User.Phone}.
+
+
+Thank you for your prompt attention to this request,
+
+
+{!User.Name}
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: {!User.Phone} • C: {!User.MobilePhone} • F: 727.828.4444
+
+E: {!User.Email}
+
+W: www.wexinc • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

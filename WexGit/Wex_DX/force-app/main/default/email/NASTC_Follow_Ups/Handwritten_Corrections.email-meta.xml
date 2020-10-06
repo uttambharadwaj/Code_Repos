@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>if boca or e-app needs sent as pdf for corrections by customer.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>2x Week Handwritten Corrections</name>
+    <style>none</style>
+    <subject>Attention Needed: NASTC Fuel Card Application</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

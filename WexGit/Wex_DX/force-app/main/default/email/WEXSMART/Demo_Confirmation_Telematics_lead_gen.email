@@ -1,0 +1,22 @@
+{!Contact.FirstName},
+
+Thank you for your time today.  I am confirming that you have an appointment with our Telematics Manager on <ENTER DATE> at <ENTER TIME>.  We will call you directly at <ENTER PHONE>.
+
+During our conversation you mentioned an interest in <SELECT ONE OR TWO TOPICS FROM BELOW, DO NOT BULLET>. We will make sure to talk with you about how WEX Telematics can help you with these concerns.
+
+<TOPICS TO CHOOSE FROM. DELETE LIST AFTER>
+•integration with the fuel cards 
+•better coaching drivers to cut fuel costs, lower insurance premiums, and increase safety 
+•gaining greater control of maintenance scheduling to avoid costly breakdowns and keep the fleet running optimally
+•monitoring vehicle idling to reduce fuel costs
+•eLogs/Hours of Service capability
+•asset tracking to prevent theft
+
+If this time does not work for you or if something should come up between now and then, feel free to reach out to me and we can reschedule.
+
+Best,
+
+{!Lead.OwnerFullName}
+WEX Telematics Specialist
+Direct Phone: {!Lead.OwnerPhone}
+Email: {!Lead.OwnerEmail}

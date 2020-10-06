@@ -1,0 +1,34 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Dear&nbsp;{!Lead.FirstName} {!Lead.LastName}&nbsp;&nbsp;, </FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri></FONT>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri></FONT>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.5in; mso-add-space: auto; mso-list: l0 level1 lfo1" class=MsoListParagraphCxSpFirst>.</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Thank you for your interest in our Conoco, Phillips 66, and 76 fuel card.&nbsp;&nbsp;&nbsp; </FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>We offer both a private label card, as well as a universal card.&nbsp; </FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Our private label card is good at Conoco, Phillips 66 and 76 stations only and is free for fleets that pump over 500 gallons per month.&nbsp; (If you pump under 500 gallons, there is a $10 monthly fee.)&nbsp; </FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>The universal card is good at over 90% of all fueling sites in the nation, and is only $2 per month, per card.&nbsp; Plus, you get a service network available as well. </FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Enjoy the benefit of operating your company vehicles with peace of mind, knowing that <B>your employees cannot purchase anything other than fuel.&nbsp; </B>You can easily find out where your employees fueled, how much they paid for the fuel,&nbsp; even track how many miles per gallon your vehicles are getting, <B>while making sure that every drop of fuel you are buying is going into your vehicles.&nbsp;<SPAN style="COLOR: #1f497d"><o:p></o:p></SPAN></B></FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><B><SPAN style="COLOR: #1f497d"><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></SPAN></B></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Let us do the administrative work!&nbsp; No more saving receipts.&nbsp; Just pull your account up online and monitor the activity on your account.&nbsp; You can order new fuel cards at any time, or deactivate a fuel card online if you happen to let an employee go and forget to get his fuel card from him!</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Please look at the enclosed details.&nbsp; I will follow up with a phone call over the next several days, or feel free to call me Monday through Friday, 8 to 5 central time!</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.5in; mso-add-space: auto; mso-list: l0 level1 lfo1" class=MsoListParagraphCxSpFirst>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri></FONT>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.FirstName} {!User.LastName}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Title}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Phone - {!User.Phone}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>Fax - {!User.Fax}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Email}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri></FONT>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P></P>]]></td>
+</tr>
+</table>

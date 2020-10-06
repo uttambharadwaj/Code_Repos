@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Local APA Chapter Education</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>APA Speaking Invitation</name>
+    <style>freeForm</style>
+    <subject>2013 APA Chapter Education</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

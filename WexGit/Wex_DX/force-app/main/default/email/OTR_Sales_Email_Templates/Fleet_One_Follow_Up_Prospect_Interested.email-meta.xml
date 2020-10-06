@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>2nd Attempt, no contact - allow them to book a meeting</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_2018</letterhead>
+    <name>Fleet One 1st Follow Up - Prospect Interested</name>
+    <style>freeForm</style>
+    <subject>Fleet One:  Following up with you</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I just tried calling and I wanted to send you a quick email in case this is more convenient for you. I am following up on your recent interest in our fuel card.
+
+The Fleet One EDGE card offers the most extensive and comprehensive fuel discount network available with fuel discounts at over 3,600 sites. With an average savings of 15 cents per gallon* and thousands of additional savings, the Fleet One EDGE card provides all the tools you need to keep your fleet moving.
+
+I would love to go over the Fleet One EDGE card and its benefits in detail with you and to answer any questions you may have.
+
+Please feel free to give me a call back or use the link below to book a time for us to speak with 1 click. Otherwise, I will try you back tomorrow.
+
+Book a Meeting with Me in 1 Click
+
+
+
+Thank you again for interest, and I look forward to speaking with you soon.
+
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.
+
+*The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network pricing at all.”</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

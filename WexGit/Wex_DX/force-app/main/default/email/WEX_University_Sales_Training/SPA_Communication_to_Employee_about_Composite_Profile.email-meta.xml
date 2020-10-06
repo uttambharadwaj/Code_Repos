@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to employees to inform about SPA composite profile</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>SPA Communication to Employee about Composite Profile</name>
+    <style>freeForm</style>
+    <subject>Sales Performance Assessment Composite Profile</subject>
+    <textOnly>The Sales Training Team uses the Sales Performance Assessment (SPA) tool administered by Management Research Group to all new WEX Sales employees.
+
+
+
+Background: Sales success profiles for WEX roles have been created and will be used in multiple ways to help meet our sales goals moving forward by:
+
+Creating a sales success profile that allows current employees to build a more meaningful sales action development plan
+Helping individuals line up their own talents and skills with the appropriate job at WEX based on defined success criteria
+Creating a hiring profile that can more accurately predict success
+The assessment and profiles are truly about moving the entire function forward from a hiring, training and development perspective.
+
+
+Next Steps: We will be creating a Sales Success Profile for the {ENTER SALES ROLE} and would like you to participate in creating the profile. Your management team has selected you to participate in creating the success profile.  Your results will combine with others to identify the top 5 sales competencies for the {ENTER SALES ROLE} that are most likely to predict sales success here at WEX.
+
+
+What you need to know: You will receive an e-mail from Quest on behalf of {ENTER SALES TRAINER}. The email will contain a link to an online sales assessment questionnaire.
+
+The first time you log in it will ask you immediately to change your password. You will be the only one who has access to this new password, so be sure to write it down in case you need to stop and re-start the questionnaire.
+You will be asked to provide basic demographic information, then you will receive instructions on completing the questionnaire. The instructions are very comprehensive but you will find once you start the questionnaire, it is a very intuitive.
+You should plan on this questionnaire taking you about 30 minutes.
+
+It is important you complete this questionnaire no later than {!Case.Class_Start_Date_del__c}. If you have any questions, please let me know.
+
+
+
+Thank you,
+
+{!Case.OwnerFullName}
+
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

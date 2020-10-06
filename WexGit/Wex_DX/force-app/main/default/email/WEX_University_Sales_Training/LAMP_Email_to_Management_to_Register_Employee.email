@@ -1,0 +1,50 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style=""><div style=""><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><font style="">Our next two-day Large Account Management Process (<b style="">LAMP</b>) training is scheduled to start on&nbsp;</font><b style="">{!Case.Class_Start_Date_del__c}</b><font style="">&nbsp;in our Portland, Maine training facility.&nbsp;&nbsp;</font><br><font style="">&nbsp;</font></font></p><p class="MsoNormal" style=""><font face="Verdana, Helvetica, sans-serif" size="2" style="">I urge you to communicate your
+expectations to your team to participate in this learning experience. Please respond by&nbsp;<b>{!Case.MGR_Pre_Call_Date__c}&nbsp;</b>to enroll any
+employee who will benefit from this program who hasn’t attended.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2"><b>Overview:&nbsp;<br>LAMP </b>is an investment in our sales process
+discipline and sales professionals. The
+Sales Training Team has been actively involved in providing this structured
+sales methodology to sales professionals who manage WEX key accounts for the
+past 4 years. We are confident this
+discipline will fundamentally change the way your team manages key accounts by
+elevating the quality of every interaction they have with our clients.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">To be thought leaders in the changing
+times ahead, we must demonstrate three broad capabilities:<br><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-left: 0.5in;"><font face="Verdana, Helvetica, sans-serif" size="2">1) A clear and
+early view of market needs<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-left: 0.5in;"><font face="Verdana, Helvetica, sans-serif" size="2">2) A thorough
+understanding of the implication of those needs<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-left: 0.5in;"><font face="Verdana, Helvetica, sans-serif" size="2">3) The agility
+to satisfy them more rapidly than our competitors <o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<font face="Verdana, Helvetica, sans-serif" size="2"><b>LAMP </b>has
+been successfully implemented by hundreds of companies, including many of the
+Fortune 100. It is specifically aimed at addressing the challenges of
+maintaining and growing large accounts involving multiple decision makers and,
+as such, should serve the needs of our business very well.</font></p></div></div><div style="color: rgb(0, 0, 0);"><div style=""><p class="MsoNormal" style=""><font style="" face="Verdana, Helvetica, sans-serif" size="2"><br>Thank You,<br>{!Case.OwnerFullName}<br>WEX Global Sales Training</font></p></div></div><div style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"></div>]]></td>
+</tr>
+</table>

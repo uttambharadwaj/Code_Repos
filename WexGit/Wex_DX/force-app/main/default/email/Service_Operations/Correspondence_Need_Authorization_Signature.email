@@ -1,0 +1,45 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Thank you for contacting us. In order for us to complete this request, please have the form signed by an existing contact listed on your account, or someone with signatory authority within your organization clearly stating his/her title.
+ 
+The following titles are considered to have signatory authority:
+
+President
+Chief Executive Officer (CEO)
+Operation Manager
+Human Resource Manager
+Vice President (VP)
+Treasurer
+Corporate Secretary
+General Manager
+Director
+Finance Officer
+Chief Finance Officer (CFO)
+Chief Operating Officer (COO)
+Owner
+Controller
+Titled Government Official (e.g., Governor, Mayor, City Clerk, Commissioner)
+
+Once signed, please fax your request to 800-395-0809. Please do not sign and return this form.
+
+<br></br>
+
+Regards,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notifies OBS Fleet web form owner of new submission</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>W2L Fleet - OBS</name>
+    <style>freeForm</style>
+    <subject>New Contact Us Submission (WEBOBSQ)</subject>
+    <textOnly>Someone just completed the Contact Us form for Custom Card Programs. A new lead is available for you in the WEB Contact Forms - Outbound Sales view.
+
+
+Company: WEX Test 9
+
+State: ME
+
+
+Name: Rich Ellis
+
+Phone: (207) 523-6708
+
+Email: richard.ellis.9@wexinc.com
+
+
+How Can we Help You:</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

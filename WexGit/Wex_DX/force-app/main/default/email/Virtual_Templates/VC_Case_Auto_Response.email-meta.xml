@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_CPS_MasterCard</letterhead>
+    <name>VC Case Auto Response</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.Subject} - {!Case.CaseNumber} has been created</subject>
+    <textOnly>Thank you for contacting WEX Virtual Payments.
+
+
+
+Your Account Manager will respond within 8 business hours.  If you need immediate assistance, please call your Account Manager or our 24/7 Customer Service department at 877-557-6415.
+
+
+
+Thanks for your message,
+
+
+
+The WEX Virtual Account Management Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

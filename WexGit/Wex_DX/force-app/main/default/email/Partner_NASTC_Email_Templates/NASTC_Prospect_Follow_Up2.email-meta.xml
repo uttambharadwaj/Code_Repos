@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Partner_Services/NASTC_Account_Set_Up_Form.pdf</attachedDocuments>
+    <attachedDocuments>Partner_Services/NASTC_Permit_Agreement.pdf</attachedDocuments>
+    <available>true</available>
+    <description>For use when following up with a NASTC Prospect, Bobby Copeland Version</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>NASTC Prospect Follow Up #2</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest In The NASTC Fuel Card</subject>
+    <textOnly>{!Contact.FirstName},
+
+I received your information from Bobby Copeland  of the NASTC organization stating that your company had joined NASTC and wanted to participate in the QPN fuel program. Please complete the attached in order to take advantage of the discounts earned on the NASTC QPN program. Please note, there will be a $50 set up fee that will appear on your first invoice. However, through the generosity of the associated truck stops and this program, there&apos;s no fee for fuel transactions, and you receive cost-plus pricing at the QPN locations.
+
+If you have any questions, please call me at {!User.Phone}. Otherwise, please fax back the completed pages to me at {!User.Fax}.
+
+To set up an account, please complete and return these documents:
+
+1.  Business Services Agreement / Application (Please fill out COMPLETELY)
+
+2.  Terms &amp; Conditions pages (please initial or sign where applicable)
+
+3.  Copy of a voided check from the account you&apos;ll use to pay WEX Fleet One
+
+4.  Account set-up forms
+
+Please also take a moment to ensure that all these documents are signed. Also, I have attached an agreement for our great Permits program, in case you are interested.
+
+Thank You,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

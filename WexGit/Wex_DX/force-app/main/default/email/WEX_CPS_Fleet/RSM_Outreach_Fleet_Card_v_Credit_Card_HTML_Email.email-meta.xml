@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email promoting whitepaper on the benefits of fleet cards vs credit cards</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RSM Outreach - Fleet Card v Credit Card HTML Email</name>
+    <style>none</style>
+    <subject>Are You Spinning Your Wheels By Using a Credit Card for Fuel Expenses?</subject>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

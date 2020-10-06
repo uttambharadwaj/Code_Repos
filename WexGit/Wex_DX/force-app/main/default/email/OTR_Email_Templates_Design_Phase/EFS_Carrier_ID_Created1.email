@@ -1,0 +1,78 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-size: 12pt;"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-fareast-font-family:Calibri;mso-fareast-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-bidi-theme-font:minor-bidi;mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA">Greetings {!Contact.FirstName},</span></p><p class="MsoNormal" style="font-size: 12pt;"><br></p>
+
+<p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">Great news!! <o:p></o:p></span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">&nbsp;</span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">Y’all have made it through
+the EFS application process. Your new <b>Carrier
+ID#&nbsp;</b></span><span style="font-family: Calibri, sans-serif; font-size: 11pt;"><b>{!Account.Carrier_ID__c}</b></span><b style="font-family: Calibri, sans-serif; font-size: 11pt;">. </b><span style="font-family: Calibri, sans-serif; font-size: 11pt;">This is your </span><i style="font-family: Calibri, sans-serif; font-size: 11pt;">account
+number</i><span style="font-family: Calibri, sans-serif; font-size: 11pt;"> in other terms.</span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">&nbsp;</span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">A member of our
+Implementation Team will be reaching out to you to teach you to go over your card order and teach you on how to use your new EFS online
+account. This Implementation Representative should be able to provide you information on when the cards will be arriving. Once they get
+your cards in your hands and train you on your new online account, you will have them as a resource for future questions.<o:p></o:p></span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">&nbsp;</span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">Thank you for bearing with us
+as we made it through the application process and I look forward to having you
+in the EFS family.<o:p></o:p></span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">&nbsp;</span></p><p class="MsoNormal" style="font-size: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">Kind Regards,&nbsp;</span></p><p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi"><br></span></p><p class="MsoNormal"><p class="MsoNormal"><b><span style="font-family:&quot;Myriad Pro&quot;;color:#3D3D3D">Katie
+Haywood</span></b><b><span style="font-size:10.0pt;font-family:&quot;Myriad Pro&quot;;
+color:#3D3D3D"><br>
+</span></b><span style="font-size:9.0pt;font-family:&quot;Myriad Pro&quot;;color:#3D3D3D">Sr
+Account Executive -&nbsp; Inside Sales OTR<br>
+</span><b><span style="font-size:11.0pt;font-family:&quot;Myriad Pro&quot;;color:#C40A2E">WEX
+Inc.<br>
+</span></b><span style="font-size:8.0pt;font-family:&quot;Myriad Pro&quot;;color:#3F3F3F">3102
+West End Ave., Suite 900, Nashville, TN 37203<br>
+Office (615) 523-6496 </span><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">|
+</span><span style="font-size:8.0pt;font-family:&quot;Myriad Pro&quot;;color:#3F3F3F">Fax
+(615) 850-0799<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Myriad Pro&quot;;
+color:#3F3F3F"><a href="mailto:KHaywood@fleetone.com"><span style="color:#0563C1">KHaywood@fleetone.com</span></a>&nbsp;
+&nbsp;&nbsp;<br>
+</span><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"><a href="http://www.efsllc.com/"><span style="font-size:8.0pt;color:#0563C1">www.efsllc.com</span></a></span><span style="font-size:8.0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"><a href="http://www.fleetone.com/"><span style="font-size:8.0pt;color:#0563C1">www.fleetone.com</span></a></span><span style="font-size:8.0pt;font-family:&quot;Calibri&quot;,sans-serif"> <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"><a href="http://www.wexinc.com/"><span style="font-size:8.0pt;color:#0563C1">www.wexinc.com</span></a><o:p></o:p></span></p><span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi"></span></p>]]></td>
+</tr>
+</table>

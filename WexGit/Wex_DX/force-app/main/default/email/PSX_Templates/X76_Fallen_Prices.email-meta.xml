@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>76 - Fallen Prices</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X76_Letterhead</letterhead>
+    <name>76 - Fallen Prices</name>
+    <style>freeForm</style>
+    <subject>Prices have fallen at the pump.  Are you saving as much as you thought?</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+You&apos;ve seen the news and heard it on the radio… the price of fuel has been dropping over the last several months. That’s good news for companies that rely on vehicles to get business done!
+
+
+What you may not have noticed is some new fees are taking a bite out of your savings. Some providers are applying additional fees (weekly admin fees and/or minimum program admin fees) adding up to 10 cents per gallon to your bill! Additionally, some of the “cents per gallon” rebates you may have seen may have been turned off by your card provider because of the falling fuel prices.
+
+
+Flip over your next billing statement and look for headings that speak to “Minimum Program Administration Fee” and “Rebate/Volume Discount”.
+
+Take a closer look… your savings should be going back into your business and not eaten up by new fees buried in your invoices!
+
+I don&apos;t know how often you audit your statements but this is the only way to ensure you are getting the savings you were promised. I&apos;ve helped many customers like you discover hidden fees. I will be following up with you over the next several days. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to meeting with you about the needs of your business.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+The 76 logo is a trademarks of Phillips 66 Company or one of its subsidiaries. ©2015 Phillips 66 Company.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

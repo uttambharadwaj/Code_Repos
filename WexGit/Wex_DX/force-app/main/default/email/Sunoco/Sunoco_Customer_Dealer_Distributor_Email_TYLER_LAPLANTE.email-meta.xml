@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Introductory/initial follow-up email to use in communicating with Sunoco Dealers &amp; Distributors.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>Sunoco Customer (Dealer-Distributor) Email -- TYLER LAPLANTE</name>
+    <style>freeForm</style>
+    <subject>A proven way to grow your Sunoco gallons &amp; customer count.</subject>
+    <textOnly>{!Contact.FirstName},
+
+It was nice to talk with you yesterday. Hopefully we will meet in person sometime soon!
+
+I really have one main focus each day and that is to create partnerships with Sunoco LP associates, Distributors and Dealers to help grow gallons and customer count at your Sunoco locations with the Sunoco Fleet Card Program.
+
+We are asking for eyes and ears on the street to identify -- and let us know about -- commercial fleet opportunities. Our sales team will then work to secure this business and create a more loyal customer for Sunoco. These fleet business opportunities can come in a number of forms:
+
+Local Businesses: Companies in close proximity to the Sunoco/Stripes location (including vendors servicing your sites); we may not know how they’re currently managing their fueling expenses.
+
+Station Sightings: Commercial fleets already fueling at the Sunoco/Stripes location, but if put on the branded fleet card would be fueling there more often (including more in-store visits $$).
+
+Competitor Station Sightings: These are all new incremental gallons ripe for the taking from your competition. (p.s. these are my favorites)
+
+House Accounts: Reduce your financial risk and improve cash flow by converting these customers to a branded fleet card. Your customers will benefit from the program’s rebates and cost controls.
+
+If your team and customers are willing to give 5 minutes a day to spotting these opportunities and sharing them with me, I firmly believe we can grow business at your Sunoco locations.
+
+The attached piece clearly outlines what&apos;s in it for you, the type of fleets we’re looking for and how to get leads into the sales process with the My Fleet Leads lead referral app. If you have a moment to talk, let’s briefly connect and start growing business together.
+
+Thank you.
+
+
+Tyler Laplante
+Channel Strategy Manager | Sunoco Fleet Card Program
+WEX Inc. | 97 Darling Avenue, S. Portland, ME 04106
+(O) 207-523-6903 | (M) 207-420-7472
+tyler.laplante@wexinc.com
+
+
+Own Your Market: Use My Fleet Leads to refer businesses to our Sunoco Fleet Card Program experts. Download the app to your phone today!</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

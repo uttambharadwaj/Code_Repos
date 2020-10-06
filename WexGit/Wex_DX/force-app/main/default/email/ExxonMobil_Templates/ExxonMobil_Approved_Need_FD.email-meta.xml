@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Approved, need fleet data</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Approved - Need FD</name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Fleet Card - Approved, Additional Information Required</subject>
+    <textOnly>Dear ,
+
+
+
+Good news -- your application has been approved for a $____ monthly credit line!
+
+
+
+We just need your fleet data info so we know how many cards to send and how you&apos;d like the account set up. A separate email has been sent to you to do so. 
+
+
+
+Once this is completed we will print and ship your cards within 1-2 days. Give them 7-10 days for shipping. The packet will include your account number and other info. 
+
+
+
+I&apos;ve attached a document with links to some helpful tutorials on how to manage and navigate your online account so please take a look!
+
+
+
+
+Sincerely, 
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

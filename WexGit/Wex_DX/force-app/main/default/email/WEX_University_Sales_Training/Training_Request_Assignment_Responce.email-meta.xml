@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to Training Requestor upon Case being assigend to Trainer</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Training Request Assignment Response</name>
+    <style>freeForm</style>
+    <subject>Your Request for Sales Training</subject>
+    <textOnly>Dear  {!Case.User__c},
+
+Thank you for reaching out! This is to notify you that your Sales Training Request with subject: {!Case.Subject} is being worked by: {!Case.OwnerFullName}
+
+{!Case.OwnerFirstName} will be in touch soon to discuss your needs.
+
+Your Training Request Case Number is: {!Case.CaseNumber}
+
+Thank you,
+WEX Global Sales Training
+
+SalesTraining@WEXInc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

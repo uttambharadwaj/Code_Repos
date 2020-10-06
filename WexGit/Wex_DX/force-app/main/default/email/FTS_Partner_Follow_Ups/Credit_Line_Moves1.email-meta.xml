@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Credit line reallocation from another WEX account</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Credit Line Moves</name>
+    <style>none</style>
+    <subject>{!OnlineApplicationOffer__c.Name} Fuel Card Credit Line Change</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>ExxonMobil_Field_Sales/ExxonMobil_Circle_K_Sell_Sheet_4_4_2016.pdf</attachedDocuments>
+    <available>true</available>
+    <description>For Acquirent Use Only. General Info follow-up email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>General Info- ExxonMobil Field Campaign for Acquirent Use Only</name>
+    <style>none</style>
+    <subject>More Info</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

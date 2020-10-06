@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Partner England Logistics Email Template</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>All_F1_Internal_Users</group>
+        <portalRoleAndSubordinates>EnglandLogisticsPartnerManager</portalRoleAndSubordinates>
+        <portalRoleAndSubordinates>EnglandLogisticsPartnerUser</portalRoleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

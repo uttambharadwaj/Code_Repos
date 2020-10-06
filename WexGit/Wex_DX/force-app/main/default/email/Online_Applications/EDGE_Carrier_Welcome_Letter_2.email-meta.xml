@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Letterhead</letterhead>
+    <name>EDGE Carrier Welcome Letter (LLC)</name>
+    <style>freeForm</style>
+    <subject>New FLEET ONE EDGE Carrier Account Information</subject>
+    <textOnly>Your Carrier ID:  {!OnlineApplication__c.Carrier_ID_Number__c}
+Your AR ID: {!OnlineApplication__c.AR_ID_Number__c}
+
+Welcome to the Fleet One EDGE Fuel Card Program! We look forward to making your payments easier to manage through innovative solutions and dynamic service.
+
+To Activate Your Account and Cards: You will soon receive your Fleet One EDGE cards, issued by WEX Bank (a member of FDIC). Please follow these simple steps to successfully manage your password and security credentials:
+
+
+1. Access your Account Login Credentials: Soon you will receive an email from eManager with a link to set up your password and security credentials. For a more comprehensive, step-by-step guide to setting up your account, please visit &lt;link&gt;.
+
+
+Note: When contacting customer service please have your User ID, Employee Number, and Security Code ready. Both User ID and Password is required to access your Fleet One EDGE account via eManager. If you did not receive your password setup link, contact Customer Support at 1-800-359-7587.
+
+
+2. Activate Your New Cards. Your new cards should arrive active and ready to use. If this is not the case, Fleet One EDGE provides several convenient ways to activate and manage your cards:
+
+
+
+· Automated IVR Call our toll-free 24/7 support line at 1-800-359-7587.
+
+eManager To access eManager, click here and enter your User ID and Password.
+
+· Mobile App Download Fleet One CarrierControl for access via iPhone     and Android devices.
+
+
+
+
+Please note that your cards are preset with the limits indicated on your application. Adding additional products and validation prompts can be completed via eManager. For further instructions, refer to the eManager Quick Reference Guide or simply call 1-800-359-7587.
+
+
+For your convenience, we have also enclosed the following reference items:
+
+
+· CarrierControl Mobile App User Guide
+
+· CardControl MobileApp User Guide
+
+· Frequently Asked Questions
+
+· ATM Pin Setup Instructions
+
+
+Once again, thank you for choosing the Fleet One EDGE Fuel Card Program. Please contact Customer Support at 1-800-359-7587 with any questions or concerns
+
+
+Thank you,
+
+{!OnlineApplication__c.OwnerFullName}
+{!OnlineApplication__c.OwnerTitle}
+{!OnlineApplication__c.OwnerPhone} | {!OnlineApplication__c.Owner_Fax__c}
+{!OnlineApplication__c.OwnerEmail} | www.fleetoneedge.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

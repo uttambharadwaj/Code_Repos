@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>gulf</name>
+    <style>freeForm</style>
+    <subject>Gulf Info</subject>
+    <textOnly>Thank you for your interest in our Gulf Fuel Card.  
+We offer both a private label card, as well as a universal card.  
+Enjoy the benefit of operating your company vehicles with peace of mind, knowing that your employees cannot purchase anything other than fuel.  You can easily find out where your employees fueled, how much they paid for the fuel,  even track how many miles per gallon your vehicles are getting, while making sure that every drop of fuel you are buying is going into your vehicles.  
+Let us do the administrative work!  No more saving receipts.  Just pull your account up online and monitor the activity on your account.  You can order new fuel cards at any time, or deactivate a fuel card online if you happen to let an employee go and forget to get his fuel card from him!
+Please look at the enclosed details.  I will follow up with a phone call over the next several days, or feel free to call me Monday through Friday, 8 to 5 central time!
+Thank you!
+Sincerely,
+Magda Nelson
+WEX Inc.
+Phone: 1.888.353.3801 ext 6438 | Fax: 615.858.6438
+msnelson@FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

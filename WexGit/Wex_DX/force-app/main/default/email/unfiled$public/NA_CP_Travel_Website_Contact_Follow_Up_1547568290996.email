@@ -1,0 +1,17 @@
+Dear {{{Recipient.FirstName}}},<br />
+<br />
+Thank you for exploring our website and reaching out for more information. &nbsp;I&rsquo;m interested in learning more about your company&rsquo;s pain points with regard to supplier payments. While have a long history in the travel industry, we also understand that individual companies have individual needs and challenges.&nbsp;<br />
+<br />
+Do you have 15 minutes to chat with me to see if there are strategic opportunities for {{{Opportunity.Account_Name__c}}} to benefit from WEX payment solutions? Please let me know what times you are available over the next week or two, or if there is someone else within your organization I should talk to. I look forward to hearing from you.<br />
+<br />
+<br />
+Sincerely,<br />
+<br />
+{{{Sender.Name}}}<br />
+{{{Sender.Title}}}<br />
+{{{Sender.Email}}}<br />
+{{{Sender.Phone}}}<br />
+www.wexinc.com<br />
+<br />
+<br />
+<span style="font-size:10px;"><i>This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</i></span>

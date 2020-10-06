@@ -1,0 +1,11 @@
+{!Contact.FirstName},
+
+I have received your application for the {!OnlineApplicationOffer__c.Name} fuel card.  In order to secure a line of credit, our underwriters have determine a 2nd guarantor will be necessary. Please have the additional guarantor complete and return to me as soon as possible. Please be sure to have them list your company name in the top portion next to ("Customer").
+
+ If you have any questions, please give me a call.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName} 
+{!User.Phone} 
+{!User.Email}

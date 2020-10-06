@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2013 Sept P&amp;A/VSCAC vehicle service contract show follow-up email to booth visitors</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_Claims</letterhead>
+    <name>2013 P&amp;A (formerly VSCAC) POST show email - Booth visitor</name>
+    <style>freeForm</style>
+    <subject>Thank you for visting the WEX booth at the P&amp;A Leadership Summit</subject>
+    <textOnly>Dear {!Contact.Salutation} {!Contact.LastName}
+
+Thank you for stopping by the WEX Booth at the recent P&amp;A Leadership Summit in Las Vegas. I hope you had a moment to consider the products WEX has to offer.
+
+
+For our current customers, we have integrated WEX Insurance to streamline their claims process while generating additional revenue. WEX Insurance utilizes single-use ‘virtual’ account technology with their claim system to apply a ‘unique’ 16-digit MasterCard account number to each claim payment. The unique account number is automatically faxed to the vendor to pay for the repair (service contract cost) with the credit limit set at the exact dollar amount due to prevent fraud or overcharging. The account number is then discarded by WEX and never again used after the payment has posted, reducing instances of potential fraud.
+
+This payment process helps these companies immensely in terms of reconciliation within their existing claim system, speed of paying their vendors, overall customer satisfaction and most importantly—it can generate significant rebate dollars back to their companies.
+
+I would appreciate an opportunity to discuss any questions you may have about single-use accounts or WEX. Would next week work for you? In addition, I have attached some additional materials for your review.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+http://www.wexinc.com/payment-solutions/electronic-insurance-claims
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

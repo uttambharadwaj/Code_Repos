@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Email is sent when a Telapoint Oppty is Closed/won</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Telapoint Closed Won</name>
+    <style>none</style>
+    <subject>Telapoint Opportunity Won!</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

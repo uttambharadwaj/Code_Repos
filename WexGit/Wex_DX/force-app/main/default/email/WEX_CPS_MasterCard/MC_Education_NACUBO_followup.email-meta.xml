@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Week1 Email template for AP Driect to prospects in education sector.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MAsterCard_Education</letterhead>
+    <name>Education Sector NACUBO followup</name>
+    <style>freeForm</style>
+    <subject>Wright Express ePayments for Education</subject>
+    <textOnly>Start Turning Payments into Profits
+
+Dear {!Contact.FirstName},
+ 
+Recently you attended the annual NACUBO conference where Wright Express was exhibiting.  As way of follow-up, I wished to provide you some information on an innovative payment program that we showcased at the conference.  Many universities and school districts are using this program to increase revenues and streamline their Accounts Payable area.
+
+Wright Express’s ePayment solution– AP Direct – provides your Accounts Payable department with a new payment option that replaces checks.  It’s a no-cost, ACH-like solution that delivers money to your bottom line.  Even better—it integrates directly into your existing ERP system.  Today, over $3 billion in annual payments are being processed through this technology platform. 
+
+Key Benefits:
+
+* Maximize financial incentives—think cash back—while paying your bills electronically 
+* Improve cash held days (working capital) - pay your vendors faster and pay us later to achieve greater cash held days. 
+* Reduce cycle time and costs associated with paper checks 
+* Improve your team’s efficiency with automated reconciliations
+
+As way of background, Wright Express Corporation (NYSE: WXS), which is headquartered in Portland, ME, has for over 28 years built a reputation for being the first to develop innovative payment solutions to the problems facing our clients, and we continue to be the pioneer and service leader in the commercial payment industry. Total corporate payments through our various technologies and products for all clients with Wright Express exceeded $20 billion in 2010!
+
+I will follow up with a phone call to see about scheduling an initial discovery session.  In the meantime, please do not hesitate to contact me with questions.
+
+Sincerely, 
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone} 
+Cell - {!User.MobilePhone} 
+{!User.Email} 
+
+www.wrightexpress.com/ePayables
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire  message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

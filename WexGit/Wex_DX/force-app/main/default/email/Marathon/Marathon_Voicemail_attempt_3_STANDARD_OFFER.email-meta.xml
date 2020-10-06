@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>no offers mentioned</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Marathon Voicemail attempt #3- fuel savings analysis</name>
+    <style>freeForm</style>
+    <subject>Fuel savings analysis</subject>
+    <textOnly>{!Contact.FirstName},
+
+I am checking in one last time to see if we can connect regarding the Marathon Fleet Program for {!Opportunity.Account}.
+
+What are you using for fuel and vehicle management today? Our program is very competitive. I can run a quick fuel analysis on {!Opportunity.Account} to see what additional savings we can get for you.
+
+Give me a call if you are interested in seeing it.
+
+Thanks,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+©2019 Marathon Petroleum Corporation</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

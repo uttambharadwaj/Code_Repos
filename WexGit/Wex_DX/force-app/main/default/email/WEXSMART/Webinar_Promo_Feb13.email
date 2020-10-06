@@ -1,0 +1,27 @@
+<table height="400" width="650" cellpadding="0" border="0" cellspacing="0" >
+<tr valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="460" >
+<table height="400" width="460" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font color="#666666" face="Arial,Sans-Serif" size="3">Dear {!Contact.FirstName},<br><br>Interested in learning how GPS telematics can save on fuel and fleet costs? Join
+ us on Wednesday the 20th to learn about the value in using telematics, GPS-based vehicle 
+monitoring and analysis tools with online alerts and reporting. <br><br></font><ul><li><font color="#666666" face="Arial,Sans-Serif" size="3">Learn what GPS Telematics is and why it's right for your business.</font></li><li><font color="#666666" face="Arial,Sans-Serif" size="3">See
+ the facts behind the most common savings realized in fuel consumption 
+and vehicle maintenance, increased service productivity, and improved 
+risk management.</font></li></ul><font color="#666666" face="Arial,Sans-Serif" size="3"><br><font size="3">We've had some great response and the seats and filling up fast<font size="3">. </font></font><span><a title="Register today" href="https://wrightexpress.webex.com/wrightexpress/onstage/g.php?t=a&amp;d=715298249%20?elqTrack=true">Register today</a> to reserve your spot.</span></font><br><br><font color="#666666" face="Arial,Sans-Serif" size="3">In the meantime, let me know if I can answer any questions.<br><br>Sincerely,<br>{!User.FirstName} {!User.LastName}<br>WEX, Inc.<br>Phone: {!User.Phone}<br>Email: {!User.Email}</font><br><br><br><br><br><br>]]></td>
+</tr>
+</table>
+</td>
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="10" >
+<![CDATA[]]></td>
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="180" >
+<table height="400" width="180" cellpadding="5" border="0" cellspacing="5" >
+<tr height="100" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" width="180" tEditID="c2r1" locked="0" aEditID="c2r1" rowspan="3" >
+<![CDATA[<font face="Arial,Sans-Serif"><br><b>Live Webinar: <br><i>Fuel Cost Savings with WEX Telematics</i></b><br><br>February 20, 2013<br>2:00 pm, EST<br><br><b>Presented by:</b><br><br>John Reddy<br><font size="1">Manager, WEX Telematics</font><br><br>Ryan Foisy<br><font size="1">WEX Telematics Program Manager<br><br><a href="https://wrightexpress.webex.com/wrightexpress/onstage/g.php?t=a&amp;d=715298249 "><img alt="" src="https://c.na5.content.force.com/servlet/servlet.ImageServer?id=01570000001LhpF&amp;oid=00D700000009EOI" align="left" border="0"></a><br></font></font><br><br>]]></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>

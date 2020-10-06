@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For ExxonMobil use only. Gen Info email for lead gen program</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>WEX Telematics Intro for ExxonMobil</name>
+    <style>none</style>
+    <subject>Watch Your Vehicle Costs Drop with WEX Telematics. Starting at just $29.95.</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

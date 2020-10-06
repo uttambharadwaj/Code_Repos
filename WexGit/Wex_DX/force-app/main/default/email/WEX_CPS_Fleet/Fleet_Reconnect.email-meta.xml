@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email for an Opportunity you are attempting to get back in touch with.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Fleet_Services</letterhead>
+    <name>Fleet - Reconnect Highlights</name>
+    <style>freeForm</style>
+    <subject>Improvements and Enhancements from WEX</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+It has been a while since we last spoke, but I wanted to reconnect and see if your internal business situation has changed in the recent past.
+
+
+We have had a busy couple of months here at WEX, highlighted by a few particulars:
+
+
+Fuel Price Mapping - Offering you real time access to the best priced fuel in the area you are in, be it desk top or on your GPS enabled smart phone. This tool saves our customers $0.05 to $0.15 per gallon!
+Product Level Controls - Want a card just for fuel? We can do that. Want to open up certain cards to fuel and fluids, like a quart of oil or gallon of washer fluid? We can do that. You set the purchasing parameters on what can be purchased with each card, not where the card can be used.
+GPS Enabled Vehicle Tracking - What&apos;s the best way to save on fuel? Use less of it! We have partnered with several companies to provide solutions like &quot;Fuel Guard&quot;, &quot;Vehicle State Use Reporting&quot; and &quot;Driver Behavior Scorecards.&quot; Knowing where your vehicles are is nice. Knowing how they are used and what behaviors you can correct to use less fuel is better.
+
+WEX is helping customers like {!Opportunity.Account} lower costs, increase efficiency, and get ahead. May I ask if you have moved forward with another industry solution? If another person would be more appropriate for this discussion, please refer me to him or her.
+
+
+
+
+Best regards,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wexinc.com
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

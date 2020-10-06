@@ -1,0 +1,18 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+How are you currently sourcing your office supplies? {!Opportunity.Current_Office_Supply_Source__c}
+How many total employees do you have, excluding drivers? {!Opportunity.Total_NonDriver_Employees__c}
+How many drivers do you have? {!Opportunity.Driver_Count__c}
+Comments: {!Opportunity.Vendor_Comments__c}

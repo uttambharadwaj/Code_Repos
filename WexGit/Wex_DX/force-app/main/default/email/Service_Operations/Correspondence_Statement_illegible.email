@@ -1,0 +1,26 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+<p>This usually indicates there is an issue with the settings on your computer&rsquo;s Adobe Reader program.&nbsp; If the fonts in a PDF do not exist in your system, Adobe will substitute the fonts with illegible characters. You can correct this issue:</p>
+<p>Open Adobe Reader &gt; Go to Edit &gt; Preferences &gt; Page Display &gt; Rendering, and then check the option &ldquo;Use Local Fonts.&rdquo;</p>
+<p>If you have a fax machine, please send us the number and we can fax the statement to you.</p>
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

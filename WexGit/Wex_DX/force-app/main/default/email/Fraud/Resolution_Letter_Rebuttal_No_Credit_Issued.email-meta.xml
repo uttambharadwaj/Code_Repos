@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Resolution Letter Rebuttal (No Credit Issued) - OLD</name>
+    <style>formalLetter</style>
+    <subject>Resolution Letter Rebuttal (No Credit Issued)</subject>
+    <textOnly>Date
+
+
+
+{!Claim__c.Account_Contact_Name__c}
+
+{!Claim__c.Account_Name__c}
+
+{!Claim__c.Account_Address_1__c} {!Claim__c.Account_Address_2__c}
+
+{!Claim__c.Account_City__c}, {!Claim__c.Account_State__c} {!Claim__c.Account_Zip__c}
+
+
+
+Re: Claim No {!Claim__c.Name}
+
+
+
+Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+
+Thank you for your continued correspondence regarding the dispute of transactions on your {!Claim__c.Partner_Formal_Name__c} account.
+
+In summary {!Claim__c.Account_Name__c} disputed transactions that occurred on card(s) {!Claim__c.Veh_Card_For_Email_Merge__c} . The disputed transactions total ${!Claim__c.Allowable_Dispute_Dollars__c}. In addition, our findings revealed the following:
+
+All disputed transactions occurred with Driver Identification Number (“DIN”) {!Claim__c.DIN__c} assigned to “{!Claim__c.Driver_Name__c}”.
+Disputed transactions occurred on card {!Claim__c.Veh_Card_For_Email_Merge__c} (ID: {!Fraud_Purchase_Device__c.CO_ID_STD_EMB_GTag__c}) between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Claim_Dispute_End_Date__c}, in combination with driver identification number (“DIN”) {!Claim__c.DIN__c} assigned to “{!Claim__c.Driver_Name__c}”. However, pursuant to the contractual agreement governing use of the account, the 60-day dispute period is limited to {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c} for approximately ${!Claim__c.Allowable_Dispute_Dollars__c}.
+There is no available evidence of merchant involvement, as all disputed transactions occurred at an Outside Payment Terminal (“OPT”) and the cards were swiped and a valid Driver Identification Number was keyed in the OPT.
+In review of the documentation provided by {!Claim__c.Account_Name__c} it was determined an employee was arrested for utilizing the Card).  It is {!Claim__c.Partner_Formal_Name__c}’s recommendation {!Claim__c.Account_Name__c} continue the pursuit of restitution from the individual(s) involved in this incident.
+The transactions in question were made utilizing valid Cards and DIN.  There were no other factors presented to {!Claim__c.Partner_Formal_Name__c} to indicate that anyone other than an employee(s) for {!Claim__c.Account_Name__c} (who would be authorized users of the account) made the purchases.
+While we do conduct routine velocity checks across all of the card portfolios that {!Claim__c.Partner_Formal_Name__c} manages and look for patterns that would be indicative of a fraudulent transaction, there is no way that {!Claim__c.Partner_Formal_Name__c} can identify all cases based on these reviews. You, as the fleet manager, have more information available as to what is the appropriate fueling patterns are for your drivers and vehicles. Fleets vary in their fueling needs therefore; {!Claim__c.Partner_Formal_Name__c} cannot provide any guarantee that {!Claim__c.Partner_Formal_Name__c} will detect fraudulent activity prior to your invoice being sent. Further, {!Claim__c.Partner_Formal_Name__c} provides an array of tools to better manage your account, please see the attached Fleet Security Measures for additional items that are conducive to your needs.
+
+We hope that these clarifications resolve your concerns that the investigation into this matter were thoroughly made and in accordance with our policies and procedures.   Since no new information has been presented that would change the analysis previously provided, we stand firm in our position that this case involves potential driver misuse of the card which is not subject to dispute or credits as being a “fraudulent transaction”.
+
+
+
+Use of your {!Claim__c.Partner_Formal_Name__c} fleet cards are governed at all times by the {!Claim__c.TC_s_Formal_Name__c}  (the “Agreement”).  The Agreement addresses unauthorized use and associated responsibilities (refer to section 10).
+
+
+
+In summary, pursuant to the terms of our Agreement and in conjunction with the reasons listed above, {!Claim__c.Account_Name__c} is liable for payment in full of the disputed transactions.  This constitutes final resolution to the dispute claim sufficiently identified above and does not apply to any other outstanding and/or future balances on the account.
+
+
+
+Please feel free to contact us at (888) 691-0361 should you have any questions.  We appreciate your business and look forward to maintaining our relationship.
+
+
+
+Sincerely,
+
+
+
+Fleet Fraud Services
+
+Enclosure(s): {!Claim__c.TC_s_Formal_Name__c}, Fleet Security Measures</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

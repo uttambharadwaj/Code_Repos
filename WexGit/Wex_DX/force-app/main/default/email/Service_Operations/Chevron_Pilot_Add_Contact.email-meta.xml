@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Chevron pilot for Add Contact form</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Chevron Pilot - Add Contact</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. Please select and open the attached URL link and submit your requested changes for Contact Add. The link will expire in 48 hours.
+
+https://onlineservices.secure.force.com/FleetMaintenance/AccountMaintenance?recordId=5000g00002FNmUp&amp;key=0010g9EOI5000g2f7fpU&amp;c__action=contact
+
+We would like you to fill out a simple survey by clicking on the link below. This feedback is appreciated and critical to how we expand features in the future. Thank you!
+
+https://wex.qualtrics.com/jfe/form/SV_brXwf6tXbMYsL09
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

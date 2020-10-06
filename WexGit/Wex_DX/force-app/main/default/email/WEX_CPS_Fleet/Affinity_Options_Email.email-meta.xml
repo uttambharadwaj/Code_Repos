@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email for an Opportunity to review our affinity platform options.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Fleet_Letterhead</letterhead>
+    <name>Fleet - Affinity Options</name>
+    <style>freeForm</style>
+    <subject>Let WEX help you make sure you are using the right fleet card!</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+
+Thank you for your continued consideration of the WEX Universal Fleet Card Program.
+
+
+We offer several programs in partnership with fuel companies like Sunoco, ExxonMobil, Gulf, Citgo, WaWa and 7-11 (to name a few) giving your drivers universal access to over 180,000 fueling sites nationally and volume discounts at the stations flying the merchant&apos;s brand name on the card.
+
+
+As your local, field based representative, I will work with you to select the right program that fits your fleet fueling footprint. In addition, you&apos;ll gain better customer service, improved online reporting and tools, industry leading controls (time of day, day of week, product level restrictions, etc.) and maintain competitive discount levels.
+
+
+All of these programs are backed by WEX, the industry leader in the fleet fueling industry. In 30 minutes I could review your current program to see what fuel card in the WEX family of programs might deliver the best overall results for {!Account.Name}.
+
+We save you money. Our programs give you the tools to restrict unauthorized purchases down to the card and/or product level, find the best priced stations in the zip codes your drivers operate in and drastically reduce administrative time.
+We save you time. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read monthly invoice.
+We give you the control. Detailed reports show how and where fueling money was spent, so you can account for every penny.
+We make it convenient for drivers. Your drivers only need to carry one card to fuel at any of more than 180,000 participating fueling locations.
+
+
+Please email me or call me at {!User.Phone} so we can schedule a time for us to meet and review the options that can deliver hard dollar savings to your business.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+www.wexinc.com
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

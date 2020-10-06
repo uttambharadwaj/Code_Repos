@@ -1,0 +1,7 @@
+{!Contact.FirstName},
+
+Congratulations on being approved for a {!OnlineApplication__c.Program__c} Fleet One fuel card. In order to get the cards finalized, we need some information for the specific set up of your fleet cards.  Please complete this form and email back to me at {!User.Email}.  
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

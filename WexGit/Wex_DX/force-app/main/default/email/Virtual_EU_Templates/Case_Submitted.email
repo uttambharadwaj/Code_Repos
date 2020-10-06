@@ -1,0 +1,8 @@
+A Case has been Submitted in Salesforce
+
+
+Case Subject {!Case.Subject}
+
+Case Owner {!Case.User__c}
+
+Case Priority {!Case.Priority}

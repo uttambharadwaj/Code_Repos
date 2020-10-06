@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Use when pitching back-pocket offer to Commercial/Univ. prospects.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>5-cent Promo - Q12014 - First Communication</name>
+    <style>freeForm</style>
+    <subject>SPECIAL OFFER: Fleets Save 5-cents Per Gallon at Gulf!</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+For a limited time, Gulf is offering businesses with commercial vehicles an introductory offer of 5 cents off per gallon at Gulf for the first 60 days – starting with gallon one.* You’ll receive this savings even if you fuel at lower volumes. This introductory offer applies to all new Gulf Commercial Fleet Card and Gulf Universal Fleet Card customers.
+
+The Gulf Fleet Fueling Program helps businesses like yours save upwards of 15%** on overall vehicle management costs, including competitive commercial fuel rebates at Gulf, and:
+
+Powerful Fleet Reporting – Know who bought what, when, where and for how much. Track vehicle performance at-a-glance.
+Broad Acceptance – At over 2,500 convenient Gulf locations, or more than 90% of all fueling locations nationwide with our Universal Fleet Card.
+Purchase Controls – Help eliminate misuse of company vehicles by setting purchase limits for individual drivers. Set Purchase Alerts to stay informed.
+U.S.-based Customer Service – 24/7 assistance for you and your drivers whenever you need it.
+
+Whether you’re looking for a fleet card program with robust rebates, nationwide card acceptance, or tools to give you tighter control over your company vehicles, Gulf has the ideal solution for you.
+
+Contact me for details at 781-467-9492 or robert.everts@wexinc.com, and let Gulf serve your fleet management needs.
+
+
+Bob Everts
+Regional Fleet Manager
+Gulf Oil Fleet Services
+Cell 781-467-9492 Fax 207-874-1576
+robert.everts@wexinc.com
+www.gulffleetcard.com/bob
+
+
+
+*Ask Regional Fleet Manager for introductory offer and Gulf Fleet Fueling Program details.
+**Savings may vary by customer.
+
+
+Code: ZGU
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Gulf Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

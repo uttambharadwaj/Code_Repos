@@ -1,0 +1,9 @@
+Hello {!Credit_Line_Adjustment__c.Change_User__c},
+
+Your user was identified making an unauthorized change to a Credit Limit on account {!Credit_Line_Adjustment__c.Customer_ID__c} in the {!Credit_Line_Adjustment__c.Platform__c} system on {!Credit_Line_Adjustment__c.CL_Change_Date__c}.
+
+Please access the record, provide written justification, and move the CL Change Status to Review Needed. Your change record can be found here:
+
+{!Credit_Line_Adjustment__c.Link}
+
+Please contact WEX Bank if you have any questions.

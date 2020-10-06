@@ -1,0 +1,12 @@
+{!Contact.FirstName}, 
+
+I just wanted to follow up on your interest in the XPO fuel card.  As a reminder, this fuel card will provide you substantial savings at thousands of locations, and acceptance at over 7000 locations nationwide.
+
+To get you started, I just need your completed application which you should have received from your XPO rep.  If you have any questions, please do not hesitate to call me.
+
+Thank you!
+
+{!User.FirstName} {!User.LastName}
+Relationship Manager, EFS
+Phone: {!User.Phone} | F: 801-624-3049 
+{!User.Email}

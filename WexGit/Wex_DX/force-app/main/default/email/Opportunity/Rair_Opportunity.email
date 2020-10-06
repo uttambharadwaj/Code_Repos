@@ -1,0 +1,23 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Type Of Operation: {!Opportunity.Type_of_opperation__c}
+Leased By:{!Account.Leased_By__c}
+DOT:{!Account.DOT_Number__c}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Drivers: {!Opportunity.Total_number_of_drivers__c}
+Number of Trucks: {!Account.00N70000003V2cF}
+Owner Operator Truck Count:{!Account.Owner_Operator_Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+How customer currently handles audit logs:{!Opportunity.audit_logs__c}
+Who does the customer currently use for CSA?
+{!Opportunity.CSA_provider__c}
+Other:{!Opportunity.Vendor_Comments__c}

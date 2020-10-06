@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to deploy after in-person meeting with a prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>2019 Followup after meeting</name>
+    <style>freeForm</style>
+    <subject>Thanks for meeting with me</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+
+Thank you for taking the time to meet with me. I appreciate the opportunity to learn more about your business, and also speak about the features and benefits that WEX Offers. I just wanted to recap why we are different than many other solutions out there:
+
+
+Over 30 years of payments industry experience
+Award-winning 24/7 US-based customer service
+Over 350,000 customers
+Features including product type controls, 99.8% Level III Data capture, customized reporting, flexible card types, and much more
+
+I&apos;d welcome the opportunity to get you more information in the coming days. In the meantime, I have a series of industry leading white papers at my disposal, including The Fleet Managers Handbook. Its full of cost saving tips. I can email you a copy if you&apos;d like - just let me know.
+
+
+Thank you again, and lets keep in touch.
+
+
+Sincerely,
+
+
+{!User.Name} | Phone: {!User.Phone}
+
+| Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

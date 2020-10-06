@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>Ultimate2014</name>
+    <style>freeForm</style>
+    <subject>Ultimate Connections follow up</subject>
+    <textOnly>Good afternoon {!Contact.FirstName},
+
+
+I first off want to thank you for taking the time to stop by our booth while at the Ultimate Conference and talking with my colleagues. I heard that Ultimate had put on an amazing conference, lots of fun and entertainment, but you wouldn’t expect any less in Vegas, right!
+
+
+I also wanted to reach out to you and provide some information about our WEX rapid! PayCard program. We are leaders in the paycard industry offering the most robust and customer friendly program while staying technologically advanced in order to provide a financial tool and a benefit to all employees.
+
+
+If you would like to schedule a 10-15 minute phone conversation in order to learn a little more about our company and allow me to learn more about your company and current process for distributing your employees their pay then please let me know. After we talk we can decide if there is interest in taking the next step and seeing a full product demonstration via a web meeting.
+
+
+Please let me know if there is interest in either a phone conversation or a web meeting and I will follow up accordingly. If I haven’t heard anything in the next 7-10 days then I will give you a call just to touch base with you.
+
+
+Thank you again, and I look forward to speaking with you!
+
+
+
+
+George LaBanca
+Prepaid Product Specialist
+WEX Inc.
+
+rapid! PayCard
+Office 727-265-1875 Cell 813-335-2648 Fax (727) 828-4444
+
+
+Click here to see what our customers are saying about us.
+
+Linked in profile</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

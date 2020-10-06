@@ -1,0 +1,44 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font face="Verdana" size="2">{!Contact.Salutation} {!Contact.LastName}, </font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana" size="2">I have been in contact with MAIN 
+CONTACT NAME HERE and they determined you would be the person I should 
+meet with to review how your company manages&nbsp;your payables process&nbsp;to 
+see if my company can reduce your costs or help you gain more control 
+over your expenses.</font></p>
+<p><font face="Verdana" size="2">&nbsp;</font></p>
+<p><font face="Verdana" size="2"><font face="Verdana" size="2">We help organizations like {!Account.Name} with </font></font><font face="Verdana" size="2">streamlining
+ your payables system.&nbsp;We are not looking to replace your treasury bank 
+relationship, but to simply see if there are areas we can assist you 
+with a custom built payment solution that costs you nothing.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana" size="2"><strong>Specifically what we do is:</strong></font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana"><font size="2">&nbsp; - <em>Give you insight</em> - track and manage business travel and entertainment expenses with real-time visibility and online ease. </font></font></p>
+<p><font face="Verdana" size="2">&nbsp; -&nbsp;<em>Give you control</em> –&nbsp;instant single use ghost card technology allows you to instantly pay vendors for the exact agreed upon amount.</font></p>
+<p><font face="Verdana" size="2">&nbsp; - <em>Give you efficiencies</em> - 
+advanced "epayables" technology automates your vendor payments and 
+simplifies your reconciliation without changing your AP process or 
+software.</font></p>
+<p><font face="Verdana"><font size="2">&nbsp; - <em>Give you savings</em> – control who can spend, how much and where with our intuitive web based account control dashboard.</font></font></p>
+<p><font face="Verdana"><font size="2">&nbsp;</font></font></p>
+<p><font face="Verdana"><strong><font size="2">Attached are testimonials from a few of our customers that show:</font></strong></font></p>
+<p><font face="Verdana"><font size="2">&nbsp;</font></font></p>
+<p><font face="Verdana"><font size="2">&nbsp; - Wright Express provides the most flexible program in the industry.</font></font></p>
+<p><font face="Verdana"><font size="2">&nbsp; - Wright Express Customer Service is unparalleled in the industry.</font></font></p>
+<p><font face="Verdana"><font size="2">&nbsp; - Wright Express customers realize significant cost savings.</font></font></p>
+<p><font face="Verdana"><font size="2">&nbsp;</font></font></p>
+<p><font face="Verdana"><font size="2">I don’t know if we could duplicate these kinds of results with your company, but wouldn’t it be interesting to find out?</font></font></p>
+<p><font face="Verdana"><font size="2">&nbsp;</font></font></p>
+<p><font face="Verdana"><font size="2">I look forward to speaking meeting with you.<br><br>Sincerely, <br><br>{!User.FirstName} {!User.LastName} <br></font></font></p>
+<p><font face="Verdana"><font size="2">{!User.Title} <br>Phone - {!User.Phone} <br>Cell - {!User.MobilePhone} <br>{!User.Email} <br><br></font></font><a href="http://www.wrightexpress360.com/" target="_BLANK"><font color="#000000" face="Verdana" size="2">www.wrightexpress360.com</font></a><font face="Verdana" size="2"> <br><br><font size="1">CONFIDENTIALITY
+ NOTICE: "This message contains confidential information of Wright 
+Express Corporation. It is intended only for the use of the designated 
+recipient(s) stated above and further distribution of the information is
+ prohibited. If you have received this message in error, please notify 
+sender immediately by telephone or reply by e-mail and delete the entire
+ message and any attachments."</font></font></p>]]></td>
+</tr>
+</table>

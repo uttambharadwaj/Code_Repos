@@ -1,0 +1,31 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font size="2" face="Arial, sans-serif">Dear {!Contact.FirstName},</font></p>
+<p><font size="2" face="Arial, sans-serif">&nbsp;</font></p>
+<p><font size="2" face="Arial, sans-serif">My name is {!Account.OwnerFullName} and I am the Account Manager at WEX Fleet One assigned to help make sure you get the most out of your WEX Fleet One Account.</font></p>
+<p><font size="2" face="Arial, sans-serif">&nbsp;</font></p>
+<p><font face="Arial, sans-serif"><font size="2">Per our conversation, I not only wanted to introduce myself, but also make certain you were aware of everything WEX Fleet One can </font><font size="2">can offer you to manage your company's vehicles.</font></font></p><font face="Arial, sans-serif"><font size="2">
+<p><br><strong>Factoring</strong> – Accelerated Cash Flow, Powerful Real-Time Reporting, Fuel Card Funding and Flexible Pricing Structure with no hidden fees. </p>
+<p>&nbsp;</p>
+<p><strong>WEX Fuel Management</strong> – Fuel solutions for wholesalers, retailers, fleets with onsite or bulk fuel, and those buying fuel on the road.</p>
+<p>&nbsp;</p>
+<p><strong>Permits</strong> - Purchase the necessary temporary permits your drivers need including Trip, Fuel, and Oversize/Overweight.&nbsp; </p>
+<p>&nbsp;</p>
+<p><strong>Telematics</strong> – An easy-to-use fleet vehicle tracking solution that helps you monitor fuel use and driver behavior - anytime, anywhere. </p>
+<p>&nbsp;</p>
+<p><strong>Cash Services</strong> – Cash Advances. ATM access. PlusChek<span style="text-align: -webkit-center; background-color: rgb(255, 255, 255);">®</span>&nbsp;Services. And more.&nbsp;</p></font><font size="2"><p>&nbsp;</p>
+<p>Do you have vehicles in your fleet with less than 18 wheels? WEX Fleet One has got you covered. We offer feature-packed savings for your gasoline vehicles too!</p>
+<p>&nbsp;</p>
+<p>I'll be reaching out to you again in the coming weeks to see what we can do for you. In the meantime, you can reach me at {!Account.OwnerPhone} from 8 AM to 5 PM Central&nbsp;or via email at {!Account.OwnerEmail}. You can also contact our 24 hour a day Customer Care department at 800-359-7587.</p>
+<p>&nbsp;</p>
+<p>Thank you for your time and your business! I look forward to speaking to you in the near future.</p>
+<p style="color: rgb(0, 0, 0);">&nbsp;</p>
+<p style="color: rgb(0, 0, 0);">&nbsp;</p>
+<p style="color: rgb(0, 0, 0);">Sincerely,</p>
+<p style="color: rgb(0, 0, 0);">&nbsp;</p>
+<p style="color: rgb(0, 0, 0);">{!Account.OwnerFullName}</p>
+<p style="color: rgb(0, 0, 0);">{!Account.OwnerTitle}</p>
+</font></font><p style="color: rgb(0, 0, 0);"><font size="2" face="Arial, sans-serif">{!Account.OwnerPhone}</font></p>]]></td>
+</tr>
+</table>

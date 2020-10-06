@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to employees who attended  the Managing a Sales Team Training.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Managing a Sales Team Survey</name>
+    <style>freeForm</style>
+    <subject>Managing a Sales Team| Training Survey - Your Feedback is Important to Me!</subject>
+    <textOnly>Training Survey
+
+ 
+
+Continuous feedback is important to ensure the effectiveness of the Sales Training Programs. In order to gather useful information about your learning experience, please complete the “Managing a Sales Team” Training Program Survey by October 11, 2019.
+
+ 
+
+PLEASE NOTE: Dale Carnegie will be sending another survey for you to complete as well.
+
+
+
+If you have any questions, please contact Kathryn Connolly at (207) 523-6902 or at
+
+Kathryn.Connolly@wexinc.com.
+
+
+
+Thank you, 
+
+{!Case.OwnerFullName}
+
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

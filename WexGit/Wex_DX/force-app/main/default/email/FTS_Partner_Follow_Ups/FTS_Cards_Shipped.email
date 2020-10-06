@@ -1,0 +1,12 @@
+{!Contact.FirstName}, 
+
+Congratulations on getting set up on the FTS fuel card! Your cards will be shipped out soon so be on the look out for them. When you receive your cards, you will need to call Customer Service at 800-749-1724, Option 1, to activate your account. Please have your control card readily available. The control card number starts with 999 and the other cards will say Purchase.  
+
+If you have any questions regarding your new account, please do not hesitate to call or email me. 
+
+Thank you! 
+
+{!User.FirstName} {!User.LastName} 
+Relationship Manager, EFS 
+Phone: {!User.Phone} | F: 801-624-3049 
+{!User.Email}

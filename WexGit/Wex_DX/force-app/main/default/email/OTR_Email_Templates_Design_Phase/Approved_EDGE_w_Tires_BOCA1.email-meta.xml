@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>Approved - EDGE w/ Tires (BOCA)</name>
+    <style>freeForm</style>
+    <subject>Your Fleet One EDGE Fuel Card Application has been Approved!</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+Congratulations! {!Account.Name} has been approved for a complimentary credit line of $$$$$. Please note, your invoice must be paid each week (your payment method was selected on your application.)
+
+
+Your welcome packet and new fuel cards should arrive via UPS within the next 2-3 business days.
+
+
+
+You will be assigned an implementation specialist that will be calling and emailing you in order to go over your new Edge account! This person will go over how to log in to your online account.
+
+
+
+It is important you take their call as they will be your main point of contact (along with our 24/7/365 Customer Support) as you learn how to use your new fuel card account, make fuel purchases, and get the most out of Fleet One EDGE!
+
+
+
+ADDITIONAL INFORMATION:
+
+
+
+- Please note your New Account Setup Fee of $75 will be invoiced to your account within the next 5 business days.
+
+
+
+- If you do not have your own MC/DOT#, or are leased on to another company, if you haven&apos;t already sent this document in - REPLY BACK TO THIS EMAIL WITH YOUR DRIVER&apos;S LICENSE so we can add your Pilot/Flying J Discounts. You can TEXT your Driver&apos;s License to me at (615) 246-7476 or reply to this email with it.
+
+
+
+- Please review the attached document that goes over the smart phone mobile app.
+
+
+
+- Your fuel card account comes with the Gold Tire Program offered by TruckersB2B! Please reply back with your preferred tire brands so a tire specialist can customize your program and savings!
+
+
+
+(There are NO minimum purchases, no extra or hidden fees, and you can retain your local provider. This is a FREE PROGRAM that comes with your fuel account - all we need to know is what type of tires you prefer!)
+
+
+Also...did you know that WEX Fleet One has both non-recourse and recourse FACTORING to fit all of your funding needs? Please let me know if you are interested in comparing our rates and services!
+
+
+Thank you for your interest in Fleet One. If you have any questions about the application or your new fuel card program, please don’t hesitate to call or email me.
+
+
+
+
+Warm Regards,
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Office (615) 523-6496 | Cell: (615) 246-7476 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

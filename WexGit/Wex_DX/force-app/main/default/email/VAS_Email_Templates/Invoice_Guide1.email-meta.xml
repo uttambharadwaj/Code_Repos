@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Images/Shell_Invoice_Sample.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Sample Shell invoice with guided notes</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_CS</letterhead>
+    <name>Invoice Guide</name>
+    <style>freeForm</style>
+    <subject>Shell Invoice Guide</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+
+
+Use the attached guide to learn all about your Shell Invoice.
+
+
+
+
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+Email - {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

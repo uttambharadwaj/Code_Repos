@@ -1,0 +1,19 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Make/Model/Year of Equipment to be Financed: {!Opportunity.Year_Make_Model_of_equipment__c}
+Day purchasing or need loan completed by: {!Opportunity.Date_purchasing_or_need_loan_by__c}
+Corportation or Sole Proprietor: {!Opportunity.Corporation_or_Sole_Proprietor__c}
+Application Received?:  {! IF(Opportunity.Credit_Application_Received__c, "Yes", "No") } 
+Comments: {!Opportunity.Vendor_Comments__c}

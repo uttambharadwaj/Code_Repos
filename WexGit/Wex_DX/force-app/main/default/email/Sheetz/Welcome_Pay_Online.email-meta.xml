@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>New customers pay online</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Welcome:  Pay Online</name>
+    <style>freeForm</style>
+    <subject>Bill Pay Made Easy:  Sheetz Business Edge</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks for choosing the Sheetz Business Edge card program. By now, your fleet cards are adding flexibility and savings to your fuel and vehicle management. Start using online tools to make paying your bill easier than ever.
+
+Online Payment
+
+
+1.  Simply log in to the Sheetz Fleet Online system, go to the Invoice &amp; Payments tab and select Add Bank Account. You can enter up to four bank accounts in our system.
+
+2. From the Invoice &amp; Payments tab, select Make Payments.
+
+3. Click Submit to schedule your payment.
+
+Pay-By-Phone
+
+
+1. Have at hand your fleet card account number and a copy of your invoice. The first time you set up your bank information, you&apos;ll also need a sample check to easily find your bank account and routing numbers.
+
+2. Call 1-800-353-3842.
+
+3. Select the menu option for Billing Inquiries, then the Pay-by-Phone option. Simply follow the prompts to schedule your payment.
+
+We&apos;re here for you 24/7, so be sure to give us call if you have any questions. Thanks again, and welcome to the Sheetz Business Edge card program!
+
+
+Best regards,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

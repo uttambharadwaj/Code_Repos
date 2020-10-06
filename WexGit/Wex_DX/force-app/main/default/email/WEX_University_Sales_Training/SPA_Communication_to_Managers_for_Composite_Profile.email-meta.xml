@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to managers about SPA composite profile</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>SPA Communication to Managers for Composite Profile</name>
+    <style>freeForm</style>
+    <subject>Sales Performance Assessment Manager Composite Profile</subject>
+    <textOnly>In preparation of rolling out the Sales Performance Assessment (SPA) for the {ENTER NAME OF TEAM}, management needs to identify at least 5 top Sales Professionals to create composite sales success profiles. Please identify sales professionals and email me names by {!Case.MGR_Pre_Call_Date__c}.
+
+
+Please review the attached documents:
+
+
+Sales Performance Assessment Overview: Overview to help understand what the assessment tool is and the 18 behaviors and 6 drivers assessed.
+Sales Intelligence: Defines the Composite Profile.
+
+
+Click the link if you are interested in learning more about the company Management Research Group we collaborate with to administer the Sales Performance Assessment.
+
+
+I really encourage you to take time to become familiar with the company and the available tools for employee development. As a WEX Leader, you will be a mentor and talent multiplier for your team.
+
+
+Thank you and give me a call if you like to chat more about this.
+
+
+Thank you,
+
+{!Case.OwnerFullName}
+
+WEX University Global Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Single_Point_Letterhead</letterhead>
+    <name>Implementation – not pumping</name>
+    <style>freeForm</style>
+    <subject>Valued Single Point Customer</subject>
+    <textOnly>Your new Single Point fuel cards have been activated and they are ready for use but it appears that you have not begun to use your account.  If you have questions or concerns on any aspect of the program please do not hesitate to contact me.  You may review our online tutorials at http://www.fleetone.com/OTRtutorials once you start using your cards you will experience the benefits of the Single Point program:
+
+Nationwide acceptance
+Cash price for fuel versus the credit price for a saving you of 5-10 cents per gallon
+Free mobile app allows your drivers to locate the lowest priced fuel in his vicinity
+Daily reporting on card activity
+Discounts or rebates below the cash price
+
+
+
+
+
+
+
+This is just a new of the many benefits. I appreciate your business and look forward to hearing from you.
+
+
+
+Sincerely,
+
+
+{!User.Name}
+
+{!User.Title}
+
+Phone: {!User.Phone}
+Fax: {!User.Fax}
+
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

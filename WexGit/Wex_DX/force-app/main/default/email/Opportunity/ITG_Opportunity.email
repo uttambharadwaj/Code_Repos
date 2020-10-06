@@ -1,0 +1,20 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+Contact: {!Opportunity.Opportunity_Contact__c}
+
+Do you currently offer any health insurance benefits? If yes, who is eligible (1099, only office employees or W-2 drivers): {!Opportunity.Do_you_currently_offer_any_health_insura__c}
+What type of coverage would they like to get rates on? {!Opportunity.What_type_of_coverage_would_they_like_to__c}
+# of W-2 employees (including any office employees): {!Opportunity.Number_of_W_2_employees_including_any__c}
+# of independent contractors: {!Opportunity.Number_of_independent_contractors__c}
+Comments: {!Opportunity.Vendor_Comments__c}

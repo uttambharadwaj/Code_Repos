@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><br></div><div><br></div><div>Hi {!MPM4_BASE__Milestone1_Project__c.OwnerFirstName},</div><div><br></div><div>{!MPM4_BASE__Milestone1_Project__c.LastModifiedBy} has denied the customer's request for a non-standard implementation, for the P<span style="font-size: 12pt;">roject&nbsp;</span><a href="https://na5.salesforce.com/{!MPM4_BASE__Milestone1_Project__c.Id}" style="font-size: 12pt; background-color: rgb(255, 255, 255);">{!MPM4_BASE__Milestone1_Project__c.Name}</a><span style="font-size: 12pt;">.</span></div><div><br></div><div>They have made the following comments -</div><div><br></div><div><span style="background-color: rgb(255, 255, 255);">"{!ApprovalRequest.Comments}"</span></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator.</font></i></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay New FEP</name>
+    <style>freeForm</style>
+    <subject>A New FEP For Account {!Virtual_FEP__c.Account_Name__c} Has Been Created</subject>
+    <textOnly>Hi Noelia,
+
+{!Virtual_FEP__c.LastModifiedBy} has just created this {!Virtual_FEP__c.Name} FEP. You can view the record by clicking the FEP name.
+
+Use Case - &quot;{!Virtual_FEP__c.Use_Case__c}&quot;
+
+Customer Value - {!Virtual_FEP__c.Value_Of_WE_Spend__c}
+
+Customer&apos;s Annual Spend - {!Virtual_FEP__c.Annual_Addressable_Spend__c}
+
+Total Spend Known? - {!Virtual_FEP__c.Total_Addressable_Spend_Known__c}
+
+
+
+If there are any issues with this email please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

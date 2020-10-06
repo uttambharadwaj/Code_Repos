@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/WEX_Rewards_Single_Sell_Sheet_11_28_12.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Approved customer &lt; 50 vehicles. Attach Rewards program information/collateral.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Direct_Letterhead</letterhead>
+    <name>WEX Rewards</name>
+    <style>freeForm</style>
+    <subject>Earn Rewards Every Time You Use Your WEX Card</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+
+Now that you’re a WEX Fuel Card customer, you can expand the value you receive by participating in our Rewards program*. Every time your drivers use your fuel cards, you’ll earn points that can be redeemed for valuable brand name rewards. Points add up quickly:
+
+§ Fuel:  1 point per 2 gallons fueled
+
+§ Service/Maintenance: 6 points per $1 spent
+
+§ General Merchandise: 1 point per $1 spent
+
+
+And redemption is easy, starting with as few as 700 points From travel to dining, shopping to entertainment, or cash back, you choose the rewards you want most.
+
+
+I’m attaching further information about our Rewards program. You can also visit our website for additional information, at www.wrightexpressrewards.com.
+
+
+If you would like to participate in our Rewards program, simply respond to this email or call me at the number below.
+
+
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+{!User.Fax}
+
+
+
+* Available to fleets with fewer than 50 vehicles.
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Canada_Documents/Fleet_Data_Form_EN.xlsx</attachedDocuments>
+    <available>true</available>
+    <description>Compte approuvé. Envoyer des formulaires de données de flotte.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Fleet Data App Approved_FR</name>
+    <style>freeForm</style>
+    <subject>Votre compte Shell est approuvé</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Félicitations! Votre compte de carte de carburant Shell a été approuvé.
+
+Vous devez maintenant remplir le formulaire ci-joint, en suivant les étapes ci-dessous :
+
+Configuration recommandée :
+- Les identifiants de chauffeur (NIP) sont liés aux employés/chauffeurs.
+- Les cartes de carburant sont liées aux véhicules.
+- N’importe quel chauffeur peut utiliser son identifiant pour n’importe quelle carte associée à votre compte.
+
+
+Renseignements à inscrire sur le formulaire :
+
+Veuillez choisir UN champ que vous aimeriez voir apparaître à la deuxième ligne de votre carte, sous le nom de votre entreprise :
+- Description du véhicule ou
+- Numéro d’immatriculation ou
+- Numéro d’unité
+
+Laissez le reste des champs vides dans la partie inférieure du formulaire.
+
+Renseignements sur les chauffeurs :
+
+Veuillez fournir la liste des noms de vos chauffeurs, de même qu’un identifiant distinct de quatre ou de six chiffres pour chacun d’eux. Si vous préférez que nous assignions les identifiants, laissez simplement cette section vide.
+
+Numérisez le formulaire rempli et envoyez-le-moi par courriel à l’adresse indiquée ci-après ou télécopiez-le au {!User.Fax} dès que possible.
+
+Quand je l’aurai reçu, je communiquerai avec vous afin de vérifier la configuration de votre compte avant l’émission de vos cartes.
+
+Si vous avez des questions, n’hésitez pas à m’appeler.
+
+Cordialement,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

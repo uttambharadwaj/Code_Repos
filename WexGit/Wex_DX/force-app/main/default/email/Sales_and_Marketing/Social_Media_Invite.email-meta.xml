@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This is an automatic email that generates when a prospect record indicates that they use a form a social media.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Social Media Invite</name>
+    <style>freeForm</style>
+    <subject>Let&apos;s Get Social!</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

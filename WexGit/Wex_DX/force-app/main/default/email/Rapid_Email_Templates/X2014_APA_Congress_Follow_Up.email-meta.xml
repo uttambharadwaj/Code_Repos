@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2014 APA Congress Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM 2014 APA Congress Follow Up</name>
+    <style>freeForm</style>
+    <subject>APA Congress Follow Up</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+I wanted to touch base and thank you for attending APA Congress, if you were a &apos;virgin&apos; I hope it was everything you were expecting and more!!
+
+
+
+I am sure you are busy this week getting back into the swing of things, so I will contact you next week as follow up, to see ... A) If you&apos;re still issuing and distributing &quot;paper paychecks&quot;, and B) to see if you&apos;re interested in investigating whether paycards might fulfill a need for {!Lead.Company}.
+
+
+In the meantime.. I&apos;ve attached a a recent article from the APA and the NCLC regarding paycards and suggested guidelines to follow.
+
+
+
+Below are a few links to additional information that you might find of value.
+
+
+Ø Case Studies and Testimonials
+
+Ø PayCard Benefits
+
+Ø FAQ&apos;s
+
+Yours sincerely,
+
+
+
+
+{!User.Name}
+
+
+WEX Inc.
+
+
+rapid! PayCard
+
+
+
+
+o| {!User.Phone}c| {!User.MobilePhone} f| 727.828.4444
+
+
+e| {!User.Email}
+
+
+www.wexinc.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

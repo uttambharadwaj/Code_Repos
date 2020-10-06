@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>use for workflow rule to remind fleets earning discounts from us.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FTS Fuel Savings</name>
+    <style>none</style>
+    <subject>FTS/EFS Fuel Card Discount Reminder</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

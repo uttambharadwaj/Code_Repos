@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email to use when sales initiates an England Logistics - Online eApp. Contains a link to the partially completed eApp.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>England_Logistics_Letterhead</letterhead>
+    <name>EL eApp 2nd Guarantor</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest in {!OnlineApplication__c.Application_Title__c}</subject>
+    <textOnly>Dear {!OnlineApplication__c.Contact_Name__c},
+
+Please click on this link to add in a second guarantor to your application.  You will need to update the “Proprietor” section with the name of the new guarantor, address, title, date of birth, and social security number.  Have the new proprietor check and agree to the terms and click submit.  The new information will be sent to underwriting to review for credit line approval.
+
+Again, thank you for your interest in England Logistics Fleet Card.  If you have any questions about the application, please don’t hesitate to call or email me.
+
+
+Sincerely,
+
+Mai Zaldana
+ECS Fuel Account Specialist
+England Logistics, Inc.
+
+Phone: (801) 656-6062
+Fax: (385) 722-3858</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Fortune 1000 intro email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>rapid_PayCard_Letterhead</letterhead>
+    <name>Fortune 1000 intro email- FINAL</name>
+    <style>freeForm</style>
+    <subject>Drive your business efficiency from one source</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Wex is a corporate payment solutions company offering a suite of payment products that reduce expenses, create operational efficiencies by reducing pain points and solving problems.  Wex has studied industry issues and can offer premier solutions.
+
+I am a Strategic Account Manager for WEX, Inc. and I specifically work with Fortune 1000 companies.  WEX listens, WEX innovates, WEX solves and WEX serves up solutions with always available high touch customer service.
+
+I would like to discover where your issues exist with a short discovery call and then we can customize the solutions that will benefit your company with the most impact.
+
+Below is a summary of the suite of WEX payment solutions:  where can we add benefit to you?
+
+Can we put a 5 to 10 minute phone call on your calender?</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

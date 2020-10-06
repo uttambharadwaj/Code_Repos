@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>How to order flexcards (MUST EDIT APPLICATION # &amp; CL PRIOR TO SENDING)!!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Flex_Card</letterhead>
+    <name>WEX Fleet Flex How to Order Your Cards (edit required by you)!</name>
+    <style>freeForm</style>
+    <subject>WEX FlexCard- How to Order Your New Cards</subject>
+    <textOnly>Your WEX FlexCard Application is Approved - Order Your Cards Today!
+
+
+
+
+Welcome to the WEX FlexCard Program
+
+
+
+Congratulations! You&apos;ve been approved for a new WEX FlexCard account with a monthly credit limit of $1000. Now you are on your way to simplifying your business practices and saving money.
+
+Next step: create an online account and order your cardsfollowing these two easy steps:
+
+
+Register for FlexOnline using your application number: 1-XXXXXX
+Registration is easy — Watch this quick guide.
+Order your cards on FlexOnline.
+Learn how to add cards and more in our quick video tutorial.
+
+
+Additional Online Registration Details:
+
+•  If you specified a billing coordinator on your application, use his/her name and email address for online registration.
+•  Otherwise, enter the application signer&apos;s name and email address exactly as entered on the application.
+
+
+
+Watch the quick video: How to Register for FlexOnline
+
+Watch the quick video: How to Order and Manage Cards
+
+
+
+
+HAVE A QUESTION?
+
+Please call Customer Service at 1-866-339-8966. Open 24 hours a day, 7 days a week.
+
+
+Copyright ©2015 WEX Fleet Services. All rights reserved.
+
+WEX Fleet Services, 97 Darling Avenue, South Portland, ME 04106.  The WEX FlexCard is issued by WEX Bank.
+
+We respect your privacy. Please review our privacy policy for more information about click activity with WEX Inc. and links included in this email.
+
+This email was sent to EmailAddress. We sent you this email because you are a new WEX FlexCard customer.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

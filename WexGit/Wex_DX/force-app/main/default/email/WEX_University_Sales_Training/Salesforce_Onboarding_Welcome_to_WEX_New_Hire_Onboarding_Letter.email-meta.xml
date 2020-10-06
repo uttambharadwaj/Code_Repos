@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Sent to new hires, cc: Sales Managers, sales_training@wexinc.com, Jennifer Roney as notification of Taleo hire is received.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>OLD_06. Salesforce Onboarding: Welcome to WEX Salesforce Onboarding Letter</name>
+    <style>freeForm</style>
+    <subject>Welcome to WEX Salesforce Onboarding!</subject>
+    <textOnly>Welcome to WEX!
+
+Welcome to WEX! You have been invited to Week 2 Onboarding for Salesforce Training. This training will be held at the {!User.City} campus located at {!User.Street} {!User.City}, {!User.State} {!User.PostalCode}. 
+
+The Global Sales Training Team has developed a Salesforce Training Program to instruct relevant and impactful information for new Salesforce Users. Sessions will detail WEX Salesforce processes and functionality. 
+
+As part of the WEX Sales Team you will be expected to develop your Salesforce knowledge to meet performance measurements to accommodate our growth objectives. You have joined a global organization focused navigating and documenting your sales processes within the WEX Salesforce Cloud. 
+
+Travel Arrangements: Review Travel Policies with your Manager to reserve all flights and hotels through Concur. 
+
+1.) Complete and submit Traveler Profile Form at: www.travelexperts.com/travel-resources/traveler-profile-form.aspx
+After submitting, you will receive an email from Direct Travel with a username and password to access the Concur Travel software.
+
+2.) Access Concur at: www.concursolutions.com and use the interactive online booking tool to make flight and hotel reservations.
+
+Transportation/Rental Car: Work with your manager to determine car rental needs.
+
+Dress Policy: Business professional.
+
+Class Schedule: Classes run 8:00am - 5:00pm Monday-Thursday, 8:00am - Noon on Friday.
+
+Preparing for Class: Pre-Work attached provides you with the knowledge needed  for Salesforce navigation. These Salesforce Help &amp; Training online courses must be completed before training can begin.
+
+Feel free to reach out to me or Salestraining@wexinc.com should you have questions or concerns.
+{!User.Name} | {!User.Phone}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

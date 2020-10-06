@@ -1,0 +1,21 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Fleet_Size__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Opportunity.Primary_Contact_Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Primary_Contact__c}
+
+Current GPS Solution? {!Opportunity.Current_GPS_Solution__c}
+Current Cell Phone Provider? {!Opportunity.Current_Wireless_Solution__c}
+Purchasing Timeframe: {!Opportunity.Purchsing_timeframe__c}
+Current Dispatch Solution, if any: {!Opportunity.Current_Dispatch_Software__c}
+What is fleet interested in? {!Opportunity.What_is_fleet_looking_for__c}
+
+Comments: {!Opportunity.Description}

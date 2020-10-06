@@ -1,0 +1,16 @@
+{!Contact.FirstName}
+
+In order to finalize your NASTC fuel card set up, I need the following:
+
+•	Copy of a voided check from the the bank account you listed on your application. (If you do not have checks, please request a letter from your financial institution with the name/owner of the account and the routing and checking account number listed on it)
+•	Copy of your drivers license 
+•	The full front page of your bank account statement that identifies the physical street address
+
+I apologize for the inconvenience but it's a matter of security.
+
+Any questions, email or call me.
+
+Thank you!
+{!User.FirstName} {!User.LastName}
+{!User.Phone}
+{!User.Email}

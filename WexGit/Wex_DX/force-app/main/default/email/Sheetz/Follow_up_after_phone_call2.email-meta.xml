@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email after phone call</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead1</letterhead>
+    <name>Follow up after phone call</name>
+    <style>freeForm</style>
+    <subject>Save Time &amp; Money - Sheetz Business Edge</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks for taking my call today, I enjoyed the opportunity to speak with you.  Our fleet card is the perfect tool to help you save time and money when it comes to your vehicle fleet operations.
+
+
+REAL SAVINGS
+
+Save up to 6¢ per gallon* every time you fuel at a Sheetz location.
+Save up to 15% off your overall fuel management costs.**
+
+EASE OF USE and ACCEPTANCE
+
+Enjoy easy online controls so you can set spending limits
+and monitor driver behavior.
+Enjoy convenient access to over 500 Sheetz locations. Ask for our Universal Card, and you’ll have acceptance at over 90% of all U.S. fueling sites.
+Best-in-class customer service available 24 hours a day,
+7 days a week.
+
+I will be following up with you next week. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to meeting with you about the needs of your business.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+*Rebates are subject to change at any time without prior notice.
+
+**Actual savings may vary.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

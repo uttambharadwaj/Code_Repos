@@ -1,0 +1,28 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font size="1"><span style="COLOR: gray; FONT-SIZE: 8pt">
+<p><br></p><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black"><font face="Calibri">
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">Thank you for your interest in the WEX Fuel Card program. As we discussed, we offer several levels of control over your fueling activity to help you prevent potential misuse.</font></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p><font size="3">&nbsp;</font></o:p></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">Our WEX Fuel Card program allows you to set a range of controls over when, where, what and how much your drivers can purchase. You simply establish your set of rules for each driver and the card will be rejected if a driver attempts to purchase outside of your guidelines.</font></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><o:p><font size="3">&nbsp;</font></o:p></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">Additionally, our Purchase Alerts keep a close watch on your purchases - both fuel and service (where applicable). Utilize Purchase Alerts to start receiving email notification when a card violates one of your preset guidelines.</font></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><o:p><font size="3">&nbsp;</font></o:p></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">To view more detail about WEX’s industry best controls, visit </font><a href="http://www.wexinc.com/fleet-operators-and-managers/fleet-cards"><font color="#800080" size="3">www.wexinc.com/fleet-operators-and-managers/fleet-cards</font></a><font size="3">.</font></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><o:p><font size="3">&nbsp;</font></o:p></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">It’s easy to enroll. Simply complete the attached application form and fax it back to me at <em><font size="2">{!User.Fax}</font></em>.</font></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><o:p><font size="3">&nbsp;</font></o:p></p>
+<p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="3">Meanwhile, please call me with any questions. </font></p>
+</font><p style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class="MsoNormal"><font face="Calibri"></font><em>&nbsp;</em></p><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt">
+<p><br><em>Sincerely, <br><br>{!User.FirstName} {!User.LastName} <br>{!User.Title} <br>Phone - {!User.Phone}&nbsp; <br>Fax - {!User.Fax}&nbsp;<br>{!User.Email}&nbsp;</em></p>
+<p><em><font size="2" face="Verdana">&nbsp;</font><br></em></p>
+<p><em></em>&nbsp;</p></span></span></span></font>
+<p style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt"></span></i></font>&nbsp;</p>
+<p style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</span></i><i><span style="COLOR: gray; FONT-SIZE: 8pt"></span></i></font></p>
+<p style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</span></i></font></p>
+<p style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i></font></p>
+<p style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">&nbsp;</span></i></font></p>
+<p style="MARGIN: 0in 0in 0pt; FONT-FAMILY: Arial,Sans-Serif" class="MsoNormal"><font size="1"><i><span style="COLOR: gray; FONT-SIZE: 8pt">This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email},<a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="COLOR: gray"> <span style="COLOR: rgb(51,51,255)">email us to unsubscribe</span></span></a>. Please be sure to include your name, company name and email address in the email.</span></i></font></p><br>]]></td>
+</tr>
+</table>

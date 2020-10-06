@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Driver ID : online setup</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+You can set your own (passwords/PINs/Driver IDs *all the same thing) online at: Manage Account on the red bar &gt;&gt; Driver &gt;&gt; Add (if you wish to cancel the old ones, you choose Terminate).
+
+Otherwise, you can give us the new codes. By the way, the codes are not at all linked to the cards, but only to the driver’s name. Any code on your account works with any active card.
+
+Please let us know if we can be of further assistance.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

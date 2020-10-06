@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template to send as a follow up to an intro phone conversation.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_F1_Account_Management</letterhead>
+    <name>OTR Field Sales Call Out Intro - Phone Call</name>
+    <style>freeForm</style>
+    <subject>Per my voice mail - WEX Fleet One</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Thank you for the opportunity to speak with you today. I not only wanted to introduce myself, but also make certain you were aware of everything WEX Fleet One can can offer you to manage your company&apos;s vehicles.
+
+
+Factoring – Accelerated Cash Flow, Powerful Real-Time Reporting, Fuel Card Funding and Flexible Pricing Structure with no hidden fees.
+
+
+WEX Fuel Management – Applications designed exclusively for wherever you are in the fuel supply chain. These tailored offerings address industry-specific needs to help companies optimize fuel purchases and processes, and adapt quickly to changing market demands.
+
+
+Permits - Purchase the necessary temporary permits your drivers need including Trip, Fuel, and Oversize/Overweight.
+
+
+Telematics – An easy-to-use fleet vehicle tracking solution that helps you monitor fuel use and driver behavior - anytime, anywhere.
+
+
+Cash Services – Cash Advances. ATM access. PlusChek® Services. And more.
+
+
+Have vehicles in your fleet with less than 18 wheels? WEX Fleet One has got you covered. We offer feature-packed savings for your gasoline vehicles too!
+
+
+Please feel free to take a moment to see what our customers have to say about their experience with WEX Fleet One.
+
+
+I&apos;ll be reaching out to you again in the coming weeks to see what we can do for you. In the meantime, you can reach me at {!Opportunity.OwnerPhone} or via email at {!Opportunity.OwnerEmail}.
+
+
+I look forward to speaking to you again in the near future.
+
+
+
+Sincerely,
+
+
+{!Opportunity.OwnerFullName}
+
+{!Opportunity.OwnerTitle}
+
+{!Opportunity.OwnerPhone}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

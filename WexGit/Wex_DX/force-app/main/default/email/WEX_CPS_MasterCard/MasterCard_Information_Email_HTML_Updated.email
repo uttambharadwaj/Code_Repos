@@ -1,0 +1,34 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p><font face="Verdana,Helvetica,Sans-Serif" size="2">{!Contact.FirstName},</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana,Helvetica,Sans-Serif" size="2">Thank you for your interest in the Wright Express Corporate MasterCard.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana,Helvetica,Sans-Serif" size="2">We have quietly 
+become one of the leading commercial card issuers in the U.S. through 
+our fleet fuel card and MasterCard programs. We can offer you a standard
+ "travel and entertainment" card, a corporate purchasing card or a 
+virtual card program which can streamline your A/P process or 
+potentially eliminate a typical purchase order system.</font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana,Helvetica,Sans-Serif" size="2">If you have any 
+questions, please call me at {!User.Phone}. I will follow up with you in
+ the coming days to see what Wright Express can do to help 
+{!Account.Name} build a corporate payment program that is easy for your 
+employees to use while taking costs out of your business through service
+ and reporting that is unmatched in the industry.<br>&nbsp;<br>Sincerely, </font></p>
+<p>&nbsp;</p>
+<p><font face="Verdana,Helvetica,Sans-Serif" size="2">{!User.FirstName} {!User.LastName}<br>{!User.Title}<br>Phone - {!User.Phone}<br>Cell - {!User.MobilePhone}<br>{!User.Email}</font></p>
+<p>&nbsp;</p>
+<p><a href="http://www.wrightexpress.com/epayables"><font face="Verdana,Helvetica,Sans-Serif" size="2">www.wrightexpress.com/epayables</font></a></p>
+<p>&nbsp;</p>
+<p><font face="Verdana,Helvetica,Sans-Serif" size="1">CONFIDENTIALITY 
+NOTICE: "This message contains confidential information of Wright 
+Express Corporation. It is intended only for the use of the designated 
+recipient(s) stated above and further distribution of the information is
+ prohibited. If you have received this message in error, please notify 
+sender immediately by telephone or reply by e-mail and delete the entire
+ message and any attachments."</font></p>]]></td>
+</tr>
+</table>

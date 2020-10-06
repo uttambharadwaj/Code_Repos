@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Mot de passe oublié/ accès  verrouillé</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Mot de passe oublié/ accès  verrouillé</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Votre nom d’utilisateur : BLANK
+
+Nous ne pouvons réinitialiser votre mot de passe au cas où vous auriez réussi à vous connecter entre temps. Il est préférable de cliquer sur  à  www.essofleetonline.com. Ainsi,  vous recevrez  un accès temporaire directement à votre courriel en répondant correctement aux questions de sécurité que vous avez précédemment établies.
+
+Svp, prendre note que l’utilisation d’un téléphone intelligent ou une tablette ne fonctionnera pas sur le site.
+
+Si vous ne parvenez toujours pas à vous connecter, n’hésitez pas à nous contacter de nouveau. 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

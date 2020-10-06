@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>WEX_CPS_Fleet/WEX_Logo_Sheet_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Introduction email for when you are asked &quot;can you send me some info?&quot;</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Fleet_Services</letterhead>
+    <name>Fleet - Intro Email</name>
+    <style>freeForm</style>
+    <subject>WEX Fleet Card Program</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+With fuel prices hovering around $2.24 or more for unleaded and 2.42 or more for diesel - using a WEX Fleet Card Program is the best way to optimize your cost savings for your fleet. Please take a few minutes to look through the accompanying information. I think you’ll find the WEX Fleet Card an ideal solution for your company’s vehicle fueling needs.
+
+• We save you money. Our program gives you the tools to restrict unauthorized purchases, find the best prices stations and drastically reduce administrative time.
+• We save you time. You’ll enjoy the convenience of a single fueling card program and one easy to read report.
+• We give you the control. Detailed reports show how and where fueling money was spent, so you can account for every penny. Our industry best controls allow you to control what is purchased with the card, allowing some drivers access to only fuel, while opening the card up for other fleet related purchases for other drivers.
+• We make it convenient for drivers. Your drivers only need to carry one card to fuel at any of more than 180,000 accepting locations: http://www.wexinc.com/accepting-locations
+
+Please call me at {!User.Phone} to see what WEX Inc. can do to help you reduce your fleet fuel costs through management and reporting that is unmatched in the industry.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+www.wexinc.com
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

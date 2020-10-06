@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>PHCC 1 ExxonMobil</name>
+    <style>freeForm</style>
+    <subject>PHCC Benefits: ExxonMobil Fleet Program:Lowering Your Cost!</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

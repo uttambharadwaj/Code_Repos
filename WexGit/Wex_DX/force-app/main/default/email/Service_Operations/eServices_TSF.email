@@ -1,0 +1,24 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Thank you for contacting us. Tier 1 Truck Stop stations have the highest volume of heavy truck transactions occurring at their locations. The Tier 1 merchants are: Flying J, Love’s, Pilot and Travel Centers of America and the transaction fee is only applicable for transactions at these sites. The current agreements with the Tier 1 Truck Stop merchants do not cover our costs of doing business with them. The fee helps to get us closer to breaking even. We have completed extensive research on the fees and found that the transaction rate is very competitive and even with the per transaction fee, in many cases the overall price per gallon will be lower than other merchants. Please let me know if you have any questions.
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

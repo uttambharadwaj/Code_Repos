@@ -1,0 +1,5 @@
+<p>The Application for {!WES_Application_Request__c.Company_Name__c} needs approval because the Credit Authorised Limit is greater than  {!User.Name} approval threshold.
+
+Review this <a href="{!ApprovalRequest.External_URL}">approval request</a>.
+
+<p>Click <a href="{!WES_Application_Request__c.Link}">Here</a> for the application details.

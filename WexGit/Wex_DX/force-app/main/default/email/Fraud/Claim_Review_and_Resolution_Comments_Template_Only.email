@@ -1,0 +1,53 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" align="center" style="text-align: left;"><span style="background-color: rgb(255, 255, 255);"><b style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">Initial Claim Review Comments:&nbsp;&nbsp;</b><font face="Arial, sans-serif">{!Claim__c.Account_Name__c}<span style="font-size: 12pt;">, </span></font><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.WEX_Account__c}</span><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt;">/</span><span style="color: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Program_Account__c}</span></span></p><p class="MsoNormal" align="center" style="text-align: left;"><b style="font-size: 12pt;"><u><font face="Arial, sans-serif"><br></font></u></b></p><p class="MsoNormal" align="center" style="text-align: left;"><b style="font-size: 12pt;"><u><font face="Arial, sans-serif">SBWO:</font></u></b></p>
+
+<p class="MsoNormal" style="text-align: left;"><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">**Formal customer dispute claim received, Fraud
+dispute claim #</span></font><font face="Arial, sans-serif">{!Claim__c.Name}</font><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">&nbsp;assigned to Fleet
+Fraud Services. The fleet disputed transactions on <span style="background-color: rgb(255, 255, 255);">card&nbsp;</span></span></font><span style="background-color: rgb(255, 255, 255);"><font face="arial">{!Claim__c.CO_ID_STD_EMB_GTag__c}<span style="font-size: 12pt;">&nbsp;</span></font><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">between </span></font><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Allowable_Dispute_Start_Date__c}</span><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-begin'></span> MERGEFIELD \@ &quot;MMMM dd, yyyy&quot;
+Allowable_Dispute_Start_Date </span><![endif]--><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-end'></span></span><![endif]--><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt;">&nbsp;</span><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">and </span></font><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Allowable_Dispute_End_Date__c}</span><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-begin'></span> MERGEFIELD \@ &quot;MMMM dd, yyyy&quot;
+Allowable_Dispute_End_Date </span><![endif]--><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-end'></span></span><![endif]--><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt;">&nbsp;</span><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">for approximately $</span></font><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;">{!Claim__c.Allowable_Dispute_Dollars__c}</span><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-begin'></span> MERGEFIELD \# &quot;$#,#.00&quot; Total_Claim_Dollars </span><![endif]--><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-end'></span></span><![endif]--><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">.</span></font><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt;">&nbsp; </span></span><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;"><span style="background-color: rgb(255, 255, 255);">Intro &amp;
+Resolution email sent to adv the account is being credited for the allo</span>wable
+disputed charges as a goodwill adjustment in recognition of our
+relationship.</span></font><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt;">&nbsp; </span><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">Resolution is final;
+pursue all other collections as BAU.</span></font><span style="font-family: arial; color: rgb(0, 0, 0); font-size: 12pt;">&nbsp;
+</span><font face="arial" style="font-family: Arial, sans-serif;"><span style="font-size: 12pt;">Fleet Fraud Services**<o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="text-align: justify;"><font face="Arial, sans-serif" style=""><font face="arial"><span style="font-size: 12pt;">**Adj Req submitted in the amt of $</span></font>{!Claim__c.Allowable_Dispute_Dollars__c}<font face="arial"><span style="font-size: 12pt;">&nbsp;for dispute claim&nbsp;</span></font></font><span style="font-family: Arial, sans-serif; text-align: left;">{!Claim__c.Name}</span><font face="Arial, sans-serif" style=""><font face="arial"><span style="font-size: 12pt;">.</span></font></font></p><p class="MsoNormal" style="text-align: justify;"><b style="font-size: 12pt;"><u><font face="Arial, sans-serif"><br></font></u></b></p><p class="MsoNormal" style="text-align: justify;"><b style="font-size: 12pt;"><u><font face="Arial, sans-serif">SBQC:</font></u></b></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-align: justify;"><font face="Arial, sans-serif">**Formal customer dispute claim received, Fraud
+dispute claim #</font><span style="font-family: Arial, sans-serif; text-align: left;">{!Claim__c.Name}</span><font face="Arial, sans-serif">&nbsp;assigned to Fleet Fraud Services. Intro
+&amp; resolution sent to f<span style="background-color: rgb(255, 255, 255);">leet w/ determination that fleet is liable for
+allowable disputed charges of $</span></font><span style="background-color: rgb(255, 255, 255);"><span style="text-align: left;">{!Claim__c.Allowable_Dispute_Dollars__c}</span><font face="Arial, sans-serif">&nbsp;<span style="color:black">between&nbsp;</span></font><span style="text-align: left;">{!Claim__c.Allowable_Dispute_Start_Date__c}</span><font face="Arial, sans-serif"><span style="mso-spacerun:yes">&nbsp;</span><span style="color:black">and </span><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-begin'></span><span style='mso-spacerun:yes'> </span>MERGEFIELD
+Allowable_Dispute_End_Date </span><![endif]--><!--[if supportFields]><span
+style='font-size:10.0pt;font-family:"Arial",sans-serif'><span style='mso-element:
+field-end'></span></span><![endif]--><span style="mso-spacerun:yes">&nbsp;</span></font><span style="text-align: left;">{!Claim__c.Allowable_Dispute_End_Date__c}</span><font face="Arial, sans-serif">&nbsp;on card(s)&nbsp;</font><span style="text-align: left;">{!Claim__c.CO_ID_STD_EMB_GTag__c}</span></span><font face="Arial, sans-serif"><span style="background-color: rgb(255, 255, 255);">&nbsp;per T&amp;Cs</span>. Disputed
+trans were OPT, no indication of merchant involvement. The dispute claim is
+closed, pursue all other collections as BAU.** Fleet Fraud.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-align: justify;"><b style="font-family: Arial, sans-serif; font-size: 12pt;"><u><br></u></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-align: justify;"><b style="font-family: Arial, sans-serif; font-size: 12pt;"><u>Total
+Dispute Exceeds 60-Days:</u></b></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-align: justify;"><font face="Arial, sans-serif">**Dispute received from fleet for transactions
+on card(<span style="background-color: rgb(255, 255, 255);">s)&nbsp;</span></font><span style="background-color: rgb(255, 255, 255);"><span style="text-align: left;">{!Claim__c.CO_ID_STD_EMB_GTag__c}&nbsp;</span><font face="Arial, sans-serif">between&nbsp;</font><span style="text-align: left;">{!Claim__c.Allowable_Dispute_Start_Date__c}</span><font face="Arial, sans-serif">&nbsp;and&nbsp;</font><span style="text-align: left;">{!Claim__c.Allowable_Dispute_End_Date__c}</span><font face="Arial, sans-serif">. Intro &amp;
+resolution email sent to fleet to adv that pursuant to the contractual
+agreement governing use of the account, this is outside of the 60-Day allowable
+dispute period, therefore dispute claim&nbsp;</font><span style="font-family: Arial, sans-serif; text-align: left;">{!Claim__c.Name}</span></span><font face="Arial, sans-serif"><span style="background-color: rgb(255, 255, 255);">&nbsp;h</span>as been closed.**
+Fleet Fraud<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><o:p style=""><font face="Arial, sans-serif" style="">&nbsp;</font></o:p></p>]]></td>
+</tr>
+</table>

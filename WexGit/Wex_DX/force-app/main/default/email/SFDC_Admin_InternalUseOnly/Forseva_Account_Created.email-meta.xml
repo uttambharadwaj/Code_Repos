@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notify user that an account has been created via Forseva process</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Forseva Account Created</name>
+    <style>none</style>
+    <subject>An Account has been created via the Forseva Credit App process</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

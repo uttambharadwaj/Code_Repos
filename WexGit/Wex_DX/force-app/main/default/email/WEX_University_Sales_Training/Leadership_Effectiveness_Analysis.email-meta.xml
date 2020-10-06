@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send to participants who are taking the Leadership Effectiveness Analysis (LEA) 360 questionnaire.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>Leadership Effectiveness Analysis</name>
+    <style>freeForm</style>
+    <subject>Leadership Effectiveness Analysis</subject>
+    <textOnly>The Sales Organization continuously focuses on building internal sales talent to grow and develop. WEX continues to invest in developing our Sales Professionals as part of our strategic enterprise strategy for growth. Part of this initiative involves seeking your input.
+
+One of your peers (Daniele Caneschi) will be participating in a 360-degree feedback process called Leadership Effectiveness Analysis (LEA) 360®. This tool is designed to give constructive feedback about leadership practices and an individual’s impact on others. The Sales Training Team would like your assistance by completing an online questionnaire which will provide invaluable observer feedback. Your responses, combined with others who have been asked to participate, will be presented in a summary format so your individual responses will remain anonymous.
+
+You will be receiving an e-mail from Quest@mrg.com shortly. The subject line will say ‘Invitation to Complete Questionnaire’. This e-mail will contain the necessary logon ID and Password you will need to access the online questionnaire. Please be sure to check your “junk” email folder as occasionally the request from Quest does not pass through our regular email filters.
+
+Please complete the questionnaire by March 14, 2019.
+
+The LEA 360 Observer Questionnaire consists of 86 questions and usually takes 20 - 30 minutes to complete. If you are interrupted, you can save your work and resume at a later time.
+
+Should you have any difficulties or need additional information, please feel free to contact me.
+
+Thank you for your time and participation,
+
+{!Case.OwnerFullName}
+WEX Global Sales Training</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

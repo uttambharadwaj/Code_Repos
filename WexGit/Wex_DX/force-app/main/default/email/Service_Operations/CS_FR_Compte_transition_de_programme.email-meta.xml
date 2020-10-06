@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Compte: transition de programme</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Compte: transition de programme</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Exiger une entrée de compteur kilométrique en plus de l&apos;ID du conducteur lors de l&apos;utilisation des Cartes d’Affaires Esso signifierait que vous déménagiez votre compte dans un compte Esso Premier Plus. Vous pouvez en savoir plus sur les différences entre le compte Esso Business Card que vous possédez actuellement et le compte Esso Premier Plus en allant sur le site www.esso.ca. L&apos;un des principaux avantages du compte Esso Premier Plus est l&apos;augmentation des rapports, notamment le fait de pouvoir suivre le kilométrage de vos conducteurs. Il n&apos;y a pas de frais pour le compte Esso Premier Plus, mais nous aurions besoin de vous envoyer de nouvelles cartes de carburant parce que l&apos;exigence d&apos;entrée du compteur kilométrique fait partie de la bande magnétique sur les cartes. Si vous décidez de faire ce changement, veuillez remplir le formulaire de transition du programme ci-joint. Si vous avez des questions, nous serons heureux
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

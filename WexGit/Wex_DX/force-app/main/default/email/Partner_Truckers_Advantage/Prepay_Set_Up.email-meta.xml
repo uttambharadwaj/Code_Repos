@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>for prepaid set up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Truckers_Advantage</letterhead>
+    <name>Prepay Set Up</name>
+    <style>freeForm</style>
+    <subject>Truckers Advantage Fleet One - PrePay and Secured Credit Line Accounts</subject>
+    <textOnly>Congratulations! You have been pre-qualified for a Truckers Advantage Fleet One PrePay or Secured Credit Line fuel card account.
+
+
+
+SECURED CREDIT LINE ACCOUNTS:
+
+
+
+If you choose to open a secured credit line, please complete and return the attached form that is the &quot;Deposit Agreement.&quot; Instructions on sending in the funds for this option are on the Deposit Agreement. Please make sure to also return a copy of this form (and a copy of your certified check - minimum of $500) BACK TO ME as well as to the address on the form.
+
+
+
+PRE-PAY ACCOUNTS:
+
+
+
+We require you to fund a minimum of $500 before we will send out the fuel cards. Please put &quot;{!OnlineApplication__c.Name}&quot; in the place where you would in the future put your account number, this will help me locate the funds and get your cards out faster.
+
+
+Here are the four options for funding your pre-pay account.
+
+
+· Bank Wire:
+
+Fleet One will receive your funds within 3-5 business hours and a $15 fee will be charged to receive your wire.
+
+(Bank instructions are attached)
+
+· Factoring:
+
+Your factoring company either sends us a bank wire, or do a customer initiated ACH. Please note: There is no charge for funding your Fleet One account through Fleet One Factoring! Please let me know if you are interested in having me arrange a phone conversation between a Fleet One Factoring Rep and you!!
+
+· 3rd Party Guaranteed Check:
+
+Fast &amp; Inexpensive- These are checks like Com-chek, EFS Check, T-Chek, etc. Fleet One will charge $25.00 fee to accept one of these checks, and your funds will be available within 1-4 business hours, if it’s deposited during Fleet One’s business hours (8a-5p CST M-F)
+
+
+Now Available! -- Western Union:
+
+To successfully make a WESTERN UNION payment, please follow the attached instructions! (Fleet One will invoice a $20 fee per occurrence.)
+
+
+
+
+
+
+If you have any questions please do not hesitate to call.
+
+
+
+Thanks,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

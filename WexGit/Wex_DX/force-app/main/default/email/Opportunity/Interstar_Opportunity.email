@@ -1,0 +1,19 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+How many tractors do you have? {!Account.Truck_Count__c}
+How many trailers do you have? {!Account.Trailer_Count__c}
+What method do you currently use for mechanical & tire emergency road service? {!Opportunity.Emergency_Road_Service_Method__c}
+Who should we have Interstar call to discuss breakdowns? {!Opportunity.Interstar_Breakdown_Contact__c}
+Comments: {!Opportunity.Vendor_Comments__c}

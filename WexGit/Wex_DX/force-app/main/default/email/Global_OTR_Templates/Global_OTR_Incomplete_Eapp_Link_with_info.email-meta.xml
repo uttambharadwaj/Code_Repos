@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>OTR Incomplete Eapp link with info</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Global_Fleet_letterhead</letterhead>
+    <name>Global OTR Incomplete Eapp Link with info</name>
+    <style>freeForm</style>
+    <subject>Please take a moment to complete your application</subject>
+    <textOnly>Dear 
+
+Thank you for your interest in the Fleet One fuel card. It appears you began the application process, but have not completed it. For your convenience, I’ve attached a link to our online application so that you may complete the process when the time best fits your schedule.
+
+Please (add location) and follow the instructions to complete your application process.
+
+I hope you will find the information below helpful regarding our Global Fleet OTR fuel card services here at WEX Fleet One.
+
+· No Fuel Transaction fees
+
+· Cash Price at all truck stops
+
+· Cash Services
+
+· Credit line, Prepay, Factoring or Deposit Accounts Available
+
+· Free Online Account management
+
+· Detailed Reporting
+
+· Control Features
+
+· Discounts and Rebates available
+
+Again, thank you for your interest in the Global Fleet OTR fuel card. If you have any questions about the application or our fuel card program, please don’t hesitate to call or email me.
+
+Regards,
+
+
+ADD INFORMATION AND LEGAL</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

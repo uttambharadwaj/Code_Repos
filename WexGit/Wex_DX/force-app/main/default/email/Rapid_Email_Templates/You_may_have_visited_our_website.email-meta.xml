@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Leadlander follow up email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>MSM You may have visited our website...</name>
+    <style>freeForm</style>
+    <subject>You may have visited our website...</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+
+Recently someone with {!Lead.Company} visited our website for an extended period of time. Quite honestly I have no idea who it was.  Often, it’s simply an employee of yours who happens to be a rapid! PayCard holder and is accessing the website for variety of reasons.
+
+However, on the off chance it was someone in your payroll or HR department that might be investigating the merits of paycard implementation, I thought I’d touch base directly.  If not, please allow me to apologize in advance for this intrusion….Btw, my name is Matt Merriam and I’m a prepaid product specialist with WEX rapid! PayCard.
+
+Assuming paycards are being considered, I’ve included a link below to some information that you might find of value.  If not, again forgive me.
+
+
+
+If there is an interest in exploring this FREE employee benefit and what we have to offer, please let me know so we can stay in touch. If you&apos;ve already have a paycard program in place, or simply prefer that I don&apos;t contact you further, please let me know that as well. Either way, I’ll happily comply.
+
+Best Wishes,
+
+
+Matt Merriam
+
+Prepaid Product Specialist
+
+WEX Inc.
+
+rapid! PayCard
+
+
+T: 470.545.3219 • C: 727.466.8015 • F: 727.828.4444
+
+E: matt.merriam@wexinc.com
+
+W: www.wrightexpress.com • www.rapidpaycard.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

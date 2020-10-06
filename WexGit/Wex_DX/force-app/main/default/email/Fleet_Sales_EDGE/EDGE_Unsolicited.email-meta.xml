@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>EDGE Unsolicited</name>
+    <style>freeForm</style>
+    <subject>Fleet One EDGE can help!</subject>
+    <textOnly>Interested in seeing what the Fleet One EDGE card can do for you?
+
+Fuel discounts and rebates at over 3,500 sites - average savings1 of 12 cents per gallon
+No fees in network
+Acceptance at over 8,000 Truck Stops
+Nationwide discounts on major tire brands
+Thousands of additional savings on parts, service, hotels, breakdown, and mor
+IFTA Fuel tax reporting and permit services
+Credit to fund your operations and financing solutions to help you grow
+
+I look forward to speaking with you!  Feel free to call or send me an email.  My contact information is listed below.
+
+{!User.Name}
+
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, 
+click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

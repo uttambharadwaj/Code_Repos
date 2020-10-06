@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/General_Fleet_Data_Form.xlsx</attachedDocuments>
+    <available>true</available>
+    <description>Sent via workflow when App Request is successful. Includes Fleet Data Form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Marathon_Letterhead</letterhead>
+    <name>Marathon Fleet Data App Received</name>
+    <style>freeForm</style>
+    <subject>Your Marathon Fuel Card Application Is Being Processed | Action Required</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Thank you for choosing the Marathon Fuel Card Program.
+
+
+We have received your application which may take up to five business days to process.
+
+Meanwhile, please complete the attached form that indicates the following information needed to set up your account:
+
+Driver Information:
+
+
+Please provide a list of your driver names with a four- or six-digit Driver ID number for each. If you prefer us to assign the Driver ID numbers, simply leave the field blank.
+For security and increased fraud protection, each driver will be required to enter their number at the point of sale. The Driver ID number will trace the driver’s name along with any transaction they make.
+
+
+Vehicle Information:
+
+
+Only one column of information is mandatory, the rest (such as license plate number of VIN number) are optional.
+Please select one field that you would like to see appear on the second line of your card, beneath your Company name. This information will also appear on your reports to track vehicle fueling.
+
+
+Please scan/email the completed form to me at the email address noted below, or fax it back to me at {!Opportunity.Opportunity_Owner_Fax__c} at your earliest convenience.
+
+If you need help filling out the form, please watch our 5 minute informational video. http://www.wexcard.com/tutorial
+
+Once your account is approved, an Account Specialist will call you to help with some additional details before ordering your cards.
+
+Feel free to give me a call if you have any questions.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

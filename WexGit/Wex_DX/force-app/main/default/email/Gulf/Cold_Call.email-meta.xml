@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use when reaching out to a prospect for the 1st time, with goal of scheduling a meeting.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>RSM: Cold Call</name>
+    <style>freeForm</style>
+    <subject>IMPORTANT: Fleet Fuel Savings from Gulf</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+My name is Bernabe Juntura and I&apos;m the Regional Sales Manager for the Gulf Fleet Fueling Program.
+
+We help businesses like yours save upwards of 15% on overall vehicle management costs, including a competitive rebate of up to 5 cents off per gallon every time you fuel at Gulf using the Gulf Commercial Fleet Card or the Gulf Universal Fleet Card.
+
+Whether you’re looking for a fleet card program with robust rebates at over 2,500 fueling locations, nationwide card acceptance, or tighter control over your company vehicles, Gulf has a fleet fueling program that’s just right for your business.
+
+I&apos;ll be in your area next week and would like to briefly speak with you about your current fuel program, and share some additional information about Gulf’s. I&apos;ll call to schedule a time.
+
+Many thanks,
+
+Toni Clemens
+Regional Sales Manager – New England and New York
+Gulf Fleet Card Program ▪ WEX Inc.
+Hartford, CT
+Office/Cell: (203) 233-0349
+Fax: (207) 791-1618
+Email: toni.clemens@wexinc.com
+
+
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+Gulf Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

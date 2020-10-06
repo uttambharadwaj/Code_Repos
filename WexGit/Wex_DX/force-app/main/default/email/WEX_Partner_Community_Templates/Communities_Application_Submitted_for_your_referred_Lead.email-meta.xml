@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Mock up of email template for community partners to be notified when an application has been submitted for their referred lead</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AMSA</letterhead>
+    <name>Communities: Application Submitted for your referred Lead</name>
+    <style>freeForm</style>
+    <subject>An application has been sent for your reffered lead</subject>
+    <textOnly>{!Application_Request__c.External_Referring_Contact__c},
+
+Our sales staff have submitted an application for your referred lead. Details below:
+
+{!Application_Request__c.App_Signer__c}
+
+
+
+App Submitted Date: {!Application_Request__c.CreatedDate}
+
+Sales Person: {!Application_Request__c.Sales_Person__c}
+
+Requested Credit Limit: {!Application_Request__c.Requested_Credit_Limit__c}
+
+Link: https://wexinc.force.com/partners/{!Application_Request__c.Id}
+
+
+Best regards,
+
+WEX Partner Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

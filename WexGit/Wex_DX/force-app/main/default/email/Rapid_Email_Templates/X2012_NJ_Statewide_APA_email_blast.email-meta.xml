@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2012 NJ Statewide APA email blas</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>2012 NJ Statewide APA email blast</name>
+    <style>freeForm</style>
+    <subject>2012 New Jersey Payroll Statewide Conference</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

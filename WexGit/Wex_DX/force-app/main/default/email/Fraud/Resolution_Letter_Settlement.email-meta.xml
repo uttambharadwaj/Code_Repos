@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Resolution Letter Settlement - OLD</name>
+    <style>formalLetter</style>
+    <subject>Resolution Letter Settlement</subject>
+    <textOnly>Date
+
+
+{!Claim__c.Account_Contact_Name__c}
+
+{!Claim__c.Account_Name__c}
+
+{!Claim__c.Account_Address_1__c} {!Claim__c.Account_Address_2__c}
+
+{!Claim__c.Account_City__c}, {!Claim__c.Account_State__c} {!Claim__c.Account_Zip__c}
+
+
+Re: Claim No {!Claim__c.Name}
+
+
+Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+This letter confirms that we have reviewed your claim of disputed transactions on the {!Claim__c.Partner_Formal_Name__c} account for {!Claim__c.Account_Name__c}. Firstly, the occurrence of fraud, misuse or abuse on our card program is extremely unfortunate and we are sensitive to the potential business and financial hardships it can cause to our customers.
+
+
+In response to your dispute, this letter confirms that we have reviewed your dispute claim and we have outlined our findings and recommendations below.
+
+
+In your communication, you are disputing transactions that you consider suspected unauthorized use.
+
+Disputed transactions occurred on one (1) fleet card - card {!Claim__c.Veh_Card_For_Email_Merge__c} and one (1) driver identification number (“DIN”) – DIN {!Claim__c.DIN__c} assigned as “{!Claim__c.Driver_Name__c}.&quot;
+Card {!Claim__c.Veh_Card_For_Email_Merge__c} was terminated by {!Claim__c.Partner_Formal_Name__c} Fraud Department.
+Per your suspicion and per the police report you provided, a former employee and then current employee, who had been given the authority to conduct transactions on the account, perpetrated the abuse.
+No attempts to guess at the DIN were made prior to the onset of the abuse. This would indicate that the perpetrator had knowledge of the DIN.
+Disputed transactions totaling ${!Claim__c.Allowable_Dispute_Dollars__c} occurred at multiple fueling locations between {!Claim__c.Allowable_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}.
+Disputed transactions totaling ${!Claim__c.Ticket_Request_Amount__c} occurred inside merchant locations and receipt copies were ordered on your behalf.
+The remaining disputed transactions occurred at an outside payment terminal (“OPT”), the card was swiped and a valid DIN was keyed in the OPT. Therefore there is no available evidence of merchant involvement.
+We understand a police report has been filed and a suspect identified.
+
+
+{!Case.Account} has a commercial card account using the {!Claim__c.Partner_Formal_Name__c}  Card Program. Use of your {!Claim__c.Partner_Formal_Name__c}  account is governed at all times by the {!Claim__c.TC_s_Formal_Name__c} (the “Agreement”).  The Agreement addresses unauthorized use and associated responsibilities (refer to section 10).
+
+
+
+However, although we do not believe that {!Claim__c.Partner_Formal_Name__c} bears any responsibility for the disputed activity and considering the occurrence of driver involvement, we recognize that this matter has been of great concern and are interested in taking some action to mitigate the financial impact to your organization.  In recognition of the mutually beneficial relationship we have shared since 2007, we are willing to extend an offer to credit {!Case.Account}’s account in the amount of $XXXX.XX (or approximately 50%). {!Case.Account} will be liable for the remaining disputed portion of $ XXXX.XX. This is an offer of goodwill and does not imply, nor shall it be construed as, an acknowledgment of any liability for the abuse that occurred on the account.
+
+
+
+In consideration of the issuance of this credit, {!Case.Account} agrees to release {!Claim__c.Partner_Formal_Name__c}. and its affiliates, including the respective officers, employees and agents of WEX Bank and its affiliates, from any claims or liabilities resulting from or related to charges incurred on the above referenced account prior to the date of this letter.
+
+
+
+If the foregoing is acceptable to {!Claim__c.Account_Name__c}, please have a duly authorized individual execute the attached copy of this letter marked “ACKNOWLEDGMENT/ACCEPTANCE COPY” and return that copy to: Fraud Department, WEX Inc., 97 Darling Avenue, South Portland, Maine 04106.  Within fifteen (15) days of our receipt of the signed copy, a credit will be applied to the account.
+
+
+The foregoing offer will expire on April 10, 2018 at 5pm EDT.
+
+
+This letter is an offer of compromise, and is intended as an offer of compromise, within the meaning of Rule 408 of the Federal Rules of Evidence.  Furthermore, nothing in this letter is intended to, or shall be deemed to, create or constitute a waiver, modification, or relinquishment by {!Claim__c.Partner_Formal_Name__c}. of any claims or defenses it or any of its affiliates has with respect to the charges incurred on the above referenced account, all of which claims or defenses are expressly reserved.
+
+
+Please do not hesitate to contact us at (888) 691-0361 to discuss any questions you may have.
+
+
+Sincerely,
+
+
+Fleet Fraud Services</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

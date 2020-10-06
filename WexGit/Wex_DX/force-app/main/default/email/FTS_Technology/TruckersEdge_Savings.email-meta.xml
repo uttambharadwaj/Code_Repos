@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>TruckersEdge Savings</name>
+    <style>freeForm</style>
+    <subject>Save on Freight Finding Solutions from TruckersEdge</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our savings on freight finding solutions from DAT TruckersEdge. As an FTS Plus+ member, you can receive 30 days of free service and a 10% discount thereafter.
+
+TruckersEdge provides small fleet owners and owner/operators with the tools they need to find better loads.
+
+Over 250,000 fresh loads you won&apos;t find anywhere else
+Quality brokers with good reputations
+Powered by DAT®, the most powerful freight match network in the world
+Best price and value you can find
+Easy to use, easy to move loads
+
+
+For full details and to sign up, please visit ftsplus.com/truckersedge.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Nancy Gustafson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

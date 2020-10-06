@@ -1,0 +1,13 @@
+{!Lead.FirstName},
+
+I'm still trying to connect with you regarding your recent request for more information on our {!Lead.Product_Interest__c} savings. I'd love to learn more about your specific needs, and I'm confident we can help your fleet save money.
+
+Please give me a call back at {!User.Phone}, or reply to this email to get the ball rolling. If I don't hear back from you today, I will attempt to connect with you tomorrow.
+
+Thanks,
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

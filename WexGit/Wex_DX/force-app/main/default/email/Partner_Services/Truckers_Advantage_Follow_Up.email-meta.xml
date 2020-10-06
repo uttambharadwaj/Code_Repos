@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Partner_Services/Truckers_Advantage_Business_Services_Agreement.pdf</attachedDocuments>
+    <attachedDocuments>Partner_Services/Truckers_Advantage_Checklist.pdf</attachedDocuments>
+    <attachedDocuments>Partner_Services/Truckers_Advantage_Set_Up_Details.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Truckers Advantage Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Truckers_Advantage</letterhead>
+    <name>Truckers Advantage Follow Up</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest In Truckers Advantage</subject>
+    <textOnly>{!Lead.Salutation} {!Lead.FirstName} {!Lead.LastName}, 
+
+
+Thank you for your interest in the Truckers Advantage fuel card. Attached are three (3) documents for you to complete, and the following is a list of easy instructions:
+
+Application. Please complete the entire application. 
+Signature. Your name and signature are required in two places before submitting it to our credit department. See arrows on application for areas to be completed. 
+Voided Check. Our credit department requires a copy of a voided check for the account you will be paying from. A submitted application must be accompanied by a voided check. 
+Security. Please verify you have put your name and any other contact person in the section &quot;Proprietor, Partners, or Corporate Officers&quot;. A Social Security number for the person signing the application and a 4-digit number for the other contact person, if there is one, are required. This is the security code you will use when calling Customer Care.
+Once you have completed your forms, please mail or fax them back to {!User.Fax} and your application process will begin. If you have questions, please contact me at {!User.Phone}.
+
+ 
+Sincerely,
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+{!User.CompanyName} 
+Ph:{!User.Phone} 
+Fx:{!User.Fax} 
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

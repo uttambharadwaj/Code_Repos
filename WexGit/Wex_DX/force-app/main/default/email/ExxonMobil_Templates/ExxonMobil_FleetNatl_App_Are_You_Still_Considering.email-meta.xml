@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/ExxonMobil_App_Alone1.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Last ditch effort to get application. Attach and send application form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Fleet_National_card</letterhead>
+    <name>ExxonMobil FleetNatl App Are You Still Considering</name>
+    <style>freeForm</style>
+    <subject>Are you still considering the ExxonMobil Fleet National card?</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I wanted to reach out to you one last time to see if you are still considering the ExxonMobil Fleet National Card Program.
+
+It’s easy to enroll. Simply complete the attached application form, and fax it to me at {!User.Fax}. You can also scan and then email the form back to me at the email noted below.
+
+You can find a complete list of accepting locations at https://www.exxon.com/en/find-station .
+
+Feel free to give me a call if you have any questions.
+
+Thank you for your interest in the ExxonMobil Fleet National Card Program.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/FSC_Billing_Deposit_Agreement_NEW_02_2013.pdf</attachedDocuments>
+    <available>true</available>
+    <description>For prospects that must send a deposit to secure the account. Attach the Deposit form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Credit Deposit Required     </name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Fleet Card Program - Additional Information Required</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+Thank you for your interest in our ExxonMobil Fleet Card Program!
+
+
+To enroll in an account with us, please send in a deposit to secure the account along with the attached Deposit form. You may either mail the deposit to our bank or wire us the funds.
+
+Sending the deposit by mail:
+
+
+Complete and sign the attached deposit agreement (the minimum deposit is $500)
+Send the form to our bank (address below) with a certified check, money order or cashier’s check for the deposit amount you would like to put on deposit.
+Reference opportunity # (insert number here) and mention the check is for a secured deposit in the memo section of the check.
+Either scan/email or fax a copy of the completed and signed deposit agreement to me at the email noted below or {!User.Fax}
+
+
+
+
+
+
+Bank Address:
+WEX Bank
+7090 Union Park Center, Suite 350
+Midvale, UT 84047
+
+Wire Transfer Instructions:
+
+
+Account Name: WEX Inc.
+Account Number: 4539508
+Receiving Instructions: Harris Bank (311 West Monroe, Chicago, IL  60606)
+ABA/Routing Number: 071000288
+Please reference opportunity # (insert number here)
+Memo Section:  Please mention the check is for a secured deposit
+Either scan/email or fax a copy of the completed and signed deposit agreement to me at the email noted below or {!User.Fax}
+
+
+
+
+
+
+
+
+
+When the deposit is received your account will be set up and the deposit applied will become your line of credit.
+
+Feel free to scan and email the verification to me at the email noted below, or if you prefer, you can fax it to me at {!User.Fax}.  You can also call me at {!User.Phone} if you have any questions.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

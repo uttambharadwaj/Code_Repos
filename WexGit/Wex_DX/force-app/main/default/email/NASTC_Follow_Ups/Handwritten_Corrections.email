@@ -1,0 +1,9 @@
+{!Contact.FirstName},
+
+Congratulations on being approved for a NASTC Fleet One fuel card. In order to get the cards finalized, I need to have you hand write in the 2 week days you wish to have your account drafted in the Payment Information section of the application on page 2.  
+
+Once you have done this please email it back to me at {!User.Email}.  
+
+Thank you
+{!User.FirstName} {!User.LastName}
+{!User.Phone}

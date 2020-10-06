@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_EDGE_Merchant/EDGE_MerchantValueProp_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Email to send to merchants explaining value of EDGE network</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Merchant_Letterhead</letterhead>
+    <name>EDGE Merchant Value Prop</name>
+    <style>freeForm</style>
+    <subject>Drive more volume to your locations</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

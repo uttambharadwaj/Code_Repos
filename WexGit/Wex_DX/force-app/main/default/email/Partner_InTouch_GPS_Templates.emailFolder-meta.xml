@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Partner - InTouch GPS Templates</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>InTouch_GPS_Partner_Group</group>
+        <portalRoleAndSubordinates>InTouchGPSPartnerManager</portalRoleAndSubordinates>
+    </sharedTo>
+</EmailFolder>

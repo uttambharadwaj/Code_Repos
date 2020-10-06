@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Sunoco_App_Alone.docx</attachedDocuments>
+    <available>true</available>
+    <description>15-cent Sunoco promo for 6 mo -- cold to close only</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>Sunoco 15-cent promo</name>
+    <style>freeForm</style>
+    <subject>Sunoco Fuel Card Program information.</subject>
+    <textOnly>Now is the best time to apply for the Sunoco Fuel Card Program! Receive 15¢ off per gallon for 6 months.
+
+Dear {!Contact.FirstName},
+
+Whether your business is large or small, take charge of your fueling expenses with the Sunoco Fuel Card Program. For a limited time only, Sunoco is offering 15¢ off EVERY gallon purchased at Sunoco-branded locations with a Sunoco commercial fuel card!
+
+A Sunoco commercial fuel card is the perfect way to simplify your vehicle fueling and eliminate hours of paperwork.
+
+-  Rebate of 15¢ off every gallon for the first 6 months*
+
+- Card acceptance and monthly fuel rebates at every Sunoco location; acceptance nationwide with our Universal card
+
+- Pre-set card controls to help prevent fraud and unwanted spending
+
+- Online and mobile account management to alleviate hours of receipt collection, sorting and reimbursing drivers
+
+You can reach me at {!User.Phone} or via email at {!User.Email}.
+
+Don’t wait any longer to start saving 15¢ per gallon on fuel.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+*For new accounts only, subject to credit approval. The promotional rebate applies to all fuel purchased at Sunoco-branded locations. Promotional period begins the date account is opened. Fuel savings will appear as an account credit on your monthly billing statement. When the promotional period ends, standard monthly program rebates will apply. Rebates are subject to change at any time without prior notice.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

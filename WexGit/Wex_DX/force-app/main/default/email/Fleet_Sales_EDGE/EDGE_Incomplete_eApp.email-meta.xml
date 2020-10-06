@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>EDGE- Incomplete eApp</name>
+    <style>freeForm</style>
+    <subject>Fleet One EDGE (Additional Information Required)</subject>
+    <textOnly>{!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in the Fleet One EDGE Discount Network. It appears you began the application process, but have not completed it. For your convenience, I’ve attached a link to our online application so that you may complete it at your convenience. Please remember that WEX Bank adheres to the &quot;Know Your Customer&quot; bank regulation, so we do request financial information.  Please don&apos;t miss out on this exclusive offer.
+
+Click here and follow the instructions to complete your application process.
+
+Benefits of the Fleet One EDGE card:
+
+Fuel discounts and rebates at over 3,000 sites - average savings¹ of 12 cents per gallon:
+No fees within the EDGE network²
+Acceptance at over 8,000 Truck Stops
+Nationwide discounts on major tire brands
+Thousands of additional savings on parts, service, hotels, breakdown, and more
+IFTA Fuel tax reporting and permit services
+Credit to fund your operations and financing solutions to help you grow
+
+¹The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network pricing at all.
+²In-network sites include Pilot Flying J, AMBEST, Circle K, Quick Fuel, Petroleum Wholesale, and many more.
+
+
+
+Let me know if you have any questions.
+
+Sincerely,
+
+{!OnlineApplication__c.OwnerFullName}
+{!OnlineApplication__c.OwnerTitle}
+WEX Fleet One
+Phone:{!OnlineApplication__c.OwnerPhone}
+{!OnlineApplication__c.OwnerEmail}| www.fleetoneedge.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

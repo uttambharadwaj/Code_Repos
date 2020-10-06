@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Email_Letter_Head</letterhead>
+    <name>RSM: Holiday Email</name>
+    <style>freeForm</style>
+    <subject>Happy Holidays from Gulf!</subject>
+    <textOnly>Just a quick note to wish you, your family and your business colleagues a very Happy Holidays and a safe, prosperous New Year!
+
+
+We at Gulf understand it’s hard work managing your fleet and keeping your expenses under control. We’re thankful you’ve chosen the Gulf Fleet Card Program as your fleet management solution. Thank you for your business, and your loyalty.
+
+
+We&apos;ll look forward to serving your fleet management needs this year!
+
+All my best,
+
+Toni Clemens
+Regional Sales Manager – New England and New York
+Gulf Fleet Card Program ▪ WEX Inc.
+Hartford, CT
+Office/Cell: (203) 233-0349
+Fax: (207) 791-1618
+Email: toni.clemens@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

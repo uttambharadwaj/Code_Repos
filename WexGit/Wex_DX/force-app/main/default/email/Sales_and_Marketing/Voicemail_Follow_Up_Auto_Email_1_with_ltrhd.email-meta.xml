@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Auto email that is generated when 1st voicemail is left on a prospect record. Stale 2011.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Voicemail Follow Up Auto Email #1 (with ltrhd)</name>
+    <style>freeForm</style>
+    <subject>WEX Fleet One Fuel Card and 10¢ Off Per Gallon*</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><br></div><div><br></div><div>Hi,</div><div><br></div><div><a href="https://na5.salesforce.com/{!Opportunity.Id}" style="font-family: Arial, sans-serif; background-color: rgb(255, 255, 255);">{!Opportunity.Name}</a>&nbsp;has been closed won today by&nbsp;{!Opportunity.OwnerFullName}. You are the assigned Relationship Manager for this account.</div><div><br></div><div>Account Name -&nbsp;{!Opportunity.Account}</div><div><br></div><div>Opportunity Stage -&nbsp;{!Opportunity.StageName}</div><div>Annual Settlement Value -&nbsp;{!Opportunity.Annual_Settlement_Value__c}</div><div>Full Service Revenue -&nbsp;{!Opportunity.00N700000030U0l}</div><div><br></div><div><br></div><div><br></div><div><br></div><div><i style="background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font><font style="font-size: 12pt; font-weight: bold;">&nbsp;</font></i></div>]]></td>
+</tr>
+</table>

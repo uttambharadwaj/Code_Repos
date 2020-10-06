@@ -1,0 +1,27 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+Total Truck Count: {!Account.Truck_Count__c}
+Total Owner/Operator Trucks: {!Account.Owner_Operator_Truck_Count__c}
+Type of Carrier: {!Opportunity.Carrier_Type__c}
+What did you do in sales revenue last year? {!Opportunity.Last_Year_Sales_Revenue__c}
+What are you projecting to do this year? {!Opportunity.Current_Revenue_Projection__c}
+Any seasonal fluctuations? {! IF(Opportunity.Seasonal_Fluctuations__c, "Yes", "No") }
+What percentage of your business is brokerage? {!Account.00Ne0000001s1OQ}
+How long have you been in business? {!Opportunity.Years_In_Business__c}
+Are you currently financing your accounts receivables? {! IF(Opportunity.Currently_Finance_AR__c, "Yes", "No") }
+If yes, with whom: {!Opportunity.AR_Financer__c}
+Who is your bank? {!Opportunity.Bank__c}
+Any plans to be sold or merged?  {! IF(Opportunity.Company_Being_Sold_or_Merged__c, "Yes", "No") } 
+Comments: {!Opportunity.Vendor_Comments__c}

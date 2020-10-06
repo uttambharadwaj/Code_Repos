@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Generic Email Templage for Custom Message from Account Executive</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Generic OTR</name>
+    <style>freeForm</style>
+    <subject>About Fleet One</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+
+
+{!User.Name}
+
+{!User.Title}
+
+WEX Fleet One
+
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+{!User.Email} | www.FleetOne.com
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

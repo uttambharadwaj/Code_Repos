@@ -1,0 +1,44 @@
+Hello {!Contact.FirstName},
+<br></br>
+
+This is to notify you that your Salesforce Support request with subject: ({!Case.Subject}) is being worked.
+<br></br>
+<br></br>
+
+The case number is: {!Case.CaseNumber} 
+<br></br>
+
+Your case status: {!Case.Status} 
+<br></br>
+
+Target Complete Date: {!Case.Target_Completion_Date__c} 
+<br></br>
+
+Case Resolution (if any at this time): {!Case.Resolution_Description__c} 
+<br></br>
+<br></br>
+
+We will be in touch with you if additional information is needed. 
+<br></br>
+<br></br>
+
+Thank you, 
+<br></br>
+
+Salesforce Support 
+<br></br>
+
+______________________________________ 
+<br></br>
+
+ORIGINAL REQUEST:
+<br></br>
+
+{!Case.CreatedDate} 
+<br></br>
+
+{!Case.Description} {!Case.Case_Description__c}
+<br></br>
+
+{!Case.Thread_Id}
+<br></br>

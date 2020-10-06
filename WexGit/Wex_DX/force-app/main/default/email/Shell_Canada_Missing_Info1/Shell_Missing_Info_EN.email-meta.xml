@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Shell Missing Info EN email with TnC &amp; TIN &amp; BPAV</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header</letterhead>
+    <name>Shell Missing Info EN</name>
+    <style>freeForm</style>
+    <subject>Action Needed: Your Shell Fleet Card</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+We still need the following documentation to confirm your Shell Fleet Card account:
+
+- &lt;type document needed here&gt; document with physical address such as a utility bill.
+
+WEX is classified as a financial institution and just like all banks, is subject to regulatory requirements. Federal law requires all financial institutions to obtain a business’s physical address and tax ID information.
+
+If you should have any additional questions, please call our Conversion Service team at 1-855-886-6705.
+
+Sincerely,
+
+Conversion Advisor Team
+
+Phone: 1-855-886-6705
+Fax: 1-207-761-3590
+Email: ShellInfoReturn@wexinc.com
+Mail: 97 Darling Avenue, South Portland, Maine 04106 |USA|
+
+
+©2019 Shell Fleet Solutions. All rights reserved.
+
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 |USA|
+
+Shell® and Shell Fleet Plus™ are trademarks of Shell Brands International AG. Used under license. The Shell Fleet Plus™ card program is issued and administered by WEX Canada, Ltd, a subsidiary of WEX Inc. We respect your privacy. Please review our privacy policy for more information about click activity with WEX Inc. and links included in this email.
+
+If you no longer wish to receive email messages about Shell Fleet Solutions, you may instantly unsubscribe. All unsubscribe requests will be honored within ten business days of receipt.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

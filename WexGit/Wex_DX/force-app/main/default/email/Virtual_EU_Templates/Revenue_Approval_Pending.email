@@ -1,0 +1,7 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><br></div><div><br></div><div>Hi {!Opportunity.OwnerFirstName},</div><div><br></div><div>It has now been 14 days since you closed opportunity&nbsp;<a href="https://na5.salesforce.com/{!Opportunity.Id}
+">{!Opportunity.Name}</a>&nbsp;and it's forecast revenue has not be approved by the Head Of Relationship Management.</div><div><br></div><div>This revenue will not count towards your target until it has been approved.</div><div><br></div><div>If you have not done so already, could you please submit the opportunity for approval.</div><div><br></div><div><br></div><div>Approval Process Stage -&nbsp;{!Opportunity.Approval_Process_Stage__c}</div><div><br></div><div><br></div><div><br></div><div><i style="font-size: 12pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">If there are any issues with this email please contact your Salesforce Administrator</font></i></div>]]></td>
+</tr>
+</table>

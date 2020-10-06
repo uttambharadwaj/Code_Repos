@@ -1,0 +1,14 @@
+{!Contact.FirstName},
+
+In order to process your completed Truckers Advantage fuel card application, I need your OOIDA membership number.  Please email me back with that information at your earliest convenience.
+
+Also, I will be sending your application back. Could you please change the payment method from Internet Pay to Autopay and then select which day(s) you'd like the funds to be drafted from your account. Internet Pay is not an option for this type of account.
+
+Thank you in advance,
+{!User.Name}
+{!User.Title}
+WEX Fleet One
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.

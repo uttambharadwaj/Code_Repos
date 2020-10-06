@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use when prospecting to potential Gulf/Comm of MA fleet program customers.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Gulf_Comm_of_MA1</letterhead>
+    <name>Gulf - Comm of MA Email UPDATED</name>
+    <style>freeForm</style>
+    <subject>Exclusive Savings: Commonwealth of MA Fleet Fuel Program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+THE COMMONWEALTH OF MASSACHUSETTS has negotiated special terms with WEX and Gulf Oil to offer your organization a fleet fueling program with exclusive fuel rebates* and cost-saving benefits – designed to give you complete control over your business fleet:
+
+
+REBATES:
+
+• Monthly fuel rebates based on the Commonwealth’s fuel spend
+
+• 3¢ off per gallon when you fuel at Mass Pike and Cumberland Farms locations
+
+• 2¢ off per gallon when you fuel at any other Gulf-branded location
+
+
+BENEFITS:
+
+• Online tools that allow you to set driver spending limits, receive purchase alerts, and see what your drivers are buying, where, when &amp; for how much
+
+• Detailed reporting, including vehicle performance data
+
+• Tax exemption for qualified fleets
+
+• An “early pay” rebate
+
+• Access to over 90% of U.S. fueling locations, including over 2,500 Gulf stations
+
+• No set-up or monthly card fees
+
+• Easy, online account management and bill payment
+
+• Award-winning 24/7 customer service
+
+• And more…
+
+
+I’d like to review the Commonwealth program with you in a brief meeting or phone call. I’ll connect with you this week to set up a date and time. Feel free to contact me by email or phone if you’d like to talk sooner.
+
+Thank you,
+
+
+Bob Everts
+
+Gulf Oil Fleet Services
+
+Regional Fleet Manager
+
+Cell 781-467-9492
+
+Fax 207-874-1576
+
+www.gulffleetcard.com/bob/
+
+
+
+*Rebates will appear as a credit on monthly invoice.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>International Savings</name>
+    <style>freeForm</style>
+    <subject>International Trucks Savings</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+I wanted to make sure you knew about our International® new trucks rebate program. As an FTS Plus+ member, you can save up to $1000 on all new International DuraStar®, Lonestar®, 9900i®, PayStar®, ProStar®, TranStar®, and WorkStar® trucks. No matter what price you pay, the rebate stays the same.
+
+International DuraStar — $450 Rebate
+International LoneStar — $1,000 Rebate
+International ProStar — $1,000 Rebate
+International 9900i — $1,000 Rebate
+International TranStar — $750 Rebate
+International PayStar — $1,000 Rebate
+International WorkStar — $750 Rebate
+
+
+Just visit an International truck dealer, negotiate your best price on any approved truck, and fax a copy of your invoice to us at 877.902.1498. We will process your invoice(s), and the rebate will appear as a credit on your FTS card.
+
+For full details and to find an authorized dealer, please visit ftsplus.com/international.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+Thank you,
+Nancy Gustafson
+FTS Plus+ Representative
+Phone: 800.749.1724
+info@ftsplus.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

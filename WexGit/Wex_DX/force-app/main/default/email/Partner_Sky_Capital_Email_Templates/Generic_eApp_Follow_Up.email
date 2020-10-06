@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Please <A href="{!OnlineApplication__c.External_Application_URL__c}">click on this link</A> and follow the instructions to complete your application process.&nbsp; Thank you.<BR><BR><BR>]]></td>
+</tr>
+</table>

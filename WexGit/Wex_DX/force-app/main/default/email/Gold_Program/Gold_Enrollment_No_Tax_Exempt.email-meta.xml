@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Gold_Program/FleetEnrollmentFormB2B_pdf.pdf</attachedDocuments>
+    <attachedDocuments>Gold_Program/GoldOverview_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Gold New Fleet Enrollment without tax exempt form</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Gold Enrollment No Tax Exempt</name>
+    <style>none</style>
+    <subject>Thank you for your interest in The Gold Program</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

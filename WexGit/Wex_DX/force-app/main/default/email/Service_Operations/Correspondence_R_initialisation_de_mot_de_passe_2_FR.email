@@ -1,0 +1,29 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Nous avons réinitialisé votre mot de passe pour le nom d’utilisateur  BLNK
+Vous recevrez par courriel un nouveau mot de passe temporaire.    
+Rendez-vous sur www.essofleetonline.com pour procéder au changement. Vous devrez inscrire votre mot de passe temporaire à 2 reprises avant de pouvoir choisir votre propre mot de passe. Celui-ci doit contenir au moins une lettre majuscule, un chiffre, être composé de 8 à 30 caractères et ne peut être le même que les 4 derniers mots de passe utilisé. 
+<br></br>
+Svp, prendre note que l’utilisation d’un téléphone intelligent ou une tablette ne fonctionnera pas sur le site. Pour toutes autres questions, n’hésitez pas à nous contacter.
+
+<br></br>
+
+Merci de nous avoir contactés,<br></br>
+
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

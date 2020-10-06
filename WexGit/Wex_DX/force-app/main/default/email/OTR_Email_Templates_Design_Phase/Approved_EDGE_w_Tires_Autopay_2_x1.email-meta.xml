@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>Approved - EDGE w/ Tires (Autopay 2 x)</name>
+    <style>freeForm</style>
+    <subject>Your Fleet One EDGE Fuel Card Application has been Approved!</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+Congratulations! {!Account.Name} has been approved for a complimentary credit line of $$$$$ with daily invoicing and 7 day terms. Per your phone and/or email approval, your payment method has been changed to Autopay:  and .
+
+
+This approval is conditional that your new account remains on Autopay 2x per Week for the life of your account, or until you apply again for a credit line and meet our credit requirements to have this restriction lifted. Please note, cash products (such as cash advances and Pluschecks) will not be available until the autopay restriction has been lifted.
+
+
+Your welcome packet and new fuel cards should arrive via UPS within the next 7-10 days. Please note your New Account Setup Fee of $75 will be invoiced to your account within the next 7-10 business days.
+
+
+Additional New Account Information:
+
+
+- Gold Tire Program
+
+
+Your fuel card account comes with the Gold Tire Program offered by TruckersB2B! Please reply back with your preferred tire brands so a tire specialist can customize your program and savings!
+
+
+(There are NO minimum purchases, no extra or hidden fees, and you can retain your local provider. This is a FREE PROGRAM that comes with your fuel account - all we need to know is what type of tires you prefer!)
+
+
+- Mobile App instructions to see your daily pricing and discounts in the EDGE Discount Network:
+
+
+- In your app store (Android or iPhone) download the &quot;Fleet One Mobile&quot; app
+
+
+- Open the app and choose the &quot;Over the Road&quot; card, NOT the &quot;All Roads&quot; card
+
+
+- On the left hand side, click the menu button at the top of the page
+
+
+- Click the option to &quot;Register&quot;
+
+
+- Complete your information and add the registration code: 735560
+
+
+
+Thank you for your interest in Fleet One. If you have any questions about the application or your new fuel card program, please don’t hesitate to call or email me.
+
+
+Also...did you know that WEX Fleet One has FACTORING? Please let me know if you are interested in comparing our rates and services!
+
+
+
+Warm Regards,
+
+
+
+
+Katie Haywood
+Sr Account Executive -  Inside Sales OTR
+WEX Inc.
+3102 West End Ave., Suite 900, Nashville, TN 37203
+
+Office (615) 523-6496 | Fax (615) 850-0799
+
+KHaywood@fleetone.com
+www.efsllc.com
+
+www.fleetone.com
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

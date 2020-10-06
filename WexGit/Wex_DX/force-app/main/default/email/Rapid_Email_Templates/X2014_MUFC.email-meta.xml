@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>2014 MUFC</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Rapid_Letterhead</letterhead>
+    <name>2014 MUFC</name>
+    <style>freeForm</style>
+    <subject>Prizes? &quot;We don&apos;t need no stinking prizes&quot;</subject>
+    <textOnly>Dear {!Lead.FirstName},
+
+Nope, we&apos;re not going to try to lure to our booth with, iPads, trips to exotic lands or any other &quot;exciting&quot; prizes.
+
+
+
+But... if you would like to learn how franchisees just like you, are saving $1,000&apos;s and more every month, at ZERO cost, we encourage you to stop by the WEX rapid! PayCard Booth#526 for more info.
+
+We promise, no selling and just the facts. From there, you can decide whether or not our FREE program fills a need for your business, as it has for so many other franchisees nationwide.
+
+We hope you&apos;ll stop by for a chat,
+
+The WEX, rapid! PayCard Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

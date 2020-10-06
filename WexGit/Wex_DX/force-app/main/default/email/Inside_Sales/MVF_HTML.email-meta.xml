@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to MVF leads</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>MVF HTML</name>
+    <style>none</style>
+    <subject>Thank you for your interest in our card programs!</subject>
+    <textOnly>WEX Fleet Card Advantages
+
+WEX FLEET CARD ADVANTAGES
+Thank you for your interest in our fleet card programs.   In addition to our WEX Fleet Card, we also manage the fleet card programs for many oil companies and regional c-stores, many offering some of the best fuel rebates available.
+
+All our universal cards offer the following advantages:
+
+FUEL ACROSS US AND CANADA
+Our fleet cards are accepted at over 90% of gas stations.
+Your drivers can fill up almost anywhere and choose the lowest price station. Learn more »
+http://www.wexcard.com/fleet/swipe-smarter/lower-fuel-costs?cc=HQX
+
+SIMPLIFY YOUR RECEIPT TRACKING
+No need to collect paper receipts. Compile automatic tax reports.
+Save yourself and your bookkeeper time and money. Learn more »
+http://www.wexcard.com/fleet/swipe-smarter/reduced-paperwork?cc=HQX
+
+PREVENT UNAUTHORIZED PURCHASES
+Define what your drivers are allowed to purchase, when, where and how much.
+Ensure your expenses are legitimate. Learn more »
+http://www.wexcard.com/fleet/swipe-smarter/tracking-spending-controls?cc=HQX
+
+EASY ONLINE ACCOUNT MANAGEMENT
+Quickly activate or deactivate cards and drivers. Pay online and view invoices.
+You’re in control with 24/7 access. Learn more »
+http://www.wexcard.com/fleet/swipe-smarter/customer-service-culture?cc=HQX
+
+A representative will be calling you shortly to discuss your needs and help recommend which program fits you best.  In the meantime, if you’d like to see which of our programs are offered in your market and some details on their locations and rebates, visit our card configurator:
+http://www.wexinc.com/fleet/?cc=HQX
+
+Again, thank you for your interest in our programs.
+
+
+This email was sent to {!Contact.Email}. We sent you this email in response to a fleet card inquiry. If you no longer wish to receive future email messages from WEX, Inc., you may instantly unsubscribe:
+http://app.response.wexinc.com/e/f2.aspx?elqFormName=WEXInc_Unsubscribe_FooterForm&amp;elqSiteID=2439&amp;EmailAddress={!Contact.Email}
+
+WEX, Inc.| 97 Darling Avenue | South Portland, ME 04106 | USA | http://www.wexinc.com/privacy-policy</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

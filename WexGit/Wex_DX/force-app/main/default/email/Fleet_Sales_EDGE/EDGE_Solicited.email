@@ -1,0 +1,25 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<P style="FONT-FAMILY: arial; MARGIN-BOTTOM: 10pt; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=2 face="Arial, sans-serif"><BR></FONT></P>
+<P style="MARGIN-BOTTOM: 10pt; FONT-SIZE: 12pt" class=MsoNormal><FONT style="COLOR: rgb(0,0,0)" size=2 face="Arial, sans-serif">Hello&nbsp;</FONT><FONT size=2 face="Arial, sans-serif">{!Contact.Name}</FONT></P>
+<P style="MARGIN-BOTTOM: 10pt; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=2 face="Arial, sans-serif">My name is&nbsp;<SPAN style="BACKGROUND-COLOR: rgb(255,255,255)">{!User.Name}</SPAN>&nbsp;and I am with <B>Fleet One EDGE</B>. I attempted to reach out to you today to give you more information regarding our EDGE Discount Network and answer any questions you may have. Below are some great <SPAN style="LINE-HEIGHT: 115%; FONT-FAMILY: 'Arial','sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">benefits </SPAN>and features in which you may be interested!</FONT></P>
+<P style="MARGIN-BOTTOM: 10pt; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=2 face=Arial,Sans-Serif>The&nbsp;Fleet One EDGE card&nbsp;provides:</FONT></P>
+<UL style="COLOR: rgb(0,0,0); FONT-SIZE: 12pt">
+<LI><FONT size=2 face=Arial,Sans-Serif>Fuel discounts and rebates at over 3,000 sites - average savings¹&nbsp;of 12 cents per gallon </FONT>
+<LI><FONT size=2 face=Arial,Sans-Serif>No fees within the EDGE network² </FONT>
+<LI style="COLOR: rgb(0,0,0)"><FONT size=2 face=Arial,Sans-Serif>Acceptance at over 8,000 Truck Stops </FONT>
+<LI style="COLOR: rgb(0,0,0)"><FONT size=2 face=Arial,Sans-Serif>Nationwide discounts on major tire brands </FONT>
+<LI style="COLOR: rgb(0,0,0)"><FONT size=2 face=Arial,Sans-Serif>Thousands of additional savings on parts, service, hotels, breakdown, and more</FONT>
+<LI style="COLOR: rgb(0,0,0)"><FONT size=2 face=Arial,Sans-Serif>IFTA Fuel tax reporting and permit services </FONT>
+<LI style="COLOR: rgb(0,0,0)"><FONT size=2 face=Arial,Sans-Serif>Credit to fund your operations and financing solutions to help you grow</FONT></LI></UL>
+<DIV style="COLOR: rgb(0,0,0)">
+<P class=MsoNormal><FONT face="Arial, sans-serif"><FONT size=1>¹<FONT color=#939393>The stated savings is based on the average discount available to Fleet One EDGE customers across all participating Fleet One EDGE merchants during a recent survey period, and does not represent a guarantee of future pricing. Customers’ expected savings may differ depending on location. Additionally, the card is accepted at locations that do not participate in Fleet One EDGE network </FONT><FONT color=#939393>pricing at all. </FONT></P>
+<P class=MsoNormal>²<FONT color=#939393>In-network sites include Pilot Flying J, AMBEST, Circle K, Quick Fuel, Petroleum Wholesale, and many more. </FONT></P>
+<P style="TEXT-ALIGN: center"><FONT color=#939393><BR></FONT></P>
+<P class=MsoNormal></FONT><FONT size=2>I look forward to speaking with you personally. &nbsp;Feel free to call or send me an email. My contact information is listed below.</FONT></FONT></P><FONT size=2 face="Arial, sans-serif"><BR>Thank you for your time,<BR><BR>{!User.Name}<BR>{!User.Title}</FONT></DIV>
+<DIV style="COLOR: rgb(0,0,0)"><FONT size=2 face="Arial, sans-serif">WEX Fleet One<BR>Phone: {!User.Phone} | Fax: {!User.Fax}<BR>{!User.Email} | <A href="http://www.fleetoneedge.com">www.fleetoneedge.com</A></FONT></DIV>
+<P style="FONT-FAMILY: arial; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=1 face="Arial, sans-serif"><BR></FONT></P>
+<P style="FONT-FAMILY: arial; COLOR: rgb(0,0,0); FONT-SIZE: 12pt" class=MsoNormal><FONT size=1 face="Arial, sans-serif"><SPAN style="LINE-HEIGHT: 12px; COLOR: rgb(153,153,153)">To opt out of all email marketing messages from WEX Fleet One,<SPAN class=apple-converted-space>&nbsp;</SPAN></SPAN><A style="COLOR: rgb(0,0,0)" href="mailto:marketing@fleetone.com?subject=Unsubscribe%20me%20from%20all%20WEX%20Fleet%20One%20email%20marketing"><SPAN style="LINE-HEIGHT: 12px">click here</SPAN></A><SPAN class=apple-converted-space><SPAN style="LINE-HEIGHT: 12px; COLOR: rgb(153,153,153)">&nbsp;</SPAN></SPAN><SPAN style="LINE-HEIGHT: 12px; COLOR: rgb(153,153,153)">from the email address you wish to unsubscribe.</SPAN></FONT></P>]]></td>
+</tr>
+</table>

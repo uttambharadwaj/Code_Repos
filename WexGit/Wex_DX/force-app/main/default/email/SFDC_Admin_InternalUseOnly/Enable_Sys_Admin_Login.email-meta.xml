@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>SFDC_Tips_and_Training_for_Fleet_One/How_to_Grant_Login_Access_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Tell users how to grant me system admin login access</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Enable Sys Admin Login</name>
+    <style>none</style>
+    <subject>Please enable salesforce.com login access</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

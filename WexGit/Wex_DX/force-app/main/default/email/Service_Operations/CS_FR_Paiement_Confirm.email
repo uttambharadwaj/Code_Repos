@@ -1,0 +1,23 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Cas #: {!Case.CaseNumber}
+<br></br>
+Merci de nous avoir contacté pour confirmer votre paiement. Nous recommandons environ 10 jours ouvrables pour l’acheminement de votre chèque, ou un seul jours ouvrable  si vous effectuez votre paiement directement sur notre site gratuit. 
+<br></br>
+
+Cordialement,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

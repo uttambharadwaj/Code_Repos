@@ -1,0 +1,12 @@
+Hello {!Contact.FirstName},
+
+Thank you for your interest in learning more about our savings. Your information has been received and sent to the appropriate team based on your request. 
+
+You can expect a follow up soon from:
+
+{!Lead.OwnerFullName}
+{!Lead.OwnerTitle}
+{!Lead.OwnerPhone}
+{!Lead.OwnerEmail}
+
+We look forward to helping your fleet.

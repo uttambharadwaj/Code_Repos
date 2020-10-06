@@ -1,0 +1,14 @@
+Hello {!Case.Contact},
+
+This is {!Case.OwnerFullName} from {!NullValue(Case.Program__c, "WEX Fleet")} Services. I am following up with you on your request to close your fuel card account. We value the relationship we have with your business and would appreciate the opportunity to discuss how we could better serve your needs. Please let me know if there is anything that could be done to build on our existing business relationship rather than close the account at this time.
+
+In this time of uncertainty, we would like to take a moment to discuss the value of maintaining the current credit line you have with WEX rather than closing it out. We are available to discuss options to manage the account and reduce or eliminate pain points you have seen in the past or that you may be preparing for in the coming months.
+
+Please feel free to reply directly to this email or I can be reached at {!Case.OwnerPhone}.
+
+Thank you,
+
+{!Case.OwnerFullName}
+ {!NullValue(Case.Program__c, "WEX")} {!Case.OwnerTitle}
+{!Case.OwnerEmail}
+{!Case.OwnerPhone}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Cards Shipped - PILOT cards</name>
+    <style>freeForm</style>
+    <subject>Your PILOT co-branded cards have shipped!!</subject>
+    <textOnly>Hello –
+
+
+&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+
+Thank you for choosing our PILOT co-branded FUEL PROGRAM and WEX Fleet One to service your fuel card needs. For your convenience, your new cards will be mailed active and they will be ready for immediate use.
+
+
+
+
+Please note, the $25 application fee &amp; $1 per card/per month will automatically draft from your bank account by Fleet One.  Your credit line provided is by PILOT for gallons purchased at both Pilot or Flying J locations.  Any gallons outside of Pilot will need to be purchased with a different form of payment, as you do not have a credit available with Fleet One specifically.
+
+
+As a valued customer, we want to make it easy for you to maintain your account gallons.  Please visit www.FleetOne.com/welcome for full program details and a list of valuable resources.
+
+
+
+
+Please keep the following information accessible at all times as it will not be mailed to you –
+
+
+Online user info. You will need this information to manage your account online.
+Supervisor/authorized contact security codes. You will need these codes whenever you call in to our 24 hour customer care.
+
+Important information about your account -
+
+
+UPS Tracking #:
+
+
+
+
+Fleet One acct#:
+Security Code: Created at the time of application (I cannot see on my end)
+Online password: Create at the time of application (I cannot see on my end)
+Driver ID#s:
+Unit #:
+
+I thank you for allowing us to provide this important service for you and your company, and it is with great enthusiasm that I welcome you to the PILOT co-branded/WEX Fleet One family. Please feel free to contact me if I can help you in any way.
+
+
+
+
+Thank you &amp; best regards,
+
+
+
+
+Joni Crockarell
+
+
+Inside Sales Associate – OTR
+
+WEX Fleet One
+
+Phone: 615-523-6316 | Fax: 615-858-6316
+
+jcrockarell@fleetone.com | www.fleetone.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

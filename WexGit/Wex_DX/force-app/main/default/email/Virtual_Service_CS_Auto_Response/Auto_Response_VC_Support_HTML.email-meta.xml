@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Auto Response - VC Support - HTML</name>
+    <style>none</style>
+    <subject>Thank you for contacting VC Support regarding {!Case.Subject}, your Case Number is {!Case.CaseNumber}.</subject>
+    <textOnly>We will contact you shortly in reference to your query, if you require urgent support please call the team on the number below.
+
+Kind regards
+WEX Account Management Team
+WEX
+4th floor, East Building,  1 London Bridge, London SE1 9BG
+Phone: +44 (0) 2070 719601
+vcsupport@wexeurope.com
+wexvirtualpayments.com</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

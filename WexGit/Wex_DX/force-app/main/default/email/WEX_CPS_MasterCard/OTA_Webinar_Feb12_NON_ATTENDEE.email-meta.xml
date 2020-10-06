@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow-up to Feb 23 2012 ota webinar for NON-Attendees</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_OTA</letterhead>
+    <name>OTA Webinar (Feb12) NON-ATTENDEE</name>
+    <style>freeForm</style>
+    <subject>Sorry We Missed You: ePayments for Travel Booking Webinar</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Recently, Wright Express sponsored a webinar through tnooz.com &quot;Practical ePayment Applications for Travel Booking.&quot;  Jim Pratt from Wright Express was joined by two presenters from Expedia and HotelTonight, two Wright Express clients. Presenters reviewed recent trends in ePayments, provided an overview of  single-use ghost accounts for hotel bookings, and shared results and best practices.  For your convenience, a recording of the webinar is available at the link below.
+
+Wright Express’ ePayments solution – Purchase Log – is single-use account technology perfected for booking travel reservations. Reduce overcharges in hotel booking payments, and drive efficiencies with automated reconciliations. Even better—Purchase Log integrates directly into your existing systems.
+
+I would appreciate an opportunity to discuss any questions you may have about Purchase Log, or Wright Express. Would next week work for you? In addition, I have attached some additional materials for your review. 
+
+Again, feel free to review an archive of this recent webinar by clicking here: http://www.tnooz.com/2012/02/23/event/webinar-event/tnooz-wright-express-webinar-video-practical-epayment-applications-for-travel-booking/
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/travel
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

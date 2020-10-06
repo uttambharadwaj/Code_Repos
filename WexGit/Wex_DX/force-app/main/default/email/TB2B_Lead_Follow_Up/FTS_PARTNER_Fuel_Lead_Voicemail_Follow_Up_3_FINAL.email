@@ -1,0 +1,26 @@
+{!Lead.FirstName},
+
+I’ve tried reaching you a handful of times, but I haven’t heard back. I’m guessing right now isn’t the best time to connect, and I'm going to assume you are no longer interested in the {!Lead.Card_Program__c} at this time. I value your time and will close out your request unless I hear back from you.  
+
+To recap, the FTS fuel card is packed with all the features you want and need in a fuel card.
+
+- Fuel discounts at over 2,400 sites
+
+- Savings up to 20 cents per gallon
+
+- Acceptance at over 8,000 truck stops nationwide
+
+- Nationwide tire discounts with most major brands
+
+- Additional savings on wireless plans, repairs, hotels and more. 
+
+
+You should have all of my contact information, and I'm here if you have any questions or would like to revisit our fuel card in the future.
+
+Thanks again, and I hope to connect at some point down the road!
+
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

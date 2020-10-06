@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FILL IN DATE &amp; TIME! Use to confirm a scheduled telephone meeting you&apos;ve discussed with a prospect.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>X7_Eleven_Fleet_Program</letterhead>
+    <name>RSM: Telephone Meeting Confirmation_JSaenz</name>
+    <style>freeForm</style>
+    <subject>Meeting Confirmation: 7-Eleven Fuel Card Program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thanks again for your interest in the 7-Eleven Fuel Card Program.
+
+I&apos;m emailing to confirm our scheduled telephone meeting on &lt;date&gt; at &lt;time&gt;. I look forward to talking with you about your fleet fueling and management needs, and how the 7-Eleven Program can help. I think you&apos;ll find the Program an ideal fit for your business.
+
+If you have any questions before our call, please do not hesitate to contact me. Otherwise I&apos;ll look forward to speaking with you soon.
+
+Many thanks,
+
+John Saenz
+7-Eleven Fuel Card Program - Regional Sales Manager
+210.372.0346 Mobile
+207.253.1343 Fax
+john.saenz@wexinc.com
+
+
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Additional Info Request Email - RECON</name>
+    <style>freeForm</style>
+    <subject>Additional Info RECON Request - {!Claim__c.Account_Name__c}</subject>
+    <textOnly>Dispute Claim No. {!Claim__c.Name}
+
+Hello,
+
+
+We require additional information in order to proceed with the review of your claim.  Please submit the following:
+
+
+X     A reconciliation of valid and disputed transactions (if any are valid during the disputed date range). On the attached spreadsheet, please HIGHLIGHT the transactions you are disputing.
+
+
+Please return the highlighted spreadsheet by email to: disputes@fleetfraudservices.com within 10 business days from the date of this email. If the requested information is not received during the 10 business day time period your claim will be considered no longer active and will be closed.
+
+
+If you have not already done so, we suggest that a police report be filed and the stations involved be contacted immediately to obtain possible video surveillance evidence as most stations keep surveillance tape for only a short period of time.
+
+
+If you currently do not have authorization controls assigned to your cards, we strongly encourage you to do so.  If you need assistance with adding these controls, please contact Customer Service.
+
+
+Please keep in mind that resolution to your dispute will take an average of 60 – 90 days to complete. During this period it is important that your account be kept current based upon the terms and conditions of your fuel card agreement. If it is determined that you are due any credit it will be granted at the resolution of your case. Please note that subject to any limitations imposed by applicable law, you may be liable to us for all unauthorized use of a card until you notify us of such use
+
+
+Please feel free to contact us at (888) 691-0361 should you have any questions.
+
+
+Regards,
+
+
+Fleet Fraud Services
+
+Toll Free: 888-691-0361
+
+Fax: 207-791-1655</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

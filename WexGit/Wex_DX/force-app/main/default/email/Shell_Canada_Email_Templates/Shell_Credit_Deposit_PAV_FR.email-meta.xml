@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Shell_Canada_Documents/WEX_Canada_Deposit_Agreement_FR.docx</attachedDocuments>
+    <available>true</available>
+    <description>Nécessite un dépôt et une vérification de l&apos;adresse physique</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Shell_Header_Fr</letterhead>
+    <name>Shell Credit Deposit &amp; PAV_FR</name>
+    <style>freeForm</style>
+    <subject>Programme de carte de carburant Shell – Renseignements supplémentaires requis</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Merci de l’intérêt que vous portez au programme de carte de carburant Shell.
+
+Pour ouvrir un compte, vous devez nous faire parvenir le formulaire de dépôt ci-joint accompagné d’un dépôt. Vous pouvez envoyer votre dépôt par la poste à notre banque ou par virement.
+
+Envoi par la poste :
+- Remplissez l’entente de dépôt ci-jointe (minimum de 500 $).
+- Envoyez le formulaire à notre banque (à l’adresse ci-après), accompagné d’un chèque certifié, d’un mandat ou d’un chèque de banque au montant que vous voulez déposer.
+- Indiquez qu’il s’agit de l’occasion no (insert number here) et que le chèque est pour un dépôt de garantie dans la zone réservée à l’inscription d’une note.
+- Numérisez l’entente de dépôt remplie et signée et envoyez-la-moi par courriel à l’adresse ci-après ou télécopiez-la au {!User.Fax}.
+
+Adresse de la Banque :
+WEX Canada
+7090 Union Park Center, Suite 350
+Midvale, UT  84047 USA
+
+
+Quand nous aurons reçu votre dépôt, nous pourrons configurer votre compte. Votre dépôt deviendra alors votre ligne de crédit.
+
+Afin de se conformer à la Patriot Act, notre banque doit valider l’adresse réelle de votre entreprise. Nous vous prions donc de fournir un document provenant d’un tiers attestant que votre entreprise est située à l’adresse inscrite sur votre demande.
+
+Vous pouvez nous faire parvenir une copie de l’un des documents suivants :
+- Une facture de services publics ou un document d’assurance prouvant que la facture est envoyée ou que le service est fourni à l’adresse réelle de l’entreprise;
+- Un bail sur lequel figurent le nom de l’entreprise et son adresse réelle;
+- Les statuts constitutifs certifiés;
+- Un permis d’exploitation d’un commerce valide délivré par un gouvernement.
+
+Vous pouvez numériser le document et me l’envoyer par courriel à l’adresse indiquée ci-après ou le télécopier au {!User.Fax}. Si vous avez des questions, n’hésitez pas à m’appeler au {!User.Phone}.
+
+Cordialement,
+
+
+{!User.FirstName}{!User.LastName}
+{!User.Title}
+Téléphone : {!User.Phone}
+Télécopieur : {!User.Fax}
+{!User.Email}
+
+
+© Shell Fleet Solutions, 2019. Tous droits réservés.
+Shell Fleet Solutions, 97 Darling Avenue, South Portland, ME 04106 ÉTATS-UNIS
+
+Le programme Solutions Shell pour parc est offert et administré par WEX Canada, Ltd et n’est pas sous la responsabilité de Shell Canada Limitée, de Produits Shell Canada ou d’une société affiliée de Shell. Nous respectons votre vie privée. Veuillez consulter notre politique de confidentialité  pour en savoir plus sur l’activité de clics de WEX Inc. et les liens qui figurent dans le présent courriel.
+
+AVIS DE CONFIDENTIALITÉ : « Ce courriel est envoyé par WEX à la demande de Shell. Shellmd, et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence. Ce message contient des renseignements confidentiels et est destiné uniquement à l’usage du ou des destinataire(s) désigné(s) ci-dessus. Sa diffusion est interdite. Si vous avez reçu ce message par erreur, veuillez en aviser immédiatement l’expéditeur par téléphone ou lui répondre par courriel et supprimer le message en entier ainsi que toute pièce jointe. »
+
+Shellmd  et Shell Fleet Plusmc sont des marques déposées/de commerce de Shell Brands International AG, utilisées en vertu d’une licence.
+
+Ce courriel a été envoyé à {!Contact.Email}. Vous le recevez parce que vous avez récemment soumis une demande de carte auprès des Solutions Shell pour parc. Si vous ne souhaitez plus recevoir de courriels à l’adresse {!Contact.Email}, écrivez-nous afin de vous désinscrire de notre liste. Assurez-vous d’indiquer votre nom, de même que le nom et le courriel de votre entreprise dans votre message.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

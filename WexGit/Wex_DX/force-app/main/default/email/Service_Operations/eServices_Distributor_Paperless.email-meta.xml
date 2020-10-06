@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Distributor Go Paperless</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Distributor Paperless</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+Thank you for contacting us. You can turn off paper statements under Reporting &gt; Scheduled Reports &gt; Manage Delivery Preferences. The electronic invoice can be accessed under Invoice &amp; Payments &gt; View Invoice/Details, and the other billing reports are under Reporting &gt; Scheduled Reports &gt; View Standard Reports. Please let me know if you have any questions.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

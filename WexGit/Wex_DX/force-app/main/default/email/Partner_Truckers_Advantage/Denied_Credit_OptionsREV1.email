@@ -1,0 +1,22 @@
+{!Contact.FirstName},
+
+Thank you for your recent application for the Truckers Advantage fuel card account.  
+
+WEX Fleet One is currently not able to extend the requested credit line, however, we want you to benefit from the great savings of this Truckers Advantage fuel card program.  
+
+We offer the same program with the same great savings and advantages on a "Cash Deposit", "Prepaid" basis, or a line of credit can be established by obtaining a Letter of Credit from your bank.   
+
+A brief explanation of the options available to you other than the original requested credit line are:
+
+1.	Cash Deposit account: You are also approved for a cash deposit account. This is different from a prepay account, as you would send in a dollar amount equivalent to the amount of credit line you believe you will need to get you through each billing cycle.  We hold those funds as security and will apply those funds to any outstanding balance if you fail to pay. A credit limit equal to the security deposit will be applied, with invoices sent to you for payment just like a regular account. 
+
+2.	Letter of Credit (LOC): You can submit a letter of credit from your bank to guarantee a credit limit.   Final approval by WEX Bank is still contingent upon final review of the issuing bank creditworthiness as well as the verbiage contained in the letter of credit provided. 
+
+3.      Prepay account:  You are approved for a prepay account. In order to complete the set up, you would send guaranteed funds (wire, customer-initiated ACH, or Western Union) to load onto your account to then use for fuel purchases.  When your prepaid balance begins to run low, you would then send additional prepaid funds to be applied to the account going forward.  This account operates like a debit account at your bank & would need a minimum $500 deposit to start out.
+
+If you have any questions about these options, please email me or call me so we can determine the best option for you and then get you the necessary documents. 
+
+Thank you,
+{!User.FirstName} {!User.LastName}
+{!User.Email}
+{!User.Phone}

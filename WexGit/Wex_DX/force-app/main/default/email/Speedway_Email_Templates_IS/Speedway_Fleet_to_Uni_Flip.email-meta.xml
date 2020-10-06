@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Speedway Flip Free Account Upgrade</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Speedway_Letterhead</letterhead>
+    <name>Speedway Fleet to Uni Flip</name>
+    <style>freeForm</style>
+    <subject>Speedway Business Account Update-Time Sensitive</subject>
+    <textOnly>Hi ,
+I am your Speedway Business Account Executive.
+I hope that you are well.
+As challenges grow, I would like to offer the assistance that I can.
+As a valued Speedway Business customer you qualify for a free account upgrade. 
+You currently have the Speedway Business Fleet Card that allows fuel only purchases at Speedway.
+
+The Speedway Universal Card also allows for purchase of TIRES, vehicle maintenance, repairs, and non-fuel items at any WEX accepting locations and can be used at 95% of gas stations.
+As a thank you for being a loyal Speedway customer, we will also provide an additional savings, The Speedway Universal Card has a $40 one time setup fee and $2 card fee each month.
+*** I will waive the fees if you could benefit from the free upgrade.****
+I sent the online application in the previous email, and here I attached the simpler paper form that you may complete to receive the account upgrade. Complete the form by typing and saving or printing it out. Please fax or email the completed form. You may also take a picture or scan and email the form.    Please let me know if you have any questions or concerns, I&apos;m happy to help!
+
+Ehrika Martin
+Business Development
+Speedway Fuel
+Direct: 207-523-6066
+Fax: 207-874-1731
+Providing Speedy Solutions to running your business.
+Powered by:
+fleet SmartHub App
+*fuel savings are approximate</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

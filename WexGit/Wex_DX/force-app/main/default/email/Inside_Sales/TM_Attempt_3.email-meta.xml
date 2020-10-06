@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Final Email attempt - To Reach Contacts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Telematics_New_Logo_Letterhead</letterhead>
+    <name>TM Attempt 3</name>
+    <style>formalLetter</style>
+    <subject>WEX Telematics Set a Time to Call</subject>
+    <textOnly>Dear{!Contact.FirstName}, 
+
+I wanted to send one last email regarding the WEX Telematics program.   As we have not had a response from you on this,  I will assume that it is not a priority or something that you are not pursuing.  However, should your current position change, please reach out to us.
+
+I look forward to hearing form you in the near future.  
+
+Brian Fitzpatrick
+WEX Telematics Service
+Phone: (847) 440-1724
+Fax:     (207) 791-1610
+Email:  bfitzpatrick@fleetlink.com
+http://www.wextelematics.com/
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify the sender immediately by telephone or reply e-mail and delete the entire message and any attachments</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

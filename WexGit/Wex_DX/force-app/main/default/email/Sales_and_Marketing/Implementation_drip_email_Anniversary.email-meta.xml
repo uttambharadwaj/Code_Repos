@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Implementation drip email - Anniversary 1 year</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Implementation drip email - Anniversary</name>
+    <style>freeForm</style>
+    <subject>Valued WEX Fleet One cardholder</subject>
+    <textOnly>This month marks your anniversary as a valued Fleet One cardholder, and we wanted to mark the occasion with a sincere “Thank You” for your loyalty. It is our goal to make EVERY cardholder a LIFETIME cardholder.
+REMINDER: Our Customer Care department is always open and here for you at 800.359.7587, if you have any questions or if you need a little help along your route.
+
+
+Thank you for allowing us to meet your fleet management needs. It is our sincere pleasure to do business with {!Account.Name}.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

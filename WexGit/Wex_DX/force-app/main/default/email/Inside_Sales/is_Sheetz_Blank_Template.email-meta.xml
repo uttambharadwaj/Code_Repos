@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sheetz Blank Email Template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sheetz_Letterhead</letterhead>
+    <name>Sheetz Blank Template</name>
+    <style>freeForm</style>
+    <subject>Enter Subject Here</subject>
+    <textOnly>ENTER TEXT HERE</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

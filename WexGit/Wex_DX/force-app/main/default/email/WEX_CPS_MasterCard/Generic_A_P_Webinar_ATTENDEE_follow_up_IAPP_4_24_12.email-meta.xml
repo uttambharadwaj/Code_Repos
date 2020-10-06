@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Webinar ATTENDEE follow-up for live webinar event on 4/24/12; presentation on virtual payment programs to IAPP members, featuring Cambia, Travelliance</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>MasterCard_AP_Dir_Generic</letterhead>
+    <name>Generic A/P Webinar ATTENDEE follow-up (IAPP, 4/24/12)</name>
+    <style>freeForm</style>
+    <subject>Thank you for joining our recent webinar</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you for joining IAPP’s recent webinar -- &quot;Lessons from Two Practical Virtual Payment Programs&quot; -- sponsored by Wright Express. Hopefully you found the information valuable, and understand the dynamics leading to increased adoption of virtual payment solutions by both buyers and suppliers.
+
+Wright Express’ virtual payment programs can be implemented with no out-of-pocket cost, and interface directly with your existing systems and payment processes.
+
+Key Benefits:
+
+- Improve payment controls
+- Maximize financial incentives—think cash back—while paying your bills electronically
+- Improve working capital—pay your vendors faster and pay us later
+- Improve your team’s efficiency with automated reconciliations
+
+Wright Express is the only commercially chartered bank fully dedicated to addressing your business to business payment needs. As such, you can expect continued investment in solutions, consultations and services to meet your needs.
+
+I would appreciate an opportunity to discuss any questions you may have. Would next week work for you?  Feel free to review an archive of this recent webinar at: https://www1.gotomeeting.com/register/550985793 .
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wrightexpress.com/epayables
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

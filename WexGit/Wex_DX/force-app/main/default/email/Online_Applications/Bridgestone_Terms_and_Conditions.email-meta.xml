@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Bridgestone_National_Fleet</letterhead>
+    <name>Bridgestone Terms and Conditions</name>
+    <style>freeForm</style>
+    <subject>Bridgestone National Fleet Terms and Conditions</subject>
+    <textOnly>OnlineApplicationAuthorizedContact__c
+
+You have been approved for a WEX Fleet One Bridgestone National Fleet account.  Please see the attached terms and conditions.  Your Bridgestone Commercial Sales Manager will be in contact with additional account information shortly.
+
+Thank you for applying for the Bridgestone National Fleet Program.  If you have questions about your application, please call us at 844-275-7099.
+
+
+Sincerely,
+
+
+WEX Fleet One</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,18 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Email Address: {!Account.Email__c}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Number of Trucks: {!Account.00N70000003V2cF}
+Year Started: {!Account.Year_Founded__c}
+
+What product(s) are you interested in? {!Opportunity.TK_Product_Interest__c}
+How many units are you interested in potentially purchasing? {!Opportunity.TK_Potential_Unit_Purchase__c}
+What brands of APUs/Reefers are you currently using, if any? {!Opportunity.APU_Reefer_Brands__c}
+Who at your company should we contact to discuss further? {!Opportunity.TK_Contact__c}
+Comments: {!Opportunity.Vendor_Comments__c}

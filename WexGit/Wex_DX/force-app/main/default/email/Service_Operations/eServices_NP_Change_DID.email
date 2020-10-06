@@ -1,0 +1,24 @@
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+<!-- logo  -->
+<td><img src="{!Case.Service_Program_Logo__c}" alt="Program Logo" ></td>
+</tr>
+</table>
+</header>
+</center>
+<br></br>
+Case #: {!Case.CaseNumber}
+<br></br>
+Thank you for contacting us. You can create a new driver ID number with the same driver name under Fleet Manager > View Drivers. Click Clone in the Actions column for that driver, and then you will be prompted to add a new driver, but with the name already filled in. Designate a new driver ID number and then submit the record. Then go back to Fleet Manager > View Drivers and click Terminate next to the old number to ensure it cannot be used again. Please let me know if you have any questions.
+
+<br></br>
+
+Regards,<br></br>
+{!User.FirstName}<br>
+{!Case.Service_Program_Name__c}<br>
+{!Case.Service_Program_Email__c}<br>
+{!Case.Service_Program_Phone__c}<br>
+<a href="{!Case.Service_Program_Website__c}">{!Case.Service_Program_Website__c}</a><br>
+<br></br>

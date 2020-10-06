@@ -1,0 +1,42 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif" style="">Dear {!Contact.FirstName},<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif">Thank you for your interest in the ExxonMobil Fleet Card
+Program.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif">Below you will find some <b>additional
+information</b> about our ExxonMobil Fleet Card Program
+to help you consider our widely accepted ExxonMobil Fleet Card as the one-card solution for all your
+fueling needs.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt; line-height: 107%;"></p><ul><li><font face="Arial, sans-serif"><b style="">We save you money</b>. Robust fuel rebates at all ExxonMobil locations.</font></li><li><font face="Arial, sans-serif"><b style="">We save you time</b>. You’ll enjoy the convenience of a single
+fueling card program and one, easy-to-read invoice. You can also easily
+download transaction data from the web right to QuickBooks or Excel each month.</font></li><li><font face="Arial, sans-serif"><b style="">We give you control</b>. Detailed reports show how and where you
+spent your fueling money, so you can account for every penny.</font></li><li><font face="Arial, sans-serif"><b style="">We make it convenient</b>. Your drivers only need to carry one card
+to fuel and save at any participating location.</font></li></ul><font face="Arial, sans-serif"><o:p></o:p></font><p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt; line-height: 107%;"><font face="Arial, sans-serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt; line-height: 107%;"><font face="Arial, sans-serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt; line-height: 107%;"><font face="Arial, sans-serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif">You can find a complete list of <b>accepting
+locations</b> at&nbsp;<o:p></o:p><a href="https://www.exxon.com/en/find-station?latitude1=43.701686332690834&amp;longitude1=-70.49908396318358&amp;latitude2=43.57745585141416&amp;longitude2=-70.15919443681639">https://www.exxon.com/en/find-station</a>&nbsp;.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif"><br></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif">It’s <b>easy</b> to enroll. Simply
+complete the attached application form and fax it back to me
+at&nbsp;{!User.Fax}. You can also scan and email
+the form back to me at the email address below.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 6pt;"><font face="Arial, sans-serif">Sincerely,&nbsp;<br>
+<i><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+Email - {!User.Email}<br></i></font></p>]]></td>
+</tr>
+</table>

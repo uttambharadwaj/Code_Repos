@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>XOM Info requested</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>XOM INFO REquested</name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Fuel Card Programs</subject>
+    <textOnly>{!Contact.FirstName}, 
+
+Thank you for your time today.  Please note the information attached about the Business Fleet card program and the Fleet National card program.  Also, below I have highlighted key reasons why our customers use our programs: 
+
+Security:  
+Our customers can be confident that the fuel cards in the field cannot be used for anything but gas for their company’s fleet.  (Options for service and fluid transactions are available at the client&apos;s discretion). 
+
+Convenience: 
+Those businesses and organizations already using our program benefit from having a single fueling card program and one, easy-to-read monthly invoice.
+ 
+Control: 
+Fleets enjoy being able to control when and how fuel is purchased by drivers through a web-based tool. There they can also view where, when, how much (gallon and dollar amounts) and who transacted so you can account for every penny.  
+
+If you have any questions feel free to contact me. If you want to go ahead with the program, follow this link to begin the application process or email or fax the completed application attached.  Otherwise, I will follow up in the next few days to get your thoughts and help with any questions.
+
+
+Brian Fitzpatrick
+Fuel Service Specialist 
+ExxonMobil Fuel Services
+Phone: (847) 440-1724
+Fax:     (207) 791-1610
+Email:  bfitzpatrick@fleetlink.com
+www.exxonmobilfleetoffers.com/brianfitzpatrick
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify the sender immediately by telephone or reply e-mail and delete the entire message and any attachments</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

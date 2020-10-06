@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Statement : illegible</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+This usually indicates there is an issue with the settings on your computer’s Adobe Reader program.  If the fonts in a PDF do not exist in your system, Adobe will substitute the fonts with illegible characters. You can correct this issue:
+
+Open Adobe Reader &gt; Go to Edit &gt; Preferences &gt; Page Display &gt; Rendering, and then check the option “Use Local Fonts.”
+
+If you have a fax machine, please send us the number and we can fax the statement to you.
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CorporatePay</letterhead>
+    <name>CorporatePay New Sale - Manual Billing Required</name>
+    <style>freeForm</style>
+    <subject>New Sale - Manual Billing Required</subject>
+    <textOnly>Hi Kiki,
+
+{!Opportunity.LastModifiedBy} has just set Opportunity {!Opportunity.Name} to won.
+
+Manual billing is required for this client, please see the below details -
+
+Annual Transaction Volume - - {!Opportunity.Annual_Transaction_Volume__c}
+Transaction Fee - {!Opportunity.Monthly_Txn_Revenue_POS__c}
+
+Tier 1 From - {!Opportunity.00N70000003T7xT}
+Tier 1 To - {!Opportunity.00N70000003T83g}
+Tier 1 Rebate % - {!Opportunity.00N70000003T7yC}
+
+Tier 2 From - {!Opportunity.00N70000003T7xY}
+Tier 2 To - {!Opportunity.00N70000003T83l}
+Tier 2 Rebate % - {!Opportunity.00N70000003T7yH}
+
+Tier 3 From - {!Opportunity.00N70000003T7xd}
+Tier 3 To - {!Opportunity.00N70000003T83q}
+Tier 3 Rebate % - {!Opportunity.00N70000003T7yM}
+
+Tier 4 From - {!Opportunity.00N70000003T7xi}
+Tier 4 To - {!Opportunity.00N70000003T83v}
+Tier 4 Rebate % - {!Opportunity.00N70000003T7yR}
+
+Tier 5 From - {!Opportunity.00N70000003T7xn}
+Tier 5 To - {!Opportunity.00N70000003T840}
+Tier 5 Rebate % - {!Opportunity.00N70000003T7yW}
+
+Tier 6 From - {!Opportunity.00N70000003T7xs}
+Tier 6 To - {!Opportunity.00N70000003T845}
+Tier 6 Rebate % - {!Opportunity.00N70000003T7yb}
+
+
+
+If there are any issues with this email, please contact your Salesforce Administrator</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

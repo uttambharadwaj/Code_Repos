@@ -1,0 +1,14 @@
+{!Contact.FirstName},
+
+Welcome to The Gold Program.  You now have access to our national account tire pricing and service.  To help you get started, I have attached The Gold Program Tire Purchasing Instructions.  Purchasing your tires is as easy as 1,2,3!
+
+Please review the information, and contact me with any questions.  
+
+Thank you for being a valued member,
+
+
+{!User.FirstName} {!User.LastName}
+The Gold Program
+{!User.Title}
+866.354.7322
+info@goldprogramonline.com

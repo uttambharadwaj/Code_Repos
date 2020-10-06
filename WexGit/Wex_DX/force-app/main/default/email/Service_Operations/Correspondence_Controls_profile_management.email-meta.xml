@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - Esso - Controls : profile management</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Case #: {!Case.CaseNumber}</subject>
+    <textOnly>Case #: {!Case.CaseNumber}
+
+The Controls tab on the red bar &gt;&gt; Profile Manager &gt;&gt; Add New Profile
+
+Profile Information
+
+Profile Name: create a name for the profile (eg: 500/mo)
+
+Frequency Controls
+
+Only select the button beside the period (eg: daily, weekly…)
+
+Product Type Controls
+
+Total Fuel: &gt; Top-Up Fluids (any kind of automotive additive fluids): enter Dollars per Transaction &gt; Transactions per Period &gt; Dollars per Period Control When Authorizations Occur *Most customers don’t use this, but you may
+
+Submit
+
+(You can create as many Profiles as you need.)
+
+You’ll see a pop up window advising you that you now need to Assign the Profile to specific or all of your cards. To do this, go to:
+
+Controls &gt;&gt; Assign Profiles
+
+You’ll see all your cards. You can select the button to assign the Profile to all cards at once, or you can go to each specific card and select the new Profile.
+
+Submit
+
+Regards,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

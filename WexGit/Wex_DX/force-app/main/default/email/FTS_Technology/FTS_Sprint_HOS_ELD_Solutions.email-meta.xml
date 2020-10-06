@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>FTS/Sprint_HOSELD_Tablet_FTS_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>FTS Sprint HOS ELD Solutions</name>
+    <style>none</style>
+    <subject>Save time and money with Sprint Fleet HOS Solutions</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

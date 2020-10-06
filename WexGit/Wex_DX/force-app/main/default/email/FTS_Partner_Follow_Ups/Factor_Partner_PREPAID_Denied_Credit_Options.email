@@ -1,0 +1,13 @@
+{!Contact.FirstName},
+
+Thank you for your recent application for the EFS/FTS fuel card account for {!OnlineApplication__c.Account__c}. 
+
+WEX EFS is currently not able to extend the requested credit line but you can still establish a fuel card account with the same great savings and advantages of the FTS fuel card program on a "Prepaid" basis.  Your factoring partner can load money to your prepaid account with the funds from your purchased invoices.... 24/7!
+
+If you want to move forward with this option,  please email me at {!User.Email} or call me at {!User.Phone}.   
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+Direct: {!User.Phone} 
+{!User.Email}

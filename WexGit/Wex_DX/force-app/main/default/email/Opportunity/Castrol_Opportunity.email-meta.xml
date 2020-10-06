@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Castrol Sales Opportunity</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Castrol Opportunity</name>
+    <style>none</style>
+    <subject>Sales Opportunity for Castrol</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

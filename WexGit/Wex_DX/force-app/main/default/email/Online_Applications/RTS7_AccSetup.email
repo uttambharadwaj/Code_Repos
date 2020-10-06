@@ -1,0 +1,72 @@
+<messaging:emailTemplate subject="New Account Information {!relatedTo.Account__r.Name}" recipientType="Contact" relatedToType="OnlineApplication__c">
+<messaging:htmlEmailBody >
+
+<center>
+<header>
+<table border="0" width="100%">
+<tr valign="top">
+   <td><apex:image url="https://c.na5.content.force.com/servlet/servlet.ImageServer?id={!relatedTo.Offer__r.Email_Template_Logo__c}&oid=00D700000009EOI"/></td>
+</tr>
+</table>
+</header>
+</center>
+
+<br></br><br></br>
+
+{!relatedTo.Contact_Name__c},
+<br></br><br></br>
+
+Congratulations! Your account for the {!relatedTo.Offer__r.Application_Title__c} fuel card has been created and your new account number is {!relatedTo.F1_Account_Number__c}. Your cards will be arriving shortly and will be ready to use. 
+<br></br><br></br>
+
+<apex:outputtext rendered="{!if(relatedTo.Offer__r.name='RTS Express Lane',false,true)}">
+    Please note, if you have opted to have ATM access your 4-digit pin number will be mailed to you in a separate envelope, and will arrive shortly before or after your new fuel cards
+</apex:outputtext>
+
+<br></br><br></br>
+
+Please keep the following information accessible at all times as it will not be mailed to you – 
+<br></br><br></br>
+
+<ul>
+  <li><b> Online user info.</b>You will need this information to manage your account online.  </li>
+  <li><b> Supervisor/authorized contact security codes. </b> You will need these codes whenever you call in to our 24 hour customer care.  </li>
+</ul>
+<br></br>
+
+As a valued customer of {!relatedTo.Offer__r.Application_Title__c}, we want to make it easy for you to maintain your account. That is why we have put all the necessary resources at your fingertips!  Just go to <a href="http://www.fleetone.com/customer-links">Customer Links</a> to find everything you need regarding your {!relatedTo.Offer__r.Application_Title__c} account, including tutorials that help make managing your account online a breeze!
+
+<br></br><br></br>
+
+<apex:outputtext rendered="{!if(relatedTo.Offer__r.name='RTS TRADE CREDIT',false,true)}">
+    For your convenience, your new cards will be mailed and they will be ready for immediate use.
+</apex:outputtext>
+
+<br></br><br></br>
+
+<apex:outputtext rendered="{!if(relatedTo.Potential_TC_Candidate__c=true,true,false)}">
+    You have also been <b> pre-qualified </b> for a minimum of $500 of credit with the RTS Trade Credit Program which offers tire discounts with 30-day payment terms.  Click on the following link to take advantage today: <a href="https://onlineservices.secure.force.com/appl/ApplicationCompanyInformation?noFrame=true&offer=a3L70000000kqIO">RTS Trade Credit Online Application </a>. The RTS Trade Credit provides a credit line, convenience and discounts on Goodyear and Dunlop tires of as much as 30% off.
+</apex:outputtext>
+<br></br><br></br>
+
+{!relatedTo.Offer__r.Additional_Text__c}
+<br></br><br></br>
+
+Sincerely, 
+<br></br><br></br>
+
+
+<apex:outputPanel >
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), 'Fleet Fuel Card Sales Team' , If(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Contact_Name__c,relatedTo.Owner.FirstName+" "+relatedTo.Owner.LastName))}"/><br></br>
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Phone_Number__c,relatedTo.Owner.Phone))}"/><br></br>
+   <apex:outputText value="{!IF( Contains(relatedTo.OwnerID, '00570000002S3Sl'), " ", IF(relatedTo.Offer__r.Use_Offer_Contact_Details_not_Owner__c==TRUE,relatedTo.Offer__r.Offer_Email__c,relatedTo.Owner.Email))}"/><br></br>
+</apex:outputpanel>
+
+<br></br><br></br>
+
+Sent to:  {!relatedTo.Email__c}<br></br>
+Reference #: {!relatedTo.Name}<br></br>
+Terms and Conditions Version: {!relatedTo.Terms_and_Conditions_Version__c}<br></br>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

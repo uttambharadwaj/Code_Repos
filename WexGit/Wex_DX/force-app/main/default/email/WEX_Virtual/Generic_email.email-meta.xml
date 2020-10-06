@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Introductory email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_CPS_MasterCard</letterhead>
+    <name>Generic email</name>
+    <style>freeForm</style>
+    <subject>Streamline your AP process</subject>
+    <textOnly>{!Contact.FirstName},
+
+I am planning on being in your area next week and was hoping I may be able to chat with you for no longer than 20-25 minutes.  There is a significant opportunity to drive down internal costs by reducing the use of paper checks.  WEX also takes over the onerous task of 1099 reporting in addition to offering a generous rebate program so that you can generate revenue from your payables.  There are no fees to you of any kind.  WEX is a virtual payments pioneer and our sole focus is in this area.  Please let me know if you or a member of your team will be available.  In the meantime, you can learn more about WEX Virtual Payments by visiting our Resource Center.
+
+Thank you and regards,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Cell - {!User.MobilePhone}
+{!User.Email}
+
+www.wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

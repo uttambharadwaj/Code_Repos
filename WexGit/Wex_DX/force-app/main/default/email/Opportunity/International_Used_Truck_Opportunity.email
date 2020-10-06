@@ -1,0 +1,18 @@
+Savings Consultant: {!User.Name}
+Member ID : {!Account.Member_ID__c}
+Company Name : {!Account.Name}
+Street Address: {!Account.BillingStreet}
+City: {!Account.BillingCity}
+State: {!Account.BillingState}
+Zip Code: {!Account.BillingPostalCode}
+Number of Trucks: {!Account.Truck_Count__c}
+Year Started: {!Account.Year_Founded__c}
+Email Address: {!Account.Email__c}
+Telephone: {!Account.Phone}
+Fax: {!Account.Fax}
+Contact: {!Opportunity.Contact_Information__c}
+
+What type of trucks are you interested in purchasing? {!Opportunity.Truck_Type_Interest__c}
+How many trucks are you interested in purchasing? {!Opportunity.Number_of_Trucks_to_Purchase__c}
+What time frame are you looking to purchase the trucks? {!Opportunity.Truck_Purchase_Timeframe__c}
+Comments: {!Opportunity.Vendor_Comments__c}

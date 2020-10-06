@@ -1,0 +1,11 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p style="font-size: 12pt;"><font face="Arial,Sans-Serif" size="3">{!Contact.FirstName}</font>,</p><p style="font-size: 12pt;"><br></p><p style="font-size: 12pt;">[BLANK]</p><p style="font-size: 12pt;"><font size="1"><span style="COLOR: gray; FONT-SIZE: 8pt"><span style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: black"></span></span></font></p><p style="font-size: 12pt; line-height: normal; margin: 0in 0in 0pt;" class="MsoNormal"><font size="1"><br></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;">Thank you for your interest in the ExxonMobil Fleet Card
+Program.<o:p></o:p></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><i>{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+{!User.Email}</i></p><p style="font-size: 12pt;"></p>]]></td>
+</tr>
+</table>

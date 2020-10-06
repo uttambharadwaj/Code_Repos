@@ -1,0 +1,7 @@
+This is to inform you that the status of Case # {!Case.CaseNumber}: {!Case.Subject} has been changed.
+
+Status: {!Case.Status}
+Resolution: {!Case.Resolution_Description__c}
+
+Updated by: {!Case.OwnerFullName}
+{!Organization.Name} Virtual Payments Customer Support

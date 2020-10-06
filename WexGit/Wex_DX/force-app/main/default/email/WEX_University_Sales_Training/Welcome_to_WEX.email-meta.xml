@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent to new hires after the Outlook Invite has been sent. cc: Sales Managers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_UNIVERSITY_Sales_Banner_Letterhead</letterhead>
+    <name>01.0 Sales Onboarding: Welcome Letter</name>
+    <style>freeForm</style>
+    <subject>Welcome to Sales Onboarding!</subject>
+    <textOnly>We&apos;re looking forward to seeing you!
+
+You have been invited to Sales Onboarding starting on {!Training_Class__c.Date__c}.
+
+This training will be held at the following locations:
+
+WEX/EFS Campus 3100 WEST END Ave, Nashville TN 37027
+Class start time: 8:30am CST
+Host: Jennifer Roney 615-300-5366 Jennifer.roney@wexinc.com
+
+WEX Campus 95 Darling Ave South Portland ME, 04106
+Class start time: 9:30am EST
+Host: Alexandra Fagone 207-776-8867 Alexandra.Fagone@wexinc.com
+
+Virtual at Manager&apos;s discretion
+
+If traveling, review WEX Travel Policies with your Manager to reserve flights, hotels and car rentals.
+
+Feel free to reach out to either of your hosts with questions.
+
+WEX Global Sales Training Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

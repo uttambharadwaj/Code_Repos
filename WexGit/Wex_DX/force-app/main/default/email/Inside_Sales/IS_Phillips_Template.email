@@ -1,0 +1,71 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<SPAN style="FONT-FAMILY: 'Calibri','sans-serif'; BACKGROUND: yellow; FONT-SIZE: 11pt; mso-fareast-font-family: Calibri; mso-bidi-font-family: 'Times New Roman'; mso-fareast-theme-font: minor-latin; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA; mso-highlight: yellow"><STRONG>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>
+<TABLE id=topTable cellSpacing=0 cellPadding=0 width=500 height=450>
+<TBODY>
+<TR vAlign=top>
+<TD style="TEXT-ALIGN: left; BACKGROUND-COLOR: #ffffff; HEIGHT: 100px; VERTICAL-ALIGN: top; bLabel: header; bEditID: r1st1"></IMG>&nbsp; 
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial">Dear {!Contact.FirstName},</SPAN></I><I><SPAN style="FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-fareast-font-family: 'Times New Roman'"><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></SPAN></I></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><o:p>&nbsp;</o:p></SPAN></I></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial"><o:p>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.5in; mso-add-space: auto; mso-list: l0 level1 lfo1" class=MsoListParagraphCxSpFirst><SPAN style="FONT-FAMILY: Wingdings; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings"><SPAN style="mso-list: Ignore">§<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp; </SPAN></SPAN></SPAN><B style="mso-bidi-font-weight: normal">We save you money</B>. WEX does not charge any transaction fees.</P>
+<P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.5in; mso-add-space: auto; mso-list: l0 level1 lfo1" class=MsoListParagraphCxSpMiddle><SPAN style="FONT-FAMILY: Wingdings; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings"><SPAN style="mso-list: Ignore">§<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp; </SPAN></SPAN></SPAN><B style="mso-bidi-font-weight: normal">We save you time</B>. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read invoice. You can also easily download transaction data from the web right to QuickBooks or Excel each month.</P>
+<P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.5in; mso-add-space: auto; mso-list: l0 level1 lfo1" class=MsoListParagraphCxSpMiddle><SPAN style="FONT-FAMILY: Wingdings; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings"><SPAN style="mso-list: Ignore">§<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp; </SPAN></SPAN></SPAN><B style="mso-bidi-font-weight: normal">We give you control</B>. Detailed reports show how and where fueling money was spent, so you can account for every penny.</P>
+<P style="LINE-HEIGHT: normal; TEXT-INDENT: -0.25in; MARGIN: 0in 0in 0pt 0.5in; mso-add-space: auto; mso-list: l0 level1 lfo1" class=MsoListParagraphCxSpLast><SPAN style="FONT-FAMILY: Wingdings; mso-fareast-font-family: Wingdings; mso-bidi-font-family: Wingdings"><SPAN style="mso-list: Ignore">§<SPAN style="FONT: 7pt 'Times New Roman'">&nbsp; </SPAN></SPAN></SPAN><B style="mso-bidi-font-weight: normal">We make it convenient</B>. Your drivers only need to carry one card to fuel at any participating location.</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>You will find a complete list of accepting locations at <A href="http://www.wexinc.com/accepting-locations">www.wexinc.com/accepting-locations</A> . </P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>It’s easy to enroll. Simply complete the attached application form and fax it back to me at <SPAN style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: black; FONT-SIZE: 10pt">{!User.Fax}.<BR></SPAN><o:p>&nbsp;</o:p></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>Thank you for your interest in the WEX Fuel Card program.</P></o:p></SPAN></I>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'"><BR>{!User.FirstName} {!User.LastName} <BR>{!User.Title} <BR>Phone - {!User.Phone} <BR></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><I><SPAN style="FONT-FAMILY: 'Times New Roman','serif'; COLOR: black; FONT-SIZE: 12pt; mso-fareast-font-family: 'Times New Roman'">Fax - {!User.Fax} <o:p></o:p></SPAN></I></P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Email} </P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt" class=MsoNormal><o:p></o:p></SPAN></I>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal></P></TD></TR>
+<TR vAlign=top>
+<TD style="BACKGROUND-COLOR: #aaaaff; HEIGHT: 5px; bLabel: accent1; bEditID: r2st1"></TD></TR>
+<TR vAlign=top>
+<TD style="BACKGROUND-COLOR: #ffffff; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 12pt; bLabel: main; bEditID: r3st1" height=300 styleInsert="1">
+<TABLE border=0 cellSpacing=5 cellPadding=5 width=550 height=400>
+<TBODY>
+<TR height=400 vAlign=top>
+<TD style="BACKGROUND-COLOR: #ffffff; FONT-FAMILY: arial; COLOR: #000000; FONT-SIZE: 12pt; bLabel: main; bEditID: r3st1" locked="0" aEditID="c1r1" tEditID="c1r1"><FONT face=Calibri>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal></FONT>&nbsp;</P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></P></STRONG></SPAN>]]></td>
+</tr>
+</table>

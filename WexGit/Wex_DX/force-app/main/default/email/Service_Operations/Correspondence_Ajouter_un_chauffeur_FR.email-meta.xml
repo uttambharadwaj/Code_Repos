@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ajouter un chauffeur</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - FR - Ajouter un chauffeur</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Cas #: {!Case.CaseNumber}</subject>
+    <textOnly>Cas #: {!Case.CaseNumber}
+
+Si vous souhaitez ajouter un nouveau NIP ou un nouveau chauffeur allez sur l’onglet : GESTION DES COMPTE &gt;&gt;CHAUFFEUR&gt;&gt;AJOUTER. Tapez le(s) nom du chauffeur et le NIP désiré ou laissez le système le choisir pour vous si le champ du NIP ne vous est pas proposé en cliquant sur SOUMETTRE. Ces NIP sont liées au chauffeur/utilisateur et non aux cartes. Chacun des chauffeurs ainsi créer peut utiliser toutes les cartes au compte. 
+
+Merci de nous avoir contactés,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

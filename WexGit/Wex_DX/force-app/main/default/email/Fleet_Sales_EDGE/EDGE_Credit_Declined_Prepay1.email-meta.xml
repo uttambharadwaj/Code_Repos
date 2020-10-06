@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Email_Banner</letterhead>
+    <name>EDGE Credit Declined-Prepay</name>
+    <style>freeForm</style>
+    <subject>Fleet One EDGE Card Services for {!Account.Name}</subject>
+    <textOnly>Hello {!OnlineApplication__c.Contact_Name__c}
+
+Thank you for your interest in the Fleet One EDGE discount network.  At this time, we are unable to approve a line of credit with the information you provided.  You may still open an account for your company by choosing the following:
+
+Start a Pre-Funded fuel account. You may send guaranteed funds to prefund your account via bank wire, Western Union or 3rd party industry checks (Comchecks, Tcheks). With this option, you will receive the same immediate benefits as our credit line accounts including rebates, reporting, security and control.
+
+If you should have any additional questions, please feel free to contact me directly or simply respond to this email.
+
+Thank you,
+{!OnlineApplication__c.OwnerFullName}
+{!OnlineApplication__c.OwnerTitle}
+WEX Fleet One
+Phone: {!OnlineApplication__c.OwnerPhone} | Fax: {!OnlineApplication__c.Owner_Fax__c}
+{!OnlineApplication__c.OwnerEmail} | www.fleetoneedge.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

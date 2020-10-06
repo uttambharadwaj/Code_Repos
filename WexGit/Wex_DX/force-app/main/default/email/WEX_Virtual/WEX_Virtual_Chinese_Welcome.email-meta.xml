@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>WEX Travel Banner- with Cheses language in the body</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Travel1</letterhead>
+    <name>WEX Virtual - Chinese -Welcome</name>
+    <style>formalLetter</style>
+    <subject>WEX Travel</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+我是WEX Asia 的亚太区商业总监。
+
+冒昧打扰，我是从新加坡旅游局的同事得到您的联络。
+
+我司是美国一家上市公司专门提供虚拟信用卡。目前除了以全球大型的在线旅游公司如Priceline, Agoda 及Expedia合作，我们也和国内一些旅游公司合作。
+
+我们的虚拟信用卡以 Mastercard 为平台，备受许多家酒店接收为结算平台，特别是境外。
+
+附上我司简介册子并希望您能转发并介绍您的应帐或结算部。
+
+http://www.wexinc.com/travel/
+
+非常感谢，希望我们能有后续进一步合作
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Office: {!User.Phone}
+
+Cell: {!User.MobilePhone}
+
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

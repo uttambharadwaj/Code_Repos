@@ -1,0 +1,5 @@
+A new case has been created  which was not assigned to an Account Manager.
+
+The case Id is: {!Case.Id}
+Status:  {!Case.Status}
+Link to case: {!Case.Link}

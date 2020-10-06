@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Orden De La Tarjeta</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CS - SP - Orden De La Tarjeta</name>
+    <style>none</style>
+    <subject>RE: {!Case.Subject} - Caso #: {!Case.CaseNumber}</subject>
+    <textOnly>Caso #: {!Case.CaseNumber}
+
+Gracias por contactarnos. He ordenado las tarjetas solicitadas. Por favor, avíseme si puedo brindarle más ayuda.
+
+Saludos,
+{!User.FirstName}
+{!Case.Service_Program_Name__c}
+{!Case.Service_Program_Email__c}
+{!Case.Service_Program_Phone__c}
+{!Case.Service_Program_Website__c}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Service_Operations_Generic</letterhead>
+    <name>Over 60 Intro Resolution Email</name>
+    <style>freeForm</style>
+    <subject>Dispute Claim Resolution</subject>
+    <textOnly>Standard Fleet Over 60-day Intro and Resolution:
+
+
+
+Re: Claim No {!Claim__c.Name}
+
+
+
+Dear {!Claim__c.Account_Contact_Name__c}:
+
+
+
+This letter confirms that we have reviewed your claim of disputed transactions on the {!Claim__c.Partner_Formal_Name__c} account for {!Claim__c.Account_Name__c}.  Firstly, the occurrence of fraud, misuse or abuse on our card program is extremely unfortunate and we are sensitive to the potential business and financial hardships it can cause to our customers.
+
+
+
+Research and analysis by {!Claim__c.Partner_Formal_Name__c} Fraud Department produced the following information:
+
+
+Disputed transactions occurred on card {!Claim__c.Abbreviated_Card__c} between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Claim_Dispute_End_Date__c}. Pursuant to the contractual agreement governing use of the account, this is outside of the 60-Day allowable dispute period, therefore the claim has been closed.
+
+{!Claim__c.Account_Name__c} has a commercial card account using the {!Claim__c.Partner_Formal_Name__c} Card Program with WEX Bank.   Use of your WEX fleet cards is governed at all times by the {!Claim__c.TC_s_Formal_Name__c} (the “Agreement”).  The Agreement addresses unauthorized use and associated responsibilities (refer to section 10).
+
+
+
+In summary, pursuant to the terms of our Agreement and in conjunction with the reasons listed above, {!Claim__c.Account_Name__c} is liable for payment in full of the disputed transactions.  This constitutes final resolution to the dispute claim sufficiently identified above and does not apply to any other outstanding and/or future balances on the account.
+
+
+
+To reduce the risk of similar circumstances occurring in the future, we recommend that you review the enclosed security measures document and immediately implement any measures conducive to your business.
+
+
+
+Please feel free to contact us at (888) 691-0361 should you have any questions. We appreciate your business and look forward to maintaining our relationship.
+
+
+
+Sincerely,
+
+Fleet Fraud Services
+
+
+
+Enclosure(s): WEX® FLEET BUSINESS CHARGE CARD AGREEMENT, Fleet Security Measures
+
+
+
+Account Comments:
+
+**Formal customer claim received – fraud dispute claim # {!Claim__c.Name} assigned to fleet fraud services. Intro &amp; resolution sent to fleet to adv fleet that the transactions in question are outside of the 60-day allowable dispute time frame, therefore the claim has been closed.**  FFS, Disputes  ext..88571
+
+
+
+CO-BRAND Over 60 Days Intro and Resolution Email:
+
+
+
+Hello,
+
+
+
+Intro Email. Please see the resolution outlined below for dispute claim #{!Claim__c.Name}. Please feel free to contact us to discuss any questions you may have.
+
+
+Customer
+
+{!Claim__c.Account_Name__c}
+
+Account
+
+{!Claim__c.Program_Account__c}
+
+Card
+
+{!Claim__c.Abbreviated_Card__c} / {!Claim__c.CO_ID_STD_EMB_GTag__c}
+
+Driver Identification Number (DID)
+
+DIN {!Claim__c.DIN__c} assigned as &quot;{!Claim__c.Driver_Name__c}&quot;
+
+Dispute Period
+
+Between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}
+
+Dispute Amount
+
+${!Claim__c.Total_Claim_Dollars__c}
+
+
+Research and analysis by WEX Fraud Department produced the following information:
+
+
+Disputed transactions occurred on card {!Claim__c.Abbreviated_Card__c} between {!Claim__c.Claim_Dispute_Start_Date__c} and {!Claim__c.Allowable_Dispute_End_Date__c}. Pursuant to the contractual agreement governing use of the account, this is outside of the 60-Day allowable dispute period, therefore the claim has been closed.
+
+Thank you,
+
+Fleet Fraud Services</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

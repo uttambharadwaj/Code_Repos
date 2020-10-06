@@ -1,0 +1,14 @@
+{!Contact.FirstName},
+
+Thanks for taking my call. I am confirming that you have an appointment with one of our ExxonMobil Fleet Managers on <ENTER DATE> at <ENTER TIME> at <ENTER LOCATION>. 
+
+The ExxonMobil Fleet Manager will review your account to see if you qualify for the current promotion ExxonMobil is running. You also mentioned an interest in <ENTER PAIN POINT HERE>. They'll make sure to review how the ExxonMobil Fleet program can help you with this.
+
+Should something come up, feel free to reach out to me and we can reschedule.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
