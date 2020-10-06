@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Notify_AU_Application_Request_Approved</fullName>
+        <description>Notify Owner - AU Application Request Credit Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Fuel_Application_Credit_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_AU_Application_Request_Final_Rejection</fullName>
+        <description>Notify Owner - AU Application Request Final Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Fuel_Application_Credit_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_AU_Application_Request_Owner_Final_Approved</fullName>
+        <description>Notify AU Application Request Owner Final Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Fuel_Application_Credit_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_AU_Application_Request_Team_Leader_Review_Needed</fullName>
+        <description>Notify AU Mobil Card Credit - AU Application Request Review Needed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>AU_Mobil_Card_Credit</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Application_Credit_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_AU_Credit_Team_Leader_Final_Approved_Application_Request</fullName>
+        <description>Notify Credit Team Leader - AU Final Approved Application Request</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>AU_Credit_Team_Leader</recipient>
+            <type>role</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Fuel_Application_Credit_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_AU_EM_Application_Request_Approved</fullName>
+        <description>Notify Owner - AU EM Application Request Credit Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>AU_Mobil_Card_Credit</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Fuel_Application_Credit_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_AU_EM_Application_Request_Final_Rejection</fullName>
+        <description>Notify Owner - AU EM Application Request Final Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>AU_Mobil_Card_Credit</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>AU_Email_Templates/AU_Fuel_Application_Credit_Rejected</template>
+    </alerts>
+    <rules>
+        <fullName>AU AR Update Status Reason</fullName>
+        <actions>
+            <name>AUARUpdateReason</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Application Credit Limit</fullName>
+        <actions>
+            <name>AU_Application_Credit_Limit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Credit_Limit__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <description>Upon creation set the Credit Limit field with the Opportunity Credit Limit value IF no value is already entered.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Application to AU Central Services Queue</fullName>
+        <actions>
+            <name>AU_Application_Owner_to_CentralQ</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Data Check</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Opportunity_Lead_Source__c</field>
+            <operation>notEqual</operation>
+            <value>Third Party</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <description>Various logic conditions to route records to the AU Central Services Queue.
+When the Application Status is Pending Data Check, the Approval Status is Approved and the Opportunity Lead Source is not 3rd party, route to the AU Central Queue.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Application to AU Credit Q</fullName>
+        <actions>
+            <name>AU_Application_Owner_to_AU_Credit_Q</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Various logic conditions to route records to the AU Credit Queue.
+- Created
+- Application Status is Error Referred and the Opportunity Lead Source is NOT FMO Partner.</description>
+        <formula>AND( 
+RecordType.Name  &lt;&gt; &apos;EMAP Application Request&apos;,
+Opportunity_Product_Type__c &lt;&gt; &apos;Mobil Card&apos;,
+OR(
+ISNEW(),
+AND(
+ISPICKVAL(Application_Status__c, &apos;Error Referred&apos;),   Opportunity_Lead_Source__c &lt;&gt; &apos;FMO Partner&apos;
+)
+)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Application to AU Cust Care Q</fullName>
+        <actions>
+            <name>AU_Application_Owner_to_CustCareQ</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Data Check</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Opportunity_Lead_Source__c</field>
+            <operation>equals</operation>
+            <value>Third Party</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <description>Various logic conditions to route records to the AU Customer Care Queue
+When the Approval Status is Approved, the Application Status is Pending Data Check and the Opportunity Lead Source is 3rd party, route to the AU Customer Care Queue</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Application to AU Key Accounts Q</fullName>
+        <actions>
+            <name>AU_Application_to_AU_Key_Accounts_Q</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Error Referred</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Opportunity_Lead_Source__c</field>
+            <operation>equals</operation>
+            <value>FMO Partner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <description>Various logic conditions to route records to the AU Key Accounts Queue.
+When the Application Status is Error Referred and the Opportunity Lead Source is FMO Partner, route to the AU Key Accounts queue</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Mobil Card</fullName>
+        <actions>
+            <name>AU_Opportunity_Product_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Fires when App name is not null (so every time)</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Mobil Card Queue</fullName>
+        <actions>
+            <name>AU_Mobil_Card_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Opportunity_Product_Type__c</field>
+            <operation>equals</operation>
+            <value>Mobil Card</value>
+        </criteriaItems>
+        <description>Various logic conditions to route records to the AU Mobil Card Queue.
+- Created
+- Application Status is Error Referred and the Opportunity Lead Source is NOT FMO Partner.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Partner - Created by Beevo</fullName>
+        <actions>
+            <name>AU_Partner_Created_by_Beevo</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>Cat Bleach</value>
+        </criteriaItems>
+        <description>If created by Cat Bleach then set Created by Partner Tag to Beevo.  (for sharing rules)</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Partner - Created by Salmat</fullName>
+        <actions>
+            <name>AU_Partner_Created_by_Salmat</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>Nitesh Basudkar</value>
+        </criteriaItems>
+        <description>If created by Nitesh then set Created by Partner Tag to Salmat. (For sharing rules)</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>AU Partner Compare and Connect</fullName>
+        <actions>
+            <name>AU_Partner_Compare_and_Connect</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>User.Role_Name__c</field>
+            <operation>contains</operation>
+            <value>EG Fuel CO Partner User,Compare and Connect,Phone Plus</value>
+        </criteriaItems>
+        <description>Set Partner Tag for AU Partner Community</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP SLA Within 5 days</fullName>
+        <actions>
+            <name>EMAP_Update_Date_field_within_5_days</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Credit Assessment,RPS Pending,Sent To IFCS</value>
+        </criteriaItems>
+        <description>update date field in AU Application when criteria met</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Update Application Final Date</fullName>
+        <actions>
+            <name>EMAP_Update_Application_Final_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelled,Declined,Fulfilled</value>
+        </criteriaItems>
+        <description>Update Application Final Date</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Update Application decision date</fullName>
+        <actions>
+            <name>EMAP_Update_Application_decision_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved,Declined</value>
+        </criteriaItems>
+        <description>Update date to which application status is updated</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Update Assess End Time</fullName>
+        <actions>
+            <name>EMAP_Update_Assess_End_Time</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update Assess End Time</description>
+        <formula>AND( RecordType.Name == &apos;EMAP Application Request&apos;, ISCHANGED(Application_Status__c), ISPICKVAL(PRIORVALUE(Application_Status__c), &apos;Credit Assessment&apos;)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Update Assess Start Time</fullName>
+        <actions>
+            <name>EMAP_Reset_Assess_End_Time</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>EMAP_Update_Assess_Start_Time</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Credit Assessment</value>
+        </criteriaItems>
+        <description>Update Assess Start Time</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>INTEGRATION - Send Application to IFCS</fullName>
+        <actions>
+            <name>Empty_Integration_Status_Details</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Reset_Send_App_To_IFCS_for_App_Req</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Application_to_IFCS</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AU_Application_Request__c.Send_App_to_IFCS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AU_Application_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EMAP Application Request</value>
+        </criteriaItems>
+        <description>This workflow sends a credit application to IFCS (International Fuel Card System)</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

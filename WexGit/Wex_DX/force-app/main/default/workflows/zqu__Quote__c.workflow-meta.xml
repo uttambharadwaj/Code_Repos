@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_is_sent_to_the_Sales_Rep_when_a_Vendor_Order_is_sent</fullName>
+        <description>Email is sent to the Sales Rep when a Vendor Order is sent</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>All_Emails/Sales_Notification_of_Vendor_Order_Sent</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_sent_to_sales_rep</fullName>
+        <description>An email is sent to the sales representatives once the quote agreement has been signed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>kristine.martinez@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>All_Emails/Customer_Approval_Email_Alert_Sales</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_email_to_quoter</fullName>
+        <description>Send email to quoter</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>fieldsupport@wrightexpress.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All_Emails/Quote_Pending_Customer_Approval_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_email_to_quoter_rejection</fullName>
+        <description>Send email to quoter for rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>fieldsupport@wrightexpress.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>All_Emails/Quote_Draft_Template</template>
+    </alerts>
+    <rules>
+        <fullName>Email sent to Sales Rep on Vendor Order</fullName>
+        <actions>
+            <name>Email_is_sent_to_the_Sales_Rep_when_a_Vendor_Order_is_sent</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>zqu__Quote__c.Vendor_Order_Sent__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Quote Number Update</fullName>
+        <actions>
+            <name>Quote_Number_Update_w_Starting_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>zqu__Quote__c.zqu__Number__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email to Sales Rep once Customer Approval</fullName>
+        <actions>
+            <name>Email_sent_to_sales_rep</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>zqu__Quote__c.CustomerApproval__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>zqu__Quote__c.CustomerApprovalOverride__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update On Customer Approval Override</fullName>
+        <actions>
+            <name>Update_On_Customer_Approval_Override</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>zqu__Quote__c.CustomerApprovalOverride__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>zqu__Quote__c.CustomerApproval__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Quote Record to Issued Order</fullName>
+        <actions>
+            <name>Update_Issued_Order_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Quote_Record_Type_to_Issued_Order</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Quote_Status_to</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Vendor_Order_Sent__c  = TRUE ||  RecordType.Name = &apos;IssuedOrder&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

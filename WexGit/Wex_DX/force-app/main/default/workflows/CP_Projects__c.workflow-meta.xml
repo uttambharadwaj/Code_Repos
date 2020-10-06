@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>CPS_Go_Live_Date_Change_Notification</fullName>
+        <description>CPS Go Live Date Change Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>IM_Assigned__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>SE_Assigned__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Corporate_Payments_Templates/Go_Live_Date_Change</template>
+    </alerts>
+    <rules>
+        <fullName>CPS Go Live Date Change Notification</fullName>
+        <actions>
+            <name>CPS_Go_Live_Date_Change_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED( Implementation_Complete_Due__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,1351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Application_request_stage_updated</fullName>
+        <description>Application request stage updated</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <recipient>jpivo@fleetone.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All_Emails/Application_request_stage_updated</template>
+    </alerts>
+    <alerts>
+        <fullName>Community_Notify_partner_community_user_that_app_submitted_for_referred_lead</fullName>
+        <description>Community: Notify partner community user that app submitted for referred lead</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referring_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>WEX_Partner_Community_Templates/Communities_Application_Submitted_for_your_referred_Lead</template>
+    </alerts>
+    <alerts>
+        <fullName>Community_Notify_partner_community_user_that_application_is_approved</fullName>
+        <description>Community: Notify partner community user that application is approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referring_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>WEX_Partner_Community_Templates/Community_Application_Approved_Notification_to_Partner</template>
+    </alerts>
+    <alerts>
+        <fullName>Community_Notify_partner_community_user_that_application_is_declined</fullName>
+        <description>Community: Notify partner community user that application is declined</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referring_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>WEX_Partner_Community_Templates/Community_Application_Declined_Notification_to_Partner</template>
+    </alerts>
+    <alerts>
+        <fullName>Credit_Decision_Updated_Shell_CSM_East</fullName>
+        <description>Credit Decision Updated - Shell CSM East</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>lindsay.brocher@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>markus.foley@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All_Emails/Application_request_stage_updated</template>
+    </alerts>
+    <alerts>
+        <fullName>Credit_Decision_Updated_Shell_CSM_West</fullName>
+        <description>Credit Decision Updated - Shell CSM West</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>zachariah.saker@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All_Emails/Application_request_stage_updated</template>
+    </alerts>
+    <alerts>
+        <fullName>Credit_Decision_Updated_Shell_Inside_Sales</fullName>
+        <description>Credit Decision Updated - Shell Inside Sales</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All_Emails/Application_request_stage_updated</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Alert_to_Fleet_Sales_that_the_App_had_been_Decisioned</fullName>
+        <description>Email Alert to Fleet Sales that the App had been Decisioned</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>All_Emails/Sales_Rep_Activity_Notification</template>
+    </alerts>
+    <rules>
+        <fullName>App Approved Create Activity - Larry Tracey</fullName>
+        <actions>
+            <name>Application_Approved_Please_Create_Case</name>
+            <type>Task</type>
+        </actions>
+        <actions>
+            <name>Call_Time_to_Cross_Sell_Larry</name>
+            <type>Task</type>
+        </actions>
+        <actions>
+            <name>Checkin_Call</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Person__c</field>
+            <operation>equals</operation>
+            <value>Nysia Sanabria,Frank Cerullo,Bob King,Joe Shreffler,Larry Tracey,Paul Gioia,Marcus Alley</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Approved - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Approved Create Activity - Sunoco Customer Success Manager</fullName>
+        <actions>
+            <name>Application_Approved_Please_Create_Case3</name>
+            <type>Task</type>
+        </actions>
+        <actions>
+            <name>Call_TIme_to_Cross_Sell_Sean</name>
+            <type>Task</type>
+        </actions>
+        <actions>
+            <name>Checkin_Call3</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Approved - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Sunoco Client Development Mgr</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Approved Create Activity - Will Bailey</fullName>
+        <actions>
+            <name>Application_Approved_Please_Create_Case2</name>
+            <type>Task</type>
+        </actions>
+        <actions>
+            <name>Call_TIme_to_Cross_Sell_Will</name>
+            <type>Task</type>
+        </actions>
+        <actions>
+            <name>Checkin_Call2</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Approved - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.OwnerId</field>
+            <operation>equals</operation>
+            <value>Katherine Scott,April Gramley,Toni Clemens,Derek Kavanagh,Quinn McNamara,Geoff Meng</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Approved Create Activity - Zach Saker</fullName>
+        <actions>
+            <name>Checkin_Call4</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Approved - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.OwnerId</field>
+            <operation>equals</operation>
+            <value>Zach Saker,Jacob Lory,Kim Bui,Diane Acuna-Radack,Steven Matthews,Michael Phillips,Nick BarbeauScott,April Gramley,Toni Clemens,Derek Kavanagh,Quinn McNamara,Geoff Meng</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Approved Date</fullName>
+        <actions>
+            <name>App_Approved_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Application_Approved_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Approved - Rereview</value>
+        </criteriaItems>
+        <description>App Approved Date is updated with todays date when the sales stage is changed to approved</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Declined Date</fullName>
+        <actions>
+            <name>App_Declined_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Declined,Declined - Rereview</value>
+        </criteriaItems>
+        <description>App Declined Date is updated when sales stage is declined</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Declined%2FIncomplete - IS Sales</fullName>
+        <actions>
+            <name>AR_Updated</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Declined,Incomplete,Re-Review Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>IS Sales Rep</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Declined%2FIncomplete Create Activity - Larry Tracey</fullName>
+        <actions>
+            <name>Application_Updated_Larry</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Person__c</field>
+            <operation>equals</operation>
+            <value>Nysia Sanabria,April Gramley,Toni Clemens,Derek Kavanagh,Matt Miller,Tyler Bloomfield,Frank Cerullo,Bob King,Irv Margulis,David Plauche,Joe Shreffler,Larry Tracey,Rod Freeman,Paul Gioia,Garrett Montague,Marcus Alley,Alston Quillin</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>08 - Re-review,Declined,Incomplete,Non Prospect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Declined%2FIncomplete Create Activity - Sunoco Customer Success Manager</fullName>
+        <actions>
+            <name>Application_Updated2</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Sunoco Client Development</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Declined,Incomplete,Declined - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Declined%2FIncomplete Create Activity - Will Bailey</fullName>
+        <actions>
+            <name>Application_Updated</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.OwnerId</field>
+            <operation>equals</operation>
+            <value>Katherine Scott,April Gramley,Toni Clemens,Derek Kavanagh,Quinn McNamara,Geoff Meng</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Declined,Incomplete,Declined - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Application Request Update to Siebel</fullName>
+        <actions>
+            <name>Application_Request_Update_to_Siebel</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( $User.Id !=&apos;00570000001tweu&apos;, /* GearsCRM user */ 
+NOT(ISBLANK(Siebel_Oppty__c)), 
+ISCHANGED(Credit_Decision__c), 
+NOT(ISPICKVAL(Credit_Decision__c, &quot;Incomplete&quot;)),
+NOT(ISPICKVAL(Credit_Decision__c, &quot;Re-Review&quot;)) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Community%3A notfy partner app approved</fullName>
+        <actions>
+            <name>Community_Notify_partner_community_user_that_application_is_approved</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>Notifies partner that the submitted App has been approved</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Community%3A notfy partner app declined</fullName>
+        <actions>
+            <name>Community_Notify_partner_community_user_that_application_is_declined</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>Declined</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>Notifies partner that the submitted App has been declined</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Credit Decision Re-review</fullName>
+        <actions>
+            <name>Set_Application_Stage_To_Credit_F_U</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Re-Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Credit Decision Updated - Shell CSM East</fullName>
+        <actions>
+            <name>Credit_Decision_Updated_Shell_CSM_East</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Declined,Incomplete,Re-Review,Approved - Rereview,Declined - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Shell RSM Sales Rep East</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>This formula will send an email alert every time the Credit Decision is changed on the application request to the Shell CSM East.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Credit Decision Updated - Shell CSM West</fullName>
+        <actions>
+            <name>Credit_Decision_Updated_Shell_CSM_West</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Declined,Incomplete,Re-Review,Approved - Rereview,Declined - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Shell RSM Sales Rep West</value>
+        </criteriaItems>
+        <description>This formula will send an email alert every time the Credit Decision is changed on the application request to the Shell CSM West.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Credit Decision Updated - Shell Canada</fullName>
+        <actions>
+            <name>Credit_Decision_Updated_Shell_Inside_Sales</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>This formula will send an email alert every time the Credit Decision is changed on the application request to the Shell Canada sales team.</description>
+        <formula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEVM&quot;),
+OR(
+ (Opportunity__r.Owner.UserRoleId = &quot;00E0g000001IypP&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEVH&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEVW&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEVb&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEVC&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEVR&quot;),
+ ISCHANGED( Credit_Decision__c )))))))))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Credit Decision Updated - Shell Canada Sales</fullName>
+        <actions>
+            <name>Credit_Decision_Updated_Shell_Inside_Sales</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Declined,Incomplete,Re-Review,Approved - Rereview,Declined - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>startsWith</operation>
+            <value>Shell Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jennifer.stpierre@wexinc.com</value>
+        </criteriaItems>
+        <description>This formula will send an email alert every time the Credit Decision is changed on the application request to the Shell Canada Sales.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Credit Decision Updated - Shell Inside Sales</fullName>
+        <actions>
+            <name>Credit_Decision_Updated_Shell_Inside_Sales</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>This formula will send an email alert every time the Credit Decision is changed on the application request to the Shell Inside sales team.</description>
+        <formula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g00000164wk&quot;),
+OR(
+ (Opportunity__r.Owner.UserRoleId = &quot;00E0g00000164wf&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001cEzH&quot;),
+OR(
+(Opportunity__r.Owner.UserRoleId = &quot;00E0g000001654Z&quot;),
+ ISCHANGED( Credit_Decision__c ))))))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FedEx%3A Assign to Carlos</fullName>
+        <actions>
+            <name>Assign_to_Carlos_Escobar1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Program__c</field>
+            <operation>equals</operation>
+            <value>WEX Small Business</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>BS8</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>INTEGRATION - Send Application to Siebel</fullName>
+        <actions>
+            <name>Application_Request_to_Siebel</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Forward_Application_to_Credit__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Info Needed Create Activity - Larry Tracey</fullName>
+        <actions>
+            <name>Info_Requested3</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Person__c</field>
+            <operation>equals</operation>
+            <value>Nysia Sanabria,Frank Cerullo,Bob King,Joe Shreffler,Larry Tracey,Paul Gioia,Marcus Alley</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Info_Status__c</field>
+            <operation>equals</operation>
+            <value>Info Needed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Info Needed Create Activity - Sunoco Customer Success Manager</fullName>
+        <actions>
+            <name>Info_Requested2</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Info_Status__c</field>
+            <operation>equals</operation>
+            <value>Info Needed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Sunoco Client Development Mgr</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Info Needed Create Activity - Will Bailey</fullName>
+        <actions>
+            <name>Info_Requested</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Info_Status__c</field>
+            <operation>equals</operation>
+            <value>Info Needed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.OwnerId</field>
+            <operation>equals</operation>
+            <value>Katherine Scott,April Gramley,Toni Clemens,Derek Kavanagh,Quinn McNamara,Geoff Meng</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Move Application To Decisioned After Siebel</fullName>
+        <actions>
+            <name>Application_Request_Update_to_Siebel</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <formula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( CASESAFEID($User.Id) == $Setup.BOCA_Settings__c.BOCA_Integration_User_ID__c, Siebel_Oppty__c != null, PRIORVALUE(Siebel_Oppty__c) == null, TEXT(Credit_Decision__c) != null ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Move Application To Re-Review</fullName>
+        <actions>
+            <name>Update_Decision_Code_To_Blank</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Re-Review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Incomplete</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Move Traditional Apps To Credit</fullName>
+        <actions>
+            <name>Move_AR_Stage_To_Adjudication</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Move_AR_To_Pending_Decision</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( Application_Channel__c == &apos;Traditional&apos;, ISCHANGED(Forward_Application_to_Credit__c), TEXT(Forward_Application_to_Credit__c) == &apos;Yes&apos;, OR( TEXT(Application_Stage__c) == null, TEXT(Status__c) == null ) ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Program 18 Character id update</fullName>
+        <actions>
+            <name>Program_18_Character_id_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Used to update the program id field on this object to support marketing cloud</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Revolver Application Request Type</fullName>
+        <actions>
+            <name>Revolver_Update_App_Request_Record_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Record_Type_Name__c</field>
+            <operation>startsWith</operation>
+            <value>Revolver</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Revolver Application</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>Check to see if the Application Request needs to be updated to Revolver Application if the Opportunity Record Type is Revolver</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SF Opty update</fullName>
+        <actions>
+            <name>SF_Opp</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.SF_Opp__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>This rule updates the SF Opp# with the Opportunity Number generated in the Opportunity.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Sales Stage Updated</fullName>
+        <actions>
+            <name>Application_request_stage_updated</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>This formula will send an email alert every time the Sales Stage is changed on the application request</description>
+        <formula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+(Opportunity__r.Owner.ProfileId = &quot;00e70000000xFzd&quot;),
+OR(
+ (Opportunity__r.Owner.ProfileId = &quot;00e70000000x2PB&quot;),
+ ISCHANGED( Credit_Decision__c ))))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Rep E-mail when sales stage is updated - Fleet Sales</fullName>
+        <actions>
+            <name>Email_Alert_to_Fleet_Sales_that_the_App_had_been_Decisioned</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3 OR 4) AND 5</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Credit_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved,Declined,Incomplete,Re-Review,Approved - Rereview,Declined - Rereview</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>XOM Regional Sales Manager - South,XOM Regional Sales Manager - North,Marathon Regional Sales Mgr,Circle K RSM,7-11 RSM,Sunoco Client Development Mgr,CP Regional Sales Manager</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Chevron RSM - East,RaceTrac RSM,Esso Sales,Citgo Sales Rep,Sheetz Regional Sales Manager,Gulf Regional Sales Manager,Speedway RSM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Shell FBAM Sales Rep,Chevron RSM - West,Shell RSM Sales Rep East,Shell RSM Sales Rep West</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>This workflow rule will send the sales rep an e-mail that the sales stage has been changed by credit and it needs attention</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Credit Bureau Score</fullName>
+        <actions>
+            <name>Update_Credit_Bureau_Score</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Updated 3/2/20 to add ISBLANK statement for credit_bureau_score__c</description>
+        <formula>AND(
+ISCHANGED(Credit_Bureau_Source__c),
+ISBLANK(Credit_Bureau_Score__c),
+OR(     
+ISPICKVAL(Credit_Bureau_Source__c, &quot;DNB Custom&quot;),     ISPICKVAL(Credit_Bureau_Source__c, &quot;Experian Consumer&quot;)   
+) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Solicited Activity to WEX Bank</fullName>
+        <actions>
+            <name>Solicited_Application</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>(1 AND 2 AND 3 AND 5 AND 6 AND 7) OR (1 AND 3 AND 4 AND 5 AND 7) OR (1 AND 3 AND 8) AND 9</booleanFilter>
+        <criteriaItems>
+            <field>Application_Request__c.Siebel_Oppty__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Campaign_Type__c</field>
+            <operation>equals</operation>
+            <value>Call Program,Demo Mailer,Direct Mail,Direct Mail Partner Managed,E-mail blast</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Source_System_Text__c</field>
+            <operation>equals</operation>
+            <value>BOCA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Person__c</field>
+            <operation>notEqual</operation>
+            <value>Salesforce Integration</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Campaign_Program__c</field>
+            <operation>equals</operation>
+            <value>WEX Small Business</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Person__c</field>
+            <operation>equals</operation>
+            <value>Salesforce Integration</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Sales_Stage__c</field>
+            <operation>notEqual</operation>
+            <value>,10 - Re-review Approved,13 - Incomplete,07 - Declined,06 - Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Application_Request__c.Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>GP6,PF5,QFQ</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <description>This workflow creates an activity when an app is received by siebel to tell WEX Bank if it was solicited</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>clear In Progress user on Status update</fullName>
+        <actions>
+            <name>Clear_In_Progress_flag</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Clear_In_Progress_user</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND($User.Id !=&apos;00570000001tweu&apos;,ISCHANGED(Status__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>set In Progress user</fullName>
+        <actions>
+            <name>set_In_Progress_user</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Application_Request__c.In_Progress__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Username</field>
+            <operation>notEqual</operation>
+            <value>jillian.tilley@gearscrm.com</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>AR_Updated</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please check the application as the status has changed</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Updated</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Approved_Please_Create_Case</fullName>
+        <assignedTo>larry.tracey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please create a case.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Approved - Please Create Case</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Approved_Please_Create_Case2</fullName>
+        <assignedTo>richard.bailey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please create a case.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Approved - Please Create Case</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Approved_Please_Create_Case3</fullName>
+        <assignedTo>Sunoco_Customer_Success_Manager</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>Please create a case.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Approved - Please Create Case</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Approved</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been approved.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Approved</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Approved_Conditions</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been approved with conditions.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Approved-Conditions</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Approved_Rereview_Conditional</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been approved for rereview conditionally.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Approved Rereview Conditional</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Declined</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been declined.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Declined</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Declined_Pending_Conditions</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been declined pending conditions.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Declined Pending Conditions</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Declined_Rereview_Pending_Conditions</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been declined rereview-pending conditions.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Declined Rereview-Pending Conditions</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Incomplete</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request is incomplete.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Incomplete</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Pending</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>his Opportunity&apos;s Application Request is Pending.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Pending</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_is_Rereviewed_Declined</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request is rereviewed declined.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request is Rereviewed Declined</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Request_status_is_in_Manager_Review</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request has been moved to Manager Review.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Request status is in Manager Review</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Updated</fullName>
+        <assignedTo>richard.bailey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please check the application as the status has changed</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Updated</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Updated2</fullName>
+        <assignedTo>Sunoco_Customer_Success_Manager</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>Please check the application as the status has changed</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Updated</subject>
+    </tasks>
+    <tasks>
+        <fullName>Application_Updated_Larry</fullName>
+        <assignedTo>larry.tracey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please check the application as the status has changed</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Application Updated - Larry</subject>
+    </tasks>
+    <tasks>
+        <fullName>Approval_Email_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Approval Email Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>Call_TIme_to_Cross_Sell_Sean</fullName>
+        <assignedTo>Sunoco_Customer_Success_Manager</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>Schedule a call to Cross Sell 60 days after application is approved.</description>
+        <dueDateOffset>60</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Call: TIme to Cross Sell</subject>
+    </tasks>
+    <tasks>
+        <fullName>Call_TIme_to_Cross_Sell_Will</fullName>
+        <assignedTo>richard.bailey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Schedule a call to Cross Sell 60 days after application is approved.</description>
+        <dueDateOffset>60</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Call: TIme to Cross Sell</subject>
+    </tasks>
+    <tasks>
+        <fullName>Call_Time_to_Cross_Sell_Larry</fullName>
+        <assignedTo>larry.tracey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Schedule a cross sell call for 60 days after application is approved</description>
+        <dueDateOffset>60</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Call: Time to Cross Sell</subject>
+    </tasks>
+    <tasks>
+        <fullName>Card_Production_Complete</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Card Production has been completed for the related Application Request.  Please follow up with the Billing Contact and/or Decision Maker to confirm.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Card Production Complete</subject>
+    </tasks>
+    <tasks>
+        <fullName>Card_Production_Complete_Notifcation_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Card Production Complete Notifcation Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>Checkin_Call</fullName>
+        <assignedTo>larry.tracey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>30 Day check-in call</description>
+        <dueDateOffset>30</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Checkin Call</subject>
+    </tasks>
+    <tasks>
+        <fullName>Checkin_Call2</fullName>
+        <assignedTo>richard.bailey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>30 Day check-in call</description>
+        <dueDateOffset>30</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Checkin Call</subject>
+    </tasks>
+    <tasks>
+        <fullName>Checkin_Call3</fullName>
+        <assignedTo>Sunoco_Customer_Success_Manager</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>30 Day check-in call</description>
+        <dueDateOffset>30</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Checkin Call</subject>
+    </tasks>
+    <tasks>
+        <fullName>Checkin_Call4</fullName>
+        <assignedTo>zachariah.saker@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>30 Day check-in call</description>
+        <dueDateOffset>30</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.App_Approved_Date__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Checkin Call</subject>
+    </tasks>
+    <tasks>
+        <fullName>Fleet_Data_Form_Sent</fullName>
+        <assignedTo>salesforce@wrightexpress.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Fleet Data Form Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>Info_Requested</fullName>
+        <assignedTo>richard.bailey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Info Requested</description>
+        <dueDateOffset>10</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Info Requested</subject>
+    </tasks>
+    <tasks>
+        <fullName>Info_Requested2</fullName>
+        <assignedTo>Sunoco_Customer_Success_Manager</assignedTo>
+        <assignedToType>role</assignedToType>
+        <description>Info Requested</description>
+        <dueDateOffset>10</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Info Requested</subject>
+    </tasks>
+    <tasks>
+        <fullName>Info_Requested3</fullName>
+        <assignedTo>larry.tracey@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Info Requested</description>
+        <dueDateOffset>10</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Info Requested</subject>
+    </tasks>
+    <tasks>
+        <fullName>Non_Solicited_Application</fullName>
+        <assignedTo>none@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Non Solicited Application</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>In Progress</status>
+        <subject>Non Solicited Application</subject>
+    </tasks>
+    <tasks>
+        <fullName>Set_UP_Account</fullName>
+        <assignedTo>account@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>360 Account- use 360 Template</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Opportunity.CreatedDate</offsetFromField>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>In Progress</status>
+        <subject>Set UP Account</subject>
+    </tasks>
+    <tasks>
+        <fullName>Solicited_Application</fullName>
+        <assignedTo>none@wexinc.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Solicited Application</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>4-Medium</priority>
+        <protected>false</protected>
+        <status>In Progress</status>
+        <subject>Solicited Application</subject>
+    </tasks>
+    <tasks>
+        <fullName>Thank_you_Email_Sent</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Thank you Email Sent</subject>
+    </tasks>
+    <tasks>
+        <fullName>This_Opportunity_s_Application_Request_is_Pending</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Opportunity&apos;s Application Request is rereviewed approved.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Application_Request__c.Today_Hidden_for_Workflow__c</offsetFromField>
+        <priority>2-High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>This Opportunity&apos;s Application Request is Rereviewed Approved.</subject>
+    </tasks>
+</Workflow>

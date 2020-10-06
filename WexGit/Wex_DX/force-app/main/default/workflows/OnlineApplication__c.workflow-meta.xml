@@ -1,0 +1,4612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Cards_Shipped_Email_Alert</fullName>
+        <description>Cards Shipped Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/CardsShipped</template>
+    </alerts>
+    <alerts>
+        <fullName>Decisioned_Email_Alert</fullName>
+        <description>Decisioned Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/X5a_CrDecision</template>
+    </alerts>
+    <alerts>
+        <fullName>Edgecard_Credit_Declined_Email_Alert</fullName>
+        <description>Edgecard Credit Declined Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Fleet_Sales_EDGE/EDGE_Credit_Denied</template>
+    </alerts>
+    <alerts>
+        <fullName>Edgecard_Credit_Declined_PREPAY_Email_Alert</fullName>
+        <description>Edgecard Credit Declined PREPAY Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Fleet_Sales_EDGE/EDGE_Credit_Declined_Prepay1</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_notification</fullName>
+        <description>Email notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>SFDC_Admin_InternalUseOnly/eApp_Assignment_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_Online_App_Owner</fullName>
+        <ccEmails>michael.farrell@wexinc.com</ccEmails>
+        <description>Notify Online App Owner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>All_Emails/Online_App_Assignment</template>
+    </alerts>
+    <alerts>
+        <fullName>Online_Application_Stage_Implementation</fullName>
+        <description>Online Application Stage - Implementation</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Partner_NASTC_Email_Templates/Changed_to_Implementation</template>
+    </alerts>
+    <alerts>
+        <fullName>RTS_Account_Setup_Email_Alert</fullName>
+        <description>RTS Account Setup Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/RTS7_AccSetup</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Edgecard_App_Incomplete_email_alert</fullName>
+        <description>Send Edgecard App Incomplete email alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Fleet_Sales_EDGE/EDGE_Incomplete_eApp</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Edgecard_Cards_Shipped_email_alert</fullName>
+        <description>Send Edgecard Cards Shipped email alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Fleet_Sales_EDGE/Cards_have_Shipped_EDGE1</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Edgecard_Credit_Approved_Email</fullName>
+        <description>Send Edgecard Credit Approved Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Fleet_Sales_EDGE/EDGE_Credit_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Edgecard_Welcome_Email</fullName>
+        <ccEmails>inside-implementations@wexinc.com</ccEmails>
+        <description>Send Edgecard Welcome Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Fleet_Sales_EDGE/EDGE_Welcome_Letter</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_to_XPO_Logistics_When_Online_Application_Has_Been_Submitted</fullName>
+        <description>Send Email to XPO Logistics When Online Application Has Been Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>partnerUser</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/Online_Application_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Incomplete_Alert</fullName>
+        <description>Send Incomplete Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/AppIncomplete</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_LLC_Edgecard_Welcome_Email</fullName>
+        <description>Send LLC Edgecard Welcome Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/EDGE_Carrier_Welcome_Letter</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Partner_Welcome_Email</fullName>
+        <ccEmails>inside-implementations@wexinc.com</ccEmails>
+        <description>Send Partner Welcome Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/F1_Carrier_Welcome_Letter</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_email_to_app_owner_for_esignature_status_change</fullName>
+        <description>Send email to app owner for esignature status change</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>SFDC_Admin_InternalUseOnly/App_Received_Notice</template>
+    </alerts>
+    <alerts>
+        <fullName>send_welcome_email_alert</fullName>
+        <description>send welcome email alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>External_Referred_By_Contact__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Partner_Group_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>noreply@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Online_Applications/AccSetup</template>
+    </alerts>
+    <rules>
+        <fullName>App Owner - ASSIST FINANCIAL SERVICES</fullName>
+        <actions>
+            <name>Assign_Assist_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Assist Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Advisory Financial Services</fullName>
+        <actions>
+            <name>Assign_Advisory_Financial_Services_to_Re</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Transwest Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Bibby Transportation</fullName>
+        <actions>
+            <name>Assign_Bibby_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Bibby Transportation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Capital Credit</fullName>
+        <actions>
+            <name>Assign_Capital_Credit_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Capital Credit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Capital Depot</fullName>
+        <actions>
+            <name>Assign_Capital_Depot_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Capital Depot</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - CenterFire</fullName>
+        <actions>
+            <name>Assign_to_Justin_Heim</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>CenterFire</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Justin Heim, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Commerce Commercial Credit</fullName>
+        <actions>
+            <name>Assign_Commerce_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Commerce Commercial Credit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Copperwood Capital</fullName>
+        <actions>
+            <name>Assign_Copperwood_Capital_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Copperwood Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - D%26S Factors</fullName>
+        <actions>
+            <name>Assign_D_S_Factors_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>D&amp;S Factors</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Esso and Mobil Universal Mastercard</fullName>
+        <actions>
+            <name>Assign_to_Barb_Holloway</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>ESSO/FIS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Expediter Services LLC</fullName>
+        <actions>
+            <name>Owner_Priscilla_Cannady</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Expediter Services LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Priscilla Cannady, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - FirstLine Funding</fullName>
+        <actions>
+            <name>Assign_FirstLine_Funding_to_Kathy_Scrogg</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>FirstLine Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Freight Funding</fullName>
+        <actions>
+            <name>Assign_Freight_Funding_to_Kathy_Scroggi</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Freight Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - G%2EH%2E Factor</fullName>
+        <actions>
+            <name>Assign_G_H_Factor_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>G.H. Factor LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Lone Star Factors</fullName>
+        <actions>
+            <name>Assign_Lone_Star_Factors_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Lone Star Factors</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Orange Commercial Credit</fullName>
+        <actions>
+            <name>Assign_Orange_Commercial_Credit_to_Marti</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Orange Commercial Credit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Marti Watson, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - PDM Financial</fullName>
+        <actions>
+            <name>Assign_PDM_Financial_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>PDM Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Patriot Fleet</fullName>
+        <actions>
+            <name>Assign_to_Michael_Lingman</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Patriot Fleet</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Michael Lingman, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Phoenix Capital</fullName>
+        <actions>
+            <name>Assign_Phoenix_Capital_to_Kathy_Scroggin</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Phoenix Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Road Ranger</fullName>
+        <actions>
+            <name>Assign_to_Jerry_Beets</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Road Ranger</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Jerry Beets, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - TCI Business</fullName>
+        <actions>
+            <name>Assign_TCI_Business_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TCI Business</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - TLC Companies</fullName>
+        <actions>
+            <name>Assign_to_Faye_Gotten</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TLC Companies</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Faye Gotten, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Thorntons</fullName>
+        <actions>
+            <name>Assign_to_Brent_Sweeney</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Thorntons</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Jamie Wohner, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Transnet</fullName>
+        <actions>
+            <name>Assign_to_Barb_Holloway</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Transnet</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Transwest Capital</fullName>
+        <actions>
+            <name>Assign_Transwest_Capital_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Transwest Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Treadstone Capital</fullName>
+        <actions>
+            <name>Assign_Treadstone_Cap_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Treadstone Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>App Owner - Truckers Advantage</fullName>
+        <actions>
+            <name>Truckers_Advantage_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Truckers Advantage</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Audit Complete Email Alert</fullName>
+        <actions>
+            <name>send_welcome_email_alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>email sent when online app status equals audit complete</description>
+        <formula>ISPICKVAL(Status__c,&quot;Audit Complete&quot;) &amp;&amp;
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKrAAM&quot; &amp;&amp;
+Offer__c &lt;&gt; &quot;a3L700000002GaB&quot; &amp;&amp;
+Offer__c &lt;&gt; &quot;a3L70000000koW8&quot; &amp;&amp;
+NOT(CONTAINS(Application_Title__c, &quot;rts&quot;))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Bring over Offer Group Email</fullName>
+        <actions>
+            <name>Partner_Group_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Bring over the email address from the associated Offer for the partner group</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Cards Shipped Email Alert</fullName>
+        <actions>
+            <name>Cards_Shipped_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>sent when online app status equals cards shipped</description>
+        <formula>AND(
+  OR(
+    ISPICKVAL(Status__c,&quot;Cards Shipped&quot;),
+    ISPICKVAL(Status__c,&quot;Cards Produced&quot;)
+    ),
+  Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot;,
+  Number_of_Cards_Needed__c &gt;= 1,
+  Offer__c &lt;&gt; &quot;a3L700000002GaB&quot;,
+  Offer__c &lt;&gt; &quot;a3L70000000koW8&quot;
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Corecard Edgecard Audit Complete Email Alert</fullName>
+        <actions>
+            <name>Send_Edgecard_Welcome_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Welcome email sent when online app offer = Edgecard and Status = Cards Produced</description>
+        <formula>Offer__c = &quot;a3L700000002GaB&quot;   
+&amp;&amp; ISPICKVAL(Status__c,&quot;Cards Produced&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Decisioned Email Alert</fullName>
+        <actions>
+            <name>Decisioned_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Pending Setup Data</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.OwnerId</field>
+            <operation>notEqual</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>email is sent to when app status = decisioned</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Default App Incomplete Email Alert</fullName>
+        <actions>
+            <name>Send_Incomplete_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>sent when online app status equals saved incomplete and offer does not equal edgecard</description>
+        <formula>ISPICKVAL(Status__c,&quot;Saved-Incomplete&quot;) &amp;&amp; 
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot; &amp;&amp; 
+Offer__c &lt;&gt; &quot;a3L700000002GaB&quot;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Edgecard App Incomplete Email Alert</fullName>
+        <actions>
+            <name>Send_Edgecard_App_Incomplete_email_alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>sent when online app status equals saved incomplete and offer equals edgecard</description>
+        <formula>ISPICKVAL(Status__c,&quot;Saved-Incomplete&quot;) &amp;&amp;
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot; &amp;&amp;
+Offer__c = &quot;a3L700000002GaB&quot;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Edgecard Cards Shipped Email Alert</fullName>
+        <actions>
+            <name>Send_Edgecard_Cards_Shipped_email_alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>sent when online app status equals cards shipped and offer equals edgecard</description>
+        <formula>ISPICKVAL(Status__c,&quot;Cards Shipped&quot;) &amp;&amp;
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot; &amp;&amp;
+Number_of_Cards_Needed__c &gt;= 1 &amp;&amp;
+Offer__c = &quot;a3L700000002GaB&quot;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Edgecard Credit Approved Email Alert</fullName>
+        <actions>
+            <name>Send_Edgecard_Credit_Approved_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>sent when online app status equals &quot;Approved-Requested&quot; OR &quot;Approved-Counter Offer&quot; OR &quot;Approved-Secured Requested&quot; and offer equals edgecard</description>
+        <formula>OR(ISPICKVAL(Credit_Decision__c ,&quot;Approved-Requested&quot;),
+ISPICKVAL(Credit_Decision__c ,&quot;Approved-Counter Offer&quot;), ISPICKVAL(Credit_Decision__c ,&quot;Approved-Secured Requested&quot;)) &amp;&amp;
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot; &amp;&amp;
+Offer__c = &quot;a3L700000002GaB&quot;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Edgecard Credit Declined Email Alert</fullName>
+        <actions>
+            <name>Edgecard_Credit_Declined_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>sent when online app status equals &quot;Declined&quot; and offer equals edgecard</description>
+        <formula>ISPICKVAL(Credit_Decision__c ,&quot;Declined&quot;)&amp;&amp; 
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot; &amp;&amp; 
+Offer__c = &quot;a3Le00000006kbP&quot; &amp;&amp; ISPICKVAL(Status__c, &apos;Decisioned&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Edgecard Declined-Prepay Email Alert</fullName>
+        <actions>
+            <name>Edgecard_Credit_Declined_PREPAY_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>sent when online app status equals &quot;Declined-Prepay/Secured Only&quot; and offer equals edgecard</description>
+        <formula>ISPICKVAL(Credit_Decision__c ,&apos;Declined-Prepay/Secured Only&apos;) &amp;&amp; 
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKr&quot; &amp;&amp; 
+Offer__c = &quot;a3Le00000006kbP&quot; &amp;&amp; ISPICKVAL(Status__c, &apos;Decisioned&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>JB Hunt Online App Assignment</fullName>
+        <actions>
+            <name>JB_Hunt_Online_App_Assignment</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name__c</field>
+            <operation>equals</operation>
+            <value>J.B. Hunt 360 Carrier Program</value>
+        </criteriaItems>
+        <description>Assign to JB Hunt Implementation Queue</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>LLC Edgecard Audit Complete Email Alert</fullName>
+        <actions>
+            <name>Send_LLC_Edgecard_Welcome_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Welcome email sent when online app offer = Edgecard and Status = Cards Produced</description>
+        <formula>Offer__c = &quot;a3L0g000000HJ7g&quot; &amp;&amp;
+ISPICKVAL(Status__c,&quot;Cards Produced&quot;) &amp;&amp;
+$User.Id = &apos;00570000005FfZv&apos;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Move To Cards Produced After LLC Integration Complete</fullName>
+        <actions>
+            <name>Update_To_Cards_Produced</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND($User.Id = &apos;00570000005FfZv&apos;, OR( PRIORVALUE( AR_ID_Number__c) == null, PRIORVALUE( Carrier_ID_Number__c) == null ),   Carrier_ID_Number__c != null, AR_ID_Number__c != null  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>NASTC Directories</fullName>
+        <actions>
+            <name>set_NASTC_Directory</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Number_of_Cards_Needed__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>NASTC Implementation eAppp</fullName>
+        <actions>
+            <name>Online_Application_Stage_Implementation</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Setup</value>
+        </criteriaItems>
+        <description>automatic email to be triggered once their Online Application status is changed to “Implementation”</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notification - XPO Logistics</fullName>
+        <actions>
+            <name>Send_Email_to_XPO_Logistics_When_Online_Application_Has_Been_Submitted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 4) AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <description>Notify XPO Logistics when new Online Application has been created.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify sales of esign status</fullName>
+        <actions>
+            <name>Send_email_to_app_owner_for_esignature_status_change</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.eSignature_Status__c</field>
+            <operation>equals</operation>
+            <value>Executed and Invalid Signer,Executed and Received</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.OwnerId</field>
+            <operation>notEqual</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>When eSignature Status is Executive and Received, or &quot;Executed and Invalid Signer&quot; send an email notice to the application owner.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Offer Name WF TXT - Offer</fullName>
+        <actions>
+            <name>Offer_Name_WF_TXT</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Change Offer Name WF TXT of Online App based on the Offer Name.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Online Application - Notify OTR IS Rep Of Round Robin Assignment</fullName>
+        <actions>
+            <name>Notify_Online_App_Owner</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(
+  CreatedBy.Alias = &quot;guest&quot;,
+  Owner:User.UserRole.Name = &quot;OTR IS Sales Inbound&quot;
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>RTS Audit Complete Email Alert</fullName>
+        <actions>
+            <name>RTS_Account_Setup_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>email sent when online app status equals audit complete for RTS Apps</description>
+        <formula>ISPICKVAL(Status__c,&quot;Audit Complete&quot;) &amp;&amp;
+Owner:User.ProfileId &lt;&gt; &quot;00e70000000xEKrAAM&quot; &amp;&amp;
+Offer__c &lt;&gt; &quot;a3L700000002GaB&quot; &amp;&amp;
+CONTAINS(Application_Title__c, &quot;rts&quot;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Owner to OTR IS APPs 1%262 Truck Queue</fullName>
+        <actions>
+            <name>Set_Owner_to_OTR_IS_APPs_1_2_Truck_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Set Owner to OTR IS APPs 1&amp;2 Truck Queue when TRUE.
+This is used for Round Robin distribution of Online Applications.</description>
+        <formula>AND(     NOT(ISBLANK(Number_of_Trucks__c)),    Number_of_Trucks__c &lt; 3,   NOT(ISPICKVAL(Status__c, &quot;App-Incomplete&quot;)),     OR(      CreatedById = &apos;00570000002S3Sl&apos;,      CreatedById = &apos;00570000003hCBt&apos;    ),     OR(      Owner:User.Id = &apos;00570000002S3Sl&apos;,       Owner:User.Id = &apos;00570000003hCBt&apos;   ),    OR(      Offer__r.Name = &apos;WEX Fleet One All Roads&apos;,      Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos;,      Offer__r.Name = &apos;Fleet One EDGE&apos;,      Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;,     Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;    )   )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Owner to OTR IS APPs Queue</fullName>
+        <actions>
+            <name>Set_Owner_to_OTR_IS_Apps_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Set Owner to OTR IS APPs Queue when TRUE.
+This is used for Round Robin distribution of Online Applications.</description>
+        <formula>AND(    
+ 
+  Number_of_Trucks__c &lt;= 50,    
+  Number_of_Trucks__c &gt;= 3,   
+  NOT(ISPICKVAL(Status__c, &quot;App-Incomplete&quot;)),     
+
+  OR(      
+    CreatedById = &apos;00570000002S3Sl&apos;,      
+    CreatedById = &apos;00570000003hCBt&apos;    
+  ),     
+
+  OR(      
+    Owner:User.Id = &apos;00570000002S3Sl&apos;,       
+    Owner:User.Id = &apos;00570000003hCBt&apos;   
+  ),    
+
+  OR(      
+    Offer__r.Name = &apos;WEX Fleet One All Roads&apos;,      
+    Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos;,      
+    Offer__r.Name = &apos;Fleet One EDGE&apos;,      
+    Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;,     
+    Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;    
+  )   
+
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set PlusCheks %23</fullName>
+        <actions>
+            <name>Set_PlusCheks</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>and(
+Number_of_Cards_Needed__c &gt; 0,
+or(
+includes(Other_Services__c, &quot;ATM &amp; PlusCheks&quot;),
+includes(Other_Services__c, &quot;PlusCheks Only&quot;)
+))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set PrePay Credit Limit</fullName>
+        <actions>
+            <name>set_Credit_Limit_Requested</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Billing_Cycle__c</field>
+            <operation>equals</operation>
+            <value>Prepay</value>
+        </criteriaItems>
+        <description>When Billing Frequency = PrePay, set Credit Limit to PrePay</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Credit Line Approved</fullName>
+        <actions>
+            <name>Populate_Credit_Approved_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISPICKVAL(Address_Verification_Source__c, &quot;BizID-Pass&quot;)&amp;&amp;  Offer__r.Name = &quot;Fuelbook Select&quot;</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Status Decisioned to Pending Setup</fullName>
+        <actions>
+            <name>set_Status_to_Pending_Setup</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>If all these fields are complete the status will change to Pending Setup.</description>
+        <formula>AND( 
+
+(OR(Text(Credit_Decision__c) = &apos;Approved-Requested&apos;, 
+Text(Credit_Decision__c) = &apos;Approved-Counter Accepted&apos;, 
+Text(Credit_Decision__c) = &apos;Approved-Secured Accepted&apos; 
+)), 
+
+Text(Status__c) = &apos;Decisioned&apos;, 
+not(ISBLANK(Offer__c )), 
+not(ISBLANK( Text(Product_Type__c))), 
+not(ISBLANK(Credit_Line_Approved__c)), 
+not(ISBLANK(Legal_Business_Name__c)), 
+not(ISBLANK(Business_Street_Address__c)), 
+not(ISBLANK(City__c)), 
+not(ISBLANK(Text(State__c))), 
+not(ISBLANK(Zip_Code__c)), 
+not(ISBLANK(Email__c)), 
+not(ISBLANK(Contact_Name__c)), 
+not(ISBLANK(Phone_Number__c)), 
+not(ISBLANK(Text(Billing_Cycle__c))), 
+not(ISBLANK(Text(Payment_Method__c))), 
+not(ISBLANK(Day_of_Payment__c)), 
+not(ISBLANK(Text(Invoice_Delivery_Method__c))), 
+not(ISBLANK(Invoice_Delivery_Method_Email__c)), 
+not(ISBLANK(Financial_Institution__c)), 
+not(ISBLANK(Branch_Phone_Number__c)), 
+not(ISBLANK(Branch_City__c)), 
+not(ISBLANK(Text(Branch_State__c))), 
+Driver_Setup_Count__c &gt;0, 
+not(ISBLANK(AO_Name__c)), 
+not(ISBLANK(AO_Address__c)), 
+not(ISBLANK(AO_City__c)), 
+not(ISBLANK(Text(AO_State__c))), 
+not(ISBLANK(AO_Zip_Code__c)), 
+or(Unit__c=FALSE, and(Unit__c=TRUE, Unit_Count__c &gt; 0)) 
+
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Status Decisioned to Pending Setup Data</fullName>
+        <actions>
+            <name>UpdateStatusPendingSetupData</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>set_Stage_to_Implementation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>If any of these fields is blank or not complete the status will change to Pending Setup Data.</description>
+        <formula>and( 
+
+AND( 
+Text(Status__c) = &apos;Decisioned&apos;, 
+(OR(Text(Credit_Decision__c) = &apos;Approved-Requested&apos;, 
+Text(Credit_Decision__c) = &apos;Approved-Counter Accepted&apos;, 
+Text(Credit_Decision__c) = &apos;Approved-Secured Accepted&apos; 
+)), 
+
+(or( 
+
+ISBLANK(Offer__c ), 
+ISBLANK( Text(Product_Type__c)), 
+ISBLANK(Credit_Line_Approved__c), 
+ISBLANK(Legal_Business_Name__c), 
+ISBLANK(Business_Street_Address__c), 
+ISBLANK(City__c), 
+ISBLANK(Text(State__c)), 
+ISBLANK(Zip_Code__c), 
+ISBLANK(Email__c), 
+ISBLANK(Contact_Name__c), 
+ISBLANK(Phone_Number__c), 
+ISBLANK(Text(Billing_Cycle__c)), 
+ISBLANK(Text(Payment_Method__c)), 
+ISBLANK(Day_of_Payment__c), 
+ISBLANK(Text(Invoice_Delivery_Method__c)), 
+ISBLANK(Invoice_Delivery_Method_Email__c), 
+ISBLANK(Financial_Institution__c), 
+ISBLANK(Branch_Phone_Number__c), 
+ISBLANK(Branch_City__c), 
+ISBLANK(Text(Branch_State__c)), 
+ISBLANK(AO_Name__c), 
+ISBLANK(AO_Address__c), 
+ISBLANK(AO_City__c), 
+ISBLANK(Text(AO_State__c)), 
+ISBLANK(AO_Zip_Code__c), 
+Driver_Setup_Count__c =0, 
+and(Unit__c=TRUE,Unit_Count__c = 0) 
+
+) 
+) 
+))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Status from Pending Setup Data to Pending Setup</fullName>
+        <actions>
+            <name>set_Status_to_Pending_Setup</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>If all these fields are complete the status will change to Pending Setup.</description>
+        <formula>AND( 
+
+(OR(Text(Credit_Decision__c) = &apos;Approved-Requested&apos;, 
+Text(Credit_Decision__c) = &apos;Approved-Counter Accepted&apos;, 
+Text(Credit_Decision__c) = &apos;Approved-Secured Accepted&apos; 
+)), 
+
+Text(Status__c) = &apos;Pending Setup Data&apos;, 
+Credit_Line_Approved__c&gt;0, 
+not(ISBLANK(Offer__c )), 
+not(ISBLANK( Text(Product_Type__c))), 
+not(ISBLANK(Legal_Business_Name__c)), 
+not(ISBLANK(Business_Street_Address__c)), 
+not(ISBLANK(City__c)), 
+not(ISBLANK(Text(State__c))), 
+not(ISBLANK(Zip_Code__c)), 
+not(ISBLANK(Email__c)), 
+not(ISBLANK(Contact_Name__c)), 
+not(ISBLANK(Phone_Number__c)), 
+not(ISBLANK(Text(Billing_Cycle__c))), 
+not(ISBLANK(Text(Payment_Method__c))), 
+not(ISBLANK(Day_of_Payment__c)), 
+not(ISBLANK(Text(Invoice_Delivery_Method__c))), 
+not(ISBLANK(Invoice_Delivery_Method_Email__c)), 
+not(ISBLANK(Financial_Institution__c)), 
+not(ISBLANK(Branch_Phone_Number__c)), 
+not(ISBLANK(Branch_City__c)), 
+not(ISBLANK(Text(Branch_State__c))), 
+Driver_Setup_Count__c &gt;0, 
+not(ISBLANK(AO_Name__c)), 
+not(ISBLANK(AO_Address__c)), 
+not(ISBLANK(AO_City__c)), 
+not(ISBLANK(Text(AO_State__c))), 
+not(ISBLANK(AO_Zip_Code__c)), 
+or(Unit__c=FALSE, and(Unit__c=TRUE, Unit_Count__c &gt; 0)) 
+
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>clear In Progress when Status changes</fullName>
+        <actions>
+            <name>clear_In_Progress_flag</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>clear_In_Progress_user</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Status__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - 123Loadboard</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>123Loadboard</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to WILLIE ANDRUSS, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - 3MD</fullName>
+        <actions>
+            <name>Assign_to_Milos_Pavlovich</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>3MD</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - AMBEST</fullName>
+        <actions>
+            <name>Assign_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>AMBEST</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Aable iFleet</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Aable iFleet</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Daniel Pesek, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Admiral Merchants</fullName>
+        <actions>
+            <name>Assign_to_Matt_Crumpton</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Admiral Merchants</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Matt Crumpton, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Advanced Commercial Credit</fullName>
+        <actions>
+            <name>Assign_Advanced_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Advanced Commercial Credit</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Aladdin Financial</fullName>
+        <actions>
+            <name>Assign_to_Kathy_Scroggins1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Aladdin Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Amanda Stack</fullName>
+        <actions>
+            <name>Assign_to_Amanda</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;TN&apos;) || 
+ISPICKVAL(State__c, &apos;KY&apos;) || 
+ISPICKVAL(State__c, &apos;MD&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Avery Brookes</fullName>
+        <actions>
+            <name>Assign_to_Bill_Avery</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Avery Brookes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Ben Cave</fullName>
+        <actions>
+            <name>Assign_to_Ben_Cave</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;OH&apos;) || 
+ISPICKVAL(State__c, &apos;CT&apos;) || 
+ISPICKVAL(State__c, &apos;AL&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Bobtail</fullName>
+        <actions>
+            <name>Assign_to_Gurvir_Singh</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Bobtail</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Gurvir Singh, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Bryant Taylor</fullName>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;NC&apos;) || 
+ISPICKVAL(State__c, &apos;SC&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - C%2EH%2E Robinson - PS</fullName>
+        <actions>
+            <name>Assign_to_Priscilla_Cannady</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>equals</operation>
+            <value>C.H. Robinson OTR - Parent Secondary</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - C%2EH%2E Robinson - Parent</fullName>
+        <actions>
+            <name>Assign_to_Gary_Koelling</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>equals</operation>
+            <value>C.H. Robinson OTR - Parent</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - CJM Financial</fullName>
+        <actions>
+            <name>Assign_to_CJM_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>CJM Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - CarsArrive</fullName>
+        <actions>
+            <name>set_Owner_to_CarsArrive</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>CarsArrive</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to CarsArrivet, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - CarsArrive 1</fullName>
+        <actions>
+            <name>CarsArrive</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>CarsArrive</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to CarsArrivet, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - CenterFire</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>CenterFire</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Justin Heim, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Century</fullName>
+        <actions>
+            <name>Assign_Century_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Century</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Christine Jennings</fullName>
+        <actions>
+            <name>Assign_to_Christine</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>Number_of_Trucks__c &lt;= 50 &amp;&amp; 
+(ISPICKVAL(State__c, &apos;IL&apos;) )
+&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Commercial Funding</fullName>
+        <actions>
+            <name>Assign_Commercial_Fundin_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Commercial Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Commercial Vehicle Training Association</fullName>
+        <actions>
+            <name>Assign_to_John_Cave_Commercial_Vehicle</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>equals</operation>
+            <value>Commercial Vehicle Training Association</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to John Cave, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - CoreFund Capital</fullName>
+        <actions>
+            <name>Assign_CoreFund_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>CoreFund Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - D%26S Fuel Card</fullName>
+        <actions>
+            <name>Owner_D_S_Fuel_Card_Candy_Hill</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>D and S Fuel Card</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to D&amp;S Fuel Card, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - D%26S Support</fullName>
+        <actions>
+            <name>Owner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>IT - D and S Factors</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to D&amp;S Support, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - DAT</fullName>
+        <actions>
+            <name>Assign_DAT_to_Marti_Watson</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>DAT</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Marti Watson based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Daseke Logistics</fullName>
+        <actions>
+            <name>Assign_to_Jacob_Catignani</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Daseke</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Erin Hetrick, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - David Pruitt</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>NFN - Local</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change the eApp Owner from Site Guest User to Davit Pruitt based on the Application Title</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - David Sedlacek</fullName>
+        <active>false</active>
+        <description>Assign eApp with 200+ units</description>
+        <formula>Number_of_Trucks__c  &gt;= 200 &amp;&amp;
+(ISPICKVAL(State__c, &apos;TX&apos;)|| 
+ISPICKVAL(State__c, &apos;OK&apos;)|| 
+ISPICKVAL(State__c, &apos;MO&apos;)|| 
+ISPICKVAL(State__c, &apos;AZ&apos;)|| 
+ISPICKVAL(State__c, &apos;OR&apos;)|| 
+ISPICKVAL(State__c, &apos;MT&apos;)|| 
+ISPICKVAL(State__c, &apos;NV&apos;)|| 
+ISPICKVAL(State__c, &apos;KS&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Denise Offutt</fullName>
+        <actions>
+            <name>eApp_Owner_Denise_Offutt</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Servco</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>PTP</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Denise Offutt, based on the Application Title (Servco or PTP)</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Discount Diesel Fuel Card</fullName>
+        <actions>
+            <name>Owner_Discount_Diesel_Fuel_Card</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Discount Diesel</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Discount Diesel Fuel Card, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - ECAPITAL</fullName>
+        <actions>
+            <name>Assign_to_Raul_Pena</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>ECAPITAL</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Raul Pena, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - EFS Testing</fullName>
+        <actions>
+            <name>Assign_to_Jessica_Fought_Test</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>EFS Testing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Jessica Fought Test, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Echo Global Logistics</fullName>
+        <actions>
+            <name>Assign_to_Trent_Raleigh</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Echo Global Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Engaged Financial</fullName>
+        <actions>
+            <name>Assign_Engage_to_Priscilla_Cannady</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Engaged Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - England Logistics</fullName>
+        <actions>
+            <name>Brady_Dransfield</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>England</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name__c</field>
+            <operation>notContain</operation>
+            <value>TL</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Brady Dransfield, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - England Logistics - TL1</fullName>
+        <actions>
+            <name>Owner_England_Logistics_TL</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>England</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name__c</field>
+            <operation>contains</operation>
+            <value>TL1</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Ryan Christiansen, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - England Logistics - TL2</fullName>
+        <actions>
+            <name>Owner_Dave_Swan</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>England</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name__c</field>
+            <operation>contains</operation>
+            <value>TL2</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Dave Swann, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - England Logistics - TL3</fullName>
+        <actions>
+            <name>Owner_Josh_Norris</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>England</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name__c</field>
+            <operation>contains</operation>
+            <value>TL3</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Josh Norris, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - England Logistics BOCA</fullName>
+        <actions>
+            <name>Assign_to_England_Sales_Team</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>England Logistics OTR</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to England Sales Team, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Engs Commercial Capital</fullName>
+        <actions>
+            <name>Assign_to_Leslye_Campos</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>ENGS Commercial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Leslye Campos, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Envio 360</fullName>
+        <actions>
+            <name>Assing_to_Larry_Cuddy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Envio 360</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Larry Cuddy, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Express Freight Finance</fullName>
+        <actions>
+            <name>Assign_Express_Freight_to_Kathy_Scroggin</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Express Freight Finance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Marti Watson, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Express Truck Tax</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Express Truck Tax</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Tim Haynes , based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Far West Capital</fullName>
+        <actions>
+            <name>Assign_to_Brenda_Pinon</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Far West Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Brenda Pinon, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Faye Gotten</fullName>
+        <actions>
+            <name>eApp_Owner_Faye_Gotten</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>TI Advisors,IT - Roady&apos;s</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Faye Gotten, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Financial Carrier Service</fullName>
+        <actions>
+            <name>Assign_Financial_Carrier_to_Marti_Watson</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Financial Carrier Service</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Marti Watson, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - FirstLine Funding</fullName>
+        <actions>
+            <name>Assign_to_Kimberly_Kringen</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>FirstLine Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Fleet Savings</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Fleet Savings</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Fleet Savings, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - FleetPro Services</fullName>
+        <actions>
+            <name>Set_owner_to_FleetPro_Services</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>FleetPro Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to FleetPro Services, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - FleetPro Services and InTouch GPS</fullName>
+        <actions>
+            <name>Update_eApp_Owner_Faye_Gotten</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>((1 OR 3)AND 2)</booleanFilter>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>FleetPro</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>InTouch</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Dean Shreve, based on the Application Title being FleetPro Services or InTouch GPS</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Foley Carrier Services</fullName>
+        <actions>
+            <name>Assign_to_Matt_Nulle</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Foley Carrier Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Matt Nulle, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Freight Factoring Special</fullName>
+        <actions>
+            <name>Assign_to_Steven_Newman</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Freight Factoring Special</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Steven Newman, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Fuelbook</fullName>
+        <actions>
+            <name>Owner_Joni_Crockarell</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Fuelbook</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Saved-Incomplete,App-Incomplete</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Joni Crockarell, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - G SQUARED</fullName>
+        <actions>
+            <name>Assign_to_GSquared_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>G SQUARED</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - G%2EH%2E Factor</fullName>
+        <actions>
+            <name>Assign_GH_Factor_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>G.H. Factor</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Great Plains</fullName>
+        <actions>
+            <name>Assing_Great_Plains_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Great Plains</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Hub Group</fullName>
+        <actions>
+            <name>Assign_to_Katie_Strain</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Hub Group</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Iesha Vann</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Fleet One Owner/Operator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change the eApp Owner from Site Guest User to Iesha Vann based on the Application Title</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Innovation Energy</fullName>
+        <actions>
+            <name>Assign_to_Michael_Kilbourne</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Innovation Energy</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Integra</fullName>
+        <actions>
+            <name>Assign_Integra_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Integra</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Integrated Logistics</fullName>
+        <actions>
+            <name>Assign_to_Amanda_Keller</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Integrated Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Amanda Keller, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Interstate Capital</fullName>
+        <actions>
+            <name>Assign_to_Sarah_Williams</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Interstate Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Sarah Williams, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - JD Factors</fullName>
+        <actions>
+            <name>Assign_JD_Factors_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>J D Factors</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Jerue</fullName>
+        <actions>
+            <name>Assign_to_John_Cave_Jerue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>John J. Jerue</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to John Cave, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Jessie Singh</fullName>
+        <actions>
+            <name>Owner_Jessie_Singh</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Trans-Alliance</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online Appp from Guest User to Jessie Singh, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Jiffy Lube</fullName>
+        <actions>
+            <name>Assign_Jiffy_Lube_to_Sarah_Ward</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Jiffy Lube</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Jeremy Dunn, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - John Cave</fullName>
+        <actions>
+            <name>Assign_to_John_Cave</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>assign 51-199 units to &apos;all east &apos;</description>
+        <formula>(Number_of_Trucks__c &gt;= 51 &amp;&amp; Number_of_Trucks__c &lt;= 199) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;TN&apos;) ||
+ISPICKVAL(State__c, &apos;GA&apos;) ||
+ISPICKVAL(State__c, &apos;FL&apos;)||
+ISPICKVAL(State__c, &apos;IN&apos;)||
+ISPICKVAL(State__c, &apos;MI&apos;)||
+ISPICKVAL(State__c, &apos;NY&apos;)||
+ISPICKVAL(State__c, &apos;MA&apos;)||
+ISPICKVAL(State__c, &apos;ME&apos;)||
+ISPICKVAL(State__c, &apos;KY&apos;)||
+ISPICKVAL(State__c, &apos;IL&apos;) ||
+ISPICKVAL(State__c, &apos;OH&apos;)||
+ISPICKVAL(State__c, &apos;WI&apos;)||
+ISPICKVAL(State__c, &apos;PA&apos;)||
+ISPICKVAL(State__c, &apos;NJ&apos;)||
+ISPICKVAL(State__c, &apos;CT&apos;)||
+ISPICKVAL(State__c, &apos;VT&apos;)||
+ISPICKVAL(State__c, &apos;AL&apos;)||
+ISPICKVAL(State__c, &apos;SC&apos;)||
+ISPICKVAL(State__c, &apos;NC&apos;)||
+ISPICKVAL(State__c, &apos;VA&apos;)||
+ISPICKVAL(State__c, &apos;WV&apos;)||
+ISPICKVAL(State__c, &apos;MD&apos;)||
+ISPICKVAL(State__c, &apos;DC&apos;)||
+ISPICKVAL(State__c, &apos;DE&apos;)||
+ISPICKVAL(State__c, &apos;RI&apos;)||
+ISPICKVAL(State__c, &apos;NH&apos;)||
+ISPICKVAL(State__c, &apos;MN&apos;)||
+ISPICKVAL(State__c, &apos;IA&apos;)||
+ISPICKVAL(State__c, &apos;SD&apos;) ||
+ISPICKVAL(State__c, &apos;ND&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - John White</fullName>
+        <actions>
+            <name>Assign_to_John</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Assign eApp with 200+ units</description>
+        <formula>Number_of_Trucks__c  &gt;= 200 &amp;&amp;
+(ISPICKVAL(State__c, &apos;CA&apos;) || 
+ISPICKVAL(State__c, &apos;CO&apos;) || 
+ISPICKVAL(State__c, &apos;AR&apos;)|| 
+ISPICKVAL(State__c, &apos;LA&apos;)|| 
+ISPICKVAL(State__c, &apos;MS&apos;)|| 
+ISPICKVAL(State__c, &apos;UT&apos;)|| 
+ISPICKVAL(State__c, &apos;WA&apos;)|| 
+ISPICKVAL(State__c, &apos;ID&apos;)|| 
+ISPICKVAL(State__c, &apos;WY&apos;)|| 
+ISPICKVAL(State__c, &apos;TN&apos;) )
+&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over The Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Joni Crockarell</fullName>
+        <actions>
+            <name>Assign_to_Joni</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>Number_of_Trucks__c &lt;= 50 &amp;&amp; 
+(ISPICKVAL(State__c,&apos;IA&apos;)|| 
+ISPICKVAL(State__c,&apos;AZ&apos;)||
+ISPICKVAL(State__c,&apos;OK&apos;)||
+ISPICKVAL(State__c,&apos;AR&apos;)) &amp;&amp;
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road&apos;|| 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Justin Crabb</fullName>
+        <actions>
+            <name>Assign_to_Justin_Crabb</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Assign Canadian apps to Justin</description>
+        <formula>(ISPICKVAL(State__c,&apos;AB&apos;)|| 
+ISPICKVAL(State__c,&apos;BC&apos;)|| 
+ISPICKVAL(State__c,&apos;MB&apos;)|| 
+ISPICKVAL(State__c,&apos;NB&apos;)|| 
+ISPICKVAL(State__c,&apos;NL&apos;)|| 
+ISPICKVAL(State__c,&apos;NT&apos;)||
+ISPICKVAL(State__c,&apos;NS&apos;)||
+ISPICKVAL(State__c,&apos;NU&apos;)||
+ISPICKVAL(State__c,&apos;ON&apos;)||
+ISPICKVAL(State__c,&apos;PE&apos;)||
+ISPICKVAL(State__c,&apos;QC&apos;)||
+ISPICKVAL(State__c,&apos;SK&apos;)||
+ISPICKVAL(State__c,&apos;YT&apos;)) &amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos;|| 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; || 
+Offer__r.Name = &apos;RR - Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;C-Sunoco OTR DM 042016&apos;|| 
+Offer__r.Name = &apos;Fuelbook Social 2016&apos;|| 
+Offer__r.Name = &apos;BP Lab Services - OTR - Business Services Agreement&apos;|| 
+Offer__r.Name = &apos;uShip OTR&apos;|| 
+Offer__r.Name = &apos;PrePass - Package B&apos;|| 
+Offer__r.Name = &apos;GE Capital OTR&apos;|| 
+Offer__r.Name = &apos;UTA OTR BAA&apos; || 
+Offer__r.Name = &apos;Idealease OTR&apos;|| 
+Offer__r.Name = &apos;Truckers Advantage&apos;|| 
+Offer__r.Name = &apos;AMSA Fleet Discount - Local&apos;|| 
+Offer__r.Name = &apos;Fuelbook Card&apos;|| 
+Offer__r.Name = &apos;AMSA - Fleet Discount Card&apos;|| 
+Offer__r.Name = &apos;Sunoco OTR for Website&apos;|| 
+Offer__r.Name = &apos;PrePass - Package A&apos;|| 
+Offer__r.Name = &apos;C-Sunoco OTR 2016 EM #1&apos; || 
+Offer__r.Name = &apos;C-Sunoco OTR 2016 EM #2&apos;|| 
+Offer__r.Name = &apos;Fuelbook Select&apos;|| 
+Offer__r.Name = &apos;Fuelbook B&apos;|| 
+Offer__r.Name = &apos;Exxon Mobil NAD (OTR)&apos;|| 
+Offer__r.Name = &apos;Pilot OTR Business Card Agreement&apos;|| 
+Offer__r.Name = &apos;CTA - OTR&apos;|| 
+Offer__r.Name = &apos;NAVL Fleet Card - Over the Road&apos;|| 
+Offer__r.Name = &apos;Fleet One Over the Road Rigdig&apos;|| 
+Offer__r.Name = &apos;FTI Benefits - Local - Business Services Agreement&apos;|| 
+Offer__r.Name = &apos;Discount Diesel&apos;|| 
+Offer__r.Name = &apos;Knight Logistics&apos;|| 
+Offer__r.Name = &apos;Sinclair OTR&apos;||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Justin Lee</fullName>
+        <actions>
+            <name>Assign_to_Justin</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>assign 51-199 units to &apos;all West &apos;</description>
+        <formula>(Number_of_Trucks__c &gt;= 51 &amp;&amp; Number_of_Trucks__c &lt;= 199) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;UT&apos;)||
+ISPICKVAL(State__c, &apos;OK&apos;)||
+ISPICKVAL(State__c, &apos;AZ&apos;)||
+ISPICKVAL(State__c, &apos;KS&apos;)||
+ISPICKVAL(State__c, &apos;ID&apos;)||
+ISPICKVAL(State__c, &apos;WY&apos;)||
+ISPICKVAL(State__c, &apos;TX&apos;)||
+ISPICKVAL(State__c, &apos;TN&apos;)||
+ISPICKVAL(State__c, &apos;MO&apos;)||
+ISPICKVAL(State__c, &apos;LA&apos;)||
+ISPICKVAL(State__c, &apos;AR&apos;)||
+ISPICKVAL(State__c, &apos;CO&apos;)||
+ISPICKVAL(State__c, &apos;WA&apos;)||
+ISPICKVAL(State__c, &apos;OR&apos;)||
+ISPICKVAL(State__c, &apos;MS&apos;)||
+ISPICKVAL(State__c, &apos;MT&apos;)||
+ISPICKVAL(State__c, &apos;NM&apos;)||
+ISPICKVAL(State__c, &apos;NV&apos;)||
+ISPICKVAL(State__c, &apos;CA&apos;)||
+ISPICKVAL(State__c, &apos;AK&apos;))&amp;&amp; 
+(CreatedById = &apos;00570000002S3Sl&apos;) &amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Katie Haywood</fullName>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>Number_of_Trucks__c &lt;= 50 &amp;&amp; 
+(ISPICKVAL(State__c,&apos;FL&apos;)) &amp;&amp;
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Katie Schwerdtfeger</fullName>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;PA&apos;) || 
+ISPICKVAL(State__c, &apos;NY&apos;) || 
+ISPICKVAL(State__c, &apos;DE&apos;) || 
+ISPICKVAL(State__c, &apos;DC&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Knight Logistics</fullName>
+        <actions>
+            <name>Set_Owner_to_Knight_Logistics</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Knight Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Faye Gotten, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Knight Logistics - Offer Name</fullName>
+        <actions>
+            <name>Change_owner_of_Online_App_from_Guest_Us</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Knight Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Faye Gotten, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Kris Chadwick</fullName>
+        <actions>
+            <name>Assign_to_Kris</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;WA&apos;) || 
+ISPICKVAL(State__c, &apos;CO&apos;) || 
+ISPICKVAL(State__c, &apos;OR&apos;)|| 
+ISPICKVAL(State__c, &apos;HI&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Liquid Capital</fullName>
+        <actions>
+            <name>Assign_to_Ernane_Iung</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Liquid Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Ernane Iung, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - MHC Financial</fullName>
+        <actions>
+            <name>Assign_to_Priscilla_Cannady</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>MHC Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Priscilla Cannady, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Michael Monroe</fullName>
+        <actions>
+            <name>Assign_To_Michael</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;NJ&apos;) || 
+ISPICKVAL(State__c, &apos;ME&apos;) || 
+ISPICKVAL(State__c, &apos;NH&apos;)|| 
+ISPICKVAL(State__c, &apos;RI&apos;)|| 
+ISPICKVAL(State__c, &apos;VT&apos;)|| 
+ISPICKVAL(State__c, &apos;VA&apos;) )
+&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Milos Pavlovic</fullName>
+        <actions>
+            <name>Owner_Milos_Pavlovic</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>3MD Solutions</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online Appp from Guest User to Milos, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - NASTC</fullName>
+        <actions>
+            <name>nastc_owner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to John Randle, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - NASTC %28BOCA%29</fullName>
+        <actions>
+            <name>Assign_to_John_Randles</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to John Randle, based on the OfferName WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Noel Glasgow</fullName>
+        <actions>
+            <name>Assign_to_Noel</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Assign eApp with 200+ units</description>
+        <formula>AND((Number_of_Trucks__c  &gt;= 200) &amp;&amp;
+(ISPICKVAL(State__c, &apos;GA&apos;) || 
+ISPICKVAL(State__c, &apos;FL&apos;) || 
+ISPICKVAL(State__c, &apos;OH&apos;)|| 
+ISPICKVAL(State__c, &apos;ME&apos;)|| 
+ISPICKVAL(State__c, &apos;NH&apos;)|| 
+ISPICKVAL(State__c, &apos;VT&apos;)|| 
+ISPICKVAL(State__c, &apos;MA&apos;)|| 
+ISPICKVAL(State__c, &apos;RI&apos;)|| 
+ISPICKVAL(State__c, &apos;DE&apos;)|| 
+ISPICKVAL(State__c, &apos;MD&apos;) ||
+ISPICKVAL(State__c, &apos;DC&apos;) ||
+ISPICKVAL(State__c, &apos;MI&apos;) ||
+ISPICKVAL(State__c, &apos;NJ&apos;) ||
+ISPICKVAL(State__c, &apos;TN&apos;) ||
+ISPICKVAL(State__c, &apos;AL&apos;) ||
+ISPICKVAL(State__c, &apos;MN&apos;) ||
+ISPICKVAL(State__c, &apos;SC&apos;) ||
+ISPICKVAL(State__c, &apos;NC&apos;) ||
+ISPICKVAL(State__c, &apos;ND&apos;)) &amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - OTR Capital</fullName>
+        <actions>
+            <name>Assign_OTR_Capital_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>OTR Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Priscilla Cannady, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - PTP Stop NATSN</fullName>
+        <actions>
+            <name>Assign_to_James_Ladner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>NATSN</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to James Latner, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Partners Funding</fullName>
+        <actions>
+            <name>Assign_Partners_Funding_to_Kathy_Scroggi</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Partners Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Partners Little Mountain Logistics LLC</fullName>
+        <actions>
+            <name>Assign_Partners_Little_Mountain_Logistic</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Little Mountain Logistics LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Partners Quarles Petroleum Inc</fullName>
+        <actions>
+            <name>Assign_Partners_Quarles_Petroleum_Inc</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Quarles Petroleum Inc</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Brandy Wheeler, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Partners TTNFleetSolutions</fullName>
+        <actions>
+            <name>Assign_Partn_TTNFleetSolutions_to_Serena</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Towing Network LLC dba TTN Fleet Solutions</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Serena Stansbury, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Partners TrakkxPay LLC</fullName>
+        <actions>
+            <name>Assign_Partners_TrakkxPay_LLC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TrakkxPay LLC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Partners Truckers Nationwide</fullName>
+        <actions>
+            <name>Assign_Partners_Truckers_Nationw_to_Robb</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Truckers Nationwide</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Patriot Fleet Solutions</fullName>
+        <actions>
+            <name>Set_Michael_Lingman_as_owner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Patriot Fleet</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Michael Lingman , based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Pavestone Capital</fullName>
+        <actions>
+            <name>Assign_Pavestone_Capital_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>IT - Pavestone Capital - OTR</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Pavestone Capital, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Pay4Freight</fullName>
+        <actions>
+            <name>Assign_Pay4Freight_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Pay 4 Freight</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Petro Solutions</fullName>
+        <actions>
+            <name>Assign_to_Chuck_Miller</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Petro Solutions</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Chuck Miller, based on the Offer Name WF TXT.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Prepass</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>PrePass</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Prepass Owner , based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Quality Companies</fullName>
+        <actions>
+            <name>eApp_Owner_Kyle_Cox_Quality_Companies</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Quality Companies</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kyle Cox, based on the Application Title. (Quality Companies)</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Quick Pay Funding</fullName>
+        <actions>
+            <name>Assign_Quick_Pay_to_Marti_Watson</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Quick Pay Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Marti Watson, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - RTS</fullName>
+        <actions>
+            <name>Update_Owner_RTS</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>RTS Carrier Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to RTS Partner Queue, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - RTS Queue</fullName>
+        <actions>
+            <name>Owner_RTS</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Change owner of Online App from Guest User to RTS Queue based on the Application Title.</description>
+        <formula>AND (BEGINS(Application_Title__c, &apos;RTS&apos;) &amp;&amp; (CreatedBy.UserRole.Name = &apos;RTS Carrier Services Partner User&apos; ||CreatedBy.UserRole.Name = &apos;RTS Carrier Services Partner Executive&apos;||CreatedBy.UserRole.Name = &apos;RTS Carrier Services Partner Manager&apos;))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - RTS Queue OLD</fullName>
+        <actions>
+            <name>Updated_Owner_RTS</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to RTS Queue based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Reginald Craig</fullName>
+        <actions>
+            <name>Assign_to_Reginald</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;TX&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Richard Nevin</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>WEX Fleet One All Roads</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.AO_State__c</field>
+            <operation>equals</operation>
+            <value>AR,OK,WA</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Richard Nevin, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Roady%27s Card</fullName>
+        <actions>
+            <name>Owner_Roady_s_Card</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>IT - Roady&apos;s - OTR</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Roady&apos;s Card, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Ryan Knowles</fullName>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>Number_of_Trucks__c &lt;= 50 &amp;&amp; 
+(ISPICKVAL(State__c,&apos;CA&apos;))&amp;&amp;
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos;|| 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - STC</fullName>
+        <actions>
+            <name>Owner_STC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>STC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to STC, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - SUMMAR</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>SUMMAR</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Jessi Saker, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Sandi Baylis</fullName>
+        <actions>
+            <name>Assign_to_Sandi_Baylis</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;IN&apos;) || 
+ISPICKVAL(State__c, &apos;MI&apos;) || 
+ISPICKVAL(State__c, &apos;WV&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Shelly Gordon</fullName>
+        <actions>
+            <name>Owner_Shelly_Gordon</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Pilot,360 OTR,NFN,OTR,Pavestone,Trucking Startup,Westar</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Shelly Gordon, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Sherri Bateman</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>CarsArrive</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Tina Kimble, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Single Point Fuel Card</fullName>
+        <actions>
+            <name>Owner_Single_Point_Fuel_Card</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Single</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Single Point Fuel Card, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Sprint Wireless</fullName>
+        <actions>
+            <name>Assign_Partners_Funding_to</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Sprint Wireless</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Sarah Ward, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - St Johns</fullName>
+        <actions>
+            <name>Assign_ST_Johns_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>St Johns</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Steelhead</fullName>
+        <actions>
+            <name>Assign_Steelhead_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Steelhead</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Sunbelt</fullName>
+        <actions>
+            <name>Assign_Sunbelt_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Sunbelt</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - TAFS</fullName>
+        <actions>
+            <name>Assign_to_Rob_McCutcheon</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TAFS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Rob McCutcheon, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - TBS Factoring</fullName>
+        <actions>
+            <name>Assign_TBS_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TBS Factoring</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - TRANSPORT FINANCIAL SOLUTIONS</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TRANSPORT FINANCIAL SOLUTIONS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Sheri Breedlove, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - TRIUMPH BUSINESS CAPITAL</fullName>
+        <actions>
+            <name>Assign_to_Jason_Mullican</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Triumph Business Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Jason Mullican, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Thunder Carrier Services</fullName>
+        <actions>
+            <name>Assign_to_Willie_Andruss</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Thunder Carrier Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Willie Andruss, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Tina Kimble</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>SA Fleet,Thorntons,Hucks,Nice,Rally</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Tina Kimble, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Tony Lehenbauer</fullName>
+        <actions>
+            <name>Assign_to_Tony</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Assign eApp with 200+ units</description>
+        <formula>Number_of_Trucks__c  &gt;= 200 &amp;&amp;
+(ISPICKVAL(State__c, &apos;IA&apos;) || 
+ISPICKVAL(State__c, &apos;IN&apos;) || 
+ISPICKVAL(State__c, &apos;IL&apos;)|| 
+ISPICKVAL(State__c, &apos;KY&apos;)|| 
+ISPICKVAL(State__c, &apos;NE&apos;)|| 
+ISPICKVAL(State__c, &apos;NY&apos;)|| 
+ISPICKVAL(State__c, &apos;PA&apos;)|| 
+ISPICKVAL(State__c, &apos;SD&apos;)|| 
+ISPICKVAL(State__c, &apos;VA&apos;)|| 
+ISPICKVAL(State__c, &apos;WI&apos;) ||
+ISPICKVAL(State__c, &apos;WV&apos;))&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Trucker Path</fullName>
+        <actions>
+            <name>Assign_to_Katie_Haywood</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Trucker Path</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Katie Haywood, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Truckers B2B</fullName>
+        <actions>
+            <name>Owner_Truckers_B2B</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Truckers B2B</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to eApp Queue, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Truckers Solutions</fullName>
+        <actions>
+            <name>Owner_Changed_to_Chase_Payton</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Truckers Solutions</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Dennis Woods, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Trulos</fullName>
+        <actions>
+            <name>Owner_Eapp_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Trulos</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to eApp Queue, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Tyler Thompson</fullName>
+        <actions>
+            <name>Assign_to_Tyler</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign eApp with 0-50 units</description>
+        <formula>(Number_of_Trucks__c &lt;= 50) &amp;&amp; 
+(ISPICKVAL(State__c, &apos;GA&apos;) || 
+ISPICKVAL(State__c, &apos;MA&apos;) )
+&amp;&amp; 
+OR(
+CreatedById = &apos;00570000002S3Sl&apos;,
+CreatedById = &apos;00570000003hCBt&apos;
+)
+&amp;&amp; 
+(Offer__r.Name = &apos;WEX Fleet One All Roads&apos; ||
+Offer__r.Name = &apos;Fleet One LLC Edge BOCA&apos; || 
+Offer__r.Name = &apos;Fleet One Over the Road&apos; || 
+Offer__r.Name = &apos;Fleet One Owner/Operator OO-2015&apos; || 
+Offer__r.Name = &apos;Fleet One EDGE&apos; ||
+Offer__r.Name = &apos;RR - Over the Road&apos; ||
+Offer__r.Name = &apos;Fleet One Over the Road O/O Microsite 2016&apos; ||
+Offer__r.Name = &apos;Fleet One Edge Over The Road&apos; ||
+Offer__r.Name = &apos;Fleet One Edge LLC BOCA SG&apos;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Vero Business Capital</fullName>
+        <actions>
+            <name>Assign_Vero_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Vero Business Capital</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - WEX CPS Demo</fullName>
+        <actions>
+            <name>Assign_to_Erin_Piper</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>WEX CPS Demo</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Erin Piper, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Walker Choppin</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Fuelbook</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Walker Choppin , based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - WilcoHess</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>WilcoHess</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Mike Gordon, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - XPO Logistics</fullName>
+        <actions>
+            <name>Assign_XPO_to_Marti_Watson</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 4) AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Marti Watson, based on the Application Title.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - XPO Logistics 2</fullName>
+        <actions>
+            <name>Assign_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 4) AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>Mo Camara</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>Kevin Manning</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on Created By.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Xfactors</fullName>
+        <actions>
+            <name>Assign_Xfactors_to_Renee_High</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Xfactors</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Renee High, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - Zach Wall</fullName>
+        <actions>
+            <name>Assign_to_Zachwall</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Mansfield</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online Appp from Guest User to Zach Wall, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - iThrive Funding</fullName>
+        <actions>
+            <name>Assign_iThrive_to_Kathy_Scroggins</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>iThrive Funding</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Kathy Scroggins, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner CSI Global-Fleet</fullName>
+        <actions>
+            <name>eApp_Owner_CSI_Global_Fleet</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>CSI Global</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>appl Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to eApp Queue, based on the Application Title.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner Partner App - Danielle</fullName>
+        <actions>
+            <name>Assign_to_Danielle</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign Partner apps to all east or all west reps</description>
+        <formula>(ISPICKVAL(State__c, &apos;TN&apos;)|| 
+ISPICKVAL(State__c,&apos;GA&apos;)|| 
+ISPICKVAL(State__c,&apos;FL&apos;)|| 
+ISPICKVAL(State__c,&apos;IN&apos;)|| 
+ISPICKVAL(State__c,&apos;MI&apos;)|| 
+ISPICKVAL(State__c,&apos;NY&apos;)|| 
+ISPICKVAL(State__c,&apos;MA&apos;)|| 
+ISPICKVAL(State__c,&apos;ME&apos;)||
+ISPICKVAL(State__c,&apos;KY&apos;)|| 
+ISPICKVAL(State__c,&apos;IL&apos;)||
+ISPICKVAL(State__c,&apos;OH&apos;)|| 
+ISPICKVAL(State__c,&apos;WI&apos;)||
+ISPICKVAL(State__c,&apos;PA&apos;)|| 
+ISPICKVAL(State__c,&apos;NJ&apos;)||
+ISPICKVAL(State__c,&apos;CT&apos;)||
+ISPICKVAL(State__c,&apos;VT&apos;)||
+ISPICKVAL(State__c,&apos;AL&apos;)|| 
+ISPICKVAL(State__c,&apos;SC&apos;)||
+ISPICKVAL(State__c,&apos;NC&apos;)|| 
+ISPICKVAL(State__c,&apos;VA&apos;)|| 
+ISPICKVAL(State__c,&apos;WV&apos;)||
+ISPICKVAL(State__c,&apos;MD&apos;)|| 
+ISPICKVAL(State__c,&apos;DC&apos;)|| 
+ISPICKVAL(State__c,&apos;DE&apos;)||
+ISPICKVAL(State__c,&apos;RI&apos;)||
+ISPICKVAL(State__c,&apos;NH&apos;)||
+ISPICKVAL(State__c,&apos;MN&apos;)||
+ISPICKVAL(State__c,&apos;IA&apos;)||
+ISPICKVAL(State__c,&apos;SD&apos;)||
+ISPICKVAL(State__c,&apos;OK&apos;)|| 
+ISPICKVAL(State__c,&apos;AZ&apos;)|| 
+ISPICKVAL(State__c,&apos;KS&apos;)|| 
+ISPICKVAL(State__c,&apos;ID&apos;)|| 
+ISPICKVAL(State__c,&apos;WY&apos;)|| 
+ISPICKVAL(State__c,&apos;TX&apos;)|| 
+ISPICKVAL(State__c,&apos;MO&apos;)|| 
+ISPICKVAL(State__c,&apos;LA&apos;)|| 
+ISPICKVAL(State__c,&apos;UT&apos;)|| 
+ISPICKVAL(State__c,&apos;AR&apos;)|| 
+ISPICKVAL(State__c,&apos;CO&apos;)|| 
+ISPICKVAL(State__c,&apos;WA&apos;)|| 
+ISPICKVAL(State__c,&apos;OR&apos;)|| 
+ISPICKVAL(State__c,&apos;MS&apos;)|| 
+ISPICKVAL(State__c,&apos;MT&apos;)|| 
+ISPICKVAL(State__c,&apos;NM&apos;)|| 
+ISPICKVAL(State__c,&apos;NV&apos;)|| 
+ISPICKVAL(State__c,&apos;CA&apos;)|| 
+ISPICKVAL(State__c,&apos;AK&apos;)|| 
+ISPICKVAL(State__c,&apos;HI&apos;)|| 
+ISPICKVAL(State__c,&apos;NE&apos;)||
+ISPICKVAL(State__c,&apos;ND&apos;))
+&amp;&amp; 
+(CreatedById = &apos;00570000002S3Sl&apos;) &amp;&amp;
+(Offer__r.Name = &apos;C-Sunoco OTR DM 042016&apos;|| 
+Offer__r.Name = &apos;Fuelbook Social 2016&apos;|| 
+Offer__r.Name = &apos;BP Lab Services - OTR - Business Services Agreement&apos;||
+Offer__r.Name = &apos;uShip OTR&apos;||
+Offer__r.Name = &apos;PrePass - Package B&apos;||
+Offer__r.Name = &apos;GE Capital OTR&apos;||
+Offer__r.Name = &apos;UTA OTR BAA&apos; ||
+Offer__r.Name = &apos;Idealease OTR&apos;||
+Offer__r.Name = &apos;Truckers Advantage&apos;||
+Offer__r.Name = &apos;AMSA Fleet Discount - Local&apos;||
+Offer__r.Name = &apos;Fuelbook Card&apos;|| 
+Offer__r.Name = &apos;AMSA - Fleet Discount Card&apos;||
+Offer__r.Name = &apos;Sunoco OTR for Website&apos;|| 
+Offer__r.Name = &apos;PrePass - Package A&apos;||
+Offer__r.Name = &apos;C-Sunoco OTR 2016 EM #1&apos; ||
+Offer__r.Name = &apos;C-Sunoco OTR 2016 EM #2&apos;||
+Offer__r.Name = &apos;Fuelbook Select&apos;||
+Offer__r.Name = &apos;Fuelbook B&apos;||
+Offer__r.Name = &apos;Exxon Mobil NAD (OTR)&apos;||
+Offer__r.Name = &apos;Pilot OTR Business Card Agreement&apos;||
+Offer__r.Name = &apos;CTA - OTR&apos;||
+Offer__r.Name = &apos;NAVL Fleet Card - Over the Road&apos;||
+Offer__r.Name = &apos;Fleet One Over the Road Rigdig&apos;||
+Offer__r.Name = &apos;FTI Benefits - Local - Business Services Agreement&apos;||
+Offer__r.Name = &apos;Discount Diesel&apos;||
+Offer__r.Name = &apos;Knight Logistics&apos;||
+Offer__r.Name = &apos;Fleet Savings - OTR&apos;||
+Offer__r.Name = &apos;TLC - OTR - Business Services Agreement&apos;||
+Offer__r.Name = &apos;D&amp;S Fuel Card&apos;||
+Offer__r.Name = &apos;Sinclair OTR&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner Partner App - Joni</fullName>
+        <actions>
+            <name>Assign_to_Joni</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Assign Partner apps to all east or all west reps</description>
+        <formula>(ISPICKVAL(State__c, &apos;OK&apos;)|| 
+ISPICKVAL(State__c,&apos;AZ&apos;)||
+ISPICKVAL(State__c,&apos;KS&apos;)||
+ISPICKVAL(State__c,&apos;ID&apos;)||
+ISPICKVAL(State__c,&apos;WY&apos;)||
+ISPICKVAL(State__c,&apos;TX&apos;)||
+ISPICKVAL(State__c,&apos;MO&apos;)||
+ISPICKVAL(State__c,&apos;LA&apos;)||
+ISPICKVAL(State__c,&apos;UT&apos;)||
+ISPICKVAL(State__c,&apos;AR&apos;)|| 
+ISPICKVAL(State__c,&apos;CO&apos;)||
+ISPICKVAL(State__c,&apos;WA&apos;)||
+ISPICKVAL(State__c,&apos;OR&apos;)||
+ISPICKVAL(State__c,&apos;MS&apos;)|| 
+ISPICKVAL(State__c,&apos;MT&apos;)|| 
+ISPICKVAL(State__c,&apos;NM&apos;)||
+ISPICKVAL(State__c,&apos;NV&apos;)||
+ISPICKVAL(State__c,&apos;CA&apos;)|| 
+ISPICKVAL(State__c,&apos;AK&apos;)||
+ISPICKVAL(State__c,&apos;HI&apos;)) 
+&amp;&amp; 
+(CreatedById = &apos;00570000002S3Sl&apos;) &amp;&amp;
+(Offer__r.Name = &apos;C-Sunoco OTR DM 042016&apos;|| 
+Offer__r.Name = &apos;Fuelbook Social 2016&apos;|| 
+Offer__r.Name = &apos;BP Lab Services - OTR - Business Services Agreement&apos;||
+Offer__r.Name = &apos;uShip OTR&apos;||
+Offer__r.Name = &apos;PrePass - Package B&apos;||
+Offer__r.Name = &apos;GE Capital OTR&apos;||
+Offer__r.Name = &apos;UTA OTR BAA&apos; ||
+Offer__r.Name = &apos;Idealease OTR&apos;||
+Offer__r.Name = &apos;Truckers Advantage&apos;||
+Offer__r.Name = &apos;AMSA Fleet Discount - Local&apos;||
+Offer__r.Name = &apos;Fuelbook Card&apos;|| 
+Offer__r.Name = &apos;AMSA - Fleet Discount Card&apos;||
+Offer__r.Name = &apos;Sunoco OTR for Website&apos;|| 
+Offer__r.Name = &apos;PrePass - Package A&apos;||
+Offer__r.Name = &apos;C-Sunoco OTR 2016 EM #1&apos; ||
+Offer__r.Name = &apos;C-Sunoco OTR 2016 EM #2&apos;||
+Offer__r.Name = &apos;Fuelbook Select&apos;||
+Offer__r.Name = &apos;Fuelbook B&apos;||
+Offer__r.Name = &apos;Exxon Mobil NAD (OTR)&apos;||
+Offer__r.Name = &apos;Pilot OTR Business Card Agreement&apos;||
+Offer__r.Name = &apos;NAVL Fleet Card - Over the Road&apos;||
+Offer__r.Name = &apos;Fleet One Over the Road Rigdig&apos;||
+Offer__r.Name = &apos;FTI Benefits - Local - Business Services Agreement&apos;||
+Offer__r.Name = &apos;CTA - OTR&apos;||
+Offer__r.Name = &apos;Knight Logistics&apos;||
+Offer__r.Name = &apos;Discount Diesel&apos;||
+Offer__r.Name = &apos;Fleet Savings - OTR&apos;||
+Offer__r.Name = &apos;D&amp;S Fuel Card&apos;||
+Offer__r.Name = &apos;TLC - OTR - Business Services Agreement&apos;||
+Offer__r.Name = &apos;Sinclair OTR&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>set In Progress user</fullName>
+        <actions>
+            <name>set_In_Progress_user</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.In_Progress__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

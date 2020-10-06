@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Compassion_Fund_Final_Approval</fullName>
+        <description>Compassion Fund - Final Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Compassion_Fund_Manager</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>wexcares@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Compassion_Fund_Community/Compassion_Fund_Final_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Compassion_Fund_Final_Rejection</fullName>
+        <description>Compassion Fund - Final Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Compassion_Fund_Manager</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>wexcares@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Compassion_Fund_Community/Compassion_Fund_Final_Rejection</template>
+    </alerts>
+    <alerts>
+        <fullName>Compassion_Fund_Individual_Approval</fullName>
+        <description>Compassion Fund - Individual Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Compassion_Fund_Manager</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>wexcares@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Compassion_Fund_Community/Compassion_Fund_Individual_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Compassion_Fund_Individual_Rejection</fullName>
+        <description>Compassion Fund - Individual Rejection</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Compassion_Fund_Manager</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>wexcares@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Compassion_Fund_Community/Compassion_Fund_Individual_Rejection</template>
+    </alerts>
+    <alerts>
+        <fullName>Compassion_Fund_Submitted</fullName>
+        <description>Compassion Fund - Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>Compassion_Fund_Manager</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>wexcares@wexinc.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Compassion_Fund_Community/Compassion_Fund_Submitted</template>
+    </alerts>
+</Workflow>

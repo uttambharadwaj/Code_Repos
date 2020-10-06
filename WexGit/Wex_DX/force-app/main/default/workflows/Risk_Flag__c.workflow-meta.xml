@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <rules>
+        <fullName>EMAP Track RF Refer Status</fullName>
+        <actions>
+            <name>EMAP_Track_RF_Refer_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Risk_Flag__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Refer – CVS,Refer – Customer,Refer – EMTC</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Risk_Flag__c.RFStatusReferDate__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Track time spent under all Refer status</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Track RF Status Closed</fullName>
+        <actions>
+            <name>EMAP_Update_Closed_RF_Status_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Risk_Flag__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Risk_Flag__c.RFStatusClosedDate__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Track RF Status Closed</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Track RF Under Review Status</fullName>
+        <actions>
+            <name>EMAP_Track_RF_Status_Under_Review</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Risk_Flag__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Under review</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Risk_Flag__c.RFStatusUnderreview__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Track time spent under RF Under Review Status</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAP Track Risk Flag Status</fullName>
+        <actions>
+            <name>EMAP_Update_Is_Risk_Flag_Changed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>EMAP_Update_RF_Status_Changed_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Track Risk Flag Status</description>
+        <formula>ISCHANGED(Status__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

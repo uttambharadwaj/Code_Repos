@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <rules>
+        <fullName>Campaign Program Name Update</fullName>
+        <actions>
+            <name>Campaign_Program_Name_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Campaign_Program__c.CreatedById</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Program 18 Character id update</fullName>
+        <actions>
+            <name>Program_18_Character_id_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Campaign_Program__c.CreatedDate</field>
+            <operation>lessOrEqual</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <description>Created to support marketing cloud as they need the 18 character program id for journey building.  A formula field cant be used as it shows up in MC at a 1300 character field.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>
