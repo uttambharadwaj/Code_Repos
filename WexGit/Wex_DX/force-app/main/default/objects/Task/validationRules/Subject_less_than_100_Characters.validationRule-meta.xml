@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subject_less_than_100_Characters</fullName>
+    <active>false</active>
+    <description>The subject field cant have more than 100 characters.  This is to support the BI Database integration</description>
+    <errorConditionFormula>AND(
+LEN( Subject )&gt;=100,
+DATEVALUE(CreatedDate) &lt;=  DATEVALUE(&quot;2013,10,21&quot;))</errorConditionFormula>
+    <errorDisplayField>Subject</errorDisplayField>
+    <errorMessage>The Subject field cant have more than 100 characters</errorMessage>
+</ValidationRule>

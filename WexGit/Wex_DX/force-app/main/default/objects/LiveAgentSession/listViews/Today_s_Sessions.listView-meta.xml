@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Today_s_Sessions</fullName>
+    <columns>Name</columns>
+    <columns>Agent</columns>
+    <columns>LoginTime</columns>
+    <columns>LogoutTime</columns>
+    <columns>ChatReqAssigned</columns>
+    <columns>ChatReqEngaged</columns>
+    <columns>TimeInChats</columns>
+    <columns>TimeInOnlineStatus</columns>
+    <columns>TimeInAwayStatus</columns>
+    <columns>ChatReqDeclined</columns>
+    <columns>ChatReqTimedOut</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>LoginTime</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Today&apos;s Logins</label>
+    <language>en_US</language>
+</ListView>

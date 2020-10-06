@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Account Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Prospect</fullName>
+                <default>false</default>
+                <label>Prospect</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+            <value>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+                <label>Inactive</label>
+            </value>
+            <value>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+                <label>Terminated</label>
+            </value>
+            <value>
+                <fullName>1 - Active</fullName>
+                <default>false</default>
+                <label>1 - Active</label>
+            </value>
+            <value>
+                <fullName>3 - Stopped (blocked)</fullName>
+                <default>false</default>
+                <label>3 - Stopped (blocked)</label>
+            </value>
+            <value>
+                <fullName>4 - Closed</fullName>
+                <default>false</default>
+                <label>4 - Closed</label>
+            </value>
+            <value>
+                <fullName>5 - Write Off</fullName>
+                <default>false</default>
+                <label>5 - Write Off</label>
+            </value>
+            <value>
+                <fullName>9 - Credit Limit Auto Lock</fullName>
+                <default>false</default>
+                <label>9 - Credit Limit Auto Lock</label>
+            </value>
+            <value>
+                <fullName>Parent Controlled Lockout</fullName>
+                <default>false</default>
+                <label>Parent Controlled Lockout</label>
+            </value>
+            <value>
+                <fullName>5 - Bad Debt Write Off</fullName>
+                <default>false</default>
+                <label>5 - Bad Debt Write Off</label>
+            </value>
+            <value>
+                <fullName>3 - Stopped Credit</fullName>
+                <default>false</default>
+                <label>3 - Stopped Credit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

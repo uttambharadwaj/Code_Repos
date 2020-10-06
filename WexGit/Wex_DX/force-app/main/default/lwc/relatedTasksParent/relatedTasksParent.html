@@ -1,0 +1,52 @@
+<!--
+ - Created by mfarrell on 4/14/20.
+ -->
+
+<!-- Related Tasks Parent -->
+<template>
+    <lightning-card title="" icon-name="standard:task" class="slds-card__header">
+        <div slot="title">
+            <span class="slds-card__header-link">Related Tasks</span>
+        </div>
+            <!-- <lightning-tabset>
+            Removing "New Task" tab as Task isn't supported by the uiRecordApi, so this was a lost cause of hardcoding values.
+            <lightning-tab label="Tasks" title="Tasks"> -->
+                <c-related-tasks-filter
+                    task-type-filter={taskTypeFilter}
+                    onfilterapplied={handledFilterApplied}
+                    task-future-date-filter={taskFutureDateFilter}
+                    task-historical-date-filter={taskHistoricalDateFilter}>
+                </c-related-tasks-filter>
+                <c-related-tasks-List
+                    task-type-filter={taskTypeFilter}
+                    currentpage={page}
+                    onrecordsload={handleRecordsLoad}
+                    pagesize={pagesize}
+                    record-id={recordId}
+                    totalrecords={totalrecords}
+                    task-future-date-filter={taskFutureDateFilter}
+                    task-historical-date-filter={taskHistoricalDateFilter}>
+                </c-related-tasks-List>
+                <div class="slds-m-around_medium">
+                    <c-related-tasks-pagination
+                        onprevious={handlePrevious}
+                        onnext={handleNext}
+                        onfirst={handleFirst}
+                        onlast={handleLast}
+                        currentpage={page}
+                        totalrecords={totalrecords}
+                        pagesize={pagesize}>
+                    </c-related-tasks-pagination>
+                </div>
+            <!-- </lightning-tab>
+            <lightning-tab label="New Task" title="New">
+                <c-related-task-create-new
+                    record-id={recordId}
+                    default-subject={defaultSubject}
+                    new-task-record-type-id= {newTaskRecordTypeId}
+                >
+                </c-related-task-create-new>
+            </lightning-tab>
+        </lightning-tabset> -->
+    </lightning-card>
+</template>

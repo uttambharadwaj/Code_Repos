@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_for_Velocity_Profile</fullName>
+    <active>true</active>
+    <description>The Velocity Profile or Velocity profile override must be set in order to pass the security check.</description>
+    <errorConditionFormula>AND(
+Passed_Security_Check__c = TRUE,
+ISBLANK(VelocityProfileName__c)
+				)</errorConditionFormula>
+    <errorDisplayField>VelocityProfileOverride__c</errorDisplayField>
+    <errorMessage>The Velocity Profile or Velocity Profile override must be set in order to pass the security check.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Call_Outcome_Requires_Call_Stage</fullName>
+    <active>true</active>
+    <description>Call Outcome must be blank if Call Stage = Legacy or is blank.</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( 
+
+OR( 
+ISPICKVAL(Call_Stage__c , &quot;Legacy&quot;), 
+ISPICKVAL(Call_Stage__c , &quot;&quot;) 
+), 
+
+OR( 
+ISPICKVAL(Call_Outcome__c , &quot;No Answer (F/U Task)&quot;), 
+ISPICKVAL(Call_Outcome__c , &quot;Left Voicemail (F/U Task &amp; EM)&quot;) 
+) 
+
+))</errorConditionFormula>
+    <errorDisplayField>Call_Outcome__c</errorDisplayField>
+    <errorMessage>Call Stage must be &quot;1st Call, 2nd Call, etc.&quot; before you can enter a Call Outcome.</errorMessage>
+</ValidationRule>

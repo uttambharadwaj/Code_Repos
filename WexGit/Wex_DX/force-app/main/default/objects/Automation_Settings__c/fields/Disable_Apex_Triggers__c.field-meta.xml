@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Apex_Triggers__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Disables the Trigger Factory so that data can be loaded.  DO NOT USE THIS DURING NORMAL HOURS!  It will stop all behind-the-scenes workflow from being executed</description>
+    <externalId>false</externalId>
+    <label>Disable Apex Triggers</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

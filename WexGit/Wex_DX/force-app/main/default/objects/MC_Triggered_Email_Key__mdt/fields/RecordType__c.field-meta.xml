@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RecordType__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>RecordType</label>
+    <referenceTo>MC_Triggered_Email__mdt</referenceTo>
+    <relationshipLabel>MC Triggered Email Keys</relationshipLabel>
+    <relationshipName>MC_Triggered_Email_Keys</relationshipName>
+    <required>true</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

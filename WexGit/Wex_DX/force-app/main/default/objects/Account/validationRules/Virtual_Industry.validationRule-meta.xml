@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Virtual_Industry</fullName>
+    <active>true</active>
+    <description>Wex Europe record types only</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Account_Disabled__c = FALSE,
+
+  RecordType.DeveloperName = &apos;CorporatePay_Accounts&apos;,
+  TEXT(Sales_Group__c) = &apos;Corporate&apos;,
+  ISBLANK(TEXT(Industry)) 
+))
+
+/* &quot;Account -&quot; is included in the error message, in case this validation rule has been triggered when a change to an Opportunity Roll-Up field has triggered a Field Update which has been blocked by this rule */</errorConditionFormula>
+    <errorDisplayField>Industry</errorDisplayField>
+    <errorMessage>Account - Please select the Industry or if you are seeing this message while trying to convert a Lead, please select an Industry for the Lead before conversion</errorMessage>
+</ValidationRule>

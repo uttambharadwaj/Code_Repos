@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Count_Shipment_Charges__c</fullName>
+    <description>Number of shipment charges.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of shipment charges.</inlineHelpText>
+    <label>Count Shipment Charges</label>
+    <summaryForeignKey>Shipment_Charge__c.Shipment__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Virtual_Sales_Type</fullName>
+    <active>false</active>
+    <description>Wex Europe record types only</description>
+    <errorConditionFormula>AND(
+
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Account_Disabled__c = FALSE,
+
+  /*
+  Custom Setting - Virtual Profile IDs - prevents rule being applied to Partnership users, for Lead conversion (could be avoided by setting default Record Type but only once Partnership users have a dedicated profile
+  */
+   $Setup.VProfileId__c.WE_Partnerships__c = FALSE,
+
+  RecordType.DeveloperName = &apos;CorporatePay_Accounts&apos;, 
+  OR( 
+    TEXT(Sales_Group__c) = &apos;Business Travel&apos;, 
+    TEXT(Sales_Group__c) = &apos;Leisure Travel&apos; 
+    ), 
+  ISBLANK(TEXT(Sales_Type__c)),
+
+/* allow for the deletion of old opportunities (linked to accounts with no Sales Type)
+*/
+  NOT(
+    AND(
+      Number_of_Opportunities__c = 0,
+      PRIORVALUE(Number_of_Opportunities__c) &gt; 0
+      )
+    )
+)
+
+/* &quot;Account record -&quot; is included in the error message, in case this validation rule has been triggered when a change to an Opportunity Roll-Up field has triggered a Field Update which has been blocked by this rule */</errorConditionFormula>
+    <errorDisplayField>Sales_Type__c</errorDisplayField>
+    <errorMessage>Account - Please select a Sales Type or if you are seeing this message while trying to convert a Lead, please select a Sales Type for the Lead before conversion</errorMessage>
+</ValidationRule>

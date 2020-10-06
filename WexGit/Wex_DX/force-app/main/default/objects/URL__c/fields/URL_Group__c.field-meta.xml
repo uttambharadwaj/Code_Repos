@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>URL_Group__c</fullName>
+    <description>The grouping for the URL. This determines where on the page the URL is listed. New ones can not be added without the page layout of the PKB being adjusted</description>
+    <encryptionScheme>None</encryptionScheme>
+    <externalId>false</externalId>
+    <inlineHelpText>The grouping for the URL. This determines where on the page the URL is listed. New ones can not be added without the page layout of the PKB being adjusted</inlineHelpText>
+    <label>URL Group</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

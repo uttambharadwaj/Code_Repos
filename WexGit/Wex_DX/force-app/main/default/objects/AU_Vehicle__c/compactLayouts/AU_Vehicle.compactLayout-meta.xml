@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AU_Vehicle</fullName>
+    <fields>Name</fields>
+    <fields>AU_Vehicle_Registration__c</fields>
+    <fields>AU_Vehicle_Registration_State__c</fields>
+    <fields>AU_Vehicle_VIN__c</fields>
+    <label>AU Vehicle</label>
+</CompactLayout>

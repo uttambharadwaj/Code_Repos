@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Prevent_Company_Reg_Change</fullName>
+    <active>true</active>
+    <description>Once WES account data is set by informatica, prevent users from changing company registration number. Only the Salesforce ETL user can change that field once populating.</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( 
+RecordType.DeveloperName = &quot;WES_Accounts&quot;, 
+NOT(ISBLANK(Account_Number__c)),
+ISCHANGED(Company_registration_number__c), 
+LastModifiedById &lt;&gt; &quot;00570000001t3Ek&quot;
+))</errorConditionFormula>
+    <errorDisplayField>Company_registration_number__c</errorDisplayField>
+    <errorMessage>Only the Salesforce ETL user can change Company Registration Number once the data is being synced.</errorMessage>
+</ValidationRule>

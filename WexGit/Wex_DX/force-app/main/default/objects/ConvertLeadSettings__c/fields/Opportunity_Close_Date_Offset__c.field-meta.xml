@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Close_Date_Offset__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>This is the number of days to push the opportunity close date out.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the number of days to push the opportunity close date out.</inlineHelpText>
+    <label>Opportunity Close Date Offset</label>
+    <precision>18</precision>
+    <required>true</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

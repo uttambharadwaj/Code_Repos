@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Adverse_Action_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+ISNULL(Adverse_action_code__c), 
+OR( 
+ISPICKVAL(Credit_Decision__c, &quot;Declined&quot;), 
+ISPICKVAL(Credit_Decision__c, &quot;Approved-Secured&quot;) &amp;&amp; Prepaid__c = TRUE))</errorConditionFormula>
+    <errorDisplayField>Adverse_action_code__c</errorDisplayField>
+    <errorMessage>An Adverse Action code is required.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Name_Required</fullName>
+    <active>false</active>
+    <description>If the Application Status is Read for Export the Product Name is required</description>
+    <errorConditionFormula>AND(
+ISPICKVAL( Opportunity__r.Application_Status__c , &apos;Ready for Export&apos;),
+ISPICKVAL(Product_Name__c, &apos;&apos;)
+)</errorConditionFormula>
+    <errorDisplayField>Product_Name__c</errorDisplayField>
+    <errorMessage>If the Application Status is Read for Export the Product Name is required</errorMessage>
+</ValidationRule>

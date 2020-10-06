@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Billing_State_mandatory</fullName>
+    <active>true</active>
+    <description>For countries that have states (i.e. State != Country), then State should be not null when Country is not null.</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ ISBLANK( BillingState ),
+OR(
+(BillingCountry = &quot;Australia&quot;),
+(BillingCountry = &quot;Malaysia&quot;)
+)
+))</errorConditionFormula>
+    <errorDisplayField>BillingState</errorDisplayField>
+    <errorMessage>Billing state cannot be empty. Please enter Billing state.</errorMessage>
+</ValidationRule>

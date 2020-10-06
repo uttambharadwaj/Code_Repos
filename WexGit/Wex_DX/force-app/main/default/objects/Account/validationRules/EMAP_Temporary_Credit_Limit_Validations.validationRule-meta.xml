@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Temporary_Credit_Limit_Validations</fullName>
+    <active>true</active>
+    <description>If a value is entered into ANY of the three TCL related fields then it should be mandatory to enter values into the other TCL fields (ie. Values should be in all 3 fields or none of the three fields)</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+NOT(
+AND(
+ ISBLANK( Temporary_Credit_Limit__c ),
+ ISPICKVAL( Temporary_Credit_Reason__c, &apos;&apos; ),
+ ISBLANK( Temporary_Credit_Expire_Date__c )
+)),
+OR(
+ ISBLANK( Temporary_Credit_Limit__c ),
+ ISPICKVAL( Temporary_Credit_Reason__c, &apos;&apos; ),
+ ISBLANK( Temporary_Credit_Expire_Date__c )
+)
+))</errorConditionFormula>
+    <errorMessage>Please enter values into all the three Temporary Credit Limit related fields. (Temporary Credit Limit, Credit Reason and Credit Expiry date).</errorMessage>
+</ValidationRule>

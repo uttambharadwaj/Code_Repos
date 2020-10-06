@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chevron_Remaining_MI_4_30</fullName>
+    <booleanFilter>1 AND (2 OR 3 OR 4) AND (5 OR 6)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Previous_Account_Number__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>Company_Name__c</columns>
+    <columns>Calling_Status__c</columns>
+    <columns>Status__c</columns>
+    <columns>Mailing_State__c</columns>
+    <columns>BPAV_Needed__c</columns>
+    <columns>TIN_Needed__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Conversion_Record_Key__c</field>
+        <operation>startsWith</operation>
+        <value>CHEVRON</value>
+    </filters>
+    <filters>
+        <field>Calling_Status__c</field>
+        <operation>equals</operation>
+        <value>Untouched,Awaiting BPAV,Call made</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Pending Customer Response,Awaiting Physical Address Verification - Fax</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Abandoned By Customer,Awaiting Physical Address Verification - Email</value>
+    </filters>
+    <filters>
+        <field>BPAV_Needed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>TIN_Needed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Chevron - Remaining MI Master</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CorporatePay_Competitors</fullName>
+    <columns>NAME</columns>
+    <columns>Competitor_Industry__c</columns>
+    <columns>Competitor_Products__c</columns>
+    <columns>Competitor_Pricing__c</columns>
+    <columns>Annual_Revenue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATEDBY_USER.ALIAS</field>
+        <operation>equals</operation>
+        <value>Dare</value>
+    </filters>
+    <label>CorporatePay Competitors</label>
+    <sharedTo>
+        <group>CorporatePay2</group>
+        <group>Wex_Europe</group>
+    </sharedTo>
+</ListView>

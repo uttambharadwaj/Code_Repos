@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Incomplete_Data_Sales</fullName>
+    <columns>Facilitator__c</columns>
+    <columns>Other_Facilitator__c</columns>
+    <columns>Instructor__c</columns>
+    <columns>NAME</columns>
+    <columns>Class_Name__c</columns>
+    <columns>Date__c</columns>
+    <columns>Course__c</columns>
+    <columns>Type__c</columns>
+    <columns>Administrative_Hours__c</columns>
+    <columns>Length__c</columns>
+    <columns>BAU__c</columns>
+    <columns>Strategic__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Modality__c</columns>
+    <columns>Total_Number_of_Attendees__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Facilitator__c</field>
+        <operation>equals</operation>
+        <value>Alex Fagone,Jennifer Roney,Kathryn Connolly,Other</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>Line_of_Business__c</field>
+        <operation>notEqual</operation>
+        <value>Customer Service,Service-Corporate Payments,Service-Fleet,Service-OTR</value>
+    </filters>
+    <label>Other Incomplete Data- Sales</label>
+    <language>en_US</language>
+</ListView>

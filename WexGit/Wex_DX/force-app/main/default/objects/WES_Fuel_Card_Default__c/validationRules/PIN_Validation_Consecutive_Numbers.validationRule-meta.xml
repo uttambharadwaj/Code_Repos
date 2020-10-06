@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PIN_Validation_Consecutive_Numbers</fullName>
+    <active>true</active>
+    <description>A PIN Number can&apos;t have 4 consecutive Numbers</description>
+    <errorConditionFormula>AND( 
+ISNUMBER(PIN__c), 
+MID(PIN__c, 1,1) = MID(PIN__c, 2,1), 
+MID(PIN__c, 1,1) = MID(PIN__c, 3,1), 
+MID(PIN__c, 1,1) = MID(PIN__c, 4,1) 
+)</errorConditionFormula>
+    <errorDisplayField>PIN__c</errorDisplayField>
+    <errorMessage>PIN Can NOT be 4 consecutive numbers</errorMessage>
+</ValidationRule>

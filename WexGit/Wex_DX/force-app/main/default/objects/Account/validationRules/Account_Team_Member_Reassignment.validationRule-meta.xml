@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Team_Member_Reassignment</fullName>
+    <active>false</active>
+    <description>New Team Member Role &amp; Team Member Name fields are only visible to MasterCard Operations Profile</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+  OR(
+    ISCHANGED(Team_Member_Name__c),
+    ISCHANGED(New_Team_Member_Role__c)
+  ),
+  OR(
+    ISBLANK(Team_Member_Name__c),
+    ISBLANK(TEXT(New_Team_Member_Role__c))
+  ),
+  AND(
+    /* allow Process Builder to clear fields */
+    ISBLANK(PRIORVALUE(Team_Member_Name__c)),
+    ISBLANK(PRIORVALUE(New_Team_Member_Role__c))
+  )
+))</errorConditionFormula>
+    <errorMessage>Please do not leave either the Team Member Name or New Team Member Role field blank, after changing either field.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Checking_Account_Confirm</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( 
+$User.Id == &apos;00570000001LNxz&apos;, false, 
+Checking_Account_Number__c &lt;&gt; Confirm_Checking_Account_Number__c)</errorConditionFormula>
+    <errorDisplayField>Checking_Account_Number__c</errorDisplayField>
+    <errorMessage>Your checking account number does not match the confirmation field</errorMessage>
+</ValidationRule>

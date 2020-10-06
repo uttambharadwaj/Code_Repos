@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Programs__c</fullName>
+    <externalId>false</externalId>
+    <label>Programs</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AirIQ</fullName>
+                <default>false</default>
+                <label>AirIQ</label>
+            </value>
+            <value>
+                <fullName>DCS (Darby Corporate Solutions)</fullName>
+                <default>false</default>
+                <label>DCS (Darby Corporate Solutions)</label>
+            </value>
+            <value>
+                <fullName>Discrete Wireless</fullName>
+                <default>false</default>
+                <label>Discrete Wireless</label>
+            </value>
+            <value>
+                <fullName>Fleet Hawk</fullName>
+                <default>false</default>
+                <label>Fleet Hawk</label>
+            </value>
+            <value>
+                <fullName>Fleetilla</fullName>
+                <default>false</default>
+                <label>Fleetilla</label>
+            </value>
+            <value>
+                <fullName>Fleetmatics</fullName>
+                <default>false</default>
+                <label>Fleetmatics</label>
+            </value>
+            <value>
+                <fullName>GeoLogic Solutions</fullName>
+                <default>false</default>
+                <label>GeoLogic Solutions</label>
+            </value>
+            <value>
+                <fullName>Geotab</fullName>
+                <default>false</default>
+                <label>Geotab</label>
+            </value>
+            <value>
+                <fullName>GPS Insight</fullName>
+                <default>false</default>
+                <label>GPS Insight</label>
+            </value>
+            <value>
+                <fullName>Navtrak</fullName>
+                <default>false</default>
+                <label>Navtrak</label>
+            </value>
+            <value>
+                <fullName>SageQuest</fullName>
+                <default>false</default>
+                <label>SageQuest</label>
+            </value>
+            <value>
+                <fullName>Teletrac</fullName>
+                <default>false</default>
+                <label>Teletrac</label>
+            </value>
+            <value>
+                <fullName>Telogis</fullName>
+                <default>false</default>
+                <label>Telogis</label>
+            </value>
+            <value>
+                <fullName>Trimble/@Road</fullName>
+                <default>false</default>
+                <label>Trimble/@Road</label>
+            </value>
+            <value>
+                <fullName>Vericom</fullName>
+                <default>false</default>
+                <label>Vericom</label>
+            </value>
+            <value>
+                <fullName>Webtech Wireless</fullName>
+                <default>false</default>
+                <label>Webtech Wireless</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Setting_Overview</fullName>
+    <columns>NAME</columns>
+    <columns>Product_Name__c</columns>
+    <columns>AuOpps__c</columns>
+    <columns>EUOpps__c</columns>
+    <columns>NAOpps__c</columns>
+    <columns>NAEUOpps__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>Opportunity Setting Overview</label>
+    <language>en_US</language>
+</ListView>

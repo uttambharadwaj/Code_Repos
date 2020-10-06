@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Permits_Opportunity</fullName>
+    <availability>online</availability>
+    <description>New Permits Opportunity</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Permits Opportunity</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://na5.salesforce.com/006/e?retURL=%2F006%2Fo&amp;RecordType=012700000005p64&amp;ent=Opportunity&amp;
+opp3={!FEP__c.Account__c}&amp;
+opp4_lkid={!Account.Id}&amp;
+opp4={!FEP__c.Account__c}&amp;
+00N70000002OSTH=&quot;Permits&quot;&amp;
+00N70000002CfHN={!FEP__c.Fuel_Card_Gallons__c}&amp;
+00N70000003S0hp={!FEP__c.Bulk_Fuel__c}</url>
+</WebLink>

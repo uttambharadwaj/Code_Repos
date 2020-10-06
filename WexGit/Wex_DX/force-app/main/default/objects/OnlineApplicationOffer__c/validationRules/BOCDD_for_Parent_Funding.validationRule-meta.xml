@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BOCDD_for_Parent_Funding</fullName>
+    <active>true</active>
+    <description>https://jira.devtools.wexinc.com/browse/PSOBACKLOG-249
+
+If BOCDD is checked, Funding must be Parent Funding</description>
+    <errorConditionFormula>AND(Enable_BOCDD_for_Parent_funded__c, NOT(ISPICKVAL(Funding__c, &apos;Parent Funded&apos;)))</errorConditionFormula>
+    <errorDisplayField>Funding__c</errorDisplayField>
+    <errorMessage>Enable BOCDD for Parent Funded must be left unchecked when funding is not set to Parent Funded</errorMessage>
+</ValidationRule>

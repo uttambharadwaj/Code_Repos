@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Cycle__c</fullName>
+    <externalId>false</externalId>
+    <label>Billing Cycle</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cycle 1</fullName>
+                <default>false</default>
+                <label>Cycle 1</label>
+            </value>
+            <value>
+                <fullName>Cycle 2</fullName>
+                <default>false</default>
+                <label>Cycle 2</label>
+            </value>
+            <value>
+                <fullName>Cycle 3</fullName>
+                <default>false</default>
+                <label>Cycle 3</label>
+            </value>
+            <value>
+                <fullName>Cycle 4</fullName>
+                <default>false</default>
+                <label>Cycle 4</label>
+            </value>
+            <value>
+                <fullName>Cycle 6</fullName>
+                <default>false</default>
+                <label>Cycle 6</label>
+            </value>
+            <value>
+                <fullName>Cycle 7</fullName>
+                <default>false</default>
+                <label>Cycle 7</label>
+            </value>
+            <value>
+                <fullName>Cycle 8</fullName>
+                <default>false</default>
+                <label>Cycle 8</label>
+            </value>
+            <value>
+                <fullName>Cycle 10</fullName>
+                <default>false</default>
+                <label>Cycle 10</label>
+            </value>
+            <value>
+                <fullName>Cycle 11</fullName>
+                <default>false</default>
+                <label>Cycle 11</label>
+            </value>
+            <value>
+                <fullName>Cycle 12</fullName>
+                <default>false</default>
+                <label>Cycle 12</label>
+            </value>
+            <value>
+                <fullName>Cycle 14</fullName>
+                <default>false</default>
+                <label>Cycle 14</label>
+            </value>
+            <value>
+                <fullName>Cycle 15</fullName>
+                <default>false</default>
+                <label>Cycle 15</label>
+            </value>
+            <value>
+                <fullName>Cycle 16</fullName>
+                <default>false</default>
+                <label>Cycle 16</label>
+            </value>
+            <value>
+                <fullName>Cycle 17</fullName>
+                <default>false</default>
+                <label>Cycle 17</label>
+            </value>
+            <value>
+                <fullName>Cycle 18</fullName>
+                <default>false</default>
+                <label>Cycle 18</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

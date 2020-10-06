@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CorporatePay</fullName>
+    <description>CP Support Process</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Application Approved</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Application Submitted</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Approval Declined</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>COD Approval Requested</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>CSDM Approval Requested</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Case Accepted</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Compliance Approval Requested</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Information Requested</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Information Updated</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>New</fullName>
+        <default>true</default>
+    </values>
+</BusinessProcess>

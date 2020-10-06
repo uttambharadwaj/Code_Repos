@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Published_OTR_BOCA_Programs</fullName>
+    <columns>NAME</columns>
+    <columns>Brand_Short_Name__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>BOCA_Type__c</columns>
+    <columns>Form_Template__c</columns>
+    <columns>Consumer_Application_Enabled__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Publish_BOCA__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>BOCA_Type__c</field>
+        <operation>equals</operation>
+        <value>OTR</value>
+    </filters>
+    <label>Published OTR BOCA Programs</label>
+    <language>en_US</language>
+</ListView>

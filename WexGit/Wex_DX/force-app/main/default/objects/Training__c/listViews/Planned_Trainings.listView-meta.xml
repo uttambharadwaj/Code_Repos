@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Planned_Trainings</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Account_Asset__c</columns>
+    <columns>Type_of_Training__c</columns>
+    <columns>Training_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Planned</value>
+    </filters>
+    <label>Planned Trainings</label>
+    <sharedTo/>
+</ListView>

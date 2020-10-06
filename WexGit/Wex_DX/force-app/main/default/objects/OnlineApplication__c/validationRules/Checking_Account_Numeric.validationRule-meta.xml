@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Checking_Account_Numeric</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( 
+$User.Id == &apos;00570000001LNxz&apos;, false, 
+LEN(Checking_Account_Number__c) &gt; 0 &amp;&amp; 
+NOT(ISNUMBER(Checking_Account_Number__c)) 
+)</errorConditionFormula>
+    <errorDisplayField>Checking_Account_Number__c</errorDisplayField>
+    <errorMessage>Please enter a valid, numeric, checking account number.</errorMessage>
+</ValidationRule>

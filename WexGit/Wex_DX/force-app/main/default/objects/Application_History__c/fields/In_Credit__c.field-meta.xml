@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Credit__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True is the application is currently with the credit team.</description>
+    <externalId>false</externalId>
+    <label>In Credit</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Need_Decline_Reason</fullName>
+    <active>true</active>
+    <description>An application decline reason is required when an application is Rejected or Unable to process (non-credit reason).</description>
+    <errorConditionFormula>ISBLANK(TEXT(Application_Decline_Reason__c)) &amp;&amp;
+(TEXT(Credit_Decision__c ) = &quot;Rejected&quot; ||
+TEXT(Credit_Decision__c ) = &quot;Unable to Process&quot;)</errorConditionFormula>
+    <errorDisplayField>Application_Decline_Reason__c</errorDisplayField>
+    <errorMessage>You must provide a decline reason when the Application is &quot;Reject&quot; or &quot;Unable to Process&quot;.</errorMessage>
+</ValidationRule>

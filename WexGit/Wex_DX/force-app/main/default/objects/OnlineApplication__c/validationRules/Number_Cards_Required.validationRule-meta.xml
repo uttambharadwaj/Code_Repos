@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_Cards_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+OR( 
+Number_of_Cards_Needed__c = 0, 
+ISBLANK(Number_of_Cards_Needed__c)), 
+ISCHANGED(Status__c) , 
+ISPICKVAL(Status__c ,&quot;Pending Setup&quot;)) &amp;&amp;
+$User.Id &lt;&gt; &quot;00570000002ULYw&quot; &amp;&amp;
+$User.Id &lt;&gt; &quot;00570000002S4gK&quot;</errorConditionFormula>
+    <errorDisplayField>Number_of_Cards_Needed__c</errorDisplayField>
+    <errorMessage># of Card Needed is Required to move to the a Pending Setup status</errorMessage>
+</ValidationRule>

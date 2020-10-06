@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Esso_Sites_Open</fullName>
+    <columns>NAME</columns>
+    <columns>TID__c</columns>
+    <columns>Brand__c</columns>
+    <columns>Branded_Wholesaler__c</columns>
+    <columns>Site_City__c</columns>
+    <columns>Site_State__c</columns>
+    <columns>Geocode_Quality__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Brand__c</field>
+        <operation>equals</operation>
+        <value>Esso</value>
+    </filters>
+    <label>Esso Sites Open</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Esso_Sales</group>
+    </sharedTo>
+</ListView>

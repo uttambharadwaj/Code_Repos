@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_Not_Allow_Tasks_Due_on_Weekends</fullName>
+    <active>false</active>
+    <description>Requested by Ryan Lesieur for Inside Sales - Cherwell 844488</description>
+    <errorConditionFormula>AND(
+   Owner:User.UserRole.DeveloperName = &quot;ISSalesRep&quot;,
+  OR(
+    MOD(ActivityDate - DATE( 1900, 1, 7 ), 7 ) == 0,
+    MOD(ActivityDate - DATE( 1900, 1, 7 ), 7 ) == 6
+    )
+  )</errorConditionFormula>
+    <errorMessage>Due Date cannot be on a weekend</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CP_App_Request_vr_002</fullName>
+    <active>true</active>
+    <description>require auditing firm authentication for 150k+</description>
+    <errorConditionFormula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Validation_Rules__c),
+$Permission.Upmarket_Stuffs,
+Program__r.Use_Upmarket__c,
+ISCHANGED(Credit_Decision__c),
+CONTAINS(TEXT(Credit_Decision__c),&apos;Approved&apos;),
+Credit_Line_Requested__c &gt; 150000,
+NOT(Financial_Auditing_Firm_Authenticated__c)
+)</errorConditionFormula>
+    <errorMessage>Financial auditing firm must be authenticated before approving this request.</errorMessage>
+</ValidationRule>

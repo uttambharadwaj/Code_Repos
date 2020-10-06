@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CP_App_Request_vr_003</fullName>
+    <active>true</active>
+    <description>must have legal entity country and state for large requests</description>
+    <errorConditionFormula>AND(
+
+NOT($Setup.Automation_Settings__c.Disable_Validation_Rules__c),
+$Permission.Upmarket_Stuffs,
+Program__r.Use_Upmarket__c,
+CONTAINS(TEXT(Credit_Decision__c),&apos;Approved&apos;),
+
+OR(
+Projected_Monthly_Spend__c&gt;=150000,
+Credit_Line_Requested__c&gt;=150000
+),
+
+OR(
+ISBLANK(TEXT(Account__r.Legal_Entity_Country__c)),
+ISBLANK(Account__r.Legal_Entity_State__c)
+)
+
+)</errorConditionFormula>
+    <errorMessage>For large credit requests, the Legal Entity Country and State must be selected on the Account.</errorMessage>
+</ValidationRule>

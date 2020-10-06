@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_VAT_Number_Format</fullName>
+    <active>false</active>
+    <description>VAT numbers should all begin with &quot;GB&quot; and then be no more than 12 numeric characters after this.</description>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &quot;WES_Accounts&quot;,
+OR(				
+LEN(WES_VAT_Reg_Num__c) &gt; 14,
+NOT(BEGINS(WES_VAT_Reg_Num__c,&quot;GB&quot;)) 
+))</errorConditionFormula>
+    <errorDisplayField>WES_VAT_Reg_Num__c</errorDisplayField>
+    <errorMessage>VAT numbers should all begin with &quot;GB&quot; and then be no more than 12 numeric characters after this.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <constants>
+        <description>RecordTypeId for the AccountMaintenanceTask Driver record type</description>
+        <name>DriverTaskRecordTypeId</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0120g0000009uprAAA</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>URL for the Customer Response Survey</description>
+        <name>surveyUrl</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>https://wex.qualtrics.com/jfe/form/SV_cFSXZYz5zD75AUt</stringValue>
+        </value>
+    </constants>
+    <description>Removed survey link</description>
+    <interviewLabel>Add Driver {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Add Driver</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Add_Driver_Create_Task</name>
+        <label>Add_Driver_Create_Task</label>
+        <locationX>420</locationX>
+        <locationY>60</locationY>
+        <connector>
+            <targetReference>Add_Driver_Confirm</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Case__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Driver_First_Name__c</field>
+            <value>
+                <elementReference>Add_Driver_First_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Driver_Last_Name__c</field>
+            <value>
+                <elementReference>Add_Driver_Last_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Driver_PIN__c</field>
+            <value>
+                <elementReference>Add_Driver_PIN</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Operation__c</field>
+            <value>
+                <stringValue>Add</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>DriverTaskRecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Driver</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Account_Maintenance_Task__c</object>
+    </recordCreates>
+    <screens>
+        <name>Add_Driver</name>
+        <label>Add Driver</label>
+        <locationX>242</locationX>
+        <locationY>61</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Add_Driver_Create_Task</targetReference>
+        </connector>
+        <fields>
+            <name>Add_Driver_Display</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;Add Driver&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Add_Driver_Help</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;Please fill out the fields below and add your company&apos;s new {!didLength} digit Driver ID.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Add_Driver_First_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Driver First Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Add_Driver_Last_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Driver Last Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Add_Driver_PIN</name>
+            <dataType>String</dataType>
+            <fieldText>Driver ID</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;Please enter a valid {!didLength} digit Driver ID.&lt;/p&gt;</errorMessage>
+                <formulaExpression>IF(OR(&apos;1234&apos; == {!Add_Driver_PIN}, &apos;0000&apos;  == {!Add_Driver_PIN}, &apos;9999&apos; == {!Add_Driver_PIN}, &apos;123456&apos; == {!Add_Driver_PIN}, &apos;000000&apos;  == {!Add_Driver_PIN}, &apos;999999&apos; == {!Add_Driver_PIN}), false,
+IF(AND({!didLength} == &apos;4&apos;, LEN({!Add_Driver_PIN}) &gt; 0, OR(LEN({!Add_Driver_PIN}) &gt; 4, LEN({!Add_Driver_PIN}) &lt; 4)), false,
+IF(AND({!didLength} == &apos;6&apos;, LEN({!Add_Driver_PIN}) &gt; 0, OR(LEN({!Add_Driver_PIN}) &gt; 6, LEN({!Add_Driver_PIN}) &lt; 6)), false,
+IF(AND({!didLength} == &apos;4 OR 6&apos;, LEN({!Add_Driver_PIN}) &gt; 0, NOT(OR(LEN({!Add_Driver_PIN}) == 4, LEN({!Add_Driver_PIN}) == 6))), false, true))))</formulaExpression>
+            </validationRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Add_Driver_Confirm</name>
+        <label>Add_Driver_Confirm</label>
+        <locationX>659</locationX>
+        <locationY>51</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Add_Driver_Complete</name>
+            <fieldText>&lt;p&gt;Your request to add a driver has been submitted and will be processed within 24-48 hours.&lt;/p&gt;&lt;p&gt;To add another driver click &quot;Finish&quot;.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Log into &lt;a href=&quot;{!onlineUrl}&quot; target=&quot;_blank&quot;&gt;your online account&lt;/a&gt; to retrieve your new Driver ID(s).&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <startElementReference>Add_Driver</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>didLength</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>4</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Fully-formatted URL for program&apos;s Online program.</description>
+        <name>onlineUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

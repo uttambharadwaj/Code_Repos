@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_Code_Criteria</fullName>
+    <active>true</active>
+    <description>Criteria: Cannot contain 1, 0, I, O or have more than two consecutive letters. Must be 6 characters long and the first character must be a letter.</description>
+    <errorConditionFormula>AND(
+				NOT(ISNULL($Setup.Campaign_Code_Generator__c.Enabled_Record_Types__c)),
+				CONTAINS($Setup.Campaign_Code_Generator__c.Enabled_Record_Types__c,  RecordTypeId),
+				$User.Alias != &apos;sinte&apos;,
+				$Setup.Automation_Settings__c.Disable_Validation_Rules__c != true,
+				NOT(CONTAINS(LOWER(Coupon_Code__c), &quot;test&quot;)),
+				OR(ISCHANGED(Coupon_Code__c),ISNEW()),
+				NOT(ISBLANK(Coupon_Code__c)),
+				LEN(Coupon_Code__c) != 3,
+    OR(
+        NOT(REGEX(Coupon_Code__c, &quot;^[M|A]{1}[0-9]{5}$&quot;))
+    )    
+)</errorConditionFormula>
+    <errorDisplayField>Coupon_Code__c</errorDisplayField>
+    <errorMessage>Criteria: Code must start with &apos;M&apos; followed by 5 numbers.</errorMessage>
+</ValidationRule>

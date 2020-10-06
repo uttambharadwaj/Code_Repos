@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bank_sortcode_validation</fullName>
+    <active>true</active>
+    <description>If Sortcode contains illegal characters and digits less than 6,the validation rule should display an error message.</description>
+    <errorConditionFormula>AND( DDMandateComplete__c = true, NOT(ISNULL(bankIdentifier__c )) &amp;&amp;
+OR( LEN(  bankIdentifier__c  ) &lt;&gt; 6, NOT(REGEX(  bankIdentifier__c  ,&quot;^[0-9]+$&quot;))))</errorConditionFormula>
+    <errorDisplayField>bankIdentifier__c</errorDisplayField>
+    <errorMessage>Sortcode doesn&apos;t allow illegal characters and no. of digits less than 6</errorMessage>
+</ValidationRule>

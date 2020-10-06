@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Solution_Articles_WIP_Not_Validated</fullName>
+    <columns>TITLE</columns>
+    <columns>ABSTRACT</columns>
+    <columns>VALIDATION_STATUS_ENUM</columns>
+    <columns>LAST_PUBLISHED_DATE</columns>
+    <columns>ARTICLE_CASE_ATTACH_COUNT</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Knowledge__kav.Solution</value>
+    </filters>
+    <filters>
+        <field>VALIDATION_STATUS_ENUM</field>
+        <operation>equals</operation>
+        <value>Not Validated,Work in Progress</value>
+    </filters>
+    <label>Solution Articles (WIP | Not Validated)</label>
+</ListView>

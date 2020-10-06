@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_cash_advance_percent</fullName>
+    <active>true</active>
+    <errorConditionFormula>100*(Maximum_Cash_Advance_Percent__c ) &gt;=  value(text(Cash_Advance__c))</errorConditionFormula>
+    <errorMessage>Maximum Cash Advance Percent cannot be higher than the Cash Advance Percent Established During Discovery Stage.</errorMessage>
+</ValidationRule>

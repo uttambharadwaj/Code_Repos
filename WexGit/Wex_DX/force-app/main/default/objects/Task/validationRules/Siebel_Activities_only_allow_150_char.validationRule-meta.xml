@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Siebel_Activities_only_allow_150_char</fullName>
+    <active>true</active>
+    <description>Siebel Activities only allow 150 characters. When a rep manually creates a Task with &quot;App Forwarded to Credit&quot;, &quot;FYI&quot; or &quot;Info Returned&quot; Type, this rule need to limit them to type more than 150 char</description>
+    <errorConditionFormula>AND((LEN( Description )&gt;=150 || ISBLANK(Description)),
+ISPICKVAL(Type, &apos;App Forwarded to Credit&apos;)||
+ISPICKVAL(Type, &apos;FYI&apos;)||
+ISPICKVAL(Type, &apos;Info Returned&apos;))</errorConditionFormula>
+    <errorDisplayField>Description</errorDisplayField>
+    <errorMessage>Comments must be between 1 and 149 characters</errorMessage>
+</ValidationRule>

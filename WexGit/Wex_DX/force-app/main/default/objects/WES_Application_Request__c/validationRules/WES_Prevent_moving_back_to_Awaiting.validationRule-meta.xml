@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Prevent_moving_back_to_Awaiting</fullName>
+    <active>true</active>
+    <description>Once a WES credit analyst has begun working on an Application, they can&apos;t move the application status backwards to Awaiting credit check.</description>
+    <errorConditionFormula>AND(
+$User.Role_Name__c = &quot;WES Credit Vetting Analyst&quot;,
+TEXT(Application_Status__c) = &quot;Awaiting Credit Check&quot;,
+ISCHANGED(Application_Status__c)
+)</errorConditionFormula>
+    <errorMessage>You can not change the Application Status to &quot;Awaiting Credit Check&quot;. You must get your manager&apos;s assistance to make this change.</errorMessage>
+</ValidationRule>

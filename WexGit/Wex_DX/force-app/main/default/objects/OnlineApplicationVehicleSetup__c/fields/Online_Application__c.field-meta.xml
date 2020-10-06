@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Online_Application__c</fullName>
+    <externalId>false</externalId>
+    <label>Online Application</label>
+    <referenceTo>OnlineApplication__c</referenceTo>
+    <relationshipLabel>Vehicle Setups</relationshipLabel>
+    <relationshipName>Online_Application_Vehicle_Setups</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

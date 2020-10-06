@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_HK_Card_Pin_Validation</fullName>
+    <active>true</active>
+    <description>Field is Mandatory for all SG &amp; HK applications</description>
+    <errorConditionFormula>AND(
+ISNEW(),
+RecordType.Name == &apos;EMAP Application Request&apos;, 
+ISPICKVAL(Card_Pin__c, &apos;&apos;), 
+ISPICKVAL(Client_Name__c, &apos;ExxonMobil Hong Kong&apos;) 
+)</errorConditionFormula>
+    <errorDisplayField>Card_Pin__c</errorDisplayField>
+    <errorMessage>This field is mandatory. Please select appropriate value.</errorMessage>
+</ValidationRule>

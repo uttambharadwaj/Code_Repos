@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Sales_Training_Cases_Incomplete</fullName>
+    <columns>Course__c</columns>
+    <columns>NAME</columns>
+    <columns>Class_Name__c</columns>
+    <columns>Length__c</columns>
+    <columns>Direct_Costs__c</columns>
+    <columns>Direct_Cost_Comments__c</columns>
+    <columns>Indirect_Costs__c</columns>
+    <columns>Indirect_Cost_Comments__c</columns>
+    <columns>Facilitator__c</columns>
+    <columns>Date__c</columns>
+    <columns>Administrative_Hours__c</columns>
+    <columns>Total_Number_of_Attendees__c</columns>
+    <columns>Total_Cost_of_Class__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Facilitator__c</field>
+        <operation>equals</operation>
+        <value>Alex Fagone,Jennifer Roney,Kathryn Connolly</value>
+    </filters>
+    <filters>
+        <field>Direct_Costs__c</field>
+        <operation>notEqual</operation>
+        <value>USD 0</value>
+    </filters>
+    <label>*My Sales Training Classes To review</label>
+</ListView>

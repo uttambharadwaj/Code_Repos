@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Search Tool code will call this external source if checked, will ignore if unchecked</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Search Tool code will call this external source if checked, will ignore if unchecked</inlineHelpText>
+    <label>Active</label>
+    <type>Checkbox</type>
+</CustomField>

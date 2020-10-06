@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Hold_Expiration_Date_required</fullName>
+    <active>true</active>
+    <description>Hold expiration date is required if Assessment Sub Status is &apos;Hold&apos;</description>
+    <errorConditionFormula>AND ( 
+ISPICKVAL( Assessment_Sub_Status__c , &apos;Hold&apos;), 
+ISBLANK( Hold_Expiration_Date__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Hold_Expiration_Date__c</errorDisplayField>
+    <errorMessage>Please enter hold expiration date, if Assessment Sub Status is Hold.</errorMessage>
+</ValidationRule>

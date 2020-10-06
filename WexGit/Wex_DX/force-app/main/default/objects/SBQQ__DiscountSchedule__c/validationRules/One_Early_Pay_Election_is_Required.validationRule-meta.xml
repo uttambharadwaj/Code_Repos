@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_Early_Pay_Election_is_Required</fullName>
+    <active>false</active>
+    <description>One Early Pay Election is Required</description>
+    <errorConditionFormula>NOT(ISBLANK( SBQQ__Quote__c ))&amp;&amp;OR(
+Early_Pay_Elections__c &gt; 1, 
+Early_Pay_Elections__c = 0
+)</errorConditionFormula>
+    <errorMessage>One Early Pay Election is Required</errorMessage>
+</ValidationRule>

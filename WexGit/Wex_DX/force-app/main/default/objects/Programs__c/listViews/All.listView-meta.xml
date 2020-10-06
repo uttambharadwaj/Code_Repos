@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>Account__c</columns>
+    <columns>NAME</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>Estimated_Card_Opportunity__c</columns>
+    <columns>Estimated_PC_Card_Opportunity__c</columns>
+    <columns>Estimated_Card_OpportunityTE__c</columns>
+    <columns>Estimated_Spend_OpportunityPC__c</columns>
+    <columns>Estimated_Spend_Opportunity__c</columns>
+    <columns>EstimatedSubscriptionOpportunityTM__c</columns>
+    <columns>Total_Number_of_Units__c</columns>
+    <columns>Total_Gallons__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

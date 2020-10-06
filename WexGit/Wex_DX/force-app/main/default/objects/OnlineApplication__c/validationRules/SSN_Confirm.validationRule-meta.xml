@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SSN_Confirm</fullName>
+    <active>true</active>
+    <errorConditionFormula>AO_Social_Security_Number__c &lt;&gt; AO_Confirm_Social_Security_Number__c</errorConditionFormula>
+    <errorDisplayField>AO_Social_Security_Number__c</errorDisplayField>
+    <errorMessage>Your Social Security Number does not match the confirmation field</errorMessage>
+</ValidationRule>

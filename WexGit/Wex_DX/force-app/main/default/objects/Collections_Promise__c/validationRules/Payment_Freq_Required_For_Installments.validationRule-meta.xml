@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Freq_Required_For_Installments</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL(Payment_Type__c, &apos;Installment&apos;),
+ ISPICKVAL(Payment_Frequency__c, &apos;&apos;))</errorConditionFormula>
+    <errorDisplayField>Payment_Frequency__c</errorDisplayField>
+    <errorMessage>Payment Frequency must be provided when selecting Payment Type Installment</errorMessage>
+</ValidationRule>

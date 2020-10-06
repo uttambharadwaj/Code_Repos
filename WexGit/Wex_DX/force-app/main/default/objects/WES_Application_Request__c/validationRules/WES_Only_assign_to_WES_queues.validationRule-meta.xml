@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Only_assign_to_WES_queues</fullName>
+    <active>true</active>
+    <description>Owner can only be assigned to WES related Queues</description>
+    <errorConditionFormula>NOT(BEGINS(Owner:Queue.QueueName,&quot;WES&quot;))</errorConditionFormula>
+    <errorMessage>You can only select queues that belong to WES.</errorMessage>
+</ValidationRule>

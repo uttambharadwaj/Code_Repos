@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EU_Team_Leader_s_Sales_Targets_2016</fullName>
+    <columns>NAME</columns>
+    <columns>Salesperson__c</columns>
+    <columns>Team_Leader__c</columns>
+    <columns>Target__c</columns>
+    <columns>Team_Target__c</columns>
+    <columns>Month_End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Team_Leader__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Year__c</field>
+        <operation>equals</operation>
+        <value>2016</value>
+    </filters>
+    <label>EU Team Leader&apos;s Sales Targets 2016</label>
+    <language>en_US</language>
+</ListView>

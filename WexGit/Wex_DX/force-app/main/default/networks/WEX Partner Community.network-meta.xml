@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>false</allowInternalUserLogin>
+    <allowMembersToFlag>true</allowMembersToFlag>
+    <changePasswordTemplate>WEX_Partner_Community_Templates/Community_Reset_Password</changePasswordTemplate>
+    <communityRoles/>
+    <description>WEX Partner Community</description>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailFooterText>WEX Inc. 97 Darling Avenue South Portland, ME USA 04106</emailFooterText>
+    <emailSenderAddress>salesforce@wexinc.com</emailSenderAddress>
+    <emailSenderName>WEX Partner Community</emailSenderName>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>false</enableDirectMessages>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableGuestFileAccess>false</enableGuestFileAccess>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableMemberVisibility>false</enableMemberVisibility>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>true</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>false</enableSiteAsContainer>
+    <enableTalkingAboutStats>true</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>false</enableTopicAssignmentRules>
+    <enableTopicSuggestions>true</enableTopicSuggestions>
+    <enableUpDownVote>false</enableUpDownVote>
+    <forgotPasswordTemplate>WEX_Partner_Community_Templates/Community_Reset_Password</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <networkMemberGroups>
+        <permissionSet>Community_Manager</permissionSet>
+        <permissionSet>Community_Member</permissionSet>
+        <permissionSet>View_Global_Header</permissionSet>
+        <permissionSet>Edit_Communities</permissionSet>
+        <permissionSet>BOCA</permissionSet>
+        <permissionSet>Online_App_Driver_Unit_Auth_Contacts_Program</permissionSet>
+        <permissionSet>Beneficial_Owner_Fleet_Card</permissionSet>
+        <profile>Admin</profile>
+        <profile>Partner Community User</profile>
+        <profile>Enterprise Partners</profile>
+        <profile>System Administrator - Gears</profile>
+        <profile>Generic Partner Profile %28Clone This%29</profile>
+        <profile>VIOC Partners</profile>
+        <profile>BizUnite Partners</profile>
+        <profile>Chatter Only for Partner Communities</profile>
+        <profile>GE Capital Partners - F1</profile>
+        <profile>Trans-Alliance Partners - F1</profile>
+        <profile>IT-Roady%27s Card Partners - F1</profile>
+        <profile>IT-D%26S Factors Card Partners - F1</profile>
+        <profile>Trulos Partners - F1</profile>
+        <profile>RTS Partners - F1</profile>
+        <profile>England Logistics Partners - F1</profile>
+        <profile>NASTC Partner - F1</profile>
+        <profile>Generic AU Community Partner Profile</profile>
+        <profile>WEX EFS OTR Sales</profile>
+        <profile>CarsArrive Partners - F1</profile>
+        <profile>FuelBook Partners - F1</profile>
+        <profile>Quality Companies Partner - F1</profile>
+        <profile>Truckers B2B Partners - F1</profile>
+        <profile>InTouch GPS Partners - F1</profile>
+        <profile>FleetPro Services Partner - F1</profile>
+        <profile>D%26S Fuel Card Partner - F1</profile>
+        <profile>CSI Global-Fleet Partner - F1</profile>
+        <profile>BSNF - F1</profile>
+        <profile>Single Point - F1</profile>
+        <profile>Vessix - Virtual</profile>
+        <profile>Discount Diesel Partners - F1</profile>
+        <profile>STC International - F1</profile>
+        <profile>England Logistics Partners 2016 - F1</profile>
+        <profile>SuperAmerica Partners</profile>
+        <profile>Fleet Savings Partner</profile>
+        <profile>Knight Logistics Partners</profile>
+        <profile>Express Truck Tax - F1</profile>
+        <profile>AMBEST Partner</profile>
+        <profile>CenterFire Partners</profile>
+        <profile>Patriot Fleet Systems Partner - F1</profile>
+        <profile>TBS Factoring Service Partner - F1</profile>
+        <profile>XPO Logistics Partner</profile>
+        <profile>AAble iFleet Partner</profile>
+        <profile>Creelman Partner Test</profile>
+        <profile>3MD Solutions - F1</profile>
+        <profile>Mansfield Oil Company Partner - F1</profile>
+        <profile>360 Fuels Partner</profile>
+        <profile>Triumph Business Capital - F1</profile>
+        <profile>Divvy Partner - CP</profile>
+        <profile>Summar Partner - F1</profile>
+        <profile>Transport Financial Solutions Partner - F1</profile>
+        <profile>ENGS Commercial Capital LLC Partner - F1</profile>
+        <profile>Interstate Capital Partner - F1</profile>
+        <profile>Vero Business Capital LLC</profile>
+        <profile>DAT</profile>
+        <profile>ECAPITAL</profile>
+        <profile>Foley Carrier Services LLC</profile>
+        <profile>Commercial Funding</profile>
+        <profile>Sunbelt</profile>
+        <profile>Integra Partner Group</profile>
+        <profile>Envio 360 Partner</profile>
+        <profile>Express Freight Finance Partner</profile>
+        <profile>Truckers Solutions Partners</profile>
+        <profile>123Loadboard Partner</profile>
+        <profile>Aladdin Financial Partner</profile>
+        <profile>Financial Carrier Service Partner</profile>
+        <profile>Thunder Carrier Services Partners</profile>
+        <profile>St Johns Partner</profile>
+        <profile>G%2EH%2E Factor Partner</profile>
+        <profile>iThrive Funding Partner</profile>
+        <profile>Advanced Commercial Credit Partners</profile>
+        <profile>CJM Financial Partner</profile>
+        <profile>JB Hunt</profile>
+        <profile>Great Plains Partner</profile>
+        <profile>GetGo Partners</profile>
+        <profile>JD Factors Partners</profile>
+        <profile>Quick Pay Funding Partners</profile>
+        <profile>Xfactors Partners</profile>
+        <profile>Partners Funding</profile>
+        <profile>FedEx Custom Critical Partners</profile>
+        <profile>Far West Capital</profile>
+        <profile>Petro Solutions Technologies LLC Partners</profile>
+        <profile>Pay4Freight Partners - F1</profile>
+        <profile>PTP %28OTR%29 NATSN - F1</profile>
+        <profile>CoreFund Capital Partners</profile>
+        <profile>Steelhead Partners</profile>
+        <profile>Freight Factoring Special Partners</profile>
+        <profile>Liquid Capital Solutions Partners</profile>
+        <profile>Parikh Financial Partners</profile>
+        <profile>Integrated Logistics Partners</profile>
+        <profile>CSI Global Vcard - Partner</profile>
+        <profile>OTR Capital Partners</profile>
+        <profile>Century Partners</profile>
+        <profile>G Squared Partners</profile>
+        <profile>Assist Financial Partners</profile>
+        <profile>Road Ranger USA Partners</profile>
+        <profile>Jerue Partners</profile>
+        <profile>Trucker Path Partners</profile>
+        <profile>CPayPlus - ServiceTitan Partner</profile>
+        <profile>Bobtail Capital Partners</profile>
+        <profile>Admiral Merchants Motor Freight Partners</profile>
+        <profile>Truckers Advantage Partner - F1</profile>
+        <profile>Daseke Logistics Partners</profile>
+        <profile>MHC Financial Partners</profile>
+        <profile>WEX CPS Demo</profile>
+        <profile>EFS Testing Community</profile>
+        <profile>C%2EH%2E Robinson Partners</profile>
+        <profile>Grasp Technologies Partner - CP</profile>
+        <profile>Echo Global Logistics Partners</profile>
+        <profile>Firstline Funding Group Partner - F1</profile>
+        <profile>AU Partner - ExxonMobil</profile>
+        <profile>Engaged Finance Partners</profile>
+        <profile>Expediter Services Partners</profile>
+        <profile>TAFS Partners</profile>
+        <profile>Thornton%27s Partner - OTR</profile>
+        <profile>Sprint Wireless Partners</profile>
+        <profile>Avery Brookes Group Partners</profile>
+        <profile>Innovation Energy Partners</profile>
+        <profile>F1 Indirect Sales</profile>
+        <profile>F1 Indirect Sales - Contracts</profile>
+        <profile>Hub Group Partners</profile>
+        <profile>Global Rewards Partner - CP</profile>
+        <profile>Little Mountain Logistics LLC Partners</profile>
+        <profile>TrakkxPay LLC Partners</profile>
+        <profile>Towing Network LLC dba TTN Fleet Solutions Partners</profile>
+        <profile>Truckers Nationwide Partners</profile>
+        <profile>Quarles Petroleum Inc Partners</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Standard</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>VisualForce</homePageOverrideSetting>
+        <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Standard</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>WEX_Partner_Community1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>WEX_Partner_Community</site>
+    <status>Live</status>
+    <tabs>
+        <customTab>OnlineApplication__c</customTab>
+        <customTab>AU_Application_Request__c</customTab>
+        <customTab>Executive_Summary</customTab>
+        <customTab>Performance_and_Trends</customTab>
+        <customTab>Campaign_Summary</customTab>
+        <customTab>Application_Request__c</customTab>
+        <customTab>CP_Application_Request__c</customTab>
+        <defaultTab>home</defaultTab>
+        <standardTab>home</standardTab>
+        <standardTab>Lead</standardTab>
+        <standardTab>Account</standardTab>
+        <standardTab>Opportunity</standardTab>
+        <standardTab>Case</standardTab>
+        <standardTab>Dashboard</standardTab>
+        <standardTab>report</standardTab>
+        <standardTab>Chatter</standardTab>
+        <standardTab>Workspace</standardTab>
+        <standardTab>WaveHome</standardTab>
+    </tabs>
+    <urlPathPrefix>partners</urlPathPrefix>
+    <welcomeTemplate>WEX_Partner_Community_Templates/Community_Welcome_Email</welcomeTemplate>
+</Network>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_Date__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Choose the date of the session</inlineHelpText>
+    <label>Session Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1/21/2015</fullName>
+                <default>false</default>
+                <label>1/21/2015</label>
+            </value>
+            <value>
+                <fullName>1/22/2015</fullName>
+                <default>false</default>
+                <label>1/22/2015</label>
+            </value>
+            <value>
+                <fullName>1/23/2015</fullName>
+                <default>false</default>
+                <label>1/23/2015</label>
+            </value>
+            <value>
+                <fullName>1/24/2015</fullName>
+                <default>false</default>
+                <label>1/24/2015</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

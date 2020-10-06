@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Radius_Historical_Applications</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Primary_Contact__c</columns>
+    <columns>Business_Entity_Type__c</columns>
+    <columns>Application_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>WES_Application_Request__c.Historical</value>
+    </filters>
+    <label>Radius Historical Applications</label>
+    <sharedTo>
+        <group>WES_Credit</group>
+        <group>WES_Sales</group>
+    </sharedTo>
+</ListView>

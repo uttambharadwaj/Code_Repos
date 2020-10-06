@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fleet_Card_Program</fullName>
+    <active>true</active>
+    <description>This is for a fleet card program</description>
+    <label>Fleet Card Program</label>
+    <picklistValues>
+        <picklist>Programs__c</picklist>
+        <values>
+            <fullName>CFN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comchek Fleet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FleetOne</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FleetOne Private Label</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fuelman</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fuelman Private Label</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MC Fleet Issuer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oil Company Fleet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PacPride</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proprietary Cardlock</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TCH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voyager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WEX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WEX Private Label</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

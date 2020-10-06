@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MCC_Notes_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Project_Disabled__c = FALSE,
+
+  /*
+  below 2 pieces of criteria enable use of Clone button
+  */
+  NOT(ISNEW()),
+  /* Stage__c must be a required field on the page layout, to ensure that whenever user edit&apos;s Project after cloning it, the field is not blank */
+  NOT(ISBLANK(TEXT(Stage__c))),
+
+  RecordType.DeveloperName = &apos;Virtual_NA_Implementation&apos;,
+  TEXT(MCC_Controls__c) = &quot;N/A&quot;,
+  ISBLANK(MCC_Notes__c),
+  AND(
+    NOT(TEXT(Stage__c) = &apos;Pending Assigment&apos;),
+    NOT(TEXT(Stage__c) = &apos;Pending Client Contact&apos;),
+    NOT(TEXT(Stage__c) = &apos;Pending Contract&apos;)
+  )
+)</errorConditionFormula>
+    <errorDisplayField>MCC_Notes__c</errorDisplayField>
+    <errorMessage>Please complete MCC Notes when MCC Controls is unchecked</errorMessage>
+</ValidationRule>

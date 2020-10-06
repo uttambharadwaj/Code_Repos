@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CALL_Completed_Attempt_or_Conversation</fullName>
+    <active>true</active>
+    <description>Activity Subtype is required for inside sales when the Activity Type is &apos;Call&apos; and status is &apos;completed&apos; (unless system closed the task (Echosign) and result is &quot;Did not make contact&quot;.</description>
+    <errorConditionFormula>AND
+(
+NOT($Setup.Automation_Settings__c.Disable_Validation_Rules__c = TRUE),
+$User.Id &lt;&gt; &quot;00570000001tweu&quot;,
+ISPICKVAL( Type,&quot;Call&quot;), 
+ISPICKVAL( Status ,&quot;Completed&quot;), 
+ISPICKVAL( Activity_Sub_Type__c ,&quot;&quot;),
+NOT(CONTAINS(Subject,&quot;Inbound call from&quot;)),
+$Profile.Id &lt;&gt; &quot;00e70000000x2Rv&quot;,
+$Profile.Id &lt;&gt; &quot;00e70000000x8vc&quot;, 
+$Profile.Id &lt;&gt; &quot;00e70000000tKvI&quot;,
+$Profile.Id &lt;&gt; &quot;00e70000000x2N0&quot;,
+$Profile.Id &lt;&gt; &quot;00e70000000x8ss&quot;,
+$Profile.Id &lt;&gt; &quot;00e70000000x2PQ&quot;,
+$Profile.Id &lt;&gt; &quot;00e70000000x9ty&quot;,   
+RecordTypeId &lt;&gt; &quot;0120g000000HsOc&quot;,
+RecordTypeId &lt;&gt; &quot;0124u000000ED2m&quot;,
+RecordTypeId &lt;&gt; &quot;0124u000000ED46&quot;,			
+NOT($Setup.VProfileId__c.Virtual_User__c = TRUE)
+)</errorConditionFormula>
+    <errorDisplayField>Activity_Sub_Type__c</errorDisplayField>
+    <errorMessage>You must pick an Activity Subtype for a completed Call.</errorMessage>
+</ValidationRule>

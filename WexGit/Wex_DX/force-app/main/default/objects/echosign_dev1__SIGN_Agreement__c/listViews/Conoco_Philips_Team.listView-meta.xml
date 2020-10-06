@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conoco_Philips_Team</fullName>
+    <columns>NAME</columns>
+    <columns>echosign_dev1__Status__c</columns>
+    <columns>echosign_dev1__Enable_Hosted_Signing__c</columns>
+    <columns>echosign_dev1__Opportunity__c</columns>
+    <columns>Sales_Rep_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sales_Rep_Name__c</field>
+        <operation>equals</operation>
+        <value>Landon Fielder</value>
+    </filters>
+    <filters>
+        <field>Sales_Rep_Name__c</field>
+        <operation>equals</operation>
+        <value>Jose Rivera</value>
+    </filters>
+    <filters>
+        <field>Sales_Rep_Name__c</field>
+        <operation>equals</operation>
+        <value>Eric Rodriguez</value>
+    </filters>
+    <filters>
+        <field>Sales_Rep_Name__c</field>
+        <operation>equals</operation>
+        <value>Aaron Strand</value>
+    </filters>
+    <filters>
+        <field>Sales_Rep_Name__c</field>
+        <operation>equals</operation>
+        <value>Khanh Hoang</value>
+    </filters>
+    <label>Conoco Philips Team</label>
+    <sharedTo>
+        <role>CPRegionalSalesManager</role>
+    </sharedTo>
+</ListView>

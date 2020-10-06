@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ready_for_Credit_Decision</fullName>
+    <active>true</active>
+    <description>Information is complete enough for credit decision.</description>
+    <errorConditionFormula>AND(
+ISCHANGED(Credit_Decision__c),
+TEXT(Credit_Decision__c) = &quot;Accepted&quot;,
+From_Radius__c = FALSE,
+ReadyforCreditDecision__c = FALSE
+)</errorConditionFormula>
+    <errorMessage>The following checks and fields must be complete before an &quot;Accepted&quot; credit decision can be made: Sense Check, Existing Account Check, Fraud Check, Periodic Assessment, Dunning Classification, Risk Category.</errorMessage>
+</ValidationRule>

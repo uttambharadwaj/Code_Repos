@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enter_Credit_decision_comments</fullName>
+    <active>true</active>
+    <description>User must enter Credit Decision comments when making a credit decision</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(TEXT(Credit_Decision__c))),
+ISBLANK(Credit_Decision_Comments__c)
+	)</errorConditionFormula>
+    <errorDisplayField>Credit_Decision_Comments__c</errorDisplayField>
+    <errorMessage>You must enter a Credit Decision Comment when making a credit decision.</errorMessage>
+</ValidationRule>

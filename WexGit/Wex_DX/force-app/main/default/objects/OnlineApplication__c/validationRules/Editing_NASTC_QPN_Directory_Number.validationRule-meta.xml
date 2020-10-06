@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Editing_NASTC_QPN_Directory_Number</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+ISCHANGED( NASTC_QPN_Directory__c ), 
+NOT(ISPICKVAL(Status__c ,&quot;Pending Setup&quot;)))</errorConditionFormula>
+    <errorDisplayField>NASTC_QPN_Directory__c</errorDisplayField>
+    <errorMessage>NASTC/QPN Directory # can ONLY be edited with a status of Pending Setup</errorMessage>
+</ValidationRule>

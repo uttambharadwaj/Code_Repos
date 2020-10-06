@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Select_for_Fiscal_Year_Starts</fullName>
+    <active>true</active>
+    <description>Throw an error if select is opted</description>
+    <errorConditionFormula>ISPICKVAL(Fiscal_Year_Starts__c, &quot;--Select--&quot;)</errorConditionFormula>
+    <errorMessage>Please select Fiscal Year Starts</errorMessage>
+</ValidationRule>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Sales_from_Editing</fullName>
+    <active>false</active>
+    <description>Prevents Sales from Editing the Application while the application is in a status that is owned by Credit.</description>
+    <errorConditionFormula>AND(
+BEGINS($UserRole.Name,&quot;WES&quot;),
+CONTAINS($UserRole.Name,&quot;Sales&quot;) ||
+CONTAINS($UserRole.Name,&quot;sales&quot;),				
+Application_Status_Team__c	= &quot;Credit&quot;,
+AND(				
+ISCHANGED(Application_Status__c),				
+TEXT(PRIORVALUE(Application_Status__c)) &lt;&gt; &quot;Draft&quot;,
+TEXT(PRIORVALUE(Application_Status__c)) &lt;&gt; &quot;Awaiting Security Check&quot;,
+TEXT(PRIORVALUE(Application_Status__c)) &lt;&gt; &quot;Sales to Obtain Further Information&quot;
+)
+)</errorConditionFormula>
+    <errorMessage>Sales can&apos;t edit this Application because it is set to a status that only Credit can edit.</errorMessage>
+</ValidationRule>

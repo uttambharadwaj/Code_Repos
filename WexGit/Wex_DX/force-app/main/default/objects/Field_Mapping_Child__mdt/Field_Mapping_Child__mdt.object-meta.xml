@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>used for more dynamic field mapping. specifically created for Partner BOCA to Prospect, but should also be useful for other functionality. Child is the child (this will usually be the field api name mapped to a different field)</description>
+    <label>Field Mapping Child</label>
+    <pluralLabel>Field Mapping Children</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

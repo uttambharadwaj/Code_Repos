@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Barb_s_Untouched_Tasks1</fullName>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>TASK.SUBJECT</columns>
+    <columns>TASK.WHO_NAME</columns>
+    <columns>TASK.WHAT_NAME</columns>
+    <columns>TASK.CREATED_DATE</columns>
+    <columns>TASK.DUE_DATE</columns>
+    <columns>Comments__c</columns>
+    <columns>TASK.STATUS</columns>
+    <columns>TASK.PRIORITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACTIVITY.TASK</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>bholl</value>
+    </filters>
+    <filters>
+        <field>TASK.STATUS</field>
+        <operation>equals</operation>
+        <value>Not Started</value>
+    </filters>
+    <filters>
+        <field>TASK.CREATED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>5/1/2020 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>TASK.SUBJECT</field>
+        <operation>notEqual</operation>
+        <value>place 1st call,boca re-sent to prospect</value>
+    </filters>
+    <label>Barb&apos;s Untouched Tasks</label>
+    <language>en_US</language>
+</ListView>

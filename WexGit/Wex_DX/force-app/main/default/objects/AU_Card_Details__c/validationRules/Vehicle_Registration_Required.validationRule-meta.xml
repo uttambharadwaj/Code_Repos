@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vehicle_Registration_Required</fullName>
+    <active>true</active>
+    <description>It is an error if Card Type (Control) is either &quot;Driver &amp; Vehicle&quot; or &quot;Vehicle Only&quot;
+AND Vehicle Registration is empty</description>
+    <errorConditionFormula>AND(
+ ISBLANK(AU_Vehicle_Registration__c),
+ OR(
+  ISPICKVAL(AU_Card_Type__c, &apos;Vehicle Only&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver &amp; Vehicle&apos;)
+ )
+)</errorConditionFormula>
+    <errorDisplayField>AU_Vehicle_Registration__c</errorDisplayField>
+    <errorMessage>Vehicle Registration must be entered if Vehicle chosen in Card Type (Control)</errorMessage>
+</ValidationRule>

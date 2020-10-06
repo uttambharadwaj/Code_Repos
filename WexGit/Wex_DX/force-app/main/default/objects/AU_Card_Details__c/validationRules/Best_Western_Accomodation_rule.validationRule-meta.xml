@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Best_Western_Accomodation_rule</fullName>
+    <active>true</active>
+    <description>Ensures that accomodation is selected as a product on all Best Western cards</description>
+    <errorConditionFormula>AND(ISPICKVAL( Card_Type__c, &quot;BW: Best Western Trade Card&quot;),
+NOT( INCLUDES( Product_Restriction_Groups__c , &quot;150: Accommodation&quot;) ))</errorConditionFormula>
+    <errorDisplayField>Product_Restriction_Groups__c</errorDisplayField>
+    <errorMessage>Accommodation must be selected for Best Western cards</errorMessage>
+</ValidationRule>

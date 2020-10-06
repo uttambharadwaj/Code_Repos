@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Endpoint_URL__c</fullName>
+    <description>Endpoint URL</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Endpoint URL</inlineHelpText>
+    <label>Endpoint URL</label>
+    <required>false</required>
+    <type>Url</type>
+</CustomField>

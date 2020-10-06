@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offer_Details__c</fullName>
+    <description>Created for Shell quote template, as they always want to see currency symbols formatted as dollars and cents along with description of the line item.</description>
+    <externalId>false</externalId>
+    <formula>CASE(CurrencyIsoCode,&apos;CNY&apos;,&apos;£&apos;,&apos;EUR&apos;,&apos;€&apos;,&apos;GBP&apos;,&apos;£&apos;,&apos;JPY&apos;,&apos;¥&apos;,&apos;USD&apos;,&apos;$&apos;,&apos;&apos;) &amp;( 
+IF(Net_Total__c &lt; 0, &quot;-&quot;, &quot;&quot;) &amp; 
+IF(ABS(Net_Total__c) &gt;= 1000000, TEXT(FLOOR(ABS(Net_Total__c) / 1000000)) &amp; &quot;,&quot;, &quot;&quot;) &amp; 
+IF(ABS(Net_Total__c) &gt;= 1000, RIGHT(TEXT(FLOOR(ABS(Net_Total__c) / 1000)), 3) &amp; &quot;,&quot;, &quot;&quot;) &amp; 
+RIGHT(TEXT(FLOOR(ABS(Net_Total__c))), 3) &amp; &quot;.&quot; &amp; 
+IF(MOD(ABS(Net_Total__c) , 1) * 100 &lt; 10, &quot;0&quot; &amp; TEXT(ROUND(MOD(ABS(Net_Total__c) , 1), 2) * 100), TEXT(MIN(ROUND(MOD(ABS(Net_Total__c) , 1), 2) * 100, 99)))) &amp; &quot; &quot; &amp; SBQQ__Product__r.Details__c</formula>
+    <label>Offer Details</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

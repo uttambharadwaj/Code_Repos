@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Approver_for_After_Hours_gt_500</fullName>
+    <active>true</active>
+    <description>Requires that the Approver be filled in for After Hours purchases over $500.</description>
+    <errorConditionFormula>RecordType.Name  = &quot;After Hours&quot;  &amp;&amp;  Dollar_Amount__c  &gt;= 500.00  &amp;&amp; TRIM(Approver_Name__c) = &quot;&quot;</errorConditionFormula>
+    <errorMessage>Approver Name is required for purchases over $500.</errorMessage>
+</ValidationRule>

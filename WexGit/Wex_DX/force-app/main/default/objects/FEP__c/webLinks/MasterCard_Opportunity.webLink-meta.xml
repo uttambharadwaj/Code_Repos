@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MasterCard_Opportunity</fullName>
+    <availability>online</availability>
+    <description>Virtual Mastercard Opportunity</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>MasterCard Opportunity</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://na5.salesforce.com/006/e?retURL=%2F006%2Fo&amp;RecordType=012700000005Yep&amp;ent=Opportunity&amp;
+opp3={!FEP__c.Account__c}&amp;
+opp4_lkid={!Account.Id}&amp;
+opp4={!FEP__c.Account__c}&amp;
+00N70000002OSTH=&quot;Virtual&quot;&amp;
+00N70000002OM7Z={!FEP__c.Virtual_Card_Spend__c}&amp;
+00N70000002zvWc={!FEP__c.Epayables_Spend__c}&amp;
+00N70000002zvWm={!FEP__c.Mastercard_PCard_Spend__c}&amp;
+00N70000002PsUa={!FEP__c.Mastercard_PCard_Provider__c}</url>
+</WebLink>

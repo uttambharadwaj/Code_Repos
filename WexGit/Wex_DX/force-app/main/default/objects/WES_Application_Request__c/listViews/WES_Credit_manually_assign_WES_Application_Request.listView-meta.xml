@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Credit_manually_assign_WES_Application_Request</fullName>
+    <filterScope>Queue</filterScope>
+    <label>WES Credit (manually assign)</label>
+    <queue>WES_Credit_manually_assign</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

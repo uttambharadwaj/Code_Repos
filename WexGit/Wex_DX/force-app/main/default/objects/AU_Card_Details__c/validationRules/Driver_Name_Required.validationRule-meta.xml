@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Driver_Name_Required</fullName>
+    <active>true</active>
+    <description>It is an error if Card Type (Control) is either &quot;Driver &amp; Vehicle&quot; , &quot;Driver Only&quot; or &quot;Trade&quot;
+AND Driver Name is empty</description>
+    <errorConditionFormula>AND(
+ ISBLANK(AU_Drivers_Name__c),
+ OR(
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver Only&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver &amp; Vehicle&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Trade&apos;)
+ )
+)</errorConditionFormula>
+    <errorDisplayField>AU_Drivers_Name__c</errorDisplayField>
+    <errorMessage>Driver Name must be entered if Driver chosen in Card Type (Control)</errorMessage>
+</ValidationRule>

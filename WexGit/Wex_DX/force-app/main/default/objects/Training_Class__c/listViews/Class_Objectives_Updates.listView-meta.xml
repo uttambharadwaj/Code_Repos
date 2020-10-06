@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class_Objectives_Updates</fullName>
+    <columns>NAME</columns>
+    <columns>Class_Name__c</columns>
+    <columns>Course__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Learner_Objective_1__c</columns>
+    <columns>Learner_Objective_2__c</columns>
+    <columns>Learner_Objective_3__c</columns>
+    <columns>Business_Objectives_2__c</columns>
+    <columns>Business_Objectives_1__c</columns>
+    <columns>Business_Objectives_3__c</columns>
+    <columns>Facilitator__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Course__c</field>
+        <operation>equals</operation>
+        <value>Sales Performance Assessments</value>
+    </filters>
+    <label>Class Objectives Updates</label>
+</ListView>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wes_UserApprovalThreshold</fullName>
+    <active>true</active>
+    <description>If user does not have approval authority defined for his/her user account, and if he/she attempts to set Review Status to approved, and if analyst recommended limit does NOT = credit authorised limit, then throw error message.</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,IF( AND ( AND($Profile.Name != &apos;System Administrator&apos;, $Profile.Name != &apos;Integration User&apos;) , RecordType.Name = &apos;WES Accounts&apos;, Recommended_credit_limit__c &lt;&gt; Credit_authorised_limit__c) , ISBLANK($User.WES_Approval_Threshold__c) ,False ))</errorConditionFormula>
+    <errorMessage>Your user account does not have an approval threshold defined. Please contact your system admin for assistance.</errorMessage>
+</ValidationRule>

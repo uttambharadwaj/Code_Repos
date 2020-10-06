@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Provide_Reason_Security_Check_Failed</fullName>
+    <active>true</active>
+    <description>User must provide a reason if security check failed</description>
+    <errorConditionFormula>Failed_Security_Check__c = TRUE &amp;&amp;
+ISBLANK(TEXT(Security_Check_Failure_Reason__c))</errorConditionFormula>
+    <errorDisplayField>Security_Check_Failure_Reason__c</errorDisplayField>
+    <errorMessage>You must provide a Security Check Failure Reason</errorMessage>
+</ValidationRule>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Late_Payer__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+AND(
+ISBLANK(Invoice_Paid_in_Full_On__c),
+(Payment_Due_Date__c + Account__r.Program__r.Late_Payer_Days__c ) &lt; TODAY()
+),
+AND(
+NOT(ISBLANK(Invoice_Paid_in_Full_On__c)),
+(Payment_Due_Date__c + Account__r.Program__r.Late_Payer_Days__c ) &lt; Invoice_Paid_in_Full_On__c 
+)
+),
+true, 
+false 
+)</formula>
+    <label>Is Late Payer?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

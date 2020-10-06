@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EU_Sales_Created_Date_Targets_2017</fullName>
+    <columns>NAME</columns>
+    <columns>Salesperson__c</columns>
+    <columns>Team_Leader__c</columns>
+    <columns>Team__c</columns>
+    <columns>Target__c</columns>
+    <columns>X90_Day_Target__c</columns>
+    <columns>Team_Target__c</columns>
+    <columns>Date_Type__c</columns>
+    <columns>Month_End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Year__c</field>
+        <operation>equals</operation>
+        <value>2017</value>
+    </filters>
+    <filters>
+        <field>Team__c</field>
+        <operation>equals</operation>
+        <value>Virtual New Verticals EU,Virtual Travel Sales EU</value>
+    </filters>
+    <filters>
+        <field>Date_Type__c</field>
+        <operation>equals</operation>
+        <value>Created Date</value>
+    </filters>
+    <label>EU Sales Created Date Targets 2017</label>
+    <language>en_US</language>
+</ListView>

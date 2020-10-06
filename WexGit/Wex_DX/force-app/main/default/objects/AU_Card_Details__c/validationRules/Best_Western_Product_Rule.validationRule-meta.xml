@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Best_Western_Product_Rule</fullName>
+    <active>true</active>
+    <description>Checks that only Accommodation or Food are selected as products for Best Western cards</description>
+    <errorConditionFormula>AND(
+ ISPICKVAL( Card_Type__c , &quot;BW: Best Western Trade Card&quot;) 
+ ,
+ or(
+ INCLUDES(Product_Restriction_Groups__c,&quot;10: Leaded&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;20: Unleaded	&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;30: Premium Unleaded	&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;40: Diesel&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;50: LPG&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;52: Ethanol PULP&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;53: Ethanol ULP&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;54: Low Aromatic Fuel&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;60: Oil&quot;),  
+INCLUDES(Product_Restriction_Groups__c,&quot;70: Car Wash&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;80: Insurance&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;90: Parking&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;120: Roadside Assistance&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;130: Service and Repairs&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;135: Tyres&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;140: Tolls&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;170: Car Rental&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;200: Shop&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;210: Taxi&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;220: Liquor&quot;)
+ )
+ )</errorConditionFormula>
+    <errorDisplayField>Product_Restriction_Groups__c</errorDisplayField>
+    <errorMessage>Only Accommodation or Beverage products can be selected for Best Western cards</errorMessage>
+</ValidationRule>

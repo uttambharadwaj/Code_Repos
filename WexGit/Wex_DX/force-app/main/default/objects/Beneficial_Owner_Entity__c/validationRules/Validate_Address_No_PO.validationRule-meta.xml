@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Address_No_PO</fullName>
+    <active>true</active>
+    <description>Validate that Address doesn&apos;t have a PO Box in it.</description>
+    <errorConditionFormula>OR(
+        (REGEX(Physical_Address_Line_1__c , &quot;(?i)\\b(?:p\\.?\\s*o\\.?|post\\s+office)\\s+box.*&quot;)),
+        (REGEX(Physical_Address_Line_2__c , &quot;(?i)\\b(?:p\\.?\\s*o\\.?|post\\s+office)\\s+box.*&quot;))
+    )</errorConditionFormula>
+    <errorMessage>The Address Field cannot be a PO Box or a PO Number.</errorMessage>
+</ValidationRule>

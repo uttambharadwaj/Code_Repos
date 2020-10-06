@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:APAC</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>APAC</name>
+        <parentName/>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:AU</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>AU</name>
+        <parentName/>
+        <position>2</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:AU Marketing</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>AU Marketing</name>
+        <parentName>AU</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All</name>
+        <parentName/>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Client Facing Documents</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Client Facing Documents</name>
+        <parentName>All</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Corporate</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Corporate</name>
+        <parentName>All</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Finance</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Finance</name>
+        <parentName>All</parentName>
+        <position>2</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Industry Intel</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Industry Intel</name>
+        <parentName>All</parentName>
+        <position>3</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Partners</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Partners</name>
+        <parentName>All</parentName>
+        <position>4</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Product</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Product</name>
+        <parentName>All</parentName>
+        <position>5</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All RM</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All RM</name>
+        <parentName>All</parentName>
+        <position>6</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Sales</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Sales</name>
+        <parentName>All</parentName>
+        <position>7</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Technical</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Technical</name>
+        <parentName>All</parentName>
+        <position>8</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Technical External</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Technical External</name>
+        <parentName>All Technical</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Technical Internal</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Technical Internal</name>
+        <parentName>All Technical</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:All Verticals</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>All Verticals</name>
+        <parentName>NA Client Facing Documents</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Aviation</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Aviation</name>
+        <parentName>NA Client Facing Documents</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Competitor Intel</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Competitor Intel</name>
+        <parentName>All Industry Intel</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Construction</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Construction</name>
+        <parentName>EU Client Facing Documents</parentName>
+        <position>2</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Credit Onboarding</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Credit Onboarding</name>
+        <parentName>EU Client Facing Documents</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU</name>
+        <parentName/>
+        <position>3</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU Client Facing Documents</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU Client Facing Documents</name>
+        <parentName>EU</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU Credit / Risk &amp; Compliance</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU Credit / Risk &amp; Compliance</name>
+        <parentName>EU</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU Insurance &amp; Warranty</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU Insurance &amp; Warranty</name>
+        <parentName>EU Client Facing Documents</parentName>
+        <position>4</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU Marketing</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU Marketing</name>
+        <parentName>EU</parentName>
+        <position>2</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU Sales</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU Sales</name>
+        <parentName>EU</parentName>
+        <position>3</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:EU Travel</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>EU Travel</name>
+        <parentName>EU Client Facing Documents</parentName>
+        <position>5</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Logos &amp; Templates</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Logos &amp; Templates</name>
+        <parentName>All Corporate</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Media</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Media</name>
+        <parentName>NA Client Facing Documents</parentName>
+        <position>3</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:NA</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>NA</name>
+        <parentName/>
+        <position>4</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:NA Client Facing Documents</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>NA Client Facing Documents</name>
+        <parentName>NA</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:NA Insurance &amp; Warranty</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>NA Insurance &amp; Warranty</name>
+        <parentName>NA Client Facing Documents</parentName>
+        <position>2</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:NA Marketing</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>NA Marketing</name>
+        <parentName>NA</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:NA Travel</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>NA Travel</name>
+        <parentName>NA Client Facing Documents</parentName>
+        <position>4</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:Prepaid / Debit Onboarding</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Prepaid / Debit Onboarding</name>
+        <parentName>EU Client Facing Documents</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>SPARKLE.Navigational:eCommerce</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>eCommerce</name>
+        <parentName>EU Client Facing Documents</parentName>
+        <position>3</position>
+        <topicDescription/>
+    </managedTopic>
+</ManagedTopics>

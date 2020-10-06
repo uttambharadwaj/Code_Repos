@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Accepting_App_if_above_Max_Cards</fullName>
+    <active>true</active>
+    <description>Prevent users from setting Application status to Accepted if the Max Num of Cards can approve is above their user&apos;s limit.</description>
+    <errorConditionFormula>AND(
+TEXT(Application_Status__c) = &quot;Accepted&quot;,
+BEGINS($UserRole.Name , &quot;WES Credit&quot;),
+CreditLevelRequestApproved__c = FALSE,
+Total_Fuel_Cards_Needed__c &gt;  $User.WES_MaxCardsCanApprove__c 
+)</errorConditionFormula>
+    <errorMessage>You must submit an Approval Request if the Number of Cards needed is above User&apos;s cards limit.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Country_Code_Lengths</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+OR(
+AND(
+TEXT(Physical_Country__c) != null,
+LEN(TEXT(Physical_Country__c)) != 2
+),
+AND(
+TEXT(Billing_Country__c) != null,
+LEN(TEXT(Billing_Country__c)) != 2
+)
+)
+))</errorConditionFormula>
+    <errorMessage>Physical Country and Billing Country are limited to two characters. Please correct and try again.</errorMessage>
+</ValidationRule>

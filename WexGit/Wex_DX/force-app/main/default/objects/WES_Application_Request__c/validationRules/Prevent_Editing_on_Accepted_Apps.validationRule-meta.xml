@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Editing_on_Accepted_Apps</fullName>
+    <active>true</active>
+    <description>Once an application is Accepted it should not be able to be edited unless user is a System Admin or WES System Admin.</description>
+    <errorConditionFormula>AND(
+RecordLocked__c = TRUE,
+Send_App_to_IFCS__c = TRUE,
+NOT(ISCHANGED(IFCS_Request_Body__c)), 	
+NOT(ISBLANK(IFCS_Request_Body__c)), 
+$User.ProfileId &lt;&gt; &quot;00e70000000tKvI&quot;,
+$User.ProfileId &lt;&gt; &quot;00ee0000000Qed4&quot;
+)</errorConditionFormula>
+    <errorMessage>You can not edit an application once it has been Accepted. Seek assistance from a System admin if the application needs to be resubmitted.</errorMessage>
+</ValidationRule>

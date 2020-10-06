@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>App_must_pass_security_check_to_progress</fullName>
+    <active>true</active>
+    <description>A Sales agent must submit an approval request to pass the security check to proceed with Credit passing the application.</description>
+    <errorConditionFormula>AND(
+TEXT(Application_Status__c) &lt;&gt; &quot;Draft&quot;,				
+Passed_Security_Check__c = FALSE,
+CONTAINS($User.Role_Name__c, &quot;Telesales&quot;),
+NOT(CONTAINS($User.Role_Name__c, &quot;Team_Leader&quot;))
+)</errorConditionFormula>
+    <errorMessage>WES Telesales must submit an approval request for a Security Check before application can be sent to Credit.</errorMessage>
+</ValidationRule>

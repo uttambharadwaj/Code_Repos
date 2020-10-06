@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confirm_Checks_Before_Credit_Approved</fullName>
+    <active>false</active>
+    <description>Confirm Compliance (Sanctions Check + Compliance Decision) and Fraud (Decision + Recommendation) Checks pass before Credit Decision is Approved</description>
+    <errorConditionFormula>AND(
+  OR(
+    NOT(ISPICKVAL(Sanctions_Check__c, &quot;Passed&quot;)),
+    NOT(ISPICKVAL(Compliance_Decision__c, &quot;Approve&quot;)),
+    NOT(ISPICKVAL(Fraud_Decision__c, &quot;Approved&quot;)),
+    NOT(ISPICKVAL(Fraud_Recommendation__c, &quot;Recommend Approve&quot;))),
+  CONTAINS(&quot;:Approved - Counter Offer:Approved - Requested:Approved - Secured Requested:&quot;, &apos;:&apos; + TEXT(Credit_Decision__c) + &apos;:&apos;))</errorConditionFormula>
+    <errorDisplayField>Credit_Decision__c</errorDisplayField>
+    <errorMessage>Compliance (Sanctions Check + Compliance Decision) and Fraud (Decision + Recommendation) Checks must be complete before Credit Decision is Approved</errorMessage>
+</ValidationRule>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Positive_Feedback</fullName>
+    <columns>NAME</columns>
+    <columns>artfeed__Article_Title__c</columns>
+    <columns>artfeed__Unlike_Reason__c</columns>
+    <columns>artfeed__Feedback_Description__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>artfeed__Like__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Positive Feedback</label>
+</ListView>

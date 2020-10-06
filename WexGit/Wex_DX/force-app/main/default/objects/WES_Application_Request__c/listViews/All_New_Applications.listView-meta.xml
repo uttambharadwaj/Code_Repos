@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_New_Applications</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Business_Entity_Type__c</columns>
+    <columns>Application_Status__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>Sales_Agent_Assigned__c</columns>
+    <columns>CreditAgentAssigned__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Product_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>WES_Application_Request__c.Historical</value>
+    </filters>
+    <label>All Applications (Not Historical)</label>
+</ListView>

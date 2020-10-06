@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Approval_Need_Score_or_Risk_Grade</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+$Setup.Automation_Settings__c.Disable_Validation_Rules__c != true,
+Running_Credit_Decisioning__c != true,
+ISCHANGED(Status__c),
+ISPICKVAL(PRIORVALUE(Status__c), &quot;Pending Decision&quot;),
+ISPICKVAL(Status__c, &quot;Decisioned&quot;),
+ISPICKVAL(Credit_Decision__c, &quot;Approved&quot;),
+OR(
+ISBLANK(Credit_Bureau_Score__c ),
+ISBLANK(TEXT(Risk_Grade__c)),
+ISBLANK(Risk_Grade_Source__c)
+)
+)</errorConditionFormula>
+    <errorMessage>Unable to approve application with a blank Credit Bureau Score, Risk Grade, or Risk Grade Source.  Please check those fields and adjust as needed.</errorMessage>
+</ValidationRule>

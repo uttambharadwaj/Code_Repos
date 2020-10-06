@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Shipping_Country_Mandatory</fullName>
+    <active>true</active>
+    <description>Shipping country required, if shipping state is not null.</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ NOT( ISBLANK( ShippingState ) ),
+ ISBLANK( ShippingCountry ) 
+))</errorConditionFormula>
+    <errorDisplayField>ShippingCountry</errorDisplayField>
+    <errorMessage>Shipping Country cannot be empty. Please enter shipping country.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financial_Updates_Service</fullName>
+    <columns>NAME</columns>
+    <columns>Class_Name__c</columns>
+    <columns>Date__c</columns>
+    <columns>Direct_Costs__c</columns>
+    <columns>Direct_Cost_Comments__c</columns>
+    <columns>Indirect_Costs__c</columns>
+    <columns>Indirect_Cost_Comments__c</columns>
+    <columns>T_E_Cost__c</columns>
+    <columns>T_E_Comments__c</columns>
+    <columns>Total_Number_of_Attendees__c</columns>
+    <columns>Length__c</columns>
+    <columns>Course__c</columns>
+    <columns>Facilitator__c</columns>
+    <columns>Administrative_Hours__c</columns>
+    <columns>Total_Cost_of_Class__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Facilitator__c</field>
+        <operation>notEqual</operation>
+        <value>Andrea Lyles,Jennifer Roney,Kathryn Connolly,Lisa Garside,Mackensie Schumacker,Noah Hincks,Other,Peter Wood,Pieter Tryzelaar</value>
+    </filters>
+    <filters>
+        <field>Class_Canceled__c</field>
+        <operation>notEqual</operation>
+        <value>Canceled</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_QUARTER</value>
+    </filters>
+    <filters>
+        <field>Line_of_Business__c</field>
+        <operation>equals</operation>
+        <value>Customer Service,Service-Corporate Payments,Service-Fleet,Service-OTR</value>
+    </filters>
+    <label>Financial Updates - Service - This Year</label>
+    <sharedTo>
+        <group>Global_Training_Group</group>
+    </sharedTo>
+</ListView>

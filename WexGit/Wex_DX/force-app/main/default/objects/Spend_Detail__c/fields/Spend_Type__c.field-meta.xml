@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Spend_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Spend Type</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Industry__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accommodation</fullName>
+                <default>false</default>
+                <label>Accommodation</label>
+            </value>
+            <value>
+                <fullName>Airlines (Low Cost)</fullName>
+                <default>false</default>
+                <label>Airlines (Low Cost)</label>
+            </value>
+            <value>
+                <fullName>Airlines (Scheduled)</fullName>
+                <default>false</default>
+                <label>Airlines (Scheduled)</label>
+            </value>
+            <value>
+                <fullName>Car Rental</fullName>
+                <default>false</default>
+                <label>Car Rental</label>
+            </value>
+            <value>
+                <fullName>Cruise Lines</fullName>
+                <default>false</default>
+                <label>Cruise Lines</label>
+            </value>
+            <value>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+                <label>Entertainment</label>
+            </value>
+            <value>
+                <fullName>Ferries</fullName>
+                <default>false</default>
+                <label>Ferries</label>
+            </value>
+            <value>
+                <fullName>Food &amp; Beverage</fullName>
+                <default>false</default>
+                <label>Food &amp; Beverage</label>
+            </value>
+            <value>
+                <fullName>Government Services</fullName>
+                <default>false</default>
+                <label>Government Services</label>
+            </value>
+            <value>
+                <fullName>Grocery &amp; Supermarkets</fullName>
+                <default>false</default>
+                <label>Grocery &amp; Supermarkets</label>
+            </value>
+            <value>
+                <fullName>Ground Transportation</fullName>
+                <default>false</default>
+                <label>Ground Transportation</label>
+            </value>
+            <value>
+                <fullName>Hotels - Invoice</fullName>
+                <default>false</default>
+                <label>Hotels - Invoice</label>
+            </value>
+            <value>
+                <fullName>Hotels - Reservation</fullName>
+                <default>false</default>
+                <label>Hotels - Reservation</label>
+            </value>
+            <value>
+                <fullName>Rail (Freight)</fullName>
+                <default>false</default>
+                <label>Rail (Freight)</label>
+            </value>
+            <value>
+                <fullName>Rail (Travel)</fullName>
+                <default>false</default>
+                <label>Rail (Travel)</label>
+            </value>
+            <value>
+                <fullName>Tourist Attractions &amp; Exhibits</fullName>
+                <default>false</default>
+                <label>Tourist Attractions &amp; Exhibits</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Insurer</fullName>
+                <default>false</default>
+                <label>Insurer</label>
+            </value>
+            <value>
+                <fullName>Medical Providers</fullName>
+                <default>false</default>
+                <label>Medical Providers</label>
+            </value>
+            <value>
+                <fullName>Brokers</fullName>
+                <default>false</default>
+                <label>Brokers</label>
+            </value>
+            <value>
+                <fullName>Pharma</fullName>
+                <default>false</default>
+                <label>Pharma</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Hospitality</controllingFieldValue>
+            <controllingFieldValue>Healthcare</controllingFieldValue>
+            <valueName>Accommodation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hospitality</controllingFieldValue>
+            <controllingFieldValue>Food &amp; Beverage</controllingFieldValue>
+            <controllingFieldValue>Healthcare</controllingFieldValue>
+            <valueName>Food &amp; Beverage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Insurance</controllingFieldValue>
+            <valueName>Insurer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Insurance</controllingFieldValue>
+            <valueName>Medical Providers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Insurance</controllingFieldValue>
+            <valueName>Brokers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Insurance</controllingFieldValue>
+            <valueName>Pharma</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Airlines (Low Cost)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Airlines (Scheduled)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Car Rental</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Cruise Lines</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Ground Transportation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Hotels - Invoice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Hotels - Reservation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travel</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Healthcare</controllingFieldValue>
+            <valueName>Grocery &amp; Supermarkets</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

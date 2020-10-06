@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requested_Outside_of_Business_Hours__c</fullName>
+    <externalId>false</externalId>
+    <formula>OR( 
+AND( 
+MOD(DATEVALUE(RequestDateTime) - DATE(2000, 1, 1), 7) = 0, 
+Requested_Hour__c &lt; 5 
+), 
+AND( 
+MOD(DATEVALUE(RequestDateTime) - DATE(2000, 1, 1), 7) = 1, 
+OR( 
+Requested_Hour__c &lt; 6, 
+Requested_Hour__c &gt; 17 
+) 
+), 
+AND( 
+MOD(DATEVALUE(RequestDateTime) - DATE(2000, 1, 1), 7) &gt; 2, 
+OR( 
+Requested_Hour__c &lt; 7, 
+Requested_Hour__c &gt; 17 
+) 
+) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Requested Outside of Business Hours</label>
+    <type>Checkbox</type>
+</CustomField>

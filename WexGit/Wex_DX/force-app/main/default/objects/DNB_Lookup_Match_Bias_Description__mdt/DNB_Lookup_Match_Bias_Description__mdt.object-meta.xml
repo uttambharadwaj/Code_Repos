@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>https://toolkit-api.dnb.com/locked/LookupRecords.asp?stat_link=020204&amp;id=752ABF1F164236266054&amp;Lang=EN</description>
+    <label>DNB Lookup Match Bias Description</label>
+    <pluralLabel>DNB Lookup Match Bias Descriptions</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_System_cannot_be_blank</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+ ISPICKVAL(Forward_Application_to_Credit__c,&quot;Yes&quot;),
+  Created_By_Echosign__c = FALSE,
+ Source_System_Text__c =&quot;&quot;
+))</errorConditionFormula>
+    <errorMessage>Source System must not be blank when sending application.  It should read &quot;Salesforce&quot;.</errorMessage>
+</ValidationRule>

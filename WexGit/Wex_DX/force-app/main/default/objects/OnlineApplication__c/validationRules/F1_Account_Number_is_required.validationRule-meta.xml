@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>F1_Account_Number_is_required</fullName>
+    <active>false</active>
+    <description>If status = Setup Complete, the F1 Account Number is required.</description>
+    <errorConditionFormula>ISCHANGED(Status__c) &amp;&amp; 
+ISPICKVAL(Status__c, &quot;Setup Complete&quot;) &amp;&amp; 
+ISBLANK(F1_Account_Number__c)</errorConditionFormula>
+    <errorDisplayField>F1_Account_Number__c</errorDisplayField>
+    <errorMessage>An F1 Account Number is required if the setup is complete..</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verify_Certified_By_Is_Entered</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  AND(
+    TEXT(Verification_Status__c) != &apos;Pending Lexis/Nexis&apos;,
+    TEXT(Verification_Status__c) != &apos;Exempted&apos;),
+    Paper_App__c = False,
+   OR(
+    ISBLANK(Certified_By__c),
+    ISBLANK(Certified_Date__c)
+  )
+)</errorConditionFormula>
+    <errorMessage>Please provided a certified name and date!</errorMessage>
+</ValidationRule>

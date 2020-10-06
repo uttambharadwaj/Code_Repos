@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Pay_Rebate_No_Selection__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*IF( SBQQ__Product__r.Name = &apos;Early Pay Rebate&apos; &amp;&amp; ISBLANK(TEXT(Early_Pay_Selection__c)), true, false)*/
+IF( BEGINS( SBQQ__Product__r.Name, &apos;Early Pay Rebate&apos;) &amp;&amp; ISBLANK(TEXT(Early_Pay_Selection__c)), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Early Pay Rebate No Selection</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

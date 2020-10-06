@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Cycle_Success_Reqd_Stage_CP6</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;),
+
+ISBLANK( Billing_Cycles_Successfully_Complete__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Billing_Cycles_Successfully_Complete__c</errorDisplayField>
+    <errorMessage>Billing Cycles must be filled in before moving to Stage CP6 or beyond</errorMessage>
+</ValidationRule>

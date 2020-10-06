@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_fee_GTE_waived_amount</fullName>
+    <active>true</active>
+    <description>For adjustments, validate that the amount waived is no greater than the fee charged.</description>
+    <errorConditionFormula>AND( RecordType.Name   =   &quot;Adjustment&quot;, OR((Amount_Waived__c  &gt;  Total_Late_Fee__c ),(ISBLANK(Total_Late_Fee__c))))</errorConditionFormula>
+    <errorMessage>Amount Waived must not exceed the Total Fee Charged</errorMessage>
+</ValidationRule>

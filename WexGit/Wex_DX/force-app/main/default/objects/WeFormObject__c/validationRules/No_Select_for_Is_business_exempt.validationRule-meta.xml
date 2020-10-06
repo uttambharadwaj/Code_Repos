@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Select_for_Is_business_exempt</fullName>
+    <active>true</active>
+    <description>Throw an error if select is opted</description>
+    <errorConditionFormula>ISPICKVAL( Is_business_exempt_from_Motor_Fuels_Tax__c, &quot;--Select--&quot;)</errorConditionFormula>
+    <errorMessage>Please Select Is business exempt from Motor Fuels Tax</errorMessage>
+</ValidationRule>

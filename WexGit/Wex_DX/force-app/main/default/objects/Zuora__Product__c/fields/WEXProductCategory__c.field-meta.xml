@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WEXProductCategory__c</fullName>
+    <externalId>false</externalId>
+    <label>WEX Product Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Telematics Hardware</fullName>
+                <default>false</default>
+                <label>Telematics Hardware</label>
+            </value>
+            <value>
+                <fullName>Monthly Service</fullName>
+                <default>false</default>
+                <label>Monthly Service</label>
+            </value>
+            <value>
+                <fullName>Harnesses &amp; Cables</fullName>
+                <default>false</default>
+                <label>Harnesses &amp; Cables</label>
+            </value>
+            <value>
+                <fullName>ELD / HOS Software</fullName>
+                <default>false</default>
+                <label>ELD / HOS Software</label>
+            </value>
+            <value>
+                <fullName>GPS BUNDLE</fullName>
+                <default>false</default>
+                <label>GPS BUNDLE</label>
+            </value>
+            <value>
+                <fullName>GPS FINANCE CHRG</fullName>
+                <default>false</default>
+                <label>GPS FINANCE CHRG</label>
+            </value>
+            <value>
+                <fullName>GPS RENTAL</fullName>
+                <default>false</default>
+                <label>GPS RENTAL</label>
+            </value>
+            <value>
+                <fullName>Installation</fullName>
+                <default>false</default>
+                <label>Installation</label>
+            </value>
+            <value>
+                <fullName>Misc Hardware</fullName>
+                <default>false</default>
+                <label>Misc Hardware</label>
+            </value>
+            <value>
+                <fullName>Misc Service</fullName>
+                <default>false</default>
+                <label>Misc Service</label>
+            </value>
+            <value>
+                <fullName>Shipping</fullName>
+                <default>false</default>
+                <label>Shipping</label>
+            </value>
+            <value>
+                <fullName>Transfer and Admin Fees</fullName>
+                <default>false</default>
+                <label>Transfer and Admin Fees</label>
+            </value>
+            <value>
+                <fullName>To Be Determined</fullName>
+                <default>false</default>
+                <label>To Be Determined</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <label>Not Applicable</label>
+            </value>
+            <value>
+                <fullName>Connectors, Cables, Switches_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Connectors, Cables, Switches_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Hardware Bundle_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Hardware Bundle_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Hardware Bundle (CDMA)_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Hardware Bundle (CDMA)_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Hardware Installation_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Hardware Installation_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Hardware Rental_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Hardware Rental_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Hardware Rental w/ Service_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Hardware Rental w/ Service_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Harnesses_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Harnesses_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Insurance and Warranties - Nonrecurring_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Insurance and Warranties - Nonrecurring_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Insurance and Warranties - Recurring_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Insurance and Warranties - Recurring_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Misc Parts and Kits_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Misc Parts and Kits_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Misc. Hardware_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Misc. Hardware_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Monthly HOS Addon Srvc_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Monthly HOS Addon Srvc_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Data Services_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Data Services_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Antenna_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Antenna_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Monthly AddOn Service_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Monthly AddOn Service_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Discount_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Discount_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Software - Retail_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Software - Retail_OLD_DO_NOT_USE</label>
+            </value>
+            <value>
+                <fullName>Training_OLD_DO_NOT_USE</fullName>
+                <default>false</default>
+                <label>Training_OLD_DO_NOT_USE</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

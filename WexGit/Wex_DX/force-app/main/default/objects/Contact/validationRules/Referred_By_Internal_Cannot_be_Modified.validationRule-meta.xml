@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Referred_By_Internal_Cannot_be_Modified</fullName>
+    <active>true</active>
+    <description>Referred By Internal Cannot be Modified</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( 
+PRIORVALUE(Referred_by_Internal__c)!= NULL, 
+ISCHANGED(Referred_by_Internal__c) 
+))</errorConditionFormula>
+    <errorMessage>Referred by Internal field is already set and cannot be changed.</errorMessage>
+</ValidationRule>

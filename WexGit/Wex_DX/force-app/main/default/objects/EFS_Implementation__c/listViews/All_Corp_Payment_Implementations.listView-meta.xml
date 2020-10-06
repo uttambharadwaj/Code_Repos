@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Corp_Payment_Implementations</fullName>
+    <columns>Case_Number__c</columns>
+    <columns>AccountId__c</columns>
+    <columns>Territory__c</columns>
+    <columns>Actual_Go_Live_Date__c</columns>
+    <columns>ClosedDate__c</columns>
+    <columns>ContactId__c</columns>
+    <columns>Implementation_Name__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Implementation_Stage_Milestone__c</columns>
+    <columns>Implementation_Status_Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>EFS_Implementation__c.Corp_Payments</value>
+    </filters>
+    <label>All Corp Payment Implementations</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sunoco_Full_Site_List</fullName>
+    <columns>NAME</columns>
+    <columns>Location__c</columns>
+    <columns>Distributor__c</columns>
+    <columns>Brand__c</columns>
+    <columns>Services_Available__c</columns>
+    <columns>Branded_Wholesaler__c</columns>
+    <columns>Site_City__c</columns>
+    <columns>Site_Street__c</columns>
+    <columns>Site_State__c</columns>
+    <columns>Site_Zip_Postal_Code__c</columns>
+    <columns>TID__c</columns>
+    <columns>Geocode__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Distributor__c</field>
+        <operation>equals</operation>
+        <value>Sunoco LP</value>
+    </filters>
+    <label>Sunoco Full Site List</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Sunoco_and_Stripes_Sales_Group</group>
+    </sharedTo>
+</ListView>

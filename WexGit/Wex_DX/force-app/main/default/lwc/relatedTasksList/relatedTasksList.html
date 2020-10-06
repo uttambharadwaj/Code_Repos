@@ -1,0 +1,38 @@
+<!--
+ - Created by mfarrell on 4/9/20
+ -->
+
+<!-- Related Activities -->
+<template>
+    <div class="slds-m-around_medium">
+
+        <template if:true={tasks}>
+            <template for:each={tasks} for:item="task">
+                <div key={task.Id} class="slds-m-bottom_medium">
+                    <div class="slds-grid slds-wrap">
+                        <!-- Left Column -->
+                        <div class="slds-col slds-size_1-of-2">
+                            <p><strong>Who: </strong>{task.Owner.Name}</p>
+                            <p><strong>Date: </strong><lightning-formatted-date-time value={task.ActivityDate}></lightning-formatted-date-time></p>
+                        </div>
+                        <!-- Right Column -->
+                        <div class="slds-col slds-size_1-of-2">
+                            <p><strong>Activity Type: </strong>{task.Activity_Type__c}</p>
+                            <p><strong>Status: </strong>{task.Status}</p>
+                        </div>
+                    </div>
+                    <!-- Single Column For Longer Text Fields -->
+                    <p><strong>Subject: </strong><a href="www.salesforce.com" data-record-id={task.Id} onclick={handleClick}>{task.Subject}</a></p>
+                    <p><strong>Comments: </strong>{task.Description}</p>
+                </div>
+            </template>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error">
+                An error occurred while loading the task list
+            </div>
+        </template>
+        <p>Total records: <strong>{totalrecords} </strong>Page <strong>{currentpage} </strong>of <strong>{totalpages}</strong></p>
+    </div>
+</template>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_an_Approved_or_Denied_Item</fullName>
+    <active>true</active>
+    <description>Once a refund or adjustment has been approved or denied, it cannot be changed.</description>
+    <errorConditionFormula>OR( ISPICKVAL(PRIORVALUE( Approval_Status__c),&quot;Approved&quot; ),
+ISPICKVAL(PRIORVALUE( Approval_Status__c),&quot;Denied&quot; ))</errorConditionFormula>
+    <errorMessage>Refund/Adjustment entries cannot be changed once they have been Approved or Denied.</errorMessage>
+</ValidationRule>

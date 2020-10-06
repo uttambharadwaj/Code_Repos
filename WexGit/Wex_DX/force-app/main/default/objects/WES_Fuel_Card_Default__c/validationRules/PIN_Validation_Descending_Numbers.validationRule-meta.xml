@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PIN_Validation_Descending_Numbers</fullName>
+    <active>true</active>
+    <description>A PIN Number can&apos;t have 4 Numbers Descending. Ex: 4321</description>
+    <errorConditionFormula>AND( 
+ISNUMBER(PIN__c), 
+VALUE(MID(PIN__c, 1,1)) -1 = VALUE(MID(PIN__c, 2,1)), 
+VALUE(MID(PIN__c, 2,1)) -1 = VALUE(MID(PIN__c, 3,1)), 
+VALUE(MID(PIN__c, 3,1)) -1 = VALUE(MID(PIN__c, 4,1)) 
+)</errorConditionFormula>
+    <errorDisplayField>PIN__c</errorDisplayField>
+    <errorMessage>PIN Can NOT be 4 numbers in Descending order (Ex: 4321)</errorMessage>
+</ValidationRule>

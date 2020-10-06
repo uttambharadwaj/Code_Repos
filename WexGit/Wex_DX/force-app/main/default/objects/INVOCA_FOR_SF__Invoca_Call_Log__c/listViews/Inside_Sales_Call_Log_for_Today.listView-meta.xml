@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inside_Sales_Call_Log_for_Today</fullName>
+    <columns>INVOCA_FOR_SF__Customer_Business_Object_Value_4__c</columns>
+    <columns>INVOCA_FOR_SF__promo_line_description__c</columns>
+    <columns>INVOCA_FOR_SF__calling_phone_number__c</columns>
+    <columns>NAME</columns>
+    <columns>INVOCA_FOR_SF__start_time_local__c</columns>
+    <columns>INVOCA_FOR_SF__advertiser_name__c</columns>
+    <columns>INVOCA_FOR_SF__Call_Recording__c</columns>
+    <columns>INVOCA_FOR_SF__media_type__c</columns>
+    <columns>INVOCA_FOR_SF__City__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Inside Sales Call Log for Today</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Chevron_IS_Inbound</role>
+        <role>Chevron_IS_LDR</role>
+        <role>Chevron_IS_Outbound</role>
+        <role>DirectorDirectOTRSales</role>
+        <role>ISSalesRep</role>
+        <role>Marketing</role>
+        <role>MarketingReporting</role>
+        <role>OTR_IS_Sales_Inbound_West</role>
+        <role>OTR_IS_Sales_Manager_West</role>
+        <role>OTR_IS_Sales_Outbound_West</role>
+        <role>OTR_IS_Sales_Partner_East</role>
+        <role>OTR_IS_Sales_Partner_West</role>
+        <role>OTR_IS_Sales_Retention_West</role>
+        <role>OTR_IS_Sales_Team_Lead</role>
+        <role>OTR_Outbound_Channel_2</role>
+        <role>OTR_Outbound_Channel_Sales</role>
+        <role>OTR_Outbound_Channel_Sales_TL</role>
+        <role>Outbound_Channel_Marketing</role>
+        <role>PLISSalesRep</role>
+        <role>Shell_Closer</role>
+        <role>Shell_Inbound_Sales</role>
+        <role>Shell_LDR</role>
+        <role>Shell_Outbound_Sales</role>
+    </sharedTo>
+</ListView>

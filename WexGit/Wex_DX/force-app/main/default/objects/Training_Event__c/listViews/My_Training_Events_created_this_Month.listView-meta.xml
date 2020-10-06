@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Training_Events_created_this_Month</fullName>
+    <columns>NAME</columns>
+    <columns>Attendee__c</columns>
+    <columns>Actual_Participation_Hours__c</columns>
+    <columns>Training_Class_Name__c</columns>
+    <columns>Training_Class_Number__c</columns>
+    <columns>Participation_Type__c</columns>
+    <columns>Score__c</columns>
+    <columns>Learner_Level_1_Reaction__c</columns>
+    <columns>Learner_Level_2_Learning__c</columns>
+    <columns>Learner_Level_3_Application__c</columns>
+    <columns>Learner_Level_4_Business_Impact__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <label>My Training Events created this Month</label>
+</ListView>

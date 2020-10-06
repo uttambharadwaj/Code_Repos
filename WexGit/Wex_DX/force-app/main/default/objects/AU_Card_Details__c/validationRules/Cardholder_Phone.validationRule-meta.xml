@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cardholder_Phone</fullName>
+    <active>true</active>
+    <description>Error when cardholder&apos;s mobile phone number field is blank and card type (control) = Trade</description>
+    <errorConditionFormula>and (
+ ISPICKVAL( AU_Card_Type__c , &apos;Trade&apos;),
+ isblank  ( AU_Cardholder_Mobile_Phone_Number__c )
+
+)</errorConditionFormula>
+    <errorMessage>Cardholder&apos;s mobile phone number must be completed.</errorMessage>
+</ValidationRule>

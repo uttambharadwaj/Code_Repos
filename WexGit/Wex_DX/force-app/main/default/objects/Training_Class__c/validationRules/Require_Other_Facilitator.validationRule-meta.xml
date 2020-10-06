@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Other_Facilitator</fullName>
+    <active>true</active>
+    <description>If Facilitator equals &quot;Other&quot;, require Other Facilitator field.</description>
+    <errorConditionFormula>AND (
+ISPICKVAL( Facilitator__c , &quot;Other&quot;),
+ISBLANK(  Other_Facilitator__c  )
+)</errorConditionFormula>
+    <errorDisplayField>Other_Facilitator__c</errorDisplayField>
+    <errorMessage>If Facilitator equals &quot;Other&quot;, Other Facilitator field is required.</errorMessage>
+</ValidationRule>

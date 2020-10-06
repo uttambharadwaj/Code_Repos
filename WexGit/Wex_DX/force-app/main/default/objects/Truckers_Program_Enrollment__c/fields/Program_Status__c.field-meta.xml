@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Program Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Application Received</fullName>
+                <default>false</default>
+                <label>Application Received</label>
+            </value>
+            <value>
+                <fullName>Application Sent to Vendor</fullName>
+                <default>false</default>
+                <label>Application Sent to Vendor</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Automatic Enrollment - Manual Approval Required</fullName>
+                <default>false</default>
+                <label>Automatic Enrollment - Manual Approval Required</label>
+            </value>
+            <value>
+                <fullName>Denied</fullName>
+                <default>false</default>
+                <label>Denied</label>
+            </value>
+            <value>
+                <fullName>Effective</fullName>
+                <default>false</default>
+                <label>Effective</label>
+            </value>
+            <value>
+                <fullName>Terminated</fullName>
+                <default>false</default>
+                <label>Terminated</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

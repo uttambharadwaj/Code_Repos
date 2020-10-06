@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Expiry_Or_Evergreen_Account_Req</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_FEP_Disabled__c = FALSE,
+  /*
+  Custom Setting - rule should apply to virtual US users only
+  */
+  $Setup.VProfileId__c.NA_Virtual_User__c = TRUE,
+  /*
+  Rule should not apply to NA Sales users who&apos;re creating an FEP from the Opportunity, using the New_FEP_UK button, which inserts the record before it can be edited
+  */
+  OR(
+    AND(
+      $Setup.VProfileId__c.Virtual_NA_Sales__c = TRUE,
+      NOT(ISNEW())
+    ),
+    $Setup.VProfileId__c.Virtual_NA_Sales__c = FALSE
+  ),
+  Evergreen_Account__c = FALSE,
+  ISBLANK(Contract_Expiry_Date__c)
+)</errorConditionFormula>
+    <errorMessage>Please enter the customer&apos;s Contract Expiry Date or if their contract is not due to expiry on a set date, check the Evergreen Account checkbox</errorMessage>
+</ValidationRule>

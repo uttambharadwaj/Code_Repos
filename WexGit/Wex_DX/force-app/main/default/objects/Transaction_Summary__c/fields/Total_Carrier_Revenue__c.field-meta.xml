@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Carrier_Revenue__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This field contains a summary of the carrier revenue of the related transaction summary detail records.</inlineHelpText>
+    <label>Total Carrier Revenue</label>
+    <summarizedField>Transaction_Summary_Detail__c.Carrier_Revenue__c</summarizedField>
+    <summaryForeignKey>Transaction_Summary_Detail__c.Transaction_Summary__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

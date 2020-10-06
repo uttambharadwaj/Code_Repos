@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Close_Date_To_Month_End__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This setting pushes the opportunity close date to the end of the month based on the value returned after the Opportunity Close Date Offset is applied.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This setting pushes the opportunity close date to the end of the month based on the value returned after the Opportunity Close Date Offset is applied.</inlineHelpText>
+    <label>Opportunity Close Date to Month End</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

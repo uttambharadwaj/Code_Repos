@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BPAV_Clean_Up_Chevron_QC_Accounts</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Calling_Status__c</columns>
+    <columns>BPAV_Needed__c</columns>
+    <columns>Company_Name__c</columns>
+    <columns>Email_Address__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Mailing_State__c</columns>
+    <columns>Taxpayer_ID_EIN__c</columns>
+    <columns>TIN_Needed__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Certified_By__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Conversion_Record_Key__c</field>
+        <operation>startsWith</operation>
+        <value>CHEVRON</value>
+    </filters>
+    <filters>
+        <field>Calling_Status__c</field>
+        <operation>contains</operation>
+        <value>Awaiting BPAV</value>
+    </filters>
+    <filters>
+        <field>OWNER.ALIAS</field>
+        <operation>notContain</operation>
+        <value>Joy</value>
+    </filters>
+    <label>BPAV Clean-Up - Chevron QC Accounts</label>
+    <language>en_US</language>
+</ListView>

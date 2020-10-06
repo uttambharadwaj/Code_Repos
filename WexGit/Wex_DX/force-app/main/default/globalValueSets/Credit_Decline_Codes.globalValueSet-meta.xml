@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>A1 - Credit Bureau - Delinquent past or present credit obligations.</fullName>
+        <default>false</default>
+        <label>A1 - Credit Bureau - Delinquent past or present credit obligations.</label>
+    </customValue>
+    <customValue>
+        <fullName>A2 - Credit Bureau - Unstable/Unsatisfactory financial conditions/ratings.</fullName>
+        <default>false</default>
+        <label>A2 - Credit Bureau - Unstable/Unsatisfactory financial conditions/ratings.</label>
+    </customValue>
+    <customValue>
+        <fullName>A3 - Credit Bureau - Insufficient information.</fullName>
+        <default>false</default>
+        <label>A3 - Credit Bureau - Insufficient information.</label>
+    </customValue>
+    <customValue>
+        <fullName>A4 - Credit Bureau - Presence of suits, liens, or judgements.</fullName>
+        <default>false</default>
+        <label>A4 - Credit Bureau - Presence of suits, liens, or judgements.</label>
+    </customValue>
+    <customValue>
+        <fullName>A5 - Credit Bureau - No Commercial Credit Information</fullName>
+        <default>false</default>
+        <label>A5 - Credit Bureau - No Commercial Credit Information</label>
+    </customValue>
+    <customValue>
+        <fullName>A6 - Credit Bureau - Insufficient Personal Guarantee Provided (Sinclair and Distributors only)</fullName>
+        <default>false</default>
+        <label>A6 - Credit Bureau - Insufficient Personal Guarantee Provided (Sinclair and Distributors only)</label>
+    </customValue>
+    <customValue>
+        <fullName>A7 - Credit Bureau - Insufficient Credit-counter offer extended</fullName>
+        <default>false</default>
+        <label>A7 - Credit Bureau - Insufficient Credit-counter offer extended</label>
+    </customValue>
+    <customValue>
+        <fullName>B1 - Bank - Insufficient average balance for credit line requested.</fullName>
+        <default>false</default>
+        <label>B1 - Bank - Insufficient average balance for credit line requested.</label>
+    </customValue>
+    <customValue>
+        <fullName>B2 - Bank - Unsatisfactory conditions present (e.g. NSF Checks).</fullName>
+        <default>false</default>
+        <label>B2 - Bank - Unsatisfactory conditions present (e.g. NSF Checks).</label>
+    </customValue>
+    <customValue>
+        <fullName>B3 - Bank - Delinquent past or present obligations.</fullName>
+        <default>false</default>
+        <label>B3 - Bank - Delinquent past or present obligations.</label>
+    </customValue>
+    <customValue>
+        <fullName>B4 - Bank - Unable to verify reference(s).</fullName>
+        <default>false</default>
+        <label>B4 - Bank - Unable to verify reference(s).</label>
+    </customValue>
+    <customValue>
+        <fullName>C1 - Trades - Delinquent past or present credit obligations.</fullName>
+        <default>false</default>
+        <label>C1 - Trades - Delinquent past or present credit obligations.</label>
+    </customValue>
+    <customValue>
+        <fullName>C2 - Trades - Limited credit experience.</fullName>
+        <default>false</default>
+        <label>C2 - Trades - Limited credit experience.</label>
+    </customValue>
+    <customValue>
+        <fullName>C3 - Trades - Insufficient high average.</fullName>
+        <default>false</default>
+        <label>C3 - Trades - Insufficient high average.</label>
+    </customValue>
+    <customValue>
+        <fullName>C4 - Trades - Unable to verify references.</fullName>
+        <default>false</default>
+        <label>C4 - Trades - Unable to verify references.</label>
+    </customValue>
+    <customValue>
+        <fullName>C5 - Trades - Poor payment history with Wright Express.</fullName>
+        <default>false</default>
+        <label>C5 - Trades - Poor payment history with Wright Express.</label>
+    </customValue>
+    <customValue>
+        <fullName>D1 - Financial Statement - Unsatisfactory conditions present.</fullName>
+        <default>false</default>
+        <label>D1 - Financial Statement - Unsatisfactory conditions present.</label>
+    </customValue>
+    <customValue>
+        <fullName>D2 - Financial Statement - Insufficient financial strength for credit line requested.</fullName>
+        <default>false</default>
+        <label>D2 - Financial Statement - Insufficient financial strength for credit line requested.</label>
+    </customValue>
+    <customValue>
+        <fullName>D3 - Financial Statement - Audited financial statements not presented or available for review.</fullName>
+        <default>false</default>
+        <label>D3 - Financial Statement - Audited financial statements not presented or available for review.</label>
+    </customValue>
+    <customValue>
+        <fullName>E1 - Personal Credit - Delinquent past or present credit obligations.</fullName>
+        <default>false</default>
+        <label>E1 - Personal Credit - Delinquent past or present credit obligations.</label>
+    </customValue>
+    <customValue>
+        <fullName>E2 - Personal Credit - Limited credit information.</fullName>
+        <default>false</default>
+        <label>E2 - Personal Credit - Limited credit information.</label>
+    </customValue>
+    <customValue>
+        <fullName>E3 - Personal Credit - Presence of suits, liens, or judgements.</fullName>
+        <default>false</default>
+        <label>E3 - Personal Credit - Presence of suits, liens, or judgements.</label>
+    </customValue>
+    <customValue>
+        <fullName>E4 - Personal Credit - Insufficient credit score based upon Wright Express credit policy.</fullName>
+        <default>false</default>
+        <label>E4 - Personal Credit - Insufficient credit score based upon Wright Express credit policy.</label>
+    </customValue>
+    <customValue>
+        <fullName>F1 - Other - Credit application complete: no response to request for information.</fullName>
+        <default>false</default>
+        <label>F1 - Other - Credit application complete: no response to request for information.</label>
+    </customValue>
+    <customValue>
+        <fullName>F2 - Other - Supportive or additional information: no response to request.</fullName>
+        <default>false</default>
+        <label>F2 - Other - Supportive or additional information: no response to request.</label>
+    </customValue>
+    <customValue>
+        <fullName>F3 - Other - No consumer credit program available.</fullName>
+        <default>false</default>
+        <label>F3 - Other - No consumer credit program available.</label>
+    </customValue>
+    <customValue>
+        <fullName>F4 - Other - Missing Tax Identification Number, Federal ID, or SS#.</fullName>
+        <default>false</default>
+        <label>F4 - Other - Missing Tax Identification Number, Federal ID, or SS#.</label>
+    </customValue>
+    <customValue>
+        <fullName>F5 - Other - Business physical address information (Requires verification such as utility bill).</fullName>
+        <default>false</default>
+        <label>F5 - Other - Business physical address information (Requires verification such as utility bill).</label>
+    </customValue>
+    <customValue>
+        <fullName>F6 - Other - Personal Guarantee physical address information (Requires verification).</fullName>
+        <default>false</default>
+        <label>F6 - Other - Personal Guarantee physical address information (Requires verification).</label>
+    </customValue>
+    <customValue>
+        <fullName>F7 - Other - Application does not meet WEX Bank internal approval guidelines.</fullName>
+        <default>false</default>
+        <label>F7 - Other - Application does not meet WEX Bank internal approval guidelines.</label>
+    </customValue>
+    <customValue>
+        <fullName>F8 - Other - Insufficient credit available per existing credit lines with WEX Bank.</fullName>
+        <default>false</default>
+        <label>F8 - Other - Insufficient credit available per existing credit lines with WEX Bank.</label>
+    </customValue>
+    <customValue>
+        <fullName>F9 - Other - Business owner information incomplete or unverifiable.</fullName>
+        <default>false</default>
+        <label>F9 - Other - Business owner information incomplete or unverifiable.</label>
+    </customValue>
+    <customValue>
+        <fullName>I1 - Incomplete - Incomplete or no credit application.</fullName>
+        <default>false</default>
+        <label>I1 - Incomplete - Incomplete or no credit application.</label>
+    </customValue>
+    <customValue>
+        <fullName>I2 - Incomplete - Daily Direct Debit paperwork Required.</fullName>
+        <default>false</default>
+        <label>I2 - Incomplete - Daily Direct Debit paperwork Required.</label>
+    </customValue>
+    <customValue>
+        <fullName>I3 - Incomplete - Personal Guaranty Required.</fullName>
+        <default>false</default>
+        <label>I3 - Incomplete - Personal Guaranty Required.</label>
+    </customValue>
+    <customValue>
+        <fullName>I4 - Incomplete - Two years of financial statements required (Balance sheet and Income Statement).</fullName>
+        <default>false</default>
+        <label>I4 - Incomplete - Two years of financial statements required (Balance sheet and Income Statement).</label>
+    </customValue>
+    <masterLabel>Credit Decline Codes</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

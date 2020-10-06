@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vendor__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the Vendor to offer products for this quote.</inlineHelpText>
+    <label>Telematics Vendor</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Networkfleet</fullName>
+                <default>false</default>
+                <label>Networkfleet</label>
+            </value>
+            <value>
+                <fullName>BSM Wireless</fullName>
+                <default>false</default>
+                <label>BSM Wireless</label>
+            </value>
+            <value>
+                <fullName>GPS Insight</fullName>
+                <default>false</default>
+                <label>GPS Insight</label>
+            </value>
+            <value>
+                <fullName>Geotab</fullName>
+                <default>false</default>
+                <label>Geotab</label>
+            </value>
+            <value>
+                <fullName>Wex Service Provider</fullName>
+                <default>false</default>
+                <label>Wex Service Provider</label>
+            </value>
+            <value>
+                <fullName>Alertdriving</fullName>
+                <default>false</default>
+                <label>Alertdriving</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

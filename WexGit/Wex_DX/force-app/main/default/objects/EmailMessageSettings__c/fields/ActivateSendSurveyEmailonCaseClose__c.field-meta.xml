@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActivateSendSurveyEmailonCaseClose__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked to automatically send survey email when Service Operations case closes, Unchecked to not send the emails.  Defaults to Unchecked on migration. Setting is checked in Case trigger helper.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Checked to send survey emails via case trigger, Unchecked not to.</inlineHelpText>
+    <label>Activate Send Survey Email on Case Close</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

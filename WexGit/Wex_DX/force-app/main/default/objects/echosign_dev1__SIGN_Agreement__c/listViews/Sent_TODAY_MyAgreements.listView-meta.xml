@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sent_TODAY_MyAgreements</fullName>
+    <columns>NAME</columns>
+    <columns>echosign_dev1__Opportunity__c</columns>
+    <columns>echosign_dev1__DateSent__c</columns>
+    <columns>echosign_dev1__DateSigned__c</columns>
+    <columns>Sales_Rep_Name__c</columns>
+    <columns>echosign_dev1__StatusVisible__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>echosign_dev1__DateSentDate__c</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Sent TODAY (My Agreements)</label>
+    <language>en_US</language>
+</ListView>

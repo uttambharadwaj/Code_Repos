@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Users</fullName>
+    <booleanFilter>(1 OR 2)</booleanFilter>
+    <columns>FULL_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CORE.USERS.USERNAME</columns>
+    <columns>CORE.PROFILE.NAME</columns>
+    <columns>CORE.USERS.EMAIL</columns>
+    <columns>CORE.USERS.ACTIVE</columns>
+    <columns>CORE.USER_ROLE.NAME</columns>
+    <columns>WES_Approval_Threshold__c</columns>
+    <columns>WES_MaxCardsCanApprove__c</columns>
+    <columns>approver__c</columns>
+    <columns>CORE.USERS.LAST_LOGIN</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CREATED_BY_NAME</columns>
+    <columns>UPDATEDBY_USER.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.EMAIL</field>
+        <operation>contains</operation>
+        <value>wexeuropeservices.com</value>
+    </filters>
+    <filters>
+        <field>CORE.PROFILE.NAME</field>
+        <operation>equals</operation>
+        <value>WES Sales</value>
+    </filters>
+    <label>WES Users</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>WES_Admin</role>
+    </sharedTo>
+</ListView>

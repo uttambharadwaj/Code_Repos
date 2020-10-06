@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Service_Approval_Limits</fullName>
+    <active>true</active>
+    <description>Asserts approval matrix for Customer Service records</description>
+    <errorConditionFormula>AND(TEXT(Department__c ) = &apos;CS&apos;,
+TEXT(Approval_Status__c) = &apos;Approved&apos;,
+OR (
+NOT ( OR ($Permission.CS_Sr_Associate, $Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager )),
+AND (Amount_Waived__c &gt; 1000, NOT ( OR ($Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager ))),
+AND (Amount_Waived__c &gt; 25000, NOT ( $Permission.CS_Manager )),
+Amount_Waived__c &gt; 100000
+)
+)</errorConditionFormula>
+    <errorMessage>You do not have permission to approve this request.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>jr_My_Activities_This_Week_Connie_TEST</fullName>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>TASK.SUBJECT</columns>
+    <columns>TASK.WHAT_NAME</columns>
+    <columns>Task_Reminder_Time__c</columns>
+    <columns>TASK.DUE_DATE</columns>
+    <columns>Activity_Time_Zone__c</columns>
+    <columns>Comments__c</columns>
+    <columns>TASK.TYPE</columns>
+    <columns>TASK.STATUS</columns>
+    <columns>REMINDER_DATE_TIME</columns>
+    <columns>TASK.RECORDTYPE</columns>
+    <filterScope>Team</filterScope>
+    <filters>
+        <field>TASK.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>TASK.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Task.General</value>
+    </filters>
+    <filters>
+        <field>TASK.DUE_DATE</field>
+        <operation>equals</operation>
+        <value>THIS_WEEK</value>
+    </filters>
+    <filters>
+        <field>Task_Reminder_Time__c</field>
+        <operation>notContain</operation>
+        <value>&gt;&gt;&gt;&gt;</value>
+    </filters>
+    <filters>
+        <field>OWNER_ROLE</field>
+        <operation>equals</operation>
+        <value>Lead Development Role</value>
+    </filters>
+    <label>*My Activities This Week-Connie TEST</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Lead_Development_Role</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Limit_1_Default_per_Card_Type</fullName>
+    <active>true</active>
+    <description>Each Card Type can have at most 1 Default Card</description>
+    <errorConditionFormula>OR(
+ NumofEDCDefaults__c &gt; 1,
+	NumofEssoDefaults__c &gt; 1,
+ NumofUKFuelDefaults__c &gt; 1)</errorConditionFormula>
+    <errorMessage>You can  have only 1 Default Fuel card per Card Type.
+Please edit an existing Default Fuel card.</errorMessage>
+</ValidationRule>

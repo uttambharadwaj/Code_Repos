@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sum_Min_Price_Checks__c</fullName>
+    <description>Number of shipment charges where the effective price is greater than or equal to the minimum sales price.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of shipment charges where the effective price is greater than or equal to the minimum sales price.</inlineHelpText>
+    <label>Sum Min Price Checks</label>
+    <summarizedField>Shipment_Charge__c.Min_Price_Check__c</summarizedField>
+    <summaryForeignKey>Shipment_Charge__c.Shipment__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Card_Control_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Card Control Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Custom Controls</fullName>
+                <default>false</default>
+                <label>Custom Controls</label>
+            </value>
+            <value>
+                <fullName>Fuel Only</fullName>
+                <default>false</default>
+                <label>Fuel Only</label>
+            </value>
+            <value>
+                <fullName>Fuel and Oil</fullName>
+                <default>false</default>
+                <label>Fuel and Oil</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

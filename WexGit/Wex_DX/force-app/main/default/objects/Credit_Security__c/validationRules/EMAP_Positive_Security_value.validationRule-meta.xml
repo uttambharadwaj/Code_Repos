@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Positive_Security_value</fullName>
+    <active>true</active>
+    <description>Security value must be positive if Security Type in (Bank Guarantee, Security Lodged Deposit) otherwise Security Value must be negative.</description>
+    <errorConditionFormula>AND( 
+(Security_Value__c &lt; 0), 
+OR( 
+ISPICKVAL( Type__c , &apos;Bank Guarantee&apos;), 
+ISPICKVAL( Type__c , &apos;Security Lodged Deposit&apos;) 
+) 
+)</errorConditionFormula>
+    <errorDisplayField>Security_Value__c</errorDisplayField>
+    <errorMessage>Please correct security value. It should be positive amount. (e.g. +100)</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_One_Fleet_Form_Can_Be_Published</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+Publish_Fleet_Data_Capture_Form__c = true,
+Publish_Fleet_Data_Capture_Form_1_1__c = true
+)</errorConditionFormula>
+    <errorDisplayField>Publish_Fleet_Data_Capture_Form_1_1__c</errorDisplayField>
+    <errorMessage>Only One Fleet Data Capture Form Can Be Published Per Program.</errorMessage>
+</ValidationRule>

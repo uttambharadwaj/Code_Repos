@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Chats</fullName>
+    <columns>Name</columns>
+    <columns>LiveChatVisitor</columns>
+    <columns>StartTime</columns>
+    <columns>EndTime</columns>
+    <columns>Status</columns>
+    <columns>IpAddress</columns>
+    <columns>Location</columns>
+    <columns>Platform</columns>
+    <columns>Owner</columns>
+    <columns>LiveChatButton</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status</field>
+        <operation>equals</operation>
+        <value>1,5</value>
+    </filters>
+    <filters>
+        <field>Lead</field>
+        <operation>notContain</operation>
+        <value>______</value>
+    </filters>
+    <label>All Chats</label>
+    <language>en_US</language>
+</ListView>

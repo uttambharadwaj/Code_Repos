@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Cant_edit_Signatory_if_Phone_DD</fullName>
+    <active>true</active>
+    <description>If the DD Mandate method is phone, the primary contact will get their name stamped as the DD Signatory once the script is successfully complete.</description>
+    <errorConditionFormula>TEXT(DD_Mandate_Method__c) = &quot;Phone&quot; &amp;&amp;
+ISCHANGED(nameofSignature__c)</errorConditionFormula>
+    <errorDisplayField>nameofSignature__c</errorDisplayField>
+    <errorMessage>Can&apos;t change the Name of Signatory for a Phone DD Mandate. Must change the Primary Contact and complete the DD Mandate script successfully.</errorMessage>
+</ValidationRule>

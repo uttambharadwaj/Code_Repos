@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Standard_Implementation_Details</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  ISCHANGED(Non_Standard_Implementation_Requested__c),
+  NOT(ISBLANK(Non_Standard_Implementation_Requested__c)),
+  ISBLANK(Non_Standard_Implementation_Notes__c)
+)</errorConditionFormula>
+    <errorDisplayField>Non_Standard_Implementation_Notes__c</errorDisplayField>
+    <errorMessage>Please confirm the requested elements of the non-standard implementation. This summary will be emailed to the onboarding manager for this project.</errorMessage>
+</ValidationRule>

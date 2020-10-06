@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Shipping_State_mandatory</fullName>
+    <active>true</active>
+    <description>For countries that have states (i.e. State != Country), then State should be not null when Country is not null.</description>
+    <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Application Request&apos;,
+ISBLANK(TEXT( Account_Shipping_State__c )), 
+OR(
+ ISPICKVAL( Account_Shipping_Country__c , &quot;Australia&quot;),
+ ISPICKVAL( Account_Shipping_Country__c , &quot;Malaysia&quot;)
+) 
+)</errorConditionFormula>
+    <errorDisplayField>Account_Shipping_State__c</errorDisplayField>
+    <errorMessage>Shipping state cannot be empty. Please enter Shipping state.</errorMessage>
+</ValidationRule>

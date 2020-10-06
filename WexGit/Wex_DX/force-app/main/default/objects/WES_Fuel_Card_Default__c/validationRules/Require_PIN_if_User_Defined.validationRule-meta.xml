@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_PIN_if_User_Defined</fullName>
+    <active>true</active>
+    <description>You must enter a PIN number if &quot;User defined&quot; is selected as PIN Creation Type</description>
+    <errorConditionFormula>AND( 
+TEXT(PIN_Creation_Method__c) = &quot;User defined&quot;, 
+ISBLANK(PIN__c)
+)</errorConditionFormula>
+    <errorDisplayField>PIN__c</errorDisplayField>
+    <errorMessage>You must enter a PIN number if &quot;User defined&quot; is selected as PIN Creation Type</errorMessage>
+</ValidationRule>

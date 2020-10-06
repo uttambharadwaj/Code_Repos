@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Authorised_Limit_Criteria</fullName>
+    <active>true</active>
+    <description>The Credit Decision must be Accepted or Pending approval in order to enter an Authorised credit limit.</description>
+    <errorConditionFormula>AND(
+Credit_Authorised_Limit__c &gt; 0,				
+NOT(TEXT(Credit_Decision__c) = &quot;Accepted&quot;),
+NOT(TEXT(Credit_Decision__c) = &quot;Pending Approval&quot;),				
+From_Radius__c = FALSE 				
+)</errorConditionFormula>
+    <errorMessage>The Credit Decision must be &quot;Accepted&quot; or &quot;Pending Approval&quot; in order to enter an Authorised credit limit.</errorMessage>
+</ValidationRule>

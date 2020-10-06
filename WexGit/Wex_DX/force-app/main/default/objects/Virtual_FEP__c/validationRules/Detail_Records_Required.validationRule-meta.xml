@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Detail_Records_Required</fullName>
+    <active>false</active>
+    <description>At least one Spend Detail record needs to be added by the salesperson</description>
+    <errorConditionFormula>AND(
+
+/* Allow the FEP to be created without these records(they can&apos;t be completed on the edit page)
+*/
+NOT(
+ISNEW()),
+
+/* Allow the FEP to be edited, while Addressable Annual Spend is not recorded
+*/
+NOT(
+ISBLANK(Annual_Addressable_Spend__c)),
+
+/* Allow Addressable Annual Spend to be added
+*/
+NOT(
+AND(
+ISCHANGED(Annual_Addressable_Spend__c),
+OR(
+ISBLANK(PRIORVALUE(Annual_Addressable_Spend__c)),
+PRIORVALUE(Annual_Addressable_Spend__c) = 0
+))),
+
+/* Salesperson may not know all Spend Types but should know some
+*/
+Spend_Type_Of_Spend_Recorded__c  &lt; 0.01
+
+)</errorConditionFormula>
+    <errorMessage>Please add at least one Spend Type &amp; Payment Method with a share of spend that is greater than 0%</errorMessage>
+</ValidationRule>

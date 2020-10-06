@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verified_num_of_Paper_Checks</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(RecordTypeId=&quot;012700000005juY&quot;, $Profile.Id&lt;&gt; &quot;00e70000000x9jP&quot;, ISCHANGED( Verified_of_Checks__c) )</errorConditionFormula>
+    <errorMessage>Only the Marketing Coordinator can enter the Verified # of Checks.</errorMessage>
+</ValidationRule>

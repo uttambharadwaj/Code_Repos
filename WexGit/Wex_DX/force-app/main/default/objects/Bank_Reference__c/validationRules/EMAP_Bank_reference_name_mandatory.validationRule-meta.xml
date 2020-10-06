@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Bank_reference_name_mandatory</fullName>
+    <active>true</active>
+    <description>Validation rule is created to avoid blank Bank name, while creating new credit application.</description>
+    <errorConditionFormula>ISBLANK(Name)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Bank name cannot be blank. Please enter bank name.</errorMessage>
+</ValidationRule>

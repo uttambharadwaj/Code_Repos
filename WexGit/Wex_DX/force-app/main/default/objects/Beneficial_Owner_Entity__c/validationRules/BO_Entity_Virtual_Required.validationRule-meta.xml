@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BO_Entity_Virtual_Required</fullName>
+    <active>true</active>
+    <description>If this is a virtual record, we need to require either a SFDC account/opportunity, or a Siebel opportunity #, or contract #.</description>
+    <errorConditionFormula>AND( 
+$RecordType.Name = &quot;Virtual&quot;, 
+ISBLANK(Account__c), 
+ISBLANK(Opportunity__c), 
+ISBLANK(Contract_Number__c), 
+ISBLANK(Opportunity_Number__c),
+ISBLANK(Opportunity_Number__c)
+)</errorConditionFormula>
+    <errorMessage>Please link this record to an existing Account or Opportunity in Salesforce, or enter an Account #, Contract #, or Siebel Opportunity #.</errorMessage>
+</ValidationRule>

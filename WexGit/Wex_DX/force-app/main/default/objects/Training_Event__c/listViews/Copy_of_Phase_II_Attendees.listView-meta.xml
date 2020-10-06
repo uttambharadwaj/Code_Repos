@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Phase_II_Attendees</fullName>
+    <columns>Training_Class_Name__c</columns>
+    <columns>Attendee__c</columns>
+    <columns>Learner_Level_2_Learning__c</columns>
+    <columns>Score__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Training_Class_Name__c</field>
+        <operation>equals</operation>
+        <value>Learning Plan Phase II - Product Overview Corporate Payments</value>
+    </filters>
+    <label>Learning Plan - Phase II Attendees</label>
+    <sharedTo>
+        <role>LearningandDevelopment</role>
+    </sharedTo>
+</ListView>

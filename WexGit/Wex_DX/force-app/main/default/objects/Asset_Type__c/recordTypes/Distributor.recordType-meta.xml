@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Distributor</fullName>
+    <active>true</active>
+    <description>Use this Record Type for Distributors.</description>
+    <label>CM - Distributor</label>
+    <picklistValues>
+        <picklist>Fuel_Type__c</picklist>
+        <values>
+            <fullName>Diesel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unleaded</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Liability_Source__c</picklist>
+        <values>
+            <fullName>Corporate Liability</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Individual Liability</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

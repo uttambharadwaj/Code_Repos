@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EU_Sales_Close_Date_Targets_2018</fullName>
+    <columns>NAME</columns>
+    <columns>Salesperson__c</columns>
+    <columns>Team_Leader__c</columns>
+    <columns>Team__c</columns>
+    <columns>Target__c</columns>
+    <columns>X90_Day_Target__c</columns>
+    <columns>Team_Target__c</columns>
+    <columns>Date_Type__c</columns>
+    <columns>Month_End_Date__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Year__c</field>
+        <operation>equals</operation>
+        <value>2018</value>
+    </filters>
+    <filters>
+        <field>Team__c</field>
+        <operation>equals</operation>
+        <value>Virtual New Verticals EU,Virtual Travel Sales EU</value>
+    </filters>
+    <filters>
+        <field>Date_Type__c</field>
+        <operation>equals</operation>
+        <value>Close Date</value>
+    </filters>
+    <label>EU Sales Close Date Targets 2018</label>
+    <language>en_US</language>
+</ListView>

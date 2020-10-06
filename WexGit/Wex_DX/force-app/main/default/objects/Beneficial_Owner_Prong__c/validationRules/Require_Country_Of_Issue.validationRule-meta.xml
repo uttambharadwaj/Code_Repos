@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Country_Of_Issue</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+$User.Alias &lt;&gt; &apos;guest&apos;,
+ISBLANK(TEXT(Country_Of_Issue__c)), 
+NOT(ISBLANK(Passport_Number_Other_Government_ID__c))
+)</errorConditionFormula>
+    <errorDisplayField>Country_Of_Issue__c</errorDisplayField>
+    <errorMessage>You must select a Country of Issue for a Passport or Other ID</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Criteria_to_Pass_Security_Check</fullName>
+    <active>true</active>
+    <description>All sections must be complete before Passed Security Check is marked True.</description>
+    <errorConditionFormula>AND(
+				ISNEW() || ISCHANGED(Passed_Security_Check__c),
+				Passed_Security_Check__c = TRUE,
+OR(
+				 ApplicationDetailsComplete__c = FALSE,
+				 ContactInfoComplete__c = FALSE,
+				 CompanyInfoComplete__c = FALSE,
+				 FuelCardInfoComplete__c = FALSE
+				))</errorConditionFormula>
+    <errorMessage>All sections must be complete before Passed Security Check is marked True.</errorMessage>
+</ValidationRule>

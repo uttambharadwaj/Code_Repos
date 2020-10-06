@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ready_Implementation_Required_Stage_CP3</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP3: Implementation&quot;), 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK( Ready_To_Move_Into_Implementation__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Ready_To_Move_Into_Implementation__c</errorDisplayField>
+    <errorMessage>Ready to Move Into Implementation must be filled in before moving to Stage CP3 or beyond</errorMessage>
+</ValidationRule>

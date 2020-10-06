@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Liability_Source__c</fullName>
+    <externalId>false</externalId>
+    <label>Liability Source</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Corporate Liability</fullName>
+                <default>false</default>
+                <label>Corporate Liability</label>
+            </value>
+            <value>
+                <fullName>Individual Liability</fullName>
+                <default>false</default>
+                <label>Individual Liability</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

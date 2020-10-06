@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Provide_Reason_if_Sense_Check_Fails</fullName>
+    <active>true</active>
+    <description>Must provide a reason if sense check is marked as Failed</description>
+    <errorConditionFormula>TEXT(SenseCheck__c) = &quot;Failed&quot; &amp;&amp;
+ISBLANK(Sense_Check_Failure_Reason__c)</errorConditionFormula>
+    <errorDisplayField>Sense_Check_Failure_Reason__c</errorDisplayField>
+    <errorMessage>Provide a reason why sense check Failed.</errorMessage>
+</ValidationRule>

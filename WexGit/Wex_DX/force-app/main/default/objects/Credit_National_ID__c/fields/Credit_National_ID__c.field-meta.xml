@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_National_ID__c</fullName>
+    <description>Credit National ID number that is assigned to Wex Account</description>
+    <displayFormat>{00000000}</displayFormat>
+    <externalId>false</externalId>
+    <inlineHelpText>Credit National ID number that is assigned to Wex Account</inlineHelpText>
+    <label>Credit National ID</label>
+    <trackTrending>false</trackTrending>
+    <type>AutoNumber</type>
+</CustomField>

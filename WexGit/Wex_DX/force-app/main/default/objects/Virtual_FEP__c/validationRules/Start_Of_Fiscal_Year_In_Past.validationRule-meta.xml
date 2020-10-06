@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Start_Of_Fiscal_Year_In_Past</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+  AND(
+    ISNEW(),
+    NOT(ISBLANK(Start_Of_Fiscal_Year__c)),
+    Start_Of_Fiscal_Year__c &lt; TODAY()
+    ),
+  AND(
+    ISCHANGED(Start_Of_Fiscal_Year__c),
+    NOT(ISBLANK(Start_Of_Fiscal_Year__c)),
+    Start_Of_Fiscal_Year__c &lt; TODAY()
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Start_Of_Fiscal_Year__c</errorDisplayField>
+    <errorMessage>Please enter the date when the customer&apos;s Next fiscal year will begin, this date cannot be in the past</errorMessage>
+</ValidationRule>

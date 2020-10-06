@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alon</fullName>
+    <columns>NAME</columns>
+    <columns>Fleet_Size__c</columns>
+    <columns>Opportunity_Id__c</columns>
+    <columns>Sort__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Partner_Profile__c</field>
+        <operation>startsWith</operation>
+        <value>Alon</value>
+    </filters>
+    <label>Alon</label>
+</ListView>

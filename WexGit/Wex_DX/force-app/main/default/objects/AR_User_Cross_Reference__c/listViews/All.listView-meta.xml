@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>User__c</columns>
+    <columns>EFSLLC__c</columns>
+    <columns>EFSTS__c</columns>
+    <columns>F1_Client__c</columns>
+    <columns>F1_Debtor__c</columns>
+    <columns>GCM__c</columns>
+    <columns>NA_fleet__c</columns>
+    <columns>NATC__c</columns>
+    <columns>TAG__c</columns>
+    <columns>TCHECKMC__c</columns>
+    <columns>TCHEK__c</columns>
+    <columns>TS1__c</columns>
+    <columns>TS2__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

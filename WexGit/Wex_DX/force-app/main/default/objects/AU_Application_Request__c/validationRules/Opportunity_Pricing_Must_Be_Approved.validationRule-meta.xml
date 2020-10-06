@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Pricing_Must_Be_Approved</fullName>
+    <active>true</active>
+    <description>It is an error if the parent Opportunity&apos;s Pricing Approval Recieved is false</description>
+    <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Application Request&apos;, 
+NOT(Opportunity__r.Pricing_Approval_Received__c) 
+)</errorConditionFormula>
+    <errorMessage>Opportunity must have Pricing Approval!</errorMessage>
+</ValidationRule>

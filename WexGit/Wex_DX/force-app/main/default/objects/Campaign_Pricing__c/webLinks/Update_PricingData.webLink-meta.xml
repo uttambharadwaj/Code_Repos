@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_PricingData</fullName>
+    <availability>online</availability>
+    <description>Update the pricingData table from the webservice</description>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Update PricingData</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>//Get the Salesforce apex connection libraries
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+timeout=120000;
+var ids = {!GETRECORDIDS($ObjectType.Campaign_Pricing__c)};
+var interval;
+
+//The main function that does all the work
+function appendScript()
+{
+    //We want to use jQuery as well as the UI elements, so first lets load the       stylesheet by injecting it into the dom.
+    var head= document.getElementsByTagName(&apos;head&apos;)[0];
+    var v_css  = document.createElement(&apos;link&apos;);
+    v_css.rel = &apos;stylesheet&apos;
+    v_css.type = &apos;text/css&apos;;
+    v_css.href = &apos;https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/redmond/jquery-ui.css&apos;;
+    head.appendChild(v_css);
+
+    var script= document.createElement(&apos;script&apos;);
+    script.type= &apos;text/javascript&apos;;
+    script.src= &apos;https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js&apos;;
+    head.appendChild(script);
+    
+    //And of course we need the jQuery UI elements
+    var scriptUI = document.createElement(&apos;script&apos;);
+    scriptUI.type = &apos;text/javascript&apos;;
+    scriptUI.src = &apos;https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js&apos;;   
+    head.appendChild(scriptUI);
+
+    interval=self.setInterval(function(){
+                                       
+        //Check to see if jQuery has loaded                           
+        if(jQuery)
+        {
+            //if jQuery has loaded, clear the interval
+            window.clearInterval(interval);
+            
+            //create a div in the body which we will use for our dialog.
+            $(document.getElementsByTagName(&apos;body&apos;)[0]).append(&quot;&lt;div id=infoNotice title=&apos;Updating Records&apos;&gt;Updating Records Please Wait...&lt;div id=&apos;infoNoticeResult&apos;&gt;This will take a moment.&lt;br /&gt;&lt;progress max=&apos;100&apos;&gt;&lt;/progress&gt;&lt;/div&gt;&lt;/div&gt;&quot;);    
+            
+            //register our newly created div as a dialog
+            $( &quot;#infoNotice&quot; ).dialog();   
+            
+            //setTimeout 
+          
+            setTimeout(function(){
+      //get the ids to be refreshed
+
+                var callResult = sforce.apex.execute(&quot;CampaignPricingController&quot;,&quot;RefreshCampaignPricingDataForCampaignProgram&quot;,{ID: ids});             
+
+                $( &quot;#infoNoticeResult&quot; ).text(callResult[0]);
+                 window.location.reload();
+
+            },10);
+        }
+    }, 300);    
+}
+appendScript();</url>
+</WebLink>

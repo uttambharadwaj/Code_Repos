@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Provide_Comments_for_VP_Override</fullName>
+    <active>true</active>
+    <description>User must provide comments if the Velocity Profile Override is different than the calculated Velocity Profile</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(TEXT(VelocityProfileOverride__c))),	
+VelocityProfile__c  &lt;&gt;  TEXT(VelocityProfileOverride__c),
+ISBLANK(VelocityProfileOverrideComments__c)
+				)</errorConditionFormula>
+    <errorDisplayField>VelocityProfileOverrideComments__c</errorDisplayField>
+    <errorMessage>Please provide comments when using the Velocity Profile Override.</errorMessage>
+</ValidationRule>

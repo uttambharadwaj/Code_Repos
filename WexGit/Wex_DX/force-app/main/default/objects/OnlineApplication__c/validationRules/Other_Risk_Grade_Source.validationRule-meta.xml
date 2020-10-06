@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Risk_Grade_Source</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISPICKVAL(Risk_Grade_Source__c, &quot;Other&quot;) &amp;&amp; ISBLANK(Other_Risk_Grade_Source__c)</errorConditionFormula>
+    <errorMessage>Please type in the Other Risk Grade Source</errorMessage>
+</ValidationRule>

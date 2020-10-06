@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_RPS_Match_Details_Required</fullName>
+    <active>true</active>
+    <description>It should only accept details where the RPS Outcome field is set to ‘Match’</description>
+    <errorConditionFormula>AND(
+ ISPICKVAL( RPS_Outcome__c , &apos;Match&apos;),
+ ISBLANK( RPS_Match_Details__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>RPS_Match_Details__c</errorDisplayField>
+    <errorMessage>Please enter RPS Match details, if RPS outcome is Match.</errorMessage>
+</ValidationRule>

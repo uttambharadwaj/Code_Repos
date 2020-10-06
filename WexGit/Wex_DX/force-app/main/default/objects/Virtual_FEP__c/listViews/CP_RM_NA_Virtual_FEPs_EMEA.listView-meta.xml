@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CP_RM_NA_Virtual_FEPs_EMEA</fullName>
+    <columns>NAME</columns>
+    <columns>Group_Turnover__c</columns>
+    <columns>Annual_Addressable_Spend__c</columns>
+    <columns>Value_Of_WE_Spend__c</columns>
+    <columns>Contract_Expiry_Date__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>Opportunities__c</columns>
+    <columns>Description__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Owner_Role__c</field>
+        <operation>equals</operation>
+        <value>Corporate Payments Relationship Management NA</value>
+    </filters>
+    <label>*CP RM NA - Virtual FEPs EMEA</label>
+    <sharedTo>
+        <role>Corporate_Payments_Relationship_Management_NA</role>
+        <role>Corporate_Payments_Sales</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Credit_Analysts_can_Decisioned</fullName>
+    <active>false</active>
+    <description>Only Credit Analysts can change the Status to Decisioned. Set up users in custom setting &quot;OnlineApplicationSecurity&quot;.</description>
+    <errorConditionFormula>$User.Alias != &apos;guest&apos; 
+&amp;&amp;
+$Setup.OnlineApplicationSecurity__c.StatusDecisioned__c &lt;&gt; TRUE 
+&amp;&amp; 
+ISCHANGED(Status__c) 
+&amp;&amp; 
+ISPICKVAL(Status__c, &quot;Decisioned&quot;)</errorConditionFormula>
+    <errorMessage>Only Credit Analysts can set the status to Decisioned.</errorMessage>
+</ValidationRule>

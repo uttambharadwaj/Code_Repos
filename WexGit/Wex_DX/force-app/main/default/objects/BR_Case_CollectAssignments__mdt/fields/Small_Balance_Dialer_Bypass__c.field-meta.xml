@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Small_Balance_Dialer_Bypass__c</fullName>
+    <description>Stored as a dollar amount to control if we set the dialer status to Ready or Removed.
+17Aug2020 - if balance is &lt; this amount, and the case is headed to a VaR queue, set the dialer status to Removed, this will prevent us from using agent resources to call on small balance accounts.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Small Balance Dialer Bypass</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

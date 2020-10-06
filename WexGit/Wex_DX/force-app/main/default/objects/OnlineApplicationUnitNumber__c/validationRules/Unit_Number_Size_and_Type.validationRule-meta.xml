@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unit_Number_Size_and_Type</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+Online_Application__r.Program__c == null,
+(NOT(ISBLANK(Name))) &amp;&amp; (LEN(Name) &gt; 15  || NOT(ISNUMBER(Name)))
+)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Unit numbers must be numeric and no more than 15 digits.</errorMessage>
+</ValidationRule>

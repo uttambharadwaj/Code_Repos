@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Valid_State_Providence_Values</fullName>
+    <active>false</active>
+    <errorConditionFormula>NOT( 
+CONTAINS(&quot;AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot; &amp; &quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp; 
+&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp; 
+&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp; 
+&quot;WA:WV:WI:WY&quot;, MailingState) 
+)</errorConditionFormula>
+    <errorMessage>A valid two-letter state or province code is required</errorMessage>
+</ValidationRule>

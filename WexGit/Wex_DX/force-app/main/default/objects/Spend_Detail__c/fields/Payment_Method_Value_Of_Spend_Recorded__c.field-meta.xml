@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Method_Value_Of_Spend_Recorded__c</fullName>
+    <externalId>false</externalId>
+    <label>Payment Method Value Of Spend Recorded</label>
+    <summarizedField>Payment_Method_Detail__c.Value_Of_Spend__c</summarizedField>
+    <summaryForeignKey>Payment_Method_Detail__c.Spend_Detail__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

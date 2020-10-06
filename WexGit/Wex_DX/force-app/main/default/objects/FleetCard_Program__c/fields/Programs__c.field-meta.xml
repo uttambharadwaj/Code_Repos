@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Programs__c</fullName>
+    <externalId>false</externalId>
+    <label>Programs</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CFN</fullName>
+                <default>false</default>
+                <label>CFN</label>
+            </value>
+            <value>
+                <fullName>PacPride</fullName>
+                <default>false</default>
+                <label>PacPride</label>
+            </value>
+            <value>
+                <fullName>Fuelman</fullName>
+                <default>false</default>
+                <label>Fuelman</label>
+            </value>
+            <value>
+                <fullName>Fuelman Private Label</fullName>
+                <default>false</default>
+                <label>Fuelman Private Label</label>
+            </value>
+            <value>
+                <fullName>Comchek Fleet</fullName>
+                <default>false</default>
+                <label>Comchek Fleet</label>
+            </value>
+            <value>
+                <fullName>WEX</fullName>
+                <default>false</default>
+                <label>WEX</label>
+            </value>
+            <value>
+                <fullName>WEX Private Label</fullName>
+                <default>false</default>
+                <label>WEX Private Label</label>
+            </value>
+            <value>
+                <fullName>Voyager</fullName>
+                <default>false</default>
+                <label>Voyager</label>
+            </value>
+            <value>
+                <fullName>MC Fleet Issuer</fullName>
+                <default>false</default>
+                <label>MC Fleet Issuer</label>
+            </value>
+            <value>
+                <fullName>FleetOne</fullName>
+                <default>false</default>
+                <label>FleetOne</label>
+            </value>
+            <value>
+                <fullName>FleetOne Private Label</fullName>
+                <default>false</default>
+                <label>FleetOne Private Label</label>
+            </value>
+            <value>
+                <fullName>TCH</fullName>
+                <default>false</default>
+                <label>TCH</label>
+            </value>
+            <value>
+                <fullName>Proprietary Cardlock</fullName>
+                <default>false</default>
+                <label>Proprietary Cardlock</label>
+            </value>
+            <value>
+                <fullName>Oil Company Fleet</fullName>
+                <default>false</default>
+                <label>Oil Company Fleet</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

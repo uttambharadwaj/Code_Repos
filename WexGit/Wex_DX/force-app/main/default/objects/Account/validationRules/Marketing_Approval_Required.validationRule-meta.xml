@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Approval_Required</fullName>
+    <active>true</active>
+    <description>When an Opportunity is closed won, this field needs to be updated by the salesperson to indicate whether the client gave approval for our use of their name, brand etc. for marketing or not</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( 
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Account_Disabled__c = FALSE, 
+
+  RecordType.DeveloperName = &apos;CorporatePay_Accounts&apos;,
+
+  ISCHANGED(Number_of_Won_Opportunities__c),
+  Number_of_Won_Opportunities__c &gt; 0,
+
+  ISBLANK(TEXT(Marketing_Approval__c))
+))</errorConditionFormula>
+    <errorDisplayField>Marketing_Approval__c</errorDisplayField>
+    <errorMessage>Please update the Account field &apos;Marketing Approval&apos;</errorMessage>
+</ValidationRule>

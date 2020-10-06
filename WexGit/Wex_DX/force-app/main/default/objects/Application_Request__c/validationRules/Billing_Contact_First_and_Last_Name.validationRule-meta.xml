@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Contact_First_and_Last_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+ ISPICKVAL(Forward_Application_to_Credit__c,&quot;Yes&quot;),
+  Created_By_Echosign__c = FALSE,
+OR(
+ ISBLANK(Billing_Contact_First_Name_Text__c ),
+ISBLANK(Billing_Contact_Last_Name_Text__c )
+)
+))</errorConditionFormula>
+    <errorDisplayField>Billing_Contact__c</errorDisplayField>
+    <errorMessage>Please be sure to pick the Billing Contact and it has a First and Last Name</errorMessage>
+</ValidationRule>

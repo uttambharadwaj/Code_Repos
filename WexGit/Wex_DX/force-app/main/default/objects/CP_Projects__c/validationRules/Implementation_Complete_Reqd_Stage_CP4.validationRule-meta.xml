@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Implementation_Complete_Reqd_Stage_CP4</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK( Implementation_Complete__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Implementation_Complete__c</errorDisplayField>
+    <errorMessage>Implementation Complete must be filled in before moving to Stage CP4 or beyond</errorMessage>
+</ValidationRule>

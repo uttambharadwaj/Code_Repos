@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UserManagerCheck__c</fullName>
+    <description>Used for reporting to only show direct reports</description>
+    <externalId>false</externalId>
+    <formula>$User.Id=SplitOwner.ManagerId</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>UserManagerCheck</label>
+    <type>Checkbox</type>
+</CustomField>

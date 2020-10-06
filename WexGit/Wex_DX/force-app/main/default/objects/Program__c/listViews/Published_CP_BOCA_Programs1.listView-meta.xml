@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Published_CP_BOCA_Programs1</fullName>
+    <columns>NAME</columns>
+    <columns>Brand_Short_Name__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>Card_Shipping_Method__c</columns>
+    <columns>BOCA_Type__c</columns>
+    <columns>Form_Template__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Publish_BOCA__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>BOCA_Type__c</field>
+        <operation>equals</operation>
+        <value>CPBOCA</value>
+    </filters>
+    <label>Published CP BOCA Programs</label>
+    <language>en_US</language>
+</ListView>

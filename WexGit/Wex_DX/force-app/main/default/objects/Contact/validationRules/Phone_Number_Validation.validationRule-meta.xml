@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phone_Number_Validation</fullName>
+    <active>false</active>
+    <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+    <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+    <errorDisplayField>Phone</errorDisplayField>
+    <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+</ValidationRule>

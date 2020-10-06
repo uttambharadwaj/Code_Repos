@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Slot__c</fullName>
+    <externalId>false</externalId>
+    <label>Time Slot</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>8:30AM-10:00AM</fullName>
+                <default>false</default>
+                <label>8:30AM-10:00AM</label>
+            </value>
+            <value>
+                <fullName>10:30AM-12:00PM</fullName>
+                <default>false</default>
+                <label>10:30AM-12:00PM</label>
+            </value>
+            <value>
+                <fullName>1:00PM-2:00PM</fullName>
+                <default>false</default>
+                <label>1:00PM-2:00PM</label>
+            </value>
+            <value>
+                <fullName>2:30PM-3:30PM</fullName>
+                <default>false</default>
+                <label>2:30PM-3:30PM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

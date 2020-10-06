@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Set_Activity_Type_To_Outbound_Call</name>
+        <label>Set Activity Type To Outbound Call</label>
+        <locationX>1147</locationX>
+        <locationY>126</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Activity_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Outbound Call</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Dialer_Task</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Activity_Type_To_Outbound_Call_0</name>
+        <label>Set Activity Type To Outbound Call</label>
+        <locationX>1089</locationX>
+        <locationY>246</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Activity_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Inbound Call</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Dialer_Task</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Collections_Record_Type_Id</name>
+        <label>Set Collections Record Type Id</label>
+        <locationX>286</locationX>
+        <locationY>792</locationY>
+        <assignmentItems>
+            <assignToReference>CollectionsRecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Set_Record_Type_Variables.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Record_Type_Variables</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>sets fields on the task with values set on the case record by Nice In Contact - task mapping was limited</description>
+        <name>set_task_fields_from_case</name>
+        <label>set task fields from case</label>
+        <locationX>1516</locationX>
+        <locationY>469</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Check_In_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>get_collections_case.Dialer_Check_In_Reason__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Source__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>get_collections_case.Dialer_Source__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Call_Attempts__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>get_collections_case.Dialer_Call_Attempts__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Disposition</name>
+        <label>Check Disposition</label>
+        <locationX>837</locationX>
+        <locationY>237</locationY>
+        <defaultConnector>
+            <targetReference>Dialer_Task</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outbound_Dispositons</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4) AND 5</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Connect</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Right Party Contact</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Right Party Contact - With Promise to Pay</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>No connect</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Activity_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Outbound Call</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Activity_Type_To_Outbound_Call</targetReference>
+            </connector>
+            <label>Outbound Dispositons</label>
+        </rules>
+        <rules>
+            <name>Inbound_Dispositions</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12) AND 13</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Authorized Contact Collection Conversation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>AR Reactivation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Escalated Call</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Negotiated payment terms</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Offered Payment Plan</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Request for fee waiver or refund</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Returned Payment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Misapplied Payment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Promise to Pay</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Account balance/payment confirmation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Misdirected Call</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Disposition_Name__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Billing/Payment Research</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Activity_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Inbound Call</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Activity_Type_To_Outbound_Call_0</targetReference>
+            </connector>
+            <label>Inbound Dispositions</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Dialer_Task</name>
+        <label>Dialer Task</label>
+        <locationX>1092</locationX>
+        <locationY>478</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>created_by_dialer</name>
+            <conditionLogic>1 AND 2 AND (3 OR 4 OR 5) AND 6</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CXone_Contact_ID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.WhatId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Call_Attempts__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Check_In_Reason__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Source__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.WhatId</leftValueReference>
+                <operator>StartsWith</operator>
+                <rightValue>
+                    <stringValue>500</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>get_collections_case</targetReference>
+            </connector>
+            <label>created by dialer</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>null_check_case_fields</name>
+        <label>null check case fields</label>
+        <locationX>1405</locationX>
+        <locationY>376</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_collections_case.Dialer_Call_Attempts__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>get_collections_case.Dialer_Check_In_Reason__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>get_collections_case.Dialer_Source__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>set_task_fields_from_case</targetReference>
+            </connector>
+            <label>not null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Process_by_Record_Type</name>
+        <label>Process by Record Type</label>
+        <locationX>531</locationX>
+        <locationY>514</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Collections_Record_Processes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CollectionsRecordTypeId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CollectionsRecordTypeId</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Disposition</targetReference>
+            </connector>
+            <label>Collections Record Processes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Record_Type</name>
+        <label>Which Record Type?</label>
+        <locationX>50</locationX>
+        <locationY>679</locationY>
+        <defaultConnector>
+            <targetReference>Set_Record_Type_Variables</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CollectionsRecordType</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Set_Record_Type_Variables.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Collections</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Collections_Record_Type_Id</targetReference>
+            </connector>
+            <label>CollectionsRecordType</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Task - Before Create Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Task - Before Create Flow</label>
+    <loops>
+        <name>Set_Record_Type_Variables</name>
+        <label>Set Record Type Variables</label>
+        <locationX>286</locationX>
+        <locationY>510</locationY>
+        <collectionReference>Get_Record_Types</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Which_Record_Type</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Process_by_Record_Type</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>get_collections_case</name>
+        <label>get collections case</label>
+        <locationX>1299</locationX>
+        <locationY>475</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>null_check_case_fields</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <object>Case</object>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Record_Types</name>
+        <label>Get Record Types</label>
+        <locationX>286</locationX>
+        <locationY>354</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Record_Type_Variables</targetReference>
+        </connector>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Task</stringValue>
+            </value>
+        </filters>
+        <object>RecordType</object>
+    </recordLookups>
+    <startElementReference>Get_Record_Types</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>CollectionsRecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

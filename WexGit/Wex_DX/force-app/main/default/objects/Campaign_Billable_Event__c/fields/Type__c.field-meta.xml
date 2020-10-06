@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>App Brochure</fullName>
+                <default>false</default>
+                <label>App Brochure</label>
+            </value>
+            <value>
+                <fullName>Collateral Design</fullName>
+                <default>false</default>
+                <label>Collateral Design</label>
+            </value>
+            <value>
+                <fullName>Collateral Production</fullName>
+                <default>false</default>
+                <label>Collateral Production</label>
+            </value>
+            <value>
+                <fullName>Customer Communications</fullName>
+                <default>false</default>
+                <label>Customer Communications</label>
+            </value>
+            <value>
+                <fullName>Data Analysis</fullName>
+                <default>false</default>
+                <label>Data Analysis</label>
+            </value>
+            <value>
+                <fullName>Data Records</fullName>
+                <default>false</default>
+                <label>Data Records</label>
+            </value>
+            <value>
+                <fullName>Demos</fullName>
+                <default>false</default>
+                <label>Demos</label>
+            </value>
+            <value>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+                <label>Direct Mail</label>
+            </value>
+            <value>
+                <fullName>Driver Videos</fullName>
+                <default>false</default>
+                <label>Driver Videos</label>
+            </value>
+            <value>
+                <fullName>Drivers Guides</fullName>
+                <default>false</default>
+                <label>Drivers Guides</label>
+            </value>
+            <value>
+                <fullName>Envelopes</fullName>
+                <default>false</default>
+                <label>Envelopes</label>
+            </value>
+            <value>
+                <fullName>Fulfillment Collateral</fullName>
+                <default>false</default>
+                <label>Fulfillment Collateral</label>
+            </value>
+            <value>
+                <fullName>Graphic Design</fullName>
+                <default>false</default>
+                <label>Graphic Design</label>
+            </value>
+            <value>
+                <fullName>Inserts</fullName>
+                <default>false</default>
+                <label>Inserts</label>
+            </value>
+            <value>
+                <fullName>Lead handling</fullName>
+                <default>false</default>
+                <label>Lead handling</label>
+            </value>
+            <value>
+                <fullName>Letterhead</fullName>
+                <default>false</default>
+                <label>Letterhead</label>
+            </value>
+            <value>
+                <fullName>List Modeling</fullName>
+                <default>false</default>
+                <label>List Modeling</label>
+            </value>
+            <value>
+                <fullName>Logos</fullName>
+                <default>false</default>
+                <label>Logos</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Newsletters</fullName>
+                <default>false</default>
+                <label>Newsletters</label>
+            </value>
+            <value>
+                <fullName>Plastic</fullName>
+                <default>false</default>
+                <label>Plastic</label>
+            </value>
+            <value>
+                <fullName>Plastic Design</fullName>
+                <default>false</default>
+                <label>Plastic Design</label>
+            </value>
+            <value>
+                <fullName>Plastic Production</fullName>
+                <default>false</default>
+                <label>Plastic Production</label>
+            </value>
+            <value>
+                <fullName>Press Releases</fullName>
+                <default>false</default>
+                <label>Press Releases</label>
+            </value>
+            <value>
+                <fullName>Printing</fullName>
+                <default>false</default>
+                <label>Printing</label>
+            </value>
+            <value>
+                <fullName>Product Collateral</fullName>
+                <default>false</default>
+                <label>Product Collateral</label>
+            </value>
+            <value>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+                <label>Reporting</label>
+            </value>
+            <value>
+                <fullName>Retention</fullName>
+                <default>false</default>
+                <label>Retention</label>
+            </value>
+            <value>
+                <fullName>Sales Sheets</fullName>
+                <default>false</default>
+                <label>Sales Sheets</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Signs</fullName>
+                <default>false</default>
+                <label>Signs</label>
+            </value>
+            <value>
+                <fullName>Site Directory</fullName>
+                <default>false</default>
+                <label>Site Directory</label>
+            </value>
+            <value>
+                <fullName>Trade Shows</fullName>
+                <default>false</default>
+                <label>Trade Shows</label>
+            </value>
+            <value>
+                <fullName>Web</fullName>
+                <default>false</default>
+                <label>Web</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

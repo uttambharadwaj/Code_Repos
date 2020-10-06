@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Adverse_Action_Code</fullName>
+    <active>true</active>
+    <description>Adverse Action Code field is required in order to save only when the Credit Decision is “Declined” or “Declined-Prepay/Secured Only” or when the Status is “Credit-Incomplete</description>
+    <errorConditionFormula>ISNULL(Adverse_action_code__c) &amp;&amp; 
+(ISPICKVAL(Credit_Decision__c, &quot;Declined&quot;) || 
+ISPICKVAL(Credit_Decision__c, &quot;Declined-Prepay/Secured Only&quot;) || 
+ISPICKVAL(Status__c, &quot;Credit-Incomplete&quot;))</errorConditionFormula>
+    <errorDisplayField>Adverse_action_code__c</errorDisplayField>
+    <errorMessage>An Adverse Action Code is needed if the Credit Decision is Declined or Declined-Prepay/Secured Only or if the Status is &quot;Credit-Incomplete&quot;</errorMessage>
+</ValidationRule>

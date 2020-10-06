@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Override_Type__c</fullName>
+    <description>Override type for the Account</description>
+    <externalId>false</externalId>
+    <label>Override Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Credit Limit (TCL) Override</fullName>
+                <default>false</default>
+                <label>Credit Limit (TCL) Override</label>
+            </value>
+            <value>
+                <fullName>Overdue (AOT) Override</fullName>
+                <default>false</default>
+                <label>Overdue (AOT) Override</label>
+            </value>
+            <value>
+                <fullName>Security Exception</fullName>
+                <default>false</default>
+                <label>Security Exception</label>
+            </value>
+            <value>
+                <fullName>Dishonoured Payment Override</fullName>
+                <default>false</default>
+                <label>Dishonoured Payment Override</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

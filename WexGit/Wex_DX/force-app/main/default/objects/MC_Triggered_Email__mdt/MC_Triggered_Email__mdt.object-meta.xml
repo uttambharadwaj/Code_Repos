@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Case teams need a way to call triggered emails in MC. VF page MarketingTriggeredEmail is used via a button on case. This metadata purpose to to hold the mapping of fields and MC triggered email keys</description>
+    <label>MC Triggered Email</label>
+    <pluralLabel>MC Triggered Emails</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

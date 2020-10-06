@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpData_Source_Parent_Stop_toNull</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+ISCHANGED( OpData_Account_Number_Source_Parent__c ) , 
+ISNULL(OpData_Account_Number_Source_Parent__c) , 
+NOT(ISBLANK(PRIORVALUE(OpData_Account_Number_Source_Parent__c))) 
+)</errorConditionFormula>
+    <errorMessage>Cannot change source parent to null</errorMessage>
+</ValidationRule>

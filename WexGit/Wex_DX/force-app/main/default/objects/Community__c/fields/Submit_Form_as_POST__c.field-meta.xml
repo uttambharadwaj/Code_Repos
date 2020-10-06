@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submit_Form_as_POST__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Flag to toggle between submitting as a POST vs. GET. Submitting as a POST is most secure since a GET will pass the username and password values along the query string.</description>
+    <externalId>false</externalId>
+    <label>Submit Form as POST</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

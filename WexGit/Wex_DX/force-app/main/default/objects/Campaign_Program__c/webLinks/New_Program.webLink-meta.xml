@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Program</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>New Program</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>https://na64.salesforce.com/a0a/e?
+CF00N70000002PmYg={!Campaign.Name}
+&amp;CF00N70000002PmYg_lkid={!Campaign.Id}
+&amp;Name={!Campaign.Name}
+&amp;retURL=%2F{!Campaign.Id}</url>
+</WebLink>

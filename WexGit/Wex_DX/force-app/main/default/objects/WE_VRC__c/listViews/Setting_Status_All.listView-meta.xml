@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Setting_Status_All</fullName>
+    <columns>SETUP_OWNER_NAME</columns>
+    <columns>All_Opportunity_Disabled__c</columns>
+    <columns>Non_Fcst_Disabled__c</columns>
+    <columns>Opp_Cur_Dtl_Disabled__c</columns>
+    <columns>All_Lead_Disabled__c</columns>
+    <columns>All_Account_Disabled__c</columns>
+    <columns>SETUP_TYPE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>Setting Status - All</label>
+    <language>en_US</language>
+</ListView>

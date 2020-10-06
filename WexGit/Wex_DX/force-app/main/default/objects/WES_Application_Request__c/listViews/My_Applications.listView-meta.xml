@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Applications</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Application_Status__c</columns>
+    <columns>MonthlyFuelVolumeLitres__c</columns>
+    <columns>Total_Card_Packs__c</columns>
+    <columns>Required_Credit_Limit__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>Sales_Agent_Assigned__c</columns>
+    <columns>CreditAgentAssigned__c</columns>
+    <columns>Product_Type__c</columns>
+    <columns>Account_ISO_Country_Code__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Application_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Sales to Obtain Further Information,Higher Authority,Accepted,Rejected,Unable to Process</value>
+    </filters>
+    <filters>
+        <field>Owner_Assigned__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Active Applications</label>
+</ListView>

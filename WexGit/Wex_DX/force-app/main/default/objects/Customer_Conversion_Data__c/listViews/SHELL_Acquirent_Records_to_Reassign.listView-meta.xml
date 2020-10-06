@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SHELL_Acquirent_Records_to_Reassign</fullName>
+    <columns>NAME</columns>
+    <columns>First_Contact_Date__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>Previous_Account_Number__c</columns>
+    <columns>Company_Name__c</columns>
+    <columns>Physical_State__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>BPAV_Needed__c</columns>
+    <columns>TIN_Needed__c</columns>
+    <columns>LAST_ACTIVITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Conversion_Record_Key__c</field>
+        <operation>startsWith</operation>
+        <value>SHELL</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Pending Customer Response</value>
+    </filters>
+    <filters>
+        <field>Calling_Status__c</field>
+        <operation>equals</operation>
+        <value>Untouched</value>
+    </filters>
+    <filters>
+        <field>LAST_ACTIVITY</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>BPAV_Needed__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>OWNER.LAST_NAME</field>
+        <operation>equals</operation>
+        <value>Nitzkin</value>
+    </filters>
+    <filters>
+        <field>Physical_State__c</field>
+        <operation>equals</operation>
+        <value>CA,FL,GA,IL,ME,NJ,OH,TX</value>
+    </filters>
+    <label>SHELL - Acquirent Records to Reassign</label>
+    <language>en_US</language>
+</ListView>

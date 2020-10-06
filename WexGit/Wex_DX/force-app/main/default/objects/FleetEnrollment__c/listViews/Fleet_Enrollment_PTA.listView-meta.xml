@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fleet_Enrollment_PTA</fullName>
+    <booleanFilter>1 and (2 or 3)</booleanFilter>
+    <columns>Application_Status__c</columns>
+    <columns>Opportunity_Number__c</columns>
+    <columns>NAME</columns>
+    <columns>Company_Name_Lookup__c</columns>
+    <columns>Completed_Date__c</columns>
+    <columns>Confirmation_Number__c</columns>
+    <columns>Submitted_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Number_Of_Vehicles__c</columns>
+    <columns>Email_Version__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Email_Version__c</field>
+        <operation>contains</operation>
+        <value>PTA</value>
+    </filters>
+    <filters>
+        <field>Email_Version__c</field>
+        <operation>contains</operation>
+        <value>BOCA</value>
+    </filters>
+    <label>Fleet Enrollment PTA</label>
+    <language>en_US</language>
+</ListView>

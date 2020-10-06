@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Passport_Number_Check_Repeating_Values</fullName>
+    <active>true</active>
+    <description>Checks for repeating numbers like &apos;11111111&apos; or &apos;123456&apos; in the passport number field.</description>
+    <errorConditionFormula>LEN(Passport_Number_Other_Government_ID__c) &gt; 0 &amp;&amp;
+OR(
+					REGEX(Passport_Number_Other_Government_ID__c, &quot;\\d*(0123|1234|2345|3456|4567|5678|6789)\\d*&quot;),
+					REGEX(Passport_Number_Other_Government_ID__c, &quot;(\\d)\\1\\1+&quot;)
+					)</errorConditionFormula>
+    <errorDisplayField>Passport_Number_Other_Government_ID__c</errorDisplayField>
+    <errorMessage>Passport/Government ID Number cannot have repeating digits or consecutive digits.</errorMessage>
+</ValidationRule>

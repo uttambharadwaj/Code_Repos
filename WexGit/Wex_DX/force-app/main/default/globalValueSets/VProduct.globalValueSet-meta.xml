@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>AP Direct</fullName>
+        <default>false</default>
+        <label>AP Direct</label>
+    </customValue>
+    <customValue>
+        <fullName>AP Direct - SUGA (undefined merchant)</fullName>
+        <default>false</default>
+        <label>AP Direct - SUGA (undefined merchant)</label>
+    </customValue>
+    <customValue>
+        <fullName>AP Direct - Secure Fund</fullName>
+        <default>false</default>
+        <label>AP Direct - Secure Fund</label>
+    </customValue>
+    <customValue>
+        <fullName>PLOG (legacy)</fullName>
+        <default>false</default>
+        <label>PLOG (legacy)</label>
+    </customValue>
+    <customValue>
+        <fullName>Plastic</fullName>
+        <default>false</default>
+        <label>Plastic</label>
+    </customValue>
+    <customValue>
+        <fullName>Virtual Payments</fullName>
+        <default>false</default>
+        <label>Virtual Payments</label>
+    </customValue>
+    <customValue>
+        <fullName>Electronic AP</fullName>
+        <default>false</default>
+        <label>Electronic AP</label>
+    </customValue>
+    <customValue>
+        <fullName>Private Site</fullName>
+        <default>false</default>
+        <label>Private Site</label>
+    </customValue>
+    <customValue>
+        <fullName>ClearView Essentials</fullName>
+        <default>false</default>
+        <label>ClearView Essentials</label>
+    </customValue>
+    <customValue>
+        <fullName>EFS P-Card MasterCard</fullName>
+        <default>false</default>
+        <label>EFS P-Card MasterCard</label>
+    </customValue>
+    <customValue>
+        <fullName>ClearView Advanced</fullName>
+        <default>false</default>
+        <label>ClearView Advanced</label>
+    </customValue>
+    <customValue>
+        <fullName>EFS Fleet MasterCard</fullName>
+        <default>false</default>
+        <label>EFS Fleet MasterCard</label>
+    </customValue>
+    <customValue>
+        <fullName>EFS EAP MasterCard</fullName>
+        <default>false</default>
+        <label>EFS EAP MasterCard</label>
+    </customValue>
+    <customValue>
+        <fullName>EFS Payroll MasterCard</fullName>
+        <default>false</default>
+        <label>EFS Payroll MasterCard</label>
+    </customValue>
+    <customValue>
+        <fullName>EFS Virtual MasterCard</fullName>
+        <default>false</default>
+        <label>EFS Virtual MasterCard</label>
+    </customValue>
+    <customValue>
+        <fullName>EFS T &amp; E MasterCard</fullName>
+        <default>false</default>
+        <label>EFS T &amp; E MasterCard</label>
+    </customValue>
+    <customValue>
+        <fullName>Verizon</fullName>
+        <default>false</default>
+        <label>Verizon</label>
+    </customValue>
+    <customValue>
+        <fullName>GPSI</fullName>
+        <default>false</default>
+        <label>GPSI</label>
+    </customValue>
+    <customValue>
+        <fullName>BSM</fullName>
+        <default>false</default>
+        <label>BSM</label>
+    </customValue>
+    <customValue>
+        <fullName>GeoTab</fullName>
+        <default>false</default>
+        <label>GeoTab</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuel Advisors</fullName>
+        <default>false</default>
+        <label>Fuel Advisors</label>
+    </customValue>
+    <customValue>
+        <fullName>Corporate Card</fullName>
+        <default>false</default>
+        <label>Corporate Card</label>
+    </customValue>
+    <description>Virtual product list</description>
+    <masterLabel>Product</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

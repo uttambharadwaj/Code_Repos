@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department_and_Comment_Cant_be_Blank</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(ISBLANK(TEXT(Department__c)),
+ LEN(TRIM( Reason_Comment__c)) = 0)</errorConditionFormula>
+    <errorMessage>Department and Comment cannot be empty,</errorMessage>
+</ValidationRule>

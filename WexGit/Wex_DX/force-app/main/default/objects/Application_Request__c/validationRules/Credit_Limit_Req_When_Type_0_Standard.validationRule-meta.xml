@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Limit_Req_When_Type_0_Standard</fullName>
+    <active>true</active>
+    <description>EAPT-2520</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000003hCBtAAM&apos;,
+				ISPICKVAL(Decline_Letter_Types__c, &apos;0-Standard&apos;),
+				ISBLANK(Approved_Credit_Limit__c),
+				ISCHANGED(Decline_Letter_Types__c)
+)</errorConditionFormula>
+    <errorDisplayField>Approved_Credit_Limit__c</errorDisplayField>
+    <errorMessage>An approved credit limit must be provided when selecting letter type &apos;0-Standard&apos;</errorMessage>
+</ValidationRule>

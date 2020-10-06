@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cardholder_Email</fullName>
+    <active>true</active>
+    <description>Error when Cardholders email&apos;s address is blank and card type control = Trade</description>
+    <errorConditionFormula>AND
+ (
+ ISBLANK( AU_Card_Holder_email_address__c),
+ ISPICKVAL(AU_Card_Type__c, &apos;Trade&apos;)
+ )</errorConditionFormula>
+    <errorMessage>Cardholder&apos;s email address must be completed for Trade cards</errorMessage>
+</ValidationRule>

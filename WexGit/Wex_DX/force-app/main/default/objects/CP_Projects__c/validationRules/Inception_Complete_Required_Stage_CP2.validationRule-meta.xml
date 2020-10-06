@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inception_Complete_Required_Stage_CP2</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP2: Discovery&quot;), 
+ISPICKVAL(Stage__c, &quot;CP3: Implementation&quot;), 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK(Inception_Complete__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Inception_Complete__c</errorDisplayField>
+    <errorMessage>Inception Complete must be filled in before moving to Stage CP2 or beyond</errorMessage>
+</ValidationRule>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>case_created</name>
+        <label>case created?</label>
+        <locationX>472</locationX>
+        <locationY>333</locationY>
+        <defaultConnector>
+            <targetReference>successScreen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>success</defaultConnectorLabel>
+        <rules>
+            <name>null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Case</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue/>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Collection_Case</targetReference>
+            </connector>
+            <label>null</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>caseSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Collections Call - &quot; +
+IF({!Connect}, &quot;Connect&quot;,
+  IF({!Inbound_Call}, &quot;Inbound Call&quot;,
+    IF({!No_Connect}, &quot;No Connect&quot;,
+      IF({!Right_Party_Contact}, &quot;Right Party Connect&quot;,
+        IF({!RPC_with_PTP}, &quot;RPC with PTP&quot;, 
+          IF({!Inbound_Call}, &quot;Inbound Call&quot;, null
+          )
+        )
+      )
+    )
+  )
+)</expression>
+    </formulas>
+    <interviewLabel>createCollectionCase {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create Collections Case</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Case</name>
+        <label>Create Case</label>
+        <locationX>480</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>case_created</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>accountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Inbound_Call__c</field>
+            <value>
+                <elementReference>Inbound_Call</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>McKinsey_Reporting__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OB_Connect__c</field>
+            <value>
+                <elementReference>Connect</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OB_No_Connect__c</field>
+            <value>
+                <elementReference>No_Connect</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OB_RPC_with_PTP__c</field>
+            <value>
+                <elementReference>RPC_with_PTP</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OB_Right_Party_Contact__c</field>
+            <value>
+                <elementReference>Right_Party_Contact</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Origin</field>
+            <value>
+                <stringValue>Phone</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Medium</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>0120g000000HrgvAAC</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>caseSubject</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
+    <screens>
+        <name>Create_Collection_Case</name>
+        <label>Create Collection Case</label>
+        <locationX>285</locationX>
+        <locationY>49</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Case</targetReference>
+        </connector>
+        <fields>
+            <name>Connect</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Connect</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Connects with someone at the business. Ex: Business voicemail, receptionist, wrong party at the right business.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>No_Connect</name>
+            <dataType>Boolean</dataType>
+            <fieldText>No Connect</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;No confirmed connection to the business. Ex: Generic voicemail, wrong business name. Note: When in doubt, capture as an OB No Connect&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Right_Party_Contact</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Right Party Contact</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Connects and speaks to the decision maker or right party contact at the business&amp;nbsp;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>RPC_with_PTP</name>
+            <dataType>Boolean</dataType>
+            <fieldText>RPC with PTP</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;Connects and speaks to the decision maker or right party contact at the business and receives a promise to pay to include: payment amount, payment method and specific payment date.&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Inbound_Call</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Inbound Call</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>successScreen</name>
+        <label>success</label>
+        <locationX>697</locationX>
+        <locationY>331</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>success</name>
+            <fieldText>&lt;p&gt;Case Created Successfully&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Create_Collection_Case</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>accountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

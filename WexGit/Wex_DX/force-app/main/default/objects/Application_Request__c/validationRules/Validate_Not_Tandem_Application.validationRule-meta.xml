@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Not_Tandem_Application</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND( 
+OR( 
+AND(ISCHANGED(Credit_Bureau_Source__c),TEXT(Credit_Bureau_Source__c) != null), 
+AND(ISCHANGED(Credit_Decision__c),TEXT(Credit_Decision__c)!= null) 
+), 
+App_Log__c != null
+))</errorConditionFormula>
+    <errorMessage>Application is for OFFIS adjudication.</errorMessage>
+</ValidationRule>

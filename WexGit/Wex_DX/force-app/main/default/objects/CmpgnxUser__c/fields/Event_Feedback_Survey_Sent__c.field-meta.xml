@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Feedback_Survey_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked by Process to indicate that the event feedback survey has been sent</description>
+    <externalId>false</externalId>
+    <label>Event Feedback Survey Sent</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

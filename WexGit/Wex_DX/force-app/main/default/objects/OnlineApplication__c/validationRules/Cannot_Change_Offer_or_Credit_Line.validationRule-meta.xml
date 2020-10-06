@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Offer_or_Credit_Line</fullName>
+    <active>true</active>
+    <description>This prevents users with the &quot;WEX EFS OTR Sales&quot; profile from editing the Credit Line Requested unless it is a new app.</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+$User.ProfileId = &quot;00e70000000xEHg&quot;,
+NOT($UserRole.DeveloperName = &quot;Manager_Partner_and_Channel&quot;),
+NOT($UserRole.DeveloperName = &quot;Channel Sales&quot;),
+NOT($UserRole.DeveloperName = &quot;EFS Partner Sales Role&quot;),
+ISCHANGED( Credit_Line_Requested__c )
+)</errorConditionFormula>
+    <errorMessage>Projected Spend cannot be changed after application creation.</errorMessage>
+</ValidationRule>

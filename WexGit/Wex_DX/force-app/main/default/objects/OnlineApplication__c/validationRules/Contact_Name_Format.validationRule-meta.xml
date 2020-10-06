@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Name_Format</fullName>
+    <active>true</active>
+    <errorConditionFormula>LEN(Contact_Name__c) &gt; 0 &amp;&amp; NOT(CONTAINS(Contact_Name__c , &quot; &quot;))</errorConditionFormula>
+    <errorDisplayField>Contact_Name__c</errorDisplayField>
+    <errorMessage>You must include a first and last name.</errorMessage>
+</ValidationRule>

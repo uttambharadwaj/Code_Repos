@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Charge_Late_Fee__c</fullName>
+    <description>This field will be a formula to determine if late fee is applicable</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+OR( 
+AND( 
+ISBLANK(Invoice_Paid_in_Full_On__c), 
+(Payment_Due_Date__c &lt; TODAY())
+), 
+AND( 
+NOT(ISBLANK(Invoice_Paid_in_Full_On__c)), 
+(Payment_Due_Date__c &lt; Invoice_Paid_in_Full_On__c )
+) 
+), 
+true, 
+false 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Charge Late Fee</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

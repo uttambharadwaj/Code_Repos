@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ABA_Confirm</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(
+ $User.Id == &apos;00570000001LNxz&apos;, false,
+ABA_Routing_Number__c  &lt;&gt;  Confirm_ABA_Routing_Number__c)</errorConditionFormula>
+    <errorDisplayField>ABA_Routing_Number__c</errorDisplayField>
+    <errorMessage>Your ABA Routing Number does not match the confirmation field</errorMessage>
+</ValidationRule>

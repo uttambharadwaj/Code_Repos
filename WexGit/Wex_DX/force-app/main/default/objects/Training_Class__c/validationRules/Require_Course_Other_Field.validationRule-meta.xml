@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Course_Other_Field</fullName>
+    <active>true</active>
+    <description>If Course equals &quot;Other&quot;, require Course Other field.</description>
+    <errorConditionFormula>AND (
+ISPICKVAL(Course__c, &quot;Other&quot;),
+ISBLANK( Course_Other__c )
+)</errorConditionFormula>
+    <errorDisplayField>Course_Other__c</errorDisplayField>
+    <errorMessage>If Course equals &quot;Other&quot;, Course Other field is required.</errorMessage>
+</ValidationRule>

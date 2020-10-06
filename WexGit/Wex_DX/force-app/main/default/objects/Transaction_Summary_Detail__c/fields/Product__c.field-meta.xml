@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <externalId>false</externalId>
+    <label>Product</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ACH</fullName>
+                <default>false</default>
+                <label>ACH</label>
+            </value>
+            <value>
+                <fullName>ACH Credit</fullName>
+                <default>false</default>
+                <label>ACH Credit</label>
+            </value>
+            <value>
+                <fullName>ACH Transfer</fullName>
+                <default>false</default>
+                <label>ACH Transfer</label>
+            </value>
+            <value>
+                <fullName>ACH Transfer Credit</fullName>
+                <default>false</default>
+                <label>ACH Transfer Credit</label>
+            </value>
+            <value>
+                <fullName>ATM</fullName>
+                <default>false</default>
+                <label>ATM</label>
+            </value>
+            <value>
+                <fullName>ATM Credit</fullName>
+                <default>false</default>
+                <label>ATM Credit</label>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Cash Adv</fullName>
+                <default>false</default>
+                <label>Cash Adv</label>
+            </value>
+            <value>
+                <fullName>Cash Adv Credit</fullName>
+                <default>false</default>
+                <label>Cash Adv Credit</label>
+            </value>
+            <value>
+                <fullName>Check</fullName>
+                <default>false</default>
+                <label>Check</label>
+            </value>
+            <value>
+                <fullName>Check Credit</fullName>
+                <default>false</default>
+                <label>Check Credit</label>
+            </value>
+            <value>
+                <fullName>Debit</fullName>
+                <default>false</default>
+                <label>Debit</label>
+            </value>
+            <value>
+                <fullName>Debit Credit</fullName>
+                <default>false</default>
+                <label>Debit Credit</label>
+            </value>
+            <value>
+                <fullName>Debit Use Denial</fullName>
+                <default>false</default>
+                <label>Debit Use Denial</label>
+            </value>
+            <value>
+                <fullName>Debit Use Denial Credit</fullName>
+                <default>false</default>
+                <label>Debit Use Denial Credit</label>
+            </value>
+            <value>
+                <fullName>Def</fullName>
+                <default>false</default>
+                <label>Def</label>
+            </value>
+            <value>
+                <fullName>Draft</fullName>
+                <default>false</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Draft Credit</fullName>
+                <default>false</default>
+                <label>Draft Credit</label>
+            </value>
+            <value>
+                <fullName>Fuel</fullName>
+                <default>false</default>
+                <label>Fuel</label>
+            </value>
+            <value>
+                <fullName>Fuel and Cash</fullName>
+                <default>false</default>
+                <label>Fuel and Cash</label>
+            </value>
+            <value>
+                <fullName>Load</fullName>
+                <default>false</default>
+                <label>Load</label>
+            </value>
+            <value>
+                <fullName>Load Credit</fullName>
+                <default>false</default>
+                <label>Load Credit</label>
+            </value>
+            <value>
+                <fullName>Money Code</fullName>
+                <default>false</default>
+                <label>Money Code</label>
+            </value>
+            <value>
+                <fullName>Network Use</fullName>
+                <default>false</default>
+                <label>Network Use</label>
+            </value>
+            <value>
+                <fullName>Network Use Credit</fullName>
+                <default>false</default>
+                <label>Network Use Credit</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Other Credit</fullName>
+                <default>false</default>
+                <label>Other Credit</label>
+            </value>
+            <value>
+                <fullName>Other Fee Standard</fullName>
+                <default>false</default>
+                <label>Other Fee Standard</label>
+            </value>
+            <value>
+                <fullName>Rebate</fullName>
+                <default>false</default>
+                <label>Rebate</label>
+            </value>
+            <value>
+                <fullName>Reefer</fullName>
+                <default>false</default>
+                <label>Reefer</label>
+            </value>
+            <value>
+                <fullName>Scale</fullName>
+                <default>false</default>
+                <label>Scale</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

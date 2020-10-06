@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BSB_Postal_code</fullName>
+    <active>true</active>
+    <description>Postal code should be of length 4 and not numeric</description>
+    <errorConditionFormula>AND(
+LEN( Financial_Institution_Postcode__c ) &gt; 4, NOT( ISNUMBER( Financial_Institution_Postcode__c ) )
+)</errorConditionFormula>
+    <errorMessage>Postcode should contain 4 digits and should be numeric.</errorMessage>
+</ValidationRule>

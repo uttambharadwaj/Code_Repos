@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Icertis_All_Training_Classes</fullName>
+    <columns>NAME</columns>
+    <columns>Class_Name__c</columns>
+    <columns>Date__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Case__c</columns>
+    <columns>Facilitator__c</columns>
+    <columns>Course__c</columns>
+    <columns>Length__c</columns>
+    <columns>BAU__c</columns>
+    <columns>Strategic__c</columns>
+    <columns>Modality__c</columns>
+    <columns>Type__c</columns>
+    <columns>Location__c</columns>
+    <columns>Line_of_Business__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Class_Name__c</field>
+        <operation>contains</operation>
+        <value>Icertis</value>
+    </filters>
+    <label>Icertis All Training Classes</label>
+    <sharedTo>
+        <group>Global_Training_Group</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Readiness_Required_Stage_CP5</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK(  Customer_Readiness_Complete__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Customer_Readiness_Complete__c</errorDisplayField>
+    <errorMessage>Customer Readiness Complete must be filled in before moving to Stage CP5 or beyond</errorMessage>
+</ValidationRule>

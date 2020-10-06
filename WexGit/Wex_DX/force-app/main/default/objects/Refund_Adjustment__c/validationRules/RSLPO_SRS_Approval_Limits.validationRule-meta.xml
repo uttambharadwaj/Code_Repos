@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RSLPO_SRS_Approval_Limits</fullName>
+    <active>true</active>
+    <description>Enforces approval limits for Receivables Refunds and Adjustments</description>
+    <errorConditionFormula>AND( OR (TEXT(Department__c ) = &apos;SRS&apos;,TEXT(Department__c ) = &apos;RSLPO&apos;),
+TEXT(Approval_Status__c) = &apos;Approved&apos;,
+OR (
+NOT ( OR ($Permission.RSLPO_Sr_Associate, $Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager )),
+AND (Amount_Waived__c &gt; 1000, NOT ( OR ($Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager ))),
+AND (Amount_Waived__c &gt; 25000, NOT ( $Permission.RSLPO_Manager )),
+Amount_Waived__c &gt; 100000
+)
+)</errorConditionFormula>
+    <errorMessage>You do not have permission to approve this request.</errorMessage>
+</ValidationRule>

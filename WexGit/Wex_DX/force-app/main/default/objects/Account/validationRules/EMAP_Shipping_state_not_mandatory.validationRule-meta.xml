@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_Shipping_state_not_mandatory</fullName>
+    <active>false</active>
+    <description>For countries that have state (i.e. State = Country), then State should be null.</description>
+    <errorConditionFormula>AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ NOT(ISBLANK( ShippingState )), 
+OR( 
+(ShippingCountry = &quot;Guam&quot;), 
+(ShippingCountry = &quot;New Zealand&quot;), 
+(ShippingCountry = &quot;Saipan&quot;), 
+(ShippingCountry = &quot;Singapore&quot;) 
+) 
+)</errorConditionFormula>
+    <errorDisplayField>ShippingState</errorDisplayField>
+    <errorMessage>Please remove Shipping state, it is not required.</errorMessage>
+</ValidationRule>

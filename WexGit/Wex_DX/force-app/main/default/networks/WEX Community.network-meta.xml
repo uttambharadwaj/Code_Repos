@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>false</allowInternalUserLogin>
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <changePasswordTemplate>All_Emails/Lightning_Community_Password_Reset</changePasswordTemplate>
+    <communityRoles/>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailSenderAddress>salesforce@wexinc.com</emailSenderAddress>
+    <emailSenderName>WEX Community</emailSenderName>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>true</enableDirectMessages>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableGuestFileAccess>false</enableGuestFileAccess>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableMemberVisibility>false</enableMemberVisibility>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>true</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <enableTalkingAboutStats>false</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>true</enableTopicAssignmentRules>
+    <enableTopicSuggestions>false</enableTopicSuggestions>
+    <enableUpDownVote>false</enableUpDownVote>
+    <forgotPasswordTemplate>All_Emails/Lightning_Community_Password_Reset</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <navigationLinkSet>
+        <navigationMenuItem>
+            <label>Sales</label>
+            <position>1</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <subMenu>
+                <navigationMenuItem>
+                    <label>Leads</label>
+                    <position>0</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Lead</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Opportunities</label>
+                    <position>1</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Opportunity</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Application Requests</label>
+                    <position>2</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Application_Request__c</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Online Applications</label>
+                    <position>3</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>OnlineApplication__c</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+            </subMenu>
+            <type>MenuLabel</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>Analytics</label>
+            <position>2</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <subMenu>
+                <navigationMenuItem>
+                    <label>Dashboards</label>
+                    <position>0</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Dashboard</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+                <navigationMenuItem>
+                    <label>Reports</label>
+                    <position>1</position>
+                    <publiclyAvailable>false</publiclyAvailable>
+                    <target>Report</target>
+                    <type>SalesforceObject</type>
+                </navigationMenuItem>
+            </subMenu>
+            <type>MenuLabel</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>NPS Results</label>
+            <position>3</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>/nps-results</target>
+            <type>InternalLink</type>
+        </navigationMenuItem>
+        <navigationMenuItem>
+            <label>Transaction Disputes</label>
+            <position>4</position>
+            <publiclyAvailable>false</publiclyAvailable>
+            <target>https://wexinc.force.com/communities/apex/TransactionDisputeForm</target>
+            <type>ExternalLink</type>
+        </navigationMenuItem>
+    </navigationLinkSet>
+    <networkMemberGroups>
+        <permissionSet>Edit_Communities</permissionSet>
+        <permissionSet>Service_Operations_Fraud_Community_Access</permissionSet>
+        <permissionSet>Community_Manager</permissionSet>
+        <permissionSet>Community_Member</permissionSet>
+        <profile>Admin</profile>
+        <profile>Murphy USA Partners</profile>
+        <profile>Chevron Partner Profile</profile>
+        <profile>Kum %26 Go Partners</profile>
+        <profile>CircleK Partners</profile>
+        <profile>QuikTrip Partners</profile>
+        <profile>CITGO Partners</profile>
+        <profile>ExxonMobil Partners</profile>
+        <profile>Phillips 66 Partners</profile>
+        <profile>Sunoco Partners</profile>
+        <profile>Sheetz Partners</profile>
+        <profile>Speedway Partners</profile>
+        <profile>Sinclair Partners</profile>
+        <profile>Gulf Partners</profile>
+        <profile>Marathon Partners</profile>
+        <profile>7-11 Partners</profile>
+        <profile>Maverik Partners</profile>
+        <profile>Fleet Advantage Partners</profile>
+        <profile>Racetrac Partners</profile>
+        <profile>Wawa Partner User</profile>
+        <profile>Meijer Partners</profile>
+        <profile>Alon Partners</profile>
+        <profile>Lukoil Partners</profile>
+        <profile>Shell Partners</profile>
+        <profile>GSA Partner</profile>
+        <profile>QuickChek Partners</profile>
+        <profile>Pep Boys Partners</profile>
+        <profile>IBS Partner - CP</profile>
+        <profile>Portland Fuel Works %28Test%29</profile>
+        <profile>Grasp Technologies Partner - CP</profile>
+        <profile>IDS Partner - CP</profile>
+        <profile>GetGo Partners</profile>
+        <profile>Pump N Pantry Partners</profile>
+        <profile>YesWay Partners</profile>
+        <profile>Royal Farms Partners</profile>
+        <profile>Thorntons Partners</profile>
+        <profile>Cumberland Gulf Group Partners</profile>
+        <profile>Jiffy Lube Partners</profile>
+        <profile>United Refining Partner</profile>
+        <profile>Family Express - Partner</profile>
+        <profile>Valero Partners</profile>
+        <profile>CSI Global Fleet Partners</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Standard</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>Designer</homePageOverrideSetting>
+        <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>WEX_Community1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
+    <site>WEX_Community</site>
+    <status>Live</status>
+    <tabs>
+        <customTab>Transaction_Dispute_Form</customTab>
+        <defaultTab>Chatter</defaultTab>
+        <standardTab>Chatter</standardTab>
+    </tabs>
+    <urlPathPrefix>communities</urlPathPrefix>
+    <welcomeTemplate>WEX_Partner_Community_Templates/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

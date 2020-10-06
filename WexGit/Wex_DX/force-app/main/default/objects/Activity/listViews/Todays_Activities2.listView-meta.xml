@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Todays_Activities2</fullName>
+    <columns>TASK.WHAT_NAME</columns>
+    <columns>TASK.SUBJECT</columns>
+    <columns>TASK.DUE_DATE</columns>
+    <columns>TASK.WHO_NAME</columns>
+    <columns>TASK.STATUS</columns>
+    <columns>Siebel_Opportunity__c</columns>
+    <columns>TASK.PRIORITY</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>TASK.LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>TASK.DUE_DATE</field>
+        <operation>equals</operation>
+        <value>NEXT_N_DAYS:7</value>
+    </filters>
+    <filters>
+        <field>TASK.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <label>Next Activities for 7 Days</label>
+    <language>en_US</language>
+    <sharedTo>
+        <roleAndSubordinatesInternal>TL_Administrative_Services</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

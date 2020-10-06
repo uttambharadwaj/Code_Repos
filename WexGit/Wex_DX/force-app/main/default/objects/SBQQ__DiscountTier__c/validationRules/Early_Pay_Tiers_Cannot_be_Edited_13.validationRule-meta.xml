@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Pay_Tiers_Cannot_be_Edited_13</fullName>
+    <active>true</active>
+    <description>Early Pay Tiers can be deleted, but values cannot be edited.</description>
+    <errorConditionFormula>ISPICKVAL(Election__c,&apos;	Weekly Billing/Weekly Payment - 13 basis points (0.13%)&apos;)
+&amp;&amp;
+OR(
+SBQQ__LowerBound__c &lt;&gt; 9,
+SBQQ__UpperBound__c &lt;&gt; 13,
+Basis_Points__c  &lt;&gt; 13
+)</errorConditionFormula>
+    <errorMessage>Early Pay Tiers can be deleted, but values cannot be edited.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Fleet_Enrollments</fullName>
+    <columns>NAME</columns>
+    <columns>Email_Version__c</columns>
+    <columns>Status__c</columns>
+    <columns>Company_Name_Lookup__c</columns>
+    <columns>Opportunity_Number__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>Program__c</columns>
+    <columns>Confirmation_Number__c</columns>
+    <columns>Billing_Full_Name__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>2/14/2017 12:00 AM</value>
+    </filters>
+    <label>Completed Fleet Enrollments</label>
+    <language>en_US</language>
+</ListView>

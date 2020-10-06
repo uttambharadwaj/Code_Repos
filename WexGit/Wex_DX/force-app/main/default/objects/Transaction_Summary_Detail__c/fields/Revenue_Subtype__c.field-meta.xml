@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Revenue_Subtype__c</fullName>
+    <externalId>false</externalId>
+    <label>Revenue Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CROSS_BORDER</fullName>
+                <default>false</default>
+                <label>CROSS_BORDER</label>
+            </value>
+            <value>
+                <fullName>DIRECT_BILL</fullName>
+                <default>false</default>
+                <label>DIRECT_BILL</label>
+            </value>
+            <value>
+                <fullName>Funded</fullName>
+                <default>false</default>
+                <label>Funded</label>
+            </value>
+            <value>
+                <fullName>MONEY_CODES</fullName>
+                <default>false</default>
+                <label>MONEY_CODES</label>
+            </value>
+            <value>
+                <fullName>OTHER_FEES</fullName>
+                <default>false</default>
+                <label>OTHER_FEES</label>
+            </value>
+            <value>
+                <fullName>REBATES</fullName>
+                <default>false</default>
+                <label>REBATES</label>
+            </value>
+            <value>
+                <fullName>SMARTFUND_FEES;</fullName>
+                <default>false</default>
+                <label>SMARTFUND_FEES;</label>
+            </value>
+            <value>
+                <fullName>SMARTFUNDS</fullName>
+                <default>false</default>
+                <label>SMARTFUNDS</label>
+            </value>
+            <value>
+                <fullName>TERMINAL_FUEL</fullName>
+                <default>false</default>
+                <label>TERMINAL_FUEL</label>
+            </value>
+            <value>
+                <fullName>ZCON</fullName>
+                <default>false</default>
+                <label>ZCON</label>
+            </value>
+            <value>
+                <fullName>Fuel/Carrier Revenue</fullName>
+                <default>false</default>
+                <label>Fuel/Carrier Revenue</label>
+            </value>
+            <value>
+                <fullName>ATM</fullName>
+                <default>false</default>
+                <label>ATM</label>
+            </value>
+            <value>
+                <fullName>Terminal Fuel Revenue</fullName>
+                <default>false</default>
+                <label>Terminal Fuel Revenue</label>
+            </value>
+            <value>
+                <fullName>Loves DB Revenue</fullName>
+                <default>false</default>
+                <label>Loves DB Revenue</label>
+            </value>
+            <value>
+                <fullName>Transaction Carrier Revenue</fullName>
+                <default>false</default>
+                <label>Transaction Carrier Revenue</label>
+            </value>
+            <value>
+                <fullName>Other Direct Bill Revenue</fullName>
+                <default>false</default>
+                <label>Other Direct Bill Revenue</label>
+            </value>
+            <value>
+                <fullName>ATM Carrier Revenue</fullName>
+                <default>false</default>
+                <label>ATM Carrier Revenue</label>
+            </value>
+            <value>
+                <fullName>Net Back Rebates to Carrier</fullName>
+                <default>false</default>
+                <label>Net Back Rebates to Carrier</label>
+            </value>
+            <value>
+                <fullName>Fuel/Merchant Revenue</fullName>
+                <default>false</default>
+                <label>Fuel/Merchant Revenue</label>
+            </value>
+            <value>
+                <fullName>Money Code Revenue</fullName>
+                <default>false</default>
+                <label>Money Code Revenue</label>
+            </value>
+            <value>
+                <fullName>Pilot/Flying J DB Revenue</fullName>
+                <default>false</default>
+                <label>Pilot/Flying J DB Revenue</label>
+            </value>
+            <value>
+                <fullName>TA/Petro Db Revenue</fullName>
+                <default>false</default>
+                <label>TA/Petro Db Revenue</label>
+            </value>
+            <value>
+                <fullName>Transaction Funded</fullName>
+                <default>false</default>
+                <label>Transaction Funded</label>
+            </value>
+            <value>
+                <fullName>Money Code</fullName>
+                <default>false</default>
+                <label>Money Code</label>
+            </value>
+            <value>
+                <fullName>ATM Upcharge Revenue</fullName>
+                <default>false</default>
+                <label>ATM Upcharge Revenue</label>
+            </value>
+            <value>
+                <fullName>B2B Fuel Gross Revenue</fullName>
+                <default>false</default>
+                <label>B2B Fuel Gross Revenue</label>
+            </value>
+            <value>
+                <fullName>Smart Pay Load Revenue</fullName>
+                <default>false</default>
+                <label>Smart Pay Load Revenue</label>
+            </value>
+            <value>
+                <fullName>Smart Pay Debit Card Revenue</fullName>
+                <default>false</default>
+                <label>Smart Pay Debit Card Revenue</label>
+            </value>
+            <value>
+                <fullName>Smart Pay ATM, Decline, Inquiry</fullName>
+                <default>false</default>
+                <label>Smart Pay ATM, Decline, Inquiry</label>
+            </value>
+            <value>
+                <fullName>Smart Pay Direct Deposit Manual</fullName>
+                <default>false</default>
+                <label>Smart Pay Direct Deposit Manual</label>
+            </value>
+            <value>
+                <fullName>Fuel Tax Revenue</fullName>
+                <default>false</default>
+                <label>Fuel Tax Revenue</label>
+            </value>
+            <value>
+                <fullName>ZCon Revenue/Base Package</fullName>
+                <default>false</default>
+                <label>ZCon Revenue/Base Package</label>
+            </value>
+            <value>
+                <fullName>Merchant Other Fee</fullName>
+                <default>false</default>
+                <label>Merchant Other Fee</label>
+            </value>
+            <value>
+                <fullName>Merchant Setup Fee</fullName>
+                <default>false</default>
+                <label>Merchant Setup Fee</label>
+            </value>
+            <value>
+                <fullName>NATC/FTS Fuel Net Revenue</fullName>
+                <default>false</default>
+                <label>NATC/FTS Fuel Net Revenue</label>
+            </value>
+            <value>
+                <fullName>Triple Play Fuel Net Revenue</fullName>
+                <default>false</default>
+                <label>Triple Play Fuel Net Revenue</label>
+            </value>
+            <value>
+                <fullName>B2B Fuel Net Revenue</fullName>
+                <default>false</default>
+                <label>B2B Fuel Net Revenue</label>
+            </value>
+            <value>
+                <fullName>Compliance Services</fullName>
+                <default>false</default>
+                <label>Compliance Services</label>
+            </value>
+            <value>
+                <fullName>Smart Pay Fuel Revenue</fullName>
+                <default>false</default>
+                <label>Smart Pay Fuel Revenue</label>
+            </value>
+            <value>
+                <fullName>Merchant Change of Ownership</fullName>
+                <default>false</default>
+                <label>Merchant Change of Ownership</label>
+            </value>
+            <value>
+                <fullName>Smart Pay Direct Deposit Auto</fullName>
+                <default>false</default>
+                <label>Smart Pay Direct Deposit Auto</label>
+            </value>
+            <value>
+                <fullName>Fuel Management Revenue</fullName>
+                <default>false</default>
+                <label>Fuel Management Revenue</label>
+            </value>
+            <value>
+                <fullName>ZCon Revenue/ZCon Plus</fullName>
+                <default>false</default>
+                <label>ZCon Revenue/ZCon Plus</label>
+            </value>
+            <value>
+                <fullName>Smart Pay ACH Revenue</fullName>
+                <default>false</default>
+                <label>Smart Pay ACH Revenue</label>
+            </value>
+            <value>
+                <fullName>Merchant Reporting</fullName>
+                <default>false</default>
+                <label>Merchant Reporting</label>
+            </value>
+            <value>
+                <fullName>NATC/FTS Fuel Gross Revenue</fullName>
+                <default>false</default>
+                <label>NATC/FTS Fuel Gross Revenue</label>
+            </value>
+            <value>
+                <fullName>Smart Pay Check Debit</fullName>
+                <default>false</default>
+                <label>Smart Pay Check Debit</label>
+            </value>
+            <value>
+                <fullName>Verifone Fee</fullName>
+                <default>false</default>
+                <label>Verifone Fee</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

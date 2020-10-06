@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marathon_Sites</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>New_Site_Application_Received__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Site_Street__c</columns>
+    <columns>Site_City__c</columns>
+    <columns>Site_County__c</columns>
+    <columns>Site_State__c</columns>
+    <columns>Site_Zip_Postal_Code__c</columns>
+    <columns>Site_Country__c</columns>
+    <columns>Site_Notes__c</columns>
+    <columns>Site_Type__c</columns>
+    <columns>Carwash__c</columns>
+    <columns>Open_24_7__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Brand__c</field>
+        <operation>equals</operation>
+        <value>Marathon</value>
+    </filters>
+    <label>Marathon Sites</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Channel_Sales_Manager</role>
+        <role>Sunoco_Sales_Manager</role>
+    </sharedTo>
+</ListView>

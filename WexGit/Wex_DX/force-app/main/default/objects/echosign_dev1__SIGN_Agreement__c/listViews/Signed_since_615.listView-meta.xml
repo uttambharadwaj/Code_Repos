@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Signed_since_615</fullName>
+    <columns>NAME</columns>
+    <columns>echosign_dev1__Opportunity__c</columns>
+    <columns>echosign_dev1__DateSent__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>echosign_dev1__StatusVisible__c</field>
+        <operation>equals</operation>
+        <value>Signed</value>
+    </filters>
+    <filters>
+        <field>echosign_dev1__DateSignedDate__c</field>
+        <operation>greaterThan</operation>
+        <value>6/19/2014</value>
+    </filters>
+    <label>Signed since 6/15</label>
+</ListView>

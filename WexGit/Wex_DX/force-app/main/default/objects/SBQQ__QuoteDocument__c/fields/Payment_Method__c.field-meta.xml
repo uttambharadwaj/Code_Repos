@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Method__c</fullName>
+    <externalId>false</externalId>
+    <label>Payment Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Paper Check/Third Party Checks ($25.00 fee) *requires credit approval</fullName>
+                <default>false</default>
+                <label>Paper Check/Third Party Checks ($25.00 fee) *requires credit approval</label>
+            </value>
+            <value>
+                <fullName>DirectDebitACHFREE</fullName>
+                <default>false</default>
+                <label>DirectDebitACHFREE</label>
+            </value>
+            <value>
+                <fullName>ACHCustomerInitiatedFree</fullName>
+                <default>false</default>
+                <label>ACHCustomerInitiatedFree</label>
+            </value>
+            <value>
+                <fullName>WirePaymentsfeeperwireunder</fullName>
+                <default>false</default>
+                <label>WirePaymentsfeeperwireunder</label>
+            </value>
+            <value>
+                <fullName>WesternUnionQuickPerPayment</fullName>
+                <default>false</default>
+                <label>WesternUnionQuickPerPayment</label>
+            </value>
+            <value>
+                <fullName>OnlinePaymentFree</fullName>
+                <default>false</default>
+                <label>OnlinePaymentFree</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

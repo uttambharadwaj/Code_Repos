@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Field__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>delete a field from the mapping if it is no longer needed, but disable it if it is only temporarily not needed</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Disable Field</label>
+    <type>Checkbox</type>
+</CustomField>

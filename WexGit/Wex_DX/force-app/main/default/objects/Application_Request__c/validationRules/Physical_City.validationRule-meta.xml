@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Physical_City</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+ ISPICKVAL(Forward_Application_to_Credit__c,&quot;Yes&quot;),
+ISBLANK(Physical_City__c),
+ Created_By_Echosign__c = FALSE
+))</errorConditionFormula>
+    <errorDisplayField>Physical_City__c</errorDisplayField>
+    <errorMessage>You must have a Physical City to forward the Application to Credit.</errorMessage>
+</ValidationRule>

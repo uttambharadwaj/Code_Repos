@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancel_Quote</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Cancel Quote</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/33.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/33.0/apex.js&quot;)}
+
+try
+{
+if (confirm(&quot;Cancel quote?&quot;) == true) {
+
+var recordtype= sforce.connection.query(&quot;select name, id from recordtype where name=&apos;Cancelled&apos;&quot;);
+var records = recordtype.getArray(&quot;records&quot;);
+
+var cancelledQuote = new sforce.SObject(&quot;zqu__Quote__c&quot;); 
+cancelledQuote.id = &quot;{!zqu__Quote__c.Id}&quot;; 
+cancelledQuote.zqu__Status__c = &quot;Cancelled&quot;; 
+cancelledQuote.RecordTypeId = records[0].Id;
+
+var result = sforce.connection.update([cancelledQuote]); 
+
+}
+}
+catch (ex)
+{
+alert(ex);
+}
+if (result[0].success==&apos;false&apos;) {
+alert(result[0].errors.message);
+} else {
+location.reload(true);
+}</url>
+</WebLink>

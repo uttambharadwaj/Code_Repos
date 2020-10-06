@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Enter_PIN_if_Fleet_User_Defined</fullName>
+    <active>true</active>
+    <description>Must enter a PIN if Fleet PIN and User defined</description>
+    <errorConditionFormula>AND(
+TEXT(PIN_Type__c) = &quot;Fleet PIN&quot;,
+TEXT(PIN_Creation_Method__c) = &quot;User defined&quot;,
+ISBLANK(PIN__c)
+)</errorConditionFormula>
+    <errorDisplayField>PIN__c</errorDisplayField>
+    <errorMessage>You must enter a PIN if Fleet PIN and User defined are selected</errorMessage>
+</ValidationRule>

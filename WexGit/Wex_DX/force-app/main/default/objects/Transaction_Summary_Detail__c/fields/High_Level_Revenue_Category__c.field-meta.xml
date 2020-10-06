@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>High_Level_Revenue_Category__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+ISPICKVAL(Revenue_Subtype__c,&quot;Cross_Border&quot;) ||
+ISPICKVAL(Revenue_Subtype__c,&quot;Direct_Bill&quot;) || 
+ISPICKVAL(Revenue_Subtype__c,&quot;Funded&quot;),&quot;Total Card Based&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;ZCon&quot;),&quot;ZCon&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Smartfund_Fee&quot;) ||
+ISPICKVAL(Revenue_Subtype__c,&quot;Smartfunds&quot;),&quot;SmartFunds&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Money_Codes&quot;),&quot;Money Codes&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Other_Fees&quot;),&quot;Other Fees&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Rebates&quot;),&quot;Rebates&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Terminal_Fuel&quot;),&quot;Terminal Fuel&quot;,
+
+&quot;&quot;
+)))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>High-Level Revenue Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

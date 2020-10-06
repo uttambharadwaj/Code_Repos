@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Signer_First_And_Last_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+ ISPICKVAL(Forward_Application_to_Credit__c,&quot;Yes&quot;),
+  Created_By_Echosign__c = FALSE,
+OR(
+ ISBLANK(Application_Signer_FirstName_Text__c ),
+ISBLANK(App_Signer_Last_Name_Text__c )
+)
+))</errorConditionFormula>
+    <errorDisplayField>App_Signer__c</errorDisplayField>
+    <errorMessage>Please be sure to pick the App Singer and it has a First and Last Name</errorMessage>
+</ValidationRule>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WEApplications_being_Processed_by_Credit</fullName>
+    <columns>CreditAgentAssigned__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Application_Status__c</columns>
+    <columns>MonthlyFuelVolumeLitres__c</columns>
+    <columns>Total_Card_Packs__c</columns>
+    <columns>Required_Credit_Limit__c</columns>
+    <columns>Product_Type__c</columns>
+    <columns>Account_ISO_Country_Code__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Application_Status__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Credit Check,Being Credit Checked,Awaiting Further Information,Returned from Sales,Higher Authority</value>
+    </filters>
+    <label>Active Applications owned by Credit</label>
+</ListView>

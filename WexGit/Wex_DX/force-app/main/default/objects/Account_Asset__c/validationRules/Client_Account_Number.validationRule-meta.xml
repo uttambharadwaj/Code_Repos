@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Account_Number</fullName>
+    <active>true</active>
+    <description>Client Account Number must be 8 diggits</description>
+    <errorConditionFormula>AND
+(
+NOT(ISNUMBER( Client_Account_Number__c )),
+AND(ISNUMBER(Client_Account_Number__c), LEN(Client_Account_Number__c) &lt;&gt;8),
+AND
+(
+RecordTypeId =(&quot;01I700000003DnF&quot;)
+
+)
+
+)</errorConditionFormula>
+    <errorMessage>Client Account Number must be 8 Digits</errorMessage>
+</ValidationRule>

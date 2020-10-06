@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vehicle_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Vehicle Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Car/Sedan</fullName>
+                <default>false</default>
+                <label>Car/Sedan</label>
+            </value>
+            <value>
+                <fullName>Light Truck/Van</fullName>
+                <default>true</default>
+                <label>Light Truck/Van</label>
+            </value>
+            <value>
+                <fullName>Mid Size/Truck</fullName>
+                <default>false</default>
+                <label>Mid Size/Truck</label>
+            </value>
+            <value>
+                <fullName>Large Truck/Equipment</fullName>
+                <default>false</default>
+                <label>Large Truck/Equipment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Code_required_for_TriBrand_CT</fullName>
+    <active>true</active>
+    <description>Partner Code is a required field for Enterprise Tribrand Commercial Truck</description>
+    <errorConditionFormula>AND(
+BEGINS( echosign_dev1__Opportunity__r.Program_Name__c,&quot;Ent Comm Truck&quot;),
+ISBLANK( echosign_dev1__Opportunity__r.Partner_Code__c ))</errorConditionFormula>
+    <errorMessage>Partner Code on Opportunity must be 4 character Branch Code. 
+Close this window and return to Opportunity to correct.</errorMessage>
+</ValidationRule>

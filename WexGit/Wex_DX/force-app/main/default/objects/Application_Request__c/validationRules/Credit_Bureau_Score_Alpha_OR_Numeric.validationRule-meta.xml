@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Bureau_Score_Alpha_OR_Numeric</fullName>
+    <active>true</active>
+    <description>Restrict field to numeric values if Decision Code = DNB Custom || Experian Consumer || Equifax Consumer</description>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,OR(
+  AND(
+    OR(
+      ISPICKVAL( Credit_Bureau_Source__c, &quot;DNB Custom&quot; ),
+      ISPICKVAL( Credit_Bureau_Source__c, &quot;Experian Consumer&quot; ),
+      ISPICKVAL( Credit_Bureau_Source__c, &quot;Equifax Consumer&quot; )
+    ),
+    LEN ( Credit_Bureau_Score__c ) &gt; 0,
+    NOT(ISNUMBER( Credit_Bureau_Score__c ))
+  ),
+  AND (
+    ISPICKVAL( Credit_Bureau_Source__c, &quot;Moodys&quot; ),
+    LEN ( Credit_Bureau_Score__c ) &gt; 0,
+    ISNUMBER( Credit_Bureau_Score__c )
+  )
+))</errorConditionFormula>
+    <errorMessage>Please Check Below Criteria:
+
+1/ When Decision Code is DNB Custom, Experian Consumer, or Equifax Consumer - Credit Bureau Score must be numeric values.
+
+2/ When Decision Code is Moodys - Credit Bureau Score must be alphanumeric values.</errorMessage>
+</ValidationRule>

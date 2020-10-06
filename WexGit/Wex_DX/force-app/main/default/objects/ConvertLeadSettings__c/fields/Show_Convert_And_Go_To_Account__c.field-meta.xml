@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Convert_And_Go_To_Account__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Turns on and off the button to convert and jump to the account after converting the lead.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Turns on and off the button to convert and jump to the account after converting the lead.</inlineHelpText>
+    <label>Show Convert and go to Account</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

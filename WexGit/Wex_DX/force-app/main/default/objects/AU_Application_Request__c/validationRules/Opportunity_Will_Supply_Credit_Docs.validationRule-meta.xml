@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Will_Supply_Credit_Docs</fullName>
+    <active>true</active>
+    <description>It is an error if Opportunity &quot;Will Supply Credit Documents has not been entered</description>
+    <errorConditionFormula>AND( 
+RecordType.Name &lt;&gt; &apos;EMAP Application Request&apos;, 
+ISBLANK(TEXT(Opportunity__r.AU_Will_supply_credit_documents__c)) 
+)</errorConditionFormula>
+    <errorMessage>Opportunity &quot;Will Supply Credit Documents?&quot; must be entered</errorMessage>
+</ValidationRule>

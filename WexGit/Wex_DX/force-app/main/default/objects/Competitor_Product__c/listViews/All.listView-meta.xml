@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Scheme_Name__c</columns>
+    <columns>Wex_Equivalent__c</columns>
+    <columns>Acceptance__c</columns>
+    <columns>Currencies_No__c</columns>
+    <columns>Available_In_Countries__c</columns>
+    <columns>GDS_Integration__c</columns>
+    <columns>Interest_Free_Period__c</columns>
+    <columns>FX_Fees__c</columns>
+    <columns>Level_3_Data__c</columns>
+    <columns>Local_Issuance__c</columns>
+    <columns>No_Data_Fields__c</columns>
+    <columns>TRX_Match_Rate__c</columns>
+    <columns>Usage_Dates__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

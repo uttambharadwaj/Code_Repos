@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Average_Net_FSR_Completed_Projects__c</fullName>
+    <description>Populated by the Declarative Lookup Rollup Summary app</description>
+    <externalId>false</externalId>
+    <label>Average Net FSR Completed Projects</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

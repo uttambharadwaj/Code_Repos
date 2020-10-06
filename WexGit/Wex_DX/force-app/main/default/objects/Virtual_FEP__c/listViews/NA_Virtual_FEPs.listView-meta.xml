@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NA_Virtual_FEPs</fullName>
+    <columns>NAME</columns>
+    <columns>Account_Name__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>Total_Addressable_Spend_Known__c</columns>
+    <columns>Annual_Addressable_Spend__c</columns>
+    <columns>WE_Share_Of_Spend__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Owner_Role__c</field>
+        <operation>equals</operation>
+        <value>Strategic Relationship Manager Virtual NA,Director Global Strategic Accounts</value>
+    </filters>
+    <label>NA Virtual FEPs</label>
+</ListView>

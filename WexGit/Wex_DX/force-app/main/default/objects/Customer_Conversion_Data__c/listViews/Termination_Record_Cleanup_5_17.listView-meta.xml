@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Termination_Record_Cleanup_5_17</fullName>
+    <booleanFilter>(1 OR 2) AND (3 OR 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Calling_Status__c</columns>
+    <columns>Status__c</columns>
+    <columns>Termination_Reason__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Out of business,Consumer,Termination Requested</value>
+    </filters>
+    <filters>
+        <field>Calling_Status__c</field>
+        <operation>equals</operation>
+        <value>Out of business,Consumer,Termination Requested</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Out of business,Consumer,Termination Requested</value>
+    </filters>
+    <filters>
+        <field>Calling_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Out of business,Consumer,Termination Requested</value>
+    </filters>
+    <label>Termination Record Cleanup</label>
+    <language>en_US</language>
+</ListView>

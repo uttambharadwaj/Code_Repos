@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Jamie_Smith_Applications</fullName>
+    <columns>NAME</columns>
+    <columns>Agent_Name__c</columns>
+    <columns>Company_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Agent_Name__c</field>
+        <operation>equals</operation>
+        <value>Jamie Smith</value>
+    </filters>
+    <filters>
+        <field>Application_Status__c</field>
+        <operation>equals</operation>
+        <value>Draft,Awaiting Security Check,Awaiting Assignment,Awaiting Credit Check,Being Credit Checked,Awaiting Further Information,Sales to Obtain Further Information,Returned from Sales,Higher Authority,Accepted,Rejected,Unable to Process</value>
+    </filters>
+    <label>Jamie Smith Applications</label>
+</ListView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMAP_RISK_FLAGS</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Schedule_Date__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Account__c</columns>
+    <columns>IFCS_Account_Number__c</columns>
+    <columns>Risk_Flag_Value__c</columns>
+    <columns>Status__c</columns>
+    <columns>HLA_Level__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Initiated,Under review,Refer – CVS,Refer – Customer,Refer – EMTC</value>
+    </filters>
+    <label>EMAP RISK FLAGS</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>EMAP_Users</group>
+    </sharedTo>
+</ListView>

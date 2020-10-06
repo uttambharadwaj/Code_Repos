@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FEP__c</fullName>
+    <externalId>false</externalId>
+    <label>FEP</label>
+    <referenceTo>Virtual_FEP__c</referenceTo>
+    <relationshipLabel>Competitor Details</relationshipLabel>
+    <relationshipName>Account_Overview_Competitor</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

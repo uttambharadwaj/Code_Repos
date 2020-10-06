@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StatusDecisioned__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>These users can change the Status on Online Applications to Decisioned.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>These users can change the Status on Online Applications to Decisioned.</inlineHelpText>
+    <label>StatusDecisioned</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

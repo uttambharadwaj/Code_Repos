@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Denied_approval_requires_comment</fullName>
+    <active>true</active>
+    <description>Forces Approval Comment to be not blank if requested approval is Denied.</description>
+    <errorConditionFormula>AND( ISPICKVAL(Approval_Status__c , &apos;Denied&apos;), OR(ISNULL( Approval_Comment__c ),ISBLANK(Approval_Comment__c)))</errorConditionFormula>
+    <errorMessage>Denial of requests requires that a comment be entered.</errorMessage>
+</ValidationRule>

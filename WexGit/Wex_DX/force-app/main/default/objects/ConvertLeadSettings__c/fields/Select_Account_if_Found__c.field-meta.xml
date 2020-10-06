@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Select_Account_if_Found__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Ability for user to select account or create new one if related account is found.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ability for user to select account or create new one if related account is found.</inlineHelpText>
+    <label>Select Account if Found</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

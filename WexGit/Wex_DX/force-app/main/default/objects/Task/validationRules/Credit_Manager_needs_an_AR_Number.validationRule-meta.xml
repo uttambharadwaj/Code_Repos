@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Manager_needs_an_AR_Number</fullName>
+    <active>true</active>
+    <description>An AR Number is required to submit an AR Suspension to Credit Manager.</description>
+    <errorConditionFormula>AND
+(
+ $Setup.Automation_Settings__c.Disable_Validation_Rules__c = false,
+ $User.Alias != &quot;cmoni&quot;,
+ $RecordType.Name = &quot;AR Maintenance&quot;,
+ AR_System__c = &quot;Credit Manager&quot;,
+ (ISBLANK( AR__c ))
+)</errorConditionFormula>
+    <errorDisplayField>Contract_EFS__c</errorDisplayField>
+    <errorMessage>An AR Number is required to submit an AR Suspension to Credit Manager.</errorMessage>
+</ValidationRule>

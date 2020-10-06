@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nathan_Gough_s_Team_Apps_with_Sales</fullName>
+    <columns>NAME</columns>
+    <columns>Agent_Name__c</columns>
+    <columns>Diesel_per_month_Litres__c</columns>
+    <columns>LAST_ACTIVITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Agent_Name__c</field>
+        <operation>equals</operation>
+        <value>Nathan Gough,Shaun Povall,Jamie Smith,Lukas Wardle,William Barker</value>
+    </filters>
+    <filters>
+        <field>Application_Status__c</field>
+        <operation>equals</operation>
+        <value>Sales to Obtain Further Information</value>
+    </filters>
+    <label>Nathan Gough &apos;s Team Apps with Sales</label>
+</ListView>

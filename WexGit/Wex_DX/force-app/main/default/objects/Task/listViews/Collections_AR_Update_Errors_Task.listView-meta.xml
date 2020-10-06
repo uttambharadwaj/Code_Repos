@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Collections_AR_Update_Errors_Task</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Collections - AR Update Errors</label>
+    <queue>Collections_AR_Update_Errors</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

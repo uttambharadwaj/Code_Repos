@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Forecast</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Generate Forecast</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)}
+
+if(&apos;{!Opportunity.Record_Type_Name__c}&apos; == &apos;CP_Disbursement&apos;){
+ 
+var result =  sforce.apex.execute(&quot;CP_MonthlyRevenueForecastDisbursement&quot;,&quot;createMonthlyForecastRecordsDisbursement&quot;,{opportunityId:&apos;{!Opportunity.Id}&apos;});
+	if(result == &apos;Success&apos;){
+		window.location.href=window.location.href;
+	}
+	else{
+		alert(result);
+	}
+}else{
+
+var result = sforce.apex.execute(&quot;CP_MonthlyRevenueForecastController&quot;,&quot;createMonthlyForecastRecords&quot;,{opportunityId:&apos;{!Opportunity.Id}&apos;});
+	if(result == &apos;Success&apos;){
+		window.location.href=window.location.href;
+	}
+	else{
+		alert(result);
+	}
+
+}</url>
+</WebLink>

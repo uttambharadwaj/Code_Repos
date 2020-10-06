@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Beneficial_Owner_Exists</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,IF(
+  NOT(ISPICKVAL(Opportunity__r.LeadSource, &quot;Conversion&quot;)),
+    AND( 
+    $User.Alias &lt;&gt; &apos;guest&apos;,
+    $User.Alias &lt;&gt; &apos;sinte&apos;,
+    $Profile.Name  &lt;&gt; &apos;System Administrator&apos;,
+    ISPICKVAL(Forward_Application_to_Credit__c,&quot;Yes&quot;), 
+      OR(
+        Beneficial_Owner_Information__c == null,
+        BO_Status__c == &apos;Pending Lexis/Nexis&apos;
+      )
+    ),
+  false
+))</errorConditionFormula>
+    <errorMessage>Please ensure you have attached a Beneficial Owner record and run Lexis/Nexis verification.</errorMessage>
+</ValidationRule>

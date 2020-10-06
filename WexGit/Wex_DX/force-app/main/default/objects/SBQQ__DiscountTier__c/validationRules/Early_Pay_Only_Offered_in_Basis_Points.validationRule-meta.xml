@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Pay_Only_Offered_in_Basis_Points</fullName>
+    <active>true</active>
+    <description>Early Pay Rebates can only be offered in Basis Points, not Cents Per Gallon.</description>
+    <errorConditionFormula>NOT(ISBLANK(TEXT(Election__c))) &amp;&amp;  NOT(ISBLANK(Cents_Per_Gallon__c))</errorConditionFormula>
+    <errorMessage>Early Pay Rebates can only be offered in Basis Points, not Cents Per Gallon.</errorMessage>
+</ValidationRule>

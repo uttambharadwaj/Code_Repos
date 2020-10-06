@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Pass_Security_Check_before_Credit</fullName>
+    <active>true</active>
+    <description>Security Check must be approved so it can be assigned to Credit.</description>
+    <errorConditionFormula>AND(
+TEXT(Application_Status__c) = &quot;Awaiting Assignment&quot;,
+Passed_Security_Check__c = FALSE
+				)</errorConditionFormula>
+    <errorMessage>You must submit an Approval Request for the Security Request before it can be passed to Credit for Assignment.</errorMessage>
+</ValidationRule>

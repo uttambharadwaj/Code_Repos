@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shell_WOLNP_Chat_LiveChatTranscript</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Shell - WOLNP - Chat</label>
+    <queue>Shell_WOLNP_Chat</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_WEX_Bank_QA_can_complete_a_review</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISPICKVAL(CL_Change_Status__c, &quot;Review Completed&quot;) &amp;&amp;  ($Profile.Name &lt;&gt; &quot;WEX Bank - Credit QA&quot; || $Profile.Name &lt;&gt; &quot;System Administrator&quot;)</errorConditionFormula>
+    <errorDisplayField>CL_Change_Status__c</errorDisplayField>
+    <errorMessage>Only WEX Bank QA users can complete a review.</errorMessage>
+</ValidationRule>

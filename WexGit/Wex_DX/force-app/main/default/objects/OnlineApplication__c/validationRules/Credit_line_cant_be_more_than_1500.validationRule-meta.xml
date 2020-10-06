@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_line_cant_be_more_than_1500</fullName>
+    <active>false</active>
+    <description>For OTR with billing cycle &quot;Twice per week&quot; and payment method &quot;Auto Pay Only&quot;, don&apos;t allow Credit Line Requested more than $1500</description>
+    <errorConditionFormula>(AND(Credit_Line_Requested__c &gt; 1500)&amp;&amp; 
+ISPICKVAL(Billing_Cycle__c, &apos;Twice per Week&apos;)&amp;&amp; ISPICKVAL(Payment_Method__c, &apos;Auto Pay Only&apos;) &amp;&amp; ISPICKVAL(Product_Type__c, &apos;OTR&apos;))</errorConditionFormula>
+    <errorDisplayField>Credit_Line_Requested__c</errorDisplayField>
+    <errorMessage>Credit Line Must Not exceed $1500</errorMessage>
+</ValidationRule>

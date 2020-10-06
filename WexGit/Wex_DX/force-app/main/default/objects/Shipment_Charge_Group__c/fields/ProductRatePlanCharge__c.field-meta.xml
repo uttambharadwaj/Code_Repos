@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductRatePlanCharge__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Product Rate Plan Charge</label>
+    <referenceTo>zqu__ProductRatePlanCharge__c</referenceTo>
+    <relationshipLabel>Shipment Charge Groups</relationshipLabel>
+    <relationshipName>Shipment_Charge_Groups</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

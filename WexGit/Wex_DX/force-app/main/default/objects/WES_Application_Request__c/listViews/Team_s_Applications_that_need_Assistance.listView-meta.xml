@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Team_s_Applications_that_need_Assistance</fullName>
+    <columns>NAME</columns>
+    <columns>Application_Status__c</columns>
+    <columns>Company_Name__c</columns>
+    <columns>CreditAgentAssigned__c</columns>
+    <columns>Sales_Agent_Assigned__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>MonthlyFuelVolumeLitres__c</columns>
+    <columns>Total_Card_Packs__c</columns>
+    <columns>Product_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Application_Status__c</field>
+        <operation>equals</operation>
+        <value>Higher Authority</value>
+    </filters>
+    <label>Applications referred - Higher Authority</label>
+</ListView>

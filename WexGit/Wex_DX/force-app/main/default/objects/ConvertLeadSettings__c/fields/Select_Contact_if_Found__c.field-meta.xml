@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Select_Contact_if_Found__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Ability for user to select contact or create new one if related contact is found.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Ability for user to select contact or create new one if related contact is found.</inlineHelpText>
+    <label>Select Contact if Found</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Provide_Disqualified_Reason</fullName>
+    <active>true</active>
+    <description>Must provide a disqualified reason for WES Activities based on the call outcome.</description>
+    <errorConditionFormula>AND( 
+RecordType.DeveloperName = &apos;WES_Sales_Tasks&apos;, 
+LeadStatusforCallOutcome__c = &apos;Disqualified&apos;, 
+ISBLANK(TEXT(ReasonDisqualified__c)) 
+)</errorConditionFormula>
+    <errorDisplayField>ReasonDisqualified__c</errorDisplayField>
+    <errorMessage>Please provide a Reason Disqualified</errorMessage>
+</ValidationRule>

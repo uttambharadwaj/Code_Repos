@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Charge_Count__c</fullName>
+    <externalId>false</externalId>
+    <label>Recurring Charge Count</label>
+    <summaryFilterItems>
+        <field>Shipment_Charge__c.ChargeType__c</field>
+        <operation>equals</operation>
+        <value>Recurring</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Shipment_Charge__c.Shipment__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

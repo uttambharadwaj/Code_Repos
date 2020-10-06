@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bonus_Rebate_for_Applicable_Products</fullName>
+    <active>true</active>
+    <description>Bonus Rebate should not be modified for the Basis Point Rebate and Volume Bonus Rebate Products</description>
+    <errorConditionFormula>OR(
+  AND(
+    SBQQ__Schedule__r.Name &lt;&gt; &quot;Basis Point Rebate&quot;,
+    TEXT(Bonus_Rebate__c) = &quot;Basis Point Rebate on OON Fuel Spend(3)&quot;
+    ),
+  AND(
+    SBQQ__Schedule__r.Name &lt;&gt; &quot;Volume Bonus Rebate&quot;,
+    TEXT(Bonus_Rebate__c) = &quot;All Shell Volume Bonus Rebate in CPG&quot;
+    ),
+  AND(
+    SBQQ__Schedule__r.Name = &quot;Basis Point Rebate&quot;,
+    TEXT(Bonus_Rebate__c) &lt;&gt; &quot;Basis Point Rebate on OON Fuel Spend(3)&quot;
+    ),
+  AND(
+    SBQQ__Schedule__r.Name = &quot;Volume Bonus Rebate&quot;,
+    TEXT(Bonus_Rebate__c) &lt;&gt; &quot;All Shell Volume Bonus Rebate in CPG&quot;
+    )
+  )</errorConditionFormula>
+    <errorMessage>You cannot change the Bonus Rebate selection for this Product</errorMessage>
+</ValidationRule>

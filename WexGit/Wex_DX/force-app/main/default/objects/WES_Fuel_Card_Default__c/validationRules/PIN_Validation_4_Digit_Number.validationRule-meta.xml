@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PIN_Validation_4_Digit_Number</fullName>
+    <active>true</active>
+    <description>A PIN Number must be a 4 digit Number</description>
+    <errorConditionFormula>NOT(ISBLANK(PIN__c)) &amp;&amp; 
+(LEN(PIN__c) &lt;&gt; 4 || 
+NOT(ISNUMBER(PIN__c)))</errorConditionFormula>
+    <errorDisplayField>PIN__c</errorDisplayField>
+    <errorMessage>PIN Must be a 4 Digit Number</errorMessage>
+</ValidationRule>

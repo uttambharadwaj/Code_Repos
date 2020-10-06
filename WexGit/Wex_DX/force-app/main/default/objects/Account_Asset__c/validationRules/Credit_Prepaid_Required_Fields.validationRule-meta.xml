@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Prepaid_Required_Fields</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+
+  /* Custom Setting - enables validation rule to be disabled at the User, Profile or Org level */
+  $Setup.WE_VRC__c.All_Acct_Asset_Disabled__c = FALSE,
+
+  RecordType.DeveloperName = &apos;CorporatePay&apos;,
+
+  IF(
+    AND(
+      /* prepaid Wex accounts */
+      NOT(ISBLANK(Client_Account_Number__c)),
+      OR(
+        ISBLANK(Account_Name__c),
+        ISBLANK(TEXT(Account_1_API__c)),
+        ISBLANK(TEXT(Account_1_Currency__c))
+      )
+    ),
+    TRUE,
+    IF(
+      AND(
+        /* credit Wex accounts */
+        NOT(ISBLANK(BankCompanyNo__c)),
+        ISBLANK(Account_Name__c)
+      ),
+      TRUE,
+      IF(
+        AND(
+          /* Account Assets must have one of the below */
+          ISBLANK(BankCompanyNo__c),
+          ISBLANK(Client_Account_Number__c)
+        ),
+        TRUE,
+        FALSE
+      )
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage>Please enter the Portal Account Name, API Name &amp; Account Currency if a prepaid Wex account. Enter the Portal Account  Name if a credit Wex Account. All Account Assets must have a Client Account Number or BankCompany Number.</errorMessage>
+</ValidationRule>

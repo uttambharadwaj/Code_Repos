@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Virtual Customer Community.Navigational:Credit</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Credit</name>
+        <parentName/>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Virtual Customer Community.Navigational:Credit Technical Guides</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Credit Technical Guides</name>
+        <parentName>Credit</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Virtual Customer Community.Navigational:Managing Your Credit Account</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Managing Your Credit Account</name>
+        <parentName>Credit</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Virtual Customer Community.Navigational:Managing Your Prepaid Account</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Managing Your Prepaid Account</name>
+        <parentName>Prepaid</parentName>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Virtual Customer Community.Navigational:Prepaid</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Prepaid</name>
+        <parentName/>
+        <position>0</position>
+        <topicDescription/>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Virtual Customer Community.Navigational:Prepaid Technical Guides</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Prepaid Technical Guides</name>
+        <parentName>Prepaid</parentName>
+        <position>1</position>
+        <topicDescription/>
+    </managedTopic>
+</ManagedTopics>

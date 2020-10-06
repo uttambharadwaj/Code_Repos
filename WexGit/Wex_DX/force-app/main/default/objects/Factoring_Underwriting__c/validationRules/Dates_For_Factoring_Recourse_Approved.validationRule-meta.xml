@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dates_For_Factoring_Recourse_Approved</fullName>
+    <active>true</active>
+    <description>Contract Sent Date and Contract Received Date for Recourse Facility Type are required when changing the Credit Decision to Approved</description>
+    <errorConditionFormula>AND(ISPICKVAL(Credit_Decision__c,&quot;Approved&quot;), 
+   RecordType.DeveloperName =&quot;Recourse&quot;,
+OR(ISBLANK( Contract_Received_Date__c), 
+ISBLANK( Contract_Sent_Date__c)))</errorConditionFormula>
+    <errorDisplayField>Contract_Received_Date__c</errorDisplayField>
+    <errorMessage>Contract Sent Date and Contract Received Date are essential for marking the Credit Decision as &quot;Approved&quot;.</errorMessage>
+</ValidationRule>

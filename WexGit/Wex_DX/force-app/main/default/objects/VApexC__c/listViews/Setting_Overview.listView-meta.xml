@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Setting_Overview</fullName>
+    <columns>SETUP_OWNER_NAME</columns>
+    <columns>SETUP_TYPE</columns>
+    <columns>Net_FSR_Disabled__c</columns>
+    <columns>Opportunity_Forecast_Disabled__c</columns>
+    <columns>Target_Manager_Disabled__c</columns>
+    <columns>BudgetManagerDisabled__c</columns>
+    <columns>Lost_Deal_Survey_Disabled__c</columns>
+    <columns>ProjectCreationDisabled__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>Setting Overview</label>
+    <language>en_US</language>
+</ListView>

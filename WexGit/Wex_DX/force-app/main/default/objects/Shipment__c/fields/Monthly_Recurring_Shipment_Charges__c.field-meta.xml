@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_Recurring_Shipment_Charges__c</fullName>
+    <externalId>false</externalId>
+    <label>Recurring Monthly Expense</label>
+    <summarizedField>Shipment_Charge__c.Recurring_Monthly_Expense__c</summarizedField>
+    <summaryFilterItems>
+        <field>Shipment_Charge__c.ChargeType__c</field>
+        <operation>equals</operation>
+        <value>Recurring</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Shipment_Charge__c.Shipment__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

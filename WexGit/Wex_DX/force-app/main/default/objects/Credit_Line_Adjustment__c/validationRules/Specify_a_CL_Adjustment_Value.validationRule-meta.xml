@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Specify_a_CL_Adjustment_Value</fullName>
+    <active>true</active>
+    <description>Ensures if a CL Adjustment is needed on rejection, the value to adjust CL to is specified.</description>
+    <errorConditionFormula>AND(ISPICKVAL(CL_Change_Rejection_Status__c,&quot;Rejected - Adjust to New Amount&quot;),  Rejected_CL_Amount__c = 0)</errorConditionFormula>
+    <errorDisplayField>Rejected_CL_Amount__c</errorDisplayField>
+    <errorMessage>Please specify the to-be Credit Limit.</errorMessage>
+</ValidationRule>

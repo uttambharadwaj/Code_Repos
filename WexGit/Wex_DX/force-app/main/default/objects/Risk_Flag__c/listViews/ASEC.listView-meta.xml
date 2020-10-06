@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ASEC</fullName>
+    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Risk_Flag_Value__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>RFStatusUnderreview__c</columns>
+    <columns>Schedule_Date__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>OWNER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Risk_Flag_Value__c</field>
+        <operation>equals</operation>
+        <value>Re-Instatement – Security High Risk,Re-Instatement – Security Very High Risk</value>
+    </filters>
+    <filters>
+        <field>Risk_Flag_Value__c</field>
+        <operation>equals</operation>
+        <value>Re-Instatement – Payment Dishonours</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Conditional Re-Instatement</label>
+    <language>en_US</language>
+</ListView>

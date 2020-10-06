@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Company_Reg_Number_Length</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
+RecordType.DeveloperName = &quot;WES_Accounts&quot;,
+NOT(ISBLANK(Company_registration_number__c)),
+ISNEW() || ISCHANGED(Company_registration_number__c),
+LEN(Company_registration_number__c) &lt;&gt; 8,
+BEGINS($UserRole.DeveloperName, &quot;WES_&quot;)
+))</errorConditionFormula>
+    <errorDisplayField>Company_registration_number__c</errorDisplayField>
+    <errorMessage>The Company Registration Number must be 8 characters long for WES Accounts. If less than 8 characters, add a leading zero(s). Ex: 1234567 should be entered as 01234567”</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Saving_PIN_if_System_Generated</fullName>
+    <active>true</active>
+    <description>User can not enter and save a PIN number if they select System Generated as PIN Creation Type</description>
+    <errorConditionFormula>AND( 
+TEXT(PIN_Creation_Method__c) = &quot;System generated&quot;, 
+NOT(ISBLANK(PIN__c)) 
+)</errorConditionFormula>
+    <errorDisplayField>PIN__c</errorDisplayField>
+    <errorMessage>You can not enter a PIN if you select &quot;System Generated&quot; as PIN Creation Method</errorMessage>
+</ValidationRule>

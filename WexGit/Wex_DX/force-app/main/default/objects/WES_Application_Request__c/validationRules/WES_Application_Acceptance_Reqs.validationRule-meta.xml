@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WES_Application_Acceptance_Reqs</fullName>
+    <active>true</active>
+    <description>Here are the requirements for an application have a status of accepted.</description>
+    <errorConditionFormula>AND(
+TEXT(Application_Status__c) = &quot;Accepted&quot;,
+From_Radius__c = FALSE, 
+OR(
+ISBLANK(Credit_Authorised_Limit__c),
+ISBLANK(Credit_Decision_Comments__c),
+ISBLANK(TEXT(OBU_Device_Required__c)),		  
+TEXT(Credit_Decision__c)  &lt;&gt; &quot;Accepted&quot;
+))</errorConditionFormula>
+    <errorMessage>Application must have a Credit Authorised Limit and Credit Decision Comment to be marked as &quot;Accepted&quot;. It must also include an OBU Device required answer.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WexEurope_Accounts</fullName>
+    <columns>NAME</columns>
+    <columns>WEAccId__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>WEAccId__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>WexEurope Accounts</label>
+</ListView>

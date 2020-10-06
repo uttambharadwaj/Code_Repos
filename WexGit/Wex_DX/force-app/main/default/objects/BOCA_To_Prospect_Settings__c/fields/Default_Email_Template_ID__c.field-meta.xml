@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Email_Template_ID__c</fullName>
+    <description>ID of the default e-mail template for BOCA To Prospect if not configured at the Program level.</description>
+    <encryptionScheme>None</encryptionScheme>
+    <externalId>false</externalId>
+    <inlineHelpText>ID of the default e-mail template for BOCA To Prospect if not configured at the Program level.</inlineHelpText>
+    <label>Default Email Template ID</label>
+    <length>30</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

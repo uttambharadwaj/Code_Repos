@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Applications_awaiting_Assignment</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Application_Status__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>Sales_Agent_Assigned__c</columns>
+    <columns>CreditAgentAssigned__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>MonthlyFuelVolumeLitres__c</columns>
+    <columns>Total_Card_Packs__c</columns>
+    <columns>Product_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Application_Status__c</field>
+        <operation>equals</operation>
+        <value>Awaiting Assignment</value>
+    </filters>
+    <label>Applications awaiting Assignment</label>
+</ListView>

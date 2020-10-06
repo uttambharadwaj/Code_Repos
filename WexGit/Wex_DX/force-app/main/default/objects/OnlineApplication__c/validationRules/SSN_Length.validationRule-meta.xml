@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SSN_Length</fullName>
+    <active>true</active>
+    <description>This rule sometimes causes an error when trying to CREATE BSA, if so, then it&apos;s possible to make this rule INACTIVE while creating the BSA, then reactivate afterwards and correct the data.</description>
+    <errorConditionFormula>LEN(AO_Social_Security_Number__c) &gt; 0 &amp;&amp; LEN(AO_Social_Security_Number__c) &lt;&gt; 9</errorConditionFormula>
+    <errorDisplayField>AO_Social_Security_Number__c</errorDisplayField>
+    <errorMessage>Please enter your 9-digit Social Security Number</errorMessage>
+</ValidationRule>

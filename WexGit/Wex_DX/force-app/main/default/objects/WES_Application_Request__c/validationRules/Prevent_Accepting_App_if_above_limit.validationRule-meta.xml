@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Accepting_App_if_above_limit</fullName>
+    <active>true</active>
+    <description>Prevent WES Credit from making an Accepted credit decision if the requested Credit Authorised Limit or Max # of cards is above their user limit.</description>
+    <errorConditionFormula>AND(
+TEXT(Application_Status__c) = &quot;Accepted&quot; ||
+TEXT(Credit_Decision__c) = &quot;Accepted&quot;,
+BEGINS($UserRole.Name , &quot;WES Credit&quot;),
+CreditLevelRequestApproved__c = FALSE,
+Credit_Authorised_Limit__c &gt; $User.WES_Approval_Threshold__c ||
+Total_Fuel_Cards_Needed__c &gt; $User.WES_MaxCardsCanApprove__c 
+)</errorConditionFormula>
+    <errorDisplayField>Credit_Decision__c</errorDisplayField>
+    <errorMessage>The Credit Authorised Limit or Number of cards requested is above your limit. Please set the Credit decision to Pending Approval in order to proceed.</errorMessage>
+</ValidationRule>

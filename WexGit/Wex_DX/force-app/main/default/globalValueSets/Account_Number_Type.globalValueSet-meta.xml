@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>AU Fuel</fullName>
+        <default>false</default>
+        <label>AU Fuel</label>
+    </customValue>
+    <customValue>
+        <fullName>EMAP Fuel</fullName>
+        <default>false</default>
+        <label>EMAP Fuel</label>
+    </customValue>
+    <customValue>
+        <fullName>F1 OTR</fullName>
+        <default>false</default>
+        <label>F1 OTR</label>
+    </customValue>
+    <customValue>
+        <fullName>Telematics</fullName>
+        <default>false</default>
+        <label>Telematics</label>
+    </customValue>
+    <customValue>
+        <fullName>VC - Credit</fullName>
+        <default>false</default>
+        <label>VC - Credit</label>
+    </customValue>
+    <customValue>
+        <fullName>VC - Prepaid</fullName>
+        <default>false</default>
+        <label>VC - Prepaid</label>
+    </customValue>
+    <customValue>
+        <fullName>WEX Fleet</fullName>
+        <default>false</default>
+        <label>WEX Fleet</label>
+    </customValue>
+    <customValue>
+        <fullName>Tandem</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Tandem</label>
+    </customValue>
+    <customValue>
+        <fullName>TSYS2</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>TSYS2</label>
+    </customValue>
+    <customValue>
+        <fullName>F1</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>F1</label>
+    </customValue>
+    <customValue>
+        <fullName>CoreCard</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>CoreCard</label>
+    </customValue>
+    <customValue>
+        <fullName>F1 Local</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>F1 Local</label>
+    </customValue>
+    <masterLabel>Account Number Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

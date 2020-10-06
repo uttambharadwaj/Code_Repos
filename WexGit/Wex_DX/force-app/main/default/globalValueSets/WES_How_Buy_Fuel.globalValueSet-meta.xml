@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>AA</fullName>
+        <default>false</default>
+        <label>AA</label>
+    </customValue>
+    <customValue>
+        <fullName>Ace Fuel Cards</fullName>
+        <default>false</default>
+        <label>Ace Fuel Cards</label>
+    </customValue>
+    <customValue>
+        <fullName>Advance Fuel Cards</fullName>
+        <default>false</default>
+        <label>Advance Fuel Cards</label>
+    </customValue>
+    <customValue>
+        <fullName>AID Fuel Card Services</fullName>
+        <default>false</default>
+        <label>AID Fuel Card Services</label>
+    </customValue>
+    <customValue>
+        <fullName>Allied Fuels</fullName>
+        <default>false</default>
+        <label>Allied Fuels</label>
+    </customValue>
+    <customValue>
+        <fullName>Allstar</fullName>
+        <default>false</default>
+        <label>Allstar</label>
+    </customValue>
+    <customValue>
+        <fullName>AS24</fullName>
+        <default>false</default>
+        <label>AS24</label>
+    </customValue>
+    <customValue>
+        <fullName>Be Fuel Cards</fullName>
+        <default>false</default>
+        <label>Be Fuel Cards</label>
+    </customValue>
+    <customValue>
+        <fullName>BP Direct</fullName>
+        <default>false</default>
+        <label>BP Direct</label>
+    </customValue>
+    <customValue>
+        <fullName>Bulk</fullName>
+        <default>false</default>
+        <label>Bulk</label>
+    </customValue>
+    <customValue>
+        <fullName>Bunkercard</fullName>
+        <default>false</default>
+        <label>Bunkercard</label>
+    </customValue>
+    <customValue>
+        <fullName>BWOC</fullName>
+        <default>false</default>
+        <label>BWOC</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambrian</fullName>
+        <default>false</default>
+        <label>Cambrian</label>
+    </customValue>
+    <customValue>
+        <fullName>Carlton</fullName>
+        <default>false</default>
+        <label>Carlton</label>
+    </customValue>
+    <customValue>
+        <fullName>Cash</fullName>
+        <default>false</default>
+        <label>Cash</label>
+    </customValue>
+    <customValue>
+        <fullName>Cheque</fullName>
+        <default>false</default>
+        <label>Cheque</label>
+    </customValue>
+    <customValue>
+        <fullName>CH Jones</fullName>
+        <default>false</default>
+        <label>CH Jones</label>
+    </customValue>
+    <customValue>
+        <fullName>CPL Petroleum</fullName>
+        <default>false</default>
+        <label>CPL Petroleum</label>
+    </customValue>
+    <customValue>
+        <fullName>Credit Card</fullName>
+        <default>false</default>
+        <label>Credit Card</label>
+    </customValue>
+    <customValue>
+        <fullName>CSC</fullName>
+        <default>false</default>
+        <label>CSC</label>
+    </customValue>
+    <customValue>
+        <fullName>DCI</fullName>
+        <default>false</default>
+        <label>DCI</label>
+    </customValue>
+    <customValue>
+        <fullName>Debit Card</fullName>
+        <default>false</default>
+        <label>Debit Card</label>
+    </customValue>
+    <customValue>
+        <fullName>Diesel Direct</fullName>
+        <default>false</default>
+        <label>Diesel Direct</label>
+    </customValue>
+    <customValue>
+        <fullName>Dieselink</fullName>
+        <default>false</default>
+        <label>Dieselink</label>
+    </customValue>
+    <customValue>
+        <fullName>DKV</fullName>
+        <default>false</default>
+        <label>DKV</label>
+    </customValue>
+    <customValue>
+        <fullName>Esso Direct</fullName>
+        <default>false</default>
+        <label>Esso Direct</label>
+    </customValue>
+    <customValue>
+        <fullName>Fastfuel</fullName>
+        <default>false</default>
+        <label>Fastfuel</label>
+    </customValue>
+    <customValue>
+        <fullName>FTA</fullName>
+        <default>false</default>
+        <label>FTA</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuel Card Services</fullName>
+        <default>false</default>
+        <label>Fuel Card Services</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuelcardsonline.co.uk (FCS)</fullName>
+        <default>false</default>
+        <label>Fuelcardsonline.co.uk (FCS)</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuelgenie</fullName>
+        <default>false</default>
+        <label>Fuelgenie</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuellogic</fullName>
+        <default>false</default>
+        <label>Fuellogic</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuelmate</fullName>
+        <default>false</default>
+        <label>Fuelmate</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuelplus</fullName>
+        <default>false</default>
+        <label>Fuelplus</label>
+    </customValue>
+    <customValue>
+        <fullName>Fuelwise</fullName>
+        <default>false</default>
+        <label>Fuelwise</label>
+    </customValue>
+    <customValue>
+        <fullName>Husk</fullName>
+        <default>false</default>
+        <label>Husk</label>
+    </customValue>
+    <customValue>
+        <fullName>Jet</fullName>
+        <default>false</default>
+        <label>Jet</label>
+    </customValue>
+    <customValue>
+        <fullName>Keyfuels</fullName>
+        <default>false</default>
+        <label>Keyfuels</label>
+    </customValue>
+    <customValue>
+        <fullName>Local Account</fullName>
+        <default>false</default>
+        <label>Local Account</label>
+    </customValue>
+    <customValue>
+        <fullName>Morgans</fullName>
+        <default>false</default>
+        <label>Morgans</label>
+    </customValue>
+    <customValue>
+        <fullName>NWF</fullName>
+        <default>false</default>
+        <label>NWF</label>
+    </customValue>
+    <customValue>
+        <fullName>Owen Fules</fullName>
+        <default>false</default>
+        <label>Owen Fules</label>
+    </customValue>
+    <customValue>
+        <fullName>RAC</fullName>
+        <default>false</default>
+        <label>RAC</label>
+    </customValue>
+    <customValue>
+        <fullName>RHA Severn Fuels</fullName>
+        <default>false</default>
+        <label>RHA Severn Fuels</label>
+    </customValue>
+    <customValue>
+        <fullName>Right Fuel Card Company</fullName>
+        <default>false</default>
+        <label>Right Fuel Card Company</label>
+    </customValue>
+    <customValue>
+        <fullName>Servitir</fullName>
+        <default>false</default>
+        <label>Servitir</label>
+    </customValue>
+    <customValue>
+        <fullName>Shell Direct</fullName>
+        <default>false</default>
+        <label>Shell Direct</label>
+    </customValue>
+    <customValue>
+        <fullName>Silvey</fullName>
+        <default>false</default>
+        <label>Silvey</label>
+    </customValue>
+    <customValue>
+        <fullName>Texaco Account</fullName>
+        <default>false</default>
+        <label>Texaco Account</label>
+    </customValue>
+    <customValue>
+        <fullName>The Fuel Card Company</fullName>
+        <default>false</default>
+        <label>The Fuel Card Company</label>
+    </customValue>
+    <customValue>
+        <fullName>The Fuel Card People</fullName>
+        <default>false</default>
+        <label>The Fuel Card People</label>
+    </customValue>
+    <customValue>
+        <fullName>TMC (Barclaycard Plus)</fullName>
+        <default>false</default>
+        <label>TMC (Barclaycard Plus)</label>
+    </customValue>
+    <customValue>
+        <fullName>TOTAL</fullName>
+        <default>false</default>
+        <label>TOTAL</label>
+    </customValue>
+    <customValue>
+        <fullName>UK FUEL</fullName>
+        <default>false</default>
+        <label>UK FUEL</label>
+    </customValue>
+    <customValue>
+        <fullName>Watson Petroleum</fullName>
+        <default>false</default>
+        <label>Watson Petroleum</label>
+    </customValue>
+    <customValue>
+        <fullName>WES</fullName>
+        <default>false</default>
+        <label>WES</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Not applicable</fullName>
+        <default>false</default>
+        <label>Not applicable</label>
+    </customValue>
+    <masterLabel>WES - How Buy Fuel</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
