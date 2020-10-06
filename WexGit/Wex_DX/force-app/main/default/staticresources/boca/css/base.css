@@ -1,0 +1,802 @@
+/******************************
+**** Global Element Reset
+******************************/
+body {
+	margin: 0px;
+	padding: 0px;
+    font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+    font-size: 80%;
+    color: #444;
+}
+h1, h2, h3, h4, h5, h6, p, a, strong, big, small, ul, li, fieldset, form, input, select {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+h1, h2, h3, h4, h5, h6, p, a, strong, big, small, ul, li {
+	line-height: 1;
+	list-style: none;
+}
+p {
+	color: #888;
+	font-size: .8em;
+	line-height: 1.4em;
+}
+a {
+	outline: none;
+}
+img {
+	border: none;
+}
+ul, ol, li {
+	margin: 0px;
+	padding: 0px;
+}
+.ui-widget {
+	font-size: inherit;
+}
+.ui-widget-content {
+	color: inherit;
+}
+
+
+/******************************
+**** Global Classnames
+******************************/
+.autoclear {
+	display: block;
+}
+.autoclear:after {
+	display: block;
+	clear: both;
+	height: 0px;
+	content: "";
+}
+.text-dark {
+	color: #444;
+}
+.text-light {
+	color: #888;
+}
+.text-bold {
+	font-weight: bold;
+}
+.text-italic {
+	font-style: italic;
+}
+
+
+/***************************************
+**** Layout
+***************************************/
+div.container {
+    margin: 0px auto;
+	width: 960px;
+}
+#header, #wrapper, #footer {
+	position: relative;
+	z-index: 1;
+}
+#header {
+	padding: 10px 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	background-color: #fff;
+}
+#wrapper {
+	margin: 50px 0px 20px;
+}
+#wrapper #side-panel,
+#wrapper #content {
+	float: left;
+}
+#wrapper #side-panel {
+	width: 250px;
+}
+#wrapper #content {
+	margin-left: 50px;
+	width: 660px;
+}
+#saveForLater-wrapper {
+	width: 660px;
+}
+
+
+/***************************************
+**** Background Color & Gradient
+***************************************/
+body,
+#ui-radialGradient {
+	background-color: #d4e7f7;
+}
+#ui-radialGradient {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	z-index: 0;
+	margin-left: -675px;
+	width: 960px;
+	height: 800px;
+	background-image: url(../images/ui-radialGradient.png);
+	background-image: -moz-radial-gradient(center 200px, circle, #fff 25px, #d4e7f7 450px);
+	background-image: -webkit-gradient(radial, center 200, 25, center center, 450, from(#fff), to(#d4e7f7));
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+
+/***************************************
+**** Header
+***************************************/
+.logo {
+	float: left;
+	padding-left: 100px;
+	line-height: 85px;
+	color: #055aa0;
+	font-size: 1.8em;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+.ui-contact-details {
+	float: right;
+	padding-right: 40px;
+	min-height: 30px;
+	text-align: right;
+	background: url(../images/ui-contact-details.gif) right center no-repeat;
+}
+	/*
+	 * Elements
+	*/
+	.ui-contact-details p {
+		margin: 0px 0px 5px;
+		font-size: 1.1em;
+	}
+	
+	
+/***************************************
+**** Side Panel
+***************************************/
+.panel h2 {
+	margin: 10px 0px;
+	font-size: 1.8em;
+	font-weight: normal;
+	line-height: 1.4em;
+}
+.panel p {
+	line-height: 1.8em;
+	font-size: 1em;
+}
+.panel a {
+	color: #5e7b9e;
+}
+.panel a:hover {
+	text-decoration: underline;
+}
+
+	/*
+	 * Side Panel - Modules
+	*/
+	.panel #features {
+		margin-top: 30px;
+		padding-top: 30px;
+		border-top: 1px dotted #888;
+	}
+	.panel #features.ui-bucket h2.ui-bucket-heading {
+		background-image: url(../images/ui-bucket-heading_panel.png);
+	}
+	
+	
+/***************************************
+**** Content
+***************************************/
+.content a {
+	color: #7593b7;
+}
+.content p {
+	margin: 20px 0px;
+}
+.content form {
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+	border-bottom: 1px dotted #888;
+}
+
+	/*
+	 * Content - Modules
+	*/
+	.content #terms-conditions-bucket.ui-bucket .ui-bucket-panel {
+		padding-right: 20px;
+	}
+	.content #legal-bucket {
+		margin: 30px 0px;
+	}
+	
+	
+/***************************************
+**** Footer
+***************************************/
+#footer {
+	border-top: 1px solid #6b87a7;
+	background-color: #8faccc;
+}
+#footer .footer {
+	padding: 10px 0px 15px;
+	color: #fff;
+	border-top: 1px solid #c4d3e3;
+}
+
+	/*
+	 * Footer - Elements
+	*/
+	.footer ul li {
+		float: left;
+		line-height: 35px;
+	}
+	.footer ul li a {
+		color: #fff;
+	}
+	.footer ul li img {
+		margin-right: 10px;
+		vertical-align: middle;
+	}
+	
+	/*
+	 * Footer - Classnames
+	*/
+	.footer ul li.links {
+		float: right;
+	}
+	
+
+/***************************************
+**** Terms & Conditions
+***************************************/
+#terms-conditions-bucket ul,
+#terms-conditions-bucket ol {
+    margin: 0px;
+    padding: 0px;
+    color: #888;
+    font-size: .8em;
+}
+#terms-conditions-bucket li {
+    margin-bottom: 10px;
+    line-height: 1.4em;
+}
+
+
+/***************************************
+**** UI - Alert
+***************************************/
+.ui-alert {
+	margin-bottom: 20px;
+	background: url(../images/ui-alert.png) center center repeat;
+}
+	
+	/*
+	 * UI Alert - Elements
+	*/
+	.ui-alert p {
+		position: relative;
+		right: 4px;
+		bottom: 4px;
+		margin: 0px;
+		padding: 12px 15px;
+		font-size: .9em;
+		border: 1px solid #aaa;
+		background-color: #fff;
+		background-position: 15px center;
+		background-repeat: no-repeat;
+	}
+	.ui-alert p strong {
+		margin-right: 5px;
+	}
+	
+	/*
+	 * UI Alert - Classnames
+	*/
+	.ui-alert .ui-invalid {
+		zoom: 1;
+		padding-left: 45px;
+		color: #d71919;
+		line-height: 20px;
+		background-image: url(../images/ui-invalid.png);
+	}
+
+
+/***************************************
+**** UI & Controls - Bucket
+***************************************/
+.ui-bucket {
+	margin-bottom: 20px;
+	text-align: left;
+}
+.ui-bucket .ui-bucket-panel {
+	margin: 0px;
+	border: 1px solid #dedede;
+	background: #fafafa url(../images/ui-bucket-panel.gif) center top repeat-x;
+}
+.ui-bucket ol.ui-bucket-panel {
+	padding-left: 0px;
+}
+.ui-bucket div.ui-bucket-panel {
+	padding: 20px 30px;
+}
+
+	/*
+	 * UI Bucket - Elements
+	*/
+	.ui-bucket h2,
+	.ui-bucket h3,
+	.ui-bucket h4 {
+		font-weight: normal;
+	}
+	.ui-bucket h2,
+	.ui-bucket h3 {
+		font-size: 1.1em;
+	}
+	.ui-bucket h4 {
+		font-size: .95em;
+	}
+	.ui-bucket p {
+		margin: 0px 0px 10px;
+	}
+	.ui-bucket a {
+		text-decoration: underline;
+	}
+	
+	/*
+	 * UI Bucket - Classnames
+	*/
+	.ui-bucket h2.ui-bucket-heading {
+		margin: 0px;
+		padding: 0px 15px;
+		line-height: 30px;
+		color: #fff;
+		background: url(../images/ui-bucket-heading.png) left top no-repeat;
+	}
+
+	/*
+	 * UI Bucket :: Fieldset - Elements
+	*/
+	fieldset.ui-bucket ol.ui-bucket-panel li {
+		zoom: 1;
+		padding: 10px 0px 10px 30px;
+		border-left: 1px solid #fff;
+		border-right: 1px solid transparent !ie; /* Fix layout issues for IE7/8 */
+		background: url(../images/ui-form-row.png) center bottom no-repeat;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li:after {
+		display: block;
+		clear: both;
+		content: "";
+		height: 0px;
+	}
+	fieldset.ui-bucket label {
+		display: inline-block;
+		width: 120px;
+		font-size: .85em;
+		font-weight: bold;
+		line-height: normal;
+	}
+	fieldset.ui-bucket label span {
+		display: block;
+		font-weight: normal;
+	}
+
+	/*
+	 * UI Bucket :: Fieldset - Classnames [table elements]
+	*/
+	fieldset.ui-bucket ol.ui-bucket-panel li.child-first { /* legacy browsers */
+		padding-top: 20px;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li.child-last { /* legacy browsers */
+		padding-bottom: 20px;
+		background-image: none;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li:first-child {
+		padding-top: 20px;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li:last-child {
+		padding-bottom: 20px;
+		background-image: none;
+	}
+    fieldset.ui-bucket ol.ui-bucket-panel li.controls-wrapper {
+		padding-right: 30px;
+	} 
+	fieldset.ui-bucket ol.ui-bucket-panel li div.form-field {
+		float: left;
+		width: 50%;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li div.form-field.field-span-full {
+		float: none;
+		width: auto;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li p,
+	fieldset.ui-bucket ol.ui-bucket-panel li h3,
+	fieldset.ui-bucket ol.ui-bucket-panel li h4 {
+		margin-right: 30px;
+	}
+	fieldset.ui-bucket ol.ui-bucket-panel li h3,
+	fieldset.ui-bucket ol.ui-bucket-panel li h4 {
+		margin-bottom: 15px;
+	}
+
+	/*
+	 * UI Bucket :: Fieldset - Classnames [form field elements]
+	*/
+	fieldset.ui-bucket label.embed-field {
+		display: inline;
+		margin-right: 5px;
+		width: auto;
+		vertical-align: top;
+	}
+	fieldset.ui-bucket *.field {
+		vertical-align: top;
+		border: 1px solid #7f9dbc;
+		background-color: #fff;
+	}
+
+    fieldset.ui-bucket .field.disable {
+		color: #888;
+		background-color: #ccc;
+	}
+
+
+	fieldset.ui-bucket input.field.text,
+	fieldset.ui-bucket select.field.select {
+		padding: 3px;
+		font-size: 0.70em;
+	}
+	fieldset.ui-bucket input.field.text {
+		width: 152px;
+	}
+	fieldset.ui-bucket input.field.action {
+		margin-left: 0px;
+		width: 115px;
+	}
+	fieldset.ui-bucket input.field.hint {
+		color: #aaa;
+        font-size: 0.70em;
+	}
+	fieldset.ui-bucket input.field.placeholder {
+		color: #aaa;
+        font-size: 0.70em;
+	}
+	
+	fieldset.ui-bucket input.field.radio,
+	fieldset.ui-bucket input.field.checkbox {
+		margin-right: 5px;
+		padding: 0px;
+		border: none;
+		background: none;
+	}
+	fieldset.ui-bucket select.field.select option {
+		padding-right: 10px;
+	}
+	fieldset.ui-bucket div.field-group-3 {
+		display: inline-block;
+	}
+	fieldset.ui-bucket div.field-group-3 *.field {
+		margin-right: 5px;
+		width: 38px;
+	}
+	fieldset.ui-bucket div.field-group-3 *.field:last-child {
+		margin-right: 0px;
+	}
+	
+	/*
+	 * UI Bucket - Controls Wrapper
+	*/
+	fieldset.ui-bucket ol.ui-bucket-panel li div.controls-wrapper {
+		margin-right: 30px;
+		padding-bottom: 0px;
+	}
+
+    fieldset.ui-bucket ol.ui-bucket-panel li div.form-field.field-span-full.align-right {
+        padding-right: 24px;
+        text-align: right;
+    }
+    fieldset.ui-bucket ol.ui-bucket-panel li div.form-field.field-span-full.align-right label {
+        text-align: left;
+    }
+
+	
+	
+/***************************************
+**** Component  - Validation
+***************************************/
+.field-error {
+	padding: 4px;
+	border: 1px solid #ffb2b8;
+	background-color: #ffdadd;
+}
+
+
+/***************************************
+**** UI  - Dialog
+***************************************/
+.ui-widget-overlay {
+	opacity: 0.65;
+	background-image: none;
+	background-color: #333;
+}
+.ui-dialog.ui-widget-content,
+.ui-dialog.ui-widget-content .ui-dialog-content,
+.ui-dialog.ui-widget-content .ui-dialog-titlebar,
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close {
+	padding: 0px;
+}
+.ui-dialog.ui-widget-content,
+.ui-dialog.ui-widget-content .ui-dialog-titlebar,
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close {
+	border: none;
+	background: none;
+}
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close,
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close span.ui-icon {
+	width: auto;
+	color: #fff;
+	font-weight: normal;
+}
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close {
+	text-align: right;
+	text-decoration: none;
+	font-size: .8em;
+	line-height: 16px;
+}
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close:hover {
+	text-decoration: underline;
+}
+.ui-dialog.ui-widget-content .ui-dialog-titlebar a.ui-dialog-titlebar-close span.ui-icon {
+	margin: 0px;
+	padding-right: 15px;
+	text-indent: 0px;
+	background: url(../images/ui-dialog-btn_close.png) right center no-repeat;
+}
+
+ /* Z-index of #mask must lower than #boxes .window */
+#mask {
+   position:absolute;
+   z-index:9000;
+   background-color:#000;
+   display:none;
+}  
+	
+	
+/***************************************
+**** UI  - Accordion
+***************************************/
+.ui-accordion {
+	width: auto; /* override jQueryUI width: 100% */
+	font-size: 1em;
+}
+
+	/*
+	 * Accordion - Elements
+	*/
+	.ui-accordion li {
+		border-width: 0px 0px 1px;
+		border-style: dotted;
+		border-color: #888;
+	}
+	.ui-accordion a {
+		display: block;
+		text-decoration: none;
+	}
+	.ui-accordion p {
+		line-height: 1.5em;
+	}
+
+	/*
+	 * Accordion - Classnames
+	*/
+	.ui-accordion .ui-widget,
+	.ui-accordion .ui-helper-reset {
+		font-size: inherit;
+	}
+	.ui-accordion .ui-accordion-li-fix {
+		display: block;
+	}
+	.ui-accordion li:last-child {
+		border-bottom: none;
+	}
+	.ui-accordion li.child-last {
+		border-bottom: none;
+	}
+	.ui-accordion .ui-accordion-header,
+	.ui-accordion .ui-accordion-content {
+		padding: 0px 15px 0px 25px;
+		border: none;
+		background: none;
+	}
+	.ui-accordion .ui-accordion-header {
+		margin-top: 0px;
+		line-height: 30px;
+		background: url(../images/ui-accordion_bullet.png) 10px center no-repeat;
+	}
+	.ui-accordion .ui-accordion-header span.ui-icon {
+		display: none;
+	}
+	.ui-accordion .ui-accordion-content {
+		display: block; /* if JavaScript is disabled, do not hide content */
+		font-size: .8em;
+	}
+	.ui-accordion .ui-accordion-header.ui-state-active,
+	.ui-accordion .ui-accordion-content.ui-accordion-content-active {
+		background-color: #fff;
+	}
+	.ui-accordion .ui-accordion-header.ui-state-active {
+		/* background-image is specified in branded stylesheet */
+	}
+	.ui-accordion .ui-accordion-header.ui-state-active:hover {
+		text-decoration: none;
+		cursor: default;
+	}
+	
+	
+/***************************************
+**** Controls Wrapper
+***************************************/
+div.controls-wrapper {
+	padding: 10px 0px;
+}
+	
+	
+/***************************************
+**** Controls - Button
+***************************************/
+.controls-btn {
+	display: inline-block;
+	display: inline !ie; /* this is overridden in the IE6 stylesheet */
+	zoom: 1;
+}
+
+	/*
+	 * Controls Button - Classnames
+	*/
+	.controls-btn.action {
+		margin-left: 15px;
+	}
+	.controls-btn.primary {
+		float: right;
+	}
+	.controls-btn.secondary {
+		float: left;
+	}
+	.controls-btn.cap-wrapper {
+		position: relative;
+		padding: 0px 4px;
+		vertical-align: top;
+	}
+	.controls-btn *.btn,
+	.controls-btn.cap-wrapper div.cap-left,
+	.controls-btn.cap-wrapper div.cap-right {
+		background-image: url(../images/controls-btn_form.png);
+	}
+	.controls-btn.action *.btn,
+	.controls-btn.cap-wrapper.action div.cap-left,
+	.controls-btn.cap-wrapper.action div.cap-right {
+		background-image: url(../images/controls-btn_action.png);
+	}
+	.controls-btn.cap-wrapper div.cap-left,
+	.controls-btn.cap-wrapper div.cap-right {
+		position: absolute;
+		top: 0px;
+		width: 4px;
+		background-repeat: no-repeat;
+	}
+	.controls-btn.cap-wrapper div.cap-left {
+		left: 0px;
+	}
+	.controls-btn.cap-wrapper div.cap-right {
+		right: 0px;
+	}
+	.controls-btn.cap-wrapper *.btn {
+		color: #fff;
+		cursor: pointer;
+		background-position: 0px 0px;
+		background-repeat: repeat-x;
+		background-color: transparent;
+	}
+	.controls-btn.cap-wrapper *.btn {
+		padding: 0px 15px;
+		font-size: 1.1em;
+		text-shadow: 1px -1px 1px #476991;
+	}
+	.controls-btn.cap-wrapper.action *.btn {
+		padding: 0px 5px;
+		font-size: .8em;
+		font-weight: bold;
+	}
+	.controls-btn.cap-wrapper a.btn {
+		display: block;
+        display: inline !ie;
+        zoom: 1;
+		text-decoration: none;
+	}
+	
+	/*
+	 * Controls Button :: Form Buttons - Height
+	*/
+	.controls-btn.cap-wrapper *.btn,
+	.controls-btn.cap-wrapper div.cap-left,
+	.controls-btn.cap-wrapper div.cap-right {
+		height: 36px;
+		line-height: 36px;
+	}
+	.controls-btn.cap-wrapper div.cap-left {
+		background-position: 0px -36px;
+	}
+	.controls-btn.cap-wrapper div.cap-right {
+		background-position: 0px -72px;
+	}
+	
+	/*
+	 * Controls Button :: Action Buttons - Height
+	*/
+	.controls-btn.cap-wrapper.action *.btn,
+	.controls-btn.cap-wrapper.action div.cap-left,
+	.controls-btn.cap-wrapper.action div.cap-right {
+		height: 24px;
+		line-height: 23px;
+	}
+	.controls-btn.cap-wrapper.action div.cap-left {
+		background-position: 0px -24px;
+	}
+	.controls-btn.cap-wrapper.action div.cap-right {
+		background-position: 0px -48px;
+	}
+	
+	
+/***************************************
+**** Controls - Overflow
+***************************************/
+.controls-scroll-horizontal {
+	overflow-x: auto;
+	width: 100px;
+}
+.controls-scroll-vertical {
+	overflow-y: auto;
+	height: 100px;
+    padding-right: 15px;
+}
+
+/***************************************
+**** print
+***************************************/
+.print-hide {
+	display: none;
+
+}
+
+
+/* Error messages */
+#error_messages {
+    font-size: 0.9em;
+    font-weight: bolder;
+    background-color: #f0b8ad;
+    background-image: url(../images/error_bg.gif);
+    background-repeat: repeat;
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: dashed 1px #f03;
+    width: 625px;
+    display: block
+}
+
+#error_messages span {
+    color: #7a0c0c;
+}
+
+#error_messages img {
+    margin-top: 5px
+}
+
+/**********************************
+**** Hint Text
+***********************************/
+p.hint-text {
+	display: none
+}

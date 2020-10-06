@@ -1,0 +1,109 @@
+/***************************************
+**** Brand Specific
+
+** Note on test site:  **
+for testing purposes, the following pathing to images needs to be changed from:
+/boca/images/
+
+to: 
+../../../images/
+
+***************************************/
+/*
+ * Header
+*/
+.brand {
+	border-color: #757575;
+}
+.brand .logo {
+	padding-left: 150px; /* the width of the logo */ /* orignally set to 97px */
+	line-height: 100px; /* the height of the logo */ /* this height affects .brand .ui-contact-details */ /* originally set to 71px */
+	background-image: url(logo.gif);
+	color: #363331;
+}
+
+.brand .ui-contact-details {
+	margin-top: 16px; /* vertically center this element based on the height of .brand .logo */
+}
+
+.panel h2 {
+    font-weight: normal;
+	font-size: 1.7em;
+    margin: 10px 0 5px 5px;
+}
+
+.panel p {
+    font-size: 1.2em;
+    line-height: 1.8em;
+	margin: 0px 0 10px 5px;
+}
+
+#features p {
+	font-size: 1em;
+    line-height: 1.8em;
+	margin: 10px 0 10px 5px;
+}
+
+.ui-bucket h2, .ui-bucket h3 {
+    font-size: 1.1em;
+}
+
+/*
+ * UI Accordion - Classnames
+*/
+.ui-accordion .ui-accordion-header {
+    background: url(ui-accordion_bullet.png) no-repeat scroll 10px center transparent;
+    line-height: 25px;
+    margin-top: 0;
+	text-transform: uppercase;
+}
+
+.ui-accordion .ui-accordion-header.ui-state-active {
+	background: url(ui-accordion_bullet_open.png) no-repeat scroll 10px center transparent;
+}
+
+/*
+ * UI & Controls - Bucket
+*/
+.brand fieldset.ui-bucket h2.ui-bucket-heading { /*Form Headers*/
+	background-image: url(ui-bucket-heading.png);
+}
+
+.ui-bucket h2.ui-bucket-heading { /*T&C Header*/
+    background: url(ui-bucket-heading.png);
+ }
+
+.panel #features.ui-bucket h2.ui-bucket-heading { /*Side Accordian Header*/
+    background-image: url(ui-bucket-heading_panel.png);
+}
+
+/*
+* html .brand fieldset.ui-bucket h2.ui-bucket-heading {
+	background-image: none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../../images/ui-bucket-heading.png', sizingMethod='image');
+}
+*/
+
+/*
+ * Controls - Button
+*/
+.controls-btn.primary *.btn,
+.controls-btn.cap-wrapper.primary div.cap-left,
+.controls-btn.cap-wrapper.primary div.cap-right {
+	text-shadow: 1px -1px 1px #c19417;
+	background-image: url(controls-btn-primary.png);
+}
+
+.ui-credit-card {    
+    padding-top: 160px;
+    background: url(ui-credit-card.png) no-repeat;
+}
+
+/***************************************
+**** Application Specific (Generic)
+***************************************/
+
+/* LIVER PERSON */
+#lpButDivID-1389885600758 {float: right;}
+.lpEmtStarRating, .lpPoweredBy {display:none;}
+table.lpStaticButton {border:0;}

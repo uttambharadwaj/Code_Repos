@@ -1,0 +1,163 @@
+/*
+ * Validation Alert - Styling (General)
+*/
+.validation-alert {
+    display: none;
+    margin: 0px;
+}
+
+/*
+ * ErrorMessage - Styling (General)
+*/
+div.errorMessage {
+	padding: 4px 20px 4px 4px;
+	vertical-align: top;
+	border: 1px solid #ffb2b8;
+	background: #ffdadd url(../images/form_validation_error_bg.gif) center right no-repeat;
+}
+
+	fieldset.ui-bucket .errorMessage input.field.text {
+		width: 126px;
+	}
+	fieldset.ui-bucket .errorMessage input.field.text.action {
+		width: 84px;
+	}
+
+	/*
+	 * ErrorMessage Layout - .content-ui
+	*/
+	.form-wrapper div.errorMessage {
+		display: block;
+	}
+	.form-wrapper .text-nowrap div.errorMessage,
+	.form-wrapper div.radio-group div.errorMessage {
+		display: inline-block;
+	}
+	*+html .form-wrapper .text-nowrap div.errorMessage,
+	*+html .form-wrapper div.radio-group div.errorMessage {
+		display: inline;
+	}
+	* html .form-wrapper div.errorMessage,
+	* html .form-wrapper .text-nowrap div.errorMessage,
+	* html .form-wrapper div.radio-group div.errorMessage { /* legacy browsers */
+		display: inline; /* this rule will become depricated */
+	}
+	
+	/*
+	 * ErrorMessage Layout - Legacy Code
+	*/
+	div.errorMessage {
+		zoom: 1;
+		display: inline-block;
+	}
+	* html div.errorMessage { /* non-standard compliant browser */
+		display: inline;
+	}
+	*+html div.errorMessage { /* non-standard compliant browser */
+		display: inline;
+	}
+
+	/*
+	 * ErrorMessage - Elements
+	*/
+	table td div.errorMessage input,
+	table td div.errorMessage select,
+	table td div.errorMessage p.help_text {
+		margin: 0px;
+	}
+	.form-wrapper table.ui-table-form td div.errorMessage input.text {
+		margin-right: 0px; /* level of specificity must override .content-ui */
+	}
+	div.errorMessage p.help_text {
+	    margin-top: 5px;
+	}
+	
+	
+	
+/*
+ * Form - Elements
+*/
+p.help_text {
+	margin: 0px 0px 5px 5px; /* avoids label/page shift when div.error is invoked */
+	color: #444;
+	font-size: .7em;
+}
+
+/*
+ * Form - Styling
+*/
+.example {
+	color: #666;
+}
+
+
+
+/*
+ * ClueTip - Styling (General)
+*/
+.cluetip-errmsg {
+  background-color: transparent;
+}
+.cluetip-errmsg #cluetip-outer {
+  border: 5px solid #303030;
+  position: relative;
+  background-color: #505050;
+}
+.cluetip-errmsg h3#cluetip-title {
+  margin: 0 0 5px;
+  padding: 2px 5px;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #404040;
+  color: #f3f3f3;
+}
+.cluetip-errmsg #cluetip-inner {
+  padding: 10px;
+  color: #f3f3f3;
+  background-color: #505050;
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.3em;
+  display: inline-block;
+}
+.cluetip-errmsg div#cluetip-close {
+  text-align: right;
+  margin: 0 5px 5px;
+  color: #900;
+}
+
+/* errmsg arrows */
+.clue-right-errmsg .cluetip-arrows {
+  background-image: url("../images/arrowleft.gif");
+}
+.clue-left-errmsg .cluetip-arrows {
+  background-image: url("../images/arrowright.gif");
+  left: 100%;
+  margin-right: -11px;
+}
+.clue-top-errmsg .cluetip-arrows {
+  background-image: url("../images/arrowdown.gif");
+  top: 100%;
+  left: 50%;
+  margin-left: -11px;
+  height: 11px;
+  width: 22px;
+}
+.clue-bottom-errmsg .cluetip-arrows {
+  background-image: url("../images/arrowup.gif");
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  height: 11px;
+  width: 22px;
+}
+.cluetip-arrows {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -6px;
+  height: 22px;
+  width: 11px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}

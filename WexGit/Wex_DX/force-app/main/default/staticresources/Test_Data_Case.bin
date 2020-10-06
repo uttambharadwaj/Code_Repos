@@ -1,0 +1,3 @@
+Id,RecordTypeId,ContactId,Subject,Collections_No_Connect_Tasks__c,Entity_ID__c,On_List__c,On_List_Date__c
+5002F0000058rFvQAI,0120g000000N2ONAA0,0031800000YHoOZAA2,Test Case 1,0,,,
+5002F0000059rFvQAI,0120g000000N2ONAA0,0031800000YHoOZAA2,Test Case 2,0, 123,1,2020-07-27

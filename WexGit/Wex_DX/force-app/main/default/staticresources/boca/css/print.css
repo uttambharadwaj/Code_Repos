@@ -1,0 +1,62 @@
+/*
+  * Application Styling
+*/
+body {background: none; font-family: "Lucida Grande",Tahoma,Arial,sans-serif; font-size: 80%;}
+
+/*
+  * Common Classnames
+*/
+.print-hide {display: block;}
+.autoclear {display: block;}
+.autoclear:after {display: block; clear: both; height: 0px; content: "";} 
+.text-light {color: #888;}
+
+/*
+  * Branding Components
+*/
+#header {margin-bottom: 20px;}
+#header h1.logo { padding: 0; line-height: normal; background: none; display:block;clear:both;}
+#header img.logo { margin-left:0px; padding-left:0px; display:block; }
+#header .ui-contact-details p {margin: 5px 0px;}
+
+/*
+  * Form Components
+*/
+label {display: block; color: #444;}
+fieldset.ui-bucket {margin: 10px 0px;}
+ol.ui-bucket-panel li {margin: 20px 0px;} div.form-field {margin: 10px 0px;}
+.ui-bucket h2.ui-bucket-heading { color: #444; }
+ol.ui-bucket-panel li .form-field { border-width: 1px 0; border-style: solid; border-color: transparent; }
+
+/*
+ * Application Controls
+*/
+.controls-scroll-vertical { overflow: visible; height: auto; }
+
+/*
+  * Terms & Conditions
+*/
+#terms-conditions-bucket * {font-size: 8px !important; font-size: 8px !ie;}
+
+/*
+ * IE6 - Patch => ROTFLOL!!
+*/
+* html div.container {width:auto; zoom:1;}
+* html #wrapper #content { width: auto; margin-left: 0px; border: 1px #fff; }
+* html .ui-bucket ol.ui-bucket-panel { border: none; }
+* html fieldset.ui-bucket ol.ui-bucket-panel li div.form-field { width: auto; }
+* html fieldset.ui-bucket ol.ui-bucket-panel li,
+* html fieldset.ui-bucket ol.ui-bucket-panel li.child-first,
+* html fieldset.ui-bucket ol.ui-bucket-panel li:first-child { border: 1px solid #fff; padding: 0; }
+
+/*
+* Two Column Printing
+*/
+fieldset.ui-bucket ol.ui-bucket-panel li { clear: both !important; list-style: none !important; border: none !important; }
+fieldset.ui-bucket ol.ui-bucket-panel li div.form-field { float: left !important; width: 45% !important; }
+
+
+/*
+  * Hidden Components
+*/
+#side-panel, #footer, .ui-alert, div.controls-wrapper, .controls-btn.action {display: none;}

@@ -1,0 +1,830 @@
+﻿/*
+
+    Global template styles
+
+*/
+
+body {
+    font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+    color: #444;
+    background: #D4E7F7 url('../imgs/circle-bg.png') no-repeat 25% top;
+}
+
+.pgHome {
+    width: 100%;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.top {
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #AE2C48;
+    background: white;
+}
+
+.logo {
+    width: 300px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.heading {
+    width: 450px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align: top;
+}
+
+.heading h1 {
+    color: #999999;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.applybyphone {
+    width: 170px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.applybyphone .abp {
+    display: block;
+    float: right;
+    padding-right: 40px;
+    background: url('../imgs/ui-contact-details.gif') no-repeat right center;
+    text-align: right;
+    height:40px;
+    margin-top:25px;
+}
+
+.applybyphone .abp .textbold {
+    font-size: 14px;
+    font-weight: bold;
+    color: #888;
+}
+
+.applybyphone .abp .textlight {
+    font-weight: normal;
+    color: #888;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.left {
+    width: 250px;
+    float: left;
+    display: block;
+}
+
+.left .card {
+    width: 250px;
+    float: left;
+    display: block;
+    margin: 50px 0 20px 0;
+}
+
+.left .card h2 {
+    margin: 10px 0px 10px 5px;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 22px;
+}
+
+.left .card p {
+    color: #888;
+    font-size: .8em;
+    line-height: 1.4em;
+    margin-left:5px;
+}
+
+.left .benefits {
+    width: 250px;
+    float: left;
+    display: block;
+    margin: 10px 0;
+}
+
+.left .benefits .acc {
+    border-top: 1px dotted grey;
+    padding: 10px 0;
+}
+
+.left .benefits .document-1-title {
+    /*background-image: url('../imgs/ui-bucket-heading_panel.png');*/
+    width: 235px;
+    padding-left: 15px;
+    line-height: 30px;
+    color: white;
+    border-top-right-radius: 5px;
+    background-image: linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -o-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -moz-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -ms-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.5, #858585),
+    	color-stop(0.69, #8F8F8F)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#858585', endColorstr='#8F8F8F',GradientType=0);
+    font-size: 14px;
+    text-shadow:0px 1px 0px #3a3a3a;
+}
+
+.left .benefits .accheader {
+    display: block;
+    color: #777aa9;
+    padding: 8px 0 8px 25px;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0;
+    background: url('../imgs/ui-accordion_bullet.png') 5% #f2f2f2 no-repeat;
+    border-bottom: 1px dotted grey;
+}
+
+.left .benefits .hactive {
+    background: url('../imgs/ui-accordion_bullet_open.png') 5% #fff no-repeat;
+    border-bottom: none;
+    cursor: auto;
+}
+
+.left .benefits .accContent {
+    color: #878787;
+    font-size: 11px;
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    cursor: default;
+    line-height: 140%;
+    background: #fff;
+    border-bottom: 1px dotted grey;
+}
+
+.main {
+    width: 660px;
+    float: left;
+    display: block;
+    margin: 0 25px;
+}
+
+.main .forms {
+    width: 660px;
+    float: left;
+    display: block;
+    margin: 20px 0;
+}
+
+.main .forms .pic {
+    display: block;
+    width: 23px;
+    height: 24px;
+    cursor: help;
+    float: right;
+    background: url('../imgs/btn-help.jpg') no-repeat center;
+}
+
+.main .forms .ui-superform,
+#regTab {
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    width: 660px !important;
+}
+
+#regUserSaveForLaterText {
+	font-weight: normal;
+}
+
+.main .forms .ui-superform {
+    margin-top: 60px;
+}
+
+.main .forms .ui-superform tr.headForm,
+.ui-dialog-titlebar {
+    background: none;
+    padding: 0 !important;
+}
+
+.main .forms .ui-superform tr.headForm td,
+#regUser td {
+    /*width: 660px !important;*/
+	width: auto !important; /* IE8 colspan/sizing issue fix */
+    padding: 0px !important;
+}
+
+.main .forms .uiBucketHeading,
+.ui-dialog-titlebar,
+.ui-dialog-title,
+.regUserTitle {
+    margin: 0px;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0px 15px;
+    line-height: 30px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -o-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -moz-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -ms-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.5, #858585),
+    	color-stop(0.69, #8F8F8F)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#858585', endColorstr='#8F8F8F',GradientType=0);
+    /*background: url('../imgs/ui-bucket-heading.png') left top no-repeat;*/
+    width: 630px !important;
+    text-shadow:0px 1px 0px #3a3a3a;
+}
+
+.ui-dialog-title {
+	display: block;
+	padding: 0px 15px;
+}
+
+.ui-dialog-titlebar-close {
+	position: relative;
+	top: -30px;
+}
+
+.main .forms .ui-superform tr,
+#regTab tr {
+    border-left: 1px solid #DEDEDE;
+    border-right: 1px solid #DEDEDE;
+    background: url('../imgs/ui-form-row.png') no-repeat bottom center #f3f3f3;
+    display: block;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+
+/* .main .forms .ui-superform > tbody > tr:first-child */
+.main .forms .ui-superform .ocmsHiddenField {
+	display: none;
+}
+
+/* .OCMS-Edit .main .forms .ui-superform > tbody > tr:first-child */
+.OCMS-Edit .main .forms .ui-superform .ocmsHiddenField {
+	display: block;
+}
+
+.pgApplicationForm .main .forms .ui-superform {
+    /* IE8 is super slow with javascript execution, so hiding the form has to be done in css. */
+    display: none;
+}
+
+span.free {
+	visibility: hidden;
+}
+
+.main .forms .ui-superform input,
+input.ocmsUsername,
+input.ocmsPassword,
+#regTab input {
+    width: 160px !important;
+    font-size: 10px;
+    vertical-align: middle;
+    border: 1px solid #7F9DBC;
+    background-color: white;
+    float: left;
+    padding: 3px;
+    font-family: Arial, sans-serif;
+}
+
+.main .forms .ui-superform  input[type="checkbox"] {
+    padding: 0 !important;
+    width: 140px !important
+}
+
+.main .forms .ui-superform input[type="radio"],
+.main .forms .ui-superform input[type="checkbox"] {
+    border: 0;
+	background-color: transparent;
+}
+
+.main .forms tr {
+    width: 660px !important;
+    /*padding: 10px 0 !important;*/
+	padding: 0 !important; /* part of IE8 sizing issue fix */
+}
+
+.main .forms td {
+    width: 160px !important;
+    vertical-align: middle;
+}
+
+.main .forms .label {
+    margin-left: 15px;
+    display: block;
+}
+
+.main .forms .label p {
+    color: #888;
+    font-weight: normal;
+}
+
+.main .forms .freeTr {
+    background: transparent !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 1px solid #DEDEDE;
+}
+
+.main .forms .freeTd {
+	height: 0px;
+}
+
+.main .forms .column_0, .main .forms .column_2,
+#regTab .column_0, #regTab .column_2,
+td.column_0,
+td.column_2 {
+    width: 130px !important;
+    /*padding: 5px 10px !important;*/
+	padding: 15px 10px !important; /* part of IE8 sizing issue fix */
+}
+
+.main .forms .freeTr .column_0 {
+    padding: 5px 10px !important; /* the above "fix" makes the spacer too big, so "unfix it"  */
+}
+
+.main .forms .column_1, .main .forms .column_3,
+#regTab .column_1, #regTab .column_3,
+td.column_1,
+td.column_3 {
+    width: 170px !important;
+    padding: 5px 0 !important;
+}
+
+.main .forms .column_3 {
+    padding-right: 20px !important; /* part of IE8 sizing issue fix */
+}
+
+.main .forms .txtform {
+    display: block;
+    font-weight: normal;
+    color: #888;
+    width: 100%;
+}
+
+.main .forms .txtform a {
+    color: #7593B7;
+}
+
+.main .forms .input-PICKLIST table, .main .forms .input-PICKLIST table tr {
+    width: 140px !important;
+    border: none !important;
+    background-image: none !important;
+}
+
+.main .forms .input-PICKLIST table td {
+    width: 40px !important;
+    padding:0 !important;
+}
+
+.main .forms .input-PICKLIST table input {
+    width: 20px !important;
+    margin-left: 20px;
+}
+
+.main .forms .input-PICKLIST select {
+    width: 170px;
+}
+
+.main .terms,
+.main .defaultTerms {
+    width: 660px;
+    float: left;
+    display: block;
+    border-top:1px dotted grey;
+    padding-top: 15px;
+    line-height: 140%;
+}
+
+.main .defaultTerms {
+	display: none;
+}
+
+.main .termsText {
+    width: 660px;
+    float: left;
+    display: block;
+    margin: 20px 0;
+    font-size: 10px;
+    line-height: 140%;
+}
+
+.main .thankYou,
+.main .branded {
+    width: 660px;
+    float: left;
+    display: block;
+    margin: 60px 0 20px 0;
+    font-size: 10px;
+    line-height: 140%;
+}
+
+.main .thankYou h3,
+.main .branded h3 {
+    font-size:16px;
+    color: grey;
+    font-weight: bold;
+    margin-bottom:20px;
+}
+
+.main .thankYou p,
+.main .branded p,
+.portallogin td {
+    font-size: 14px;
+    color: #838383;
+    margin-bottom: 10px;
+}
+
+.portallogin td {
+	vertical-align: middle;
+}
+
+.main .thankYou p.txt,
+.main .branded p.txt {
+    font-size: 13px;
+    padding-bottom: 20px;
+    background: url('../imgs/ui-form-row.png') no-repeat bottom center;
+}
+
+.main .thankYou p.txt span,
+.main .branded p.txt span {
+    padding-top: 20px;
+    display: block;
+    background: url('../imgs/ui-form-row.png') no-repeat top center;
+}
+
+.main .thankYou .print,
+.main .branded .print {
+    border-radius: 3px;
+    background-image: linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -o-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -moz-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -webkit-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -ms-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.3, #637697),
+    	color-stop(0.69, #94a8c7)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#637697', endColorstr='#94a8c7',GradientType=0);
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    float: right;
+    display: block;
+    border: 1px solid #63738e;
+    text-shadow: 1px -1px 1px #476991;
+    box-shadow: 0 2px 5px #476991;
+}
+
+.main .thankYou h2,
+.main .branded h2 {
+    margin: 0;
+    padding: 0px 15px 0 15px;
+    line-height: 30px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -o-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -moz-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -ms-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.5, #858585),
+    	color-stop(0.69, #8F8F8F)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#858585', endColorstr='#8F8F8F',GradientType=0);
+    font-size: 14px;
+    text-shadow:0px 1px 0px #3a3a3a;
+}
+
+.main .thankYou .uiBucketPanel,
+.main .branded .uiBucketPanel {
+    padding: 30px 20px;
+    float:left;
+    margin: 0px;
+    width: 619px;
+    border: 1px solid #DEDEDE;
+    background: #FAFAFA url(../imgs/ui-bucket-panel.gif) center top repeat-x;
+}
+
+.main .portallogin .uiBucketPanel {
+    padding: 10px 20px;
+    float:left;
+    margin: 0px;
+    border: 1px solid #DEDEDE;
+    background: #FAFAFA url(../imgs/ui-bucket-panel.gif) center top repeat-x;
+}
+
+.ocmsLoginError {
+	font-size: 12px;
+	color: red;
+	padding-bottom: 15px;
+}
+
+.main .termsText p {
+    margin: 20px 0;
+    color: #888;
+}
+
+.main .terms h2 {
+    margin: 0;
+    padding: 0px 15px 0 15px;
+    line-height: 30px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -o-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -moz-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -ms-linear-gradient(bottom, #858585 50%, #8F8F8F 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.5, #858585),
+    	color-stop(0.69, #8F8F8F)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#858585', endColorstr='#8F8F8F',GradientType=0);
+    /*background: url(../imgs/ui-bucket-heading.png) left bottom no-repeat;*/
+    font-size: 14px;
+    text-shadow:0px 1px 0px #3a3a3a;
+}
+
+.main .terms .uiBucketPanel {
+    padding: 30px 20px;
+    margin: 0px;
+    border: 1px solid #DEDEDE;
+    background: #FAFAFA url(../imgs/ui-bucket-panel.gif) center top repeat-x;
+}
+
+.main .terms .controlsScrollVertical {
+    overflow-y: auto;
+    height: 100px;
+    padding-right: 15px;
+    font-size: 12px;
+    color: #888;
+}
+
+.main .formButtons {
+    width: 100%;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.main .formButtons .saveForLater,
+.ocmsLoginButton,
+button#regReturn {
+    border-radius: 3px;
+    background-image: linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -o-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -moz-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -webkit-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -ms-linear-gradient(bottom, #637697 30%, #94a8c7 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.3, #637697),
+    	color-stop(0.69, #94a8c7)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#637697', endColorstr='#94a8c7',GradientType=0);
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    float: left;
+    border: 1px solid #63738e;
+    text-shadow: 1px -1px 1px #476991;
+    box-shadow: 0 2px 5px #476991;
+}
+
+.ocmsLoginButton {
+	float: right;
+}
+
+.main .formButtons .submitApp,
+button#regBtn {
+    border-radius: 3px;
+    background-image: linear-gradient(bottom, #e2791c 30%, #e89f25 69%);
+    background-image: -o-linear-gradient(bottom, #e2791c 30%, #e89f25 69%);
+    background-image: -moz-linear-gradient(bottom, #e2791c 30%, #e89f25 69%);
+    background-image: -webkit-linear-gradient(bottom, #e2791c 30%, #e89f25 69%);
+    background-image: -ms-linear-gradient(bottom, #e2791c 30%, #e89f25 69%);
+    background-image: -webkit-gradient(
+    	linear,
+    	left bottom,
+    	left top,
+    	color-stop(0.3, #e2791c),
+    	color-stop(0.69, #e89f25)
+    );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2791c', endColorstr='#e89f25',GradientType=0);
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    float: right;
+    border: 1px solid #9f5514;
+    text-shadow: 1px -1px 1px #476991;
+    box-shadow: 0 2px 5px #9f5514;
+}
+
+.main .invalid {
+    padding: 4px 10px 4px 4px;
+    width: 145px;
+    vertical-align: top;
+    border: 1px solid #FFB2B8;
+    background: #FFDADD url(../imgs/form_validation_error_bg.gif) center right no-repeat;
+    float: left;
+}
+
+.main .ui-invalid {
+  padding: 10px 10px 10px 45px;
+  color: #D71919;
+  border: 1px solid #969696;
+  line-height: 20px;
+  background: url(../imgs/ui-invalid.png) no-repeat 10px white;
+  margin-bottom: 40px;
+  box-shadow: 0 0 10px grey;
+  font-size: 14px;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.options, .optionsjson, .programname, .saveForLaterInstructions, .saveconfirmpage, .appstatuspage, .customPanel {
+    display: none;
+}
+
+.footer {
+    width: 100%;
+    clear: both;
+    display: block;
+    height: 60px;
+    border-top: 1px solid #6B87A7;
+    background-color: #8FACCC;
+}
+
+.footerT {
+    width: 100%;
+    clear: both;
+    display: block;
+    height: 60px;
+}
+
+.footer .footerLink {
+    display: block;
+    width: 400px;
+    float: right;
+    background: url(../imgs/ui-ssl.gif) no-repeat right center;
+    padding-right: 40px;
+    height: 60px;
+    text-align: right;
+}
+
+.footer .footerLink a {
+    color: white;
+    text-align: underline;
+    font-size: 13px;
+    margin-top:25px;
+    display: block;
+    border-right: 1px solid white;
+    padding-right: 10px;
+}
+
+.footer .footerLink a:hover {
+    text-decoration: none;
+}
+
+/* OCMS-Edit */
+
+.OCMS-Edit .options,
+.OCMS-Edit .optionsjson,
+.OCMS-Edit .programname,
+.OCMS-Edit .saveForLaterInstructions,
+.OCMS-Edit .saveconfirmpage,
+.OCMS-Edit .appstatuspage,
+.OCMS-Edit .customPanel {
+    display: block;
+}
+
+.OCMS-Edit .logo {
+    margin-right: 10px;
+    width: 300px;
+}
+
+.OCMS-Edit .heading {
+    width: 300px;
+}
+
+.OCMS-Edit .applybyphone {
+    width: 300px;
+}
+
+.OCMS-Edit .cardLeft {
+    width: 200px;
+}
+
+.OCMS-Edit .forms {
+    width: 690px;
+    margin-left: 20px;
+}
+
+.OCMS-Edit .terms,
+.OCMS-Edit .defaultTerms {
+    width: 690px;
+    margin-left: 20px;
+    display: block;
+}
+
+.OCMS-Edit .termsText {
+    width: 690px;
+    margin-left: 20px;
+}
+
+.OCMS-Edit .thankYou,
+.OCMS-Edit .branded {
+    width: 690px;
+    margin-left: 20px;
+}
+
+.logout {
+    float: right;
+    width: 300px;
+    display: inline-block;
+    text-align: right;
+    font-size: 14px;
+	margin-top: 8px;
+}
+.logoutBtn {
+    text-decoration: none;
+    color: #777aa9;
+}
+.loginStatus {
+    color: #666;
+}
+#regUserErrors {
+    font-size: .8em;
+    color: red;
+    padding-top: 5px;
+}
+
+#cboxOverlay {
+	background: #555;
+}
+#cboxTopLeft,
+#cboxBottomLeft,
+#cboxTopCenter,
+#cboxBottomCenter,
+#cboxTopRight,
+#cboxBottomRight,
+#cboxMiddleLeft,
+#cboxMiddleRight {
+	background: none;
+}
+#cboxContent {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#cboxLoadedContent {
+	margin-bottom: 0px;
+}
+#cboxClose {
+	display: none;
+}
+.ajaxProgress {
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	z-index: 99999;
+}
