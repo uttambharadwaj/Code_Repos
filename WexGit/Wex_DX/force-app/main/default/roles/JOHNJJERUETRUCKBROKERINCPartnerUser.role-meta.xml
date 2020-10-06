@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>None</contactAccessLevel>
+    <description>JOHN J. JERUE TRUCK BROKER INC Partner User</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>JOHN J. JERUE TRUCK BROKER INC Partner User</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>JOHNJJERUETRUCKBROKERINCPartnerManager</parentRole>
+</Role>

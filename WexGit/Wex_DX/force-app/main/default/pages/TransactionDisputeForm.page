@@ -1,0 +1,1226 @@
+<!-- -->
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="TransactionDisputeController" action="{!init}">
+    <html>
+    <head>
+
+        <!-- Title -->
+        <title>WEX Transaction Dispute Form</title>
+
+        <!-- Meta -->
+        <meta name="viewport" content="width=device-width"/>
+
+        <!-- Imported Styles -->
+        <link rel="stylesheet" href="{!URLFOR($Resource.LoadingModal, '/jquery-loadingModal-master/css/jquery.loadingModal.css')}" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+
+        <style>
+            body {
+                background: #1798c1 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .transactionDisputeFormContainer {
+                background: #fff !important;
+                padding: 20px 40px;
+                min-height: 600px;
+                border-radius: 3px;
+                -webkit-box-shadow: 0px 0px 15px 2px rgba(85, 85, 85, 1);
+                -moz-box-shadow: 0px 0px 15px 2px rgba(85, 85, 85, 1);
+                box-shadow: 0px 0px 15px 2px rgba(85, 85, 85, 1);
+            }
+
+            .erroredInput {
+                border: 2px solid #e84c3d !important;
+                box-shadow: inset 0 -2px #e84c3d !important;
+                border-radius: 0 !important;
+            }
+
+            .fieldErrorMessage {
+                display: none;
+                margin-top: -2px;
+                color: #f1f1f1;
+                font-size: 12px;
+                padding: 2px 6px 0px 10px;
+                background: #e84c3d;
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+                margin-bottom: 10px;
+                line-height: 14px !important;
+            }
+
+            .fieldErrorMessage.filled {
+                display: block;
+            }
+
+            .errorMessage {
+                padding: 0 0 12px 0;
+                margin: -2px 0;
+            }
+
+            .errorMessageBlock {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                background: #e9696e;
+                display: none;
+            }
+
+            .errorMessageBlock.filled {
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .slds-input {
+                -moz-appearance: none !important;
+                -webkit-appearance: none !important;
+                appearance: none !important;
+            }
+
+            .parsleyErrorMessage li {
+                list-style: none;
+                color: #b21522 !important;
+                padding: 4px 0 0 4px;
+            }
+
+            .parsley-errors-list {
+                color: #b21522 !important;
+                list-style: none;
+                color: #b21522 !important;
+                padding: 4px 0 0 4px;
+            }
+
+        </style>
+
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"/>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"/>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"/>
+        <script type="text/javascript" src="{!URLFOR($Resource.LoadingModal, '/jquery-loadingModal-master/js/jquery.loadingModal.min.js')}" />
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
+
+        <script>
+            $j = jQuery.noConflict();
+
+            $j(document).ready(function() {
+
+                $j('[id$=transactionDisputeForm]').bind("DOMSubtreeModified", pageRerenderFunctions);
+
+                pageRerenderFunctions();
+
+            });
+
+            function pageRerenderFunctions() {
+
+                $j(document).on( 'focus', ':input', function(){
+                    $j(this).attr('autocomplete', 'off');
+                });
+
+                $j('[id$=dateOfLostOrStolen]').datepicker({ maxDate: "+0d" });
+                $j('.datePicker').datepicker({ maxDate: "+0d" });
+
+                $j('.slds-form-element__label').bind('click', function() {
+                   event.preventDefault();
+                });
+
+                $j("[id$=attachmentBody]").on('change', function() {
+                    var filename = $j(this).val();
+                    filename = filename.replace(/.*[\/\\]/, '');
+                    $j("[id$=attachmentName]").val(filename);
+                    $j("[id$=visibleFileName]").val(filename);
+                });
+
+                $j('.phone').mask('999-999-9999');
+                $j('.ssn').mask('000-00-0000');
+                $j('.date').mask('00/00/0000');
+                $j('.postal').mask('00000-0000');
+                $j('.money').mask('A', {
+                    translation: {
+                        'A': {pattern: /[0-9\\.,]+/, recursive: true}
+                    }
+                });
+
+            }
+
+            function checkIfAccountExists() {
+
+                $j('[id$=transactionDisputeForm]').parsley({excluded: ':hidden', errorsWrapper: '<div class="parsleyErrorMessage"></div>'}).validate();
+
+                if($j('[id$=transactionDisputeForm]').parsley().isValid()) {
+
+                    $j('body').loadingModal({text: 'Searching...', 'animation': 'wanderingCubes'});
+
+                    var accountNumberQuery = $j('[id$=accountNumber]').val();
+
+                    Visualforce.remoting.Manager.invokeAction(
+                        'TransactionDisputeController.checkIfAccountExists',
+                        accountNumberQuery,
+                        function (result, event) {
+                            if (event.status) {
+                                if (result == true) {
+                                    nextStep();
+                                } else {
+                                    $j('[id$=errorMessageBlock]').addClass('filled').html('We were unable to find the account specified, or you are not an authorized contact on the account that was entered. Please try again.');
+
+                                    $j('[id$=accountNumber').on('click', function () {
+                                        $j('[id$=errorMessageBlock]').removeClass('filled').html();
+                                    });
+
+                                    $j('body').loadingModal('destroy');
+                                }
+                            } else if (event.type === 'exception') {
+                                console.log(result);
+                                console.log(event);
+                            } else {
+                                console.log(result);
+                                console.log(event);
+                            }
+                        },
+                        {escape: true}
+                    );
+
+                }
+
+            }
+
+            function triggerFileBrowse() {
+                $j('[id$=attachmentBody]').click();
+            }
+
+            function validate() {
+                if($j("[id$=attachmentBody]").val() != null && $j("[id$=attachmentBody]").val() !== "") {
+                    uploadFile();
+                }
+            }
+
+            function toggleSection(triggeringElement, elementId) {
+                if ($j(triggeringElement).prop('checked')) {
+                    $j('[id$=' + elementId + ']').css('display', 'block');
+                }
+                else {
+                    $j('[id$=' + elementId + ']').css('display', 'none');
+
+                    $j('[id$=' + elementId + ']').find('input[type=text], input[type=file], :checkbox, textarea, select').each(function () {
+                        if ($j(this).is('select')) {
+                            $j(this).val('#');
+                        }
+                        else {
+                            $j(this).val('');
+                            $j(this).prop('checked', false);
+
+                            if ($j(this).data('controls-section') != null) {
+                                $j('[id$=' + $j(this).data('controls-section') + ']').css('display', 'none');
+                                $j('[id$=fleetImplementationForm]').parsley().reset();
+                            }
+                        }
+                    });
+                }
+
+                pageRerenderFunctions();
+            }
+
+            function toggleSectionFromSelect(triggeringElement, elementId) {
+                if ($j(triggeringElement).val() === 'true') {
+                    $j('[id$=' + elementId + ']').css('display', 'block');
+                }
+                else {
+                    $j('[id$=' + elementId + ']').css('display', 'none');
+
+                    $j('[id$=' + elementId + ']').find('input[type=text], input[type=file], :checkbox, textarea, select').each(function () {
+                        if ($j(this).is('select')) {
+                            $j(this).val('#');
+                        }
+                        else {
+                            $j(this).val('');
+                            $j(this).prop('checked', false);
+
+                            if ($j(this).data('controls-section') != null) {
+                                $j('[id$=' + $j(this).data('controls-section') + ']').css('display', 'none');
+                                $j('[id$=fleetImplementationForm]').parsley().reset();
+                            }
+                        }
+                    });
+                }
+
+                pageRerenderFunctions();
+            }
+
+            function toggleCheckboxGroup(triggeringElement, groupName) {
+                if ($j(triggeringElement).prop('checked')) {
+                    $j('[id$=transactionDisputeForm]').find('[data-checkbox-group=' + groupName + ']').each(function () {
+                        if (!this.isEqualNode(triggeringElement)) {
+                            console.log('hit');
+                            $j(this).prop('checked', false);
+
+                            if ($j(this).data('controls-section') != null) {
+                                $j('[id$=' + $j(this).data('controls-section') + ']').css('display', 'none');
+                            }
+                        }
+                    });
+                }
+
+                pageRerenderFunctions();
+            }
+
+            function markRequired(triggeringElement, fieldName) {
+                if($j(triggeringElement).prop('checked')) {
+                    $j('[id$=' + fieldName + ']').prop('required', true);
+                }
+                else {
+                    $j('[id$=' + fieldName + ']').prop('required', false);
+                }
+            }
+
+            function validateAndNextStep() {
+                $j('[id$=transactionDisputeForm]').parsley({excluded: ':hidden'}).validate();
+
+                if($j('[id$=transactionDisputeForm]').parsley().isValid()) {
+                    nextStep();
+                }
+            }
+
+            function validateOnSubmit() {
+
+                $j('[id$=transactionDisputeForm]').parsley({excluded: ':hidden', errorsWrapper: '<div class="parsleyErrorMessage"></div>'}).validate();
+
+                if($j('[id$=transactionDisputeForm]').parsley().isValid()) {
+                    $j('body').loadingModal({text: 'Submitting...', 'animation': 'wanderingCubes'});
+                    $j('[id$=spinner]').css('display', 'block').height($j(document).height());
+                    submitForm();
+                }
+            }
+
+            function gotoStep(value) {
+                $j('[id$=selectedStep]').val(value);
+                goToSelectedStep();
+            }
+        </script>
+
+        <apex:slds />
+    </head>
+    <body>
+
+    <apex:form id="transactionDisputeForm">
+        <apex:inputHidden value="{!selectedStep}" id="selectedStep" />
+        <apex:actionFunction name="nextStep" action="{!nextStep}" rerender="transactionDisputeForm" onComplete="pageRerenderFunctions()"/>
+        <apex:actionFunction name="previousStep" action="{!previousStep}" rerender="transactionDisputeForm" onComplete="pageRerenderFunctions()"/>
+        <apex:actionFunction name="goToSelectedStep" action="{!goToSelectedStep}" rerender="transactionDisputeForm" onComplete="pageRerenderFunctions()"/>
+        <apex:actionFunction name="submitForm" action="{!submitForm}" rerender="transactionDisputeForm" onComplete="pageRerenderFunctions()"/>
+        <apex:actionFunction name="uploadFile" action="{!uploadFile}" />
+        <div class="slds-container_large slds-container_center transactionDisputeFormContainer" style="margin-top: 40px;">
+            <div class="slds-grid slds-grid_align-center">
+                <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                    <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" /><br/><br/>
+                    <span style="font-weight: bold; font-size: 20px;">Transaction Dispute Form</span>
+                </div>
+            </div><br/><br/>
+            <apex:outputPanel rendered="{!currentStep == 1}">
+            <div class="slds-grid slds-grid_align-center">
+                <div class="slds-col slds-size_1-of-1">
+                    <article class="slds-card">
+                        <div class="slds-path">
+                            <div class="slds-grid slds-path__track">
+                                <div class="slds-grid slds-path__scroller-container">
+                                    <div class="slds-path__scroller" role="application">
+                                        <div class="slds-path__scroller_inner">
+                                            <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                                <li class="slds-path__item slds-is-active slds-is-current" role="presentation">
+                                                    <a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-52" role="option" tabindex="0">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                        <span class="slds-path__title">Account Information</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                        <span class="slds-path__title">Dispute Details</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                        <span class="slds-path__title">Asset Information</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-54" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                        <span class="slds-path__title">Sign &amp; Submit</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div><br/>
+            <div class="slds-grid slds-grid_vertical">
+                <div class="slds-col slds-size_1-of-1">
+                    <div id="errorMessageBlock" class="errorMessageBlock attachmentsErrorSection"></div>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid_vertical">
+                <div class="slds-col slds-size_1-of-1">
+                    <p>Please enter your account number below.</p>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <div class="slds-form-element__control slds-var-p-around_medium">
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <label class="slds-form-element__label" for="input-03">  Account Number </label>
+                                    <div class="slds-form-element__control">
+                                        <apex:InputText styleclass="slds-input" id="accountNumber" value="{!accountNumber}" html-data-parsley-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-form-element__control slds-var-p-around_medium">
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <input type="button" class="slds-button slds-button_brand" onClick="checkIfAccountExists();" value="Next" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!currentStep == 2}">
+                <script>
+                    $j('body').loadingModal('destroy');
+                </script>
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-col slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-path">
+                                <div class="slds-grid slds-path__track">
+                                    <div class="slds-grid slds-path__scroller-container">
+                                        <div class="slds-path__scroller" role="application">
+                                            <div class="slds-path__scroller_inner">
+                                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="true" class="slds-path__link" href="javascript:gotoStep('1');" id="path-52" role="option" tabindex="0">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Account Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-active slds-is-current" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Dispute Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Asset Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-54" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Sign &amp; Submit</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div><br/>
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div id="errorMessageBlock" class="errorMessageBlock attachmentsErrorSection"></div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-grid_vertical slds-p-top_large">
+                    <div class="slds-col">
+                        <div class="slds-text-heading_medium">Victim Information</div>
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-form-element__control slds-var-p-around_small">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_2-of-4">
+                                        <label class="slds-form-element__label" for="input-03">Full Business Name</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" class="slds-input" disabled="true" value="{!customerDetails.accountNm}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_2-of-4">
+                                        <label class="slds-form-element__label" for="input-03">Account Number</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" class="slds-input" disabled="true" value="{!accountNumber}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_2-of-4">
+                                        <label class="slds-form-element__label" for="input-03">Authorized Contact</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" class="slds-input" disabled="true" value="{!authorizedUserFullName} ({!authorizedUserEmail})" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_2-of-4">
+                                        <label class="slds-form-element__label" for="input-03">Phone Number</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" class="slds-input" disabled="true" value="{!authorizedUserPhone}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="slds-col">
+                        <div class="slds-text-heading_medium">How The Disputed Transaction Occured</div>
+                    </div>
+                    <div class="slds-col slds-p-top_medium" id="howItOccuredInstructions">
+                        <div class="slds-text-body_regular">Please select one that best describes your dispute.</div>
+                    </div>
+                    <div class="slds-col slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-checkbox__label">
+                                                    <apex:inputCheckbox html-data-parsley-multiple="howItOccurred" html-data-parsley-error-message="Please select a value." html-data-parsley-errors-container="#howItOccuredInstructions" html-data-parsley-required="true" styleClass="slds-input" value="{!transactionDispute.disputeWhitePlastic}" />
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">The card (s) is in the possession of the company and did not conduct the suspicious transaction(s).</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-checkbox__label">
+                                                    <apex:inputCheckbox html-data-parsley-multiple="howItOccurred" html-data-parsley-error-message="Please select a value." html-data-parsley-errors-container="#howItOccuredInstructions" html-data-parsley-required="true" styleClass="slds-input" value="{!transactionDispute.disputeStolenLost}" html-data-checkbox-group="howthedisputedtransactionoccured" html-data-controls-section="checkbox1Group" onChange="toggleSection(this, 'checkbox1Group'); toggleCheckboxGroup(this, 'howthedisputedtransactionoccured');" />
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">The card (s) is NOT in the possession of the company.</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="checkbox1Group" style="display: none;" class="slds-p-left_large slds-p-bottom_medium">
+                                        <div class="slds-form-element slds-size_2-of-6 slds-var-p-around_x-small">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Please indicate if the card is:</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:selectList size="1" multiSelect="false" styleclass="slds-input" html-data-parsley-required="true">
+                                                        <apex:selectOption itemValue="" itemLabel="--- Choose One ---"></apex:selectOption>
+                                                        <apex:selectOption itemValue="Lost" itemLabel="Lost"></apex:selectOption>
+                                                        <apex:selectOption itemValue="Stolen" itemLabel="Stolen"></apex:selectOption>
+                                                    </apex:selectList>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element slds-size_2-of-6 slds-var-p-around_x-small">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">On Or About:</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input datePicker date" html-placeholder="Select Date..." html-data-parsley-required="true" value="{!transactionDispute.lostOrStolenDate}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-checkbox__label">
+                                                    <apex:inputCheckbox html-data-parsley-multiple="howItOccurred" html-data-parsley-required="true" html-data-parsley-error-message="Please select a value." html-data-parsley-errors-container="#howItOccuredInstructions" styleClass="slds-input" value="{!transactionDispute.disputeDriverName}" html-data-checkbox-group="howthedisputedtransactionoccured" html-data-controls-section="checkbox2Group" onChange="toggleSection(this, 'checkbox2Group'); toggleCheckboxGroup(this, 'howthedisputedtransactionoccured');" />
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">To the best of my knowledge and belief, the following person(s) was responsible for the unauthorized use of the card(s).</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="checkbox2Group" style="display: none;" class="slds-p-left_large slds-p-bottom_medium">
+                                        <div class="slds-form-element slds-size_2-of-6 slds-var-p-around_x-small">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Name:</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" html-data-parsley-required="true" value="{!transactionDispute.driverName}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-checkbox__label">
+                                                    <apex:inputCheckbox html-data-parsley-multiple="howItOccurred" html-data-parsley-required="true" html-data-parsley-error-message="Please select a value." html-data-parsley-errors-container="#howItOccuredInstructions" styleClass="slds-input" value="{!transactionDispute.disputeDriverNameDate}" html-data-checkbox-group="howthedisputedtransactionoccured" html-data-controls-section="checkbox3Group" onChange="toggleSection(this, 'checkbox3Group'); toggleCheckboxGroup(this, 'howthedisputedtransactionoccured');" />
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">The individual(s) responsible for the unauthorized use of the card(s) was/is employed by the victim identified above. </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="checkbox3Group" style="display: none;" class="slds-p-left_large slds-p-bottom_medium">
+                                        <div class="slds-form-element slds-size_2-of-6 slds-var-p-around_x-small">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Employment Start Date:</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input datePicker date" html-data-parsley-required="true" html-placeholder="Select Date..." value="{!transactionDispute.driverEmploymentStartDate}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element slds-size_2-of-6 slds-var-p-around_x-small">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Employment End Date:</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input datePicker date" html-data-parsley-required="true" html-placeholder="Select Date..." value="{!transactionDispute.driverEmploymentEndDate}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element slds-size_2-of-6 slds-var-p-around_x-small">
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Name:</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleClass="slds-input" html-data-parsley-required="true" value="{!transactionDispute.driverName}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-checkbox__label">
+                                                    <apex:inputCheckbox html-data-parsley-multiple="howItOccurred" html-data-parsley-required="true" html-data-parsley-error-message="Please select a value." html-data-parsley-errors-container="#howItOccuredInstructions" styleClass="slds-input" value="{!transactionDispute.disputeUnknown}" html-data-checkbox-group="howthedisputedtransactionoccured" onChange="toggleCheckboxGroup(this, 'howthedisputedtransactionoccured');" />
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">I do NOT know who used the card(s) to make the disputed purchases on the account.</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div><br/>
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Additional Comments</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputTextarea styleClass="slds-textarea" rows="6" style="resize: none;" value="{!transactionDispute.additionalComments}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="slds-col">
+                        <div class="slds-text-heading_medium">Victim's Law Enforcement Actions</div>
+                    </div>
+                    <div class="slds-col slds-p-top_medium">
+                        <div class="slds-text-body_regular">Please select all that apply.</div>
+                    </div>
+                    <div class="slds-col slds-p-top_medium">
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                            <label class="slds-checkbox__label">
+                                                <apex:inputCheckbox styleClass="slds-input" value="{!transactionDispute.prosecutionAssistanceByCustomer}"/>
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">We are willing to assist in the prosecution of the person(s) who committed the fraud.</span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                            <label class="slds-checkbox__label">
+                                                <apex:inputCheckbox styleClass="slds-input" value="{!transactionDispute.informationReleasedAuthorized}"/>
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">We are authorizing the release of this information to law enforcement for the purposes of assisting them in the investigation and prosecution of the person(s) who committed this fraud.</span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                            <label class="slds-checkbox__label">
+                                                <apex:inputCheckbox styleClass="slds-input" value="{!transactionDispute.reportedToLawEnforcementByCustomer}"/>
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">We have reported the events described in this affidavit to the police or other law enforcement agency.</span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row slds-var-p-around_x-small">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                            <label class="slds-checkbox__label">
+                                                <apex:inputCheckbox styleClass="slds-input" value="{!transactionDispute.lawEnforcementReportFiled}" html-data-controls-section="lawEnforcementSection" onChange="toggleSection(this, 'lawEnforcementSection');" />
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">The police did write a report.</span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lawEnforcementSection" style="display: none;">
+                                <div class="slds-grid slds-gutters slds-p-top_medium slds-p-bottom_medium slds-p-left_large slds-p-right_large">
+                                    <div class="slds-col slds-size_6-of-12">
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Agency #1</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency1" styleClass="slds-input" value="{!transactionDispute.agencyName1}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Officer / Agency Personnel Taking Report</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency1" html-data-parsley-required="false" styleClass="slds-input" value="{!transactionDispute.personnelName1}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Date of Report</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency1" html-data-parsley-required="false" styleClass="slds-input datePicker date" html-placeholder="Select Date..." value="{!transactionDispute.dateOfReport1}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Report Number</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency1" styleClass="slds-input" value="{!transactionDispute.reportNumber1}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Phone Number</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency1" html-data-parsley-required="false" styleClass="slds-input phone" value="{!transactionDispute.agencyPhone1}" />
+                                            </div>
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Email Address</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText html-data-parsley-group="agency1" html-data-parsley-type="email" styleClass="slds-input" value="{!transactionDispute.agencyEmail1}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12">
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Agency #2</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency2" styleClass="slds-input" value="{!transactionDispute.agencyName2}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Officer / Agency Personnel Taking Report</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency2" html-data-parsley-required="false" styleClass="slds-input" value="{!transactionDispute.personnelName2}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Date of Report</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency2" html-data-parsley-required="false" styleClass="slds-input datePicker date" html-placeholder="Select Date..." value="{!transactionDispute.dateOfReport2}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Report Number</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency2" styleClass="slds-input" value="{!transactionDispute.reportNumber2}" />
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-form-element__label" for="input-03">Phone Number</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-group="agency2" html-data-parsley-required="false" styleClass="slds-input phone" value="{!transactionDispute.agencyPhone2}" />
+                                            </div>
+                                            <div class="slds-form-element__control">
+                                                <label class="slds-form-element__label" for="input-03">Email Address</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText html-data-parsley-group="agency2" html-data-parsley-type="email" styleClass="slds-input" value="{!transactionDispute.agencyEmail2}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-p-top_large">
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <input type="button" class="slds-button slds-button_brand" onClick="validateAndNextStep();" value="Next" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!currentStep == 3}">
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-col slds-grid_vertical slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-path">
+                                <div class="slds-grid slds-path__track">
+                                    <div class="slds-grid slds-path__scroller-container">
+                                        <div class="slds-path__scroller" role="application">
+                                            <div class="slds-path__scroller_inner">
+                                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="true" class="slds-path__link" href="javascript:gotoStep('1');" id="path-52" role="option" tabindex="0">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Account Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:gotoStep('2');" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Dispute Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-active slds-is-current" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Asset Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-54" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Sign &amp; Submit</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div><br/>
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div id="errorMessageBlock" class="errorMessageBlock attachmentsErrorSection"></div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-p-top_large">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-text-heading_medium">Asset Information</div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-p-top_large">
+                    <apex:outputPanel id="assetSection">
+                        <div class="slds-col slds-size_1_of_1">
+                            <apex:variable value="1" var="assetNum"/>
+                            <apex:variable value="0" var="num"/>
+                            <apex:repeat value="{!transactionDispute.fraudPurchaseDevices}" var="fraudPurchaseDevice">
+                                <fieldset class="slds-form-element slds-form-element_compound slds-p-left_large slds-p-bottom_medium">
+                                    <legend class="slds-form-element__legend slds-form-element__label">Asset #{!VALUE(assetNum)}</legend>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-form-element__row">
+                                            <div class="slds-size_1-of-2">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-03">Card Number</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" html-data-parsley-required="true" value="{!fraudPurchaseDevice.vehicleCardNumber}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-size_1-of-2">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-03">GTAG</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" html-data-parsley-required="true" value="{!fraudPurchaseDevice.gTag}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__row">
+                                            <div class="slds-size_1-of-3">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-03">Date Abuse Began</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input datePicker" html-data-parsley-required="true" html-placeholder="Select Date..." value="{!fraudPurchaseDevice.dateAbuseBegan}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-size_1-of-3">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-03">Date Abuse Ended</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input datePicker" html-data-parsley-required="true" html-placeholder="Select Date..." value="{!fraudPurchaseDevice.dateAbuseEnded}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-size_1-of-3">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-03">Amount/Value of the Abuse</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input money" html-data-parsley-type="number" html-data-parsley-required="true" value="{!fraudPurchaseDevice.amountOfAbuse}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element__row" style="display: {!IF(sizeOfFraudPurchaseDevices == 1, 'none', 'block')};">
+                                            <div class="slds-size_1-of-1">
+                                                <div class="slds-form-element">
+                                                    <apex:commandLink styleClass="slds-button slds-button_destructive" oncomplete="pageRerenderFunctions()" value="Remove" action="{!removeAsset}" rerender="assetSection">
+                                                        <apex:param name="selectedAsset" value="{!num}" assignTo="{!selectedAsset}" />
+                                                    </apex:commandLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset><br/>
+                                <apex:variable var="num" value="{!VALUE(num) + 1}"/>
+                                <apex:variable var="assetNum" value="{!VALUE(assetNum) + 1}"/>
+                            </apex:repeat>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+                <apex:commandLink styleClass="slds-button slds-button_outline-brand" oncomplete="pageRerenderFunctions()" value="Add Asset" action="{!addAsset}" rerender="assetSection"></apex:commandLink><br/>
+                <div class="slds-grid slds-p-top_large">
+                    <div class="slds-col slds-size_1_of_1">
+                        <input type="button" class="slds-button slds-button_brand" onClick="validateAndNextStep();" value="Next" />
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!currentStep == 4}">
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-col slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-path">
+                                <div class="slds-grid slds-path__track">
+                                    <div class="slds-grid slds-path__scroller-container">
+                                        <div class="slds-path__scroller" role="application">
+                                            <div class="slds-path__scroller_inner">
+                                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="true" class="slds-path__link" href="javascript:gotoStep('1');" id="path-52" role="option" tabindex="0">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Account Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:gotoStep('2');" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Dispute Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:gotoStep('3');" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Asset Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-active slds-is-current" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-54" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Sign &amp; Submit</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div><br/>
+                <div class="slds-col slds-size_1-of-1 acceptTNC" id="acceptTNC">
+
+                </div>
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element__control slds-var-p-around_medium">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-1 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" name="options" id="checkbox-5" value="checkbox-5" html-data-parsley-required="true" data-parsley-required="true" data-parsley-error-message="Please acknowledge the signer language below." data-parsley-errors-container="#acceptTNC" />
+                                                <label class="slds-checkbox__label" for="checkbox-5">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">I certify that, to the best of my knowledge and belief, all the information on and attached to this affidavit is true, correct, and made in good faith.  I also understand that this affidavit or the information it contains may be made available to federal, state, and/or local law enforcement agencies for such action within their jurisdiction as they deem appropriate.  By submitting this Affidavit, you agree to indemnify Wright Express Financial Services Corporation for any costs, liabilities, or damages that may be incurred as a result of any false or misleading information provided herein.  </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-3 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-form-element__label" for="input-03">  Name </label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" disabled="disabled" value="{!authorizedUserFullName}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element slds-size_1-of-3 slds-var-p-around_x-small">
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <label class="slds-form-element__label" for="input-03">  Date </label>
+                                                <div class="slds-form-element__control">
+                                                    <input type="text" class="slds-input" disabled="disabled" value="{!todaysDate}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__control slds-var-p-around_medium">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <input type="button" id="submitButton" class="slds-button slds-button_brand" onClick="validateOnSubmit();" value="Submit" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!currentStep == 5}">
+                <script>
+                    $j('body').loadingModal('destroy');
+                </script>
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-col slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-path" style="pointer-events:none;">
+                                <div class="slds-grid slds-path__track">
+                                    <div class="slds-grid slds-path__scroller-container">
+                                        <div class="slds-path__scroller" role="application">
+                                            <div class="slds-path__scroller_inner">
+                                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-52" role="option" tabindex="0">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Account Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Dispute Details</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-53" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Asset Information</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-path__item slds-is-complete" role="presentation">
+                                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-54" role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                 xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                                                        </svg>
+                                                                    </span>
+                                                            <span class="slds-path__title">Sign &amp; Submit</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div><br/>
+                <div class="slds-grid slds-p-top_large">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-text-heading_medium">Thank You!</div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-p-top_large">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-text-heading_small">Your dispute has been filed. Your claim number is: {!claimNumber}</div>
+                    </div>
+                </div><br/><br/>
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-form-element__control">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <input type="button" class="slds-button slds-button_brand" onClick="nextStep();" value="Add Attachments" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!currentStep == 6}">
+
+                <div class="slds-grid slds-p-top_medium">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-text-heading_medium">Add Attachments - Claim # {!claimNumber}</div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-p-top_large">
+                    <div class="slds-col slds-size_1-of-4">
+                        <input type="button" value="Browse" onClick="javascript:triggerFileBrowse();" class="slds-button slds-button_outline-brand" />&nbsp;&nbsp;<input type="text" id="visibleFileName" style="border: 0;" disabled="disabled" />
+                        <apex:inputText value="{!attachmentName}" style="visibility: hidden; display: none;" id="attachmentName"/>
+                        <apex:inputFile value="{!attachmentBody}" filename="{!attachmentName}" id="attachmentBody" style="visibility: hidden; display: none;"/>
+                    </div>
+                </div>
+                <div class="slds-grid slds-p-top_large">
+                    <div class="slds-col slds-size_1-of-4">
+                        <input type="button" class="slds-button slds-button_brand" onClick="validate();" value="Attach File" />
+                    </div>
+                </div><br/>
+                <apex:actionRegion >
+                    <apex:outputPanel rendered="{!sizeOfClaimAttachments != 0}">
+                        <div class="slds-grid slds-p-top_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <div class="slds-text-heading_medium">Claim Attachments</div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-p-top_large">
+                            <div class="slds-col slds-size_1-of-1">
+                                <ul style="font-size: 13px; list-style-type: none; padding-left: 20px;">
+                                <apex:repeat var="attachment" value="{!claimAttachments}">
+                                <li><i class="far fa-file-alt" style="font-size: 18px;"></i>&nbsp;&nbsp;<a target="_blank" href="/servlet/servlet.FileDownload?file={!attachment.Id}">{!attachment.Name}</a>&nbsp;<apex:commandLink onclick="if(!confirm('Are you sure you want to delete \'{!attachment.Name}\'?')) { return false ;}" action="{!deleteFile}" rerender="dummy" style="text-decoration: none; color: #cf202f !important;">
+                                        <i class="far fa-trash-alt" title="Delete File"></i>
+                                        <apex:param name="selectedFile" value="{!attachment.Id}" />
+                                    </apex:commandLink></li>
+                                </apex:repeat>
+                                </ul>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                </apex:actionRegion>
+            </apex:outputPanel>
+        </div>
+    </apex:form>
+    </body>
+    </html>
+</apex:page>

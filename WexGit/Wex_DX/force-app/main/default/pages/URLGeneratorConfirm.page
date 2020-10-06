@@ -1,0 +1,36 @@
+<apex:page controller="URLGeneratorController" showHeader="false" standardStylesheets="false">
+<head> 
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+    <apex:stylesheet value="{!URLFOR($Resource.URLGenAssets, 'css/base.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.URLGenAssets, 'css/branding.css')}"/>
+    <!--
+    <apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery.alphanumeric.js')}"/>
+    -->
+    <title>Credit App URL Generator</title>
+    
+    <style>
+        .error-inline { display: block;  float: right; }
+       
+    	.brand h1 { float: left; line-height: 70px; margin-left: 30px; }
+        
+        #page-wrap { margin-top: 100px; }
+     </style>
+    
+</head>
+<div class="brand clearfix noselect">
+
+    <h1>Credit Application URL Generator</h1>
+</div>
+<div id="page-wrap">
+    <h3>Confirmation</h3>
+    <p>URL generation was successful! An email will be sent to your customer with the link to complete their credit application.  A separate email will be sent to your credit office upon application completion, notifying them that the application is coming.</p>
+    <p>
+        &nbsp;
+    </p>
+    <a href="{!$Page.URLGenerator}?parentProgram={!$CurrentPage.parameters.parentProgram}">
+        <div class="ui-form-controls pull-left">
+            <input type="button" value="Generate Another URL" class="btn-mobile" />
+        </div>
+    </a>
+</div>
+</apex:page>

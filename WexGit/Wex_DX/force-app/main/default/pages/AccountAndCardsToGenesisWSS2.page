@@ -1,0 +1,23 @@
+<!-- *************************
+    Purpose:
+        Send Application, Opportunity, Account, Contact, and Cards to Genesis and WSS2
+    
+    History:
+        14-Apr-2016 B. Sotoudeh (WEX AU)     Created/Cloned from existin (AccountAndCardsToGenesis) 
+************************* -->
+<apex:page standardController="AU_Application_Request__c" extensions="AccountAndCardsToGenesis_ExCon" showHeader="true" sidebar="true" action="{!submitAccountAndCardsCreditQueue}">
+    <apex:sectionHeader title="Sending to Genesis" subtitle="{!AU_Application_Request__c.Name}" />
+
+    <apex:form >
+        <apex:pageBlock id="thePageBlock" >
+
+            <apex:pageMessages />
+
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!cancel}" value="Back to AU Application Request"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+
+    </apex:form>
+
+</apex:page>

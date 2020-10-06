@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>MVF Leads Queue</name>
+    <queueMembers>
+        <users>
+            <user>adarling@fleetone.com</user>
+            <user>bmarley@fleetone.com</user>
+            <user>carly.wigren@wexinc.com</user>
+            <user>cwesterman@fleetone.com</user>
+            <user>cjohnson@fleetone.com_old</user>
+            <user>cbrown@fleetone.com</user>
+            <user>david.pruitt@wexinc.com</user>
+            <user>lparr@fleetone.com</user>
+            <user>msnelson@fleetone.com</user>
+            <user>mdawson@fleetone.com</user>
+            <user>marshal.caffey@wexinc.com</user>
+            <user>matthew.burgess@wexinc.com</user>
+            <user>meredith.mize@wexinc.com</user>
+            <user>rick.costill@wexinc.com</user>
+            <user>rcostill@fleetone.com</user>
+            <user>shanette.garcia@fleetone.com</user>
+            <user>wharris@fleetone.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>MVF_Leads_Routing</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

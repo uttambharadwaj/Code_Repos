@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Chevron - Inside Sales - Chat</name>
+    <queueMembers>
+        <users>
+            <user>bernard.bouthot@wexinc.com</user>
+            <user>cameron.cain@wexinc.com</user>
+            <user>clayton.lefay@wexinc.com</user>
+            <user>heather.murdoch@wexinc.com</user>
+            <user>mary.mcmullin@wexinc.com</user>
+            <user>matthew.cabral@wexinc.com</user>
+            <user>max.heinz@wexinc.com</user>
+            <user>robert.whytock@wexinc.com</user>
+            <user>susan.chase@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Chevron_Inside_Sales_Chat</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>LiveChatTranscript</sobjectType>
+    </queueSobject>
+</Queue>

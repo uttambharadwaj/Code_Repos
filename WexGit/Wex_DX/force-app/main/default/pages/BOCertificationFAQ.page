@@ -1,0 +1,435 @@
+<apex:page controller="BrandingController" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
+<html>
+<head>
+    <!-- Title -->
+    <title>WEX - Beneficial Owner Certification - FAQ</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, user-scalable=no" name="viewport" />
+    
+    <!-- Imported Styles -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.BOCertificationCSS)}"/>
+    
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
+
+    <!-- Imported Scripts -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+
+    <!-- Additional Scripts -->
+    <script>
+    	var page_name = "BOCDD-FAQ";
+        document.cookie = "debug_logs=debug_logs;domain=.force.com";
+    
+    	$j = jQuery.noConflict();
+    
+    </script>
+
+    <!-- Google Tag Manager --> 
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M2VQ3N" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': 
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], 
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); 
+})(window,document,'script','dataLayer','GTM-M2VQ3N');</script> 
+<!-- End Google Tag Manager -->
+    
+	<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js" />
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" />
+        
+            <!-- Local Styles -->
+    <style>
+    	.section-header { 
+			{!program.Brand_Color_1__c}
+		}
+
+		.sidebar-section-header { 
+			{!program.Brand_Color_1__c} 
+		}
+
+		.panel-heading {
+			{!program.Brand_Color_1__c} 
+		}
+
+		.step-button {
+			{!program.Brand_Color_2__c}
+		}
+    
+    	#mobile-footer-call {
+        	{!program.Brand_Color_1__c}
+        }
+    
+    	.disabled-button { 
+			background: #e9e9e9 !important; 
+			pointer-events: none; 
+			color: #ccc !important; 
+			border: 1px solid #ccc !important;
+		}
+    
+    ul { list-style-type: disc; padding-left: 4px; }
+    
+    ul li {
+    /*
+     * We want the bullets outside of the list,
+     * so the text is aligned. Now the actual bullet
+     * is outside of the list’s container
+     */
+    list-style-position: outside;
+
+    /*
+     * Because the bullet is outside of the list’s
+     * container, indent the list entirely
+     */
+    margin-left: 1em;
+}
+    
+    p {
+        font-size: 15px !important;
+        }
+    
+    h3 { margin-bottom: 8px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap clearfix">
+    <div id="header" class="clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="nine columns clearfix">
+                    <div id="branding">
+                            <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" />
+                            <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}" />
+                            <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>    
+                    </div>
+				</div>
+                <div class="three columns">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+	<div id="content">
+        <div class="container" style="font-size: 15px !important;">
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+                <div class="twelve columns form">
+                    <h2>Understanding Certification of Beneficial Ownership</h2>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+            		<p style="font-size: 15px !important;">
+                    	Effective May 11, 2018, new Federal rules require <b>all banks</b> to obtain, verify, and record information about the ownership of legal entity customers when opening a new account.
+                    </p>
+                	<p style="font-size: 15px !important;">
+                    	Legal entities can be abused to disguise involvement in terrorist financing, money laundering, tax evasion, corruption, fraud, and other
+						financial crimes. Requiring the disclosure of key individuals who ultimately own or control a legal entity — i.e., the beneficial owners —
+						helps law enforcement investigate and prosecute these crimes.
+                    </p>
+                	<p style="font-size: 15px !important;">
+                    	This page will help you understand the new requirements.
+                    </p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    <h3>FAQs</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns" style="line-height: 28px;">
+                    1.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#1">What information is being requested?</a><br/>
+                	2.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#2">Who is responsible for providing this information?</a><br/>
+                	3.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#3">What is a legal entity?</a><br/>
+                	4.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#4">What business types are exempt from this requirement?</a><br/>
+                	5.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#5">Are non-profits exempt?</a><br/>
+                	6.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#6">What is a beneficial owner?</a><br/>
+                	7.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#7">What is a person with control?</a><br/>
+                	8.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#8">Can my application be approved without this information?</a><br/>
+                	9.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#9">What if I don’t have all of this information when filling out the application?</a><br/>
+                	10.&nbsp;&nbsp;<a href="#10">What if a beneficial owner is also a person with control?</a><br/>
+                	11.&nbsp;&nbsp;<a href="#11">Do existing accounts have to provide this information?</a><br/>
+                	12.&nbsp;&nbsp;<a href="#12">What are some examples of beneficial ownership?</a><br/>
+                	13.&nbsp;&nbsp;<a href="#13">Where can I review the official Federal rules?</a><br/>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="1"></a>1. What information is being requested?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                        <p>As part of the application form, you will be asked to identify up to four beneficial owners of this business, plus one person with significant managing control.</p>
+                        <p><b>For each U.S. person,</b> the required information includes:</p>
+                        <ul>
+                        	<li>Name</li>
+                        	<li>Residential Address (no P.O. boxes)</li>
+                        	<li>Date of Birth</li>
+                        	<li>Social Security Number</li>
+                        </ul>
+                        <p>You are considered a U.S. person if you are an individual who is a U.S. citizen or U.S. resident alien.</p>
+                        
+						<p><b>For Canadian and other foreign persons</b>, the required information includes:</p>
+                        <ul>
+							<li>Name</li>
+                            <li>Residential Address (no P.O. Boxes)</li>
+                            <li>Date of Birth</li>
+							<li>Passport Number and country of issuance. (In lieu of a passport, foreign persons may also provide a U.S. government-issued Alien ID or
+								other foreign government-issued document evidencing nationality or residence and bearing a photograph or similar safeguard.)</li>
+                        </ul>
+				</div>
+            </div>
+			<div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="2"></a>2. Who is responsible for providing this information?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>This information must be provided by the person opening a new account on behalf of a legal entity.</p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="3"></a>3. What is a legal entity?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>For the purposes of this form, a legal entity includes:</p>
+                    <ul>
+                        <li>Corporations</li>    
+                    	<li>Limited liability companies (or other entities created by a filing of a public document with a Secretary of State or similar office)</li>
+                    	<li>General partnerships</li>
+                    	<li>Similar business entities formed in the United States or a foreign country</li>
+                    </ul>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="4"></a>4. What legal entities are exempt from this requirement?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>The following legal entities are exempt:</p>
+                    <ul>
+                        <li>Non-Statutory Trust</li>    
+                    	<li>Bank/Bank Holding Co/Credit Union</li>
+                    	<li>Federal/State/Local Government Agency or Authority</li>
+                    	<li>Public Company and Majority Owned Affiliate</li>
+                    	<li>Investment Company/Adviser</li>
+                    	<li>Public Accounting Firm</li>
+                    	<li>Insurance Company</li>
+                    </ul>
+                        <p>NOTE: The following are not legal entities, and not required to provide this information: Natural Person, Sole Proprietorship, and
+                        Unincorporated Association.</p>
+				</div>
+            </div>
+			<div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="5"></a>5. Are non-profits exempt?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>Non-profits have a partial exemption, and must only identify a person with control.</p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="6"></a>6. What is a beneficial owner?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>An individual, who owns, directly or indirectly, 25 percent or more of the equity interests of the legal entity customer.</p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="7"></a>7. What is a person with control?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>An individual with significant responsibility for managing the legal entity customer. For example, an executive officer, senior manager, or any other person who regularly performs similar functions.</p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="8"></a>8. Can my application be approved without this information?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>No. WEX Bank cannot review or approve an application until the beneficial owner information has been received and verified.</p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="9"></a>9. What if I don’t have all of this information when filling out the online application?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>If you need more time to gather the required information, you have the option to save your progress. You will receive a secure link that will
+					   allow you to return to the online form, complete the missing information, and submit your application. This link will be active for 30 days,
+					   after which you will need to start a new application form.</p>
+				</div>
+            </div>
+			<div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="10"></a>10. What if a beneficial owner is also a person with control?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>If an individual is both a beneficial owner and person with control for a legal entity, their information will need to be identified under both types.</p>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="11"></a>11. Do existing accounts have to provide this information?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>This information is not required for any WEX Bank account opened before May 11, 2018. However, if the same legal entity opens a new
+					account after that date, its beneficial owner information must be provided. Also, changes in ownership structure after that date may require
+					updated beneficial owner information.</p>
+				</div>
+            </div>
+                        <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="12"></a>12. What are some examples of beneficial ownership?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                        <p><b>Example 1:</b>Mr. and Mrs. Smith each hold a 50% equity interest in Mom &amp; Pop, LLC. Mrs. Smith is President and Mr. Smith is Vice President.</p>
+                        <p>Mom &amp; Pop, LLC would be required to identify at least two, but up to three individuals:</p>
+                        <ul>
+                        <li>Both Mr. and Mrs. Smith as beneficial owners</li>
+                        <li>Either Mr. or Mrs. Smith as a person with control, or a third person with significant responsibility</li>
+                        </ul>
+                        
+                        <p><b>Example 2:</b>Acme, Inc. is a closely-held private corporation. John Doe holds a 35% equity stake, and no other person holds a 25% or higher stake. Jane Jones is the President and Chief Executive Officer.</p>
+                        <p>Acme, Inc. would be required to identify two individuals:</p>
+                        <ul>
+                        <li>John Doe as a beneficial owner</li>
+                        <li>Jane Jones (or another person with significant responsibility) as a person with control</li>
+                        </ul>
+                        
+                        <p><b>Example 3:</b>Quentin, Inc. is owned by the five Quentin siblings, each of whom holds a 20% equity stake. Quentin Inc.’s President is Benton Quentin, who is the only individual with significant management responsibility.</p>
+                        <p>Quentin, Inc. would be required to identify one individual:</p>
+                        <ul>
+                        <li>Benton Quentin as the person with control</li>
+                        <li>No individuals as beneficial owners, because no sibling has a 25% or higher equity stake</li>
+                        </ul>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                    &nbsp;
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+					<h3><a id="13"></a>13. Where can I review the official Federal rules?</h3>
+				</div>
+            </div>
+            <div class="row">
+            	<div class="twelve columns">
+                	<p>These requirements were issued under the Bank Secrecy Act by the Financial Crimes Enforcement Network (FinCEN) of the U.S. Department
+					   of Treasury. Read the final rules <a href="https://www.federalregister.gov/documents/2016/05/11/2016-10567/customer-due-diligence-requirements-for-financial-institutions" target="_blank">here</a>.</p>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+</apex:page>

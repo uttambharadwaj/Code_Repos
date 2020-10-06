@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>jbhuntapps@efsllc.com</email>
+    <name>JB Hunt Implementation</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>JB_Hunt_Partners_Group</publicGroup>
+        </publicGroups>
+        <users>
+            <user>annalese.bowlus@efsllc.com</user>
+            <user>jenjohns@efsllc.com</user>
+            <user>jfought@efsllc.com</user>
+            <user>john.damalos@efsllc.com</user>
+            <user>mickenzi.tapia@wexinc.com</user>
+            <user>tiana.tapia@wexinc.com</user>
+            <user>tiffany.munn@efsllc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>OnlineApplication__c</sobjectType>
+    </queueSobject>
+</Queue>

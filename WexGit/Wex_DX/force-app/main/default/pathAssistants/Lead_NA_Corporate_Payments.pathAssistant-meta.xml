@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Lead</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Lead NA Corporate Payments</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;The Business is closed, are a current customer, duplicate, Fraud, doesn’t need a WEX Solution.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Disqualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;You know the Company Name, Address, the Key Influencer (s) potential Annual Spend, Product Interest, Lead Source, Primary Campaign, and Progam (if it&amp;#39;s a Partner Lead).&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Qualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;The Customer was not able to decide or is unresponsive.&lt;/p&gt;&lt;p&gt;Leave Stalled to retain ownership and trigger Marketing engagement.&lt;/p&gt;</info>
+        <picklistValueName>Stalled</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;The Lead is assigned to you, but you have no started working it yet.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Untouched</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;You’re working on qualifying the lead.&lt;/p&gt;&lt;p&gt;Leave working until Stalled, Disqualified or Qualified.&lt;/p&gt;</info>
+        <picklistValueName>Working</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>NA_Corporate_Payments_Lead</recordTypeName>
+</PathAssistant>

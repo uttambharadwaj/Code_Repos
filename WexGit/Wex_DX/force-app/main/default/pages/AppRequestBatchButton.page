@@ -1,0 +1,14 @@
+<apex:page standardController="Application_Request__c" recordSetVar="onlineApps" extensions="AppDecisioningExtension2">
+    <apex:form >
+        <apex:pageBlock title="Run App Decisioning" mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Process" action="{!process}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!selected}" var="onApp">
+                <apex:column value="{!onApp.Name}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

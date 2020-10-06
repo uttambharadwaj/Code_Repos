@@ -1,0 +1,219 @@
+<apex:page standardController="FleetEnrollment__c" showHeader="false" standardStylesheets="false" extensions="FleetEnrollmentXLSController" tabStyle="FleetEnrollment__c" contentType="application/vnd.ms-excel#{!fleetEnrollment.Embossing_Company_Name__c}_FleetData.xls" sidebar="false" language="en-US" cache="true">
+<html>
+<head>        
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <style>
+        .table { border: 1px solid #000; font-size: 14px; }
+		.header { background: #244062; color: #fff; text-decoration: underline; }
+        .subheader { background: #538dd5; color: #fff; text-decoration: underline; }
+        .even-row { background: #dce6f1; text-align: left; }
+        .odd-row { background: #b8cce4; text-align: left; }
+        .cell { border: 1px solid #538dd5; }
+    </style>
+</head>
+<body>
+<form>
+            <table class="table">
+				<thead>
+                	<th class="header" colspan="2">Billing Information</th>
+                </thead>
+                <tbody>
+                    <tr class="even-row">
+                        <td class="cell"><b>Opportunity:</b></td>
+                        <td class="cell">{!fleetEnrollment.Opportunity_Number__c}</td>
+                    </tr>
+                	<tr class="odd-row">
+                        <td class="cell"><b>Billing First Name:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Contact_First_Name__c}</td>
+                    </tr>
+					<tr class="odd-row">
+						<td class="cell"><b>Billing Last Name:</b></td>
+						<td class="cell">{!fleetEnrollment.Billing_Contact_Last_Name__c}</td>
+					</tr>
+                    <tr class="even-row">
+                        <td class="cell"><b>Billing Address:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Address_Line_1__c}</td>
+                    </tr>
+                    <tr class="odd-row">
+                        <td class="cell"><b>Billing Address Line 2:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Address_Line_2__c}</td>
+                    </tr>
+                    <tr class="even-row">
+                        <td class="cell"><b>Billing City:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_City__c}</td>
+                    </tr>
+                    <tr class="odd-row">
+                        <td class="cell"><b>Billing State:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_State__c}</td>
+                    </tr>
+                    <tr class="even-row">
+                        <td class="cell"><b>Billing Postal Code:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Postal_Code__c}</td>
+                    </tr>
+                    <tr class="odd-row">
+                        <td class="cell"><b>Billing Phone:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Phone__c}</td>
+                    </tr>
+                    <tr class="even-row">
+                        <td class="cell"><b>Billing Email:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Email__c}</td>
+                    </tr>
+                </tbody>
+            </table>
+        <br/><br/>
+	<table class="table">
+		<thead>
+		<th class="header" colspan="2">Card Shipping Information</th>
+		</thead>
+		<tbody>
+		<tr class="odd-row">
+			<td class="cell"><b>Attention</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Attention__c}</td>
+		</tr>
+		<tr class="even-row">
+			<td class="cell"><b>Card Shipping Address:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Address_Line_1__c}</td>
+		</tr>
+		<tr class="odd-row">
+			<td class="cell"><b>Card Shipping Address Line 2:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Address_Line_2__c}</td>
+		</tr>
+		<tr class="even-row">
+			<td class="cell"><b>Card Shipping City:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_City__c}</td>
+		</tr>
+		<tr class="odd-row">
+			<td class="cell"><b>Card Shipping State:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_State__c}</td>
+		</tr>
+		<tr class="even-row">
+			<td class="cell"><b>Card Shipping Postal Code:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Postal_Code__c}</td>
+		</tr>
+		</tbody>
+	</table>
+	<br/><br/>
+    		<table class="table">
+				<thead>
+                	<th class="header" colspan="3">Authorized Contacts</th>
+                </thead>
+                <tbody>
+                    <tr>
+                		<td class="subheader">Name</td>
+                        <td class="subheader">Phone</td>
+                        <td class="subheader">Email</td>
+                	</tr>
+                    <apex:variable var="rowCounter" value="2" />
+                    <apex:repeat var="fleetContact" value="{!fleetEnrollmentContacts}">
+                    	<tr class="{!IF(MOD(VALUE(rowCounter), 2) == 0, 'even-row', 'odd-row')}">
+                        	<td class="cell">{!fleetContact.First_Name__c}</td>
+							<td class="cell">{!fleetContact.Last_Name__c}</td>
+                            <td class="cell">{!fleetContact.Phone__c}</td>
+                            <td class="cell">{!fleetContact.Email__c}</td>
+                        </tr>
+                        <apex:variable var="rowCounter" value="{!VALUE(rowCounter) + 1}" />
+                    </apex:repeat>
+                </tbody>
+            </table>
+        <br/><br/>
+            <table class="table">
+				<thead>
+                	<th class="header" colspan="2">Card Printing</th>
+                </thead>
+                <tbody>
+                    <tr class="even-row">
+                        <td class="cell"><b>Number Of Cards:</b></td>
+                        <td class="cell">{!fleetEnrollment.Number_Of_Vehicles__c}</td>
+                    </tr>
+                	<tr class="odd-row">
+                        <td class="cell"><b>Company Name:</b></td>
+                        <td class="cell">{!fleetEnrollment.Embossing_Company_Name__c}</td>
+                    </tr>
+                    <tr class="even-row">
+                        <td class="cell"><b>Second Line Embossing Option:</b></td>
+                        <td class="cell">{!fleetEnrollment.Embossing_Second_Line__c}</td>
+                    </tr>
+                </tbody>
+            </table>
+        <br/><br/>
+    		<table class="table">
+				<thead>
+                	<th class="header" colspan="2">Reporting Options</th>
+                </thead>
+                <tbody>
+                    <tr class="even-row">
+                    	<td class="cell"><b>Department:</b></td>
+                    	<td class="cell">{!IF(fleetEnrollment.Reporting_Dept__c, 'Yes', 'No')}</td>
+                    </tr>
+                    <tr class="odd-row">
+                    	<td class="cell"><b>Vehicle Description:</b></td>
+                    	<td class="cell">{!IF(fleetEnrollment.Report_VehicleDesc__c, 'Yes', 'No')}</td>
+                    </tr>
+                    <tr class="even-row">
+                    	<td class="cell"><b>License Plate #:</b></td>
+                    	<td class="cell">{!IF(fleetEnrollment.Report_LicensePlt__c, 'Yes', 'No')}</td>
+                    </tr>
+                    <tr class="odd-row">
+                    	<td class="cell"><b>Company Vehicle ID:</b></td>
+                    	<td class="cell">{!IF(fleetEnrollment.Report_VehicleId__c, 'Yes', 'No')}</td>
+                    </tr>
+                </tbody>
+            </table>
+        <br/><br/>
+            <table class="table">
+				<thead>
+                	<th class="header" colspan="7">Vehicle Information</th>
+                </thead>
+                <tbody>
+                    <tr>
+                		<td class="subheader">Company Vehicle ID</td>
+                        <td class="subheader">Vehicle Description</td>
+                        <td class="subheader">Department</td>
+                        <td class="subheader">License Plate #</td>
+                        <td class="subheader">Card Control Option</td>
+                        <td class="subheader">Prompt Option</td>
+                        <td class="subheader">Acceptance Option</td>
+                	</tr>
+                    <apex:variable var="rowCounter" value="2" />
+                    <apex:repeat var="fleetVehicle" value="{!fleetEnrollmentVehicles}">
+                    	<tr class="{!IF(MOD(VALUE(rowCounter), 2) == 0, 'even-row', 'odd-row')}">
+                        	<td class="cell">{!fleetVehicle.Customer_Vehicle_ID__c}</td>
+                            <td class="cell">{!fleetVehicle.Vehicle_Description__c}</td>
+                            <td class="cell">{!fleetVehicle.Department__c}</td>
+                            <td class="cell">{!fleetVehicle.License_Plate__c}</td>
+                            <td class="cell">{!fleetVehicle.Card_Control_Type__c}</td>
+                            <td class="cell">{!fleetVehicle.Prompt_Options__c}</td>
+                            <td class="cell">{!fleetVehicle.Acceptance__c}</td>
+                        </tr>
+                        <apex:variable var="rowCounter" value="{!VALUE(rowCounter) + 1}" />
+                    </apex:repeat>
+                </tbody>
+            </table>
+    	<br/><br/>
+    	<apex:outputText rendered="{!program.Fleet_Enrollment_Disable_Driver_Page__c == false}">
+    		<table class="table">
+				<thead>
+                	<th class="header" colspan="3">Driver Information</th>
+                </thead>
+                <tbody>
+                    <tr>
+                		<td class="subheader">First Name</td>
+                        <td class="subheader">Last Name</td>
+                        <td class="subheader">Driver ID</td>
+                	</tr>
+                    <apex:variable var="rowCounter" value="2" />
+                    <apex:repeat var="fleetDriver" value="{!fleetEnrollmentDrivers}">
+                    	<tr class="{!IF(MOD(VALUE(rowCounter), 2) == 0, 'even-row', 'odd-row')}">
+                        	<td class="cell">{!fleetDriver.First_Name__c}</td>
+                            <td class="cell">{!fleetDriver.Last_Name__c}</td>
+                            <td class="cell">{!fleetDriver.Driver_ID__c}</td>
+                        </tr>
+                        <apex:variable var="rowCounter" value="{!VALUE(rowCounter) + 1}" />
+                    </apex:repeat>
+                </tbody>
+            </table>
+        </apex:outputText>
+</form>
+</body>
+</html>
+</apex:page>

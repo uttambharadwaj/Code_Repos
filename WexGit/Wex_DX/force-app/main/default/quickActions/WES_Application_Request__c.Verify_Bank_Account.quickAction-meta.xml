@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>used to verify bank account details using third party</description>
+    <height>400</height>
+    <icon>echosign_dev1__UploadFileButton</icon>
+    <label>Verify Bank Account</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <page>sortcodesvalidation</page>
+    <type>VisualforcePage</type>
+    <width>-100</width>
+</QuickAction>

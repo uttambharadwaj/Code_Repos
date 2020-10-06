@@ -1,0 +1,265 @@
+<!--
+ - Created by mfarrell on 2020-01-16.
+ -
+ - Revision History:
+ -
+ -->
+
+<apex:page showHeader="false" sideBar="false" standardStylesheets="false" docType="html-5.0" controller="WexBOCAFinancialsController" action="{!init}" language="{!languageCode}">
+    <html lang="{!languageCode}">
+        <head>
+            <!-- Title -->
+            <title>{!program.Brand_Long_Name__c} {!$Label.BOCA_Credit_Application}</title>
+
+            <!-- Meta -->
+            <meta charset="utf-8" />
+            <meta content="width=device-width, user-scalable=no" name="viewport" />
+
+            <!-- Imported Styles -->
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+            <link rel="stylesheet" href="{!URLFOR($Resource.BOCertificationCSS)}" />
+
+            <!-- Fonts -->
+            <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+            <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
+
+            <!-- Imported Scripts -->
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
+            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+
+            <!-- Additional Scripts -->
+            <script>
+                var page_name = "App-Page-Financials";
+                var card_program = "{!programParameter}";
+                console.log('{!areRequiredDocumentsUploaded}');
+                document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+                $j = jQuery.noConflict();
+                window.onload = function () {
+                    var elems = document.querySelectorAll('.required');
+                    for (var i = 0; i < elems.length; i++) {
+                        elems[i].required = true;
+                    }
+                }
+                // Any labels need to be defined in this bridge in order
+                // for the JS to pick them up
+                window.$Label = window.$Label || {};
+                $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+                $Label.BOCA_Financials_UploadAllDocs = '{!JSENCODE($Label.BOCA_Financials_UploadAllDocs)}';
+
+                window.boca_language_code = '{!languageCode}';
+                window.card_program_name = '{!programParameter}';
+
+                function triggerFileBrowse(elem) {
+                    $j(elem).nextAll('[id$=attachmentBody]')[0].click();
+                }
+
+                function upload(elem) {
+                    if ($j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() != null && $j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() !== "") {
+                        uploadFile();
+                    }
+                    else {
+                        $j('[id$=errors]').css('display', 'block');
+                        $j('[id$=errors]').html('Please select a file to upload.');
+                    }
+                }
+
+                $j(document).ready(function () {
+                    $j("[id$=attachmentBody]").on('change', function () {
+                        var filename = $j(this).val();
+                        filename = filename.replace(/.*[\/\\]/, '');
+                        $j($j(this).prevAll("[id$=attachmentName]")[0]).val(filename);
+                        $j($j(this).prevAll("[id$=visibleFileName]")[0]).val(filename);
+                    });
+                });
+
+                function validateFinancials() {
+                    if ({!areRequiredDocumentsUploaded}) {
+                        submitApplication();
+                    } else if ({!requireFinancials}) {
+                        $j('[id$=errors]').css('display', 'block');
+                        $j('[id$=errors]').html($Label.BOCA_Financials_UploadAllDocs);
+
+                        document.querySelector("#errors").scrollIntoView();
+                    } else {
+                        submitApplication();
+                    }
+                }
+            </script>
+
+            <script type="text/javascript" src="{!URLFOR($Resource.WexBOCABaseJS)}" />
+
+            <!-- Local Styles -->
+            <style>
+
+                .section-header {
+                {!program.Brand_Color_1__c}
+                }
+
+
+                .step-button {
+                {!program.Brand_Color_2__c}
+                }
+
+            </style>
+
+            <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false" />
+
+        </head>
+        <body>
+            <div class="page-wrap clearfix">
+                <apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false" />
+                <div id="header" class="clearfix">
+                    <div class="container">
+                        <div class="row">
+                            <div class="nine columns clearfix">
+                                <div id="branding">
+                                    <!--PSOBACKLOG-76-->
+                                    <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!brandingUtility.Program_Name__c} Logo"/>
+                                    <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
+                                </div>
+                            </div>
+                            <div class="three columns">
+                                <div id="contactUs">
+                                    <span class="header-small">{!$Label.BOCA_Rather_Talk}</span><br/>
+                                    {!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
+                                    <apex:outputText value="{!program.Live_Person_Code__c}" escape="false" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="twelve columns">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="four columns sidebar">
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <!--PSOBACKLOG-76-->
+                                    <apex:image styleClass="cardImage" style="max-width: 200px;" value="{!URLFOR($Action.Attachment.Download, brandingCard)}" rendered="{!brandingCard != null}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
+                                </div>
+                            </div>
+                            <!-- End Left Column -->
+
+                            <!-- Right Column -->
+                            <apex:outputPanel >
+                            <div class="eight columns form">
+                                <div class="twelve columns clearfix">
+                                    <apex:outputPanel id="indicator">
+                                        <div class="step-indicator clearfix">
+                                            <div class="step ">{!$Label.BOCA_Business_Information_Breadcrumb}</div>
+                                            <div class="step ">{!$Label.BOCDD_Ownership_Info}</div>
+                                            <div class="step step-active step-active-middle">{!$Label.CPBOCA_Upload_Financials}</div>
+                                            <div class="step step-last">{!$Label.BOCA_Done_In_Minutes}</div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div id="errors" class="stepErrors">
+                                        {!$Label.BOCA_Application_Errors}
+                                    </div>
+                                </div>
+                                <apex:form id="creditForm">
+                                    <apex:actionFunction name="uploadFile" action="{!uploadFile}" />
+                                    <apex:actionFunction name="submitApplication" action="{!submitApplication}" />
+
+                                    <!-- Start Document Upload Section -->
+                                    <apex:outputPanel id="documentsRequired">
+                                        <div class="twelve columns clearfix">
+                                            <div class="twelve columns clearfix">
+                                                <div class="section-header">
+                                                    <i class="fa fa-address-card"></i> {!$Label.CPBOCA_Document_Upload}
+                                                </div>
+                                            </div>
+                                            <div class="twelve columns clearfix">
+                                                <apex:repeat value="{!docTypeList}" var="doc">
+                                                    <div id="fileUpload">
+                                                        <div class="twelve columns clearfix">
+                                                            <apex:outputLabel styleClass="styled-label" id="documentType">{!$ObjectType.Application_Request__c.fields[doc.fieldName].label}
+                                                                <span style="display: {!if(requireFinancials, 'inline-block', 'none')}" class="styled-label-required">*</span>
+                                                            </apex:outputLabel>
+                                                        </div>
+                                                        <div class="twelve columns clearfix" style="padding-left: 20px">
+                                                            <input type="text" id="visibleFileName" style="border-radius: 4px 0px 0px 4px; vertical-align: middle; border-right: 0; width: 50% !important; pointer-events: none; display: inline-flex !important;" />
+                                                            <input type="button" value="Browse" onClick="javascript:triggerFileBrowse(this);"
+                                                                   style="background: #e1e1e1 !important; border: 1px solid #D1D1D1; vertical-align: middle; clear: both; margin-left: -5px; border-radius: 0px 4px 4px 0px; border-left: 0; display: inline-flex !important;" />
+                                                            <apex:inputText value="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentName" />
+                                                            <apex:inputFile value="{!doc.attachmentBody}" filename="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentBody"/>
+                                                            <br />
+                                                            <input type="button" class="" onClick="upload(this);" value="Attach" style="float: left !important;" />
+                                                        </div>
+                                                    </div>
+                                                </apex:repeat>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <!-- End Document Upload Section -->
+
+                                    <!-- Attachment Section -->
+                                    <apex:outputPanel id="attachments" rendered="{!existingAttachmentsSize > 0}">
+                                        <div class="twelve columns clearfix">
+                                        </div>
+                                        <div class="twelve columns clearfix">
+                                            <div class="section-header">
+                                                <i class="fas fa-paperclip"></i> {!$Label.CPBOCA_Application_Attachments}
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="twelve columns clearfix">
+                                        </div>
+                                        <div class="twelve columns clearfix">
+                                            <ul style="list-style-type: none; padding-left: 20px; padding-top: 10px;">
+                                                <apex:repeat var="attachment" value="{!existingAttachments}">
+                                                    <li>
+                                                        <i class="far fa-file-alt styled-label" > {!attachment.Name}</i>
+                                                    </li>
+                                                </apex:repeat>
+                                            </ul>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <!-- End Attachment Section -->
+
+                                    <!-- Submit Button -->
+                                    <div class="twelve columns clearfix">
+                                        <div class="clearfix">
+                                            <input type="button" class="step-button ge-click-appsubmit" onClick="validateFinancials();" value="{!$Label.BOCA_Button_Submit}" />
+                                            <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                                        </div>
+                                    </div>
+                                    <!-- End Submit Button -->
+
+                                </apex:form>
+                            </div>
+                            </apex:outputPanel>
+                            <!-- End Right Column -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
+                <div class="line1">{!$Label.BOCDD_Call_Us}</div>
+                <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
+            </a>
+            <div id="footer">
+                <a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions" title="terms of use" target="_blank">
+                    {!$Label.BOCA_Terms_Of_Use_Link}
+                    <span class="glyphicon glyphicon-lock"></span>
+                </a>
+            </div>
+        </body>
+    </html>
+</apex:page>

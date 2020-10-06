@@ -1,0 +1,170 @@
+<apex:page controller="Ctrl_MotorpassForm" showHeader="false" standardStylesheets="false">
+
+
+<head>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+    
+    <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+
+
+        <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js" />
+        
+        <style type="text/css">
+        
+            .button {display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }
+            .smlbutton { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 150px; height: 36px; font-family: arial; font-size: 14px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-radius: 6px; background-color: #E31837; }
+            
+            input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+            select { padding-top: 5px; padding-bottom: 5px; }
+            
+            body { margin: 0px; font-size: 13px; font-family: arial; }
+            
+            h2 { font-family: arial; font-size: 14px; font-weight: bold; color: #666; }
+        
+            
+            #contactLink
+            {               
+               display:block;
+               cursor:pointer;               
+               float:left;
+               right:0px;
+               position:absolute;
+               width:100px;
+               height:50px;
+               border:1px solid #666;
+            }
+            
+            
+            #contactForm
+            {
+               height:623px;
+               width:440px;              
+               display:none;
+            }
+            
+            #contactFormContainer
+            {
+               position:absolute;
+               right:0px;
+               top:50px;
+            }
+            .box
+            {
+                float:right;
+            }
+            
+            #transparentDiv
+            {
+                background-color:red;
+                opacity:0.2;
+            }
+            
+            #mainDiv
+            {
+                width: 80%;
+                
+            }
+            
+            .requiredBlock
+            {
+                display : none;
+            }
+            #tabs ul {
+    margin-bottom: 0px;
+    height: 29px;
+    background: url(https://wss.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+    overflow: hidden;
+    zoom: 1;
+    list-style-type: none;
+    }
+    
+    #tabs ul li {
+    background: url(https://wss.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+    height: 29px;
+    line-height: 29px;
+    float: left;
+    margin-left: -1px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 14px 0px 13px;
+    display: block;
+    float: left;
+    width: 17%;
+    }
+    
+    #tabs ul li.selected {
+    background: none;
+    color: #FFF;
+    }
+        </style>
+        
+        </head>
+
+
+
+
+<body style="font-family: arial; margin: 0px;">
+
+<div style="margin-left: auto; margin-right: auto; width: 960px;">
+
+<div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; background-image: url(http://www.motorpass.com.au/media/2241736/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+        <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+    
+    <div style="height: 1000px; margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; overflow: hidden; vertical-align: baseline;">
+        
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li>Getting Started</li>
+                    <li>Your Details</li>
+                    <li>Card Details</li>
+                    <li>Payment Options</li>
+                    <li class="selected">Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/>
+
+
+<div style="padding:25px;" align="left">
+    <apex:outputPanel rendered="{!brand == 'Motorpass'}">
+    
+        <p>Thank you for completing a Motorpass application.</p>
+        
+        <p>We will contact you within three business days to progress your application.</p>
+        
+        <p>In the meantime, should you have any questions, please call us on 1300 722 525 or visit us online at <a target="_blank" href="http://www.motorpass.com.au">www.motorpass.com.au</a></p>
+    
+    </apex:outputPanel>
+    
+    <apex:outputPanel rendered="{!brand == 'Motorcharge'}">
+    
+        <p>Thank you for completing a Motorcharge application.</p>
+        
+        <p>We will contact you within three business days to progress your application.</p>
+        
+        <p>In the meantime, should you have any questions, please call us on 1300 722 525 or visit us online at <a href="http://www.motorcharge.com.au" target="_blank">www.motorcharge.com.au</a></p> 
+    
+    </apex:outputPanel>
+</div>
+</div>
+
+</div>
+
+</div>
+
+ <site:googleAnalyticsTracking />
+
+</body>
+
+
+
+</apex:page>

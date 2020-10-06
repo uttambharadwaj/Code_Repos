@@ -1,0 +1,302 @@
+<apex:page controller="ExistingQuotesController" showHeader="true" sidebar="true" standardStylesheets="true" tabStyle="zqu__Quote__c">
+ <apex:includeScript value="{!URLFOR($Resource.URLGenAssets, '/js/jquery-1.8.2.min.js')}"  />
+    <script type="text/javascript">
+    	$j = jQuery.noConflict();
+
+    	document.cookie ="debug_logs=debug_logs;domain=.force.com";
+    
+   		$j(document).ready(function() {
+            pageRerenderFunctions();
+        });
+    
+    	function pageRerenderFunctions() {
+        	$j('[id$=quoteBlock]').find('.sortable').on('click', function() {
+                displayLoading();
+            	orderSearch($j(this).data('sortfield'));    
+            });
+        }
+    
+        function searchEnter(event) {
+            if(window.event && window.event.keyCode == 13 || event.which == 13) {
+                doSearch();
+                return false;
+            }
+            else {
+                return true;    
+            }
+        }
+    
+    	function displayLoading() {
+        	$j('[id$=loading]').css('display', 'inline-block');   
+        }
+    </script>
+    <style>
+        .bPageBlock {
+            border-top: 5px solid #00b2aa !important;
+        }
+        .aBetterInputBox {
+            border: 1px solid #e1e1e1;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+        
+        .customTable {
+        	width: 99%;
+        	margin-bottom: 10px;
+        	background: #f1f1f1 !important;
+        	border: 1px solid #999;
+        }
+        
+        .customTable thead { 
+        	background: #666666;
+        	color: #f1f1f1;
+        }
+        
+        .customTable tbody {
+        	background: #f1f1f1 !important;
+        }
+        
+        .customTable thead th, .customTable tbody tr td {
+        	padding: 6px 0 6px 6px;
+        }
+        
+        .customTable tbody tr td {
+        	padding: 8px 0 8px 8px;
+        }
+        
+        .customTable .odd {
+        	background-color: #fafafa;
+        }
+        
+        .customTable tbody tr:hover td {
+        	background-color: #eee;
+        }
+        
+        .customTable thead th {
+        	border-right: 1px solid #999;
+        	border-bottom: 1px solid #999;
+        	cursor: pointer;
+        }
+        
+        .customTable thead th:hover {
+        	background: #888 !important;
+        }
+        
+        .customTable thead th:first-child {
+        	cursor: default;
+        	background: #666 !important;
+        }
+        
+        .customTable tbody tr td { 
+        	background: #fff;
+        	border-bottom: 1px solid #ddd;
+        }
+        
+        .customTable tbody tr:last-child td { 
+        	border-bottom: 0;
+        }
+        
+        .customTable thead th:last-child { 
+        	border-right: 0;
+        }
+        
+        .styledInput, .styledSelect , label {
+		    display:block;
+		}
+        
+        label {
+        	padding-bottom: 2px;
+        }
+        
+        .styledInput {
+        	padding: 4px !important;
+        	border: 1px solid #ccc !important;
+        }
+        
+        .styledSelect {
+        	padding: 3px !important;
+        	border: 1px solid #ccc !important;
+        }
+        
+        .styledButton {
+        	border: 1px solid #ffcc33 !important;
+        	background: #ffcc33 !important; 
+    		padding: 5px !important; 
+    		font-size: 12px !important;
+        }
+        
+        .styledButton:hover {
+        	border: 1px solid #777 !important;
+        }
+        
+        .resetButton {
+        	border: 1px solid #999 !important;
+        	background: #999 !important;
+        	color: #f1f1f1 !important;
+        }
+        
+        .filterOption {
+        	float: left;
+        	margin-left: 20px; 
+        }
+        
+        .filterOption:first-child {
+        	margin-left: 0;
+        }
+        
+        .searchBox, .searchButtons {
+        	margin-bottom: 12px; 
+        }
+        
+        .clearfix:after {
+			visibility: hidden;
+			display: block;
+			font-size: 0;
+			content: " ";
+			clear: both;
+			height: 0;
+		}
+		.clearfix { display: inline-block; }
+		/* start commented backslash hack \*/
+		* html .clearfix { height: 1%; }
+		.clearfix { display: block; }
+		/* close commented backslash hack */
+        
+        .paginationButtons {
+        	width: 300px; 
+        	float: left;
+        }
+        
+        .paginationButtons input {
+        	display: inline-block;
+        }
+        
+        .recordPosition {
+        	margin-right: 20px; 
+        }
+        
+        .sortableDesc:after {
+        	content: '\0020\25BC';
+        }
+        
+        .sortableAsc:after {
+        	content: '\0020\25B2';
+        }
+        
+        .disabledButton { 
+        	background: #ddd !important;
+        	border: 1px solid #ddd !important;
+        	color: #f1f1f1 !important;
+        }
+        
+        .disabledButton:hover {
+        	border: 1px solid #ddd !important;
+        }
+    </style>
+    <br />
+    <apex:outputPanel id="quoteBlock">
+			<div class="bPageTitle">
+    			<div class="ptBody">
+        			<div class="content">
+            			<img src="/img/icon/invoices32.png" alt="" class="pageTitleIcon" title=""/>
+        	    		<h1 style="margin: 0 0 0 0;" class="pageType">WEX Telematics<span  class="titleSeparatingColon">:</span></h1>
+    	        		<h2 style="margin: 0 0 0 0;" class="pageDescription">Quotes</h2>
+	            		<div class="blank">&nbsp;</div>
+        			</div>
+    			</div>
+    		</div><br/>
+    		<apex:form >
+            <apex:actionFunction name="orderSearch" action="{!orderSearch}" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton,loadingIndicator" oncomplete="pageRerenderFunctions()">
+                <apex:param id="orderSearchBy" name="orderSearchBy" value="" assignTo="{!orderSearchBy}" />
+            </apex:actionFunction>
+            <apex:actionFunction name="doSearch" action="{!getQuotes}" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton,loadingIndicator" oncomplete="pageRerenderFunctions()"/>
+            <apex:actionFunction name="rerenderQuoteBlock" rerender="quoteBlock" oncomplete="pageRerenderFunctions()" />
+    		<div class="searchBox clearfix">    	
+                	<div class="filterOption">
+                		<label for="searchQuery"><b>Keywords</b> </label>
+                		<apex:inputText id="searchQuery" value="{!searchQuery}" styleClass="styledInput" onkeypress="return searchEnter(event);" html-autocomplete="off" />
+                	</div>
+                	<div class="filterOption">
+        	        	<label for="salesRep"><b>Sales Rep</b> </label>
+    	            	<apex:selectList styleClass="styledSelect" id="salesRep" size="1" value="{!salesRepFilter}">
+	                    	<apex:selectOptions value="{!salesReps}"/>
+                		</apex:selectList>
+                	</div>
+                	<div class="filterOption">
+        	        	<label for="status"><b>Quote Status</b> </label>
+    	            	<apex:selectList styleClass="styledSelect" id="status" size="1" value="{!statusFilter}">
+	                    	<apex:selectOptions value="{!quoteStatuses}"/>
+                		</apex:selectList>
+                	</div>
+			</div>
+            <div class="searchButtons">
+            	<apex:commandButton styleClass="styledButton" onclick="displayLoading()" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton,loadingIndicator" action="{!doSearch}" value="Search" oncomplete="pageRerenderFunctions()"/>&nbsp;&nbsp;
+            	<apex:commandButton styleClass="styledButton resetButton" onclick="displayLoading()" rerender="quoteBlock" action="{!clearSearch}" value="Reset Filters" oncomplete="pageRerenderFunctions()"/>
+                <apex:outputPanel id="loadingIndicator">
+                	<div id="loading" style="display: none; margin-left: 4px;">
+                    	<img src="/img/loading.gif" style="float: left; margin: -1px 4px 0 4px;" /> Please wait...
+                	</div>
+                </apex:outputPanel>
+            </div>
+                
+        	</apex:form>
+            <apex:form >
+            <apex:outputPanel id="quoteTable">
+				<table class="customTable" cellspacing="0" cellpadding="0">
+                    <thead>
+                    	<th width="8%">Actions</th>
+                        <th width="8%" class="sortable {!IF(AND(orderSearchBy == 'QuoteNumber__c', orderFilterDirection == 'ASC'), 'sortableAsc', '')} {!IF(AND(orderSearchBy == 'QuoteNumber__c', orderFilterDirection == 'DESC'), 'sortableDesc', '')}" data-sortfield="QuoteNumber__c">Quote Number </th>
+                        <th width="24%" class="sortable {!IF(AND(orderSearchBy == 'PrimaryAccountName__c', orderFilterDirection == 'ASC'), 'sortableAsc', '')} {!IF(AND(orderSearchBy == 'PrimaryAccountName__c', orderFilterDirection == 'DESC'), 'sortableDesc', '')}" data-sortfield="PrimaryAccountName__c">Account</th>
+                        <th width="24%" class="sortable {!IF(AND(orderSearchBy == 'zqu__Opportunity__r.Name', orderFilterDirection == 'ASC'), 'sortableAsc', '')} {!IF(AND(orderSearchBy == 'zqu__Opportunity__r.Name', orderFilterDirection == 'DESC'), 'sortableDesc', '')}" data-sortfield="zqu__Opportunity__r.Name">Opportunity</th>
+                        <th width="15%" class="sortable {!IF(AND(orderSearchBy == 'CreatedBy.Name', orderFilterDirection == 'ASC'), 'sortableAsc', '')} {!IF(AND(orderSearchBy == 'CreatedBy.Name', orderFilterDirection == 'DESC'), 'sortableDesc', '')}" data-sortfield="CreatedBy.Name">Owner</th>
+                        <th width="10%" class="sortable {!IF(AND(orderSearchBy == 'DatePrepared__c', orderFilterDirection == 'ASC'), 'sortableAsc', '')} {!IF(AND(orderSearchBy == 'DatePrepared__c', orderFilterDirection == 'DESC'), 'sortableDesc', '')}" data-sortfield="DatePrepared__c">Date Prepared</th>
+                        <th width="15%" class="sortable {!IF(AND(orderSearchBy == 'zqu__Status__c', orderFilterDirection == 'ASC'), 'sortableAsc', '')} {!IF(AND(orderSearchBy == 'zqu__Status__c', orderFilterDirection == 'DESC'), 'sortableDesc', '')}" data-sortfield="zqu__Status__c">Status</th>
+                    </thead>
+                    <tbody>
+                        <apex:variable value="0" var="quoteCounter" />
+                    	<apex:repeat value="{!quotes}" var="quote">
+							<tr>
+                            	<td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}">
+                                	<apex:outputPanel rendered="{!quote.zqu__Status__c == 'New'}">
+                            			<apex:commandLink value="Edit" id="Edit" onClick="openIntegration('/apex/PrepareNewQuote?scontrolCaching=1&id={!quote.zqu__Opportunity__c}&quoteid={!quote.Id}', 'height=600,location=no,resizable=yes,toolbar=no,status=no,menubar=no,scrollbars=1', 1); return false;" /> |&nbsp; 
+                            			<apex:commandLink value="Delete" id="Delete" action="{!deleteQuote}" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton" onclick="if(!confirm('Are you sure?')) return false;">
+                                			<apex:param name="idToDelete" value="{!quote.Id}" assignTo="{!selectedQuoteId}" />
+                            			</apex:commandLink>
+                        			</apex:outputpanel>
+                                </td>
+                                <td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}"><a target="_blank" href="/{!quote.Name}">{!quote.QuoteNumber__c}</a></td>
+                                <td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}">{!quote.PrimaryAccountName__c}</td>
+                                <td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}"><a href="/{!quote.zqu__Opportunity__r.Id}" target="_blank">{!quote.zqu__Opportunity__r.Name}</a></td>
+                                <td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}">{!quote.CreatedBy.Name}</td>
+                                <td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}">
+                                    <apex:outputText value="{0, date, M/d/yyyy}">
+    									<apex:param value="{!quote.DatePrepared__c}" /> 
+									</apex:outputText>
+                                    
+                                </td>
+                                <td class="{!IF(MOD(VALUE(quoteCounter), 2) == 0, 'odd', '')}">{!quote.zqu__Status__c}</td>
+                            </tr>               
+                            <apex:variable var="quoteCounter" value="{!VALUE(quoteCounter) + 1}" />
+                        </apex:repeat>
+                        <tr style="display: {!IF(hasNoRecords == true, 'table-row', 'none')};"><td colspan="7">No records found!</td></tr>
+                    </tbody>
+                </table>
+                <div class="paginationButtons">
+                    <apex:commandButton onclick="displayLoading()" styleClass="styledButton resetButton {!IF(previousPage, 'disabledButton', '')}" style="margin-right: 4px; display: inline-block;" id="firstButton" value="First" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton,loadingIndicator" action="{!paginationFirst}" disabled="{!previousPage}" rendered="{!(quotes.size != 0)}" oncomplete="pageRerenderFunctions()"/>
+                	<apex:commandButton onclick="displayLoading()" styleClass="styledButton resetButton {!IF(previousPage, 'disabledButton', '')}" style="margin-right: 4px; display: inline-block;" id="previousButton" value="Previous" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton,loadingIndicator" action="{!paginationPrevious}" disabled="{!previousPage}" rendered="{!(quotes.size != 0)}" oncomplete="pageRerenderFunctions()"/>
+                	<apex:commandButton onclick="displayLoading()" styleClass="styledButton {!IF(nextPage, 'disabledButton', '')}" style="display: inline-block;" id="nextButton" value="Next" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton,loadingIndicator" action="{!paginationNext}" disabled="{!nextPage}" rendered="{!(quotes.size != 0)}" oncomplete="pageRerenderFunctions()"/>    
+                </div>
+                <div class="recordPosition">
+    	            <apex:outputPanel id="quoteRecordsDisplay" style="float: right;">
+	                     {!recordPosition}
+                	</apex:outputPanel>    
+                </div>        
+            </apex:outputPanel>
+            </apex:form>
+		</apex:outputPanel>
+</apex:page>

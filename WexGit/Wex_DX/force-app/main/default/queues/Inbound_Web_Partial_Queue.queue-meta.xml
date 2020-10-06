@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Inbound Web Partial Queue</name>
+    <queueMembers>
+        <roles>
+            <role>ISSalesRep</role>
+        </roles>
+        <users>
+            <user>danielle.dane@wexinc.com</user>
+            <user>william.schreiber@wexinc.com</user>
+            <user>seager.shoebottom@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Inbound_Web_Partial</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

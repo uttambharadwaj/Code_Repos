@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <entityName>Lead</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>WES Lead</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Call_Stage__c</fieldNames>
+        <fieldNames>Call_Outcome__c</fieldNames>
+        <fieldNames>ReasonUnqualified__c</fieldNames>
+        <fieldNames>Reason_Unqualified_Detail__c</fieldNames>
+        <info>&lt;p&gt;Leads in this status should no longer be followed up with.&lt;/p&gt;</info>
+        <picklistValueName>Disqualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Marketing to nurture leads in this status.&lt;/p&gt;</info>
+        <picklistValueName>Nurturing</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Call_Outcome__c</fieldNames>
+        <fieldNames>Call_Stage__c</fieldNames>
+        <fieldNames>Description</fieldNames>
+        <fieldNames>Lead_Background_Notes_to_Opportunity__c</fieldNames>
+        <info>&lt;p&gt;Make sure to complete the Qualification Information section in order to save and convert a lead to an opportunity.&lt;/p&gt;</info>
+        <picklistValueName>Qualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Call_Outcome__c</fieldNames>
+        <fieldNames>Call_Stage__c</fieldNames>
+        <fieldNames>Description</fieldNames>
+        <info>&lt;p&gt;Complete the fields on the left and click save on first outreach to lead.&lt;/p&gt;</info>
+        <picklistValueName>Untouched</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Call_Outcome__c</fieldNames>
+        <fieldNames>Call_Stage__c</fieldNames>
+        <fieldNames>Description</fieldNames>
+        <info>&lt;p&gt;Leads in this status have been contacted at least once by phone or email but there isn&amp;#39;t enough information to qualify or disqualify them yet.&lt;/p&gt;</info>
+        <picklistValueName>Working</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>WES_Lead</recordTypeName>
+</PathAssistant>

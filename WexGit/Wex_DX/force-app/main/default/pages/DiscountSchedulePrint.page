@@ -1,0 +1,129 @@
+<!--
+* Revision History:
+* 03/Oct/2019 GearsCRM    PSOBACKLOG-258   Original.
+* 09/Dec/2019 CJackson    PSOBACKLOG-319   Modified column headers for Min/Max.
+-->
+<apex:page showHeader="false" sidebar="false" cache="false" contentType="text/xml" controller="DiscountSchedulePrintController">
+    <block>
+        <block>&nbsp;</block>
+        <block>&nbsp;</block>
+        <apex:repeat var="line" value="{!linesWithTiers}">
+            <!-- <block>{!line.name}</block> -->
+            <block>
+                <table table-layout="fixed" width="100%" border-color="#000000" border-width="1px">
+                    <apex:repeat var="col" value="{!line.displayColumns}">
+                        <apex:outputPanel layout="none" rendered="{!col==true}">
+                            <table-column column-width="{!line.dataColumnWidth}%" />
+                        </apex:outputPanel>
+                    </apex:repeat>
+
+                    <table-header>
+                        <table-row height="9pt" font-weight="bold" text-align="center" color="#000000" background-color="#D7D7D7">
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[0]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>Minimum Monthly Gallons</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[1]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>Maximum Monthly Gallons</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[2]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.Cents_Per_Gallon__c.Label}</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[3]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.Election__c.Label}</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[4]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.Payment_Timing_Options__c.Label}</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[5]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.Basis_Points_Rebate__c.Label}</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="none" rendered="{!line.displayColumns[6]==true}">
+                                <table-cell border="1px solid black" margin="0pt" padding="5pt">
+                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.Payment_Timing__c.Label}</block>
+                                </table-cell>
+                            </apex:outputPanel>
+                        </table-row>
+                    </table-header>
+                    <table-body>
+                        <apex:repeat var="tier" value="{!line.tiers}">
+
+                            <table-row font-size="0.9em">
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[0]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{0, number, ###,###,###}">
+                                                <apex:param value="{!tier.lowerBound}" /></apex:outputText>
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[1]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{0, number, ###,###,###}">
+                                                <apex:param value="{!tier.upperBound}" /></apex:outputText>
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[2]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{0, number, currency}">
+                                                <apex:param value="{!tier.centsPerGallon}" /></apex:outputText>
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[3]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{!tier.election}" />
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[4]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{!tier.paymentTimingOptions}" />
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[5]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{!tier.basisPointsRebate}" />
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="none" rendered="{!line.displayColumns[6]==true}">
+                                    <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
+                                        <block font-weight="normal">
+                                            <apex:outputText value="{!tier.paymentTiming}" />
+                                        </block>
+                                    </table-cell>
+                                </apex:outputPanel>
+                            </table-row>
+                        </apex:repeat>
+                    </table-body>
+                </table>
+            </block>
+            <block>&nbsp;</block>
+        </apex:repeat>
+    </block>
+</apex:page>

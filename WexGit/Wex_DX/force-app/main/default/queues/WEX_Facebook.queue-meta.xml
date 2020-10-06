@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>WEX Facebook</name>
+    <queueMembers>
+        <users>
+            <user>brendan.omeagher@wexinc.com</user>
+            <user>william.schreiber@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>WEX_Facebook_Leads</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

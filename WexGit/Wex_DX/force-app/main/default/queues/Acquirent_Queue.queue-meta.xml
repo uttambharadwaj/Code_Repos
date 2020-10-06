@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Acquirent Queue</name>
+    <queueMembers>
+        <roles>
+            <role>AquarientSalesManager</role>
+            <role>AquarientSalesRep</role>
+            <role>AquarientSalesTL</role>
+            <role>MarketingReporting</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

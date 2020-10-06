@@ -1,0 +1,186 @@
+<!-- This VF page is opned from Custom link 'New Credit Application' defined in Home Page Components -->
+<apex:page sidebar="false" controller="EMAP_CreditApp_Controller" tabStyle="Account" id="creditApp">
+<head>
+<!-- Below external javascript file used for performing javascript actions: -->
+    <!-- On click of Duplicate Check - complete() -->
+    <!-- On click of Cancel - backToHome() -->
+    <!-- On click of Clear - clearFields() -->
+<apex:includeScript value="{!$Resource.EMAP_Credit_Application_JS}"/>
+<script>
+
+var previousOnload = window.onload; 
+window.onload = function() { 
+if (previousOnload)
+{ 
+    previousOnload(); 
+}
+    autoPopulateFields();
+}
+
+function complete(){
+    var divSection = document.getElementById("DIVSectionRecordSaved");
+    divSection.style.display = "block";
+    return false;
+}
+
+</script>
+</head>
+<apex:form id="creditAppForm" >
+    <!--Below action status is used to diplay please wait screen on click of Duplicate Check button. -->
+    <apex:actionStatus id="statusSaveTrip" stopText="">
+        <apex:facet name="start">
+                <div class="popupBackground" />
+                <div class="PopupPanel">
+                    <table border="0" width="100%" height="100%">
+                        <tr><td align="center"><b>Please Wait</b></td></tr>
+                        <tr><td align="center"><img src="/img/loading.gif"/></td></tr>
+                    </table>
+                </div>
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <div id ='DIVsection' style="display:none; color: red; font-weight:bold;font-size:1.25em"/>
+    <div id ='DIVSectionRecordSaved' style="display:none; color: green; font-weight:bold;font-size:1.25em"/>
+    <br/>
+
+    <!-- Actual VF page begins here.-->
+    <apex:sectionHeader title="EMAP FUEL CARD APPLICATION" subtitle="New Credit Application Duplicate Check"/>
+    <apex:pageblock id="pageBlock">
+        <apex:pageMessages id="showmsg" />
+
+        <apex:pageblockSection columns="1" id="dupChkPageBlockSection">
+            <apex:inputField value="{!program.Program_Name__c}" id="program_name" onChange="autoPopulateFields();" required="true"/>
+            <apex:inputField value="{!AUAppReq.Application_Type__c}" id="app_type" required="true"/>
+            <apex:inputfield value="{!acc.Trade_Name_of_Business__c}" id="trading_name" required="true"/>
+            <apex:inputField value="{!AUAppReq.Account_Company_Name__c}" id="company_name" required="true" />                        
+            <apex:inputField value="{!AUAppReq.Account_Business_Registration_Number__c}" id="reg_number" required="true"/>
+        </apex:pageblockSection>
+        
+        <apex:pageBlockSection id="hiddenPageBlockSection" rendered="true">
+            <!-- Used to auto populate Client Id and Client Name on next Credit Application VF page. -->
+            <apex:inputHidden value="{!AUAppReq.Client_Id__c}" id="client_id" />
+            <apex:inputHidden value="{!program.Client_Name__c}" id="client_name"/>
+            <apex:inputHidden value="{!AUAppReq.Client_Name__c}" id="acc_client_name"/>
+            <apex:inputHidden value="{!AUAppReq.Card_Pin__c}" id="card_pin"/>
+            <apex:inputHidden value="{!AUAppReq.Account_Shipping_Country__c}" id="shipping_country"/>
+            <apex:inputHidden value="{!AUAppReq.Account_Billing_Country__c}" id="billing_country"/>
+        </apex:pageBlockSection>
+        
+        <!-- List of buttons to perform action. -->
+        <apex:pageblockButtons location="bottom">
+            <apex:commandButton value="Duplicate Check" action="{!DupeCheck}" rerender="DIVsection, showmsg, dupeAccsPanel" id="dupeCheckBtn" status="statusSaveTrip" oncomplete="complete();"/>        
+            <!-- clearFields() function is defined in 'Credit_Application_JS' javascript resource file -->
+            <apex:commandButton value="Clear" action="{!clearPage}" oncomplete="clearFields();return false;" reRender="dupeAccsPanel"/>
+            <!-- backToHome() function is defined in 'Credit_Application_JS' javascript resource file -->
+            <apex:commandButton value="Cancel" onclick="backToHome();return false;" />
+            <apex:commandButton value="Proceed" action="{!nextPage}" />
+        </apex:pageblockButtons>
+    </apex:pageblock>
+
+    <!-- Below is the output Result list of duplicate check.  -->
+    <apex:outputPanel id="dupeAccsPanel" >
+        <!-- <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/> -->
+        
+        <!-- <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">  -->
+            <apex:pageBlock title="Duplicate Accounts" rendered="{!displayPopUp}" >
+                <apex:pageBlockTable value="{!accList}" var="accVar" >
+                    <apex:column value="{!accVar.Program__r.Program_Name__c}"/> 
+                    <apex:column value="{!accVar.name}" headerValue="Company Name"/> 
+                    <apex:column value="{!accVar.Trade_Name_of_Business__c}" headerValue="Trading Name of Business"/>
+                    <apex:column value="{!accVar.Business_Registration_Number__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        <!-- </apex:outputPanel> -->
+        
+    </apex:outputPanel> 
+        
+</apex:form>
+
+    
+<style type="text/css">
+    /*
+    Below defined style sheets used to control look and feel of VF page.
+    */
+    .custPopup{
+        background-color: white;
+        border-width: 2px;
+        border-style: solid;
+        z-index: 9999;
+        left: 50%;
+        padding:10px;
+        position: absolute;
+        /* These are the 3 css properties you will need to change so the popup 
+        displays in the center of the screen. First set the width. Then set 
+        margin-left to negative half of what the width is. You can add 
+        the height property for a fixed size pop up if you want.*/
+        width: 500px;
+        margin-left: -250px;
+        top:100px;
+    }
+    
+    .popupBackground1{
+        background-color:black;
+        opacity: 0.20;
+        filter: alpha(opacity = 20);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 9998;
+    }
+
+    /* This is for the full screen DIV */
+    .popupBackground {
+        /* Background color */
+        background-color:black;
+        opacity: 0.20;
+        filter: alpha(opacity = 20);
+    
+        /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+        
+        /* Mouse */
+        cursor:wait;
+    }
+
+    /* This is for the message DIV */
+    .PopupPanel {
+        /* Background color */
+        border: solid 2px white;
+        background-color: white;
+
+        /* Dimensions */
+        left: 50%;
+        width: 250px;
+        margin-left: -100px;
+        top: 50%;
+        height: 100px;
+        margin-top: -25px;
+        z-index: 999;
+        position: fixed;
+        
+        /* Mouse */
+        cursor:pointer;
+    }
+    
+    /* Used for making border color as Red. */
+    .individualPalette .accountBlock .secondaryPalette {
+        //background-color: #c00;
+        border-color: #ce3f3f ;
+        border-color: #ce3f3f\9;
+    }
+          
+    .tertiaryPalette {
+        margin: auto;
+        background-color: #ce3f3f !important;
+        background-color: #ce3f3f\9 !important;
+    }
+
+    </style>
+</apex:page>

@@ -1,0 +1,466 @@
+<apex:page standardController="Account" extensions="AccountSummaryReport" renderas="pdf">
+
+    <head>
+        <style type="text/css">
+            @page {
+                size: A4;
+            }
+
+            table.summarytable {
+                border:solid 1px gray;
+                border-collapse:collapse;
+            }
+
+            table.summarytable th, table.summarytable td {
+                padding: 5px;
+                border:solid 1px gray;
+                border-collapse:collapse;
+                text-align:left;
+            }
+        </style>
+    </head>
+
+    <div style="text-align:center;">
+        <table class="summarytable" width="100%" style="page-break-inside:avoid;">
+            <tr>
+                <th colspan="2" style="text-align:center;">Account Summary</th>
+            </tr>
+            <tr>
+                <td>Account Name</td>
+                <td>{!Account.Name}</td>
+            </tr>
+            <tr>
+                <td>Street</td>
+                <td>{!Account.BillingStreet}</td>
+            </tr>
+            <tr>
+                <td>City, State, Zip Code</td>
+                <td>{!Account.BillingCity} {!Account.BillingState} {!Account.BillingPostalCode} {!Account.BillingCountry}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{!Account.Phone}</td>
+            </tr>
+            <tr>
+                <td>Account Status</td>
+                <td>{!Account.status__c}</td>
+            </tr>
+            <tr>
+                <td>Account Created</td>
+                <td>
+                    <apex:outputText value="{0, date , MM/dd/yyyy}">
+                        <apex:param value="{!Account.create__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>First Transaction Date</td>
+                <td>
+                    <apex:outputText value="{0, date , MM/dd/yyyy}">
+                        <apex:param value="{!Account.First_Trans_Date__c }" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td>Group Code</td>
+                <td>{!Account.Group_Name_Lookup__c}</td>
+            </tr>
+                      <tr>
+                <td>Payment Terms</td>
+                <td>{!Account.Payment_Terms__c}</td>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align:center;">Account Team</th>
+            </tr>
+            <tr>
+                <td>Account Owner</td>
+                <td>{!Account.Owner.Name}</td>
+            </tr>
+            <tr>
+                <td>Account Manager</td>
+                <td>{!Account.Account_Manager__c}</td>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+
+        <table class="summarytable" width="100%" style="page-break-inside:avoid;">
+            <tr>
+                <th colspan="6" style="text-align:center;">Credit Amount to Start the Day</th>
+            </tr>
+            <tr>
+                <th>Account Type</th>
+                <th>Payment Frequency</th>
+                <th>Credit Line - Amount of Total Credit</th>
+                <th>Fuel Fee</th>
+                <th>Transcheck Fee</th>
+                <th>Active Control Cards</th>
+            </tr>
+            <apex:repeat value="{!Contracts}" var="Contract">
+                <tr>
+                    <td>
+                        {!Contract.Payment_Method__c}
+                    </td>
+                    <td>{!Contract.Requested_Payment_Frequency__c}</td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!Contract.Credit_Limit__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0.00}">
+                            <apex:param value="{!Contract.Funded_Fuel_Card_Fee__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0.00}">
+                            <apex:param value="{!Contract.Check__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!Contract.Cards_Active__c}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr>
+                <th colspan="2">Total</th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TotalCreditLine}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0.00}">
+                        <apex:param value="{!TotalFuelFee}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0.00}">
+                        <apex:param value="{!TotalTransCheckFee}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TotalActiveControlCards}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+
+        <table class="summarytable" width="100%" style="page-break-inside:avoid;">
+            <tr>
+                <th colspan="7" style="text-align:center;">Transaction Information by Chain</th>
+            </tr>
+            <tr>
+                <th>Chain</th>
+                <th>Transactions</th>
+                <th>Gallons</th>
+                <th>% of Total Gallons</th>
+                <th>Amount</th>
+                <th>Discount</th>
+                <th>Total Revenue</th>
+            </tr>
+            <apex:repeat value="{!TransactionsByChainList}" var="TransactionsByChain">
+                <tr>
+                    <td>{!TransactionsByChain.Chain}</td>
+                    <td>
+                        <apex:outputText value="{0, number , #,##0}">
+                            <apex:param value="{!TransactionsByChain.Transactions}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , #,##0}">
+                            <apex:param value="{!TransactionsByChain.Gallons}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , ##0%}">
+                            <apex:param value="{!TransactionsByChain.PercentOfTotalGallons}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsByChain.Amount}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsByChain.Discount}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsByChain.TotalRevenue}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr>
+                <th>{!TransactionsByChainTotal.Chain}</th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsByChainTotal.Transactions}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsByChainTotal.Gallons}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , ##0%}">
+                        <apex:param value="{!TransactionsByChainTotal.PercentOfTotalGallons}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsByChainTotal.Amount}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsByChainTotal.Discount}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsByChainTotal.TotalRevenue}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+
+        <table class="summarytable" width="100%" style="page-break-inside:avoid;">
+            <tr>
+                <th colspan="7" style="text-align:center;">Transaction Information by Product</th>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <th>Transactions</th>
+                <th>Gallons</th>
+                <th>Amount</th>
+                <th>Total Revenue</th>
+                <th>% of Total Revenue</th>
+            </tr>
+            <apex:repeat value="{!TransactionsByProductList}" var="TransactionsByProduct">
+                <tr>
+                    <td>{!TransactionsByProduct.Chain}</td>
+                    <td>
+                        <apex:outputText value="{0, number , #,##0}">
+                            <apex:param value="{!TransactionsByProduct.Transactions}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , #,##0}">
+                            <apex:param value="{!TransactionsByProduct.Gallons}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsByProduct.Amount}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsByProduct.TotalRevenue}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , ##0%}">
+                            <apex:param value="{!TransactionsByProduct.PercentOfTotalRevenue}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr>
+                <th>{!TransactionsByProductTotal.Chain}</th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsByProductTotal.Transactions}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsByProductTotal.Gallons}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsByProductTotal.Amount}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsByProductTotal.TotalRevenue}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , ##0%}">
+                        <apex:param value="{!TransactionsByProductTotal.PercentOfTotalRevenue}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+
+        <table class="summarytable" width="100%" style="page-break-inside:avoid;">
+            <tr>
+                <th colspan="7" style="text-align:center;">Transaction Summary  (Last 13 Months)</th>
+            </tr>
+            <tr>
+                <th>Month</th>
+                <th>Transactions</th>
+                <th>Revenue</th>
+                <th>Transferred Amount</th>
+            </tr>
+            <apex:repeat value="{!TransactionsLastYearList}" var="TransactionsLastYear">
+                <tr>
+                    <td>
+                        <apex:outputText value="{0, date, MMM yyyy}">
+                            <apex:param value="{!TransactionsLastYear.Month}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , #,##0}">
+                            <apex:param value="{!TransactionsLastYear.Transactions}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsLastYear.Revenue}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsLastYear.Amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr>
+                <th>Monthly Average</th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsLastYearAvg.Transactions}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsLastYearAvg.Revenue}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsLastYearAvg.Amount}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsLastYearTotal.Transactions}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsLastYearTotal.Revenue}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsLastYearTotal.Amount}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+
+        <table class="summarytable" width="100%" style="page-break-inside:avoid;">
+            <tr>
+                <th colspan="7" style="text-align:center;">Daily Transaction Summary</th>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <th>Transactions</th>
+                <th>Revenue</th>
+                <th>Transferred Amount</th>
+            </tr>
+            <apex:repeat value="{!TransactionsDaysList}" var="TransactionsDays">
+                <tr>
+                    <td>
+                        <apex:outputText value="{0, date, MM/dd/yyyy}">
+                            <apex:param value="{!TransactionsDays.Month}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , #,##0}">
+                            <apex:param value="{!TransactionsDays.Transactions}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsDays.Revenue}" />
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, number , $#,##0}">
+                            <apex:param value="{!TransactionsDays.Amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </apex:repeat>
+            <tr>
+                <th>Average (Daily)</th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsDaysAvg.Transactions}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsDaysAvg.Revenue}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsDaysAvg.Amount}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <th>
+                    <apex:outputText value="{0, number , #,##0}">
+                        <apex:param value="{!TransactionsDaysTotal.Transactions}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsDaysTotal.Revenue}" />
+                    </apex:outputText>
+                </th>
+                <th>
+                    <apex:outputText value="{0, number , $#,##0}">
+                        <apex:param value="{!TransactionsDaysTotal.Amount}" />
+                    </apex:outputText>
+                </th>
+            </tr>
+        </table>
+
+    </div>
+
+</apex:page>

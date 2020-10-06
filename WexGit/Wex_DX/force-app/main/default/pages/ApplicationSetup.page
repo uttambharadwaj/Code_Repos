@@ -1,0 +1,59 @@
+<apex:page controller="OnlineApplicationSetupController" action="{!resendApplicationIfItExists}" tabStyle="OnlineApplication__c">
+
+    <apex:stylesheet value="{!$Resource.ApplicationStyles}"/>
+    <apex:sectionHeader title="{!$Label.CreateBSA}" subtitle="{!account.Name}"/>
+    <apex:pageMessages />
+
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection id="section1" columns="1" collapsible="false">
+                <apex:inputField value="{!application.Legal_Business_Name__c}" required="true"/>
+            </apex:pageBlockSection>                
+            <apex:pageBlockSection id="section2" columns="1" collapsible="false">
+                <apex:pageBlockSectionItem rendered="{!showContactList}">
+                    <apex:outputLabel value="{!$Label.AuthorizingOfficer}"/>
+                    <apex:actionRegion >
+                        <apex:selectList value="{!contactId}" size="1" required="true">
+                            <apex:selectOptions value="{!contactList}"/>
+                            <apex:actionSupport event="onchange" rerender="section2" status="contactStatus"/>                            
+                        </apex:selectList>
+                        <apex:actionStatus id="contactStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                <apex:inputField value="{!contact.FirstName}" required="true"/>
+                <apex:inputField value="{!contact.LastName}" required="true"/>
+                <apex:inputField value="{!contact.Email}" required="true"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection id="section3" columns="1" collapsible="false">                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.Offer}"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:selectList value="{!offerId}" size="1">
+                                <apex:selectOptions value="{!offerList}"/>                            
+                            </apex:selectList>
+                        </div>
+                    </apex:panelGroup>                
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.EmailTemplate}"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:selectList value="{!templateId}" size="1">
+                                <apex:selectOptions value="{!templateList}"/>                            
+                            </apex:selectList>
+                        </div>
+                    </apex:panelGroup>                
+                </apex:pageBlockSectionItem>
+                <apex:inputField value="{!application.Show_Card_Setup_Page__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom"> 
+                <apex:commandButton value="{!$Label.CreateAndEdit}" action="{!createAndEditApplication}"/>
+                <apex:commandButton value="{!$Label.Cancel}" action="{!returnToOpportunity}"/>
+            </apex:pageBlockButtons>            
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

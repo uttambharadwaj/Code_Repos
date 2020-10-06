@@ -1,0 +1,362 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentPrintController" language="{!languageCode}">
+<html>
+<head>
+    <!-- Meta! -->
+    <meta name="viewport" content="width=device-width" />
+   
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    
+    <style>
+        /* Mobile First! */
+
+        /* Site-wide Styles - START */
+        body {
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Open Sans', serif;
+            font-size: 13px;
+        }
+        
+        .clearfix:after {
+     		visibility: hidden;
+     		display: block;
+     		font-size: 0;
+     		content: " ";
+     		clear: both;
+     		height: 0;
+     	}
+		.clearfix { display: inline-block; }
+		/* start commented backslash hack \*/
+		* html .clearfix { height: 1%; }
+		.clearfix { display: block; }
+		/* close commented backslash hack */
+        /* Site-wide Styles - END */
+
+        /* Header Section - START */
+        #header {
+            width: 100%;
+            {!program.Brand_Color_1__c}
+            min-height: 50px;
+            border-top: 3px solid #FEC524;
+            color: #fff;
+            line-height: 50px;
+        }
+
+        #programName {
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #contactUs {
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 14px;
+        }
+        /* Header Section - END */
+
+        /* Subheader Section - START */
+        #subheader {
+            width: 100%;
+        }
+        
+        #pageImage {
+        		display: none;
+        		background: #fff;
+        		height: 220px;
+        }
+        
+        #welcomeMessage {
+        	text-align: center;
+            display: none;
+        }
+        
+        #welcomeMessage h2 {
+        	font-size: 24px;
+        }
+        /* Subheader Section - END */
+
+        /* Card Image/Steps Section - START */
+        /* Card Image/Steps Section - END */
+
+        /* Content Section - START */
+        #content {
+            width: 100%;
+        }
+        
+        .vehicleTable, .driverTable { width: 100%; border: 1px solid #ccc; }
+			.vehicleTable th,
+			.driverTable th {
+				background: #eee;
+				color: #777;
+				padding: 3px 0 3px 8px;
+				border-right: 1px solid #ccc;
+			}
+        
+			.vehicleTable td,
+			.driverTable td {
+				width: 10% !important;
+				padding: 4px 5px 4px 8px;
+				border-right: 1px solid #ccc;
+			}
+
+        .sectionHeader { padding: 10px 0; font-size: 16px; text-transform: uppercase; font-weight: bold !important; border-bottom: 1px solid #ddd; margin-bottom: 10px; }
+        /* Content Section - END */
+
+        /* Bigger than a phablet */
+        @media (min-width: 1200px) {
+
+            /* Header Section - START */
+            #programName {
+                font-size: 1.5em !important;
+                text-align: left;
+            }
+
+            #contactUs {
+                font-size: 1.5em !important;
+                text-align: right;
+            }
+        
+    	    #mobileCardImage {
+	        	display: none;
+        	}
+            /* Header Section - END */
+
+            /* Subheader Section - START */
+        	#subheader { 
+         		width: 100%;
+            	background: #eee;
+            	max-height: 200px;
+        		padding-bottom: 0;
+        		display: block;
+        	}
+        
+        	#pageImage {
+        		background: #fff;
+        		height: 220px;
+        		display: block;
+        	}
+            #welcomeMessage {
+        		padding-top: 30px;
+        		text-align: center;
+                display: block;
+            }	
+        
+        	#welcomeMessage h2 {
+        		margin-bottom: 8px;
+        	}
+        
+        	#welcomeMessage p {
+        		line-height: 20px;
+        		margin: 8px 0;
+        	}
+            /* Subheader Section - END */
+
+            /* Card Image/Steps Section - START */
+            /* Card Image/Steps Section - END */
+
+            /* Content Section - START */        
+        	.vehicleTable, .driverTable { table-layout: fixed; width: 100%; border: 1px solid #ccc; page-break-inside:auto; }
+        	.vehicleTable tr, .driverTable tr { page-break-inside:avoid; page-break-after:auto; }
+			.vehicleTable th,  .driverTable th { background: #eee; color: #555; padding: 3px 0px 3px 4px; border-right: 1px solid #ccc; text-align: left; }
+			.vehicleTable td,  .driverTable td { width: 10% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
+        
+        	.sectionHeader { padding: 10px 0; font-size: 16px; text-transform: uppercase; font-weight: bold !important; border-bottom: 1px solid #ddd; }
+            /* Content Section - END */
+        
+        	
+        }
+    </style>
+    <script>
+    	document.cookie = "debug_logs=debug_logs; path=/; domain=.force.com; value=debug_logs" ;
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div class="clearfix">
+			<div style="float: left;">
+                <h2 style="text-transform: uppercase; font-size: 24px; font-weight: bold; margin: 0 0 20px 0;">
+                	{!program.Brand_Long_Name__c}
+            	</h2>
+			</div>
+            <div style="float: right;">
+          {!$Label.Fleet_Confirmation_Number} {!fleetEnrollment.Confirmation_Number__c}
+            </div>
+		</div>
+		<div class="sectionHeader">
+        {!$Label.Fleet_Billing_Information}
+        </div>
+		<div class="twelve columns clearfix">
+		<apex:outputText value="{!fleetEnrollment.Billing_Contact_First_Name__c}" />&nbsp;
+        <apex:outputText value="{!fleetEnrollment.Billing_Contact_Last_Name__c}" />
+				<br/>
+				<apex:outputText value="{!fleetEnrollment.Billing_Email__c}" />
+        <br/>
+            <apex:outputText value="{!fleetEnrollment.Billing_Phone__c}"/>
+        </div>
+        <div class="twelve columns clearfix">
+           	&nbsp;  
+        </div>
+        <div class="twelve columns clearfix">
+        	<apex:outputText value="{!fleetEnrollment.Billing_Address_Line_1__c}"/><br/>
+            <apex:outputText value="{!fleetEnrollment.Billing_Address_Line_2__c}"/>
+            <apex:outputText value="{!fleetEnrollment.Billing_City__c},"/>&nbsp; 
+            <apex:outputText value="{!fleetEnrollment.Billing_State__c}"/>&nbsp;
+            <apex:outputText value="{!fleetEnrollment.Billing_Postal_Code__c}"/>
+		</div>
+        <div class="twelve columns clearfix">			
+				&nbsp;
+        </div>
+			<div class="sectionHeader">
+				{!$Label.Fleet_Card_Shipping_Information}
+			</div>
+			<div class="twelve columns clearfix">
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Attention__c}" />
+				<br/>
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_1__c}" />
+				<br/>
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_2__c}" />
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_City__c}," />&nbsp;
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_State__c}" />&nbsp;
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Postal_Code__c}" />
+			</div>
+			<div class="twelve columns clearfix">
+				&nbsp;
+			</div>
+		<div class="twelve columns clearfix sectionHeader">
+        {!$Label.Fleet_Contacts}
+        </div>
+		<div class="twelve columns clearfix">
+            <apex:dataTable styleClass="driverTable" value="{!fleetEnrollmentContacts}" var="fleetEnrollmentContact">
+          <apex:column style="width: 40%;" headerValue="{!$Label.First_Name}">
+            <apex:outputText value="{!fleetEnrollmentContact.First_Name__c}" />
+				</apex:column>
+          <apex:column style="width: 40%;" headerValue="{!$Label.Last_Name}">
+            <apex:outputText value="{!fleetEnrollmentContact.Last_Name__c}" />
+          </apex:column>
+          <apex:column style="width: 40%;" headerValue="{!$Label.Email}">
+					<apex:outputText value="{!fleetEnrollmentContact.Email__c}" />
+				</apex:column>
+          <apex:column style="width: 20%;" headerValue="{!$Label.Phone}">
+					<apex:outputText value="{!fleetEnrollmentContact.Phone__c}" />
+				</apex:column>
+			</apex:dataTable>
+		</div>
+        <br/>
+		<div class="twelve columns clearfix sectionHeader">
+        {!$Label.Fleet_Card_Embossing}
+        </div>
+        <div class="twelve columns clearfix">
+        <b>{!$Label.Fleet_Number_of_Vehicles}: </b> {!fleetEnrollment.Number_Of_Vehicles__c}
+		</div>
+        <div class="twelve columns clearfix">			
+			&nbsp;
+        </div>
+        <div class="twelve columns clearfix">
+        <b>{!$Label.Fleet_Company_Name}: </b> {!fleetEnrollment.Embossing_Company_Name__c}
+		</div>
+        <div class="twelve columns clearfix">			
+			&nbsp;
+        </div>
+        <div class="twelve columns clearfix">
+        <b>{!$Label.Optional_printing}: </b> {!fleetEnrollment.Embossing_Second_Line__c}
+		</div>
+        <div class="twelve columns clearfix">			
+			&nbsp;
+        </div>
+		<div class="twelve columns clearfix sectionHeader">
+        {!$Label.Fleet_Reporting_Options}
+        </div>
+		<div class="twelve columns clearfix">
+        <b>{!$Label.Fleet_Additional_Fields}</b>
+        </div><br/>
+        <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == true}">
+			<div class="twelve columns clearfix" style="padding-left: 10px;">
+          {!$Label.Department}
+			</div><br/>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleDesc__c == true}">
+            <div class="twelve columns clearfix" style="padding-left: 10px;">
+          {!$Label.Vehicle_Description}
+			</div><br/>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!fleetEnrollment.Report_LicensePlt__c == true}">
+           	<div class="twelve columns clearfix" style="padding-left: 10px;">
+          {!$Label.License_Plate}
+			</div><br/>
+		</apex:outputPanel>
+        <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleId__c == true}">
+          	<div class="twelve columns clearfix" style="padding-left: 10px;">
+          {!$Label.Company_Vehicle_ID}
+			</div>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == false && fleetEnrollment.Report_VehicleDesc__c == false && fleetEnrollment.Report_LicensePlt__c == false && fleetEnrollment.Report_VehicleId__c == false}">
+           	<div class="twelve columns clearfix" style="padding-left: 10px;">
+          {!$Label.Fleet_None}
+			</div>
+        </apex:outputPanel>
+        <div class="twelve columns clearfix">			
+			&nbsp;
+        </div>
+		<div class="twelve columns clearfix sectionHeader">
+        {!$Label.Fleet_Vehicle_Reporting_Details}
+        </div>
+		<div class="twelve columns clearfix">
+            <table class="vehicleTable" id="vehicleTable">
+    			<thead>
+            <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!$Label.Fleet_Vehicle_Id}</th>
+            <th>{!$Label.Card_Controls}</th>
+            <th style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!$Label.Department}</th>
+            <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!$Label.Vehicle_Description}</th>
+            <th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!$Label.Fleet_Plate}</th>
+            <th style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Prompt_Option}</th>
+            <th style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Acceptance}</th>
+    			</thead>
+    			<tbody>
+        			<apex:repeat value="{!fleetEnrollmentVehicles}" var="fleetEnrollmentVehicle">
+            			<tr>
+                            <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!fleetEnrollmentVehicle.Customer_Vehicle_ID__c}</td>
+                			<td>{!fleetEnrollmentVehicle.Card_Control_Type__c}</td>
+                			<td style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!fleetEnrollmentVehicle.Department__c}</td>
+                			<td style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!fleetEnrollmentVehicle.Vehicle_Description__c}</td>
+                			<td style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!fleetEnrollmentVehicle.License_Plate__c}</td>
+        					<td style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!fleetEnrollmentVehicle.Prompt_Options__c}</td>
+                			<td style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!fleetEnrollmentVehicle.Acceptance__c}</td>
+            			</tr>
+        			</apex:repeat>
+    			</tbody>
+			</table>
+        </div>
+        <br/>
+        <apex:outputPanel rendered="{!program.Fleet_Enrollment_Disable_Driver_Page__c == false}">
+			<div class="twelve columns clearfix sectionHeader">
+          {!$Label.Fleet_Driver_Details}
+    	    </div>
+			<div class="twelve columns clearfix">
+                <table class="driverTable" id="driverTable">
+    				<thead>
+              <th>{!$Label.First_Name}</th>
+              <th>{!$Label.Last_Name}</th>
+              <th style="display: {!IF(fleetEnrollment.Driver_ID_Random__c == true, 'none', 'table-cell')}">{!$Label.Fleet_Driver_ID}</th>
+    				</thead>
+    				<tbody>
+        				<apex:repeat value="{!fleetEnrollmentDrivers}" var="fleetEnrollmentDriver">
+           					<tr style="display: {!IF(fleetEnrollmentDriver.First_Name__c == '', 'none', 'table-row')}">
+                				<td>{!fleetEnrollmentDriver.First_Name__c}</td>
+                				<td>{!fleetEnrollmentDriver.Last_Name__c}</td>
+            					<td style="display: {!IF(fleetEnrollment.Driver_ID_Random__c == true, 'none', 'table-cell')}">{!fleetEnrollmentDriver.Driver_ID__c}</td>
+							</tr>
+        				</apex:repeat>
+    				</tbody>
+				</table>
+			</div>
+		</apex:outputPanel>
+        <div class="twelve columns clearfix">			
+			&nbsp;
+		</div>
+	</div>
+</body>
+</html>
+</apex:page>

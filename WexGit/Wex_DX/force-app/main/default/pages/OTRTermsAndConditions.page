@@ -1,0 +1,3 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRTermsAndConditionsController">
+    <apex:outputText value="{!termsAndConditions}" escape="false" />
+</apex:page>

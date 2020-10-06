@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>LDR Lead Queue</name>
+    <queueMembers>
+        <roles>
+            <role>Lead_Development_Role</role>
+        </roles>
+        <users>
+            <user>bernabe.juntura@wexinc.com</user>
+            <user>david.goodwin@wexinc.com</user>
+            <user>jpivo@fleetone.com</user>
+            <user>mdawson@fleetone.com</user>
+            <user>robert.guaiani@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

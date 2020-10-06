@@ -1,0 +1,2 @@
+<apex:page controller="CreditForwardingController" action="{!forwardToPage}">
+</apex:page>

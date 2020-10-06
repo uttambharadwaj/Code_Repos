@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Fleet Implementation Case Queue</name>
+    <queueMembers>
+        <users>
+            <user>andrew.brunton@wexinc.com</user>
+            <user>jackie.bonner@wexinc.com</user>
+            <user>kristen.day1@wexinc.com</user>
+            <user>melissa.martin@wexinc.com</user>
+            <user>tyler.kinney1@wexinc.com</user>
+            <user>wade.vonallmen@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Fleet_Implementation_Cases</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>efswex-aae@wexinc.com</email>
+    <name>OTR Lead Queue 1&amp;2 Trucks</name>
+    <queueMembers>
+        <users>
+            <user>alexander.campbell@wexinc.com</user>
+            <user>eric.hunter@efsllc.com.wex</user>
+            <user>jewillia@efsllc.com</user>
+            <user>kellie.ciprian@wexinc.com</user>
+            <user>kris.chadwick@efsllc.com</user>
+            <user>melanie.sleigh@efsllc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>OTR_Lead_Queue_1_2_Trucks</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

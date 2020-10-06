@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Shell - Inside Sales - Chat</name>
+    <queueMembers>
+        <roles>
+            <role>Shell_Inbound_Sales</role>
+        </roles>
+    </queueMembers>
+    <queueRoutingConfig>Shell_Inside_Sales_Chat</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>LiveChatTranscript</sobjectType>
+    </queueSobject>
+</Queue>

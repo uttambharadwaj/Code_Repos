@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Outbound Omni Queue</name>
+    <queueMembers>
+        <users>
+            <user>chris.donkus@wexinc.com</user>
+            <user>cynthia.hoar@wexinc.com</user>
+            <user>danielle.dane@wexinc.com</user>
+            <user>david.gould@wexinc.com</user>
+            <user>ehrika.martin@wexinc.com</user>
+            <user>erin.bogdanovich@wexinc.com_rec</user>
+            <user>erin.bogdanovich@wexinc.com</user>
+            <user>jay.schochenmaier@wexinc.com</user>
+            <user>joseph.forlano@wexinc.com</user>
+            <user>louie.barboza@wexinc.com_rec</user>
+            <user>louie.barboza@wexinc.com</user>
+            <user>matthew.spencer@wexinc.com</user>
+            <user>rebecca.sabine@wexinc.com</user>
+            <user>seth.ionta@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Fleet_IS_Outbound</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

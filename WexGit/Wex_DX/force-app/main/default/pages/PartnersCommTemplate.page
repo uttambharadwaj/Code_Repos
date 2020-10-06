@@ -1,0 +1,231 @@
+<apex:page docType="html-5.0" sidebar="false" showChat="false" showHeader="false" standardStylesheets="false" cache="false" applyBodyTag="false" applyHtmlTag="false">	
+
+<html lang="en" dir="ltr" version="HTML+RDFa 1.1"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:sioct="http://rdfs.org/sioc/types#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="http://www.wexinc.com/sites/default/files/favicon_1.ico" type="image/vnd.microsoft.icon" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="http://www.wexinc.com/" />
+<meta content="Homepage" about="/content/homepage" property="dc:title" />
+<link rel="shortlink" href="http://www.wexinc.com/" />
+  <title>WEX | We see corporate payments differently.</title>  
+
+<link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.PartnersCommResources, 'css/css_pbm0lsQQJ7A7WCCIMgxLho6mI_kBNgznNUWmTWcnfoE.css')}" media="all" />
+<link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.PartnersCommResources, 'css/css_ID7TUM6u1G_nel53pxzOO871iM2HbHFh4DcthP6iIXo.css')}" media="all" />
+<link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.PartnersCommResources, 'css/css_5l0wJrD-HULOxyZcNtRDkk-2riOgiYrzmgwu8Cqe9e4.css')}" media="all" />
+<link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.PartnersCommResources, 'css/css_LaedF21-UBN1ai2YyxPHydqSVIPSCQWevZDaZIx_le0.css')}" media="all" />
+<!--<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" media="all" />-->
+<link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.PartnersCommResources, 'css/css_TTftgqefefvT_cPW4MK6fUejYXA4bYYZCfsMIpOAswc.css')}" media="all" />
+<link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.PartnersCommResources, 'css/css_Inb0UeQOwU36nvUlc26th_niGeE9_rrIWxuPERoN6Bk.css')}" media="all" />
+
+<!--original
+<link type="text/css" rel="stylesheet" href="http://www.wexinc.com/sites/default/files/css/css_pbm0lsQQJ7A7WCCIMgxLho6mI_kBNgznNUWmTWcnfoE.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.wexinc.com/sites/default/files/css/css_ID7TUM6u1G_nel53pxzOO871iM2HbHFh4DcthP6iIXo.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.wexinc.com/sites/default/files/css/css_5l0wJrD-HULOxyZcNtRDkk-2riOgiYrzmgwu8Cqe9e4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.wexinc.com/sites/default/files/css/css_LaedF21-UBN1ai2YyxPHydqSVIPSCQWevZDaZIx_le0.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.wexinc.com/sites/default/files/css/css_TTftgqefefvT_cPW4MK6fUejYXA4bYYZCfsMIpOAswc.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://www.wexinc.com/sites/default/files/css/css_Inb0UeQOwU36nvUlc26th_niGeE9_rrIWxuPERoN6Bk.css" media="all" />
+-->
+
+
+
+</head>
+
+<body class="html front not-logged-in page-node page-node- page-node-4 node-type-page empty-content">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+  <div class="region region-page-top" id="region-page-top">
+  <div class="region-inner region-page-top-inner">
+      </div>
+</div>  <div class="page clearfix" id="page">
+
+<!--HEADER-->
+<c:PartnersCommHeader />
+
+<!-- MAIN BODY CONTENT -->
+<section id="section-content" class="section section-content">
+  <div id="zone-content-wrapper" class="zone-wrapper zone-content-wrapper clearfix">  
+  <div id="zone-content" class="zone zone-content clearfix container-24">    
+        
+        <div class="grid-24 region region-content" id="region-content">
+  <div class="region-inner region-content-inner">
+    <a id="main-content"></a>
+            				  		    
+                        <div class="block block-system block-main block-system-main odd block-without-title" id="block-system-main">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <article about="/content/homepage" typeof="foaf:Document" class="node node-page node-published node-not-promoted node-not-sticky author-mvoto odd clearfix" id="node-page-4">
+            
+  
+  <div class="content clearfix">
+      </div>
+  
+  <div class="clearfix">
+          <nav class="links node-links clearfix"></nav>
+    
+      </div>
+</article>    </div>
+  </div>
+</div>      </div>
+</div>
+  </div>
+</div><div id="zone-postscript-wrapper" class="zone-wrapper zone-postscript-wrapper clearfix">  
+  <div id="zone-postscript" class="zone zone-postscript clearfix container-12">
+    <div class="zone-inner clearfix">
+
+    <!-- COMPONENT BODY -->
+    <apex:insert name="body" />
+
+    
+    <!--WEBSITE Inner Conent Begin-->  
+<!--
+      <div class="grid-4 region region-postscript-first" id="region-postscript-first">
+  <div class="region-inner region-postscript-first-inner">
+    <section class="block block-views block-latest-news-block block-views-latest-news-block odd" id="block-views-latest-news-block">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">Latest News</h2>
+            
+    <div class="content clearfix">
+      <div class="view view-latest-news view-id-latest_news view-display-id-block view-dom-id-aa502143968565fce9c71bcc99588f21">
+        
+  
+  
+      <div class="view-content">
+      <div class="item-list">    <ul>          <li class="views-row views-row-1 views-row-odd views-row-first views-row-last">  
+  <div class="views-field views-field-description">        <span class="field-content">SOUTH PORTLAND, Maine--(BUSINESS WIRE)--Jun. 25, 2014--
+      WEX Inc. (NYSE: WEX), a leading provider of corporate payment solutions,
+      today announced WEX Fleet One was named the provider of co-branded
+      over-the-road (OTR) fuel card services for Sinclair Oil Corporation
+      (“Sinclair”). This will allow Sinclair distributors and customers access
+      to the WEX Fleet One... <a href="http://phx.corporate-ir.net/phoenix.zhtml?c=186699&amp;p=RssLanding&amp;cat=news&amp;id=1942495" class="views-more-link">Read more</a></span>  </div></li>
+      </ul></div>    </div>
+  
+  
+  
+  
+  
+  
+</div>    </div>
+  </div>
+</section>  </div>
+</div><div class="grid-4 region region-postscript-second" id="region-postscript-second">
+  <div class="region-inner region-postscript-second-inner">
+    <section class="block block-block block-6 block-block-6 odd" id="block-block-6">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">WEX Healthcare News</h2>
+            
+    <div class="content clearfix">
+       <p><img src="http://www.wexinc.com/sites/default/files/wex_e1logos2.png" style="padding-bottom:5px" /><br /> "The acquisition of Evolution1 advances WEX's long-term strategy to extend our scalable business model into high-growth, high-value markets with complex payment systems," said Melissa Smith, WEX's president and chief executive officer.<br /></p>
+<p><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-newsArticle&amp;ID=1940178&amp;highlight=" class="button" target="_blank">Learn More</a></p>
+     </div>
+  </div>
+</section>  </div>
+</div><div class="grid-4 region region-postscript-third" id="region-postscript-third">
+  <div class="region-inner region-postscript-third-inner">
+    <div class="block block-product-configurator block-0 block-product-configurator-0 odd block-without-title" id="block-product-configurator-0">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="configurator-content clearfix"><div class="header-content"> <div class="title-area">Build the <strong>Fuel Card</strong> program that's<br /><span class="title">right for your business</span></div>
+<p>2 easy steps:</p>
+ </div><form class="product-configurator-form" action="/" method="post" id="default-configurator-instance-form" accept-charset="UTF-8"><div><div id="default-elements-wrapper" class="form-wrapper"><ol class="configurator-elements"><div id="location-count-field" class="widget-elements clearfix"><div class="form-item">
+  <label for="edit-field-locations-default">Select your state <span class="form-required" title="This field is required.">*</span></label>
+ <input type="hidden" name="elements[field_locations][country]" value="US" />
+<div class="form-item form-type-select form-item-elements-field-locations-region">
+ <select class="region-select form-select" id="edit-elements-field-locations-region" name="elements[field_locations][region]"><option value="" selected="selected">- Select a State -</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option>
+ <option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option>
+ <option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option>
+ <option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option>
+ <option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option>
+ <option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option><option value="AS">American Samoa</option>
+ <option value="FM">Federated States of Micronesia</option><option value="GU">Guam</option><option value="MH">Marshall Islands</option>
+ <option value="MP">Northern Mariana Islands</option><option value="PW">Palau</option><option value="PR">Puerto Rico</option><option value="VI">Virgin Islands</option></select>
+</div>
+
+</div>
+</div><div class="form-item">
+  <label for="edit-field-fuel-brand-default">Choose your preferred fuel brand </label>
+ <div class="form-item form-type-select form-item-elements-field-fuel-brand-value">
+ <select id="edit-elements-field-fuel-brand-value" name="elements[field_fuel_brand][value]" class="form-select"><option value="" selected="selected">- No Preference -</option><option value="1">MAPCO</option><option value="2">Meijer</option>
+ <option value="3">Wawa</option><option value="4">Sheetz</option><option value="5">Speedway</option><option value="6">QuikTrip</option><option value="7">7-Eleven</option><option value="8">WEX Network</option><option value="9">Kum &amp; Go</option><option value="10">Circle K</option>
+ <option value="11">76</option><option value="12">Conoco</option><option value="13">Tesoro</option><option value="14">Murphy USA</option><option value="15">Phillips 66</option><option value="16">ALON</option><option value="17">Gulf</option><option value="18">Sunoco</option>
+ <option value="19">LUKOIL</option><option value="20">GetGo</option><option value="21">ExxonMobil</option><option value="22">Marathon</option><option value="23">CITGO</option><option value="24">RaceTrac and RaceWay</option></select>
+</div>
+
+</div>
+</ol><div class="form-actions form-wrapper" id="edit-actions--2"><input class="configurator-submit form-submit" type="submit" id="edit-submit--2" name="op" value="See Fuel Cards" /></div></div><input type="hidden" name="form_build_id" value="form-MQIlUrGFd3MmNWLTSl8sV76gowwb3b9ChMgLE8qc8eE" />
+<input type="hidden" name="form_id" value="default_configurator_instance_form" />
+</div></form></div>    </div>
+  </div>
+</div>  </div>
+</div>    
+-->
+<!--INNER WEBSITE CONTENT END -->
+
+</div>
+  </div>
+</div></section>  
+<!-- MAIN BODY CONTENT END -->
+
+<!--footer -->
+<c:PartnersCommFooter />
+
+</div>
+
+<!-- Google Code for Remarketing tag -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide:google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 989376145;
+var google_conversion_label = "K82gCMeShwYQkd3i1wM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/989376145/?value=0&amp;label=K82gCMeShwYQkd3i1wM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+</body>
+</html>
+
+
+	<!-- TEMPLATE
+	<html class="no-js en" lang="en">
+		<head>
+		</head>
+		<body class="lang_western lang_en home">
+		<div class="container">
+			<c:PartnersCommHeader />
+			<c:PartnersCommLeftNav />
+	
+			<div class="contentwrapper">
+				<div class="inner clearfix"> 
+		
+				<apex:insert name="body" />	
+				</div>
+			</div> 		
+		</div>		
+		<c:PartnersCommFooter />
+		</body>
+		<site:previewAsAdmin />
+	</html>
+
+	-->
+</apex:page>

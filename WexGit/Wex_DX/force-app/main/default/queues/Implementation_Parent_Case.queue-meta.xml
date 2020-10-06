@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Implementation Parent Case</name>
+    <queueMembers>
+        <users>
+            <user>lee.socquet@wexinc.com</user>
+            <user>sandra.perkins@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Implementation_Parent_Case</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

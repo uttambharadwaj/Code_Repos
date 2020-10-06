@@ -1,0 +1,695 @@
+<apex:page standardController="Opportunity" extensions="CPBOCAToProspectController" showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" action="{!init}">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>BOCA To Prospect</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+
+        <!-- Script -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+        <script src="{!URLFOR($Resource.AppiphonyJS, 'appiphony-lightning-js-master/dist/jquery.aljs-all-with-moment.min.js')}"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js" />
+
+        <!-- Import the Design System style sheet -->
+        <apex:slds />
+
+        <style>
+            .warningMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #fbb439;
+            }
+
+            .confirmMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #32af5c;
+            }
+
+            .errorMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #e9696e;
+            }
+
+            .infoMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #3c97dd;
+            }
+
+            .warningMessage h4,
+            .confirmMessage h4,
+            .errorMessage h4,
+            .infoMessage h4 {
+                font-weight: bold;
+                padding-right: 4px;
+            }
+
+            .attachment {
+                border: 1px solid #bbc0c4;
+                background: #fff;
+                border-radius: 5px;
+                padding: 4px 8px 4px 8px;
+                font-size: 14px;
+                color: #707d95;
+                vertical-align: middle;
+                text-align: center;
+                float: left;
+                margin: 0 20px 10px 20px;
+                cursor: pointer;
+            }
+
+            .attachment:first-child {
+                margin: 0 20px 10px 0;
+            }
+
+            .attachment:hover {
+                cursor: pointer;
+                background: #f77e75;
+                color: #f1f1f1;
+            }
+
+            .attachButton {
+                border: 1px solid #bbc0c4;
+                background: #fff;
+                border-radius: 5px;
+                padding: 4px;
+                width: 140px;
+                font-size: 14px;
+                color: #707d95;
+                vertical-align: middle;
+                text-align: center;
+                cursor: pointer;
+                margin-top: -10px;
+                margin-bottom: 20px;
+            }
+
+            .attachButton:hover {
+                background: #e6e6e6;
+            }
+
+            .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+            }
+            .clearfix { display: inline-block; }
+            /* start commented backslash hack \*/
+            * html .clearfix { height: 1%; }
+            .clearfix { display: block; }
+            /* close commented backslash hack */
+
+            .fieldErrorMessage.filled {
+                margin-top: 8px;
+                display: block;
+                color: #a94442;
+                font-size: 12px;
+                padding-left: 3px;
+            }
+            .errored-input{
+                color:#b21522 !important;
+            }
+            select.errored-input, input.errored-input, textarea.errored-input {
+                border: 1px solid #b21522 !important;
+                background: #fce1e0 !important;
+                color: #b21522 !important;
+                font-family:inherit !important;
+            }
+
+            .disabled-button {
+                background: #e9e9e9 !important;
+                pointer-events: none;
+                color: #ccc !important;
+                border: 1px solid #ccc !important;
+            }
+
+            a, a:hover, a:visited {
+                text-decoration: none !important;
+                outline: none !important;
+            }
+
+            .slds-spinner_container { display: none; min-height: 100vh !important; }
+        </style>
+
+        <script>
+            var $j = jQuery.noConflict();
+
+            var assetsLoc = '{!URLFOR($Asset.SLDS)}';
+
+            $j.aljsInit({
+                assetsLocation: assetsLoc,
+                scoped: true
+            });
+
+            $j(document).ready(function() {
+
+                overridePageMessages();
+
+                $j('[data-aljs="tabs"]').tabs();
+
+                $j('[data-aljs="popover"]').popover();
+
+                $j('.slds-tabs--default__link').click(function() {
+                    $j('[id$=folderSelector]').val('#');
+                    $j('[id$=searchTerm]').val('');
+                    clearSearch();
+                });
+
+                $j('[id$=content]').find('.program').on('change', function() {
+                    var selectedPrograms = [];
+
+                    $j('[id$=content]').find('.program').each(function() {
+                        if($j(this).prop('checked')) {
+                            selectedPrograms.push($j(this).val());
+                        }
+                    });
+
+                    $j('[id$=selectedPrograms]').val(JSON.stringify(selectedPrograms));
+
+                    console.log(JSON.stringify(selectedPrograms));
+                });
+
+                $j('[id$=content]').find('.contact').on('change', function() {
+                    var selectedAdditionalContacts = [];
+
+                    $j('[id$=content]').find('.contact').each(function() {
+                        if($j(this).prop('checked')) {
+                            selectedAdditionalContacts.push($j(this).val());
+                        }
+                    });
+
+                    $j('[id$=selectedAdditionalContacts]').val(JSON.stringify(selectedAdditionalContacts));
+
+                    console.log(JSON.stringify(selectedAdditionalContacts));
+                });
+
+                $j('[id$=attachments]').on('DOMSubtreeModified', function() {
+                    var attachments = [];
+
+                    $j(this).find('.attachment').each(function() {
+                        attachments.push($j(this).data('attachment-id'));
+                    });
+
+                    $j('[id$=attachmentsList]').val(JSON.stringify(attachments));
+
+                    console.log($j('[id$=attachmentsList]').val());
+                });
+
+                $j('[id$=disablePG]').on('change', function() {
+                    if($j(this).is(':checked')) {
+                        $j('[id$=disablePG-APEX]').val(true);
+                    }
+                    else {
+                        $j('[id$=disablePG-APEX]').val(false);
+                    }
+                });
+
+                $j('[id$=alwaysRequirePG]').on('change', function() {
+                    if($j(this).is(':checked')) {
+                        $j('[id$=alwaysRequirePG-APEX]').val(true);
+                    }
+                    else {
+                        $j('[id$=alwaysRequirePG-APEX]').val(false);
+                    }
+                });
+
+                if($j('[id$=selectedPrograms]').val() != null && $j('[id$=selectedPrograms]').val() !== "") {
+                    var selectedPrograms = $j.parseJSON($j('[id$=selectedPrograms]').val());
+
+                    for(i = 0; i < selectedPrograms.length; i++) {
+                        $j("[id$=program-" + selectedPrograms[i] + "]").prop( "checked", true ).trigger("change");
+                    }
+                }
+
+                $j('[id$=disablePG], [id$=alwaysRequirePG]').on('change', function() {
+                    if($j(this).attr('id') === 'disablePG') {
+                        if($j(this).is(':checked')) {
+                            $j('[id$=alwaysRequirePG]').prop("disabled", true);
+                        } else {
+                            $j('[id$=alwaysRequirePG]').prop("disabled", false);
+                        }
+                    }
+                    else if($j(this).attr('id') === 'alwaysRequirePG') {
+                        if($j(this).is(':checked')) {
+                            $j('[id$=disablePG]').prop("disabled", true);
+                        } else {
+                            $j('[id$=disablePG]').prop("disabled", false);
+                        }
+                    }
+
+                });
+
+            });
+
+            function pageRerenderFunctions() {
+                $j('[data-aljs="popover"]').popover();
+            }
+
+            function overridePageMessages() {
+                var textureEffect = '';
+
+                $j('.warningM3').addClass('warningMessage');
+                $j('.confirmM3').addClass('confirmMessage');
+                $j('.errorM3').addClass('errorMessage');
+                $j('.infoM3').addClass('infoMessage');
+
+                $j('.errorM3').removeClass('errorM3');
+                $j('.confirmM3').removeClass('confirmM3');
+                $j('.infoM3').removeClass('infoM3');
+                $j('.warningM3').removeClass('warningM3');
+            }
+
+            function selectAllPrograms() {
+                $j("[id$=additionalPrograms]").find(".program").each(function() { $j(this).prop('checked', true).trigger("change"); });
+            }
+
+            function unselectAllPrograms() {
+                $j("[id$=additionalPrograms]").find(".program").each(function() { $j(this).prop('checked', false).trigger("change"); });
+            }
+
+            function selectAllContacts() {
+                $j("[id$=additionalContacts]").find(".contact").each(function() { $j(this).prop('checked', true).trigger("change"); });
+            }
+
+            function unselectAllContacts() {
+                $j("[id$=additionalContacts]").find(".contact").each(function() { $j(this).prop('checked', false).trigger("change"); });
+            }
+
+            function openAttachmentWindow(){
+                var newWin=window.open('/apex/URLgenAttachmentLookup', 'PopUp','height=650,width=450,left=50,top=50,resizable=no,scrollbars=yes,toolbar=no,status=no,channelmode=yes');
+                if (window.focus){
+                    newWin.focus();
+                }
+                return false;
+            }
+
+            function removeAttachment(obj) {
+                if(confirm('Remove Attachment?')) {
+                    $j(obj).remove();
+                }
+            }
+
+            function toggleTNC(myTNC){
+                $j("[id$=withholdTNC]").val(myTNC.checked);
+            }
+
+            function validateOnSubmit() {
+                var errorCount = 0;
+
+                $j('[id$=bocaToProspectForm]').parsley({
+                    errorClass: 'errored-input',
+                    successClass: '',
+                    errorsWrapper: '<div class="fieldErrorMessage"></div>',
+                    errorTemplate: '<p class="errored-input-message"></p>'
+                }).validate();
+
+                if(errorCount == 0 && $j('[id$=bocaToProspectForm]').parsley().isValid()) {
+                    $j('[id$=submitButton]').addClass('disabled-button');
+                    $j('[id$=spinner]').css('display', 'block').height($j(document).height());
+                    if($j('[id$=bocaToProspectId]').val() != null && $j('[id$=bocaToProspectId]').val() !== "") {
+                        sendBOCAToProspectReminder();
+                    }
+                    else {
+                        sendBOCAToProspect();
+                    }
+                }
+            }
+        </script>
+
+    </head>
+    <body onload="moveTo(0,0); resizeTo(600,725);">
+    <apex:form id="bocaToProspectForm">
+        <apex:actionFunction name="sendBOCAToProspect" action="{!bocaToProspect}" rerender="" />
+        <apex:actionFunction name="sendBOCAToProspectReminder" action="{!bocaToProspectReminder}" rerender="" />
+        <apex:outputPanel id="bocaToProspect">
+            <div id="content" class="slds-scope slds-is-relative">
+
+                <!-- HEADER -->
+                <div class="slds-page-header">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+                                    </svg>
+                                </div>
+
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title--caps slds-line-height--reset">BOCA To Prospect</p>
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="SLDS Inc.">
+                                        <apex:outputText value="Send BOCA" escape="false" />
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
+                <apex:outputPanel rendered="{!hasError == false}">
+
+                    <!--BEGIN ACCOUNT INFORMATION-->
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Account Information</span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Industry</label>
+                                            <apex:actionRegion >
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputField styleClass="slds-input" id="accountName" value="{!myAccount.Industry}">
+                                                        <apex:actionSupport event="onchange" rerender="extraAccountFields"/>
+                                                    </apex:inputField>
+                                                </div>
+                                            </apex:actionRegion>
+                                        </div><br/>
+                                        <apex:outputPanel id="extraAccountFields">
+                                            <apex:outputPanel rendered="{!myAccount.Industry == 'OTA'}">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Primary Location</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountLocation" value="{!myAccount.Customer_s_Primary_Location__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Primary Travel Location</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountTravel" value="{!myAccount.Customer_s_Primary_Travel_Location__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Primary Transaction Currency</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountTransaction" value="{!myAccount.Primary_Transaction_Currency__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Other Transaction Currency</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountCurrencies" value="{!myAccount.Other_Transaction_Currencies__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!---END ACCOUNT INFORMATION--->
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Program Information</span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Program Name</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="programName" value="{!opportunity.Campaign_Program__r.Program__r.Name}" html-data-parsley-required="true" html-data-parsley-error-message="Please ensure you have selected a program."/>
+                                            </div>
+                                        </div><br/>
+                                        <apex:outputPanel rendered="{!additionalPrograms != null}">
+                                            <fieldset class="slds-form-element" id="additionalPrograms">
+                                                <legend class="slds-form-element__legend slds-form-element__label">Include Additional Partner Programs&nbsp;&nbsp;
+                                                    <span style="font-size: 12px;">(<a href="javascript:selectAllPrograms();">Select All</a> | <a href="javascript:unselectAllPrograms();">Unselect All</a>)</span>
+                                                </legend>
+                                                <div class="slds-form-element__control">
+                                                    <apex:repeat value="{!additionalPrograms}" var="key">
+                                                        <apex:repeat value="{!additionalPrograms[key]}" var="value">
+                                                                    <span class="slds-checkbox">
+                                                                        <input type="checkbox" id="program-{!key}" class="program" value="{!key}" />
+                                                                        <label class="slds-checkbox__label" for="program-{!key}">
+                                                                            <span class="slds-checkbox_faux"></span>
+                                                                            <span class="slds-form-element__label">{!value}</span>
+                                                                        </label>
+                                                                    </span>
+                                                        </apex:repeat>
+                                                    </apex:repeat>
+                                                </div>
+                                            </fieldset><br/>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!disablePGToggle == false}">
+                                            <legend class="slds-form-element__legend slds-form-element__label">Additional Options</legend>
+                                            <div class="slds-form-element__control">
+                                                        <span class="slds-checkbox">
+                                                            <input type="checkbox" id="disablePG" name="disablePG" />
+                                                            <label class="slds-checkbox__label" for="disablePG">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label">Disable Personal Guarantor</span>
+                                                            </label>
+                                                        </span>
+                                            </div>
+                                            <div class="slds-form-element__control">
+                                                        <span class="slds-checkbox">
+                                                            <input type="checkbox" id="alwaysRequirePG" name="alwaysRequirePG" />
+                                                            <label class="slds-checkbox__label" for="alwaysRequirePG">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label">Require Personal Guarantor</span>
+                                                            </label>
+                                                        </span>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" id="hideTNC" name="label" checked="" onclick="toggleTNC(this)"/>
+                                                <label class="slds-checkbox__label" for="hideTNC">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">Withhold TNC</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-user slds-icon--small">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#people')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Sales Person Information</span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Name</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="salesRepName" value="{!salesRepName}" html-data-parsley-required="true"/>
+                                            </div>
+                                        </div><br/>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Phone</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="salesRepPhone" value="{!salesRep.Phone}" html-data-parsley-required="true" html-data-parsley-error-message="Please ensure your phone number has been set."/>
+                                            </div>
+                                        </div><br/>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Email</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="salesRepEmail" value="{!salesRep.Email}" html-data-parsley-required="true" html-data-parsley-error-message="Please ensure your email address has been set."/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-lead slds-icon--small">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#lead')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Customer Information</span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Customer First Name</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="customerFirstName" value="{!contact.FirstName}" html-data-parsley-required="true" html-data-parsley-error-message="Please ensure your primary contact has a first name."/>
+                                            </div>
+                                        </div><br/>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Customer Last Name</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="customerLastName" value="{!contact.LastName}" html-data-parsley-required="true" html-data-parsley-error-message="Please ensure your primary contact has a last name."/>
+                                            </div>
+                                        </div><br/>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Customer Email</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText disabled="true" styleClass="slds-input" id="customerEmail" value="{!contact.Email}" html-data-parsley-required="true" html-data-parsley-error-message="Please ensure your primary contact has an email address."/>
+                                            </div>
+                                        </div><br/>
+                                        <apex:outputPanel rendered="{!hasAdditionalContacts == true}">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="input-id-01">Additional Contacts&nbsp;&nbsp;
+                                                    <span style="font-size: 12px;">(<a href="javascript:selectAllContacts();">Select All</a> | <a href="javascript:unselectAllContacts();">Unselect All</a>)</span></label>
+                                                <div class="slds-form-element__control">
+                                                    <table class="slds-table slds-table--bordered slds-table--striped" id="additionalContacts">
+                                                        <tbody>
+                                                        <apex:repeat value="{!additionalContacts}" var="additionalContact">
+                                                            <tr>
+                                                                <td>
+                                                                            <span class="slds-checkbox">
+                                                                                <input type="checkbox" id="contact-{!additionalContact.ContactId}" class="contact" value="{!additionalContact.Contact.Email}" />
+                                                                                <label class="slds-checkbox__label" for="contact-{!additionalContact.ContactId}">
+                                                                                    <span class="slds-checkbox_faux"></span>
+                                                                                    <span class="slds-form-element__label"></span>
+                                                                                </label>
+                                                                            </span>
+                                                                </td>
+                                                                <td>{!additionalContact.Contact.FirstName} {!additionalContact.Contact.LastName}</td>
+                                                                <td>{!additionalContact.Role}</td>
+                                                                <td>{!additionalContact.Contact.Email}</td>
+                                                            </tr>
+                                                        </apex:repeat>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div><br/>
+                                        </apex:outputPanel>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Additional Recipients (Comma Separated)</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText html-data-parsley-error-message="Please ensure each e-mail address is valid and seperated by a comma." html-data-parsley-pattern="^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},*[\W]*)+$"   styleClass="slds-input" id="ccEmail" value="{!ccEmail}" />
+                                            </div>
+                                        </div><br/>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Custom Message</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputTextarea styleClass="slds-textarea" value="{!customMessage}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Attachments</span>
+                                    </a>
+                                </div>
+                            </header>
+                            <div class="slds-no-flex">
+                                <input type="button" class="slds-button slds-button_neutral" onclick="openAttachmentWindow();" value="Add Attachment" />
+                            </div>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div id="attachments" class="clearfix">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>  <br/>
+                    <apex:inputHidden value="{!selectedAdditionalContacts}" id="selectedAdditionalContacts" />
+                    <apex:inputHidden value="{!selectedPrograms}" id="selectedPrograms"/>
+                    <apex:inputHidden value="{!attachments}" id="attachmentsList"/>
+                    <apex:inputHidden value="{!disablePG}" id="disablePG-APEX"/>
+                    <apex:inputHidden value="{!alwaysRequirePG}" id="alwaysRequirePG-APEX"/>
+                    <apex:inputHidden value="{!hideTNC}" id="withholdTNC"/>
+                    <apex:inputHidden value="{!bocaToProspectId}" id="bocaToProspectId"/>
+                    <input type="button" id="submitButton" value="Send Application" onclick="validateOnSubmit()" class="attachButton" />
+                    <div class="slds-spinner_container" id="spinner">
+                        <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    </body>
+    </html>
+</apex:page>

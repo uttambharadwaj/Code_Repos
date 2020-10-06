@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Pardot Online Application Form Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Wex_Europe</publicGroup>
+            <publicGroup>CorporatePay2</publicGroup>
+        </publicGroups>
+        <users>
+            <user>pardot@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

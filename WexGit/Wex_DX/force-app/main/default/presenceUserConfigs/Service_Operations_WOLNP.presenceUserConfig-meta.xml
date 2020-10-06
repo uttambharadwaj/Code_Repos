@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PresenceUserConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>Service Operations Agent</profile>
+            <profile>Service Operations Auditor</profile>
+            <profile>Service Operations Manager</profile>
+        </profiles>
+        <users>
+            <user>jillian.tilley@gearscrm.com</user>
+        </users>
+    </assignments>
+    <capacity>2</capacity>
+    <enableAutoAccept>true</enableAutoAccept>
+    <enableDecline>false</enableDecline>
+    <enableDeclineReason>false</enableDeclineReason>
+    <enableDisconnectSound>true</enableDisconnectSound>
+    <enableRequestSound>true</enableRequestSound>
+    <label>Service Operations - WOLNP</label>
+</PresenceUserConfig>

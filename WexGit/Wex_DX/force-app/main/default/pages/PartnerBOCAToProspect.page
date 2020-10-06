@@ -1,0 +1,342 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false"
+           controller="PartnerBOCAToProspectController" action="{!init}">
+    <html>
+    <head>
+
+        <!-- Title -->
+        <title>{!partner.Name} - Credit Application To Prospect</title>
+
+        <!-- Meta -->
+        <meta name="viewport" content="width=device-width"/>
+
+        <!-- Imported Styles -->
+        <link rel="stylesheet" href="{!URLFOR($Resource.LoadingModal, '/jquery-loadingModal-master/css/jquery.loadingModal.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.PartnerBOCAToProspectCSS)}"/>
+
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"/>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js"/>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js"/>
+        <script type="text/javascript" src="{!URLFOR($Resource.LoadingModal, '/jquery-loadingModal-master/js/jquery.loadingModal.min.js')}" />
+        <script type="text/javascript" src="{!URLFOR($Resource.PartnerBOCAToProspectJS)}"/>
+
+        <apex:slds />
+    </head>
+    <body>
+
+    <apex:form id="partnerBOCAToProspectForm">
+        <apex:actionFunction name="sendApplication" action="{!sendApplication}" rerender="" />
+        <apex:outputPanel id="addAttachment">
+            <div id="content"
+                 class="slds-scope slds-is-relative slds-container_large slds-container_center slds-p-around_large">
+                <!-- HEADER -->
+                <div id="logo-container" class="slds-grid slds-grid_align-center">
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-align_absolute-center">
+                            <apex:image styleClass="logo" rendered="{!brandingLogo != null}"
+                                        value="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                        </div>
+                    </div>
+                </div>
+                <apex:outputPanel rendered="{!action == 'confirm'}">
+                    <div class="slds-align_absolute-center">
+                        <div class="slds-text-heading_large">Success!</div>
+                    </div><br/>
+                    <div class="slds-align_absolute-center">
+                        <div class="slds-text-heading_medium">Your application was sent successfully.</div>
+                    </div><br/>
+                    <div class="slds-align_absolute-center">
+                        <a class="slds-button slds-button_brand submit-button" href="https://{!$Label.External_Instance_URL}/creditapplication/PartnerBOCAToProspect?partner={!partnerParameter}">
+                            Send Another Application
+                        </a>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!action != 'confirm'}">
+                    <!-- HEADER -->
+                    <div class="slds-grid slds-grid_align-center">
+                        <div class="slds-col slds-size_1-of-1">
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid">
+                                    <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure slds-icon-standard-account">
+                                            <svg aria-hidden="true" class="slds-icon slds-icon--small">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                     xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#product')}"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="slds-media__body slds-truncate">
+                                            <a href="javascript:void(0);" class="slds-text-link--reset">
+                                                <span class="slds-text-heading--small">Select Program &amp; Offer</span>
+                                            </a>
+                                        </div>
+                                    </header>
+                                </div>
+                                <!-- CARD BODY = TABLE -->
+                                <div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+                                    <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                        <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                            <div class="slds-media__body">
+                                                <div class="slds-p-around_medium">
+                                                    <div class="slds-form-element">
+                                                        <label class="slds-form-element__label"
+                                                               for="input-id-01">Program *</label>
+                                                        <div class="slds-form-element__control">
+                                                            <apex:selectList styleClass="slds-select" html-data-parsley-required="true"
+                                                                             value="{!selectedProgram}" id="program" size="1">
+                                                                <apex:selectOptions value="{!additionalPrograms}"/>
+                                                                <apex:actionSupport event="onchange" rerender="offer" />
+                                                            </apex:selectList>
+                                                        </div>
+                                                    </div>
+                                                    <br/>
+                                                    <apex:outputPanel id="offer">
+                                                        <apex:outputPanel rendered="{!bocaType=='OTR'}">
+                                                            <div class="slds-form-element" >
+                                                                <label class="slds-form-element__label" for="input-id-01">Offers *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:selectList styleClass="slds-select" html-data-parsley-required="true"
+                                                                                     value="{!selectedOffer}" size="1">
+                                                                        <apex:selectOptions value="{!additionalOffers}"/>
+                                                                    </apex:selectList>
+                                                                </div>
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid">
+                                    <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure slds-icon-standard-account">
+                                            <svg aria-hidden="true" class="slds-icon slds-icon--small">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                     xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#avatar')}"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="slds-media__body slds-truncate">
+                                            <a href="javascript:void(0);" class="slds-text-link--reset">
+                                                <span class="slds-text-heading--small">Applicant</span>
+                                            </a>
+                                        </div>
+                                    </header>
+                                </div>
+                                <!-- CARD BODY = TABLE -->
+                                <div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+                                    <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                        <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                            <div class="slds-media__body">
+                                                <div class="slds-grid slds-wrap">
+                                                    <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2">
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="applicantCompanyName">Company
+                                                                    Name *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="applicantCompanyName" value="{!partnerBOCAtoProspect.Company_Name__c}" html-data-parsley-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="applicantFirstName">First
+                                                                    Name *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="applicantFirstName" value="{!partnerBOCAtoProspect.First_Name__c}" html-data-parsley-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="applicantLastName">Last
+                                                                    Name *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="applicantLastName" value="{!partnerBOCAtoProspect.Last_Name__c}" html-data-parsley-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2">
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label"
+                                                                       for="applicantEmail">Email *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="applicantEmail" value="{!partnerBOCAtoProspect.Email__c}" html-data-parsley-required="true" html-data-parsley-type="email" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="applicantPhone">Phone
+                                                                    Number *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input phone" id="applicantPhone" value="{!partnerBOCAtoProspect.Phone__c}" html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+                                                                                     html-data-parsley-error-message="Please enter a valid phone number."/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--commenting out as there will be no oppty when they use this form. yet. maybe someday.-->
+                                                        <!--
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="applicantSalesforceOpportunityID">Salesforce
+                                                                    Opportunity ID</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="applicantSalesforceOpportunityID" value="{!partnerBOCAtoProspect.Partner_Opportunity_ID__c}" html-data-parsley-required="true"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        -->
+                                                    </div>
+                                                </div><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="slds-card">
+                                <div class="slds-card__header slds-grid">
+                                    <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure slds-icon-standard-account">
+                                            <svg aria-hidden="true" class="slds-icon slds-icon--small">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                     xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/standard-sprite/svg/symbols.svg#service_resource')}"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="slds-media__body slds-truncate">
+                                            <a href="javascript:void(0);" class="slds-text-link--reset">
+                                                <span class="slds-text-heading--small">Sales Represenative</span>
+                                            </a>
+                                        </div>
+                                    </header>
+                                </div>
+                                <!-- CARD BODY = TABLE -->
+                                <div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+                                    <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                        <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                            <div class="slds-media__body">
+                                                <div class="slds-grid slds-wrap">
+                                                    <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2">
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerSalesCode">Verification Code *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerSalesCode" value="{!partnerBOCAtoProspect.Partner_Sales_Code__c}" html-data-parsley-required="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="salesRepFirstName">First Name *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="salesRepFirstName" value="{!partnerBOCAtoProspect.Sales_Rep_First_Name__c}" html-data-parsley-required="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="salesRepLastName">Last Name *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="salesRepLastName" value="{!partnerBOCAtoProspect.Sales_Rep_Last_Name__c}" html-data-parsley-required="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label"
+                                                                       for="salesRepEmail">Email *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="salesRepEmail" value="{!partnerBOCAtoProspect.Sales_Rep_Email__c}" html-data-parsley-required="true" html-data-parsley-type="email" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="salesRepPhone">Phone
+                                                                    Number *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input phone" id="salesRepPhone" value="{!partnerBOCAtoProspect.Sales_Rep_Phone__c}" html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+                                                                                     html-data-parsley-error-message="Please enter a valid phone number." />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerOpptyId">Partner Opportunity ID</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerOpptyId" value="{!partnerBOCAtoProspect.Partner_Opportunity_ID__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2">
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="salesRepCode">Sales Rep Code</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="salesRepCode" value="{!partnerBOCAtoProspect.Sales_Rep_Code__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField1">Partner Data Field 1</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField1" value="{!partnerBOCAtoProspect.Partner_Data_Field_1__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField2">Partner Data Field 2</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField2" value="{!partnerBOCAtoProspect.Partner_Data_Field_2__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField3">Partner Data Field 3</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField3" value="{!partnerBOCAtoProspect.Partner_Data_Field_3__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField4">Partner Data Field 4</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField4" value="{!partnerBOCAtoProspect.Partner_Data_Field_4__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField5">Partner Data Field 5</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField5" value="{!partnerBOCAtoProspect.Partner_Data_Field_5__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article><br/>
+                            <input type="button" class="slds-button slds-button_brand submit-button" onclick="validate()" value="Send Application"/>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    </body>
+    </html>
+</apex:page>

@@ -1,0 +1,413 @@
+<apex:page controller="Ctrl_MotorpassForm" cache="false" id="thePage" action="{!createCards}" standardStylesheets="false" showHeader="false">
+    
+    <head>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+    
+    <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+    
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-1.4.3.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-ui-1.8.5.custom.min.js')}" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js" />
+        
+        <style type="text/css">
+        
+            .button { display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: 
+#E31837; }
+            .smlbutton { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 150px; height: 36px; font-family: arial; font-size: 14px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-radius: 6px; background-color: 
+#E31837; }
+            
+            input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+            h2 { font-family: arial; font-size: 14px; font-weight: bold; color: #666; }
+            
+            #contactLink
+            {               
+               display:block;
+               cursor:pointer;               
+               float:left;
+               right:0px;
+               position:absolute;
+               width:100px;
+               height:50px;
+               border:1px solid #666;
+            }
+            
+            
+            #contactForm
+            {
+               height:625px;
+               width:440px;              
+               display:none;
+            }
+            
+            #contactFormContainer
+            {
+               position:absolute;
+               right:0px;
+               top:50px;
+               align:center;
+            }
+            .box
+            {
+                float:right;
+            }
+            
+            #transparentDiv
+            {
+                background-color:red;
+                opacity:0.2;
+            }
+            
+            #mainDiv
+            {
+                width: 80%;
+            }
+            #tabs ul {
+            margin-bottom: 0px;
+            height: 29px;
+            background: url(https://wss.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+            overflow: hidden;
+            zoom: 1;
+            list-style-type: none;
+            }
+            
+            #tabs ul li {
+            background: url(https://wss.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+            height: 29px;
+            line-height: 29px;
+            float: left;
+            margin-left: -1px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 0px 14px 0px 13px;
+            display: block;
+            float: left;
+            width: 17%;
+            }
+            
+            #tabs ul li.selected {
+            background: none;
+            color: #FFF;
+            }
+            
+            .vfHelpText a            {position:relative;}
+            .vfHelpText a span       {display: none;}
+            .vfHelpText a:hover span {display: block;
+                              position:absolute;
+                              top:1.25em;
+                              padding:2px 5px;
+                              left:-15em; width:15em;
+                              z-index:100;
+                              border:1px solid orange;
+                              background-color:#FEFDB9;
+                              color:black;
+                             }
+            .vfHelpText img
+            {
+                border:0;
+            }
+                                 
+        .helpOrb {
+            background-image: url("/img/help/helpOrbs.gif");
+            background-position: 0 0;
+            height: 15px;
+            width: 20px;
+            }
+        </style>
+        
+    </head>
+    
+    <body style="margin: 0px; font-family: arial; font-size: 13px; color: #666;">
+    
+    <div style="margin-left: auto; margin-right: auto; width: 960px;">
+    
+        <div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; background-image: url(http://www.motorpass.com.au/media/2241736/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+        <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+        <div style="min-height:1000px;height:auto;margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; vertical-align: baseline;">
+        
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li>Getting Started</li>
+                    <li>Your Details</li>
+                    <li class="selected">Card Details</li>
+                    <li>Payment Options</li>
+                    <li>Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/>
+            
+            <div style="padding-left: 20px;">
+    
+            <apex:form id="theForm">
+        
+            <apex:actionFunction name="callComponent" action="{!invokeComponent}" rerender="compId"/>
+            
+            <apex:actionFunction name="showCardsList" action="{!createCards}" rerender="cardsPanel" status="statusImg"/>
+            
+            <apex:actionFunction name="showOrHideCardFields" action="{!displayCardDetailFields}" rerender="cardsPanel">
+                <apex:param name="idx" value=""/>
+            </apex:actionFunction>
+        
+            <apex:pageMessages />
+            
+            <apex:pageBlock id="pgBlk">
+                
+                  <table>
+            <tr><br><br></br></br>
+            <tr><td width="20%"></td>
+               <td><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 175px; height: 130px; text-align: center; color: #000000; margin-left:auto; margin-right:auto; border-radius: 6px;"> <b>Driver Only</b><br></br>
+                    Company and driver name are printed on the card. A signature panel is included. This means that only a specific person can use the card. 
+                </blockquote>
+               </td><td width="1%"></td>
+               <td><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 180px; height: 130px; text-align: center; color: #000000; margin-left:auto; margin-right:auto; border-radius: 6px;"> <b>Vehicle Only</b><br></br>
+                   Company name and vehicle registration number are printed on the card. There is no signature panel. This means that any driver of the vehicle can use the card.
+                    </blockquote>
+               </td><td width="1%"></td>
+               <td><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 180px; height: 130px; text-align: center; color: #000000; margin-left:auto; margin-right:auto; border-radius: 6px;"> <b>Driver and Vehicle</b><br></br> 
+                Vehicle registration number, company and driver name are printed on the card. A signature panel is included. This means that the card is assigned to a specific vehicle and a specific person.
+                </blockquote>
+                </td><td width="18%"></td>
+            </tr>
+            </tr>  
+        </table>
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td colspan="4" align="left">
+                        <p>Select your preferred card type<apex style="display:{!IF(option == 'Individual','none','')}"> for each card</apex>.</p>
+
+                    </td>
+                    
+                  </tr>
+                  <tr style="display:{!IF(option == 'Individual','none','')}">
+                    <td align="left"><apex:outputLabel value="Business trading name"/></td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Business_Trading_Name__c}"/></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr style="display:{!IF(option == 'Individual','none','')}">
+                    <td align="left" width="25%"><apex:outputLabel value="Number of cards required"/></td>
+                    <td align="left" width="25%">
+                        <apex:selectList value="{!numberOfCards}" size="1" onchange="showCardsList();" id="cardNumbers">
+                            <apex:selectOptions value="{!NumberOfCardsList}"/>
+                        </apex:selectList>
+                        <apex:actionStatus id="statusImg" >
+                            <apex:facet name="start">
+                                <img src="/img/loading.gif"/>
+                            </apex:facet>
+                        </apex:actionStatus>
+                    </td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  </table>
+                  
+                  <br/><br/>
+                
+                  <apex:outputPanel id="cardsPanel">
+                  
+                <br></br>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                    
+                    <apex:variable var="index" value="{!0}"/>
+                    <apex:repeat value="{!cardsList}" var="card" id="iterator">
+                    
+                       <tr style="width:100%;">
+                        <td style="float:left;padding-left:2%;" valign="top" align="left" width="25%"><apex:outputLabel value="Card type"/></td>
+                        <td valign="top" align="left" width="25%"><apex:inputField value="{!card.AU_Card_Type__c}"  onchange="showOrHideCardFields('{!ROUND(index,0)}');"/></td>
+                        <td valign="top" align="left" width="25%"></td>
+                        <td valign="top" align="left" width="25%"></td>
+                      </tr> 
+                      <tr>
+                        <td colspan="4" align="left">
+                        
+                        <apex:outputPanel rendered="{!AND(NOT(isNull(card.AU_Card_Type__c)),card.AU_Card_Type__c != '')}">
+                            
+                        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                          <tr >
+                            <td  valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Driver Only','block table','none')}">
+                                <apex:outputLabel value="Vehicle registration" />
+                            </td>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Driver Only','block table','none')}">
+                                 <apex:outputPanel id="vehicleReg">   
+                                    <apex:inputField value="{!card.AU_Vehicle_Registration__c}"/>
+                                </apex:outputPanel>
+                            </td>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Vehicle Only','block table','none')}">
+                                <apex:outputLabel value="Driver name"  />
+                            </td>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Vehicle Only','block table','none')}">
+                                <apex:outputPanel id="DriverName" >
+                                    <apex:inputField value="{!card.AU_Drivers_Name__c}" />
+                                    <span class="vfHelpText" >
+                                        <apex:outputLink value="javascript:return false;">
+                                            <img src="/s.gif" alt="" class="helpOrb" />
+                                            <span>This will be embossed on the card</span>
+                                        </apex:outputLink>
+                                    </span>                                        
+                                </apex:outputPanel>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Driver Only','block table','none')}">
+                                <apex:outputLabel value="Vehicle make" />
+                            </td>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Driver Only','block table','none')}">
+                                <apex:outputPanel id="vehicleMake" >
+                                    <apex:inputField value="{!card.AU_Vehicle_Make__c}"/>
+                                </apex:outputPanel>
+                            </td>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Driver Only','block table','none')}">
+                                <apex:outputLabel value="Vehicle model" />
+                            </td>
+                            <td valign="top" align="left" width="25%" style="display:{!IF(card.AU_Card_Type__c != 'Driver Only','block table','none')}">
+                                <apex:outputPanel id="vehicleModel" >
+                                    <apex:inputField value="{!card.AU_Vehicle_Model__c}"/>
+                                </apex:outputPanel>
+                            </td>
+                          </tr>
+                          <tr style="display:{!IF(option == 'Individual','none','block table')}">
+                            <td valign="top" align="left" width="25%">
+                                <apex:outputLabel value="Cost centre code"/>
+                            </td>
+                            <td valign="top" align="left" width="25%">
+                                <apex:outputPanel id="costCentre">
+                                    <apex:inputField value="{!card.AU_Cost_Centre_Code__c}"/>
+                                    <span class="vfHelpText">
+                                        <apex:outputLink value="javascript:return false;">
+                                        <img src="/s.gif" alt="" class="helpOrb" />
+                                        <span>{!$ObjectType.AU_Card_Details__c.Fields.AU_Cost_Centre_Code__c.inlineHelpText}</span>
+                                        </apex:outputLink>
+                                    </span> 
+                                </apex:outputPanel>
+                            </td>
+                            <td valign="top" align="left" width="25%">
+                                <apex:outputLabel value="Cost centre description"/>
+                            </td>
+                            <td valign="top" align="left" width="25%">
+                                <apex:outputPanel id="costCentreDesc">
+                                    <apex:inputField value="{!card.AU_Cost_Centre_Description__c}"/>
+                                    <span class="vfHelpText">
+                                        <apex:outputLink value="javascript:return false;">
+                                        <img src="/s.gif" alt="" class="helpOrb" />
+                                        <span>{!$ObjectType.AU_Card_Details__c.Fields.AU_Cost_Centre_Description__c.inlineHelpText}</span>
+                                        </apex:outputLink>
+                                    </span>
+                                </apex:outputPanel>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" align="left" width="25%">
+                                <apex:outputLabel value="PIN required"/>
+                            </td>
+                            <td valign="top" align="left" width="25%">
+                                <apex:outputPanel id="pinReqd">
+                                    <apex:inputField value="{!card.AU_Pin_Required__c}"/>
+                                </apex:outputPanel>
+                            </td>
+                            <td valign="top" align="left" width="25%"></td>
+                            <td valign="top" align="left" width="25%">
+                            </td>
+                          </tr>
+                          
+                          
+                        </table>
+                        
+                            
+                        </apex:outputPanel>
+                        
+                        </td>
+                        </tr>
+                        <tr style="height:20px">
+                        <td valign="top" align="left" width="25%"></td>
+                        <td valign="top" align="left" width="25%"></td>
+                        <td valign="top" align="left" width="25%"></td>
+                        <td valign="top" align="left" width="25%"></td>
+                        </tr>
+                        
+                        <apex:variable var="index" value="{!index+1}"/>
+                    </apex:repeat>
+                
+                </table>
+                
+                <!--                <apex:pageBlockButtons location="bottom">-->
+                    <apex:commandLink styleclass="button" value="Back" action="{!gotoYourDetails}">
+                    </apex:commandLink>
+                    &nbsp;&nbsp;
+                    <apex:commandLink styleclass="button" value="Submit" action="{!redirectToConfirmation}">
+                        <apex:param name="saveForm" value="yes" assignTo="{!saveForm}"/>
+                        <apex:param name="redirectedFrom" value="CardOptions" assignTo="{!redirectedFrom}" />
+                    </apex:commandLink>
+                    &nbsp;&nbsp;
+                    <apex:commandLink styleclass="button" value="Next" action="{!gotoPaymentOptions}">
+                        <apex:param name="saveForm" value="no" assignTo="{!saveForm}"/>
+                    </apex:commandLink>
+<!--                </apex:pageBlockButtons>-->
+
+                </apex:outputPanel> 
+                
+            </apex:pageBlock>
+            
+        </apex:form>
+        
+        </div>
+        
+    </div>
+    
+    <div class="box">
+    
+        <div id="contactFormContainer">
+        
+                <div id="contactLink" style="border: 0px;">
+        
+                    <div class="container-callbacktab" style="font-family: arial;font-size: 14px;color: #FFF; width: 80px; align: center; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border: 1px solid #666; border-radius: 6px; background-color: #E31837;">
+                        <b>Request a    call back</b>
+                    </div>
+        
+                </div>
+        
+                <div id="contactForm">
+                    <c:CallBackForm objController="{!this}" id="compId"/>
+                </div>
+        
+               </div>
+           
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+             $("#contactLink").click(function(){
+                 if ($("#contactForm").is(":hidden")){
+                    callComponent();
+                     $("#contactForm").show('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "440px" }, 1000);
+                     pos = $("#mainDiv").position();
+                 }
+                 else{
+                     $("#contactForm").hide('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "0px" }, 1000);
+                 }
+             });
+             
+             
+         });
+    </script>
+    
+    <site:googleAnalyticsTracking />
+    
+    </body>
+    
+</apex:page>

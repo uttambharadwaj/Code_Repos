@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Opportunity</entityName>
+    <fieldName>StageName</fieldName>
+    <masterLabel>AUFuelBDM</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>AU_Total_Cards_Required__c</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Primary_Contact__c</fieldNames>
+        <fieldNames>LeadSource</fieldNames>
+        <info>&lt;p&gt;Is the customer engaged and showing interest? If so, move on to the next stage!&lt;/p&gt;</info>
+        <picklistValueName>1) Qualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Pain_Points__c</fieldNames>
+        <fieldNames>Reason_for_making_change__c</fieldNames>
+        <fieldNames>AU_Current_Payment_Arrangements__c</fieldNames>
+        <fieldNames>Current_Contract_Expiration_Date__c</fieldNames>
+        <info>&lt;p&gt;Will the customer meet with you to hear more about WEX&amp;#39;s solution? If so, move to the next stage!&lt;/p&gt;</info>
+        <picklistValueName>2) Engaged</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Current_Monthly_Fees__c</fieldNames>
+        <fieldNames>AU_Monthly_Card_Fee__c</fieldNames>
+        <fieldNames>Transaction_Fee__c</fieldNames>
+        <fieldNames>Competitor_1__c</fieldNames>
+        <info>&lt;p&gt;Has an offer been put to the customer? Move to the next stage!&lt;/p&gt;</info>
+        <picklistValueName>3) Evaluating</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Forecast_Initial_Card_Order__c</fieldNames>
+        <fieldNames>Product_Type__c</fieldNames>
+        <fieldNames>Monthly_Fuel_Spend__c</fieldNames>
+        <fieldNames>Monthly_Fuel_Volume_litres__c</fieldNames>
+        <info>&lt;p&gt;Congratulations on getting to this stage of the deal.  &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;REMEMBER&lt;/b&gt;: If WEX will be providing credit to this customer, get permission to do a &lt;u&gt;commercial credit check&lt;/u&gt; before creating an AU Application Request. Use the email template &amp;quot;AU Large Fleet - Credit check request&amp;quot; and make sure the email is related to this opp.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Primary Objectives for Stage 4:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Gather additional information for implementation&lt;/li&gt;&lt;li&gt;Know why the customer is selecting WEX for partnership. Reinforce this.&lt;/li&gt;&lt;li&gt;Finalise pricing options&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>4) Negotiating</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Reason_Code__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;&lt;u&gt;Congratulations &lt;/u&gt;&lt;/b&gt;on getting to this stage of the deal.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;REMEMBER&lt;/b&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;: If WEX will be providing credit to this customer, get permission to do a &lt;/span&gt;&lt;u&gt;commercial credit check&lt;/u&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt; before creating an AU Application Request. Use the email template &amp;quot;AU Large Fleet - Credit check request&amp;quot; and make sure the email is related to this opp.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>5) Signed</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>AU_Fuel_Indirect</recordTypeName>
+</PathAssistant>

@@ -1,0 +1,23 @@
+<!-- *************************
+    Purpose:
+        Send Application, Opportunity, Account, Contact, and Cards to Genesis
+    
+    History:
+        01-May-2014 Manu Erwin      Created
+************************* -->
+<apex:page standardController="AU_Application_Request__c" extensions="AccountAndCardsToGenesis_ExCon" showHeader="true" sidebar="true" action="{!submitAccountAndCards}">
+	<apex:sectionHeader title="Sending to Genesis" subtitle="{!AU_Application_Request__c.Name}" />
+
+	<apex:form >
+		<apex:pageBlock id="thePageBlock" >
+
+			<apex:pageMessages />
+
+			<apex:pageBlockButtons >
+                <apex:commandButton action="{!cancel}" value="Back to AU Application Request"/>
+            </apex:pageBlockButtons>
+		</apex:pageBlock>
+
+	</apex:form>
+
+</apex:page>

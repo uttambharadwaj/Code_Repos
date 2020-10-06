@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductCategory__c</fullName>
+    <externalId>false</externalId>
+    <label>Product Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Antenna</fullName>
+                <default>false</default>
+                <label>Antenna</label>
+            </value>
+            <value>
+                <fullName>Connectors, Cables, Switches</fullName>
+                <default>false</default>
+                <label>Connectors, Cables, Switches</label>
+            </value>
+            <value>
+                <fullName>Data Sevices</fullName>
+                <default>false</default>
+                <label>Data Sevices</label>
+            </value>
+            <value>
+                <fullName>Hardware Bundle</fullName>
+                <default>false</default>
+                <label>Hardware Bundle</label>
+            </value>
+            <value>
+                <fullName>Hardware Bundle (CDMA)</fullName>
+                <default>false</default>
+                <label>Hardware Bundle (CDMA)</label>
+            </value>
+            <value>
+                <fullName>Hardware Installation</fullName>
+                <default>false</default>
+                <label>Hardware Installation</label>
+            </value>
+            <value>
+                <fullName>Hardware Rental</fullName>
+                <default>false</default>
+                <label>Hardware Rental</label>
+            </value>
+            <value>
+                <fullName>Hardware Rental w/ Service</fullName>
+                <default>false</default>
+                <label>Hardware Rental w/ Service</label>
+            </value>
+            <value>
+                <fullName>Harnesses</fullName>
+                <default>false</default>
+                <label>Harnesses</label>
+            </value>
+            <value>
+                <fullName>Insurance and Warranties - Nonrecurring</fullName>
+                <default>false</default>
+                <label>Insurance and Warranties - Nonrecurring</label>
+            </value>
+            <value>
+                <fullName>Insurance and Warranties - Recurring</fullName>
+                <default>false</default>
+                <label>Insurance and Warranties - Recurring</label>
+            </value>
+            <value>
+                <fullName>Misc Parts and Kits</fullName>
+                <default>false</default>
+                <label>Misc Parts and Kits</label>
+            </value>
+            <value>
+                <fullName>Misc. Hardware</fullName>
+                <default>false</default>
+                <label>Misc. Hardware</label>
+            </value>
+            <value>
+                <fullName>Monthly AddOn Service</fullName>
+                <default>false</default>
+                <label>Monthly AddOn Service</label>
+            </value>
+            <value>
+                <fullName>Monthly HOS Addon Srvc</fullName>
+                <default>false</default>
+                <label>Monthly HOS Addon Srvc</label>
+            </value>
+            <value>
+                <fullName>Monthly Service</fullName>
+                <default>false</default>
+                <label>Monthly Service</label>
+            </value>
+            <value>
+                <fullName>Software - Retail</fullName>
+                <default>false</default>
+                <label>Software - Retail</label>
+            </value>
+            <value>
+                <fullName>Telematics Hardware</fullName>
+                <default>false</default>
+                <label>Telematics Hardware</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Transfer and Admin Fees</fullName>
+                <default>false</default>
+                <label>Transfer and Admin Fees</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

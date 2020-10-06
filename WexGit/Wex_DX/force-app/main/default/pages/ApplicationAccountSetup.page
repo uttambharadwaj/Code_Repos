@@ -1,0 +1,394 @@
+<apex:page controller="OnlineApplicationControllerExtension" action="{!verifyUrl}" sidebar="{!isPrefillMode}" showHeader="{!isPrefillMode}" cache="false"> 
+              
+    <apex:stylesheet value="{!$Resource.ApplicationStyles}"/>
+    <apex:includeScript value="{!$Resource.TabbingJavascript}"/>           
+    
+    <div style="{!IF(isFrameless,'width:900px;margin:0 auto;','')}">
+    <apex:image url="{!headerImageUrl}" width="850px" rendered="{!AND(isFrameless,!isOnReviewPage)}" style="display:block;margin-left:auto;margin-right:auto;"/>
+    <apex:form >    
+                        
+        <apex:pageBlock id="pageBlock1">        
+
+            <div class="headerBox">
+                <apex:image value="{!IF(isFiveStepProcess,$Resource.AccountSetupSmallFleet,$Resource.AccountSetupLargeFleet)}" 
+                            styleClass="headerImage" rendered="{!!isOnReviewPage}"/>
+                <apex:pageMessages rendered="{!!isOnReviewPage}"/>   
+            </div>
+ 
+            <apex:pageBlockSection showHeader="false" columns="2" id="creditLimitSection">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.EstablishYourAccountPreferences}" styleClass="largeInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="({!$Label.RequiredField})"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:outputText value="&nbsp;" escape="false"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+                        
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection showHeader="false" columns="2" id="paymentMethodSection1">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.AccountPreferences}" styleClass="mediumInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />
+
+                <!-- AJAX effect -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Billing_Cycle__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Billing_Cycle__c.label}"/>
+                    <apex:actionRegion >                    
+                        <apex:inputField id="tabIndex200" value="{!appl.Billing_Cycle__c}" required="{!!isPrefillMode}">
+                            <apex:actionSupport event="onchange" rerender="creditLimitSection,paymentMethodSection1"/>                        
+                        </apex:inputField>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!IF(isMasterCard,'',$ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.inlineHelpText)}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label}"/>
+                    <apex:panelGroup >
+                        <apex:outputText value="{!$Label.Prepay}" rendered="{!isPrepay}"/>
+                        <apex:inputField id="tabIndex206" value="{!appl.Credit_Line_Requested__c}" required="{!!isPrefillMode}" rendered="{!!isPrepay}"/>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection showHeader="false" columns="2" id="paymentMethodSection2">
+
+                <!-- AJAX effect -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Payment_Method__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Payment_Method__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField id="tabIndex202" value="{!appl.Payment_Method__c}" required="{!!isPrefillMode}">
+                            <apex:actionSupport event="onchange" rerender="bankInfoSection1,bankInfoSection2,paymentMethodSection2" status="paymentMethodStatus"
+                                                oncomplete="fixAll();" focus="tabIndex206"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="paymentMethodStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus" 
+                                                                    stopText="{!feeDisclosure}" stopStyleClass="ajaxStatus"/>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>                                
+                <!-- AJAX effect -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method__c.inlineHelpText}">
+                    <apex:outputLabel value="{!IF(isMasterCard,
+                                                  $Label.StatementDelivery,
+                                                  $ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method__c.label)}"/>
+                    <apex:actionRegion >
+                        <apex:inputField id="tabIndex208" value="{!appl.Invoice_Delivery_Method__c}" required="{!!isPrefillMode}">
+                            <apex:actionSupport event="onchange" rerender="paymentMethodSection2" status="invoiceDeliveryMethodStatus"
+                                                oncomplete="fixAll();" focus="tabIndex206"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="invoiceDeliveryMethodStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"
+                                                                            stopText="{!mailedStatementDisclosure}" stopStyleClass="ajaxStatus"/>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+                <!-- optionally visible fields  -->
+                <apex:pageBlockSectionItem rendered="{!!isOTR || !isAutoPay}"/>
+                <!-- AJAX effect -->
+                <apex:pageBlockSectionItem rendered="{!isOTR && isAutoPay}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Day_of_Payment__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Day_of_Payment__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField id="tabIndex204" value="{!appl.Day_of_Payment__c}"  Required="true">
+                            <apex:actionSupport event="onchange" rerender="paymentMethodSection2" status="dopStatus" 
+                                                oncomplete="fixAll();" focus="tabIndex206" />                        
+                        </apex:inputField>
+                        <apex:actionStatus id="dopStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                        
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                <!-- zero or one of the next two fields -->
+                <apex:pageBlockSectionItem rendered="{!OR(isEmailInvoiceDeliveryMethod,isInternetStatementDeliveryMethod)}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method_Email__c.inlineHelpText}">
+                    <apex:outputLabel value="{!IF(isMasterCard,
+                                                  $Label.StatementNotificationEmail,
+                                                  $ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method_Email__c.label)}"/>
+                    <apex:inputField id="tabIndex210" value="{!appl.Invoice_Delivery_Method_Email__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isFaxInvoiceDeliveryMethod}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method_Fax__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method_Fax__c.label}"/>
+                    <apex:inputField id="tabIndex212" value="{!appl.Invoice_Delivery_Method_Fax__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>                                
+
+            </apex:pageBlockSection>
+
+            <!-- invisible section unless bank info needed -->
+            <apex:pageBlockSection showHeader="false" columns="2" id="bankInfoSection1">            
+
+                <apex:pageBlockSectionItem rendered="{!isBankAccountNeeded}">
+                    <apex:outputText value="{!$Label.BankAccountSetup}" styleClass="mediumInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Financial_Institution__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Financial_Institution__c.label}"/>
+                    <apex:inputField id="tabIndex220" value="{!appl.Financial_Institution__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>                                
+                <!-- AJAX effect -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Checking_Account_Number__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Checking_Account_Number__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:panelGroup >
+                            <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                                <div class="requiredBlock"></div>                    
+                                <apex:inputSecret id="tabIndex232" value="{!appl.Checking_Account_Number__c}" required="{!!isPrefillMode}" redisplay="true">
+                                    <apex:actionSupport event="onfocus" action="{!showCheckImage}" rerender="checkInfoSection" status="viewCheckStatus" immediate="true"/>
+                                </apex:inputSecret>
+                                <apex:message for="tabIndex232" styleClass="fieldValidation"/>
+                                <apex:actionStatus id="viewCheckStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                            </div>
+                        </apex:panelGroup>                                                    
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Branch_Phone_Number__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Branch_Phone_Number__c.label}"/>
+                    <apex:inputField id="tabIndex222" value="{!appl.Branch_Phone_Number__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Confirm_Checking_Account_Number__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Confirm_Checking_Account_Number__c.label}"/>
+                    <apex:panelGroup >
+                        <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                            <div class="requiredBlock"></div>                                        
+                            <apex:inputSecret id="tabIndex234" value="{!appl.Confirm_Checking_Account_Number__c}" required="{!!isPrefillMode}" redisplay="true"/>
+                            <apex:message for="tabIndex234" styleClass="fieldValidation"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Branch_Address__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Branch_Address__c.label}"/>
+                    <apex:inputField id="tabIndex224" value="{!appl.Branch_Address__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.ABA_Routing_Number__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.ABA_Routing_Number__c.label}"/>
+                    <apex:panelGroup >
+                        <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                            <div class="requiredBlock"></div>                                        
+                            <apex:inputSecret id="tabIndex236" value="{!appl.ABA_Routing_Number__c}" required="{!!isPrefillMode}" redisplay="true"/>
+                            <apex:message for="tabIndex236" styleClass="fieldValidation"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Branch_City__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Branch_City__c.label}"/>
+                    <apex:inputField id="tabIndex226" value="{!appl.Branch_City__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Confirm_ABA_Routing_Number__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Confirm_ABA_Routing_Number__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:panelGroup >
+                            <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                                <div class="requiredBlock"></div>                                        
+                                <apex:inputSecret id="tabIndex238" value="{!appl.Confirm_ABA_Routing_Number__c}" required="{!!isPrefillMode}" redisplay="true">
+                                    <apex:actionSupport event="onblur" action="{!hideCheckImage}" rerender="checkInfoSection" status="viewCheckStatus2" immediate="true"/>
+                                </apex:inputSecret>
+                                <apex:message for="tabIndex238" styleClass="fieldValidation"/>
+                                <apex:actionStatus id="viewCheckStatus2" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                            </div>
+                        </apex:panelGroup>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <!-- invisible section unless check image needed -->
+            <apex:pageBlockSection showHeader="false" columns="2" id="checkInfoSection">            
+
+                <apex:pageBlockSectionItem rendered="{!isCheckImageVisible}"/>
+                <apex:pageBlockSectionItem rendered="{!isCheckImageVisible}">
+                    <apex:image value="{!$Resource.SampleCheck}"/>
+                    <apex:outputText value=""/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <!-- invisible section unless bank info needed -->
+            <apex:pageBlockSection showHeader="false" columns="2" id="bankInfoSection2">            
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Branch_State__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Branch_State__c.label}"/>
+                    <apex:inputField id="tabIndex228" value="{!appl.Branch_State__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isBankAccountNeeded}"/>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Branch_Zip_Code__c.inlineHelpText}"
+                                           rendered="{!isBankAccountNeeded}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Branch_Zip_Code__c.label}"/>
+                    <apex:inputField id="tabIndex230" value="{!appl.Branch_Zip_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />
+            
+            </apex:pageBlockSection>            
+
+
+
+                        
+            <apex:pageBlockSection showHeader="false" columns="2" id="officerSection">            
+
+                <apex:outputText value="{!$Label.WhoWillBeFinancially}" styleClass="largeInstructions"/>
+                <apex:outputText value=""/>
+
+                <apex:outputText value="{!$Label.ProprietorPartner}" styleClass="mediumInstructions"/>
+                <apex:outputText value=""/>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Name__c.label}"/>
+                    <apex:inputField id="tabIndex250" value="{!appl.AO_Name__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Date_of_Birth__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Date_of_Birth__c.label}"/>
+                    <apex:panelGroup >
+                        <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                            <div class="requiredBlock"></div>
+                            <apex:inputText id="tabIndex262" value="{!dateOfBirth}" 
+                                            style="background-image:url('{!$Resource.MMDDYYYY}');background-repeat:no-repeat;background-position:left center;"/>
+                            <apex:message for="tabIndex262" styleClass="fieldValidation"/>
+                        </div>
+                    </apex:panelGroup>                    
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Title__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Title__c.label}"/>
+                    <apex:inputField id="tabIndex252" value="{!appl.AO_Title__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Social_Security_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Social_Security_Number__c.label}"/>
+                    <apex:panelGroup >
+                        <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                            <div class="requiredBlock"></div>                                        
+                            <apex:inputSecret id="tabIndex264" value="{!appl.AO_Social_Security_Number__c}" required="{!!isPrefillMode}" redisplay="true"/>
+                            <apex:message for="tabIndex264" styleClass="fieldValidation"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Address__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Address__c.label}"/>
+                    <apex:inputField id="tabIndex254" value="{!appl.AO_Address__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Confirm_Social_Security_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Confirm_Social_Security_Number__c.label}"/>
+                    <apex:panelGroup >
+                        <div class="{!IF(isPrefillMode, '', 'requiredInput')}">
+                            <div class="requiredBlock"></div>                                        
+                            <apex:inputSecret id="tabIndex266" value="{!appl.AO_Confirm_Social_Security_Number__c}" required="{!!isPrefillMode}" redisplay="true"/>
+                            <apex:message for="tabIndex266" styleClass="fieldValidation"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_City__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_City__c.label}"/>
+                    <apex:inputField id="tabIndex256" value="{!appl.AO_City__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Work_Email__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Work_Email__c.label}"/>
+                    <apex:inputField id="tabIndex268" value="{!appl.AO_Work_Email__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_State__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_State__c.label}"/>
+                    <apex:inputField id="tabIndex258" value="{!appl.AO_State__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Home_Phone_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Home_Phone_Number__c.label}"/>
+                    <apex:inputField id="tabIndex270" value="{!appl.AO_Home_Phone_Number__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.AO_Zip_Code__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.AO_Zip_Code__c.label}"/>
+                    <apex:inputField id="tabIndex260" value="{!appl.AO_Zip_Code__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <!--  hack to support field dependencies based on Local versus OTR Product_Type__c -->
+                <apex:pageBlockSectionItem > 
+                    <apex:inputField value="{!appl.Product_Type__c}" style="display:none;"/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+
+
+            <br/><br/>
+            <apex:outputText value="{!$Label.AddAuthorizedPersons} {!IF(isMasterCard,$Label.RetainACopy,'')}" styleClass="largeInstructions"/>
+            <apex:outputPanel id="authorizedContacts">            
+            <apex:actionRegion >            
+            
+                <apex:pageBlockTable value="{!AuthorizedContacts}" var="c">
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Name.label}"
+                                 title="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Name.inlineHelpText}"> 
+                        <apex:inputField value="{!c.Name}" required="{!!isPrefillMode}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Security_Code__c.label}"
+                                 title="{!IF(isMasterCard, 
+                                         $Label.SecurityCodeAlternateText,
+                                         $ObjectType.OnlineApplicationAuthorizedContact__c.fields.Security_Code__c.inlineHelpText)}"> 
+                        <apex:inputField value="{!c.Security_Code__c}" required="{!!isPrefillMode}"
+                                         style="background-image:url('{!$Resource.SecurityCode}');background-repeat:no-repeat;background-position:left center;"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Email__c.label}"
+                                 title="{!IF(isMasterCard,
+                                         $Label.EmailAlternateText,
+                                         $ObjectType.OnlineApplicationAuthorizedContact__c.fields.Email__c.inlineHelpText)}">
+                        <apex:inputField value="{!c.Email__c}" required="true"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Online_Password__c.label}" rendered="{!!isMastercard}" 
+                                 title="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Online_Password__c.inlineHelpText}">
+                        <apex:inputField value="{!c.Online_Password__c}" required="true" rendered="{!c.Name == firstContactName}"/>
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$Label.Action}">
+                        <!--Modified by Trekbin regarding Case :00022569 Start-->
+                        <apex:commandLink value="{!$Label.Remove}" action="{!removeAuthorizedContact}" status="contactStatus" rerender="authorizedContacts" styleClass="removeItemLink" rendered="{!if(intNumberOfContact > 1, true, false)}">
+                            <apex:param value="{!c.Name}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                        </apex:commandLink> 
+                        <!--Modified by Trekbin regarding Case :00022569 End-->               
+                    </apex:column>
+                </apex:pageBlockTable>
+
+                <apex:commandLink value="{!$Label.AddAdditionalContact}" action="{!addAuthorizedContact}" status="contactStatus" 
+                                  rerender="authorizedContacts" styleClass="addItemLink"/>
+                <apex:actionStatus id="contactStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+
+            </apex:actionRegion>
+            </apex:outputPanel>
+
+
+
+
+            <apex:pageBlockButtons location="bottom"> 
+                <!--Modified by Trekbin regarding Case :00022569 Start-->
+
+                <apex:commandButton value="{!$Label.Back}" action="{!goBack}" rendered="{!!isOnReviewPage}"/>
+                <!-- Since customers are dropping off on this page as they do not have bank info at hand, we are bypassing the data if this button clicked -->
+                <apex:commandButton value="{!$Label.SaveAndCompleteLater}" action="{!saveAndCompleteLater}" rendered="{!AND(!isOnReviewPage,!isPrefillMode)}" 
+                                    immediate="true"/>
+                <apex:commandButton value="{!$Label.SaveAndCreateEmail}" action="{!saveAndCreateEmail}" rendered="{!isPrefillMode}"/>                    
+                <apex:commandButton value="{!$Label.SaveChanges}" action="{!saveReviewPageChanges}" rendered="{!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" rendered="{!AND(!isOnReviewPage,OR(showCardSetupPage,!isPrefillMode))}"/>
+
+                <!--Modified by Trekbin regarding Case :00022569 End-->
+            </apex:pageBlockButtons>
+
+        </apex:pageBlock>
+        
+    </apex:form>
+    </div>
+           
+</apex:page>

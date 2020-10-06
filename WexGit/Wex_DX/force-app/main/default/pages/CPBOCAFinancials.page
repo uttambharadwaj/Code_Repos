@@ -1,0 +1,406 @@
+<!--
+    Revision History:   5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+                        10/DEC/2019     MFarrell    LCR-142 & LCR-155   Update attachments, change rendering of stock exchange, add list of attachments after customer adds an attachment.
+-->
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAFinancialsController"
+    action="{!init}" language="{!languageCode}">
+    <html lang="{!languageCode}">
+
+    <head>
+        <!-- Title -->
+        <title>{!program.Brand_Long_Name__c} {!$Label.BOCA_Credit_Application}</title>
+
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
+
+        <!-- Imported Styles -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.CPBOCABaseCSS)}" />
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+            crossorigin="anonymous" />
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet" />
+
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+
+        <!-- Additional Scripts -->
+        <script>
+            var page_name = "App-Page-Financials";
+            var card_program = "{!programParameter}";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+            $j = jQuery.noConflict();
+            window.onload = function () {
+                var elems = document.querySelectorAll('.required');
+                for (var i = 0; i < elems.length; i++) {
+                    elems[i].required = true;
+                }
+            }
+            // Any labels need to be defined in this bridge in order
+            // for the JS to pick them up
+            window.$Label = window.$Label || {};
+            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+            $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
+            $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+            $Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
+
+            window.boca_language_code = '{!languageCode}';
+            window.card_program_name = '{!programParameter}';
+
+            console.log('{!tmSessionId}');
+
+        function triggerFileBrowse(elem) {
+            $j(elem).nextAll('[id$=attachmentBody]')[0].click();
+        }
+
+        function upload(elem) {
+            if ($j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() != null && $j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() !== "") {
+                uploadFile();
+            }
+            else {
+                $j('[id$=errors]').css('display', 'block');
+                $j('[id$=errors]').html('Please select a file to upload.');
+            }
+        }
+
+        $j(document).ready(function () { 
+           $j("[id$=attachmentBody]").on('change', function () {
+                var filename = $j(this).val();
+                filename = filename.replace(/.*[\/\\]/, '');
+                $j($j(this).prevAll("[id$=attachmentName]")[0]).val(filename);
+                $j($j(this).prevAll("[id$=visibleFileName]")[0]).val(filename);
+            });
+        });
+
+
+        </script>
+
+        <script type="text/javascript" src="{!URLFOR($Resource.CPBOCABaseJS)}" />
+
+        <!-- Local Styles -->
+        <style>
+            .section-header {
+            {!program.Brand_Color_1__c}
+            }
+
+            .sidebar-section-header {
+            {!program.Brand_Color_1__c}
+            }
+
+            .panel-heading {
+            {!program.Brand_Color_1__c}
+            }
+
+            .step-button {
+            {!program.Brand_Color_2__c}
+            }
+
+            #mobile-footer-call {
+            {!program.Brand_Color_1__c}
+            }
+
+            .disabled-button {
+                background: #e9e9e9 !important;
+                pointer-events: none;
+                color: #ccc !important;
+                border: 1px solid #ccc !important;
+            }
+
+            legend{
+                width:100%;
+            }
+        </style>
+        <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false" />
+    </head>
+
+    <body>
+        <div class="page-wrap clearfix">
+            <apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false" />
+            <!-- Live Person -->
+            <script type="text/javascript">
+                if (typeof (lpUnit) == 'undefined') var lpUnit = 'sales';
+                if (typeof (lpLanguage) == 'undefined') var lpLanguage = 'english';
+            </script>
+
+            <script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!tmSessionId}"></script>
+            <img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&session={!tmSessionId};di=yes"
+            />
+            <img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png" />
+
+            <div id="header" class="clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="nine columns clearfix">
+                            <div id="branding">
+                                <!--PSOBACKLOG-76-->
+                                <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!brandingUtility.Program_Name__c} Logo"
+                                />
+                                <h1 class="program-name header-large">
+                                    <apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" />
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="three columns">
+                            <div id="contactUs" style="display: {!IF(userSessionId == null, 'block', 'none')};">
+                                <span style="font-size: 15px; letter-spacing: 0.8px; color: #666;">
+                                    <i class="fas fa-phone" style="color: #e74c3c; font-size: 16px;"></i>&nbsp;{!program.Inside_Sales_Phone_Number__c}</span>
+                                <br/>
+                                <span style="font-size: 14px; letter-spacing: 0.8px; color: #666;">
+                                    <i class="fas fa-comments"></i>&nbsp;{!program.Inside_Sales_Email__c}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="twelve columns">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="four columns sidebar">
+                            <!-- Left Column -->
+                            <div class="twelve columns clearfix">
+                                <!--PSOBACKLOG-76-->
+                                <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"
+                                />
+                            </div>
+                            <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix brand-text">
+                                    <apex:outputtext value="{!brandingUtility.Brand_Heading__c}" escape="false"></apex:outputtext>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!brandingUtility.Brand_Tagline__c != null}">
+                                <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c == null}">
+                                    <div class="twelve columns clearfix ">
+                                        &nbsp;
+                                    </div>
+                                </apex:outputPanel>
+                                <div class="twelve columns clearfix brand-text">
+                                    <apex:outputtext value="{!brandingUtility.Brand_Tagline__c}" escape="false"></apex:outputtext>
+                                </div>
+                            </apex:outputPanel>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <!-- <apex:outputPanel rendered="{!salesRep != null && salesCode != null}">
+                                <div class="twelve columns clearfix salesRep">
+                                    <div class="sidebar-section-header">
+                                        {!$Label.BOCA_Sales_Agent}
+                                    </div>
+                                    <div class="sidebar-section-static-content">
+                                        <span style="font-size: 18px;">{!salesRep.Name}</span>
+                                        <br/> {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}
+                                        <br/> {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}
+                                        <br/> {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
+                                    </div>
+                                </div>
+                            </apex:outputPanel> -->
+                            <apex:outputPanel rendered="{!brandingUtility.Side_Panel_Title__c != ''}">
+                                <div class="twelve columns clearfix">
+                                    <div class="sidebar-section-header">
+                                        {!brandingUtility.Side_Panel_Title__c}
+                                    </div>
+                                    <div class="sidebar-section-dynamic-content">
+                                        <apex:outputText value="{!brandingUtility.SideBar__c}" escape="false" />
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="eight columns form">
+                            <!-- Right Column -->
+
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div id="errors" class="stepErrors">
+                                    {!$Label.BOCA_Application_Errors}
+                                </div>
+                            </div>
+                            <apex:form id="creditForm">
+                                <apex:actionFunction name="uploadFile" action="{!uploadFile}" />
+                                <apex:actionFunction name="submitApplication" action="{!submitApplication}" />  
+                                <!-- rerender=""  -->
+                               
+                                <fieldset>
+                                    <legend>
+                                        <div class="twelve columns clearfix">
+                                            <div class="section-header">
+                                                <i class="far fa-user-circle"></i> {!$label.CPBOCA_Upload_Financials}
+                                            </div>
+                                        </div>
+                                    </legend>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <apex:actionRegion >
+                                                    <apex:outputLabel for="stockSymbol" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Stock_Symbol__c.label} " />
+                                                    <apex:InputField styleClass="styled-input" html-tabindex="1" id="stockSymbol" value="{!creditApp.Stock_Symbol__c}">
+                                                        <apex:actionSupport event="onchange" reRender="stockExchangeField" />
+                                                    </apex:InputField>
+                                                </apex:actionRegion>
+                                            </div>
+                                            <apex:outputPanel id="stockExchangeField">
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <apex:outputLabel for="stockExchange" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Stock_Exchange__c.label} ">
+                                                    <apex:outputPanel rendered="{!requireStockExchange}">
+                                                        <span class="styled-label-required">*</span>
+                                                    </apex:outputPanel>
+                                                </apex:outputLabel>
+                                                <apex:selectList size="1" styleClass="styled-input {!if(requireStockExchange, 'required', '')}" id="stockExchange" value="{!creditApp.Stock_Exchange__c}">
+                                                    <apex:selectOptions value="{!stockExchangeList}" />
+                                                </apex:selectList>
+                                            </div>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <apex:outputLabel for="statementType" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Financial_Statement_Type__c.label} ">
+                                                </apex:outputLabel>
+                                                <apex:selectList size="1" styleClass="styled-select-full" id="statementType" value="{!creditApp.Financial_Statement_Type__c}">
+                                                    <apex:selectOptions value="{!statementTypeList}" />
+                                                </apex:selectList>
+                                            </div>
+                                            <apex:outputPanel id="financialsInfo">
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <apex:outputLabel for="financialsCompletedFor" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Financials_Completed_For__c.label} ">
+                                                </apex:outputLabel>
+                                                <apex:actionRegion >
+                                                <apex:selectList size="1" styleClass="styled-select-full" id="financialsCompletedFor" value="{!creditApp.Financials_Completed_For__c}">
+                                                    <apex:selectOptions value="{!financialsCompletedForList}" />
+                                                    <apex:actionSupport action="{!clearContractingEntityCountry}" event="onchange" rerender="financialsInfo" >
+                                                    </apex:actionSupport>
+                                                </apex:selectList>
+                                                </apex:actionRegion>
+                                            </div>
+                                            <apex:outputPanel id="contractingEntityPanel">
+                                                <div class="twelve columns clearfix form-field" data-row="2">
+                                                    <apex:outputLabel for="contractingEntityCountry" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Country_of_Contacting_Entity__c.label}">
+                                                        <span class="styled-label-required">*</span>
+                                                    </apex:outputLabel>
+                                                    <apex:actionRegion >
+                                                        <apex:selectList size="1" styleClass="styled-select-full required" id="contractingEntityCountry" value="{!creditApp.Country_of_Contacting_Entity__c}">
+                                                            <apex:selectOptions value="{!contractingEntityCountryList}" />
+                                                            <apex:actionSupport action="{!clearContractingEntityCountryOther}" event="onchange" rerender="contractingEntityPanel">
+                                                            </apex:actionSupport>
+                                                        </apex:selectList>
+                                                    </apex:actionRegion>
+                                                </div>
+                                                <apex:outputPanel id="contractingEntityCountryOtherPanel" rendered="{!creditApp.Country_of_Contacting_Entity__c == 'Other'}">
+                                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                                        <apex:outputLabel for="contractingEntityCountryOther" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Country_of_Contracting_Entity_Other__c.label} ">
+                                                            <span class="styled-label-required">*</span>
+                                                        </apex:outputLabel>
+                                                        <apex:InputField styleClass="styled-input required" id="contractingEntityCountryOther" value="{!creditApp.Country_of_Contracting_Entity_Other__c}"
+                                                        />
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+
+                                <!-- Start Document Upload Section -->
+                                <apex:outputPanel id="documentsRequired">
+                                    <div class="twelve columns clearfix">
+                                        <fieldset>
+                                            <legend>
+                                                <div class="twelve columns clearfix">
+                                                    <div class="section-header">
+                                                        <i class="fa fa-address-card"></i> {!$Label.CPBOCA_Document_Upload}
+                                                    </div>
+                                                </div>
+                                            </legend>
+                                            <div class="twelve columns clearfix">
+                                                <apex:repeat value="{!docTypeList}" var="doc">
+                                                    <div id="fileUpload">
+                                                        <div class="twelve columns clearfix">
+                                                            <apex:outputLabel styleClass="styled-label" id="documentType">{!$ObjectType.CP_Application_Request__c.fields[doc.fieldName].label}</apex:outputLabel>
+                                                        </div>
+                                                        <div class="twelve columns clearfix" style="padding-left: 20px">
+                                                            <input type="text" id="visibleFileName" style="border-radius: 4px 0px 0px 4px; vertical-align: middle; border-right: 0; width: 50% !important; pointer-events: none; display: inline-flex !important;" />
+                                                            <input type="button" value="Browse" onClick="javascript:triggerFileBrowse(this);"
+                                                                   style="background: #e1e1e1 !important; border: 1px solid #D1D1D1; vertical-align: middle; clear: both; margin-left: -5px; border-radius: 0px 4px 4px 0px; border-left: 0; display: inline-flex !important;" />
+                                                            <apex:inputText value="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentName" />
+                                                            <apex:inputFile value="{!doc.attachmentBody}" filename="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentBody"/>
+                                                            <br />
+                                                            <input type="button" class="" onClick="upload(this);" value="Attach" style="float: left !important;" />
+                                                        </div>
+                                                    </div>
+                                                </apex:repeat>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </apex:outputPanel>
+                                <!-- End Document Upload Section -->
+
+                                <!-- Start Attachment Section -->
+                                <apex:outputPanel id="attachments" rendered="{!existingAttachmentsSize > 0}">
+                                    <div class="twelve columns clearfix">
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="section-header">
+                                            <i class="fas fa-paperclip"></i> {!$Label.CPBOCA_Application_Attachments}
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="twelve columns clearfix">
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <ul style="list-style-type: none; padding-left: 20px; padding-top: 10px;">
+                                            <apex:repeat var="attachment" value="{!existingAttachments}">
+                                                <li>
+                                                    <i class="far fa-file-alt styled-label" > {!attachment.Name}</i>
+                                                </li>
+                                            </apex:repeat>
+                                        </ul>
+                                    </div>
+                                </apex:outputPanel>
+                                <!-- End Attachment Section -->
+
+                                <div class="twelve columns clearfix">
+                                    <div class="clearfix">
+                                        <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}" />
+                                        <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                                    </div>
+                                </div>
+                            </apex:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
+            <div class="line1">{!$Label.BOCDD_Call_Us}</div>
+            <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
+        </a>
+        <div id="footer">
+            <a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions" title="terms of use" target="_blank">
+                {!$Label.BOCA_Terms_Of_Use_Link}
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+        </div>
+    </body>
+
+    </html>
+</apex:page>

@@ -1,0 +1,4 @@
+<apex:page sidebar="false" showHeader="false" contentType="application/javascript" cache="false" controller="PartnersCommHeaderImgController">
+  var _img_filepath = "{!logofilePath}";
+  var _current_User = "{!$User.FirstName} {!$User.LastName}";
+</apex:page>

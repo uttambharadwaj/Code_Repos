@@ -1,0 +1,206 @@
+<apex:page standardcontroller="Lead" extensions="ConvertLeadController" sidebar="true" tabstyle="Lead" lightningStylesheets="true" standardStylesheets="true">
+    <apex:sectionHeader title="Convert Lead" subtitle="{!Lead.FirstName} {!Lead.LastName}">
+        Leads can be converted to accounts, contacts, opportunities, and followup tasks.<br/>
+        You should only convert a lead once you have identified it as qualified.<br/>
+        After this lead has been converted, it can no longer be viewed or edited as a lead, but can be viewed in lead reports.
+    </apex:sectionHeader>
+    <br/>
+    <br/>   
+    <apex:form >
+        <apex:pageBlock rendered="{!LeadRecord.IsConverted}">
+            Lead already converted
+        </apex:pageBlock>
+        <apex:pageBlock mode="edit" rendered="{!NOT(LeadRecord.IsConverted)}" id="pageblock">
+            <apex:pageMessages />
+            <apex:pageblockbuttons >            
+                <apex:commandbutton value="Convert (go to Contact)" action="{!convertAndJumpToContact}" immediate="true" onclick="return addValidation();" rendered="{!settings.Show_Convert_And_Go_To_Contact__c}"/>           
+                <apex:commandbutton value="Convert (go to Account)" action="{!convertAndJumpToAccount}" immediate="true" onclick="return addValidation();" rendered="{!settings.Show_Convert_And_Go_To_Account__c}"/>
+                <apex:commandbutton value="Convert (go to Opp)" action="{!convertAndJumpToOpp}" immediate="true" onclick="return addValidation();" rendered="{!settings.Show_Convert_And_Go_To_Opportunity__c}" disabled="{!DoNotCreateOpportunity}"/>
+                <apex:commandbutton value="Cancel" action="{!cancel}" />
+            </apex:pageblockbuttons>
+            
+            <apex:actionFunction name="processAccountChange" action="{!processAccountChange}" rerender="mainsection" status="myStatus" />
+            <apex:actionFunction name="processContactChange" action="{!processContactChange}" rerender="mainsection" status="myStatus" />    
+            <apex:actionFunction name="processChange" action="{!processChange}" rerender="pageblock" status="myStatus"/>
+            
+            <apex:actionStatus startText="requesting..." id="myStatus">
+                <apex:facet name="stop"></apex:facet> 
+            </apex:actionStatus>
+            
+            <apex:pageBlockSection columns="1" title="Convert Lead" id="mainsection">                   
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Record Owner"/>
+                    <apex:inputfield value="{!OpportunityRecord.OwnerId}" onchange="processChange()"/>
+                </apex:pageBlockSectionItem>                
+                <apex:pageBlockSectionItem rendered="{!Settings.Show_Send_Email_To_Owner__c}">
+                    <apex:outputLabel value="Send Email to the Owner" />
+                    <apex:inputCheckbox value="{!SendEmailToOwner}" onchange="processChange()" />
+                </apex:pageBlockSectionItem>        
+                    
+                <!-- account -->
+                <!-- Able to Select an account -->
+                <apex:pageblocksectionitem id="accountSelectionSection" rendered="{!SelectAccount}">                
+                    <apex:outputlabel value="Account Name"/>                    
+                    <apex:outputPanel layout="block" styleClass="requiredInput" >
+                        <div class="requiredBlock"/>
+                        <apex:selectList value="{!existingAccountId}" multiselect="false" id="acclkid_lkid" size="1" onchange="processAccountChange()">
+                            <apex:selectOptions value="{!foundAccounts}" />
+                        </apex:selectList>
+                        <apex:inputHidden value="{!temp_acclkid_lkold}" id="acclkid_lkold"/>
+                        <apex:inputHidden value="{!temp_acclkid_lktp}" id="acclkid_lktp"/>
+                        <apex:inputHidden value="{!temp_acclkid_lspf}" id="acclkid_lspf"/>
+                        <apex:inputHidden value="{!temp_acclkid_mod}" id="acclkid_mod"/>
+                        <apex:inputHidden value="{!temp_acclkid_onpk}" id="conlkid_onpk"/>
+                       
+                        <script>
+                            function initiateUpdateFromAccount()
+                            {
+                                processAccountChange();
+                            }
+                        </script>
+                        <!--<span class="lookupInput">
+                            <apex:inputtext style="display:none;" value="{!temp_acclkid_lkold}" id="acclkid" />
+                            <a title=" Lookup (New Window)" onclick="setLastMousePosition(event)" id="acclkid_lkwgt" href="javascript: openLookup('/_ui/common/data/LookupPage?lkpr={!Lead.Id}&lkfm=editPage&lknm={!$Component.acclkid}&leadconv=1&lktp=' + getElementByIdCS('{!$Component.acclkid_lktp}').value,670,'1','&lksrch=' + escapeUTF(getElementByIdCS('{!$Component.acclkid}').value.substring(0, 80)))">
+                                <img title=" Lookup (New Window)" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onblur="this.className = 'lookupIcon';" class="lookupIcon" alt=" Lookup (New Window)" src="/s.gif"/>
+                            </a>
+                        </span>-->
+                    </apex:outputPanel>             
+                </apex:pageblocksectionitem>
+                
+                <!-- account -->
+                <!-- Static an account -->
+                <apex:pageblocksectionitem id="accountStaticSection" rendered="{!SelectAccount==false}">                   
+                    <apex:outputlabel value="Account Name"/>                        
+                    <apex:outputPanel layout="block" styleClass="requiredInput" >
+                        <div class="requiredBlock"/>
+                        <apex:selectList value="{!existingAccountId}" multiselect="false" id="acclkid_lkid" size="1">
+                            <apex:selectOptions value="{!foundAccounts}" />
+                        </apex:selectList>
+                    </apex:outputPanel>                 
+                </apex:pageblocksectionitem>
+                   
+                <!-- contact -->
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Contact Name"/>
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <div class="requiredBlock"/>
+                        <apex:selectList value="{!existingContactId}" multiselect="false" id="conlkid_lkid" size="1" onchange="processContactChange()">
+                            <apex:selectOptions value="{!foundContacts}"/>
+                        </apex:selectList>
+                        <apex:inputHidden value="{!temp_conlkid_lkold}" id="conlkid_lkold"/>
+                        <apex:inputHidden value="{!temp_conlkid_lktp}" id="conlkid_lktp"/>
+                        <apex:inputHidden value="{!temp_conlkid_lspf}" id="conlkid_lspf"/>
+                        <apex:inputHidden value="{!temp_conlkid_mod}" id="conlkid_mod"/>
+                        <apex:inputHidden value="{!temp_conlkid_onpk}" id="conlkid_onpk"/>
+                        <script>
+                        function initiateUpdateFromContact(){
+                            processContactChange();
+                        }
+                        </script>
+                        <!--<apex:outputpanel rendered="{!selectcontact}">
+                        <span class="lookupInput">
+                            <apex:inputtext style="display:none;" value="{!temp_conlkid_lkold}" id="conlkid"/>
+                            <a title=" Lookup (New Window)" onclick="setLastMousePosition(event)" id="conlkid_lkwgt" 
+                            href="javascript: openLookup('/_ui/common/data/LookupPage?lkpr={!Lead.Id}&lkfm=editPage&lknm={!$Component.conlkid}&leadconv=1&lktp=' + getElementByIdCS('{!$Component.conlkid_lktp}').value,670,'1','&lksrch=' + escapeUTF(getElementByIdCS('{!$Component.conlkid}').value.substring(0, 80)))">
+                                <img title=" Lookup (New Window)" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onblur="this.className = 'lookupIcon';" class="lookupIcon" alt=" Lookup (New Window)" src="/s.gif"/>
+                            </a>
+                        </span>
+                        </apex:outputpanel>-->
+                    </apex:outputPanel>
+                </apex:pageblocksectionitem>                                                            
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Opportunity Name"/>
+                    <apex:outputPanel layout="none">
+                        <apex:outputPanel styleClass="requiredInput" layout="block">                                                                
+                            <apex:outputPanel styleClass="requiredBlock" layout="block"></apex:outputPanel> 
+                            <apex:inputfield value="{!OpportunityRecord.Name}"  onchange="processChange()"/>
+                            <apex:inputcheckbox value="{!DoNotCreateOpportunity}" onchange="processChange()"/> Do not create a new opportunity upon conversion.                 
+                            <!-- <apex:inputcheckbox value="{!DoNotCreateOpportunity}" onClick="if(this.checked) document.getElementById('j_id0:j_id3:j_id4:j_id35:j_id45:j_id48').disabled = true; else document.getElementById('j_id0:j_id3:j_id4:j_id35:j_id45:j_id48').disabled = false;"/> Do not create a new opportunity upon conversion.  -->               
+                        </apex:outputpanel>
+                    </apex:outputpanel>
+                </apex:pageblocksectionitem>                
+                <apex:pageblocksectionitem rendered="{!settings.Show_Opp_Close_Date__c}">
+                    <apex:outputlabel >Opportunity Close Date</apex:outputlabel>
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <apex:outputPanel layout="block" styleClass="requiredBlock"/>
+                        <apex:inputfield value="{!OpportunityRecord.CloseDate}" onchange="processChange()"/>
+                    </apex:outputpanel>
+                </apex:pageblocksectionitem>                    
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel >Converted Status</apex:outputlabel>
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <apex:outputPanel layout="block" styleClass="requiredBlock"/>
+                        <apex:selectlist value="{!ConvertedStatus}" required="true" multiselect="false" size="1"  onchange="processChange()">
+                            <apex:selectOptions value="{!ConvertedStatuses}"/>
+                        </apex:selectlist>
+                    </apex:outputpanel>
+                </apex:pageblocksectionitem>                    
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection columns="2" title="Task Information" rendered="{!CreateTask}">
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Subject" />
+                    <apex:inputfield value="{!TaskRecord.Subject}" onchange="processChange()"/> <!-- required="true"  -->
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Status" />
+                    <apex:inputfield value="{!TaskRecord.Status}" onchange="processChange()"/>
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Due Date" />
+                    <apex:inputfield value="{!TaskRecord.ActivityDate}" onchange="processChange()"/>
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    &nbsp;
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Priority" />
+                    <apex:inputfield value="{!TaskRecord.Priority}"  onchange="processChange()"/>
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Type" />
+                    <apex:inputfield value="{!TaskRecord.Type}"  onchange="processChange()"/>
+                </apex:pageblocksectionitem>
+            </apex:pageBlockSection>    
+        
+            <apex:pageBlockSection columns="1" title="Description Information" rendered="{!CreateTask}">
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Comments" />
+                    <apex:inputTextArea cols="60" rows="7" value="{!TaskRecord.Description}"  onchange="processChange()"/>
+                </apex:pageblocksectionitem>
+            </apex:pageBlockSection>
+        
+            <apex:pageBlockSection columns="2" title="Reminder" rendered="{!CreateTask}"> <!-- rendered="false">-->
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Reminder" />
+                    <apex:outputPanel layout="block">
+                        <apex:inputCheckbox value="{!AddReminder}"  onchange="processChange()"/>
+                        <apex:inputField value="{!TempTaskRecord.ActivityDate}"  onchange="processChange()"/>
+                        <apex:selectlist value="{!ReminderTime}" size="1"  onchange="processChange()">
+                            <apex:selectOptions value="{!ReminderTimes}"/>
+                        </apex:selectlist>
+                    </apex:outputPanel>
+                </apex:pageblocksectionitem>
+            </apex:pageBlockSection>
+        </apex:pageBlock> 
+    </apex:form>
+    <script type="text/javascript">
+        function addValidation()
+        {       
+            if(document.getElementById('j_id0:j_id3:j_id6:mainsection:j_id49:conlkid_lkid').value == 'new')
+            {
+                if({!ContactNo} == 1)
+                {
+                    if({!isContactEmailMatch} == true)
+                    {
+                        var val = 'There is already a contact with the email address {!Contact_Email}. Confirm that you’d like to create a new contact.';
+                        
+                        return confirm(val);                        
+                    }
+                }           
+            }
+                        
+            return true;
+        }
+    </script>
+</apex:page>

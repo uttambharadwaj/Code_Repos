@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>CPayPlus</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CPayPlus</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CPayPlusPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>CPayPlus - ServiceTitan</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CSI_Global_Vcard</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CSI - Global Vcard</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CSIGLOBALVCARDINCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>CSI - Global Vcard</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Global_Rewards_EnCompass_Plastic_to_Partner_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Global Rewards - EnCompass Plastic to Partner RW</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GlobalRewardsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>Global Rewards - EnCompass Plastic</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Global_Rewards_EnCompass_Virtual_to_Partner_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Global Rewards - EnCompass Virtual to Partner RW</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GlobalRewardsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>Global Rewards - EnCompass Virtual</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Grasp_Technologies</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Grasp Technologies</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GraspTechnologiesPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>Grasp Technologies</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IBS</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>IBS</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>HBSiPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>IBS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>IDS</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>IDS</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>IDSXchangeServicesPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>IDS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Partner_Name</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Used to share BOCA apps by program</description>
+        <label>Partner Name</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DivvyPartnerCPPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>Divvy</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Program_WF_Global_Rewards_iSimplify_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Program WF Global Rewards iSimplify RW</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GlobalRewardsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_WF_TEXT__c</field>
+            <operation>equals</operation>
+            <value>Global Rewards iSimplify Plastic</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>All_Internal_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>All Internal Users</label>
+        <sharedTo>
+            <allInternalUsers/>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers/>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

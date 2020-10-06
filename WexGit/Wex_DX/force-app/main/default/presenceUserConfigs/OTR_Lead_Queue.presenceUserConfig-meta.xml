@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PresenceUserConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <users>
+            <user>awilks@fleetone.com</user>
+            <user>cjennings@fleetone.com</user>
+            <user>connor.hart@fleetone.com</user>
+            <user>jcrockarell@fleetone.com</user>
+            <user>kellie.ciprian@wexinc.com</user>
+            <user>kris.chadwick@efsllc.com</user>
+            <user>kyle.hudson@wexinc.com</user>
+            <user>melanie.sleigh@efsllc.com</user>
+            <user>michael.monroe@wexinc.com</user>
+            <user>nathan.stallcup@wexinc.com</user>
+            <user>reginald.craig@efsllc.com.wex</user>
+            <user>ryan.knowles@efsllc.com</user>
+            <user>sbaylis@fleetone.com</user>
+            <user>tengles@fleetone.com</user>
+            <user>tyler.thompson@fleetone.com</user>
+            <user>yance.baker@wexinc.com</user>
+        </users>
+    </assignments>
+    <capacity>1</capacity>
+    <enableAutoAccept>false</enableAutoAccept>
+    <enableDecline>false</enableDecline>
+    <enableDeclineReason>false</enableDeclineReason>
+    <enableDisconnectSound>true</enableDisconnectSound>
+    <enableRequestSound>true</enableRequestSound>
+    <label>OTR Lead Queue</label>
+    <presenceStatusOnPushTimeout>Unavailable</presenceStatusOnPushTimeout>
+</PresenceUserConfig>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>AU_Mobil_Card</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AU Mobil Card</label>
+        <sharedTo>
+            <group>AU_Mobil_Card</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Type__c</field>
+            <operation>equals</operation>
+            <value>DL: Mobil Diesel Card,DP: Mobil Card</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,24 @@
+<apex:page standardController="WES_Application_Request__c" extensions="SorcodesIntegration" >
+<apex:form >
+<apex:pageBlock title="Post Validation Bank Details">
+<apex:pageMessages id="showmsg">
+</apex:pageMessages>
+<apex:pageBlockButtons location="top">
+<apex:commandButton value="Close" action="{!cancel}"/>
+</apex:pageBlockButtons>
+<apex:pageBlockSection title="Validation Result">
+<apex:outputText label="Sortcode Check" value="{!sort_found1}"/>
+</apex:pageBlockSection>
+<apex:pageBlockSection title="Bank Details">
+<apex:outputText label="Bank Name" value="{!bank}"/>
+<apex:outputText label="Branch Name" value="{!branch}"/>
+<apex:outputText label="Phone: " value="{!phone}"/>
+<apex:outputText label="City" value="{!city}"/>
+<apex:outputText label="Zip Code" value="{!zip}"/>
+<apex:outputText label="Country" value="{!country}"/>
+<apex:outputText label="Bank Address" value="{!address}"/>
+<apex:outputText label="Direct Debit" value="{!DD}"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

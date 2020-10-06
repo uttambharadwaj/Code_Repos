@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>None</contactAccessLevel>
+    <description>Towing Network LLC dba TTN Fleet Solutions Partner User</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Towing Network LLC dba TTN Fleet Solutions Partner User</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>TowingNetworkLLCdbaTTNFleetSolutionsPartnerManager</parentRole>
+</Role>

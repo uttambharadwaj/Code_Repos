@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Alon</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Alon</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ALONFINAPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>equals</operation>
+            <value>DK Fleet</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CSI_Global_R_O</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CSI Global R/O</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CSIGLOBALVCARDINCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>equals</operation>
+            <value>CSI - Global Vcard</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Circle_K_Sales</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Circle K Sales</label>
+        <sharedTo>
+            <group>Circle_K_Sales_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>startsWith</operation>
+            <value>Circle K</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Divvy</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Divvy</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DivvyPartnerCPPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>equals</operation>
+            <value>Divvy</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ExxonMobil_Group_R_W</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Read/Write for ExxonMobil group</description>
+        <label>ExxonMobil Group R/W</label>
+        <sharedTo>
+            <group>ExxonMobil_Sales_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>contains</operation>
+            <value>ExxonMobil</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Fleet_Advantage_Universal</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Fleet Advantage Universal</label>
+        <sharedTo>
+            <group>Fleet_Advantage_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>startsWith</operation>
+            <value>Fleet Advantage Universal</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Global_Rewards_R_W</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Global Rewards R/W</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GlobalRewardsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>startsWith</operation>
+            <value>Global Rewards</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Pump_N_Pantry</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Pump N Pantry</label>
+        <sharedTo>
+            <group>Pump_N_Pantry_Partners_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>equals</operation>
+            <value>Pump &amp; Pantry Fleet Select Card</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>QuikChek</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>QuikChek</label>
+        <sharedTo>
+            <group>QuickChek_Partners_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>contains</operation>
+            <value>Quick Chek</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>RaceTrac_Universal</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RaceTrac Universal</label>
+        <sharedTo>
+            <group>RaceTrac_Sales_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>equals</operation>
+            <value>RaceTrac Universal</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Shell</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Shell</label>
+        <sharedTo>
+            <group>Shell_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>contains</operation>
+            <value>Shell</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Speedway</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Speedway</label>
+        <sharedTo>
+            <group>Speedway_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>contains</operation>
+            <value>Speedway</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sunoco_Group_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sunoco Group RW</label>
+        <sharedTo>
+            <group>SunocoTeam</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>contains</operation>
+            <value>Sunoco</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Thorntons</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Thorntons</label>
+        <sharedTo>
+            <group>Thorntons_Partner_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Name_WF_Update__c</field>
+            <operation>equals</operation>
+            <value>Thorntons FleetWorks Card</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>All_Internal_Dupe</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>All Internal Dupe</label>
+        <sharedTo>
+            <group>AllInternalUsersdupe</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AllInternalUsersdupe</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Merchant_Services_Group_R_W</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share edit access to records for user in Merchant Services (manual) group</description>
+        <label>Merchant Services Group R/W</label>
+        <sharedTo>
+            <group>Merchant_Services</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Merchant_Services</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Partner_Users</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Partner Users</label>
+        <sharedTo>
+            <group>All_Partner_Portal_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Appl_Site_Guest</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

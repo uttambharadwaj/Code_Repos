@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>W2L Fleet Inside Sales</name>
+    <queueMembers>
+        <users>
+            <user>andrew.carignan@wexinc.com</user>
+            <user>daniel.szantyr@wexinc.com</user>
+            <user>jamie.logan@wexinc.com</user>
+            <user>jason.dorr@wexinc.com</user>
+            <user>jesse.colfer@wexinc.com</user>
+            <user>jocelyne.deraspe@wexinc.com</user>
+            <user>kathleen.smith@wexinc.com</user>
+            <user>keith.cloutier@wexinc.com</user>
+            <user>nichole.anderson@wexinc.com</user>
+            <user>pam.smith@wexinc.com</user>
+            <user>ray.wormwood@wexinc.com</user>
+            <user>sean.mccullough@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

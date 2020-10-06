@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>TB2B EDGE Lead Queue</name>
+    <queueMembers>
+        <users>
+            <user>aaurich@truckersb2b.com.wex</user>
+            <user>dlockwood@truckersb2b.com</user>
+            <user>egarcia@truckersb2b.com</user>
+            <user>jstuck@fleetone.com</user>
+            <user>jessica.rivera@efsllc.com</user>
+            <user>johnathan.cosman@truckersb2b.com</user>
+            <user>sgalliett@truckersb2b.com.wex</user>
+            <user>sstein@truckersb2b.com.wex</user>
+            <user>terra.rebeck@wexinc.com</user>
+            <user>will.bowen@guest.efsllc.com.wex</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,174 @@
+/** Default styles for the chat window **/
+#liveAgentChatLog { border: 1px solid #000; width: 100%; height: 365px; }
+#liveAgentChatLogText span { display: block; }
+#liveAgentClientChat form { display: inline; }
+#liveAgentChatLogText .name { display:inline-block; white-space: pre; }
+#liveAgentChatLogText .messageText { display:inline; }
+
+#liveAgentChatLogAlertMessage {
+    background-color: #CD6571; 
+    -webkit-animation: pulse 2s infinite alternate;
+    -moz-animation: pulse 2s infinite alternate;
+    -o-animation: pulse 2s infinite alternate;
+    animation: pulse 2s infinite alternate;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    width:auto;
+    bottom:0px;
+    color: white;
+    font-style: italic;
+    overflow: hidden;
+    display: none;
+}
+
+#liveAgentChatLogAlertMessage.chasitorTyping {
+	background-color: #FEFCE4;
+	-webkit-animation-name: none;
+	-moz-animation-name: none;
+	-o-animation-name: none;
+	animation-name: none;
+	color: #CD6571;
+}
+
+.liveAgentStateIdleAlert #liveAgentChatLogAlertMessage {
+	display: block; 
+}
+
+#liveAgentChatLogAlertMessageTimer {
+	font-weight: 700;
+}
+
+/* Animation for Chat Log Alert */
+@-webkit-keyframes pulse {
+      0% {background-color: #CD6571;}
+     25% {background-color: #C85663;}
+     50% {background-color: #C14251;}
+     75% {background-color: #C85663;}
+     100% {background-color: #CD6571;}
+}
+
+@-moz-keyframes pulse {
+      0% {background-color: #CD6571;}
+     25% {background-color: #C85663;}
+     50% {background-color: #C14251;}
+     75% {background-color: #C85663;}
+     100% {background-color: #CD6571;}
+}
+
+@-o-keyframes pulse {
+      0% {background-color: #CD6571;}
+     25% {background-color: #C85663;}
+     50% {background-color: #C14251;}
+     75% {background-color: #C85663;}
+     100% {background-color: #CD6571;}
+}
+
+@keyframes pulse {
+      0% {background-color: #CD6571;}
+     25% {background-color: #C85663;}
+     50% {background-color: #C14251;}
+     75% {background-color: #C85663;}
+     100% {background-color: #CD6571;}
+}
+
+@-webkit-keyframes none {
+      0% {background-color: #FFFEEC;}
+     100% {background-color: #FFFEEC;}
+}
+
+@-moz-keyframes none {
+      0% {background-color: #FFFEEC;}
+     100% {background-color: #FFFEEC;}
+}
+
+@-o-keyframes none {
+      0% {background-color: #FFFEEC;}
+     100% {background-color: #FFFEEC;}
+}
+
+@keyframes none {
+      0% {background-color: #FFFEEC;}
+     100% {background-color: #FFFEEC;}
+}
+
+
+/** Hide chat elements prior to the chat starting **/
+#liveAgentClientChat.liveAgentStateWaiting .liveAgentChatElement { display: none; }
+
+/** Hide the end and send buttons when the chat has ended **/
+#liveAgentClientChat.liveAgentStateEnded .liveAgentEndButton,
+#liveAgentClientChat.liveAgentStateEnded .liveAgentSendButton,
+#liveAgentClientChat.liveAgentStateEnded .liveAgentChatInput { display: none; }
+
+/** Hide the status message **/
+#liveAgentClientChat #liveAgentStateStatusMessage { display: none; }
+
+/** Display the status message when in the status message state **/
+#liveAgentClientChat.liveAgentStateStatusMessage #liveAgentStateStatusMessage { display: block; }
+
+/** Hide the end and send buttons and chat log if a chat has not been started **/
+.no_chat .liveAgentSaveButton,
+.no_chat .liveAgentEndButton,
+.no_chat #liveAgentChatLog { display: none; }
+
+/** Hide the header text unless waiting for chat **/
+.liveAgentStateWaiting #header_text { display: inline-block; padding-top: 8px; }
+#header_text { display: none; }
+
+/** Hide the save chat button if the setting is disabled **/
+.no_save .liveAgentSaveButton { display: none; }
+
+/** Hide the cancel button unless waiting for chat **/
+#liveAgentClientChat.liveAgentStateWaiting .liveAgentCancelButton { display: inline; }
+.liveAgentCancelButton { display: none; }
+
+.liveAgentChatInput {
+    width: auto;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #bababa;
+    padding: 6px;
+}
+
+#liveAgentClientChat textarea#liveAgentChatTextArea {
+    color: #222;
+    border: none;
+    resize: none;
+    width: 100%;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #fff;
+    line-height: 18px;
+    -webkit-line-break: after-white-space;
+    word-wrap: break-word;
+    outline-style:none;
+    height: 18px;
+    display: block;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica,sans-serif;
+}
+
+.no_brand #brand {
+	display: none;
+	height: 0;
+}
+
+.no_brand #transcript {
+    top: 0;
+}
+
+/** Hide the file transfer buttons when the chat is ongoing**/
+#liveAgentChatFileTransfer {
+    display: none;
+}
+
+.file_transfer_requested #liveAgentChatFileTransfer {
+    display: block;
+}
+
+.liveAgentFileDragArea {
+    position: relative;
+}

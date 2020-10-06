@@ -1,0 +1,317 @@
+<apex:page cache="false" standardStylesheets="false" controller="Ctrl_MotorpassForm" showHeader="false">
+    
+    <head>
+    
+        <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+        
+        <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+        
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-1.4.3.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-ui-1.8.5.custom.min.js')}" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js" />
+        
+        <style type="text/css">
+        
+           /** .button { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 250px; height: 50px; font-family: arial; font-size: 14px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }**/
+           .button { display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }
+            
+            .smlbutton { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 150px; height: 36px; font-family: arial; font-size: 14px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-radius: 6px; background-color: #E31837; }
+            
+            input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+            h2 { font-family: arial; font-size: 14px; font-weight: bold; color: #666; }
+            
+            #contactLink
+            {               
+               display:block;
+               cursor:pointer;               
+               float:left;
+               right:0px;
+               position:absolute;
+               width:100px;
+               height:50px;
+               border:1px solid #666;
+            }
+            
+            
+            #contactForm
+            {
+               height:623px;
+               width:440px;              
+               display:none;
+            }
+            
+            #contactFormContainer
+            {
+               position:absolute;
+               right:0px;
+               top:50px;
+            }
+            .box
+            {
+                float:right;
+            }
+            
+            #transparentDiv
+            {
+                background-color:red;
+                opacity:0.2;
+            }
+            
+            #mainDiv
+            {
+                width: 80%;
+            }
+            
+            #tabs ul {
+            margin-bottom: 0px;
+            height: 29px;
+            background: url(https://wss.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+            overflow: hidden;
+            zoom: 1;
+            list-style-type: none;
+            }
+            
+            #tabs ul li {
+            background: url(https://wss.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+            height: 29px;
+            line-height: 29px;
+            float: left;
+            margin-left: -1px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 0px 14px 0px 13px;
+            display: block;
+            float: left;
+            width: 17%;
+            }
+            
+            #tabs ul li.selected {
+            background: none;
+            color: #FFF;
+            }
+        </style>
+        
+    </head>
+    
+    <body style="margin: 0px; font-family: arial; font-size: 13px; color: #666;">
+    
+    <div style="margin-left: auto; margin-right: auto; width: 960px;">
+    
+    <div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; background-image: url(http://www.motorpass.com.au/media/2241736/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+        <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+    
+    <div style="height: 1000px; margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; overflow: hidden; vertical-align: baseline;">
+        
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li>Getting Started</li>
+                    <li>Your Details</li>
+                    <li>Card Details</li>
+                    <li class="selected">Payment Options</li>
+                    <li>Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/><br/><br/>
+            
+            <div style="padding-left: 20px;">
+        
+            <apex:form id="theForm">
+            
+                <apex:actionFunction name="callComponent" action="{!invokeComponent}" rerender="compId"/>
+                <!-- Action function to populate the address fields when a valid BSB is entered -->
+                <apex:actionFunction name="populateAdd" action="{!populateAdd}" rerender="errorTab,f_in_po,f_in_state,f_in_add,f_in,f_suburb"/>
+                <apex:pageMessages id="errorTab"/>
+                    
+                <apex:pageBlock >
+                
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="2" font-family="arial" font-size="13px">
+                  <tr>
+                    <td align="left" colspan="4">
+                        <p>Request and Authority to debit the account named below to pay WEX Australia</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" colspan="4">
+                    <p>Please select your billing frequency;</p>
+                        <apex:selectList value="{!theLead.Frequancy__c}" size="1">
+                            <apex:selectOptions value="{!frequencyList}"/>
+                        </apex:selectList>
+                        
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" colspan="4">
+                        <p>You request and authorise WEX Australia (Direct User Identification Number 02824) to arrange, through its own financial institution, 
+                        for any amount WEX Australia may debit or charge you from time to time to be debited through the Bulk Electronic Clearing System from an 
+                        account held at the financial institution identified below and paid to WEX Australia, subject to the terms and conditions of the Debit Request Service Agreement.</p>
+                        <h2>Terms and Conditions</h2>
+                        <p><apex:inputCheckBox value="{!theLead.AU_Terms_and_Conditions__c}"/> By ticking the checkbox you acknowledge having read and understood the 
+                        <a target="_blank" href="{!IF(brand == 'Motorpass','http://www.motorpass.com.au/media/1487396/wex direct debit service agreement.pdf','http://www.motorcharge.com.au/media/1487753/wex%20direct%20debit%20service%20agreement.pdf')}">terms and conditions</a> governing the debit arrangements between you and us as set out in this Request 
+                        and in this Direct Debit Request Service Agreement. Debit Payments will be made fourteen days after the issue of a billing advice.</p>
+                    </td>
+                  </tr>
+<!--                  <tr>-->
+<!--                    <td align="left" colspan="4"><p>Insert the name and adress of the financial institution at which the account is held</p></td>-->
+<!--                  </tr>-->
+                  <tr>
+                    <td align="left" colspan="2" width="50%"><h2>Account Information</h2></td>
+                    <td align="left" colspan="2" width="50%"><h2>Financial Institution Details</h2></td>
+                  </tr>
+                  <tr>
+                    <td width="25%" align="left" style="display:{!If(option == 'Individual','block table','none')}"><apex:outputLabel value="Last name"/></td>
+                    <td width="25%" align="left" style="display:{!If(option == 'Individual','block table','none')}"><apex:inputText value="{!theLead.Lastname}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,20);"/></td>
+                    <td width="25%" align="left" style="display:{!If(option == 'Organisation','block table','none')}"><apex:outputLabel value="Company"/></td>
+                    <td width="25%" align="left" style="display:{!If(option == 'Organisation','block table','none')}"><apex:inputField value="{!theLead.AU_Account_Name__c}"/></td>
+                    <td width="25%" align="left"><apex:outputLabel value="Financial institution name"/></td>
+                    <td width="25%" align="left"><apex:inputTextarea style="width:150px;height:40px;border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; font-family: arial;" disabled="true" id="f_in" value="{!theLead.AU_Financial_Institution__c}"/></td>
+                  </tr>
+                  <tr>
+                    <td width="25%" align="left" style="display:{!If(option == 'Individual','block table','none')}"><apex:outputLabel value="First name"/></td>
+                    <td width="25%" align="left" style="display:{!If(option == 'Individual','block table','none')}"><apex:inputField value="{!theLead.Firstname}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,20);"/></td>
+                    <td width="25%" align="left" style="display:{!If(option == 'Organisation','block table','none')}"><apex:outputLabel value="ABN/ARBN"/><span style="color:red;">*</span></td>
+                    <td width="25%" align="left" style="display:{!If(option == 'Organisation','block table','none')}"><apex:inputField value="{!theLead.AU_ABN__c}" onkeypress="return checkFieldLength(event,this.id,11); return numbersonly(event, false)"/></td>
+                    <td width="25%" align="left"><apex:outputLabel value="Address"/></td>
+                    <td width="25%" align="left"><apex:inputTextarea style="width:150px;height:40px;border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; font-family: arial;" disabled="true" id="f_in_add" value="{!theLead.AU_Financial_Institution_Address__c}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,35);"/></td>
+                  </tr>
+                        
+                  <tr>
+                    <td width="25%" align="left"><apex:outputLabel value="Account name"/></td>
+                    <td width="25%" align="left"><apex:inputField value="{!theLead.Bank_Account_Name__c}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,32);"/></td>
+                    <td align="left"><apex:outputLabel value="Suburb"/></td>
+                    <td align="left"><apex:inputText disabled="true" id="f_suburb" value="{!theLead.AU_Financial_Institution_Suburb__c}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,26);"/></td>
+                  </tr>
+                  <tr>
+                    <td align="left"><apex:outputLabel value="BSB"/></td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_BSB__c}" onblur="populateAddress()" onkeypress="return checkFieldLength(event,this.id,6); return numbersonly(event, false)"/></td>
+                    <td align="left"><apex:outputLabel value="State"/></td>
+                    <td align="left">
+                        <apex:selectList disabled="true" id="f_in_state" value="{!theLead.AU_Financial_Institution_State__c}" size="1" >
+                            <apex:selectOptions value="{!StatesList}"/>
+                        </apex:selectList>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left"><apex:outputLabel value="Account number"/></td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Account_No__c}" onkeypress="return checkFieldLength(event,this.id,32); return numbersonly(event, false);"/></td>
+                    <td align="left"><apex:outputLabel value="Postcode"/></td>
+                    <td align="left"><apex:inputText disabled="true" id="f_in_po" value="{!theLead.AU_Financial_Postcode_Address__c}" onkeypress="return checkFieldLength(event,this.id,4); return numbersonly(event, false)"/></td>
+                  </tr>
+                  
+                </table>
+                <div style="width:100%; padding-top: 5%;">
+                    <span  style="padding:10px;">
+                       <apex:commandLink styleClass="button" value="Back" action="{!gotoPaymentOptions}">
+                        </apex:commandLink>
+                    </span>
+                    <span  style="padding:10px;">
+                       <apex:commandLink styleClass="button" value="Submit" action="{!validateDirectDebit}">
+                                <apex:param name="redirectedFrom" value="DirectDebitInformation" assignTo="{!redirectedFrom}" />
+                                <apex:param name="saveForm" value="yes" assignTo="{!saveForm}"/>
+                            </apex:commandLink>
+                     </span>
+                     <span style="padding:10px;">   
+                       <apex:commandLink styleClass="button" value="Next" action="{!validateDirectDebit}">
+                                <apex:param name="redirectedFrom" value="DirectDebitInformation" assignTo="{!redirectedFrom}" />
+                                <apex:param name="saveForm" value="no" assignTo="{!saveForm}"/>
+                            </apex:commandLink>
+                      </span>  
+                    </div>
+                </apex:pageBlock>
+                
+            </apex:form>
+    
+    </div>
+    
+  
+    
+    </div>
+    
+      <div class="box">
+    
+        <div id="contactFormContainer">
+        
+                <div id="contactLink" style="border: 0px;">
+        
+                    <div class="container-callbacktab" style="font-family: arial;font-size: 14px;color: #FFF; width: 80px; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border: 1px solid #666; border-radius: 6px; background-color: #E31837;">
+                        <b>Request a call back</b>
+                    </div>
+        
+                </div>
+        
+                <div id="contactForm">
+                    <c:CallBackForm objController="{!this}" id="compId"/>
+                </div>
+        
+               </div>
+           
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    <script type="text/javascript">
+    
+        //Function to make a call to populateAdd method in the controllers when a BSB is entered
+        function populateAddress(){
+           populateAdd();
+        }
+        function checkFieldLength(evt, eltId, maxlen)
+        {
+            var elt = document.getElementById(eltId);      
+            
+            var charCode = (evt.which) ? evt.which : event.keyCode;     
+            if(charCode == 8) // backspace key
+                return true;         
+            if(charCode >= 48 && charCode <= 57) // checks for numbers
+            {    
+                if(elt.value.length < maxlen)
+                    return true;
+            }
+            return false;
+        }
+            
+        function checkFieldLength_NoCharCheck(evt, eltId, maxlen)
+        {
+            var elt = document.getElementById(eltId);      
+            
+            var charCode = (evt.which) ? evt.which : event.keyCode;     
+            if(charCode == 8)
+                return true;                
+            if(elt.value.length < maxlen)
+                return true;
+            return false;
+        }
+            
+        $(document).ready(function(){
+             $("#contactLink").click(function(){
+                 if ($("#contactForm").is(":hidden")){
+                    callComponent();
+                     $("#contactForm").show('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "440px" }, 1000);
+                     pos = $("#mainDiv").position();
+                 }
+                 else{
+                     $("#contactForm").hide('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "0px" }, 1000);
+                 }
+             });
+             
+             
+         });
+    </script>
+    
+    <site:googleAnalyticsTracking />
+    
+    </body>
+    
+</apex:page>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Marketing Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Mastercard</publicGroup>
+            <publicGroup>CPSTeams</publicGroup>
+            <publicGroup>InsideSales</publicGroup>
+            <publicGroup>InsideSalesManager</publicGroup>
+            <publicGroup>InsideSalesDataEntry</publicGroup>
+            <publicGroup>OBSTeam</publicGroup>
+        </publicGroups>
+        <roleAndSubordinates>
+            <roleAndSubordinate>DirectorInsideSales</roleAndSubordinate>
+        </roleAndSubordinates>
+        <roles>
+            <role>ClientRelationshipManager</role>
+            <role>ISSalesRep</role>
+            <role>ISTeamLeader</role>
+            <role>MarketingReporting</role>
+        </roles>
+        <users>
+            <user>dwarnock@fleetlink.com</user>
+            <user>janet.parker@wexinc.com</user>
+            <user>jennifer.corkum@wexinc.com</user>
+            <user>jose.rivera@wexinc.com</user>
+            <user>lamar.jackson@wexinc.com</user>
+            <user>melissa.libby@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

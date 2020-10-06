@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Opportunity</entityName>
+    <fieldName>StageName</fieldName>
+    <masterLabel>Opportunity NA Corporate Payments</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Annual_Spend__c</fieldNames>
+        <fieldNames>Product_Interest__c</fieldNames>
+        <fieldNames>Type</fieldNames>
+        <fieldNames>Interchange_Rate_Revenue_as_a_percentag__c</fieldNames>
+        <fieldNames>Rebate__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Required to save an Opportunity: &lt;/b&gt;&lt;/p&gt;&lt;p&gt;Address&lt;/p&gt;&lt;p&gt;Annual Spend&lt;/p&gt;&lt;p&gt;Product Interest&lt;/p&gt;&lt;p&gt;Type&lt;/p&gt;&lt;p&gt;Interchange Rate&lt;/p&gt;&lt;p&gt;Rebate % Applied&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;READ PRIOR TO PROGRESSING: &lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Net Full Service Revenue (FSR) = (Annual Spend * (Interchange-Rebate)). The system will automatically calculate Net FSR when you enter those values. In early stages, enter conservative values and use them as estimates. As you progress, you can refine those values to calculate a more accurate Net FSR. Reach out to your manager or finance with any questions on this topic. Remember, Net FSR is the revenue can we expect when this customer is fully ramped, and when rebate and interchange are applied.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Required to move to Stage 2: &lt;/b&gt;&lt;/p&gt;&lt;p&gt;Current Provider&lt;/p&gt;</info>
+        <picklistValueName>1) Qualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Current_Pain_Points__c</fieldNames>
+        <fieldNames>Competitive_Landscape__c</fieldNames>
+        <fieldNames>Competitor_1__c</fieldNames>
+        <fieldNames>Competitor_2__c</fieldNames>
+        <fieldNames>Competitor_3__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Required to move to Stage 3:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Current Pain Points&lt;/p&gt;&lt;p&gt;Competitive Landscape&lt;/p&gt;&lt;p&gt;Competitor 1&lt;/p&gt;&lt;p&gt;Competitor 2&lt;/p&gt;&lt;p&gt;Competitor 3&lt;/p&gt;</info>
+        <picklistValueName>2) Engaged</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>WEX_Value_Prop__c</fieldNames>
+        <fieldNames>Card_Program_Type_1__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Required to move to Stage 4:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;WEX Value Prop&lt;/p&gt;&lt;p&gt;Card Program Type 1&lt;/p&gt;</info>
+        <picklistValueName>3) Evaluating</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Customer_Concerns__c</fieldNames>
+        <fieldNames>Reason_for_making_change__c</fieldNames>
+        <fieldNames>Interchange_Rate_Revenue_as_a_percentag__c</fieldNames>
+        <fieldNames>Rebate__c</fieldNames>
+        <fieldNames>Signed_Contract_from_Legal__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Required to move to Stage 5:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Customer Concerns?&lt;/p&gt;&lt;p&gt;Reason for making change?&lt;/p&gt;&lt;p&gt;Interchange Rate&lt;/p&gt;&lt;p&gt;Rebate % Applied&lt;/p&gt;&lt;p&gt;Signed Contract from Legal Date&lt;/p&gt;</info>
+        <picklistValueName>4) Negotiating</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Credit_Limit__c</fieldNames>
+        <fieldNames>Date_Credit_Limit_Approved__c</fieldNames>
+        <fieldNames>Billing_Cycle__c</fieldNames>
+        <fieldNames>Payment_Terms_Days__c</fieldNames>
+        <info>&lt;p&gt;&lt;b&gt;Required prior to Implementation:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Credit Limit&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Date &lt;/span&gt;Credit Limit Approved&lt;/p&gt;&lt;p&gt;Billing Cycle&lt;/p&gt;&lt;p&gt;Credit Payment Terms&lt;/p&gt;</info>
+        <picklistValueName>5) Signed</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>NA_Corporate_Payments</recordTypeName>
+</PathAssistant>

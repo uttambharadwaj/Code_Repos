@@ -1,0 +1,275 @@
+<apex:page controller="URLGeneratorController" showHeader="false" standardStylesheets="false">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+    <apex:stylesheet value="{!URLFOR($Resource.URLGenAssets, '/css/base.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.URLGenAssets, '/css/branding.css')}"/>
+    
+    <title>Credit App URL Generator</title> 
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+     <apex:includeScript value="{!URLFOR($Resource.URLGenAssets, '/js/jquery-1.8.2.min.js')}"  />
+     <apex:includeScript value="{!URLFOR($Resource.URLGenAssets, '/js/jquery.maskedinput-1.3.min.js')}"  />
+     
+     <style>
+         /*.error-inline { display: block;  float: right; }*/
+    
+    	.brand h1 { float: left; line-height: 70px; margin-left: 30px; }
+    
+    	#page-wrap { margin-top: 30px; }
+     </style>
+     
+     <script language="javascript">
+
+        var programNamesArray = new Array();
+        <apex:repeat value="{!programNames}" var="pgmName">
+            programNamesArray.push('{!pgmName}');
+        </apex:repeat>
+             
+        <apex:includeScript value="/soap/ajax/24.0/connection.js"/>
+        <apex:includeScript value="/soap/ajax/24.0/apex.js"/>
+         
+        var j$ = jQuery.noConflict();
+     
+        j$(function(){
+ 
+                  
+            
+            // clear the form fields
+            j$("#email").val('');
+            j$("#salesid").val('');
+            j$("#couponCode").val('');
+           
+            $("#phone").mask("(999) 999-9999");
+            
+            j$('form').submit(function() {    
+                var hasError = false;
+                    emailReg        = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+                    programVal      = j$("#program").val(),
+                    salesidVal      = j$("#salesid").val(),
+                    emailaddressVal = j$("#email").val(),
+                    phoneVal        = j$("#phone").val();
+                    
+                  
+                
+                //Validate Sales ID
+                if(salesidVal == '') {
+                    j$("#salesid").addClass('input-error');
+                    j$("#salesid + span").text('External Sales ID is required.');
+                    hasError = true;
+                }
+                else {
+                	j$('#salesid').removeClass('input-error');
+                    j$('#salesid + .error-inline').text(""); 
+               	}
+         
+                /*
+                else {
+                    //Query the server for a valid ID
+                   
+                    sforce.connection.sessionId = "{!$Api.Session_ID}"; 
+                    var idCheck = sforce.apex.execute("URLGeneratorService","isValidSalesId",{SalesId:j$('#salesid').val(), ProgramName:j$('#program').val()});  
+                           
+                    if (idCheck == 'false'){
+                        j$('#salesid').addClass('input-error');
+                        j$('#salesid + .error-inline').text("External Sales ID entered does not exist for the program.");  
+                        hasError = true;               
+                    } else {
+                          j$('#salesid').removeClass('input-error');
+                          j$('#salesid + .error-inline').text("");             
+                  }
+                 
+                }
+				*/
+                
+                //Validate Email Address
+                if(emailaddressVal == '') {
+                    j$("#email").addClass('input-error');
+                    j$("#email + span").text('Email Address is required.');
+                    hasError = true;
+                }
+         
+                else if(!emailReg.test(emailaddressVal)) {
+                    j$("#email").addClass('input-error');
+                    j$("#email + span").text('Email Address is not a valid email format.');
+                    hasError = true;
+                } else {
+                      j$("#email").removeClass('input-error');
+                      j$('#email + .error-inline').text("");         
+              }
+              
+               //Validate Phone Number
+              /*  if(phoneVal == '') {
+                    j$("#phone").addClass('input-error');
+                    j$("#phone+ span").text('Phone Number is required.');
+                    hasError = true;
+                }else if (phoneVal.length < 10) {
+                    j$("#phone").addClass('input-error');
+                    j$("#phone+ span").text('Sales Phone Number is not a valid phone number.');
+                    hasError = true;
+                } else {
+                      j$("#phone").removeClass('input-error');
+                      j$('#phone+ .error-inline').text("");            
+              }*/
+              
+              //Validate Program
+              
+              
+              if(j$("#program").val() == "") {
+              
+                  j$("#program").addClass('input-error');
+                    j$("#program + span").text('Program Name is required.');
+                  hasError = true;
+              } else {
+                  j$("#program").removeClass('input-error');
+                  j$('#program + .error-inline').text("");
+              }
+              
+                  
+         
+                if(hasError == true) { return false; } else { return true; }
+            });
+             
+            var $salesid     = j$("#salesid"),
+                $program     = j$("#program"),
+                $account     = j$('#account');
+
+            //selects the default program, if it has only one program
+           if(programNamesArray.length==1)
+           {
+                var optnVal = "<option  selected='selected' value=\'"+ programNamesArray[0]+ "\'>" + programNamesArray[0] + "</option>";
+                $program.append(optnVal); 
+                getAccount();
+           }
+          else{
+              var optnVal = "<option  selected='selected' value=''><-- Select --></option>";
+          $program.append(optnVal); 
+              
+          
+
+          // get Sinclair Fleet Track to be the first one in the list.
+          for (var i=0;i<programNamesArray.length;i++){
+              if (programNamesArray[i] == 'Sinclair Fleet Track'){
+                 var optnVal = "<option value=\'"+ programNamesArray[i]+ "\'>" + programNamesArray[i] + "</option>";               
+                 $program.append(optnVal);
+              }
+          }    
+          
+          for (var i=0;i<programNamesArray.length;i++){
+              if (programNamesArray[i] != 'Sinclair Fleet Track'){
+                 var optnVal = "<option value=\'"+ programNamesArray[i]+ "\'>" + programNamesArray[i] + "</option>";               
+                $program.append(optnVal);
+               }
+          }   
+          
+         
+          
+          }
+
+            /****Check Server for Valid Sales ID ****/
+          
+           function ValidateSalesId() {
+              sforce.connection.sessionId = "{!$Api.Session_ID}"; 
+              var is_valid = sforce.apex.execute("URLGeneratorService","isValidSalesId",{SalesId:$salesid.val(), ProgramName:$program.val()});  
+           
+              if (is_valid == 'false'){
+                $salesid.addClass('input-error');
+                j$('#salesid + .error-inline').text("External Sales ID entered does not exist for the program.");                
+              } else {
+                  $salesid.removeClass('input-error');
+                  j$('#salesid + .error-inline').text("");              
+              }
+              
+           } 
+           
+            //$salesid.blur(ValidateSalesId); 
+           
+           /********** Get ACCOUNT INFO based on PROGRAM VALUE ***********/
+           
+           function getAccount(){
+                sforce.connection.sessionId = "{!$Api.Session_ID}"; 
+                var accounts = sforce.apex.execute("URLGeneratorService","getL1Accounts",{ ProgramName:$program.val() });
+                populateAccountBox(accounts);
+            }
+            
+            function populateAccountBox(accounts) {
+                console.log('populateAccountBox', $account, accounts);
+                $account
+                    .empty()
+                    .attr('disabled', accounts.length < 1);
+                j$.each(accounts, function(i, account) { 
+                    var $option = "<option value='account.AccountNumber_"+i+"'>account.Name "+i+"</option>";
+                    $account.append($option);
+                });
+            }
+            
+            $program.change(getAccount)
+               
+     }); 
+    </script>
+ 
+     
+</head>
+<div class="brand clearfix noselect">
+    <h1>Credit Application URL Generator</h1>
+</div>
+<div id="page-wrap">
+    
+    <br/><br/>
+    <p><center>Use the form below to create a URL for your customer to use when filling out their online credit application.</center></p>
+    <p>&nbsp;</p>
+    <div id="message-wrap"></div>
+    <apex:form id="urlGen">
+        <fieldset>
+            <ul>  
+                <li> 
+                    <label for="program">Program Name:<span class="required">*</span></label>
+                    
+                    <select name="program" id="program">
+                        <option></option>
+                    </select>
+                    <span class="error-inline"></span>
+                </li> 
+               
+                <li>
+                    
+                    <label for="salesID">External Sales ID:<span class="required">*</span></label>
+                    <input type="text" name="salesid" id="salesid"/>
+                    <span class="error-inline"></span>
+                </li>
+                
+                <li>
+                    <label for="couponCode">Coupon Code:</label>
+                    <input type="text" name="couponCode" id="couponCode"/>
+                </li>
+                <li>
+                    <label for="emailAddress">Email Address:<span class="required">*</span></label>
+                    <input type="text" name="email" id="email"/>
+                    <span class="error-inline"></span>
+                </li>
+                <li>
+                    <label for="phone">Sales Phone Number:</label>
+                    <input type="text" name="phone" id="phone"/>
+                </li>
+            </ul>
+        </fieldset>
+        <div class="ui-form-controls pull-right">
+            <apex:commandButton action="{!SendEmail}" value="Generate URL" styleClass="btn-mobile" />
+        </div>
+   </apex:form>
+</div>
+
+     <!--
+    <apex:pageblock >
+ 
+            <apex:pageBlockSection title="Ajax Console">
+                <h2 id='foo'>Status</h2>
+                <pre id="status" style="font-size: 16px" />
+                     
+                <h2> JSON Response </h2>
+                <div id="response" style="font-size: 16px;width: 300px;font-family: monospace; font-stretch: expanded" />
+        </apex:pageBlocksection>
+    </apex:pageblock>
+    -->
+</apex:page>

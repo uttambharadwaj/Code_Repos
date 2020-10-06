@@ -1,0 +1,71 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
+    <html>
+    <head>
+        <title>Maintenance</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+
+        <style>
+
+            body {
+                background: #00709B;
+                font-family: 'Roboto', sans-serif;
+                color: #666666 !important;
+            }
+
+            #content {
+                margin: 0 auto;
+                max-width: 960px;
+            }
+
+            .container {
+                margin-top: 100px;
+                background: #FFFFFF;
+                filter:drop-shadow(5px 5px 10px black);
+                padding: 40px 60px;
+                border: 1px solid #999;
+                border-radius: 8px !important;
+            }
+
+            .logo {
+                max-height: 120px;
+                vertical-align: middle !important;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            .errorCode {
+                font-size: 13px;
+            }
+
+        </style>
+    </head>
+    <body>
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <apex:outputText escape="false" value="{!$Label.Maintenance_Page_Text}" />
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+</apex:page>

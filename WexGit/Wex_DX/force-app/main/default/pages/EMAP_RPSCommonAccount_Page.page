@@ -1,0 +1,211 @@
+<!-- This VF page is opened as a pop up onclick of 'RPS Account check' and 'Common Account Check' custom buttons -->
+<!-- These custom buttons are defined on Credit Assessment object. -->
+<apex:page standardController="Credit_Assessment__c" extensions="EMAP_RPSCommonAccount_Controller" sidebar="false" setup="false" showHeader="false" id="RPSPage" action="{!populateAccountList}">
+
+<head>
+    <!-- Below JQuery files are used to open this VF page as a Pop up onclick of -->
+    <!-- Common Account check and Restricted Party Check button on Credit Assessment record-->
+    <apex:includeScript value="{!URLFOR($Resource.EMAP_JQueryForPopup, '/jQuery/jquery-1.8.2.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.EMAP_JQueryForPopup, '/jQuery/postmessage/jquery.ba-postmessage.js')}"/>
+    
+    <script type="text/javascript">
+    //Embedded javascript is used to perform controller actions and close JQuery pop up  
+        var j$ = jQuery.noConflict();
+
+        var parent_domain = '{!$CurrentPage.parameters.parent_domain}';
+
+        j$(document).ready(function() {
+            j$('input[id$=btnCloseModalDialog]').click(function(event) {
+                event.preventDefault();
+                closeModalDialog();
+            });
+            
+            //match restricted Accounts on click of Match btn
+            j$('input[id$=MatchRPSAccBtn]').click(function(event) {
+               var isRadioSelected = isRadioChecked('{!restrictedList.size}');
+               if(isRadioSelected == true) {
+                   fnMatchRPSAccRecord();
+               } else {
+                   alert('Please select atleast one record.');
+               }
+               return false;
+            });
+
+            //match common and EMAP Accounts on click of Match btn
+            j$('input[id$=MatchCommAccBtn]').click(function(event) {
+                
+               var isChkboxSelected = isChkboxChecked('{!restrictedList.size}', 'common accounts');
+               
+               var isEMAPAccSelected = isChkboxChecked('{!emapCommonAccList.size}', 'EMAP accounts');
+               
+               if(isChkboxSelected || isEMAPAccSelected) {
+                   fnMatchCommAccRecord();
+               } else {
+                   alert('Please select atleast one match record from Common Accounts AND EMAP Accounts.');
+               }
+               return false;
+            });
+
+            //no match common and EMAP Accounts on click of No Match btn
+            j$('input[id$=NoMatchBtn]').click(function(event) {
+                
+               var isChkboxSelected = isChkboxChecked('{!restrictedList.size}', 'common accounts');
+               
+               var isEMAPAccSelected = isChkboxChecked('{!emapCommonAccList.size}', 'EMAP accounts');
+               
+               if(isChkboxSelected || isEMAPAccSelected) {
+                   alert('Please remove your selection from both sections, if match not found.');
+               } else {
+                   fnNoMatchRecord();
+               }
+               return false;
+               
+            });
+
+        });
+        
+        function closeModalDialog() {
+            var cross_result = new Object();
+            cross_result.action = 'close_modal_dialog';
+        
+            j$.postMessage(
+                cross_result,
+                parent_domain,
+                parent
+            );
+        }
+        
+        function closeModalDialogAndRedirect() {
+            var redirectUrl = j$('input[id$=redirectUrl]').val();
+
+            var cross_result = new Object();
+            cross_result.action = 'close_dialog_refresh';
+            cross_result.redirect_url = redirectUrl;
+        
+            j$.postMessage(
+                cross_result,
+                parent_domain,
+                parent
+            );
+        }
+        
+        function isRadioChecked(sizeVar) {
+            var isChecked = false;
+            
+            for(var i=1; i<=sizeVar; i++){
+                if(document.getElementById('recordId'+i).checked){
+                    isChecked = true;
+                    break;
+                }
+            }
+           return isChecked;          
+        }
+        
+        //used to check record selected or not in each section
+        //3 parameters: size of accounts list, type of accounts list and which btn clicked (match or no match)
+        function isChkboxChecked(sizeVar, type) {
+            var isChecked = false;
+            
+            //common accounts section to check checkbox checked or not
+            if(type == 'common accounts') {
+                if(sizeVar > 0){
+                    for(var j=0; j<sizeVar; j++) {
+                        if(document.getElementById('RPSPage:accForm:RPSPageBlock:CommonAccPageBlock:commAccPageBlockTable:'+j+':check').checked){
+                            isChecked = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            //EMAP accounts section to check checkbox checked or not
+            if(type == 'EMAP accounts') {
+                if(sizeVar > 0){
+                    for(var k=0; k<sizeVar; k++){
+                        if(document.getElementById('RPSPage:accForm:RPSPageBlock:EMAPCommonAccPageBlock:emapAccPageBlockTable:'+k+':check').checked){
+                            isChecked = true;
+                            break;
+                        }
+                    }
+                }
+            }
+           return isChecked;          
+        }
+
+                        
+    </script>
+</head>
+
+<apex:form id="accForm">
+
+    <apex:actionFunction name="fnMatchRPSAccRecord" action="{!matchRecord}" oncomplete="closeModalDialogAndRedirect();"/>
+    <apex:actionFunction name="fnMatchCommAccRecord" action="{!matchRecordNew}" oncomplete="closeModalDialogAndRedirect();"/>
+    <apex:actionFunction name="fnNoMatchRecord" action="{!noMatchRecord}" oncomplete="closeModalDialogAndRedirect();"/>
+
+    <apex:outputPanel id="opnlHiddenFields" layout="block">
+            <apex:inputHidden id="redirectUrl" value="{!redirectUrl}" />
+    </apex:outputPanel>     
+
+    <apex:pageBlock id="RPSPageBlock">
+        <apex:pagemessages id="showmsg" />
+
+        <!-- <apex:inputHidden id="selectedCommAcc" value="{!selectedCommAcc}" /> -->
+
+        <apex:variable var="counter" value="{!0}" />
+        
+        <apex:pageBlockSection title="Restricted Accounts" id="RSPPageBlock" rendered="{! (!isCommonAcc && isResultFound)}" collapsible="false">
+            <apex:pageBlockTable value="{!restrictedList}" var="res" id="RPSAccPageBlockTable">
+                 <apex:column headerValue="Select one" rendered="{!isResultFound }">
+                <apex:variable var="counter" value="{!counter+1}"/>
+                    <input type="radio" name="selectRadio" id="recordId{!counter}">
+                      <apex:actionSupport event="onclick" action="{!getSelected}" reRender="Selected_PBS">
+                          <apex:param name="selectedAcc" value="{!res.name}" assignTo="{!selectedAcc}"/>
+                      </apex:actionSupport>
+                    </input>
+                </apex:column>
+                <apex:column value="{!res.name}"/>
+                <apex:column value="{!res.Country__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection title="Common Accounts" id="CommonAccPageBlock"  collapsible="false" rendered="{! (isCommonAcc && isResultFound)}">
+            <apex:pageBlockTable value="{!restrictedCommonList}" var="ResCom" id="commAccPageBlockTable" >
+                <apex:column >
+                    <apex:facet name="header">Select</apex:facet>
+                    <apex:inputCheckbox value="{!ResCom.selectCheck}" id="check"/>
+                </apex:column>
+                <apex:column value="{!ResCom.RestrictedCommonAccount.name}" headerValue="Common Account Name"/>
+                <apex:column value="{!ResCom.RestrictedCommonAccount.Country__c}" headerValue="Country"/>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+
+        <apex:pageBlockSection title="EMAP Accounts" id="EMAPCommonAccPageBlock" collapsible="false" rendered="{! (isEMAPAccsFound)}">
+            <apex:pageBlockTable value="{!emapCommonAccList}" var="emapAccVar" id="emapAccPageBlockTable"  >
+                <apex:column >
+                    <apex:facet name="header">Select</apex:facet>
+                    <apex:inputCheckbox value="{!emapAccVar.selectCheck}" id="check"/>
+                </apex:column>
+                <apex:column value="{!emapAccVar.emapAcc.Name}" headerValue="Account Name"/>
+                <apex:column value="{!emapAccVar.emapAcc.AU_Account_Number__c}" headerValue="Account Number"/>
+                <apex:column value="{!emapAccVar.emapAcc.Client_Name__c }" headerValue="Client Name"/>
+                <apex:column value="{!emapAccVar.emapAcc.Status__c}" headerValue="Status"/>
+                <apex:column value="{!emapAccVar.emapAcc.Account_Sub_Status__c }" headerValue="Account Sub Status"/>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockButtons location="bottom">
+            <!-- Buttons displayed for RPS account check -->
+            <apex:commandButton id="MatchRPSAccBtn" value="Match" disabled="{! !isResultFound}" rendered="{! !isCommonAcc}"/>
+            <apex:commandButton id="NoRPSMatchBtn" value="No Match" action="{!noMatchRecord}" oncomplete="closeModalDialogAndRedirect();" rendered="{! !isCommonAcc}"/>
+            
+            <!-- Buttons displayed for Common account check -->
+            <apex:commandButton id="MatchCommAccBtn" value="Match"  rendered="{! isCommonAcc}" disabled="{! (!isResultFound && !isEMAPAccsFound)}"/>
+            <apex:commandButton id="NoMatchBtn" value="No Match" rendered="{! isCommonAcc}"/>
+            
+            <!-- <apex:commandButton value="Close" id="btnCloseModalDialog"/> -->
+            <apex:commandButton value="Clear" action="{!clearPrevResults}" oncomplete="closeModalDialogAndRedirect();"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+    
+</apex:form>    
+</apex:page>

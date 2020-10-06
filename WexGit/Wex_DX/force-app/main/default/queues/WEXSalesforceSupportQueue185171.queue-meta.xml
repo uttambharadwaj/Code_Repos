@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>WEX Salesforce Support Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>WEXAdmin</publicGroup>
+        </publicGroups>
+        <users>
+            <user>allan.ireland@wexaustralia.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

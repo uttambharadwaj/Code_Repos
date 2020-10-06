@@ -1,0 +1,57 @@
+.submit-button {
+    width: 100%;
+}
+
+#content {
+    background: #fff;
+}
+
+.logo { max-height: 100px; }
+
+#logo-container {
+    margin-bottom: 40px;
+}
+
+.fieldErrorMessage {
+    display: none;
+    margin-top: -0px;
+
+    font-size: 13px;
+    padding: 4px 0px 4px 4px;
+    line-height: 14px !important;
+}
+
+.fieldErrorMessage.filled {
+    display: block;
+}
+
+.errorMessage {
+    padding: 0 0 12px 0;
+    margin: -2px 0;
+    color: #d12c50;
+}
+
+@media only screen and (min-width: 960px) {
+    body {
+
+        background: #1B85B2 !important;
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+    }
+
+    .submit-button {
+        width: 20%;
+        float: right;
+    }
+
+    #content {
+        background: #fff;
+    }
+
+    .logo { max-height: 80px; }
+
+    #logo-container {
+        margin-bottom: 20px;
+    }
+}

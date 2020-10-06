@@ -1,0 +1,33 @@
+<apex:page showHeader="true" sidebar="true" standardController="case" recordSetVar="cases">
+<apex:panelGrid columns="3" border="1" >
+<analytics:reportChart reportId="00O70000004Q5nB" showRefreshButton="true"  cacheResults="false"></analytics:reportChart>
+<analytics:reportChart reportId="00O70000004PpZX" showRefreshButton="true"  cacheResults="false" ></analytics:reportChart>
+<analytics:reportChart reportId="00O70000004PpaB" showRefreshButton="true" cacheResults="false"></analytics:reportChart>
+<analytics:reportChart reportId="00O70000004Pqhh" showRefreshButton="true" cacheResults="false"></analytics:reportChart>
+<analytics:reportChart reportId="00O70000004Pqxp" showRefreshButton="true" cacheResults="false"></analytics:reportChart>
+<analytics:reportChart reportId="00O70000004Pr2Q" showRefreshButton="true" cacheResults="false"></analytics:reportChart>
+</apex:panelGrid>
+<apex:form >
+<apex:pageBlock >
+
+                <apex:panelGrid columns="2">
+                    <apex:outputLabel value="View:"/>
+                    <apex:selectList value="{!filterId}" size="1">
+                        <apex:actionSupport event="onchange" rerender="caseTab"/>
+                        <apex:selectOptions value="{!listviewoptions}"/>
+                    </apex:selectList>
+                </apex:panelGrid>
+            </apex:pageBlock>
+<apex:pageBlock title="Development Cases">
+<apex:pageBlockTable value="{!cases}" var="c" id="caseTab">
+<apex:column value="{!c.subject}" />
+<apex:column value="{!c.priority}"/>
+<apex:column value="{!c.status}"/>
+<apex:column value="{!c.Estimate_Hours__c}"/>
+<apex:column value="{!c.Hours_Worked__c}"/>
+
+</apex:pageBlockTable>
+
+</apex:pageBlock> 
+</apex:form>
+</apex:page>

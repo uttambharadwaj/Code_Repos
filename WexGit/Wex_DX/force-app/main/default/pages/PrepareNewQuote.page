@@ -1,0 +1,636 @@
+<apex:page showHeader="true" sidebar="true" standardController="Opportunity" extensions="PrepareNewQuoteController" >
+    <style>
+        .accountTable .label {
+            text-align: right;
+            vertical-align: text-top;
+            font: bold 91% Arial,Helvetica,sans-serif;
+            color: #4a4a56;
+            padding: 0px 15px 20px 10px;
+        }
+        
+        .accountTable .data input {
+            margin-right: 10px;
+        }
+        
+        .hideDropdown select{
+            visibility: hidden !important;
+            display: none !important;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .accounts th{
+            min-width:250px;
+        }
+        
+        .accountInput{
+            background-color: #ddd;
+            padding: 2px;
+            border: 1px solid #999;
+            width: 150px;
+            display: inline-block;
+            height: 15px;
+        }
+        
+        .editableAccountInput{
+                display: inline-block;
+                width: 150px;
+                height: 15px;
+        }
+    </style>
+                        
+    <script type="text/javascript">
+    var newWin=null;
+
+    $jqn = jQuery.noConflict();
+    $jqn(document).ready(function() {
+        toggleAccountFields();
+    });
+
+    function toggleAccountFields(){
+        console.log("Is Wex Account Pending? ==> " +  $jqn('input[id$="isPendingAccountCheckbox"]').is(':checked'));
+        if($jqn('input[id$="isPendingAccountCheckbox"]').is(':checked')){
+                console.log("Making fields editable...");
+
+                // make primary account fields editable
+                makeFieldEditable('accountNumber,accountName,accountSource,accountCreditLimit,accountStreet1,accountStreet2,accountCity,accountState,accountZip');
+
+                // make secondary account fields editable
+                makeFieldEditable('account2Number,account2Name,account2Source,account2CreditLimit,account2Street1,account2Street2,account2City,account2State,account2Zip');
+                
+            }else{
+                console.log("Making fields readonly...");
+
+                // make primary account fields readonly
+                makeFieldReadonly('accountNumber,accountName,accountSource,accountCreditLimit,accountStreet1,accountStreet2,accountCity,accountState,accountZip');
+
+                // make secondary account fields readonly
+                makeFieldReadonly('account2Number,account2Name,account2Source,account2CreditLimit,account2Street1,account2Street2,account2City,account2State,account2Zip');
+            }
+    }
+
+    function makeFieldReadonly(ids){
+        var idArray = ids.split(",");
+        $jqn.each(idArray,function(index){        
+            var element = $jqn('input[id$="'+ idArray[index] +'"]');
+            if(element != null){
+                element.attr('readOnly', true);
+                element.removeClass('editableAccountInput');
+                element.addClass('accountInput');
+            }
+        });
+    }
+
+    function makeFieldEditable(ids){
+        var idArray = ids.split(",");
+        $jqn.each(idArray,function(index){        
+            var element = $jqn('input[id$="'+ idArray[index] +'"]');
+            if(element != null){
+                element.attr('readOnly',false);
+                element.removeClass('accountInput');
+                element.addClass('editableAccountInput');
+            }
+        });
+    }
+
+    function openAddressSearch()
+    {
+        var accountNumber = '{!wexAccountNumber}';
+        //TODO: If account number empty, throw error saying billing account not selected
+        var url="/apex/ShippingAddressSearch?accountNumber="+accountNumber;
+        newWin=window.open(url, 'Popup','height=500,width=1400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus) 
+        {
+            newWin.focus();
+        }
+        
+        return false;
+    }
+    function openAccountSearch(formSource)
+    {   
+        var accountNumber = '{!wexAccountNumber}';
+        var url="/apex/AccountSearch?accountNumber="+accountNumber+'&formSource='+formSource;
+        newWin=window.open(url, 'Popup','height=500,width=1400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus) 
+        {
+            newWin.focus();
+        }
+        return false;
+    }
+    function closeLookupPopup()
+    {
+        if (null!=newWin)
+        {
+            newWin.close();
+        }  
+    }
+    function checkLimit(limitField, limitCount, limitNum)
+    {
+        if (limitField.value.length > limitNum) {
+            limitField.value = limitField.value.substring(0, limitNum);
+        } else {
+            limitCount.value = limitNum - limitField.value.length;
+        }
+    }
+
+    //function ProcessAccountPopupResult(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email, formSource) {
+    //    if (formSource == 'primary') {
+    //        setPrimaryAccount(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email);
+    //    }
+    //    if (formSource == 'secondary') {
+    //        setSecondaryAccount(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email);
+    //    }
+    //    // make primary account fields readonly
+    //    //makeFieldReadonly('accountNumber,accountName,accountSource,accountCreditLimit,accountStreet1,accountStreet2,accountCity,accountState,accountZip');
+    //
+    //    // make secondary account fields readonly
+    //    //makeFieldReadonly('account2Number,account2Name,account2Source,account2CreditLimit,account2Street1,account2Street2,account2City,account2State,account2Zip');
+    //    
+    //    //toggleAccountFields();
+    //}
+    function ProcessAccountPopupResult(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email, formSource, sponsor, fuelTaxExempt) {
+        if (formSource == 'primary') {
+            setPrimaryAccount(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email, sponsor, fuelTaxExempt);
+        }
+        if (formSource == 'secondary') {
+            setSecondaryAccount(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email, sponsor,fuelTaxExempt);
+        }
+    }
+
+    function ProcessShippingPopupResult(firstName, lastName, phone, email, address1, address2, city, state, zip) {
+        setShipping(firstName + " " + lastName, phone, email, address1, address2, city, state, zip);
+    }
+
+    function copyPrimaryAccountToShippingLocation(){
+        if($jqn('input[id$="sameAsPrimaryAccountCheckbox"]').is(':checked')){
+            var c_contact = $jqn('input[id$="accountContact"]').val();
+            var c_phone = $jqn('input[id$="accountPhone"]').val();
+            var c_email = $jqn('input[id$="accountEmail"]').val();
+
+            var c_address1 = $jqn('input[id$="accountStreet1"]').val();
+            var c_address2 = $jqn('input[id$="accountStreet2"]').val();
+            var c_city = $jqn('input[id$="accountCity"]').val();
+            var c_state = $jqn('input[id$="accountState"]').val();
+            var c_zip = $jqn('input[id$="accountZip"]').val();
+
+            setShipping(c_contact, c_phone, c_email, c_address1, c_address2, c_city, c_state, c_zip);
+        }else{
+            setShipping("", "", "", "", "", "", "", "");
+        }
+    }
+    </script>      
+                    
+    <apex:form id="theForm">
+        <apex:outputPanel id="errorMessage">
+            <zqu:Notification options="{!notificationOptions}" id="taxNotification"/>
+            <apex:actionFunction name="stayOnCurrentPage" action="{!confirmError}" rerender="errorMessage" />
+        </apex:outputPanel>
+        <apex:pageBlock title="New Quote" id="thePageBlock">
+            <apex:pageBlock >
+                <apex:pageBlockSection columns="2">
+                    <apex:pageBlockSectionItem helpText="The Quote Number. This field is not available until the quote is created once the quote is saved by using the Save or Add Items button.">
+                        <apex:outputLabel value="Quote Number" style="font-weight:bold"/>
+                        <apex:outputPanel style="text-decoration:underline;">
+                            <apex:outputField value="{!Quote.QuoteNumber__c}" label="Quote Number"/>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputText value="{!Quote.zqu__Status__c}" label="Quote Status"/>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Pending WEX Account" style="font-weight:bold"/>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:inputCheckbox value="{!Quote.isPending__c}" id="isPendingAccountCheckbox" >
+                                <apex:actionSupport event="onchange" action="{!clearAccount}" reRender="accounts, pageBlockUnderContacts, thePageBlock" oncomplete="toggleAccountFields()" />
+                                <!--<apex:actionSupport event="onchange" action="{!clearAccount}" reRender="accounts, pageBlockUnderContacts, thePageBlock" />-->
+                            </apex:inputCheckbox>
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputLabel value="{!$Label.Z_UseSeparateAccountQQ}" style="font-weight:bold" for="theCheckbox">
+                        <apex:inputCheckbox value="{!useSecondaryAccount}" id="theCheckbox" >
+                            <apex:actionSupport event="onchange" action="{!clearSecondaryAccount}" reRender="accounts" oncomplete="toggleAccountFields()" />
+                        </apex:inputCheckbox>
+                    </apex:outputLabel>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:panelGrid columns="2" width="100%" styleClass="accounts" id="accounts">
+                <!--<div class="hidden">-->
+                    <apex:inputField styleClass="hidden" value="{!quote.PrimaryAccountNumber__c}" />
+                    <apex:inputField styleClass="hidden" value="{!quote.SecondaryAccountNumber__c}" />
+                <!--</div>-->
+                <apex:pageBlock title="Primary Billing Account" id="primaryAccountId">  
+                    <apex:pageBlockSection columns="1" id="primaryAccountSectionId">
+                        <apex:pageblocksectionitem id="pgiNumber">
+                            <apex:outputlabel >Account Number</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <!-- If you changes this check you will need to change the check in the requestForCheck() method-->
+                                <!--<apex:inputText value="{!quote.PrimaryAccountNumber__c}" id="accountNumber" styleclass="accountInput" />-->
+                                <apex:inputText value="{!quote.PrimarySponsor__c}" id="accountNumber" styleclass="accountInput" />
+                                <apex:outputPanel rendered="{!Quote.isPending__c == false}" style="display:inline-block;width:50px">
+                                    <img style="margin-right:125px" src="/s.gif" onclick="openAccountSearch('primary'); return false" class="lookupIcon" onmouseout="this.className='lookupIcon';" alt="Account Name Lookup (New Window)" onmouseover="this.className='lookupIconOn';" />
+                                </apex:outputPanel>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiAccount">
+                            <apex:outputlabel >Account Name</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.PrimaryAccountName__c}" id="accountName" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiSource">
+                            <apex:outputlabel >Source</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.PrimarySource__c}" id="accountSource" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiCreditLimit">
+                            <apex:outputlabel >Total Credit Limit</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.PrimaryCreditLimit__c}" id="accountCreditLimit" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiAddress1">
+                            <apex:outputlabel >Address Line 1</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.PrimaryAddress1__c}" id="accountStreet1" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:inputText value="{!quote.PrimaryAddress2__c}" label="Address Line 2" id="accountStreet2" styleClass="accountInput" />
+                        <apex:pageBlockSectionItem id="pgAddressCSZ" >
+                            <apex:outputLabel >City, State, Zip Code</apex:outputLabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+
+                                <apex:inputField value="{!quote.PrimaryCity__c}" style="width:66px; margin-right: 5px;" styleclass="accountInput" id="accountCity"/>
+                                <apex:inputField value="{!quote.PrimaryState__c}" style="width:19px; margin-right: 5px;" styleclass="accountInput" label="" id="accountState"/>
+                                <apex:inputField value="{!quote.PrimaryZip__c}" style="width:66px; margin-right: 0px;" styleclass="accountInput" label="" id="accountZip"/>
+                                
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiContact">
+                            <apex:outputlabel >Contact</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputfield value="{!quote.PrimaryContact__c}" id="accountContact" styleclass="editableAccountInput"/>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiPhone">
+                            <apex:outputlabel >Contact Phone</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputfield value="{!quote.PrimaryPhone__c}" id="accountPhone" styleclass="editableAccountInput"/>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiEmail">
+                            <apex:outputlabel >Contact Email</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputfield value="{!quote.PrimaryEmail__c}" id="accountEmail" styleclass="editableAccountInput" />    
+                            </apex:outputpanel>
+                        </apex:pageblocksectionitem>
+                        <apex:pageBlockSectionItem id="taxSectionID">
+                            <apex:outputLabel >Tax Exempt for Telematics:</apex:outputLabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:selectList size="1" value="{!quote.zqu__Tax_Exempt__c}" id="chosenTaxExemptAnswerID">   
+                                    <apex:selectOptions value="{!TaxExemptTelematics}" id="error"/>
+                                    <apex:actionSupport event="onchange" action="{!createWarning}" rerender="errorMessage" />
+                                </apex:selectList>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:inputText value="{!quote.zqu__Certificate_ID__c}" label="Tax certificate ID for Telematics" id="taxCertificateId" styleclass="editableAccountInput"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+                <apex:pageBlock title="Second Billing Account" id="blockB" rendered="{!useSecondaryAccount == true}">
+                    <apex:pageBlockSection columns="1" id="secondaryAccountSectionId">
+
+                        <apex:pageblocksectionitem id="pgNumber2">
+                            <apex:outputlabel >Account Number</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <!--<apex:inputText value="{!quote.SecondaryAccountNumber__c}" id="account2Number" styleclass="accountInput" />-->
+                                <apex:inputText value="{!quote.SecondarySponsor__c}" id="account2Number" styleclass="accountInput" />
+                                <apex:outputPanel rendered="{!Quote.isPending__c == false}" style="display:inline-block;width:50px">
+                                    <img style="margin-right:125px" src="/s.gif" onclick="openAccountSearch('secondary'); return false" class="lookupIcon" onmouseout="this.className='lookupIcon';" alt="Account Name Lookup (New Window)" onmouseover="this.className='lookupIconOn';" />
+                                </apex:outputPanel>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageblocksectionitem id="pgAccount2">
+                            <apex:outputlabel >Account Name</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.SecondaryAccountName__c}" id="account2Name" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageblocksectionitem id="pgSource2">
+                            <apex:outputlabel >Source</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.SecondarySource__c}" id="account2Source" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageblocksectionitem id="pgCreditLimit2">
+                            <apex:outputlabel >Total Credit Limit</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.SecondaryCreditLimit__c}" id="account2CreditLimit" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageblocksectionitem id="pgAccount2Address1">
+                            <apex:outputlabel >Address Line 1</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputText value="{!quote.SecondaryAddress1__c}" id="account2Street1" styleclass="accountInput" />
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:inputText value="{!quote.SecondaryAddress2__c}" label="Address Line 2" id="account2Street2" styleClass="accountInput" />
+
+                        <apex:pageBlockSectionItem id="pgAccount2AddressCSZ" >
+                            <apex:outputLabel >City, State, Zip Code</apex:outputLabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+
+                                <apex:inputField value="{!quote.SecondaryCity__c}" style="width:66px; margin-right: 5px;" styleclass="accountInput" id="account2City"/>
+                                <apex:inputField value="{!quote.SecondaryState__c}" style="width:19px; margin-right: 5px;" styleclass="accountInput" label="" id="account2State"/>
+                                <apex:inputField value="{!quote.SecondaryZip__c}" style="width:66px; margin-right: 0px;" styleclass="accountInput" label="" id="account2Zip"/>
+                                
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+
+                        <apex:pageblocksectionitem id="pgiContact2">
+                            <apex:outputlabel >Contact</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputfield value="{!quote.SecondaryContact__c}" id="account2Contact" styleclass="editableAccountInput"/>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiPhone2">
+                            <apex:outputlabel >Contact Phone</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputfield value="{!quote.SecondaryPhone__c}" id="account2Phone" styleclass="editableAccountInput"/>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageblocksectionitem id="pgiEmail2">
+                            <apex:outputlabel >Contact Email</apex:outputlabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:inputfield value="{!quote.SecondaryEmail__c}" id="account2Email" styleclass="editableAccountInput"/>
+                            </apex:outputpanel>
+                        </apex:pageblocksectionitem>
+
+                        <apex:pageBlockSectionItem id="taxSectionID2">
+                            <apex:outputLabel >Tax Exempt for Telematics:</apex:outputLabel>
+                            <apex:outputpanel layout="block" styleClass="requiredInput">
+                                <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                <apex:selectList size="1" value="{!quote.SecondaryTaxExempt__c}" id="chosenTaxExemptAnswerID2">   
+                                    <apex:selectOptions value="{!TaxExemptTelematics}" id="error"/>
+                                    <apex:actionSupport event="onchange" action="{!createWarning}" rerender="errorMessage" />
+                                </apex:selectList>
+                            </apex:outputpanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:inputText value="{!quote.SecondaryCertificateId__c}" label="Tax certificate ID for Telematics" id="taxCertificateId2" styleclass="editableAccountInput"/>
+
+                    </apex:pageBlockSection> 
+                </apex:pageBlock>
+            </apex:panelGrid>
+            <apex:pageBlock id="pageBlockUnderContacts">
+                <apex:pageBlockSection columns="2" id="pageBlockSectionUnderContacts">
+                    <apex:outputText value="{!opp.Opportunity_Number__c}" label="Opportunity Number" style="text-decoration:underline;"/>
+                    <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Quote PDF Template:</apex:outputLabel>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:selectList size="1" value="{!chosenPdfTemplate}">
+                                <apex:selectOptions value="{!pdfTemplate}"/>
+                            </apex:selectList>
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Sales Rep 1</apex:outputLabel>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:selectList size="1" value="{!quote.SalesRep1__c}">
+                                <apex:selectOptions value="{!salesRep1}"/>
+                            </apex:selectList>
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Date Prepared</apex:outputLabel>
+                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" label="Date Prepared">
+                            <apex:param value="{!quote.DatePrepared__c}"/>
+                        </apex:outputText>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Sales Rep 2</apex:outputLabel>
+                            <apex:selectList size="1" value="{!quote.SalesRep2__c}">
+                                <apex:selectOptions value="{!salesRep2}"/>
+                            </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem id="validUntilPageBlockSection" >
+                            <apex:outputLabel >Valid Until</apex:outputLabel>
+                            <apex:outputPanel layout="block"><div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <apex:inputField value="{!quote.zqu__ValidUntil__c}"/>
+                            </div>
+                            </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >First Time Order</apex:outputLabel>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:selectList size="1" value="{!quote.FirstTimeOrder__c}">
+                                <apex:selectOptions value="{!firstTimeOrderList}"/>
+                            </apex:selectList>
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Internal Sales Comments</apex:outputLabel>
+                        <apex:inputTextArea value="{!quote.Internal_Sales_Comments__c}" onkeydown="checkLimit(this,this.form.salesCountdown,200);" onkeyup="checkLimit(this,this.form.salesCountdown,200);" onchange="checkLimit(this,this.form.salesCountdown,200);" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Telematics Vendor</apex:outputLabel>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:selectList size="1" value="{!quote.Vendor_Account__c}">
+                                <apex:selectOptions value="{!TelematicsVendor}"/>
+                            </apex:selectList>
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Vendor Order Instructions</apex:outputLabel>
+                        <apex:inputTextArea value="{!quote.Vendor_Order_Instructions__c}" onkeydown="checkLimit(this,this.form.vendorCountdown,200);" onkeyup="checkLimit(this,this.form.vendorCountdown,200);" onchange="checkLimit(this,this.form.vendorCountdown,200);" />
+                    </apex:pageBlockSectionItem>
+                    <apex:inputText value="{!quote.RMANumber__c}" label="# RMA" onkeydown="checkLimit(this,this.form.rmaCountdown,30);" onkeyup="checkLimit(this,this.form.rmaCountdown,30);" onchange="checkLimit(this,this.form.rmaCountdown,30);"/>
+                    <apex:inputCheckbox value="{!quote.CustomerApprovalOverride__c}" label="Customer Approval Override" rendered="{!Quote.isPending__c == false}" id="overrideApproval" />
+                    <apex:pageBlockSectionItem rendered="{!Quote.isPending__c}" />
+                    <apex:pageBlockSectionItem >
+                            <apex:outputLabel >Promo Code</apex:outputLabel>
+                            <apex:selectList size="1" value="{!quote.PromoCode__c}">
+                                <apex:selectOptions value="{!promoCode}"/>
+                            </apex:selectList>
+                    </apex:pageBlockSectionItem>   
+                </apex:pageBlockSection> 
+            </apex:pageBlock>
+            <apex:pageBlock title="Shipping Locations" id="shippingLocations">
+                <apex:pageBlockSection columns="2">
+                    <apex:pageBlockSectionItem />
+                    <apex:pageBlockSectionItem id="sameAsPrimaryAccount">
+                        <apex:inputCheckbox id="sameAsPrimaryAccountCheckbox" value="{!shipSameAsPrimary}" onclick="copyPrimaryAccountToShippingLocation()" />
+                        <apex:outputLabel for="sameAsPrimaryAccountCheckbox" value="Same as Primary Account" styleClass="labelCol"/>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem id="pgshipAddress1">
+                        <apex:outputLabel >Address Line 1</apex:outputLabel>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:inputText value="{!shipAddress1}" label="Address Line 1" id="shipAddress1" />
+                            <apex:outputPanel rendered="{!Quote.isPending__c == false}">
+                                <img src="/s.gif" onclick="openAddressSearch(); return false" class="lookupIcon" onmouseout="this.className='lookupIcon';" alt="Account Name Lookup (New Window)" onmouseover="this.className='lookupIconOn';"/>
+                            </apex:outputPanel>
+                        </apex:outputpanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Contact Name</apex:outputLabel>
+                        <apex:outputPanel layout="block"><div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <apex:inputText value="{!shipContactName}"/>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <!--<apex:inputText value="{!shipContactName}" label="Contact Name" id="shipContactName" />-->
+                    
+                    <apex:inputText value="{!shipAddress2}" label="Address Line 2" id="shipAddress2"/>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Contact Phone</apex:outputLabel>
+                        <apex:outputPanel layout="block"><div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <apex:inputText value="{!shipContactPhone}"/>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem id="pgshipAddress3">
+                        <apex:outputLabel >City, State ZIP</apex:outputLabel>
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:inputText value="{!shipCity}" style="width:66px; margin-right: 5px;" label="City, State, Zip Code"  id="shipCity" />
+                            <apex:inputText value="{!shipState}" style="width:19px; margin-right:5px;" label="" id="shipState" />
+                            <apex:inputText value="{!shipZipCode}" style="width:66px; margin-right:0px;" label="" id="shipZipCode" />
+                        </apex:outputpanel>
+                   </apex:pageBlockSectionItem>
+                   
+                   <apex:pageBlockSectionItem >
+                        <apex:outputLabel >Contact Email</apex:outputLabel>
+                        <apex:outputPanel layout="block"><div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <apex:inputText value="{!shipContactEmail}"/>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                   
+                    <apex:pageBlockSectionItem >
+                        <apex:outputPanel layout="none">
+                            <div style="position:relative;left:40%;"> 
+                                <apex:commandButton value="Add & Validate" action="{!addAndValidateShippingAddress}" rendered="{!isEditingLocation==false}" reRender="shippingLocations,errorMessage"/>
+                                <apex:commandButton value="Clear" action="{!clear}" rendered="{!isEditingLocation==false}" reRender="shippingLocations"/>
+                                <apex:commandButton value="Save & Validate" action="{!addAndValidateShippingAddress}" rendered="{!isEditingLocation==true}" reRender="shippingLocations,errorMessage"/>
+                                <apex:commandButton value="Cancel" action="{!clear}" rendered="{!isEditingLocation==true}" reRender="shippingLocations"/>
+                                <apex:actionFunction name="takeCorrectedAddressAndAddAddress" action="{!takeCorrectedAddressAndAddAddress}" reRender="shippingLocations,errorMessage" />
+                            </div>
+                        </apex:outputPanel>
+                       
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                 <apex:actionFunction name="continueToDeleteShipping" action="{!deleteShippingLocation}" />
+                <apex:pageBlockTable value="{!Indexes}" var="i">
+                    <apex:column headerValue="Action">
+                        <apex:panelGrid columns="2">
+                            <apex:commandLink value="edit" action="{!editShippingLocation}" reRender="shippingLocations">
+                                <apex:param assignTo="{!shipmentIndex}" name="shipmentIndex" value="{!i}"/>
+                            </apex:commandLink>
+                            <apex:commandLink value="delete" action="{!confirmShippingDeletion}" reRender="errorMessage,shippingLocations">
+                                <apex:param assignTo="{!shipmentIndex}" name="shipmentIndex" value="{!i}"/>
+                            </apex:commandLink>
+                        </apex:panelGrid>
+                    </apex:column>
+                    <apex:column value="{!shipments[i].Address_Line_1__c}" headerValue="Address Line 1"/>
+                    <apex:column value="{!shipments[i].Address_Line_2__c}" headerValue="Address Line 2"/>
+                    <apex:column value="{!shipments[i].City__c}" headerValue="City"/>
+                    <apex:column value="{!shipments[i].State__c}" headerValue="State"/>
+                    <apex:column value="{!shipments[i].Zip__c}" headerValue="Zip Code"/>
+                    <apex:column value="{!shipments[i].Shipping_Contact__c}" headerValue="Contact Name"/>
+                    
+                    
+                    <apex:column value="{!shipments[i].Shipping_Contact_Phone__c}" headerValue="Contact Phone"/>
+                    <apex:column value="{!shipments[i].Shipping_Contact_Email__c}" headerValue="Contact Email"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+            <apex:pageBlockButtons location="both"> 
+                <apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Add Items" action="{!goNextPage}"  >
+                    <apex:actionFunction name="continueToNewPage" action="{!goNewQuote}" />
+                </apex:commandButton>
+                  <apex:actionFunction name="continueToCancelPage" action="{!cancelQuote}" />
+                    <apex:commandButton value="Cancel" action="{!cancelConfirm}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:outputPanel id="actions">
+            <apex:actionFunction name="setPrimaryAccount" reRender="accounts, actions, errorMessage" oncomplete="toggleAccountFields();" action="{!showFuelTaxWarningForPrimary}">
+                <apex:param name="primaryAccountNumber" assignTo="{!quote.PrimaryAccountNumber__c}" value="" />
+                <apex:param name="primaryAccountName" assignTo="{!quote.PrimaryAccountName__c}" value="" />
+                <apex:param name="primarySource" assignTo="{!quote.PrimarySource__c}" value="" />
+                <apex:param name="primaryCreditLimit" assignTo="{!quote.PrimaryCreditLimit__c}" value="" />
+                <apex:param name="primaryAddress1" assignTo="{!quote.PrimaryAddress1__c}" value="" />
+                <apex:param name="primaryAddress2" assignTo="{!quote.PrimaryAddress2__c}" value="" />
+                <apex:param name="primaryCity" assignTo="{!quote.PrimaryCity__c}" value="" />
+                <apex:param name="primaryState" assignTo="{!quote.PrimaryState__c}" value="" />
+                <apex:param name="primaryZip" assignTo="{!quote.PrimaryZip__c}" value="" />
+                <apex:param name="primaryContact" assignTo="{!quote.PrimaryContact__c}" value="" />
+                <apex:param name="primaryPhone" assignTo="{!quote.PrimaryPhone__c}" value="" />
+                <apex:param name="primaryEmail" assignTo="{!quote.PrimaryEmail__c}" value="" />
+                <apex:param name="primarySponsor" assignTo="{!quote.PrimarySponsor__c}" value="" />
+                <apex:param name="primaryFuelTaxExempt" assignTo="{!primaryFuelTaxExempt}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="setSecondaryAccount" reRender="accounts, actions, errorMessage" oncomplete="toggleAccountFields();" action="{!showFuelTaxWarningForSecondary}">
+                <apex:param name="secondaryAccountNumber" assignTo="{!quote.SecondaryAccountNumber__c}" value="" />
+                <apex:param name="secondaryAccountName" assignTo="{!quote.SecondaryAccountName__c}" value="" />
+                <apex:param name="secondarySource" assignTo="{!quote.SecondarySource__c}" value="" />
+                <apex:param name="secondaryCreditLimit" assignTo="{!quote.SecondaryCreditLimit__c}" value="" />
+                <apex:param name="secondaryAddress1" assignTo="{!quote.SecondaryAddress1__c}" value="" />
+                <apex:param name="secondaryAddress2" assignTo="{!quote.SecondaryAddress2__c}" value="" />
+                <apex:param name="secondaryCity" assignTo="{!quote.SecondaryCity__c}" value="" />
+                <apex:param name="secondaryState" assignTo="{!quote.SecondaryState__c}" value="" />
+                <apex:param name="secondaryZip" assignTo="{!quote.SecondaryZip__c}" value="" />
+                <apex:param name="secondaryContact" assignTo="{!quote.SecondaryContact__c}" value="" />
+                <apex:param name="secondaryPhone" assignTo="{!quote.SecondaryPhone__c}" value="" />
+                <apex:param name="secondaryEmail" assignTo="{!quote.SecondaryEmail__c}" value="" />
+                <apex:param name="secondarySponsor" assignTo="{!quote.SecondarySponsor__c}" value="" />
+                <apex:param name="secondaryFuelTaxExempt" assignTo="{!secondaryFuelTaxExempt}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="setShipping" reRender="shippingLocations, actions" >
+                <apex:param name="shipContactName" assignTo="{!shipContactName}" value="" />
+                <apex:param name="shipContactPhone" assignTo="{!shipContactPhone}" value="" />
+                <apex:param name="shipContactEmail" assignTo="{!shipContactEmail}" value="" />
+                <apex:param name="shipAddress1" assignTo="{!shipAddress1}" value="" />
+                <apex:param name="shipAddress2" assignTo="{!shipAddress2}" value="" />
+                <apex:param name="shipCity" assignTo="{!shipCity}" value="" />
+                <apex:param name="shipState" assignTo="{!shipState}" value="" />
+                <apex:param name="shipZipCode" assignTo="{!shipZipCode}" value="" />
+            </apex:actionFunction>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

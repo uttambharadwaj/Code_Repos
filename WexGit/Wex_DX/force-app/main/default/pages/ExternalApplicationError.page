@@ -1,0 +1,87 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="ExternalApplicationErrorController" action="{!init}">
+    <html>
+        <head>
+            <title>Application Error</title>
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+
+            <style>
+
+                body {
+                    background: #00709B;
+                    font-family: 'Roboto', sans-serif;
+                    color: #666666 !important;
+                }
+
+                #content {
+                    margin: 0 auto;
+                    max-width: 960px;
+                }
+
+                .container {
+                    margin-top: 100px;
+                    background: #FFFFFF;
+                    filter:drop-shadow(5px 5px 10px black);
+                    padding: 40px 60px;
+                    border: 1px solid #999;
+                    border-radius: 8px !important;
+                }
+
+                .logo {
+                    max-height: 120px;
+                    vertical-align: middle !important;
+                    margin: 0 auto;
+                }
+
+                h1 {
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+
+                .errorCode {
+                    font-size: 13px;
+                }
+
+            </style>
+        </head>
+        <body>
+            <div id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="twelve columns">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <center>
+                                <apex:outputPanel rendered="{!brandingLogo != null}">
+                                    <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!brandingLogo == null}">
+                                    <img class="logo" src="{!URLFOR($Resource.WEXLogo)}"/>
+                                </apex:outputPanel>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <h1>We're Sorry...</h1>
+                            <p>An error occurred while trying to process your request. Our support team has been notified.</p>
+                            <p style="display: {!IF(errorCode != null, 'block', 'none')};" class="errorCode"><b>Error Tracking Code: </b>{!errorCode}</p>
+                            <p style="display: {!IF(error != null, 'block', 'none')};" class="errorCode"><b>Error Location: </b><br/>{!error.Error_Location__c}</p>
+                            <p style="display: {!IF(error != null, 'block', 'none')};" class="errorCode"><b>Error Message: </b><br/>{!error.Error_Message__c}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>

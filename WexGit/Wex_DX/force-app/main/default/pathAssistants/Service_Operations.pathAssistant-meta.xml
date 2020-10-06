@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Case</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Service Operations</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next steps&lt;/b&gt;: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;None - case is Closed&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Closed</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next Steps Call:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Click &lt;b&gt;Take Ownership&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Go to &lt;b&gt;Update Case&lt;/b&gt; action tab change status to &lt;b&gt;Open &lt;/b&gt;- this is to prevent another from working it&lt;/li&gt;&lt;li&gt;Review request and work case accordingly&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Next Steps Email:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Click &lt;b&gt;Take Ownership&lt;/b&gt; button to assign the case to yourself&lt;/li&gt;&lt;li&gt;Use the &lt;b&gt;Update Case&lt;/b&gt; action to set status to &lt;b&gt;Open&lt;/b&gt;&lt;/li&gt;&lt;li&gt;Review request and work case accordingly&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>New</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next Steps Call:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Review case with customer&lt;/li&gt;&lt;li&gt;If they cancel the request, &lt;b&gt;Take Ownership&lt;/b&gt; and &lt;b&gt;Close &lt;/b&gt;the case&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Next Steps Email: &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Action case when the Next Step is due&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>On Hold</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next Steps Call:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;No action required unless the customer is following up on another email request after the case had been worked&lt;/li&gt;&lt;li&gt;When the case is opened to view, the status will automatically change to &lt;b&gt;Open &lt;/b&gt;or &lt;b&gt;Closed&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;Take Ownership&lt;/b&gt;, work and close the case&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Next Steps Email: &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Review request and work case accordingly&lt;/li&gt;&lt;li&gt;When the case is opened to view, the status will automatically change to &lt;b&gt;Open &lt;/b&gt;or &lt;b&gt;Closed&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Unread</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next Steps Call:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Review status of case with customer&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Next steps Email: &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wait for the action to be performed by the 3rd party&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Waiting for 3rd Party</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next Steps Call:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Click &lt;b&gt;Take Ownership&lt;/b&gt; button to assign the case to yourself&lt;/li&gt;&lt;li&gt;Work and close case&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Next Steps Email:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wait for the customer’s email reply&lt;/li&gt;&lt;li&gt;The customer reply will automatically set the status to &lt;b&gt;Unread&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Waiting for Customer</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Next Steps Call:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;If case is owned by YOUR queue or the customer is asking to cancel the request, click &lt;b&gt;Take Ownership&lt;/b&gt; button to assign the case to yourself&lt;/li&gt;&lt;li&gt;Review request and work case accordingly&lt;/li&gt;&lt;li&gt;If case has an owner assigned, leave the case in &lt;b&gt;Working &lt;/b&gt;status and review the case with the customer&lt;/li&gt;&lt;li&gt;Attempt to transfer customer to the owner. &lt;/li&gt;&lt;li&gt;If not available, send an email to the owner to request a return call per customer request.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Next Steps Email: &lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;If case is owned by a queue, click &lt;b&gt;Take Ownership&lt;/b&gt; button to assign the case to yourself&lt;/li&gt;&lt;li&gt;Review request and work case accordingly&lt;/li&gt;&lt;li&gt;If case has an owner assigned and you are not covering for them, leave the case in &lt;b&gt;Working &lt;/b&gt;status&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Working</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Service_Operations</recordTypeName>
+</PathAssistant>

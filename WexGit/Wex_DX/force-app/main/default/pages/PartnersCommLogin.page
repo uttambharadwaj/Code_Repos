@@ -1,0 +1,9 @@
+<apex:page id="loginPage" sidebar="false" showChat="false" showHeader="false" standardStylesheets="false" cache="false" title="{!$Label.site.site_login}">    
+    <apex:composition template="{!$Site.Template}">
+        <apex:define name="body">       
+            <!-- <apex:iframe src="/{!CommunityName}/secur/logout.jsp" height="0" width="0" /> -->
+                                                            
+            <c:PartnersCommLogin id="login"/>           
+        </apex:define>
+    </apex:composition> 
+</apex:page>

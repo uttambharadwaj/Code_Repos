@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Order_to_Vendor</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Order to Vendor</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+
+sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+
+if(&apos;{!zqu__Quote__c.Vendor_Email__c}&apos; == null || &apos;{!zqu__Quote__c.Vendor_Email__c}&apos; == &apos;&apos;){
+
+alert(&quot;There is no email associated with this vendor&quot;);
+
+}else{
+
+var q = new sforce.SObject(&apos;zqu__Quote__c&apos;);
+q.id = &quot;{!zqu__Quote__c.Id}&quot;;
+
+var message = new sforce.SingleEmailMessage();
+message.replyTo = &quot;sales@tradewex.com&quot;;
+message.targetObjectId = &quot;0037000001zDOfQ&quot;;
+message.whatId = &quot;{!zqu__Quote__c.Id}&quot;;
+message.templateId = &quot;00X70000001dL9n&quot;;
+var toAddresses = [&quot;{!zqu__Quote__c.Vendor_Email__c}&quot;];
+message.toAddresses = toAddresses;
+
+var emailResult = sforce.connection.sendEmail([message]);
+if(emailResult[0].success == &apos;true&apos;) {
+     q.Vendor_Order_Sent__c = true;
+     console.log(q.Vendor_Order_Sent__c);
+     result = sforce.connection.update([q]);
+     alert(&quot;Email has been sent to {!zqu__Quote__c.Vendor_Email__c}&quot;);
+  } else {
+     alert(&quot;There was error in your request: &quot; + emailResult[0]);
+  }
+}</url>
+</WebLink>

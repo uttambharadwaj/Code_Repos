@@ -1,0 +1,302 @@
+<!-- This VF page is opened on click of 'Proceed' button on Duplicate Check VF page -->
+<apex:page sidebar="false" controller="EMAP_CreditApp_Controller" tabStyle="Account" id="creditApp">
+<head>
+<!-- Below external javascript file used for performing javascript actions -->
+    <!-- On click of Cancel - backToHome() -->
+    <!-- On change of client name picklist - restrictClientName() -->
+<apex:includeScript value="{!$Resource.EMAP_Credit_Application_JS}"/>
+
+<script>
+function complete(){
+    var divSection = document.getElementById("DIVSectionRecordSaved");
+    divSection.style.display = "block";
+    return false;
+}
+</script>
+
+</head>
+
+<apex:form id="creditAppForm" >
+
+    <!--Below action status is used to diplay please wait screen on click of Duplicate Check button. -->
+    <apex:actionStatus id="statusSaveTrip" stopText="">
+        <apex:facet name="start">
+                <div class="popupBackground" />
+                <div class="PopupPanel">
+                    <table border="0" width="100%" height="100%">
+                        <tr><td align="center"><b>Please Wait</b></td></tr>
+                        <tr><td align="center"><img src="/img/loading.gif"/></td></tr>
+                    </table>
+                </div>
+        </apex:facet>
+    </apex:actionStatus>
+    
+    <div id ='DIVsection' style="display:none; color: red; font-weight:bold;font-size:1.25em"/>
+    <div id ='DIVSectionRecordSaved' style="display:none; color: green; font-weight:bold;font-size:1.25em"/>
+    <br/>
+    
+    <!-- Actual VF page begins here.-->
+    <apex:sectionHeader title="EMAP FUEL CARD APPLICATION" subtitle="New Credit Application"/>
+    <apex:pageblock id="pageBlock" >
+        <apex:pageMessages id="showmsg"/>                 
+        <apex:panelGrid columns="2" width="100%" id="panelGrid" > 
+
+        <apex:actionRegion >
+        <apex:pageblockSection columns="1" id="dupChkPageBlockSection">
+            <apex:outputField value="{!program.Program_Name__c}" id="program_name"  />
+            <apex:outputField value="{!acc.Trade_Name_of_Business__c}" label="Trading Name" />
+            <apex:outputField value="{!AUAppReq.Account_Company_Name__c}" label="Company Name" />                        
+            <apex:outputField value="{!AUAppReq.Account_Business_Registration_Number__c}" label="Business Registration/Tax Number"/>
+            <apex:outputText label="" />
+        </apex:pageblockSection>
+        </apex:actionRegion>
+
+        <apex:pageblockSection columns="1" id="progPageBlockSection">
+            <apex:outputField value="{!AUAppReq.Application_Type__c}"/>
+            <apex:outputField value="{!AUAppReq.Client_Id__c}" id="client_id" />                        
+            <apex:inputField value="{!AUAppReq.Client_Name__c}" onchange="restrictClientName();return false;" id="acc_client_name"/>                      
+            <apex:inputField value="{!AUAppReq.Account_Sales_Area_Administration__c}" required="true" id="sales_area_admin" onchange="updateSalesAreaMarketing();"/>                        
+            <apex:inputField value="{!AUAppReq.Account_Sales_Area_Marketing__c}" required="true" id="sales_area_marketing"/>  
+            <apex:inputHidden value="{!program.Client_Name__c}" id="client_name"/> 
+        </apex:pageblockSection>
+        </apex:panelGrid>
+        
+        <apex:pageblockSection title="Account Information" collapsible="false" id="acc_info">
+            <!-- Business_Structure field belong to Account, because it is formula field on AU App Req-->
+            <apex:inputField value="{!AUAppReq.Acc_Business_Structure__c}" />
+            <apex:inputField value="{!AUAppReq.Account_Number_of_Employees__c}" />
+            <apex:inputField value="{!acc.Hierarchy_Level__c}" required="true"/>
+            <apex:inputField value="{!AUAppReq.Account_Date_Business_Started__c}" required="true" label="Date Business Commenced"/>
+            <apex:inputField value="{!AUAppReq.Account_Parent_Account__c}" label="Parent Company (If applicable)"/>
+            <apex:inputField value="{!AUAppReq.Account_Preferred_Language__c}" required="true"/>
+            <apex:inputField value="{!AUAppReq.Account_Industry__c}" required="true"/>
+            <apex:inputField value="{!AUAppReq.Account_Customer_Type__c}" required="true"/>
+<!--
+            <apex:inputField value="{!AUAppReq.Account_Phone__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Fax__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Mobile_Phone__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Secondary_Mobile_Phone__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Company_Email_Address__c}"/>
+-->
+            <apex:inputField value="{!AUAppReq.E_Business_OLS__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Speedpass_Key_Tag__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Billing_Frequency__c}" id="billing_freq" onchange="updateAccountCycle();"/>
+            <apex:inputField value="{!AUAppReq.Account_Billing_Plan__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Payment_Days__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Payment_Method__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Credit_Plan__c}"/>
+            <apex:inputField value="{!AUAppReq.Credit_Limit_Requested__c}"/>
+            <!-- <apex:inputField value="{!AUAppReq.Account_Security_Indicator__c}"/> -->
+            <!-- <apex:inputField value="{!AUAppReq.Total_Security_Value__c}"/> -->
+            <apex:inputField value="{!AUAppReq.Accnt_Business_Financial_Year_Month_End__c}"/>
+            <!-- <apex:inputField value="{!AUAppReq.Account_Tel_USD__c}"/> -->
+            <apex:inputField value="{!AUAppReq.Account_Embassy_Code__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Mail_Indicator__c}"/>
+            <apex:inputField value="{!AUAppReq.Account_Cycle__c}" id="acc_cycle"/>
+            <apex:inputField value="{!AUAppReq.Account_Class_of_Buyer__c}"/>
+            <!-- <apex:inputField value="{!AUAppReq.Application_Risk_Grade__c}"/> -->
+            <apex:inputField value="{!AUAppReq.Electronic_Marketing_Flag__c}"/>
+            <apex:inputField value="{!AUAppReq.AU_Marketing_Offers__c}" />
+            <apex:inputField value="{!AUAppReq.Card_Pin__c}"/>
+            <apex:inputField value="{!AUAppReq.Total_Card_Requested__c}"/>
+            <!-- Direct Debit Field added which will be used for applications and account to determine If the account is direct debit Yes or No. -->
+            <apex:inputField value="{!AUAppReq.Direct_Debit__c}" required="true"/>
+        </apex:pageblockSection>
+
+        <div class="pbSubheader brandTertiaryBgr tertiaryPalette"><center><h3> Address</h3></center></div>  
+        <apex:panelGrid columns="2" width="100%" title="Address" id="address">    
+            <apex:pageblockSection title="Physical Address" collapsible="false" columns="1">
+                <apex:pageblockSectionItem />
+                <apex:inputField label="Building And Street" value="{!AUAppReq.Account_Shipping_Street__c}" required="true"/>
+                <apex:inputField label="City/Suburb" value="{!AUAppReq.Account_Shipping_City__c}" />
+                <apex:inputField label="Country" value="{!AUAppReq.Account_Shipping_Country__c}" required="true"/>
+                <apex:inputField label="State" value="{!AUAppReq.Account_Shipping_State__c}"/>
+                <apex:inputField label="Postal Code" value="{!AUAppReq.Account_Shipping_Zip_Code__c}"/>
+            </apex:pageblockSection> 
+            
+            <apex:pageblockSection title="Billing Address" collapsible="false" columns="1" id="billing_address">
+                <apex:inputcheckbox label="Same as Physical Address" onchange="disableBillingAddress();" id="chkbox" value="{!isSamePhysicalAddress}"/>
+                <apex:inputField label="Building And Street" value="{!AUAppReq.Account_Billing_Street__c}" id="street"/>
+                <apex:inputField label="City/Suburb" value="{!AUAppReq.Account_Billing_City__c}" id="city"/>
+                <apex:inputField label="Country" value="{!AUAppReq.Account_Billing_Country__c}" id="country"/>
+                <apex:inputField label="State" value="{!AUAppReq.Account_Billing_State__c}" id="state"/>
+                <apex:inputField label="Postal Code" value="{!AUAppReq.Account_Billing_Zip_Code__c}" id="postalCode"/>
+            </apex:pageblockSection> 
+        </apex:panelGrid>
+        
+        <apex:pageblockSection title="Contact" collapsible="false" columns="1">
+            <!-- <apex:inputField value="{!contact.Contact_Type__c}" label="Type (Primary Contact Type)"/> -->
+            <apex:inputField value="{!contact.Salutation}"/>
+            <!-- <apex:inputField value="{!contact.FirstName}" /> -->
+            <apex:inputField value="{!contact.LastName}" label="Full Name"/>
+            <apex:inputField value="{!contact.Phone}" label="Business Phone"/>
+            <apex:inputField value="{!contact.Fax}"/>
+            <apex:inputField value="{!contact.MobilePhone}" label="Mobile1"/>
+            <apex:inputField value="{!contact.OtherPhone}" label="Mobile2"/>
+            <apex:inputField value="{!contact.Email}"/>
+        </apex:pageblockSection>
+        
+        <apex:pageblockSection title="Bank Reference" collapsible="false" columns="1">
+            <apex:inputField value="{!bankRef.Name}"/>
+            <apex:inputField value="{!bankRef.Bank_Account_Type__c}"/>
+            <apex:inputField value="{!bankRef.Bank_Account_Number__c}" label="Account Number"/>
+            <apex:inputField value="{!bankRef.Bank_Date_Open__c}"/>
+            <apex:inputField value="{!bankRef.Mailing_Address__c}"/>
+            <apex:inputField value="{!bankRef.Bank_Phone__c}" label="Phone"/> 
+            <apex:inputField value="{!bankRef.Bank_Fax__c}" label="Fax"/>
+            <apex:inputField value="{!bankRef.Bank_Payment_History__c}" label="Payment History"/>
+        </apex:pageblockSection>        
+
+        <div class="pbSubheader brandTertiaryBgr tertiaryPalette"><center><h3> Trade Reference</h3></center></div>       
+        <apex:panelGrid columns="2" title="Trade Reference" width="100%"  >         
+            <apex:pageblockSection title="Trade Reference 1" collapsible="false" columns="1" >
+                <apex:inputField value="{!tradeRef1.Name}" label="Supplier Name"/>
+                <apex:inputField value="{!tradeRef1.Trade_Account_Number__c}" label="Account Number"/>
+                <apex:inputField value="{!tradeRef1.Trade_Supplier_Type__c}" label="Supplier Type"/>
+                <apex:inputField value="{!tradeRef1.Trade_Date_Open__c}"/>
+                <apex:inputField value="{!tradeRef1.Street_Address__c}" label="Address"/>
+                <apex:inputField value="{!tradeRef1.Trade_Phone__c}" label="Phone"/>
+                <apex:inputField value="{!tradeRef1.Trade_Fax__c}" label="FAX"/>
+                <apex:inputField value="{!tradeRef1.Trade_Payment_History__c}" label="Payment History"/>
+            </apex:pageblockSection>
+                    
+            <apex:pageblockSection title="Trade Reference 2" collapsible="false" columns="1">
+                <apex:inputField value="{!tradeRef2.Name}" label="Supplier Name"/>
+                <apex:inputField value="{!tradeRef2.Trade_Account_Number__c}" label="Account Number"/>
+                <apex:inputField value="{!tradeRef2.Trade_Supplier_Type__c}" label="Supplier Type"/>
+                <apex:inputField value="{!tradeRef2.Trade_Date_Open__c}"/>
+                <apex:inputField value="{!tradeRef2.Street_Address__c}" label="Address"/>
+                <apex:inputField value="{!tradeRef2.Trade_Phone__c}" label="Phone"/>
+                <apex:inputField value="{!tradeRef2.Trade_Fax__c}" label="FAX"/>
+                <apex:inputField value="{!tradeRef2.Trade_Payment_History__c}" label="Payment History"/>
+            </apex:pageblockSection>                
+        </apex:panelGrid>
+
+        <!-- Below page block items are displayed based on data in 'Document Checklist Matrix' object -->
+        <!-- Logic resides inside controller -->
+        <apex:pageblockSection title="Document Checklist" collapsible="false" id="doc_checklist" >
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Card Embossing Form" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Card_Embossing_Form__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Card_Embossing_Form__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Financial Statement" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Financial_Statement__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Financial_Statement__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Vehicle Registration Certificate" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Vehicle_Registration_Certificate__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Vehicle_Registration_Certificate__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Direct Debit Authority" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Direct_Debit_Authority__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Direct_Debit_Authority__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Proof of Address" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Proof_Of_Address__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Proof_Of_Address__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Staff ID" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Staff_Id__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Staff_Id__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Security Document" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Security_Document__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Security_Document__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Duty Exemption Letter" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Duty_Exemption_Letter__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Duty_Exemption_Letter__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Credit Bureau Results" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Credit_Bureau_Results__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Credit_Bureau_Results__c}"/>
+            </apex:pageblockSectionItem>
+            <apex:pageblockSectionItem >
+                <apex:outputLabel value="Letter from Government" style="{!IF(isDocumentChecklistPresent == true && docChkList[0].Letter_from_Government__c == true,'color:red', '')}"/>
+                <apex:inputField value="{!AUAppReq.Letter_from_Government__c}"/>
+            </apex:pageblockSectionItem>
+        </apex:pageblockSection>
+        
+        <apex:pageblockButtons location="bottom" >
+            <apex:commandButton value="Save" action="{!SaveRecords}" rerender="DIVsection, showmsg" status="statusSaveTrip" oncomplete="complete();" />
+            <apex:commandButton value="Cancel" onclick="backToHome();return false;"/>
+        </apex:pageblockButtons>        
+    </apex:pageblock>
+    
+</apex:form>
+
+<style type="text/css">
+    /*
+    Below defined style sheets used to control look and feel of VF page.
+    */
+        .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            /* These are the 3 css properties you will need to change so the popup 
+            displays in the center of the screen. First set the width. Then set 
+            margin-left to negative half of what the width is. You can add 
+            the height property for a fixed size pop up if you want.*/
+            width: 500px;
+            margin-left: -250px;
+            top:100px;
+        }
+
+    /* This is for the full screen DIV */
+    .popupBackground {
+        /* Background color */
+        background-color:black;
+        opacity: 0.20;
+        filter: alpha(opacity = 20);
+    
+        /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+        
+        /* Mouse */
+        cursor:wait;
+    }
+
+    /* This is for the message DIV */
+    .PopupPanel {
+        /* Background color */
+        border: solid 2px white;
+        background-color: white;
+
+        /* Dimensions */
+        left: 50%;
+        width: 250px;
+        margin-left: -100px;
+        top: 50%;
+        height: 100px;
+        margin-top: -25px;
+        z-index: 999;
+        position: fixed;
+        
+        /* Mouse */
+        cursor:pointer;
+    }
+        
+    /* Used for making border color as Red. */
+        .individualPalette .accountBlock .secondaryPalette {
+            //background-color: #c00;
+            border-color: #ce3f3f ;
+            border-color: #ce3f3f\9;
+        }
+              
+        .tertiaryPalette {
+            margin: auto;
+            background-color: #ce3f3f !important;
+            background-color: #ce3f3f\9 !important;
+        }
+
+    </style>
+</apex:page>

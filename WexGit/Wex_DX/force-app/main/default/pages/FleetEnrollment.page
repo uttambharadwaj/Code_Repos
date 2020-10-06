@@ -1,0 +1,1901 @@
+<!--
+* Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+*                     12/10/2019 PSOBACKLOG-318 Modify "Questions Call" header section to allow HTML encoding
+-->
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentController" action="{!init}" language="{!languageCode}">
+    <html lang="{!languageCode}">
+    <head>
+        <!-- Meta! -->
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="{!URLFOR($Resource.Skeleton, 'css/normalize.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.Skeleton, 'css/skeleton.css')}" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+        <!-- Scripts -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
+
+        <script>
+            $j = jQuery.noConflict();
+            var crd = "{!creditLineAmount}";
+
+            var test = "{!program.Fleet_Enrollment_Enable_Universal_PL__c}";
+
+            var test2 = "{!program.Fleet_Enrollment_Disable_Driver_Page__c}";
+
+            var didLength= "{!selectedDIDLength}";
+
+            var language = "{!languageCode}" ? "{!languageCode}" : "en_us";
+
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+            function previewImage() {
+                pageRerenderFunctions(false);
+                var previewImage = document.getElementById("brandingCard");
+                if (previewImage != null && previewImage.complete) {
+                    hidePreview();
+                }
+            }
+            function updateDIDLength(value) {
+
+                console.log('Here ' + value);
+
+                didLength = value;
+
+            }
+
+            function pageRerenderFunctions(resetScroll) {
+                $j('.helpIcon').tooltip({
+                    tooltipClass: 'toolTip',
+                    position: { my: "left+10 center", at: "right center", collision: "flipfit" },
+                    content: function(callback) { callback($j(this).prop('title').replace(/\|/g, '<br />')); }
+                });
+
+                if(language === "en_ca" || language === "fr_ca") {
+
+                    if ($j("[id$=billingState] option")) {
+                        $j(".postal").each(function () {
+                            $j(this).addClass('postalCanada').removeClass('postal');
+                        }); 
+                    }
+                }
+
+                if(resetScroll)  {
+                    document.querySelector("#header").scrollIntoView();
+                }
+
+                $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption[row-id="0"]').on('change', function() {
+                    if($j(this).val() === 'Fuel Only') {
+                        $j(this).next('.helpIcon').tooltip('open');
+                    }
+                });
+
+                $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption[row-id="0"]').on('blur', function() {
+                    $j(this).next('.helpIcon').tooltip('close');
+                });
+
+                $j('.phone').mask('999-999-9999');
+                $j('.postal').mask('00000-0000');
+                $j('.postalCanada').mask('A0A-0A0');
+                $j('.driverId4').mask('0000');
+                $j('.driverId6').mask('000000');
+                $j('.noSpecialChars').mask('Z', { translation: {'Z': { pattern: /[a-zA-Z0-9\ ]/, recursive: true } } });
+
+                $j('[id$=vehicleDetails]').find('.fleetVehicle').each(function() {
+                    console.log($j(this).find('.vehicleField').filter(function(){ return this.style && this.style.display !== 'none' }).length);
+                    if($j(this).find('.vehicleField').filter(function(){ return this.style && this.style.display !== 'none' }).length > 3) {
+                        $j(this).find('.vehicleField').filter(function(){ return this.style && this.style.display !== 'none' }).eq(2).after("<div class='twelve columns clearfix errorSpacer'></div>");
+                    }
+                });
+
+                // Controller was too slow.. Watch me move!
+                $j('[id$=billingFirstName]').on('keyup', function() { $j('[id$=primaryFleetContactFirstName]').val($j(this).val()); });
+                $j('[id$=billingLastName]').on('keyup', function() { $j('[id$=primaryFleetContactLastName]').val($j(this).val()); });
+                $j('[id$=billingEmail]').on('keyup', function() { $j('[id$=primaryFleetContactEmail]').val($j(this).val()); });
+                $j('[id$=billingPhone]').on('keyup', function() { $j('[id$=primaryFleetContactPhone]').val($j(this).val()); });
+
+            }
+
+            function disableSubmit() {
+                $j('[id$=fleetEnrollmentForm]').find('.fullNextButton').each(function() {
+                    $j(this).addClass('disabled-button');
+                });
+            }
+
+            function updateCardControlOptions(obj) {
+                console.log($j(obj).val());
+                if($j(obj).attr('row-id') == 0) {
+                    $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption').each(function() {
+                        if($j(this).val() === null) {
+                            $j(this).val($j(obj).val());
+                        }
+                    });
+                }
+            }
+
+            function updatePromptOptions(obj) {
+                console.log($j(obj).val());
+                if($j(obj).attr('row-id') == 0) {
+                    $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedPromptOption').each(function() {
+                        if($j(this).val() === null) {
+                            $j(this).val($j(obj).val());
+                        }
+                    });
+                }
+            }
+
+            function updateAcceptanceOptions(obj) {
+                console.log($j(obj).val());
+                if($j(obj).attr('row-id') == 0) {
+                    $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedAcceptanceOption').each(function() {
+                        if($j(this).val() === null) {
+                            $j(this).val($j(obj).val());
+                        }
+                    });
+                }
+            }
+
+            function updateSecondLine(value) {
+                if(!(value === "None") && !(value === "#")) {
+                    var translationMap = JSON.parse('{!embossingOptionsSerialized}');
+                    $j('[id$=card-description]').html(translationMap[value]);
+                }
+                else {
+                    $j('[id$=card-description]').html("");
+                }
+
+                $j('[id$=selectedEmbossingOption]').css('color', '#333333');
+
+                rerenderReportingOptions();
+            }
+            function updateThirdLine(value) {
+                $j('[id$=card-embossing-third-line]').html(value);
+            }
+            function updateCompanyName(value) {
+                $j('[id$=card-company-name]').html(value);
+            }
+
+            function validatePhone(value) {
+                if(value !== "") {
+                    var characterReg = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+                    if(!characterReg.test(value)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function validateEmail(value) {
+                if(value) {
+                    var characterReg = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i;
+                    if(!characterReg.test(value)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function validatePostalCode(value) {
+                if(value !== "") {
+                    // Canadian, otherwise US
+                    var characterReg = language.includes('_ca') ? /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i : /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+                    if(!characterReg.test(value)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function validateNumberOfCards(value) {
+                if(value !== "") {
+                    var characterReg = /(^\d{1,2}$)/;
+                    if(!characterReg.test(value) || parseInt(value) >= 31 || parseInt(value) == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function validateLoyaltyId(value) {
+
+                if (value && value !== "") {
+
+                    var validationRegex = /(^\d{11}$)/;
+
+                    if ('{!program.Loyalty_ID_Validation__c}' !== "") {
+
+                        try { // Check if program has valid regex. If not, use default.
+                            validationRegex = String2Regex('{!program.Loyalty_ID_Validation__c}');
+                        } catch(error) {
+                            console.log('Invalid Program Loyalty Validation');
+                        }
+                    }
+
+                    if (!validationRegex.test(value)) {
+                        return false;
+                    }
+
+                }
+                return true;
+            }
+
+            function String2Regex(str) {
+                // Main regex
+                var main = str.match(/\/(.+)\/.*/)[1]; // Regex options
+
+                var options = str.match(/\/.+\/(.*)/)[1]; // Return compiled regex
+
+                return new RegExp(main, options);
+            };
+
+            function displayErrors(errorMessages) {
+
+                var needAssistance = "";
+
+                if (crd !== "") {
+                    needAssistance = "<br/>{!$Label.Fleet_Need_Assistance} {!program.Implementation_Team_Number__c}";
+                }
+
+                $j('[id$=fleetEnrollmentForm]').find('.stepErrors').css('display', 'block').html('<p><b>{!$Label.Fleet_Please_correct_errors}</b></p><ul></ul>' + needAssistance);
+
+                var errors = errorMessages.unique();
+
+                for(var i = 0; i < errors.length; i++) {
+                    $j('[id$=fleetEnrollmentForm]').find('.stepErrors ul').append('<li>' + errors[i] + '</li>');
+                }
+
+                pageRerenderFunctions();
+
+            }
+
+            function validate(currentStep) {
+
+                if(currentStep == -1) {
+                    stepPrevious();
+                }
+                else {
+                    var errorCount = 0;
+                    var errorMessages = [];
+
+                    console.log("Validating Step #" + currentStep + "..");
+
+                    $j('[id$=fleetEnrollmentForm]').find('.erroredInput').each(function() {
+                        $j(this).removeClass('erroredInput');
+                    });
+
+                    $j('[id$=fleetEnrollmentForm]').find('.fieldErrorMessage').each(function() {
+                        $j(this).remove();
+                    });
+
+                    $j('[id$=fleetEnrollmentForm]').find('.vehicleFieldErrorMessage').each(function() {
+                        $j(this).remove();
+                    });
+
+                    $j('[id$=fleetEnrollmentForm]').find('.stepErrors').each(function() {
+                        $j(this).css('display', 'none').html('');
+                    });
+
+                    // Per step validations
+                    if (currentStep === 1) {
+
+                        // Catch all to check for required fields
+                        $j('[id$=fleetEnrollmentForm]').find('.required').each(function () {
+                            if ($j(this).val() === null || $j(this).val() === "" || $j(this).val() === "#") {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                if ($j(this).next('.helpIcon').length > 0) {
+                                    $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
+                                    errorCount++;
+                                } else {
+                                    $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
+                                    errorCount++;
+                                }
+                            }
+                        });
+
+                        if (!validatePhone($j('[id$=billingPhone]').val())) {
+                            $j('[id$=billingPhone]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Phone}</div>');
+                            errorCount++;
+                        }
+
+                        if (!validateEmail($j('[id$=billingEmail]').val())) {
+                            $j('[id$=billingEmail]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Email}</div>');
+                            errorCount++;
+                        }
+
+                        if (!validatePostalCode($j('[id$=billingPostalCode]').val())) {
+                            $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Postal_Code}</div>');
+                            errorCount++;
+                        }
+
+                        if (!validateLoyaltyId($j('[id$=loyaltyId]').val())) {
+                            $j('[id$=loyaltyId]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Loyalty_Id}</div>');
+                            errorCount++;
+                        }
+
+                        // For each fleet contact, validate that all fields are filled in and they are valid phone/email
+                        $j('[id$=fleetContact]').find('.fleetContact').each(function (index) {
+                            if ($j(this).find('.fleetContactFirstName').val() === "" && ($j(this).find('.fleetContactLastName').val() !== "" || $j(this).find('.fleetContactEmail').val() !== "" || $j(this).find('.fleetContactPhone').val() !== "")) {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                $j(this).find('.fleetContactFirstName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
+                                errorCount++;
+                            }
+
+                            if ($j(this).find('.fleetContactLastName').val() === "" && ($j(this).find('.fleetContactFirstName').val() !== "" || $j(this).find('.fleetContactEmail').val() !== "" || $j(this).find('.fleetContactPhone').val() !== "")) {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                $j(this).find('.fleetContactLastName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
+                                errorCount++;
+                            }
+
+                            if (($j(this).find('.fleetContactFirstName').val() !== "" || $j(this).find('.fleetContactLastName').val() !== "") && $j(this).find('.fleetContactEmail').val() === "") {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                $j(this).find('.fleetContactEmail').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
+                                errorCount++;
+                            } else if (!validateEmail($j(this).find('.fleetContactEmail').val())) {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                $j(this).find('.fleetContactEmail').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Email}</div>');
+                                errorCount++;
+                            }
+
+                            if (($j(this).find('.fleetContactFirstName').val() !== "" || $j(this).find('.fleetContactLastName').val() !== "") && $j(this).find('.fleetContactPhone').val() === "") {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                $j(this).find('.fleetContactPhone').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
+                                errorCount++;
+                            } else if (!validatePhone($j(this).find('.fleetContactPhone').val())) {
+                                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                $j(this).find('.fleetContactPhone').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Phone}</div>');
+                                errorCount++;
+                            }
+                        });
+
+                    }
+                    if(currentStep === 2) {
+
+                        // Catch all to check for required fields
+                        $j('[id$=fleetEnrollmentForm]').find('.required').each(function() {
+                            if($j(this).val() === null || $j(this).val() === "") {
+                             errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                if($j(this).next('.helpIcon').length > 0) {
+                                    $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+                                else {
+                                   $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+                            }
+                        });
+
+                        if($j('[id$=numberOfCards]').val() !== "" && !validateNumberOfCards($j('[id$=numberOfCards]').val())) {
+                             $j('[id$=numberOfCards]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Please_enter_a_value_between_1_and_30}</div>'); errorCount++;
+                        }
+
+                    }
+                    if(currentStep === 3) {
+
+                        // Catch all to check for required fields
+                        $j('[id$=fleetEnrollmentForm]').find('.required').each(function() {
+                            console.log($j(this).attr('class'));
+                            if($j(this).val() === null || $j(this).val() === "") {
+                              errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                if($j(this).next('.helpIcon').length > 0) {
+                                   $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="vehicleFieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+                                else {
+                                   $j(this).addClass('erroredInput').after('<div class="vehicleFieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+                            }
+                        });
+
+                    }
+                    if(currentStep === 4) {
+
+                        var numberOfDrivers = 0;
+                        $j('[id$=driverDetails]').find('.fleetDriverItem').each(function() {
+                            if($j(this).find('.firstName').val() !== "") { numberOfDrivers++; }
+                        });
+                        if(numberOfDrivers == 0) {
+                            errorMessages.push('{!$Label.Fleet_At_least_one_driver_is_required}');
+                            errorCount++;
+                        }
+
+                        $j('[id$=driverDetails]').find('.fleetDriverItem').each(function() {
+                            if($j(this).find('.driverIdRequired').length > 0) {
+                                if($j(this).find('.lastName').val() === "" && ($j(this).find('.firstName').val() !== "" || $j(this).find('.driverIdRequired').val() !== "")) {
+                                    console.log('hit 1');
+                                    errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                    $j(this).find('.lastName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+
+                                if($j(this).find('.firstName').val() === "" && ($j(this).find('.lastName').val() !== "" || $j(this).find('.driverIdRequired').val() !== "")) {
+                                      console.log('hit 2');
+                                      errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                      $j(this).find('.firstName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+
+                                if(($j(this).find('.firstName').val() !== "" || $j(this).find('.lastName').val() !== "") && $j(this).find('.driverIdRequired').val() === "") {
+                                      console.log('hit 3');
+                                      errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                      $j(this).find('.driverId').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+
+                                if($j('input[name=driverIdOption]:checked').val() == "custom" && !validateDriverId($j(this).find('.driverIdRequired').val())) {
+                                    console.log('hit 4');
+                                    errorMessages.push('{!$Label.Fleet_Please_enter_a_valid_driver_ID_1} ' + didLength + '{!$Label.Fleet_Please_enter_a_valid_driver_ID_2}');
+                                    $j(this).find('.driverId').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid</div>'); errorCount++;
+                                }
+                            }
+                            else {
+                                if($j(this).find('.lastName').val() === "" && $j(this).find('.firstName').val() !== "") {
+                                    console.log('hit 1');
+                                    errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                    $j(this).find('.lastName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+
+                                if($j(this).find('.firstName').val() === "" && $j(this).find('.lastName').val() !== "") {
+                                    console.log('hit 2');
+                                    errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                                    $j(this).find('.firstName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
+                                }
+                            }
+                        });
+
+                        if(errorCount == 0 && $j('input[name=driverIdOption]:checked').val() == "custom") {
+                            var driverIdValues = new Array();
+
+                            $j('[id$=driverDetails]').find('.driverIdRequired').each(function() {
+                                driverIdValues.push($j(this).val());
+                            });
+
+                            var sortedDriverIdValues = driverIdValues.slice().sort();
+
+                            for(i = 0; i < driverIdValues.length; i++) {
+                                if (sortedDriverIdValues[i + 1] == sortedDriverIdValues[i]) {
+                                    errorMessages.push('{!$Label.Fleet_Please_ensure_each_driver_ID_is_unique}');
+                                    $j('[id$=driverDetails]').find('.driverIdRequired').each(function() {
+                                        $j(this).filter(function () { return this.value == sortedDriverIdValues[i]; }).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Not_Unique}</div>'); errorCount++;;
+                                    });
+                                }
+                            }
+
+                            if(errorCount > 0) { if(errorMessages.length > 0) { displayErrors(errorMessages); } return false; }
+                        }
+                    }
+
+                    console.log(errorMessages);
+
+                    if(errorCount > 0) { if(errorMessages.length > 0) { displayErrors(errorMessages); } return false; }
+                    else { stepContinue(); }
+                }
+            }
+
+            Array.prototype.unique = function() {
+                return this.filter(function (value, index, self) {
+                    return self.indexOf(value) === index;
+                });
+            }
+        </script>
+
+        <style>
+            /* Mobile First! */
+
+            /* Site-wide Styles - START */
+            *, body {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: 'Open Sans', serif;
+                font-size: 13px;
+            }
+            /* Site-wide Styles - END */
+
+            /* Header Section - START */
+            #header {
+                width: 100%;
+                {!program.Brand_Color_1__c}
+                min-height: 50px;
+                border-top: 3px solid #FEC524;
+                color: #fff;
+                line-height: 50px;
+                display: none;
+            }
+
+            #programName {
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 18px;
+            }
+
+            #contactUs {
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .mobileCardImage img {
+                display: block;
+                width: 280px;
+                margin: 20px auto 0 auto;
+            }
+
+            #mobileCardImage img {
+                width: 280px;
+                margin: 0 auto;
+            }
+            /* Header Section - END */
+
+            /* Subheader Section - START */
+            #subheader {
+                width: 100%;
+            }
+
+            #pageImage {
+                display: none;
+                background: #fff;
+                height: 220px;
+            }
+
+            #welcomeMessage {
+                text-align: center;
+                display: none;
+            }
+
+            #welcomeMessage h2 {
+                font-size: 24px;
+            }
+            /* Subheader Section - END */
+
+            /* Card Image/Steps Section - START */
+            #steps {
+                width: 100%;
+                background: #eee;
+                height: 100px;
+                display: none;
+            }
+            /* Card Image/Steps Section - END */
+
+            /* Content Section - START */
+            #content {
+                width: 100%;
+            }
+
+            #content #leftBar {
+                display: none;
+            }
+
+            #content .mobileMessages {
+                display: block;
+            }
+
+
+            .fieldErrorMessage { margin-top: -4px; line-height: 2px; padding: 0 0 16px 0; display: inherit; color: #a94442; font-size: 12px; }
+            .vehicleFieldErrorMessage { line-height: 2px; display: inherit; color: #a94442; font-size: 12px; margin-bottom: 14px; }
+            .vehicleErrorSpacer { display: none; }
+            .styledInput, .styledSelect { border: 1px solid #ccc; padding: 8px 10px; width: 100%; border-radius: 0 !important; }
+            .styledVehicleInput, .styledVehicleSelect { border: 1px solid #ccc; padding: 8px 10px; width: 87%; border-radius: 0 !important; }
+            .styledCheckbox { border: 1px solid #333; border-radius: 0 !important; }
+            .styledSelect { border-radius: 0 !important; color: #aaa; }
+            .styledSelect option:first-child { color: #aaa; }
+            .styledSelect option { color: #333; }
+
+            .sectionHeader { {!program.Brand_Color_1__c} padding: 10px 20px; font-size: 16px; color: #fff; text-transform: uppercase; }
+            .fullNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; display: block; text-decoration: none; background: #fec524 !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px; text-transform: uppercase; color: #333; border: 0 !important; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+            .partialNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; background: #fec524 !important; border-radius: 0 !important; border: 0 !important; color: #333 !important; font-size: 12px !important; }
+            .partialPreviousButton { margin-bottom: 6px; font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; display: block; text-decoration: none; background: #eee !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px; text-transform: uppercase; color: #333; border: 0 !important; border-radius: 0 !important; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+            .fullNextButton a:hover, .partialNextButton a:hover, .partialPreviousButton:hover { color: #333 !important; }
+
+            .stepErrors { display: none; background: #f2dede; border: 1px solid #ebccd1; margin: 14px 0 14px 0; color: #a94442; padding: 20px; line-height: 15px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+            .erroredInput { border: 1px solid #ebccd1 !important; background: #f2dede !important; }
+            .disabledInput { background: #efefef !important; }
+
+            .checkbox-label { display: block; padding-left: 15px; text-indent: -15px; font-weight: normal !important; }
+            .checkbox { width: 13px; height: 13px; padding: 0; margin:0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
+
+            .addButton { display: block; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; color: #333; text-decoration: none; }
+
+            .helpIcon { padding-left: 3px; margin-top: -2px; white-space: pre-line; text-indent:5px;}
+            .vehicleHelpIcon { margin-left: 4px; }
+
+            .vehicleTable, .driverTable { width: 100%; border: 1px solid #ccc; }
+            .vehicleTable th,  .driverTable th { background: #eee; color: #777; padding: 3px 0 3px 8px; border-right: 1px solid #ccc; }
+            .vehicleTable td,  .driverTable td { width: 10% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
+
+            .confirmEdit { float: right; font-size: 12px; padding-right: 10px; line-height: 22px; text-transform: lowercase; }
+            .confirmEdit a { color: #eee; text-decoration: underline; }
+
+            .fleetVehicleSeperator { border-bottom: 0; }
+            .fleetVehicleSeperator:last-child { border-bottom: 0; margin: 0; }
+            .fleetVehicleSpacer { display: none; }
+
+            .fleetContactSeperator { display: block; padding: 10px 0; }
+
+            .radioSelect { width: 13px; height: 13px; padding: 0; margin:0 6px 0 0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
+            .radioSelectDiv { margin-left: 6px; float: left; width: 220px;}
+            .radioSelectLabel { font-weight: normal !important; }
+
+            .disabled-button { background: #e9e9e9 !important; pointer-events: none; color: #ccc !important; border: 1px solid #ccc !important;}
+
+            .movingCardImage { position: fixed; padding-left: 20px; width: 260px; }
+            .movingCardImage img { width: 260px; margin: 0 auto; }
+            #card-company-name{ position:absolute; top:124px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+            #card-description{ position:absolute; top:134px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+            #card-embossing-third-line{ position:absolute; top:144px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+            .ui-tooltip { white-space: pre-line; }
+
+            .mobileFleetVehicleSpacer { padding: 10px 0; display: block; }
+
+            .container h3 { font-size: 20px; margin-top: 30px; }
+            /* Content Section - END */
+
+            @media only screen and (min-width: 540px) and (max-width: 1200px) {
+                #content { width: 480px; margin: 0 auto; }
+                .form { min-width: 480px; margin-left: -48px; }
+
+                .mobileCardImage { min-width: 480px; margin: 0 auto; }
+
+                .mobileFleetVehicleSpacer { display: none; }
+                .fleetContactSeperator { display: none; }
+
+                .errorFiller { padding-bottom: 12px; }
+            }
+
+            /* Bigger than a phablet */
+            @media (min-width: 1200px) {
+
+                /* Header Section - START */
+                #header {
+                    display: block;
+                }
+
+                #programName {
+                    font-size: 1.5em !important;
+                    text-align: left;
+                }
+
+                #contactUs {
+                    font-size: 1.5em !important;
+                    text-align: right;
+                }
+
+                .mobileCardImage, .mobileCardImage img {
+                    display: none;
+                }
+                /* Header Section - END */
+
+                /* Subheader Section - START */
+                #subheader {
+                    width: 100%;
+                    background: #eee;
+                    max-height: 200px;
+                    padding-bottom: 0;
+                    display: block;
+                }
+
+                #pageImage {
+                    background: #fff;
+                    height: 220px;
+                    display: block;
+                }
+                #welcomeMessage {
+                    padding-top: 30px;
+                    text-align: center;
+                    display: block;
+                }
+
+                #welcomeMessage h2 {
+                    margin-bottom: 8px;
+                }
+
+                #welcomeMessage p {
+                    line-height: 20px;
+                    margin: 8px 0;
+                }
+                /* Subheader Section - END */
+
+                /* Card Image/Steps Section - START */
+                #steps { height: 80px; display: block; }
+
+                #cardImage { text-align: center; width: 100%; margin: 30px auto 0 auto; overflow: visible; height: 20px; }
+                #cardImage img { max-width: 220px; position: relative; z-index: 100; pointer-events: none; }
+
+                .step { margin: 6px 6px 0 0; height: 70px; float: left; width: 118px; background: #eee; line-height: 5px; }
+
+                .stepExpanded { width: 118px; background: #eee; line-height: 5px; width: 140px; padding-left: 9px; }
+                .step-clickable { cursor: pointer; }
+                .stepIndicatorActive { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-arrow.png')}) no-repeat; width: 34px; height: 43px; margin-top: 4px; margin-left: 1px; }
+                .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
+                .stepIndicatorIncomplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle.png')}) no-repeat; width: 34px; height: 43px; margin-top: 8px; margin-left: 1px; }
+                .stepDescription { float: left; font-size: 12px; line-height: 10px; letter-spacing: -0.10em; margin-top: 17px; width: 80px; }
+                .stepDescription p { margin: 0 0 8px 1px; }
+                .step:first-child { margin-left: 6px; }
+                .step:last-child { margin-right: 0px; }
+                .stepActive { background: #fec524; }
+                /* Card Image/Steps Section - END */
+
+                /* Content Section - START */
+                #content #leftBar {
+                    padding-top: 100px;
+                    display: block;
+                }
+
+                #leftBar .notification { background: #333; color: #eee; padding: 15px 20px; width: 250px; margin: 0 auto; }
+                #leftBar .notification p { margin: 0; }
+
+                #content .mobileMessages {
+                    display: none;
+                }
+                #theform {
+                    margin-top: 30px;
+                }
+
+                .stepErrors { display: none; background: #f2dede; border: 1px solid #ebccd1; margin: 14px 0 14px 0; color: #a94442; padding: 20px; line-height: 15px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+                .stepErrors ul { margin: 0; padding: 0 0 0 20px; list-style-type: circle; }
+                .erroredInput { border: 1px solid #ebccd1; background: #f2dede; }
+
+                .checkbox-label { display: block; padding-left: 15px; text-indent: -15px; font-weight: normal !important; }
+                .checkbox { width: 13px; height: 13px; padding: 0; margin:0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
+
+                .helpIcon { vertical-align: middle; white-space: pre-line; }
+                .vehicleHelpIcon { margin-left: 4px; }
+
+                .addButton { background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; }
+
+                .fullNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; text-decoration: none; background: #fec524 !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px !important; text-transform: uppercase; color: #333; border: 0 !important; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+                .partialNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; background: #fec524 !important; border-radius: 0 !important; border: 0 !important; color: #333 !important; font-size: 12px !important; }
+                .partialPreviousButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; text-decoration: none; background: #eee !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px; text-transform: uppercase; color: #333; border: 0 !important; border-radius: 0 !important; text-align: center; }
+                .fullNextButton:hover, .partialNextButton:hover, .partialPreviousButton:hover { color: #333 !important; }
+
+                .vehicleTable, .driverTable { table-layout: fixed; width: 100%; border: 1px solid #ccc; }
+                .vehicleTable th,  .driverTable th { background: #eee; color: #777; padding: 3px 0px 3px 4px; border-right: 1px solid #ccc; }
+                .vehicleTable td,  .driverTable td { width: 10% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
+                /* Content Section - END */
+
+                .fleetVehicle { margin-bottom: 4px; }
+                .fleetVehicle:last-child { border-bottom: 0; margin: 0; }
+                .fleetVehicleSpacer { padding: 4px 0; display: block; }
+
+                .fleetContactSeperator { border-top: 1px solid #ddd; padding: 2px 0; margin-bottom: 14px; }
+                .fleetContactSeperator:last-child { display: none; }
+
+                .mobileFleetVehicleSpacer { border-top: 1px solid #ddd; padding: 2px 0; margin-bottom: 14px; }
+                .mobileFleetVehicleSpacer:last-child { display: none; }
+
+                .disabled-button { background: #e9e9e9 !important; pointer-events: none; color: #ccc !important; border: 1px solid #ccc !important;}
+
+                .ui-tooltip { white-space: pre-line; }
+
+                .errorSpacer { padding: 2px 0; }
+            }
+        </style>
+    </head>
+    <body onload="previewImage()">
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div id="programName" class="seven columns">{!brandingUtility.Program_Name__c}</div>
+                <div id="contactUs" class="five columns">
+                    <apex:outputText rendered="{!creditLineAmount != null}">
+                        <apex:outputText value="{!$Label.Questions_Call} {!program.Implementation_Team_Number__c}" escape="false" />
+                    </apex:outputText>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="subheader">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <div id="welcomeMessage">
+                        <apex:outputText rendered="{!creditLineAmount != null}">
+                <apex:outputText value="{!$Label.Fleet_Approved_1}" escape="false" />
+                <apex:outputText value="{0, number, $###,###,###}">
+                                    <apex:param value="{!creditLineAmount}"/>
+                                </apex:outputText>
+                <apex:outputText value="{!$Label.Fleet_Approved_2}" escape="false" />
+                        </apex:outputText>
+                        <apex:outputText rendered="{!creditLineAmount == null}">
+                            <apex:outputText value="{!$Label.Fleet_Thankyou_Applying}" escape="false" />
+                            <apex:outputText rendered="{!currentStep != 2}">
+                                <p>&nbsp;</p>
+                            </apex:outputText>
+                        </apex:outputText>
+                        <apex:outputPanel id="staticCardImage">
+                            <apex:outputPanel rendered="{!currentStep != 2}">
+                                <div id="cardImage">
+                                    <img id="brandingCard" src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!currentStep == 2}">
+                                <div style="height: 80px;">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                <div class="eight columns" id="pageImage">
+                    <apex:outputPanel id="subHeaderImage">
+                        <apex:outputPanel rendered="{!currentStep == 1 || currentStep == 5}">
+                            <apex:image style="pointer-events: none; width: 627px;"
+                                        url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}"
+                            />
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!currentStep == 2}">
+                            <apex:image style="pointer-events: none; width: 627px;"
+                                        url="{!URLFOR($Resource.FDCFAssets, IF(languageCode == 'fr_ca', 'FDCFAssets/vehicle-animation2.gif', 'FDCFAssets/vehicle-animation.gif'))}"
+                            />
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!currentStep == 3}">
+                            <apex:image style="pointer-events: none; width: 627px;"
+                                        url="{!URLFOR($Resource.FDCFAssets, IF(languageCode == 'fr_ca', 'FDCFAssets/purchase-controls-v2_2.png', 'FDCFAssets/purchase-controls-v2.png'))}"
+                            />
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!currentStep == 4}">
+                            <apex:image style="pointer-events: none; width: 627px;"
+                                        url="{!URLFOR($Resource.FDCFAssets, IF(languageCode == 'fr_ca', 'FDCFAssets/driver-animation2.gif', 'FDCFAssets/driver-animation.gif'))}"
+                            />
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="steps">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    &nbsp;
+                </div>
+                <div class="eight columns" style="background: #fff;">
+                    <apex:form >
+                        <apex:outputPanel id="stepDisplay">
+                            <div>
+                                <div onclick="{!IF(AND(currentStep > 1), 'goToStep(1);', '')}" class="step {!IF(AND(currentStep == 1), 'stepActive', '')} {!IF(AND(currentStep > 1), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
+                                    <div class="{!IF(AND(currentStep == 1), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 1), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 1), 'stepIndicatorIncomplete', '')}"></div>
+                                    <div class="stepDescription">
+                                        <apex:outputText value="{!$Label.Step_1_your_company}" escape="false" />
+                                    </div>
+                                </div>
+                                <div onclick="{!IF(AND(currentStep > 2), 'goToStep(2);', '')}" class="step {!IF(AND(currentStep == 2), 'stepActive', '')} {!IF(AND(currentStep > 2), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
+                                    <div class="{!IF(AND(currentStep == 2), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 2), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 2), 'stepIndicatorIncomplete', '')}"></div>
+                                    <div class="stepDescription">
+                                        <apex:outputText value="{!$Label.Step_2_card_printing}" escape="false" />
+                                    </div>
+                                </div>
+                                <div onclick="{!IF(AND(currentStep > 3), 'goToStep(3);', '')}" class="step {!IF(AND(currentStep == 3), 'stepActive', '')} {!IF(AND(currentStep > 3), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
+                                    <div class="{!IF(AND(currentStep != null, currentStep == 3), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 3), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 3), 'stepIndicatorIncomplete', '')}"></div>
+                                    <div class="stepDescription">
+                                        <apex:outputText value="{!$Label.Step_3_vehicle_details}" escape="false" />
+                                    </div>
+                                </div>
+                                <div onclick="{!IF(AND(currentStep > 4), 'goToStep(4);', '')}" class="step {!IF(AND(currentStep == 4), 'stepActive', '')} {!IF(AND(currentStep > 4), 'step-clickable', '')}" style="display: {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c == false, 'block', 'none')};">
+                                    <div class="{!IF(AND(currentStep == 4), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 4), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 4), 'stepIndicatorIncomplete', '')}"></div>
+                                    <div class="stepDescription">
+                                        <apex:outputText value="{!$Label.Step_4_driver_details}" escape="false" />
+                                    </div>
+                                </div>
+                                <div class="step {!IF(AND(currentStep == 5), 'stepActive', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
+                                    <div class="{!IF(AND(currentStep == 5), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 5), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 5), 'stepIndicatorIncomplete', '')}"></div>
+                                    <div class="stepDescription">
+                                      <p>{!$Label.Fleet_Step} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c == false, '5', '4')}:</p>
+                                      <p>
+                                        <b>{!$Label.Fleet_summary}</b>
+                                      </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <div id="leftBar">
+                        <apex:outputPanel id="overLimitNotification">
+                            <apex:outputPanel rendered="{!currentStep == 1 && creditLineAmount != null}">
+                                <div class="notification">
+                                    <apex:outputText value="{!$Label.Fleet_More30Vehicles}" escape="false"/>
+                                    <p>{!program.Implementation_Team_Number__c}</p>
+                                    <p>{!$Label.Fleet_MonFri}</p>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="movingCardImage">
+                            <apex:outputPanel rendered="{!currentStep == 2 && showPreview}">
+                                <div class="movingCardImage">
+                                    <div style="text-align: center; width: 260px; position:relative;">
+                                        <img id="previewCard"
+                                             src="{!URLFOR($Action.Attachment.Download, dynamicCard)}"/>
+                                        <br/>{!$Label.Fleet_Preview}
+                                        <div id="card-company-name">
+                                            {!fleetEnrollment.Embossing_Company_Name__c}
+                                        </div>
+                                        <div id="card-description">
+                                            <apex:outputText value="{!selectedEmbossingOption}" rendered="{!selectedEmbossingOption != 'None' && selectedEmbossingOption != '#'}"></apex:outputText>
+                                        </div>
+                                        <div id="card-embossing-third-line">
+                                            {!fleetEnrollment.Embossing_Third_Line__c}
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                <div class="eight columns form" style="padding-top: 20px;">
+                    <apex:form id="fleetEnrollmentForm">
+                        <apex:actionFunction name="hidePreview" action="{!myShowPreviewMethod}" rerender="movingCardImage"/>
+                        <apex:outputPanel rendered="{!currentStep == 1}">
+                            <div class="mobileMessages clearfix" style="line-height: 12px; text-align: center;">
+                                <div class="twelve columns clearfix mobileCardImage">
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <apex:outputText rendered="{!creditLineAmount != null}">
+                                    <apex:outputText value="{!$Label.Fleet_Approved_3}" escape="false"/>
+                                    <apex:outputText value="{0, number, $###,###,###}">
+                                        <apex:param value="{!creditLineAmount}"/>
+                                    </apex:outputText>
+                                    <apex:outputText value="{!$Label.Fleet_Approved_4}" escape="false"/>
+                                </apex:outputText>
+                                <apex:outputText rendered="{!creditLineAmount == null}">
+                                    <apex:outputText value="{!$Label.Fleet_Thankyou_Applying2}" escape="false"/>
+                                    <p>
+                                        &nbsp;
+                                    </p>
+                                </apex:outputText>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            <div class="stepErrors">
+
+                                <apex:outputText rendered="{!creditLineAmount != null}">
+                                    <apex:outputText value="{!$Label.Fleet_Need_Assistance} {!program.Implementation_Team_Number__c}" escape="false"/>
+                                </apex:outputText>
+                            </div>
+                        </div>
+                        <!-- STEP ONE - START -->
+                        <apex:actionFunction oncomplete="pageRerenderFunctions(true)" name="goToStep" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage">
+                            <apex:param name="currentStep" value="currentStep" assignTo="{!currentStep}"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction oncomplete="pageRerenderFunctions(true)" name="stepContinue" action="{!nextStep}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" />
+                        <apex:actionFunction oncomplete="pageRerenderFunctions(true)" name="stepPrevious" action="{!previousStep}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" />
+                        <apex:actionFunction name="rerenderReportingOptions" action="{!doNothing}" rerender="reportingOptions" />
+                        <apex:outputPanel id="billingContact" rendered="{!currentStep == 1}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Billing_Information}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                {!$Label.For_invoicing_billing_inquiries_accounts_payable_etc}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns">
+                                    <apex:inputText maxlength="40" value="{!fleetEnrollment.Billing_Contact_First_Name__c}" id="billingFirstName" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Contact_First_Name__c.label}" />
+                                </div>
+                                <div class="six columns">
+                                    <apex:inputText maxlength="40" value="{!fleetEnrollment.Billing_Contact_Last_Name__c}" id="billingLastName" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Contact_Last_Name__c.label}" />
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns">
+                                    <apex:inputText value="{!fleetEnrollment.Billing_Email__c}" id="billingEmail" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Email__c.label}" />
+                                </div>
+                                <div class="six columns">
+                                    <apex:inputText value="{!fleetEnrollment.Billing_Phone__c}" id="billingPhone" styleClass="phone styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Phone__c.label}" />
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_1__c}" id="billingAddress1" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_1__c.label}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_2__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} {!$Label.Optional}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="four columns">
+                                    <apex:inputText maxlength="40" value="{!fleetEnrollment.Billing_City__c}" id="billingCity" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_City__c.label}"/>
+                                </div>
+                                <div class="four columns">
+                                    <apex:selectList size="1" multiSelect="false" value="{!fleetEnrollment.Billing_State__c}" id="billingState" styleClass="styledSelect required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_State__c.label}">
+                                        <apex:selectOptions value="{!availableStateSelectOptions}" />
+                                    </apex:selectList>
+                                </div>
+                                <div class="four columns">
+                                    <apex:inputText maxlength="20" value="{!fleetEnrollment.Billing_Postal_Code__c}" id="billingPostalCode" styleClass="postal styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Postal_Code__c.label}"/>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="loyaltyInformation" rendered="{!currentStep == 1 && program.Enable_Loyalty_Information__c}">
+                        <div class="twelve columns clearfix sectionHeader">
+                            {!$Label.Fleet_Loyalty_Information}
+                        </div>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            <apex:inputText maxlength="40" value="{!fleetEnrollment.Loyalty_ID__c}"
+                                            id="loyaltyId" styleClass="styledInput"
+                                            html-placeholder="{!brandingUtility.Loyalty_ID_Display_Name__c}" />
+                        </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="shippingContact" rendered="{!currentStep == 1}">
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Card_Shipping_Address}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <label class="checkbox-label">
+                                    <apex:inputCheckbox styleClass="checkbox"
+                                                        value="{!cardShippingSameAsBillingAddress}">
+                                        <apex:actionSupport event="onchange" action="{!setCardShippingSame}"
+                                                            rerender="cardShippingAddress"/>
+                                    </apex:inputCheckbox>
+                                     {!$Label.Fleet_Card_Shipping_Address_Same}
+                                </label>
+                            </div>
+                            <apex:outputPanel id="cardShippingAddress">
+                                <apex:outputPanel rendered="{!cardShippingSameAsBillingAddress == false}">
+                                    <script>pageRerenderFunctions()</script>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <apex:inputText maxlength="100"
+                                                        value="{!fleetEnrollment.Card_Shipping_Attention__c}"
+                                                        id="shippingAttention" styleClass="styledInput required"
+                                                        html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_Attention__c.label}"/>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <apex:inputText maxlength="100"
+                                                        value="{!fleetEnrollment.Card_Shipping_Address_Line_1__c}"
+                                                        id="shippingAddress1" styleClass="styledInput required"
+                                                        html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_Address_Line_1__c.label}"/>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <apex:inputText maxlength="100"
+                                                        value="{!fleetEnrollment.Card_Shipping_Address_Line_2__c}"
+                                                        styleClass="styledInput"
+                                                        html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_Address_Line_2__c.label} {!$Label.Optional}"/>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="four columns">
+                                            <apex:inputText maxlength="40"
+                                                            value="{!fleetEnrollment.Card_Shipping_City__c}"
+                                                            id="shippingCity" styleClass="styledInput required"
+                                                            html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_City__c.label}"/>
+                                        </div>
+                                        <div class="four columns">
+                                            <apex:inputText maxlength="40"
+                                                            value="{!fleetEnrollment.Card_Shipping_State__c}"
+                                                            id="shippingState" styleClass="styledInput required"
+                                                            html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_State__c.label}"/>
+                                        </div>
+                                        <div class="four columns">
+                                            <apex:inputText maxlength="20"
+                                                            value="{!fleetEnrollment.Card_Shipping_Postal_Code__c}"
+                                                            id="shippingPostalCode"
+                                                            styleClass="postal styledInput required"
+                                                            html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_Postal_Code__c.label}"/>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="fleetContact" rendered="{!currentStep == 1}">
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Authorized_Contacts}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                {!$Label.Person_s_authorized_to_speak_with_Customer_Service_on_behalf_of_your_account_T}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="five columns">
+                                    <apex:inputText value="{!fleetEnrollment.Billing_Contact_First_Name__c}" id="primaryFleetContactFirstName" styleClass="styledInput fleetContactFirstName disabledInput" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.First_Name__c.label}" disabled="true"/>
+                                </div>
+                                <div class="five columns">
+                                    <apex:inputText value="{!fleetEnrollment.Billing_Contact_Last_Name__c}" id="primaryFleetContactLastName" styleClass="styledInput fleetContactLastName disabledInput" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.Last_Name__c.label}" disabled="true"/>
+                                </div>
+                                <div class="one column">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="five columns">
+                                    <apex:inputText value="{!fleetEnrollment.Billing_Email__c}" id="primaryFleetContactEmail" styleClass="styledInput fleetContactEmail disabledInput" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.Email__c.label}" disabled="true"/>
+                                </div>
+                                <div class="five columns">
+                                    <apex:inputText value="{!fleetEnrollment.Billing_Phone__c}" id="primaryFleetContactPhone" styleClass="phone styledInput fleetContactPhone disabledInput" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.Phone__c.label}" disabled="true"/>
+                                </div>
+                                <div class="one column">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix fleetContactSeperator" style="display: {!IF(sizeOfFleetContacts == 0, 'none', 'block')};">
+
+                            </div>
+                            <div class="fleetContactsContainer">
+                                <apex:variable value="0" var="num"/>
+                                <apex:repeat var="fleetContact" value="{!fleetContacts}">
+                                    <div html-data-row-id="{!VALUE(num)}" class="fleetContact">
+                                        <div class="twelve columns clearfix">
+                                            <div class="five columns">
+                                                <apex:inputText value="{!fleetContact.FirstName}" id="fleetContactFirstName" styleClass="styledInput fleetContactFirstName" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.First_Name__c.label}"/>
+                                            </div>
+                                            <div class="five columns">
+                                                <apex:inputText value="{!fleetContact.LastName}" id="fleetContactLastName" styleClass="styledInput fleetContactLastName" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.Last_Name__c.label}"/>
+                                            </div>
+                                            <div class="one column">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="twelve columns clearfix">
+                                            <div class="five columns">
+                                                <apex:inputText value="{!fleetContact.Email}" styleClass="styledInput fleetContactEmail" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.Email__c.label}" />
+                                            </div>
+                                            <div class="five columns">
+                                                <apex:inputText value="{!fleetContact.Phone}" styleClass="phone styledInput fleetContactPhone" html-placeholder="{!$ObjectType.FleetEnrollment_Contact__c.fields.Phone__c.label}" />
+                                            </div>
+                                            <div class="one column">
+                                                <apex:commandLink action="{!removeContact}" type="img/png" rerender="fleetContact">
+                                                    <apex:image style="width: 33px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" />
+                                                    <apex:param name="selectedFleetContact" value="{!fleetContact.Id}" assignTo="{!selectedFleetContact}" />
+                                                </apex:commandLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="twelve columns clearfix fleetContactSeperator">
+
+                                    </div>
+                                    <apex:variable var="num" value="{!VALUE(num) + 1}"/>
+                                </apex:repeat>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:commandLink styleClass="addButton" style="width: 140px;" oncomplete="pageRerenderFunctions()" value="{!$Label.Add_Additional_Contact}" action="{!addNewContact}" type="img/png" rerender="fleetContact"></apex:commandLink>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="stepOneButtons" rendered="{!currentStep == 1}">
+                            <div class="twelve columns">
+                                <input type="button" class="fullNextButton" value="{!$Label.Fleet_Next}" onClick="validate({!currentStep});" />
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <!-- STEP ONE - END -->
+
+                        <!-- STEP TWO - START -->
+                        <apex:outputPanel id="numberOfVehicles" rendered="{!currentStep == 2}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Number_of_Vehicles}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                            <apex:inputText maxlength="2" value="{!fleetEnrollment.Number_Of_Vehicles__c}" id="numberOfCards" styleClass="styledInput required" html-placeholder="{!$Label.How_many_vehicles_will_you_be_fueling_with_your_cards}" />
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="cardEmbossing" rendered="{!currentStep == 2}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Company_Name}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                {!$Label.Your_company_name_will_be_printed_on_your_cards_Please_enter_your_company_name}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:inputText maxlength="20" id="companyName" onkeyup="updateCompanyName(this.value)" value="{!fleetEnrollment.Embossing_Company_Name__c}" styleClass="styledInput required noSpecialChars" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Company_Name__c.label}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                {!$Label.Fleet_Print_Second_Line}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:selectlist id="selectedEmbossingOption" onchange="updateSecondLine(this.value)" styleClass="styledSelect required" value="{!fleetEnrollment.Embossing_Second_Line__c}" size="1">
+                                    <apex:selectOptions value="{!embossingOptions}" />
+                                </apex:selectlist>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
+                                {!$Label.Fleet_Optional_Third_Line}
+                            </div>
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
+                                <apex:inputText maxlength="20" id="embossingOption3" onkeyup="updateThirdLine(this.value)" value="{!fleetEnrollment.Embossing_Third_Line__c}" styleClass="styledInput noSpecialChars" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Embossing_Third_Line__c.label}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="reportingOptions" rendered="{!currentStep == 2}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Reporting_Options}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <p>{!$Label.Check_off_any_optional_fields_below_which_you_would_lie_to_see_on_your_reports}</p>
+                            <div class="twelve columns clearfix">
+                                <div class="twelve columns clearfix">
+                                    <label class="checkbox-label">
+                                        <apex:inputCheckbox styleClass="checkbox"
+                                                            value="{!fleetEnrollment.Reporting_Dept__c}"/> {!$Label.Department}
+                                        <apex:image style="width: 16px;"
+                                                    title="{!$ObjectType.FleetEnrollment__c.fields.Reporting_Dept__c.InlineHelpText}"
+                                                    styleClass="helpIcon"
+                                                    value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"/>
+                                    </label>
+                                </div>
+                                <div class="twelve columns clearfix"
+                                     style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'display: none;', '')}">
+                                    <label class="checkbox-label">
+                                        <apex:inputCheckbox styleClass="checkbox"
+                                                            value="{!fleetEnrollment.Report_VehicleDesc__c}"/> {!$Label.Vehicle_Description}
+                                        <apex:image style="width: 16px;"
+                                                    title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleDesc__c.InlineHelpText}"
+                                                    styleClass="helpIcon"
+                                                    value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"/>
+                                    </label>
+                                </div>
+                                <div class="twelve columns clearfix"
+                                     style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'display: none;', '')}">
+                                    <label class="checkbox-label">
+                                        <apex:inputCheckbox styleClass="checkbox"
+                                                            value="{!fleetEnrollment.Report_LicensePlt__c}"/> {!$Label.License_Plate}
+                                        <apex:image style="width: 16px;"
+                                                    title="{!$ObjectType.FleetEnrollment__c.fields.Report_LicensePlt__c.InlineHelpText}"
+                                                    styleClass="helpIcon"
+                                                    value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"/>
+                                    </label>
+                                </div>
+                                <div class="twelve columns clearfix"
+                                     style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'display: none;', '')}">
+                                    <label class="checkbox-label">
+                                        <apex:inputCheckbox styleClass="checkbox"
+                                                            value="{!fleetEnrollment.Report_VehicleId__c}"/> {!$Label.Company_Vehicle_ID}
+                                        <apex:image style="width: 16px;"
+                                                    title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleId__c.InlineHelpText}"
+                                                    styleClass="helpIcon"
+                                                    value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="stepTwoButtons" rendered="{!currentStep == 2}">
+                            <div class="twelve columns clearfix">
+                                <div class="six columns">
+                                    <input type="button" class="partialPreviousButton" value="{!$Label.Fleet_Previous}" onClick="validate(-1);" />
+                                </div>
+                                <div class="six columns">
+                                    <input type="button" class="partialNextButton" value="{!$Label.Fleet_Next}" onClick="validate({!currentStep});" />
+                                </div>
+                            </div><br/>
+                        </apex:outputPanel>
+                        <!-- STEP TWO - END -->
+
+                        <!-- STEP THREE - START -->
+                        <apex:outputPanel id="vehicleDetails" rendered="{!currentStep == 3}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Vehicle_Reporting_Details}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                {!$Label.Please_provide_your_vehicle_information_and_select_your_card_controls_This_info}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="fleetVehicles">
+                                <apex:variable value="0" var="num"/>
+                                <apex:repeat var="fleetVehicle" value="{!fleetVehicles}">
+                                    <apex:variable value="0" var="fields"/>
+                                    <div class="twelve columns clearfix fleetVehicle">
+                                        <div class="eleven columns clearfix">
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'block', 'none')};">
+                                                <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.companyVehicleId}" styleClass="styledVehicleInput companyVehicleId {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}"/>
+                                                  <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.InlineHelpText}"
+                                                    value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'block', 'none')};">
+                                                <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.vehicleDepartment}" styleClass="styledVehicleInput vehicleDepartment" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.label}"/>
+                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.InlineHelpText}"
+                                                        value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'block', 'none')};">
+                                                <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.vehicleDescription}" styleClass="styledVehicleInput vehicleDescription {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}"/>
+                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.InlineHelpText}"
+                                                        value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'block', 'none')};">
+                                                <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.licensePlate}" styleClass="styledVehicleInput licensePlate {!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}"/>
+                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.InlineHelpText}"
+                                                    value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: inline-block;">
+                                                <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updateCardControlOptions(this);" styleClass="styledVehicleSelect selectedCardControlOption required" value="{!fleetVehicle.selectedCardControlOption}" size="1">
+                                                    <apex:selectOptions value="{!cardControlOptions}" />
+                                                </apex:selectlist>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$Label.Fleet_Custom_Cards}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
+                                                    rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'block', 'none')};">
+                                                <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updatePromptOptions(this);" styleClass="selectedPromptOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'required', '')}" value="{!fleetVehicle.selectedPromptOption}" size="1">
+                                                    <apex:selectOptions value="{!promptOptions}" />
+                                                </apex:selectlist>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$Label.Fleet_Driver_ID_Odometer_Reading}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
+                                                    rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                            <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'block', 'none')};">
+                                                <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" styleClass="selectedAcceptanceOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'required', '')}" onChange="updateAcceptanceOptions(this);" value="{!fleetVehicle.selectedAcceptanceOption}" size="1">
+                                                    <apex:selectOptions value="{!acceptanceOptions}" />
+                                                </apex:selectlist>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Messaging coming from Nicole" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
+                                                    rendered="{!VALUE(num) == 0}" />
+                                            </div>
+                                        </div>
+                                        <div class="one column clearfix">
+                                            <apex:outputPanel rendered="{!fleetVehicle.isNotRemovable == false}">
+                                                <apex:commandLink oncomplete="pageRerenderFunctions(false)" action="{!removeFleetVehicle}" rerender="vehicleDetails" type="image/png">
+                                                    <apex:image style="width: 33px; margin-top: 4px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" />
+                                                    <apex:param name="selectedFleetVehicle" value="{!fleetVehicle.Id}" assignTo="{!selectedFleetVehicle}" />
+                                                </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <apex:variable var="num" value="{!VALUE(num) + 1}"/>
+                                    </div>
+                                    <div class="twelve columns mobileFleetVehicleSpacer">
+
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:outputPanel rendered="{!VALUE(num) < 30}">
+                                    <apex:commandLink style="width: 140px;" styleClass="addButton" oncomplete="pageRerenderFunctions(false)" action="{!addNewFleetVehicle}"
+                                        rerender="vehicleDetails" type="image/png" value="{!$Label.Add_Another_Vehicle}">
+                                    </apex:commandLink>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!VALUE(num) >= 30 && creditLineAmount != null}">
+                                    <p>{!$Label.Fleet_Added_30_Vehicles}</p>
+                                    <p>{!program.Implementation_Team_Number__c} {!$Label.Fleet_MonFri}</p>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!VALUE(num) >= 30 && creditLineAmount == null}">
+                                    <p>{!$Label.Fleet_Allows_30_Vehicles}</p>
+                                </apex:outputPanel>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <apex:outputPanel id="stepThreeButtons" rendered="{!currentStep == 3}">
+                            <div class="twelve columns clearfix">
+                                <div class="six columns">
+                                    <input type="button" class="partialPreviousButton" value="{!$Label.Fleet_Previous}" onClick="validate(-1);" />
+                                </div>
+                                <div class="six columns">
+                                    <input type="button" class="partialNextButton" value="{!$Label.Fleet_Next}" onClick="validate({!currentStep});" />
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <!-- STEP THREE - END -->
+
+                        <!-- STEP FOUR - START -->
+                        <apex:outputPanel id="driverDetails" rendered="{!currentStep == 4}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                {!$Label.Fleet_Driver_Details}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:outputPanel rendered="{!configuredDIDLength == '4 OR 6'}">
+                                    {!$Label.Fleet_4_digit_or_6_digit_driver_ID}
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!configuredDIDLength != '4 OR 6'}">
+                                    {!$Label.Fleet_Configured_Digit_Driver_ID_1} {!configuredDIDLength}{!$Label.Fleet_Configured_Digit_Driver_ID_2}
+                                </apex:outputPanel>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:actionFunction action="{!changeDriverIdOption}" name="setDriverIdOption" rerender="fleetDrivers,driverIdOptionMessage,didLength">
+                                    <apex:param name="selectedDriverIdOption" value="" assignTo="{!selectedDriverIdOption}"/>
+                                </apex:actionFunction>
+                                <apex:outputPanel rendered="{!selectedDriverIdOption == 'custom'}">
+                                    <div class="radioSelectDiv">
+                                        <label class="radioSelectLabel">
+                                            <input class="radioSelect" type="radio" id="driverIdOption"
+                                                   name="driverIdOption" onchange="setDriverIdOption(this.value)"
+                                                   value="custom"
+                                                   checked="checked"/> {!$Label.Customer_Generated_Driver_ID}</label>
+                                    </div>
+                                    <div class="radioSelectDiv">
+                                        <label class="radioSelectLabel">
+                                            <input class="radioSelect" type="radio" id="driverIdOption"
+                                                   name="driverIdOption" onchange="setDriverIdOption(this.value)"
+                                                   value="random"/> {!$Label.Computer_Generated_Driver_ID}</label>
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!selectedDriverIdOption == 'random'}">
+                                    <div class="radioSelectDiv">
+                                        <label class="radioSelectLabel">
+                                            <input class="radioSelect" type="radio" id="driverIdOption"
+                                                   name="driverIdOption" onchange="setDriverIdOption(this.value)"
+                                                   value="custom"/> {!$Label.Customer_Generated_Driver_ID}</label>
+                                    </div>
+                                    <div class="radioSelectDiv">
+                                        <label class="radioSelectLabel">
+                                            <input class="radioSelect" type="radio" id="driverIdOption"
+                                                   name="driverIdOption" onchange="setDriverIdOption(this.value)"
+                                                   value="random"
+                                                   checked="checked"/> {!$Label.Computer_Generated_Driver_ID}</label>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                            <apex:outputPanel id="didLength">
+                                <apex:outputPanel id="didLengthScript">
+                                    <script>
+                                        didLength = "{!selectedDIDLength}";
+
+                                        function validateDriverId(value) {
+                                            if(value !== "") {
+                                                if("{!selectedDIDLength}" === "6") {
+                                                    var characterReg = /^(?!123456|000000|999999)\d{6}$/;
+                                                }
+                                                else {
+                                                    var characterReg = /^(?!1234|0000|9999)\d{4}$/;
+                                                }
+
+                                                if(!characterReg.test(value)) {
+                                                    return false;
+                                                }
+                                            }
+                                            return true;
+                                        }
+                                    </script>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!IF(AND(selectedDriverIdOption == 'custom', configuredDIDLength == '4 OR 6'), true, false)}">
+                                    <apex:actionFunction action="{!setDIDLength}" name="setDriverIDLength" rerender="fleetDrivers,didLengthScript">
+                                        <apex:param name="selectedDIDLength" value="" assignTo="{!selectedDIDLength}"/>
+                                    </apex:actionFunction>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <b>{!$Label.Fleet_Driver_ID_Length}</b>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="radioSelectDiv">
+                                            <label class="radioSelectLabel">
+                                                <input class="radioSelect" type="radio" id="driverIdLength"
+                                                       name="driverIdLength" onchange="setDriverIDLength(this.value)"
+                                                       value="4" checked="checked"/> {!$Label.Fleet_4_digit}</label>
+                                        </div>
+                                        <div class="radioSelectDiv">
+                                            <label class="radioSelectLabel">
+                                                <input class="radioSelect" type="radio" id="driverIdLength"
+                                                       name="driverIdLength" onchange="setDriverIDLength(this.value)"
+                                                       value="6"/> {!$Label.Fleet_6_digit}</label>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <apex:outputPanel id="driverIdOptionMessage">
+                                <apex:outputPanel rendered="{!selectedDriverIdOption == 'custom'}">
+                                    <div class="twelve columns clearfix">
+                                        <b>{!$Label.For_security_purposed_please_avoid_common_number_combinations_and_no_leading_ze}</b>
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!selectedDriverIdOption == 'random'}">
+                                    <div class="twelve columns clearfix">
+                                        <b>{!$Label.Fleet_Driver_IDs_will_be_e_mailed}</b>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="twelve columns clearfix">
+                                    <apex:outputPanel id="fleetDrivers">
+                                        <apex:repeat var="fleetDriver" value="{!fleetDrivers}">
+                                            <div class="fleetDriverItem">
+                                                <div class="twelve columns clearfix">
+                                                    <div class="four columns">
+                                                        <apex:inputText maxlength="50" value="{!fleetDriver.firstName}" styleClass="styledVehicleInput firstName" html-placeholder="{!$ObjectType.FleetEnrollment_Driver__c.fields.First_Name__c.label}"/>
+                                                    </div>
+                                                    <div class="four columns">
+                                                        <apex:inputText maxlength="50" value="{!fleetDriver.lastName}" styleClass="styledVehicleInput lastName" html-placeholder="{!$ObjectType.FleetEnrollment_Driver__c.fields.Last_Name__c.label}"/>
+                                                    </div>
+                                                    <div class="three columns" style="display: {!IF(selectedDriverIdOption == 'custom', 'block', 'none')};">
+                                                        <apex:inputText value="{!fleetDriver.driverId}" styleClass="driverIdField styledVehicleInput {!IF(selectedDriverIdOption == 'custom', 'driverIdRequired', '')} driverId" html-placeholder="{!$ObjectType.FleetEnrollment_Driver__c.fields.Driver_ID__c.label}" maxlength="{!selectedDIDLength}"/>
+                                                    </div>
+                                                    <div class="one column">
+                                                        <apex:outputPanel rendered="{!fleetDriver.isNotRemovable != true}">
+                                                            <apex:commandLink action="{!removeFleetDriver}" rerender="driverDetails" type="image/png">
+                                                                <apex:image style="width: 33px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" />
+                                                                <apex:param name="selectedFleetDriver" value="{!fleetDriver.Id}" assignTo="{!selectedFleetDriver}" />
+                                                            </apex:commandLink>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                </div><br/>
+                                            </div>
+                                        </apex:repeat>
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:commandLink styleClass="addButton" style="width: 140px;" oncomplete="pageRerenderFunctions()" action="{!addNewFleetDriver}"
+                                    rerender="driverDetails" type="image/png" value="{!$Label.Add_another_driver}">
+                                </apex:commandLink>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="stepFourButtons" rendered="{!currentStep == 4}">
+                            <div class="twelve columns clearfix">
+                                <div class="six columns">
+                                <input type="button" class="partialPreviousButton" value="{!$Label.Fleet_Previous}" onClick="validate(-1);" />
+                                </div>
+                                <div class="six columns">
+                                <input type="button" class="partialNextButton" value="{!$Label.Fleet_Next}" onClick="validate({!currentStep});" />
+                                </div>
+                            </div><br/>
+                        </apex:outputPanel>
+                        <!-- STEP FOUR - END -->
+
+                        <!-- STEP FIVE - START -->
+                        <apex:outputPanel id="stepFiveButtonsTop" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix">
+                              <apex:commandButton onclick="disableSubmit();" styleClass="fullNextButton" action="{!submitApplication}" value="{!$Label.Fleet_Submit}"
+                               rerender="subHeader,subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                              />
+                            </div>
+                            <div class="twelve columns clearfix">
+                                {!$Label.Click_submit_to_send_your_information}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="confirmBillingContact" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                <div class="six columns">
+                                    {!$Label.Fleet_Billing_Information}
+                                </div>
+                                <div class="six columns" style="text-align: right;">
+                                    <span class="confirmEdit">
+                                      <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                                       value="{!$Label.Fleet_Edit}">
+                                        <apex:param value="1" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:outputText value="{!fleetEnrollment.Billing_Contact_First_Name__c}" rendered="{!fleetEnrollment.Billing_Contact_First_Name__c != null}"
+                                />
+                                <apex:outputText value="{!fleetEnrollment.Billing_Contact_Last_Name__c}" rendered="{!fleetEnrollment.Billing_Contact_Last_Name__c != null}"
+                                />
+                                <br/>
+                                <apex:outputText value="{!fleetEnrollment.Billing_Phone__c}" rendered="{!fleetEnrollment.Billing_Phone__c != null}"/><br/>
+                                <apex:outputText value="{!fleetEnrollment.Billing_Email__c}" rendered="{!fleetEnrollment.Billing_Email__c != null}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:outputText value="{!fleetEnrollment.Billing_Address_Line_1__c}" rendered="{!fleetEnrollment.Billing_Address_Line_1__c != null}"/><br/>
+                                <apex:outputText value="{!fleetEnrollment.Billing_Address_Line_2__c}<br/>" rendered="{!fleetEnrollment.Billing_Address_Line_2__c != null}"/>
+                                <apex:outputText value="{!fleetEnrollment.Billing_City__c}," rendered="{!fleetEnrollment.Billing_City__c != null}"/>&nbsp;
+                                <apex:outputText value="{!fleetEnrollment.Billing_State__c}" rendered="{!fleetEnrollment.Billing_State__c != null}"/>&nbsp;
+                                <apex:outputText value="{!fleetEnrollment.Billing_Postal_Code__c}" rendered="{!fleetEnrollment.Billing_Postal_Code__c != null}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <b>{!$Label.Fleet_Card_Shipping_Address}</b>
+                                <br/>
+                                <apex:outputText value="{!$Label.Fleet_Attention} {!fleetEnrollment.Card_Shipping_Attention__c}" rendered="{!fleetEnrollment.Card_Shipping_Attention__c != null}"
+                                />
+                                <br/>
+                                <apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_1__c}"
+                                                 rendered="{!fleetEnrollment.Card_Shipping_Address_Line_1__c != null}"/>
+                                <br/>
+                                <apex:outputText escape="false"
+                                                 value="{!fleetEnrollment.Card_Shipping_Address_Line_2__c}<br/>"
+                                                 rendered="{!fleetEnrollment.Card_Shipping_Address_Line_2__c != null}"/>
+                                <apex:outputText value="{!fleetEnrollment.Card_Shipping_City__c},"
+                                                 rendered="{!fleetEnrollment.Card_Shipping_City__c != null}"/>&nbsp;
+                                <apex:outputText value="{!fleetEnrollment.Card_Shipping_State__c}"
+                                                 rendered="{!fleetEnrollment.Card_Shipping_State__c != null}"/>&nbsp;
+                                <apex:outputText value="{!fleetEnrollment.Card_Shipping_Postal_Code__c}"
+                                                 rendered="{!fleetEnrollment.Card_Shipping_Postal_Code__c != null}"/>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="confirmFleetContact" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                <div class="six columns">
+                                    {!$Label.Fleet_Authorized_Contacts}
+                                </div>
+                                <div class="six columns" style="text-align: right;">
+                                    <span class="confirmEdit">
+                                      <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}"
+                                                        rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                                                        value="{!$Label.Fleet_Edit}">
+                                                        <apex:param value="1" assignTo="{!currentStep}"/>
+                                      </apex:commandLink></span>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:repeat var="fleetContact" value="{!fleetContacts}">
+                                    <div class="four columns">
+                                        <apex:outputText value="{!fleetContact.FirstName}"></apex:outputText>
+                                        <apex:outputText value="{!fleetContact.LastName}"></apex:outputText>
+                                        <br/>
+                                        <apex:outputText value="{!fleetContact.Email}"></apex:outputText><br/>
+                                        <apex:outputText value="{!fleetContact.Phone}"></apex:outputText><br/><br/>
+                                    </div>
+                                </apex:repeat>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="confirmCardEmbossing" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                <div class="six columns">
+                                    {!$Label.Fleet_Card_Printing}
+                                </div>
+                                <div class="six columns" style="text-align: right;">
+                                    <span class="confirmEdit">
+                                      <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}"
+                                                        rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                                                        value="{!$Label.Fleet_Edit}">
+                                                        <apex:param value="2" assignTo="{!currentStep}"/>
+                                      </apex:commandLink></span>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <b>{!$Label.Fleet_Number_of_Vehicles}: </b> {!fleetEnrollment.Number_Of_Vehicles__c}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <b>{!$Label.Fleet_Company_Name}: </b> {!fleetEnrollment.Embossing_Company_Name__c}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                  <b>{!$Label.Optional_printing}: </b> {!IF(selectedEmbossingOption == '#', $Label.Fleet_None, embossingOptionsMap[fleetEnrollment.Embossing_Second_Line__c])}
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
+                                <b>{!$Label.Fleet_Optional_Third_Line}: </b> {!IF(fleetEnrollment.Embossing_Third_Line__c == null, $Label.Fleet_None, fleetEnrollment.Embossing_Third_Line__c)}
+                            </div>
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="confirmReportingOptions" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                <div class="six columns">
+                                    {!$Label.Fleet_Reporting_Options}
+                                </div>
+                                <div class="six columns" style="text-align: right;">
+                                    <span class="confirmEdit">
+                                      <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}"
+                                                        rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                                                        value="{!$Label.Fleet_Edit}">
+                                                        <apex:param value="2" assignTo="{!currentStep}"/>
+                                      </apex:commandLink></span>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                              <b>{!$Label.Fleet_Additional_Fields}</b>
+                              <br/>
+                              <br/>
+                            </div>
+                            <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == true}">
+                                <div class="twelve columns clearfix" style="padding-left: 10px;">
+                                     {!$Label.Department}
+                                </div><br/>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleDesc__c == true}">
+                                <div class="twelve columns clearfix" style="padding-left: 10px;">
+                                    {!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}
+                                </div><br/>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!fleetEnrollment.Report_LicensePlt__c == true}">
+                                <div class="twelve columns clearfix" style="padding-left: 10px;">
+                                    {!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}
+                                </div><br/>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleId__c == true}">
+                                <div class="twelve columns clearfix" style="padding-left: 10px;">
+                                    {!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == false && fleetEnrollment.Report_VehicleDesc__c == false && fleetEnrollment.Report_LicensePlt__c == false && fleetEnrollment.Report_VehicleId__c == false}">
+                                <div class="twelve columns clearfix" style="padding-left: 10px;">
+                                    {!$Label.Fleet_None}
+                                </div>
+                            </apex:outputPanel>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="confirmVehicleDetails" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                <div class="seven columns">
+                                    {!$Label.Fleet_Vehicle_Reporting_Details}
+                                </div>
+                                <div class="five columns" style="text-align: right;">
+                    <span class="confirmEdit">
+                      <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                       value="{!$Label.Fleet_Edit}">
+                                        <apex:param value="3" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <table class="vehicleTable" id="vehicleTable">
+                                    <thead>
+                                      <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}</th>
+                                      <th>{!$Label.Card_Controls}</th>
+                                      <th style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!$Label.Department}</th>
+                                      <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}</th>
+                                      <th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}</th>
+                                      <th style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Prompt_Option}</th>
+                                      <th style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Acceptance}</th>
+                                    </thead>
+                                    <tbody>
+                                    <apex:repeat value="{!fleetVehicles}" var="fleetVehicle">
+                                        <tr>
+                                            <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!fleetVehicle.companyVehicleId}</td>
+                                            <td>
+                                                <apex:outputText value="{!cardControlOptionDisplayMap[fleetVehicle.selectedCardControlOption]}"/>
+                                            </td>
+                                            <td style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!fleetVehicle.vehicleDepartment}</td>
+                                            <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!fleetVehicle.vehicleDescription}</td>
+                                            <td style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!fleetVehicle.licensePlate}</td>
+                                            <td style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!fleetVehicle.selectedPromptOption}</td>
+                                            <td style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!fleetVehicle.selectedAcceptanceOption}</td>
+                                        </tr>
+                                    </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="confirmDriverDetails" rendered="{!currentStep == 5 && program.Fleet_Enrollment_Disable_Driver_Page__c == false}">
+                            <div class="twelve columns clearfix sectionHeader">
+                                <div class="six columns">
+                                     {!$Label.Fleet_Driver_Details}
+                                </div>
+                                <div class="six columns" style="text-align: right;">
+                                    <span class="confirmEdit">
+                                      <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                                       value="{!$Label.Fleet_Edit}">
+                                          <apex:param value="4" assignTo="{!currentStep}" />
+                                      </apex:commandLink></span>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <table class="driverTable" id="driverTable">
+                                    <thead>
+                                      <th>{!$Label.First_Name}</th>
+                                      <th>{!$Label.Last_Name}</th>
+                                      <th style="display: {!IF(selectedDriverIdOption == 'random', 'none', 'table-cell')}">{!$Label.Fleet_Driver_ID}</th>
+                                    </thead>
+                                    <tbody>
+                                    <apex:repeat value="{!fleetDrivers}" var="fleetDriver">
+                                        <tr style="display: {!IF(fleetDriver.firstName == '', 'none', 'table-row')}">
+                                            <td>{!fleetDriver.firstName}</td>
+                                            <td>{!fleetDriver.lastName}</td>
+                                            <td>{!fleetDriver.driverId}</td>
+                                        </tr>
+                                    </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="stepFiveButtonsBottom" rendered="{!currentStep == 5}">
+                            <div class="twelve columns clearfix">
+                              <apex:commandButton onclick="disableSubmit();" styleClass="fullNextButton" action="{!submitApplication}" value="{!$Label.Fleet_Submit}"
+                               rerender="subHeader,subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
+                              />
+                            </div>
+                        </apex:outputPanel>
+                        <!-- STEP FIVE - END -->
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+</apex:page>

@@ -1,0 +1,28 @@
+<!-- This VF page is used to auto populate field HLA Level from related Account -->
+<apex:page standardController="Risk_Flag__c" extensions="EMAP_RiskFlag_Controller">
+     <apex:sectionHeader title="Risk Flag"  subtitle="{!Risk_Flag__c.name}"/>
+      <apex:form >
+      <apex:pageblock title="Risk Flag Edit"  mode="edit">
+      <apex:pageblockSection title="Information" collapsible="false" columns="1">
+          <apex:inputField value="{!riskFlag.Risk_Flag_Value__c}"/>
+          <apex:inputField value="{!riskFlag.Status__c}"/>
+          <apex:inputField value="{!riskFlag.Closed_By_User__c}"/>
+          <apex:inputField value="{!riskFlag.Closed_Date__c}"/>
+          <apex:inputField value="{!riskFlag.Account__c}"/>
+          <apex:inputField value="{!riskFlag.Auto_Generated_Flag__c}"/>
+          <apex:outputField value="{!riskFlag.HLA_Level__c}"/>
+          <apex:outputField value="{!riskFlag.Schedule_Date__c}"/>
+          <apex:outputField value="{!riskFlag.OwnerId}"/>
+          <apex:outputField value="{!riskFlag.RFStatusinitiatedDate__c}"/>
+          <apex:outputField value="{!riskFlag.isRFFlagChanged__c}"/>
+          <apex:outputField value="{!riskFlag.RFStatusChangedDate__c}"/>
+          <apex:outputField value="{!riskFlag.RFStatusClosedDate__c}"/>
+      </apex:pageblockSection>
+      <apex:pageblockButtons >
+          <apex:commandButton id="saveBtn" value="Save" action="{!save}"/>
+          <apex:commandButton id="saveNewBtn" value="Save & New" action="{!SaveAndNew}"/>
+          <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+      </apex:pageblockButtons>
+    </apex:pageblock>
+  </apex:form>
+</apex:page>

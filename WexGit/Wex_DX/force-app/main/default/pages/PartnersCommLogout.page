@@ -1,0 +1,24 @@
+<apex:page sidebar="false" showChat="false" showHeader="false" standardStylesheets="false" cache="false" expires="0" controller="PartnersCommLogoutController"> 		
+	<apex:iframe src="/{!CommunityName}/secur/logout.jsp" height="0" width="0" />
+	
+	<script> 
+		function redirectToLogin()
+		{	 
+			window.parent.location = "/{!CommunityName}/PartnersCommLogin";	 
+		}
+		 		 
+		setTimeout("redirectToLogin()", 0);	 
+	</script>
+	
+	<apex:composition template="{!$Site.Template}">
+		<apex:define name="body">         
+			<center>
+				<div style="padding: 100px;">			
+					<c:PartnersContentContainer width="305" height="206">	
+						Logout Content Here											
+					</c:PartnersContentContainer>
+				</div>	
+			</center>		
+		</apex:define>
+	</apex:composition>			
+</apex:page>

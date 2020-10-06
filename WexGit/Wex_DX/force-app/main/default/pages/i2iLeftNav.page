@@ -1,0 +1,52 @@
+<apex:page sidebar="false" showheader="false" showchat="false" cache="false" expires="0" controller="i2iSearchController" action="{!initLeftNavPage}">
+	<style>
+		.theform{background-color:#CFEEF8;}
+	</style>
+		
+	<apex:form id="leftnavform" style="background-color:#CFEEF8;height:250px;"><!--  or transparent or inherit-->
+		
+			<apex:commandbutton action="{!findByPhone}" value="Find by Phone or ID#" style="background:{!phonebuttoncolor};" rerender="leftnavform"/><br/>
+			<apex:commandbutton action="{!findbyBusiness}" value="Find by Business" style="background:{!companybuttoncolor};" rerender="leftnavform"/><br/>
+			<!-- <apex:outputtext value="Product/Program"/>&nbsp;<img width="12" height="12" src="/img/alohaSkin/help_orange.png" title="Represents card programs inside sales reps sell."/>
+			<br/>
+			<!-- &nbsp;&nbsp;&nbsp;
+			<c:RequiredInputComponent >-->
+			<!-- <apex:selectList multiselect="false" size="1" value="{!programSelected}" onkeydown="if (event.keyCode == 13) frmsubmit()">
+				<apex:selectoptions value="{!programValues}"/>
+			</apex:selectList> -->
+			<!-- </c:RequiredInputComponent>-->
+			<br/>
+			<apex:outputpanel rendered="{!searchbyphone}">
+				<apex:outputtext value="Phone #"/>&nbsp;<img width="12" height="12" src="/img/alohaSkin/help_orange.png" title="9-digit phone #"/>
+				<br/>
+				<apex:inputtext value="{!phoneNumber}" onkeydown="if (event.keyCode == 13) frmsubmit()"/><br/>
+				<apex:outputtext value="Promotional Code"/>&nbsp;<img width="12" height="12" src="/img/alohaSkin/help_orange.png" title="i2i Id.  Promotional code printed on DM."/>
+				<br/>
+				<apex:inputtext value="{!promocode}" onkeydown="if (event.keyCode == 13) frmsubmit()"/><br/>
+				<apex:outputText value="Email"/>&nbsp;
+				<br/>
+				<apex:inputText value="{!email}" onkeydown="if (event.keyCode == 13) frmsubmit()"/><br/>
+			</apex:outputpanel>
+			<apex:outputpanel rendered="{!NOT(searchbyphone)}">
+				<apex:outputtext value="Company"/>&nbsp;<img width="12" height="12" src="/img/alohaSkin/help_orange.png" title="Wildcard Company name."/>
+				<br/>
+				<apex:inputtext value="{!company}" onkeydown="if (event.keyCode == 13) frmsubmit()"/><br/>
+				<apex:outputtext value="Zip Code"/>&nbsp;<img width="12" height="12" src="/img/alohaSkin/help_orange.png" title="5 or 9 digit. Capable of handling Candian alpha numeric."/>
+				<br/>
+				<apex:inputtext value="{!zipcode}" onkeydown="if (event.keyCode == 13) frmsubmit()"/><br/>
+			</apex:outputpanel>
+			<apex:commandbutton action="{!searchi2iLeftNav}" value="Search" rerender="leftnavform" status="actionSubmitted"/> &nbsp;
+			<apex:actionFunction name="frmsubmit" action="{!searchi2iLeftNav}" rerender="leftnavform" status="actionSubmitted"/>
+			<apex:actionStatus id="actionSubmitted" stopText="" startText="">
+	    		<apex:facet name="start">
+	        		<apex:image value="/img/loading.gif"  style="height:18px;width:20px"/>                         
+	        	</apex:facet>
+	    	</apex:actionStatus>
+			<!-- Something else to try, can we make top window the VF page then do redirect?-->
+			<apex:outputpanel id="redirectpanel" rendered="{!redirectParent}">
+				<script type="text/javascript">
+                    window.top.location.href = '{!parentRedirectURL}';
+            	</script>
+			</apex:outputpanel>
+	</apex:form>
+</apex:page>

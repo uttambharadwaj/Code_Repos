@@ -1,0 +1,18 @@
+<!--
+ - Created by dgilbert on 06/25/2020.
+ -->
+
+<apex:page id="InvoicePDFViewer" title="Invoice" controller="InvoicePDFViewerController" action="{!init}" showHeader="false" standardStylesheets="false" sideBar="false">
+    <style>
+        * {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    </style> 
+    <apex:outputPanel rendered="{!pdfContent != null}">
+        <embed type="application/pdf" src="data:application/pdf;base64,{!pdfContent}" style="width: 100%; height: 98vh !important; display: inline-block" />
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!pdfContent == null}">
+        {!errorMessage}
+    </apex:outputPanel>
+</apex:page>

@@ -1,0 +1,1254 @@
+<!--
+-
+- Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name.
+-                   11/Sep/2019 CJackson    NAFONBOARD-96   Added Account Short Name.
+-					16/Sep/2019 JArbegast	NAFONBOARD-92   Shipping Option Approval expansion
+-					11/Nov/2019	MFarrell	NAFONBOARD-124	Display Default/Current program template accoount
+-					18/Mar/2020 MFarrell	EAPT-1459		Added isMillennium Boolean so program template account changes from NAFONBOARD-124 only apply to Millennium Programs. 
+-
+-->
+
+<apex:page controller="FleetEnrollmentInternalController" showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" action="{!init}">
+	<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+	<head>
+
+		<meta charset="utf-8"/>
+		<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+		<title>Fleet Enrollment</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		<link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+
+		<!-- Script -->
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"/>
+		<script src="{!URLFOR($Resource.AppiphonyJS, 'appiphony-lightning-js-master/dist/jquery.aljs-all-with-moment.min.js')}"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"/>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+		<script type="text/javascript" src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" />
+
+
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+		<!-- Import the Design System style sheet -->
+		<apex:slds />
+
+		<style>
+			li.parsley-custom-error-message {
+				list-style-type: none;
+			}
+
+			.warningMessage {
+				padding: 12px;
+				border-radius: 4px;
+				color: #fff;
+				margin-bottom: 8px;
+				background: #fbb439;
+			}
+
+			.confirmMessage {
+				padding: 12px;
+				border-radius: 4px;
+				color: #fff;
+				margin-bottom: 8px;
+				background: #32af5c;
+			}
+
+			.errorMessage {
+				padding: 12px;
+				border-radius: 4px;
+				color: #fff;
+				background: #e9696e;
+			}
+
+			.parsleyErrorMessage li:not(.parsley-custom-error-message) {
+				list-style-type: none;
+				color: #e9696e;
+				padding-top: 4px;
+				margin-bottom: 4px;
+			}
+
+			.parsley-custom-error-message {
+				padding: 12px;
+				border-radius: 4px;
+				color: #fff;
+				background: #e9696e;
+				display: none;
+			}
+
+			.parsley-custom-error-message {
+				display: block;
+			}
+
+			.parsley-custom-error-message:last-child {
+				margin-bottom: 24px !important;
+			}
+
+			.infoMessage {
+				padding: 12px;
+				border-radius: 4px;
+				color: #fff;
+				margin-bottom: 8px;
+				background: #3c97dd;
+			}
+
+			.warningMessage h4,
+			.confirmMessage h4,
+			.errorMessage h4,
+			.infoMessage h4 {
+				font-weight: bold;
+				padding-right: 4px;
+			}
+
+			.attachment {
+				border: 1px solid #bbc0c4;
+				background: #fff;
+				border-radius: 5px;
+				padding: 4px 8px 4px 8px;
+				font-size: 14px;
+				color: #707d95;
+				vertical-align: middle;
+				text-align: center;
+				float: left;
+				margin: 0 20px 10px 20px;
+				cursor: pointer;
+			}
+
+			.attachment:first-child {
+				margin: 0 20px 10px 0;
+			}
+
+			.attachment:hover {
+				cursor: pointer;
+				background: #f77e75;
+				color: #f1f1f1;
+			}
+
+			.attachButton {
+				border: 1px solid #bbc0c4;
+				background: #fff;
+				border-radius: 5px;
+				padding: 4px;
+				width: 140px;
+				font-size: 14px;
+				color: #707d95;
+				vertical-align: middle;
+				text-align: center;
+				cursor: pointer;
+				margin-top: -10px;
+				margin-bottom: 20px;
+			}
+
+			.attachButton:hover {
+				background: #e6e6e6;
+			}
+
+			.clearfix:after {
+				visibility: hidden;
+				display: block;
+				font-size: 0;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+
+			.clearfix {
+				display: inline-block;
+			}
+
+			/* start commented backslash hack \*/
+			* html .clearfix {
+				height: 1%;
+			}
+
+			.clearfix {
+				display: block;
+			}
+
+			/* close commented backslash hack */
+
+			.fieldErrorMessage.filled {
+				margin-top: 8px;
+				display: block;
+				color: #a94442;
+				font-size: 12px;
+				padding-left: 3px;
+			}
+
+			.errored-input {
+				color: #b21522 !important;
+			}
+
+			select.errored-input, input.errored-input, textarea.errored-input {
+				border: 1px solid #b21522 !important;
+				background: #fce1e0 !important;
+				color: #b21522 !important;
+				font-family: inherit !important;
+			}
+
+			.disabled-button {
+				background: #e9e9e9 !important;
+				pointer-events: none;
+				color: #ccc !important;
+				border: 1px solid #ccc !important;
+			}
+
+			a, a:hover, a:visited {
+				text-decoration: none !important;
+				outline: none !important;
+			}
+
+			.slds-spinner_container {
+				display: none;
+				min-height: 100vh !important;
+			}
+
+			.slds-box {
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+			}
+
+			.slds-card {
+				background: #f1f1f1 !important;
+			}
+
+			.slds-item_label {
+				font-weight: bold;
+			}
+
+			.slds-item_detail {
+				margin-bottom: 10px !important;
+			}
+		</style>
+
+		<script>
+			var $j = jQuery.noConflict();
+
+			var assetsLoc = '{!URLFOR($Asset.SLDS)}';
+			var bypassShippingApproval=false; //nafonboard-92
+
+			$j.aljsInit({
+				assetsLocation: assetsLoc,
+				scoped: true
+			});
+
+			$j(document).ready(function () {
+
+				overridePageMessages();
+
+				$j('[data-aljs="tabs"]').tabs();
+
+				$j('[data-aljs="popover"]').popover();
+
+				pageLoadShipCheck();
+
+				pageRerenderFunctions();
+
+			});
+
+			function pageLoadShipCheck(){
+				bypassShippingApproval = $j('[id$=bypassHidden]').val(); //nafonboard-92
+				const billTo = $j('[id$=billToHidden]').val();
+				const shipping = $j('[id$=shippingHidden]').val();
+				if(!!bypassShippingApproval){
+					if (billTo == 'Partner' || billTo == 'Wex') billWex = true;
+					if (shipping != null && shipping != 'Standard') shipOvernight = true;
+					if(billWex && shipOvernight) $j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+				}
+
+			}
+
+			function pageRerenderFunctions() {
+				$j('[data-aljs="popover"]').popover();
+
+				$j('.phone').mask('999-999-9999');
+				$j('.ssn').mask('000-00-0000');
+				$j('.date').mask('00/00/0000');
+				$j('.postal').mask('00000-0000');
+				$j('.postalCanada').mask('A0A-0A0');
+				$j('.money').mask('A', {
+					translation: {
+						'A': {pattern: /[0-9\\.,]+/, recursive: true}
+					}
+				});
+
+				$j('.datePicker').datepicker();
+
+
+				if(country.toUpperCase() == "CA") {
+					$j(".postal").each(function() {
+						$j(this).addClass('postalCanada').removeClass('postal');
+					});
+				}
+			}
+
+			function triggerFileBrowse(targetFileElement, targetFileNameElement, visibleFileNameElement) {
+				$j('[id$=' + targetFileElement + ']').click();
+
+				$j('[id$=' + targetFileElement + ']').on('change', function() {
+					var filename = $j(this).val();
+					filename = filename.replace(/.*[\/\\]/, '');
+					$j('[id$=' + targetFileNameElement + ']').val(filename);
+					$j('[id$=' + visibleFileNameElement + ']').val(filename);
+				});
+			}
+
+			function overridePageMessages() {
+				var textureEffect = '';
+
+				$j('.warningM3').addClass('warningMessage');
+				$j('.confirmM3').addClass('confirmMessage');
+				$j('.errorM3').addClass('errorMessage');
+				$j('.infoM3').addClass('infoMessage');
+
+				$j('.errorM3').removeClass('errorM3');
+				$j('.confirmM3').removeClass('confirmM3');
+				$j('.infoM3').removeClass('infoM3');
+				$j('.warningM3').removeClass('warningM3');
+			}
+
+			var shipOvernight=false;
+			function setShipOption(shipOptionElement){
+				const myShipOption = $j(shipOptionElement).val();
+				console.log(myShipOption);
+				if(myShipOption != 'Standard') shipOvernight = true; //nafonboard-92
+				else shipOvernight = false;
+				if(shipOvernight && billWex && !!bypassShippingApproval) $j('[id$=attachOvernightCardsApproval]').css('display', 'block'); //nafonboard-92
+				else $j('[id$=attachOvernightCardsApproval]').css('display', 'none');
+			}
+
+			var billWex=false;
+			function toggleSection(triggeringElement, elementId) {
+				if ($j(triggeringElement).prop('checked')) {
+					if(elementId == 'attachOvernightCardsApproval'){
+						billWex = true;
+						if(shipOvernight && !!bypassShippingApproval) //nafonboard-92
+							$j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+					} else {
+						billWex = false;
+						$j('[id$=' + elementId + ']').css('display', 'block');
+					}
+				} else {
+					if(elementId == 'attachOvernightCardsApproval') billWex=false;
+
+					$j('[id$=' + elementId + ']').css('display', 'none');
+
+					$j('[id$=' + elementId + ']').find('input[type=text], input[type=file], :checkbox, textarea, select').each(function () {
+						if ($j(this).is('select')) {
+							$j(this).val('');
+						}
+						else {
+							$j(this).val('');
+							$j(this).prop('checked', false);
+
+							if ($j(this).data('controls-section') != null) {
+								$j('[id$=' + $j(this).data('controls-section') + ']').css('display', 'none');
+								$j('[id$=fleetImplementationForm]').parsley().reset();
+							}
+						}
+					});
+				}
+
+				pageRerenderFunctions();
+			}
+
+			function toggleCheckboxGroup(triggeringElement, groupName) {
+				if ($j(triggeringElement).prop('checked')) {
+					$j('[id$=fleetImplementationForm]').find('[data-checkbox-group=' + groupName + ']').each(function () {
+						if (!this.isEqualNode(triggeringElement)) {
+							console.log('hit');
+							$j(this).prop('checked', false);
+
+							if ($j(this).data('controls-section') != null) {
+								$j('[id$=' + $j(this).data('controls-section') + ']').css('display', 'none');
+							}
+						}
+					});
+				}
+
+				pageRerenderFunctions();
+			}
+
+			function markRequired(triggeringElement, fieldName) {
+				if($j(triggeringElement).prop('checked')) {
+					$j('[id$=' + fieldName + ']').prop('required', true);
+				}
+				else {
+					$j('[id$=' + fieldName + ']').prop('required', false);
+				}
+			}
+
+			function calculateDateRequirementForTFS(date) {
+
+				var momentCurrent = moment();
+				var momentFuture = moment(date).format('MM/DD/YYYY');
+
+				console.log(Math.abs(moment.duration(momentCurrent.diff(momentFuture)).asDays()));
+
+				if(Math.abs(moment.duration(momentCurrent.diff(momentFuture)).asDays()) > 90) {
+					$j('[id$=feeWaiversTFSFileName]').prop('required', true);
+				}
+				else {
+					$j('[id$=feeWaiversTFSFileName]').prop('required', false);
+				}
+
+			}
+
+			function validateOnSubmit() {
+
+				$j('[id$=fleetImplementationForm]').parsley({excluded: ':hidden', errorsWrapper: '<div class="parsleyErrorMessage"></div>'}).validate();
+
+				if($j('[id$=fleetImplementationForm]').parsley().isValid()) {
+					$j('[id$=submitButton]').addClass('disabled-button');
+					$j('[id$=spinner]').css('display', 'block').height($j(document).height());
+					submitForm();
+				}
+			}
+
+			window.country = '{!Opportunity.Billing_Country__c}';
+
+		</script>
+
+	</head>
+	<body onload="moveTo(0,0); resizeTo(600,725);">
+	<apex:form id="fleetImplementationForm" enctype="multipart/form-data">
+		<!--add some inputhidden stuff right here for initialpageload-->
+		<apex:inputHidden value="{!billTo}" id="billToHidden"/>
+		<apex:inputHidden value="{!shipping}" id="shippingHidden"/>
+		<apex:inputHidden value="{!bypassApproval}" id="bypassHidden"/>
+
+		<apex:actionRegion id="area51" renderRegionOnly="false">
+			<apex:actionFunction name="submitForm" action="{!submitForm}" />
+		</apex:actionRegion>
+		<apex:outputPanel id="bocaToProspect">
+			<div id="content" class="slds-scope slds-is-relative">
+				<!-- HEADER -->
+				<div class="slds-page-header">
+					<div class="slds-grid">
+						<div class="slds-col slds-has-flexi-truncate">
+							<div class="slds-media slds-no-space slds-grow">
+								<div class="slds-media__figure">
+									<svg aria-hidden="true" class="slds-icon slds-icon-standard-account">
+										<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#work_order')}"></use>
+									</svg>
+								</div>
+
+								<div class="slds-media__body">
+									<p class="slds-text-title--caps slds-line-height--reset">Fleet Enrollment</p>
+									<h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="SLDS Inc.">
+										<apex:outputText value="Implementation Information" escape="false"/>
+									</h1>
+								</div>
+							</div>
+						</div>
+						<div class="slds-col slds-no-flex slds-grid slds-align-top">
+							&nbsp;
+						</div>
+					</div>
+				</div>
+				<br/>
+				<apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
+				<apex:outputPanel rendered="{!hasError == false}">
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media--center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+										<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>
+									</svg>
+								</div>
+								<div class="slds-media__body slds-truncate">
+									<a href="javascript:void(0);" class="slds-text-link--reset">
+										<span class="slds-text-heading--small">Fleet Information</span>
+									</a>
+								</div>
+							</header>
+						</div>
+						<!-- CARD BODY = TABLE -->
+						<div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+							<div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+								<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+									<div class="slds-media__body">
+										<dl class="slds-list_horizontal slds-wrap" style="width: 100%;">
+											<dt class="slds-item_label slds-text-color_weak" title="First Label">Platform:</dt>
+											<dd class="slds-item_detail" title="Description for first label">{!program.WEX_Platform__c}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" title="Second Label">Program:</dt>
+											<dd class="slds-item_detail" title="Description for second label">{!program.Name}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" title="Second Label">Primary Campaign:</dt>
+											<dd class="slds-item_detail" title="Description for second label">{!opportunity.Campaign.Name}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" title="Second Label">Default Billing Cycle:</dt>
+											<dd class="slds-item_detail" title="Description for second label">{!program.Fleet_Default_Billing_Cycle__c}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" style="display: {!IF(isMillennium, 'block', 'none')}" title="Default Template Account">Default Template Account:</dt>
+											<dd class="slds-item_detail" style="display: {!IF(isMillennium, 'block', 'none')}" title="Default Template Account Value">{!defaultPTA.Name}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" style="display: {!IF(isMillennium, 'block', 'none')}" title="Current Template Account">Current Template Account:</dt>
+											<dd class="slds-item_detail" style="display: {!IF(isMillennium, 'block', 'none')}" title="Current Template Account Value">{!currentPTAName}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" style="display: {!IF(availableUsageTypesSize == 2, 'block', 'none')};" title="Second Label">Usage Type:</dt>
+											<dd class="slds-item_detail" style="display: {!IF(availableUsageTypesSize == 2, 'block', 'none')};" title="Description for second label">{!program.Fleet_Available_Usage_Types__c}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" style="display: {!IF(availableCardTypesSize == 2, 'block', 'none')};" title="Second Label">Card Type:</dt>
+											<dd class="slds-item_detail" style="display: {!IF(availableCardTypesSize == 2, 'block', 'none')};" title="Description for second label">{!program.Fleet_Available_Card_Types__c}</dd>
+
+											<!-- NAFONBOARD-44 -->
+											<dt class="slds-item_label slds-text-color_weak" style="display: {!IF(embossingNameBlank == true, 'block', 'none')};" title="Second Label">Embossing Company Name:</dt>
+											<dd class="slds-item_detail" style="display: {!IF(embossingNameBlank == true, 'block', 'none')};" title="Description for second label">
+												<apex:inputField styleClass="slds-input" id="embossingName" value="{!fleetEnrollment.Embossing_Company_Name__c}" html-maxlength="30"/>
+												<br />
+												<p style="font-size:10px">Limit 30 characters</p>
+											</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" title="Second Label">Contact:</dt>
+											<dd class="slds-item_detail" title="Description for second label">
+												{!opportunity.Billing_Contact_First_Name__c} {!opportunity.Billing_Contact_Last_Name__c}
+												<br/>
+												{!opportunity.Billing_Street__c}<br/>
+												{!opportunity.Billing_City__c}, {!opportunity.Billing_State__c}
+												<br/>
+												{!opportunity.Billing_Country__c}
+												<br/>
+												{!opportunity.Billing_Zip_Postal_Code__c}<br/>
+											</dd>
+
+											<!-- NAFONBOARD-96 -->
+											<dt class="slds-item_label slds-text-color_weak"  title="Second Label">Account Short Name:</dt>
+											<dd class="slds-item_detail" title="Description for second label">
+												<apex:inputField styleClass="slds-input" id="accountShortName" value="{!myFormAccount.Account_Short_Name__c}" html-maxlength="30"/>
+												<p style="font-size:10px">Limit 30 characters</p>
+											</dd>
+										</dl>
+										<br/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media--center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+										<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>
+									</svg>
+								</div>
+								<div class="slds-media__body slds-truncate">
+									<a href="javascript:void(0);" class="slds-text-link--reset">
+										<span class="slds-text-heading--small">Fleet Data Sheets</span>
+									</a>
+								</div>
+							</header>
+						</div>
+						<!-- CARD BODY = TABLE -->
+						<div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+							<div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+								<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+									<div class="slds-media__body">
+										<p>Below is a list of Fleet Data Sheet templates that are available for download.</p><br/>
+										<apex:repeat var="fleetDataSheet" value="{!fleetDataSheets}">
+											<p><li><a href="/servlet/servlet.FileDownload?file={!fleetDataSheet.Id}">{!fleetDataSheet.Name}</a></li></p>
+										</apex:repeat><br/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media--center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+										<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>
+									</svg>
+								</div>
+								<div class="slds-media__body slds-truncate">
+									<a href="javascript:void(0);" class="slds-text-link--reset">
+										<span class="slds-text-heading--small">Fleet Implementation</span>
+									</a>
+								</div>
+							</header>
+						</div>
+						<!-- CARD BODY = TABLE -->
+						<div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+							<div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+								<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+									<div class="slds-media__body">
+										<div style="display: {!IF(availableCardTypesSize != 2, 'block', 'none')};">
+											<div class="slds-form-element__control">
+												<label class="slds-form-element__label" for="text-input-id-1">Card Type</label>
+												<div class="slds-form-element__control">
+													<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardType}" styleClass="slds-input" multiSelect="false" size="1">
+														<apex:selectOptions value="{!availableCardTypes}"/>
+													</apex:selectList>
+												</div>
+											</div>
+											<br/>
+										</div>
+										<div style="display: {!IF(availableUsageTypesSize != 2, 'block', 'none')};">
+											<div class="slds-form-element__control">
+												<label class="slds-form-element__label" for="text-input-id-1">Usage Type</label>
+												<div class="slds-form-element__control">
+													<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedUsageType}" styleClass="slds-input" multiSelect="false" size="1">
+														<apex:selectOptions value="{!availableUsageTypes}"/>
+													</apex:selectList>
+												</div>
+											</div>
+											<br/>
+										</div>
+										<!-- BEGIN CHANGES 7/17/2019 CDJ-->
+										<div style="display: {!IF(availableFindersFeesSize != 1, 'block', 'none')};">
+											<div class="slds-form-element__control">
+												<label class="slds-form-element__label" for="text-input-id-1">Finders Fee</label>
+												<div class="slds-form-element__control">
+													<apex:selectList value="{!fleetEnrollmentInformation.selectedFindersFee}" styleClass="slds-input" multiSelect="false" size="1">
+														<apex:selectOptions value="{!availableFindersFees}"/>
+													</apex:selectList>
+												</div>
+											</div>
+											<br/>
+										</div>
+										<!-- END CHANGES 7/17/2019 CDJ-->
+										<div class="slds-form-element__control" style="display: {!IF(isMillennium, 'block', 'none')}">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox id="applyDefaultPTA" styleclass="slds-input" value="{!fleetEnrollmentInformation.applyDefaultPTA}"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Apply Default Template Account</span>
+												</label>
+											</span>
+										</div>
+										<br />
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox id="overnightCards" styleclass="slds-input" value="{!fleetEnrollmentInformation.expeditedCardShipping}" onChange="javascript:toggleSection(this, 'expeditedCardShippingBox');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Expedited Card Shipping</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div class="slds-box" style="display: {!IF(fleetEnrollmentInformation.expeditedCardShipping == true, 'block', 'none')}; margin-bottom: 20px !important;" id="expeditedCardShippingBox">
+											<fieldset class="slds-form-element">
+												<div class="slds-form-element__control">
+													<div class="slds-form-element__group">
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Shipping Option</label>
+																<div class="slds-form-element__control">
+																	<apex:selectList id="myselectlistid" html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1" onChange="javascript:setShipOption(this)">
+																		<apex:selectOptions value="{!availableCardShippingOptions}"/>
+																	</apex:selectList>
+																</div>
+															</div>
+														</div><br/>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillCustomer" value="{!fleetEnrollmentInformation.overnightCardsBillCustomer}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');toggleSection(this, 'customerCarrierNumberBox');" html-data-controls-section="customerCarrierNumberBox" />
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Bill Customer</span>
+																	</label>
+																</span>
+															</div>
+														</div><br/>
+														<div class="slds-form-element__row" id="customerCarrierNumberBox" style="display: none;">
+															<div class="slds-form-element slds-size_1-of-2">
+																<label class="slds-form-element__label" for="text-input-id-1">Customer Carrier Number</label>
+																<apex:inputText styleClass="slds-input" value="{!fleetEnrollmentInformation.customerCarrierNumber}"/>
+															</div><br/>
+														</div>
+														<div class="slds-form-element__row" style="display: {!IF(program.Allow_Partner_Billed_Overnight_Cards__c == true, 'block', 'none')};">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<!--nafonboard-92 add togglesection-->
+																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards'); toggleSection(this, 'attachOvernightCardsApproval');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Bill Partner</span>
+																	</label><br/>
+																</span>
+															</div>
+														</div>
+														<div class="slds-form-element__row" style="display: {!IF(program.Allow_Partner_Billed_Overnight_Cards__c == true, 'none', 'block')};">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox id="overnightCardsBillWEX" value="{!fleetEnrollmentInformation.overnightCardsBillWEX}" html-data-checkbox-group="overnightCards" html-data-controls-section="attachOvernightCardsApproval" onChange="toggleCheckboxGroup(this, 'overnightCards'); toggleSection(this, 'attachOvernightCardsApproval');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Bill WEX</span>
+																	</label><br/>
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="feeWaivers" value="{!fleetEnrollmentInformation.feeWaivers}" html-data-controls-section="attachTailoredFeeSchedule" onChange="toggleSection(this, 'feeWaiversBox'); toggleSection(this, 'attachTailoredFeeSchedule');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Fee Waivers</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div class="slds-box" style="display: none; margin-bottom: 20px;" id="feeWaiversBox">
+											<fieldset class="slds-form-element slds-form_compound">
+												<div class="slds-form-element__control">
+													<div class="slds-form-element__group">
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox styleClass="slds-input" id="feeWaiversSetupFee" value="{!fleetEnrollmentInformation.feeWaiversSetupFee}" html-data-controls-section="feeWaiversSetupFeeAmount" onChange="toggleSection(this, 'feeWaiversSetupFeeAmount');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Setup Fee</span>
+																	</label>
+																</span>
+															</div>
+														</div>
+														<div class="slds-form-element__row" id="feeWaiversSetupFeeAmount" style="display: none;">
+															<div class="slds-form-element slds-size_1-of-2">
+																<apex:inputText html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]*\.[0-9]{2}$" styleClass="slds-input money" html-placeholder="$" value="{!fleetEnrollmentInformation.feeWaiversSetupFeeAmount}"/>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox styleClass="slds-input" id="feeWaiversCardReplacementDuration" value="{!fleetEnrollmentInformation.feeWaiversCardReplacementDuration}" html-data-controls-section="feeWaiversCardReplacementDurationAmount" onChange="toggleSection(this, 'feeWaiversCardReplacementDurationAmount');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Card Replacement Duration</span>
+																	</label>
+																</span>
+															</div>
+														</div>
+														<div class="slds-form-element__row" id="feeWaiversCardReplacementDurationAmount" style="display: none;">
+															<div class="slds-form-element slds-size_1-of-2">
+																<apex:inputText html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]*\.[0-9]{2}$" styleClass="slds-input money" html-placeholder="$" value="{!fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount}"/>
+															</div>
+															<div class="slds-form-element__row">
+																<div class="slds-form-element slds-size_1-of-2">
+																	<label class="slds-form-element__label" for="text-input-id-1">Waive End Date</label>
+																	<div class="slds-form-element__control">
+																		<apex:inputText html-data-parsley-required="true" styleClass="slds-input date datePicker" value="{!fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate}" onChange="calculateDateRequirementForTFS(this.value);"/>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox styleClass="slds-input" id="feeWaiversMonthlyCardCharges" value="{!fleetEnrollmentInformation.feeWaiversMonthlyCardCharges}" html-data-controls-section="feeWaiversMonthlyCardChargesAmount" onChange="toggleSection(this, 'feeWaiversMonthlyCardChargesAmount'); markRequired(this, 'feeWaiversTFSFileName');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Monthly Card Charges</span>
+																	</label>
+																</span>
+															</div>
+														</div>
+														<div class="slds-form-element__row" id="feeWaiversMonthlyCardChargesAmount" style="display: none;">
+															<div class="slds-form-element slds-size_1-of-2">
+																<apex:inputText html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]*\.[0-9]{2}$" styleClass="slds-input money" html-placeholder="$" value="{!fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount}"/>
+															</div>
+															<div class="slds-form-element__row">
+																<div class="slds-form-element slds-size_1-of-2">
+																	<label class="slds-form-element__label" for="text-input-id-1">Waive End Date</label>
+																	<div class="slds-form-element__control">
+																		<apex:inputText html-data-parsley-required="true" styleClass="slds-input date datePicker" value="{!fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate}" onChange="calculateDateRequirementForTFS(this.value);"/>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row" style="display: {!IF(OR(program.Allow_Monthly_Accounting_Fee_Waiver__c == true, opportunity.Campaign.Allow_Monthly_Accounting_Fee_Waiver__c == true), 'block', 'none')};">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox styleClass="slds-input" id="feeWaiversMonthlyAccountingFee" value="{!fleetEnrollmentInformation.feeWaiversMonthlyAccountingFee}" html-data-controls-section="feeWaiversMonthlyAccountingFeeAmount" onChange="toggleSection(this, 'feeWaiversMonthlyAccountingFeeAmount');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Monthly Accounting Fee</span>
+																	</label>
+																</span>
+															</div>
+														</div>
+														<div id="feeWaiversMonthlyAccountingFeeAmount" style="display: none;">
+															<div class="slds-form-element__row">
+																<div class="slds-form-element slds-size_1-of-2">
+																	<apex:inputText html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]*\.[0-9]{2}$" styleClass="slds-input money" html-placeholder="$" value="{!fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount}"/>
+																</div>
+															</div>
+														</div>
+														<!--
+                                                        <div class="slds-form-element__row">
+                                                            <div class="slds-form-element slds-size_1-of-1">
+                                                                <span class="slds-checkbox">
+                                                                    <label class="slds-checkbox__label">
+                                                                        <apex:inputCheckbox styleClass="slds-input" id="feeWaiversPaperFee" value="{!fleetEnrollmentInformation.feeWaiversPaperFee}" html-data-controls-section="feeWaiversPaperFeeAmount" onChange="toggleSection(this, 'feeWaiversPaperFeeAmount');"/>
+                                                                        <span class="slds-checkbox_faux"></span>
+                                                                        <span class="slds-form-element__label">Paper Fee</span>
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-form-element__row" id="feeWaiversPaperFeeAmount" style="display: none;">
+                                                            <div class="slds-form-element slds-size_1-of-2">
+                                                                <apex:inputText html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]*\.[0-9]{2}$" styleClass="slds-input money" html-placeholder="$" value="{!fleetEnrollmentInformation.feeWaiversPaperFeeAmount}"/>
+                                                            </div>
+                                                        </div>
+                                                        -->
+														<div class="slds-form-element__row" style="display: {!IF(program.Allow_Monthly_Activity_Fee_Waiver__c == true, 'block', 'none')};">
+															<div class="slds-form-element slds-size_1-of-1">
+																<span class="slds-checkbox">
+																	<label class="slds-checkbox__label">
+																		<apex:inputCheckbox styleClass="slds-input" id="monthlyActivityFee" value="{!fleetEnrollmentInformation.feeWaiversMonthlyActivityFee}" html-data-controls-section="monthlyActivityFeeAmount" onChange="toggleSection(this, 'monthlyActivityFeeAmount');"/>
+																		<span class="slds-checkbox_faux"></span>
+																		<span class="slds-form-element__label">Monthly Activity Fee</span>
+																	</label>
+																</span>
+															</div>
+														</div>
+														<div class="slds-form-element__row" id="monthlyActivityFeeAmount" style="display: none;">
+															<div class="slds-form-element slds-size_1-of-2">
+																<apex:inputText html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]*\.[0-9]{2}$" styleClass="slds-input money" html-placeholder="$" value="{!fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount}"/>
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										<div style="display: {!IF(availableBillingCyclesSize != 2, 'block', 'none')};">
+											<div class="slds-form-element__control">
+												<span class="slds-checkbox">
+													<label class="slds-checkbox__label">
+														<apex:inputCheckbox styleClass="slds-input" id="billingCycleDifferentThanProgramDefault" value="{!fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault}" html-data-controls-section="billingCycleDifferentBox" onChange="toggleSection(this, 'billingCycleDifferentBox');"/>
+														<span class="slds-checkbox_faux"></span>
+														<span class="slds-form-element__label">Billing Cycle Different Than Program Default</span>
+													</label>
+												</span>
+											</div>
+											<br/>
+											<div class="slds-box" style="display: none; margin-bottom: 20px;" id="billingCycleDifferentBox">
+												<fieldset class="slds-form-element slds-form_compound">
+													<div class="slds-form-element__control">
+														<div class="slds-form-element__group">
+															<div class="slds-form-element__row">
+																<div class="slds-form-element slds-size_1-of-1">
+																	<label class="slds-form-element__label" for="text-input-id-1">Billing Cycle</label>
+																	<div class="slds-form-element__control">
+																		<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedBillingCycle}" styleClass="slds-input" multiSelect="false" size="1">
+																			<apex:selectOptions value="{!availableBillingCycles}"/>
+																		</apex:selectList>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</fieldset>
+											</div>
+										</div>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="hierarchyNeeded" value="{!fleetEnrollmentInformation.hierarchyNeeded}"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Hierarchy Needed</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="directDebit" value="{!fleetEnrollmentInformation.directDebit}" html-data-controls-section="attachDirectDebit" onChange="toggleSection(this, 'attachDirectDebit');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Direct Debit</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div style="display: {!IF(program.Station_Card_Available__c, 'block', 'none')};">
+											<div class="slds-form-element__control">
+												<span class="slds-checkbox">
+													<label class="slds-checkbox__label">
+														<apex:inputCheckbox styleClass="slds-input" id="stationCard" value="{!fleetEnrollmentInformation.stationCard}"/>
+														<span class="slds-checkbox_faux"></span>
+														<span class="slds-form-element__label">Station Card</span>
+													</label>
+												</span>
+											</div>
+											<br/>
+										</div>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="association" value="{!fleetEnrollmentInformation.association}" html-data-controls-section="associationBox" onChange="toggleSection(this, 'associationBox');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Association</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div class="slds-box" style="display: none; margin-bottom: 20px;" id="associationBox">
+											<fieldset class="slds-form-element slds-form_compound">
+												<div class="slds-form-element__control">
+													<div class="slds-form-element__group">
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Association</label>
+																<div class="slds-form-element__control">
+																	<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedAssociation}" styleClass="slds-input" multiSelect="false" size="1">
+																		<apex:selectOptions value="{!availableAssociations}"/>
+																	</apex:selectList>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="alternateCardShippingAddress" value="{!fleetEnrollmentInformation.alternateCardShippingAddress}" html-data-controls-section="alternateCardShippingAddressBox" onChange="toggleSection(this, 'alternateCardShippingAddressBox');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Alternate Card Shipping Address</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div class="slds-box" style="display: none; margin-bottom: 20px;" id="alternateCardShippingAddressBox">
+											<fieldset class="slds-form-element slds-form_compound">
+												<div class="slds-form-element__control">
+													<div class="slds-form-element__group">
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Attention</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentInformation.cardShippingAttention}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Address Line 1</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentInformation.cardShippingAddressLine1}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Address Line 2</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText styleClass="slds-input" value="{!fleetEnrollmentInformation.cardShippingAddressLine2}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">City</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentInformation.cardShippingCity}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">State / Province</label>
+																<div class="slds-form-element__control">
+																	<apex:selectList html-data-parsley-required="true" styleClass="slds-input" multiSelect="false" size="1" value="{!fleetEnrollmentInformation.cardShippingState}">
+																		<apex:selectOptions value="{!availableStateOptions}" />
+																	</apex:selectList>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Postal Code</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input postal" value="{!fleetEnrollmentInformation.cardShippingPostalCode}"/>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="specialShippingAddress" value="{!fleetEnrollmentInformation.specialShippingAddress}" html-data-controls-section="specialShippingAddressBox" onChange="toggleSection(this, 'specialShippingAddressBox');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Special Card Shipping Address</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+										<div class="slds-box" style="display: none; margin-bottom: 20px;" id="specialShippingAddressBox">
+											<fieldset class="slds-form-element slds-form_compound">
+												<div class="slds-form-element__control">
+													<div class="slds-form-element__group">
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Attention</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentInformation.specialShippingAttention}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Address Line 1</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentInformation.specialShippingAddressLine1}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Address Line 2</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText styleClass="slds-input" value="{!fleetEnrollmentInformation.specialShippingAddressLine2}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">City</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentInformation.specialShippingCity}"/>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">State / Province</label>
+																<div class="slds-form-element__control">
+																	<apex:selectList html-data-parsley-required="true" styleClass="slds-input" multiSelect="false" size="1" value="{!fleetEnrollmentInformation.specialShippingState}">
+																		<apex:selectOptions value="{!availableStateOptions}" />
+																	</apex:selectList>
+																</div>
+															</div>
+														</div>
+														<div class="slds-form-element__row">
+															<div class="slds-form-element slds-size_1-of-1">
+																<label class="slds-form-element__label" for="text-input-id-1">Postal Code</label>
+																<div class="slds-form-element__control">
+																	<apex:inputText html-data-parsley-required="true" styleClass="slds-input postal" value="{!fleetEnrollmentInformation.specialShippingPostalCode}"/>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox styleClass="slds-input" id="additionalContacts" value="{!fleetEnrollmentInformation.additionalContacts}" html-data-controls-section="additionalContactsBox" onChange="toggleSection(this, 'additionalContactsBox');"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Additional Contacts</span>
+												</label>
+											</span>
+										</div>
+										<br/>
+
+										<div style="display: none; margin-bottom: 20px;" id="additionalContactsBox">
+											<apex:outputPanel id="additionalContactsSection">
+												<apex:actionRegion >
+													<apex:repeat value="{!fleetEnrollmentInformation.fleetEnrollmentContacts}" var="fleetEnrollmentContact">
+														<div class="slds-box" style="margin-bottom: 20px;">
+															<fieldset class="slds-form-element slds-form_compound">
+																<div class="slds-form-element__control">
+																	<div class="slds-form-element__group">
+																		<div class="slds-form-element__row">
+																			<div class="slds-form-element slds-size_1-of-2">
+																				<label class="slds-form-element__label" for="text-input-id-1">First Name</label>
+																				<div class="slds-form-element__control">
+																					<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentContact.firstName}"/>
+																				</div>
+																			</div>
+																			<div class="slds-form-element slds-size_1-of-2">
+																				<label class="slds-form-element__label" for="text-input-id-1">Last Name</label>
+																				<div class="slds-form-element__control">
+																					<apex:inputText html-data-parsley-required="true" styleClass="slds-input" value="{!fleetEnrollmentContact.lastName}"/>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="slds-form-element__row">
+																			<div class="slds-form-element slds-size_1-of-2">
+																				<label class="slds-form-element__label" for="text-input-id-1">Email</label>
+																				<div class="slds-form-element__control">
+																					<apex:inputText html-data-parsley-required="true" html-data-parsley-type="email" styleClass="slds-input" value="{!fleetEnrollmentContact.emailAddress}"/>
+																				</div>
+																			</div>
+																			<div class="slds-form-element slds-size_1-of-2">
+																				<label class="slds-form-element__label" for="text-input-id-1">Phone</label>
+																				<div class="slds-form-element__control">
+																					<apex:inputText html-data-parsley-required="true" styleClass="slds-input phone" value="{!fleetEnrollmentContact.phone}"/>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="slds-form-element__row">
+																			<div class="slds-form-element slds-size_1-of-1">
+																				<label class="slds-form-element__label" for="text-input-id-1">Contact Role</label>
+																				<div class="slds-form-element__control">
+																					<apex:selectList html-data-parsley-required="true" multiSelect="false" size="1" styleClass="slds-input" value="{!fleetEnrollmentContact.role}">
+																						<apex:selectOptions value="{!availableContactRoles}" />
+																					</apex:selectList>
+																				</div>
+																			</div>
+																		</div><br/>
+																		<div class="slds-form-element__row" style="display: {!IF(additionalContactsSize == 1, 'none', 'block')};">
+																			<div class="slds-form-element slds-size_1-of-1">
+																				<div class="slds-form-element__control">
+																					<apex:commandLink styleClass="slds-button slds-button_destructive" oncomplete="pageRerenderFunctions()" value="Remove Contact" action="{!removeContact}" rerender="additionalContactsSection">
+																						<apex:param name="selectedContact" value="{!fleetEnrollmentContact.myIndex}" assignTo="{!selectedContact}" />
+																					</apex:commandLink>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</fieldset>
+														</div>
+													</apex:repeat>
+													<apex:commandLink styleClass="slds-button slds-button_brand" oncomplete="pageRerenderFunctions()" value="Add Contact" action="{!addNewContact}" rerender="additionalContactsSection"></apex:commandLink>
+												</apex:actionRegion>
+											</apex:outputPanel>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media--center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+										<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>
+									</svg>
+								</div>
+								<div class="slds-media__body slds-truncate">
+									<a href="javascript:void(0);" class="slds-text-link--reset">
+										<span class="slds-text-heading--small">Attachments</span>
+									</a>
+								</div>
+							</header>
+						</div>
+						<!-- CARD BODY = TABLE -->
+						<div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+							<div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+								<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+									<div class="slds-media__body">
+										<div class="errorMessageBlock attachmentsErrorSection"></div>
+										<div class="slds-form-element__group">
+											<div class="slds-form-element__row" style="margin-bottom: 10px;">
+												<div class="slds-form-element slds-size_1-of-1">
+													<div class="slds-form-element__control">
+														<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('fleetDataFileBody', 'fleetDataFileName', 'visiblefleetDataFileName');">
+															<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+																<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+															</svg>
+															Attach Fleet Implementation Datasheet
+														</button>
+														<input type="text" class="form-control styled-input" id="visiblefleetDataFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
+														<apex:inputText value="{!fleetEnrollmentInformation.fleetDataFileName}" style="visibility: hidden;" id="fleetDataFileName" />
+														<apex:inputFile value="{!fleetEnrollmentInformation.fleetDataFileBody}" filename="{!fleetEnrollmentInformation.fleetDataFileName}" id="fleetDataFileBody" style="visibility: hidden;"/>
+													</div>
+												</div>
+											</div>
+											<div class="slds-form-element__row" id="attachOvernightCardsApproval" style="display: none; margin-bottom: 10px;">
+												<apex:outputPanel rendered="{!!bypassApproval}">
+													<div class="slds-form-element slds-size_1-of-1">
+														<div class="slds-form-element__control">
+															<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('overnightCardsFileBody', 'overnightCardsFileName', 'visibleOvernightCardsFileName');">
+																<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+																	<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+																</svg>
+																Attach Manager Approval
+															</button>
+															<input type="text" class="form-control styled-input" id="visibleOvernightCardsFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
+															<!--nafonboard-92 change error message since this is no longer just overnight -->
+															<apex:inputText value="{!fleetEnrollmentInformation.overnightCardsFileName}" style="visibility: hidden;" id="overnightCardsFileName" html-data-parsley-required="true" html-data-parsley-error-message="Please attach manager approval." html-data-parsley-errors-container=".attachmentsErrorSection"/>
+															<apex:inputFile value="{!fleetEnrollmentInformation.overnightCardsFileBody}" filename="{!fleetEnrollmentInformation.overnightCardsFileName}" id="overnightCardsFileBody" style="visibility: hidden;"/>
+														</div>
+													</div>
+												</apex:outputPanel>
+											</div>
+											<div class="slds-form-element__row" id="attachTailoredFeeSchedule" style="display: none; margin-bottom: 10px;">
+												<div class="slds-form-element slds-size_1-of-1">
+													<div class="slds-form-element__control">
+														<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('feeWaiversTFSFileBody', 'feeWaiversTFSFileName', 'visiblefeeWaiversTFSFileName');">
+															<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+																<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+															</svg>
+															Attach Tailored Fee Schedule
+														</button>
+														<input type="text" class="form-control styled-input" id="visiblefeeWaiversTFSFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
+														<apex:inputText value="{!fleetEnrollmentInformation.feeWaiversTFSFileName}" style="visibility: hidden;" id="feeWaiversTFSFileName" html-data-parsley-error-message="Please attach TFS for Monthly Card Charges." html-data-parsley-errors-container=".attachmentsErrorSection" />
+														<apex:inputFile value="{!fleetEnrollmentInformation.feeWaiversTFSFileBody}" filename="{!fleetEnrollmentInformation.feeWaiversTFSFileName}" id="feeWaiversTFSFileBody" style="visibility: hidden;"/>
+													</div>
+												</div>
+											</div>
+											<div id="attachDirectDebit" style="display:none; margin-bottom:10px;">
+												<div class="slds-form-element__row">
+													<div class="slds-form-element slds-size_1-of-1">
+														<div class="slds-form-element__control">
+															<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('directDebitFileBody', 'directDebitFileName', 'visibleDirectDebitFileName');">
+																<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+																	<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+																</svg>
+																Attach Direct Debit Form
+															</button>
+															<input type="text" class="form-control styled-input" id="visibleDirectDebitFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
+															<apex:inputText value="{!fleetEnrollmentInformation.directDebitFileName}" style="visibility: hidden;" id="directDebitFileName" html-data-parsley-required="true" html-data-parsley-error-message="Please attach Direct Debit form." html-data-parsley-errors-container=".attachmentsErrorSection" />
+															<apex:inputFile value="{!fleetEnrollmentInformation.directDebitFileBody}" filename="{!fleetEnrollmentInformation.directDebitFileName}" id="directDebitFileBody" style="visibility: hidden;"/>
+														</div>
+													</div>
+												</div>
+												<div class="slds-form-element__row">
+													<div class="slds-form-element slds-size_1-of-1">
+														<div class="slds-form-element__control">
+															<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('directDebitCheckFileBody', 'directDebitCheckFileName', 'visibleDirectDebitCheckFileName');">
+																<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+																	<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+																</svg>
+																Attach Direct Debit Check Document
+															</button>
+															<input type="text" class="form-control styled-input" id="visibleDirectDebitCheckFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
+															<apex:inputText value="{!fleetEnrollmentInformation.directDebitCheckFileName}" style="visibility: hidden;" id="directDebitCheckFileName" html-data-parsley-required="true" html-data-parsley-error-message="Please attach Direct Debit Check Document." html-data-parsley-errors-container=".attachmentsErrorSection" />
+															<apex:inputFile value="{!fleetEnrollmentInformation.directDebitCheckFileBody}" filename="{!fleetEnrollmentInformation.directDebitCheckFileName}" id="directDebitCheckFileBody" style="visibility: hidden;"/>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article><br/>
+					<input id="submitButton" type="button" class="slds-button slds-button_neutral" onclick="javascript:validateOnSubmit()" value="Submit"/>
+					<div class="slds-spinner_container" id="spinner">
+						<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+							<span class="slds-assistive-text">Loading</span>
+							<div class="slds-spinner__dot-a"></div>
+							<div class="slds-spinner__dot-b"></div>
+						</div>
+					</div>
+				</apex:outputPanel>
+			</div>
+		</apex:outputPanel>
+	</apex:form>
+	</body>
+	</html>
+</apex:page>

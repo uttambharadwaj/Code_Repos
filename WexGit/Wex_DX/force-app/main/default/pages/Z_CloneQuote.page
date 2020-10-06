@@ -1,0 +1,8 @@
+<apex:page standardController="zqu__Quote__c" extensions="Z_CloneQuote" action="{!autoRun}">
+    
+    <apex:sectionHeader title="Auto-Running Apex Code"/>
+    <apex:outputPanel >
+        Internal Error: Try again or alert your system administrators.
+    </apex:outputPanel>
+
+</apex:page>

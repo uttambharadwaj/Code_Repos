@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <email>field.support@wexinc.com</email>
+    <name>Field Support Queue</name>
+    <queueMembers>
+        <users>
+            <user>field.support@wexinc.com</user>
+            <user>jody.reed@wexinc.com</user>
+            <user>johnathan.palman@wexinc.com</user>
+            <user>kim.sorensen@wexinc.com</user>
+            <user>loni.english@wexinc.com</user>
+            <user>nicole.cowallis@wexinc.com</user>
+            <user>peter.wood@wexinc.com</user>
+            <user>sandra.perkins@wexinc.com</user>
+            <user>timothy.mason@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

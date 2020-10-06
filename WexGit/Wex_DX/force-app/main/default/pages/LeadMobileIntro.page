@@ -1,0 +1,63 @@
+<apex:page showHeader="false" standardStylesheets="false" >
+<head>
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+<title>Contact Form </title>
+<apex:stylesheet value="{!URLFOR($Resource.LeadMobileJs, 'css/jquery.mobile-1.1.0.min.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery-1.6.4.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery.mobile-1.1.0.min.js')}"/>
+</head>
+<style>
+    /* jQM Overrides */    
+    .ui-bar-f { padding: 10px 0 15px; border-bottom: 1px solid #fff; background-color: #fff; }
+    .ui-bar-f, .ui-content{ text-align: center; }
+    
+    .ui-shadow {
+        -moz-box-shadow   : inset 0 0 5px #444;
+        -webkit-box-shadow: inset 0 0 5px #444;
+        box-shadow        : inner 0 0 5px #444;
+    }
+</style>
+
+<script type="text/javascript">
+;(function() {
+
+var $btn;
+
+function init() {
+    $btn = $('#btn-continue');
+    appendQueryStringParams();
+}
+
+function appendQueryStringParams() {
+    var name = decodeURI(
+        (RegExp('platform' + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+    
+    if (name)
+        $btn.attr('href', function(n,val) {
+            return val + "?platform="+name;
+        });
+}
+
+// initialize once jQuery is loaded
+$(init);
+
+})();
+</script>
+
+<body>
+<div data-role="page" id="intro" data-theme="b">
+    <div data-role="header" data-theme="f" class="ui-shadow">
+        <img src="http://www.wexinc.com/sites/default/files/logo.png" />
+    </div>
+    <div data-role="content">
+        <div class="ui-wrapper">
+            <p>The WEX Inc fuel card helps businesses control expenditures, manage policies, and reduce overall fuel  management costs by up to 15%.</p>
+            <p>Click below to learn more.</p>
+            <a id="btn-continue" data-role="button" data-ajax="false" href="/MobileLeadCapture/LeadMobileForm">Let&#39;s Get Started!</a>
+        </div>
+    </div>
+</div>
+
+ </body>
+</apex:page>

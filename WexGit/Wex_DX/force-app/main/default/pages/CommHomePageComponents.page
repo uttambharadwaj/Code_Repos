@@ -1,0 +1,38 @@
+<apex:page showHeader="false" sidebar="false">
+                
+    <style>
+        #homeContent
+        {
+            font-size: 1.1em;
+            /*width:1010px;*/
+            margin:0 auto;
+            text-align:left;
+            padding: 5px;
+            /*display: inline;*/
+
+
+        }
+
+        /*#homeContent h2
+        {
+            color: #819461;
+            font-size: 1.3em;
+        }*/
+
+    </style>
+
+    <div id="homeContent">
+        <base target="_parent" />
+        <!--<span  style="width:40%;border:1px solid black;">
+            <c:CommonReportsComponent />
+        </span>
+        <span style="width:40%;border-style:solid;border-width:1px;">
+            <c:TopOpportunityComponent />
+        </span>-->
+
+        <c:CommonReportsComponent />
+        <c:TopOpportunityComponent />
+        
+    </div>
+
+</apex:page>

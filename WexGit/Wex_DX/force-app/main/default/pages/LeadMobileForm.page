@@ -1,0 +1,260 @@
+<apex:page controller="LeadController" showHeader="false" standardStylesheets="false">
+<head>
+<meta http-Equiv="Cache-Control" Content="no-cache"/>
+<meta http-Equiv="Pragma" Content="no-cache"/>
+<meta http-Equiv="Expires" Content="0"/>
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+<apex:stylesheet value="{!URLFOR($Resource.LeadMobileJs, 'css/jquery.mobile-1.1.0.min.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery-1.6.4.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/knockout-min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery.alphanumeric.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery.maskedinput-1.3.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/utils.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.LeadMobileJs, 'js/jquery.mobile-1.1.0.min.js')}"/>
+<title>Contact Form </title>
+</head>
+<style>
+    /* jQM Overrides */
+    /**/
+    .ui-mobile [data-role="page"],
+    .ui-mobile [data-role="dialog"],
+    .ui-page { top: 40px; }
+    /**/
+    
+    .text-center { text-align: center; }
+    
+    .ui-content h2 { font-size: 1.3em; }
+    .ui-bar-f { background-color: #fff; border-bottom: 1px solid #aaa; }
+    .ui-field-contain .requiredInput { display: inline; }
+    .ui-field-contain .requiredBlock { display: none; }
+    .ui-field-contain .required { color: #990000; font-weight: bold; }
+    .ui-btn { margin: 25px 0 50px; }
+    
+    .ui-bar-f { padding: 10px 0 15px; border-bottom: 1px solid #fff; background-color: #fff; }
+    .ui-bar-f { text-align: center; }
+    
+    .ui-header.ui-shadow {
+        -moz-box-shadow   : inset 0 0 5px #444;
+        -webkit-box-shadow: inset 0 0 5px #444;
+        box-shadow        : inner 0 0 5px #444;
+    }
+    
+    .ui-page:not([data-role="dialog"]) .ui-header .ui-btn-left,
+    .ui-page:not([data-role="dialog"]) .ui-header .ui-btn-right { top: 28px; }
+    
+    .ui-page .ui-content ul { font-size: .8em; }
+</style>
+<script type="text/javascript">
+;(function() {
+
+var $lead, $form, $validation, $confirmation;
+
+function init() {
+    $lead = $('#lead');
+    $form = $lead.find('form');
+    $validation = $('#validation');
+    $confirmation = $('#confirmation');
+    
+    appendBrowserToBody();
+    
+    setFieldsCustomAttrs();
+    assignFormHandlers();
+    attachValidationRules();
+    assignDialogHandlers();
+    
+    
+    // scroll up window for dialogs on 'pageshow'
+    $confirmation.live('pageshow', function(evt, ui) {
+        setTimeout(function() { window.scrollTo(0,0); }, 0);
+    });
+    $validation.live('pageshow', function(evt, ui) {
+        setTimeout(function() { window.scrollTo(0,0); }, 0);
+    });
+}
+
+function appendBrowserToBody() {
+    var name = decodeURI(
+        (RegExp('platform' + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+    
+    if (name)
+        $('body').addClass('platform-'+name);
+}
+
+function setFieldsCustomAttrs() {
+    $('.field-phone').attr('maxlength', 10);
+    $('.field-vehicles').attr('maxlength', 6);
+    $('.field-companyName').attr('maxlength', 235);
+    $('.field-state').change(function() { $(':input').blur(); });
+}
+
+function attachValidationRules() {
+    $.WEX.expect({
+        page : "lead",
+        field: ".field-email",
+        rule : validate_email_address_field
+    });
+    
+    $.WEX.expect({
+        page : "lead",
+        field: ".field-phone",
+        rule : validate_phone_number_field
+    });
+}
+
+function validate_email_address_field(val) {
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return {
+        isValid: filter.test(val),
+        message: " must be a valid email address."
+    }
+}
+
+function validate_phone_number_field(val) {
+    return {
+        isValid: val.length > 9,
+        message: " must be a valid phone number."
+    }
+}
+
+function assignFormHandlers() {
+    // bind submit event listener
+    $form.bind('submit', doValidation);
+    $.WEX.bind('validate:hasErrors', handleValidationErrors);
+}
+
+function doValidation(evt) {
+    // validate form and submit
+    if ( $.WEX.validate() ) {
+        $.mobile.showPageLoadingMsg();
+        sendLeadData();
+    }
+    
+    // initially prevent submission until validation
+    return false;
+}
+
+function handleValidationErrors(evt, data) {
+    var settings = {changeHash:false, transition:"none"};
+    $('#validation-title').text(data.title);
+    $('#validation-message').text(data.message);
+    $('#validation-errors').html(data.errors);
+    $.mobile.changePage($validation, settings);
+}
+
+function assignDialogHandlers() {
+    function handleDialogCloseBtn(evt, ui) {
+        var $btn = $.mobile.activePage.find('a.ui-btn');
+        $btn.unbind('click').bind('click', function() {
+            $.mobile.changePage(ui.prevPage, {changeHash:false});
+        });
+    }
+    
+    $(':jqmData(role=dialog)').live('pageshow', handleDialogCloseBtn);
+}
+
+function sendLeadData() {
+    var action   = $form.attr('action'),
+        data     = $form.serialize(),
+        settings = {changeHash:false, transition:"none"};
+
+    $.post(action, data, function() {
+        $.mobile.changePage($confirmation, settings);
+        $form.get(0).reset();
+        $form.find('select').selectmenu('refresh');
+    });
+}
+
+// initialize once jQuery is loaded
+$('div').live('pageshow', function() {
+    window.scrollTo(0,0);
+});
+$(init);
+
+}());
+</script>
+<body>
+
+<div data-role="page" id="lead" data-theme="b">
+
+    <div data-role="header" data-theme="f" class="ui-shadow">
+        <img src="http://www.wexinc.com/sites/default/files/logo.png" height="50" />      
+    </div>
+    
+    <div data-role="content">
+        <apex:form id="theForm">
+
+            <h2>Contact Form </h2>
+            <div class="ui-body ui-body-d">
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text" for="field-companyName">Company Name:</label>
+                    <apex:inputField value="{!lead.company}" required="true" styleClass="field-required field-companyName"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text" for="field-firstName">First Name:</label>
+                    <apex:inputField value="{!lead.firstname}" required="true" styleClass="field-required"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text" for="field-lastName">Last Name:</label>
+                    <apex:inputField value="{!lead.lastname}" required="true" styleClass="field-required"/>
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text" for="field-email">Email Address:</label>
+                    <apex:inputField value="{!lead.email}" required="true" styleClass="field-required field-email"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text" for="field-businessPhone">Phone Number:</label>
+                    <apex:inputField value="{!lead.phone}" required="true" styleClass="field-required field-numeric field-phone"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text" for="field-vehicleExpense">State:</label>                
+                    <apex:selectList value="{!lead.state}" multiselect="false" required="true" styleClass="field-required field-state">
+                           <apex:selectOptions value="{!states}"/>
+                    </apex:selectList>
+                </div>
+                 <div data-role="fieldcontain">
+                    <label class="ui-input-text">Number of Vehicles:</label>
+                    <apex:inputField value="{!lead.Fleet_Size__c}" required="true" styleClass="field-required field-numeric field-vehicles"/>
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <label class="ui-input-text">Estimated Monthly Fuel Cost:</label>
+                    <apex:inputField value="{!lead.Fueling_Expenditure__c}" required="true" styleClass="field-required field-numeric"/>
+                </div>
+            </div>
+            
+            
+            <apex:inputHidden value="{!lead.LeadSource}" id="LeadSource" />
+            <apex:inputHidden value="{!lead.Primary_Campaign__c}" id="PrimaryCampaign" />
+         
+            <apex:commandButton action="{!save}" value="Save" />
+           
+           
+        </apex:form>
+    </div>
+</div>
+
+<div data-role="dialog" id="confirmation" data-theme="a">
+    <div data-role="header" data-theme="d">
+        <h1>Confirmation</h1>
+    </div>
+
+    <div data-role="content" data-theme="c">
+        <p>Thank you for your information, we’ll be in touch shortly.</p>
+    </div>
+</div>
+
+<div data-role="dialog" id="validation" data-theme="a">
+    <div data-role="header" data-theme="d">
+        <h1 id="validation-title"></h1>
+    </div>
+
+    <div data-role="content" data-theme="c">
+        <div class="ui-body ui-body-e" id="validation-message"></div>
+        <ul id="validation-errors"></ul>
+    </div>
+</div>
+
+ </body>
+</apex:page>

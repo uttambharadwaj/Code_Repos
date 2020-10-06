@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Branded_Sites</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>This rules shares Sunoco, Citgo, Marathon, Sheetz, RaceTrac and Valero sites with the sales reps</description>
+        <label>Branded Sites</label>
+        <sharedTo>
+            <group>Geopointe_Sites</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Brand__c</field>
+            <operation>equals</operation>
+            <value>Chevron,Texaco,COCO,Sheetz,Sunoco,Citgo,Marathon,Raceway,Valero,RaceTrac</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Speedway</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Speedway</label>
+        <sharedTo>
+            <group>Speedway_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Distributor__c</field>
+            <operation>contains</operation>
+            <value>Speedway</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>
