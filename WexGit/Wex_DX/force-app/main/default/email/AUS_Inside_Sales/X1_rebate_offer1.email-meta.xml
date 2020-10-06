@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>1% rebate offer email template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AU_WEX_Motorpass_Letterhead</letterhead>
+    <name>AU Inside Sales - 1% rebate offer</name>
+    <style>promotionRight</style>
+    <subject>You could save more with WEX Motorpass</subject>
+    <textOnly>Dear &lt;insert customer name&gt;,
+ 
+Whether you’re cruising through the city or crossing the countryside, with a WEX Motorpass fuel card your business could save time and money. With acceptance at over 90% of service stations nationwide, you won’t have to go far to ﬁll up your tank, and you could save more thanks to our exclusive discounts and offers.
+ 
+Apply today and receive a 1% fleet rebate on your monthly spend on your WEX Motorpass card.*
+
+As a special limited offer, if you make the move to WEX Motorpass you’ll also receive the following:
+
+- Reduced monthly card fee of $&lt;&gt; per card, per month (excl. GST) 
+- No out of network fees
+- $50 joining fee waived
+
+To take up this special offer, simply call me on &lt;insert number&gt; between 8:45am and 5:00pm AEST/AEDST before &lt;insert offer end date&gt;.
+ 
+From Woolloomooloo to Wallan, anywhere you are, I look forward to hearing from you.
+ 
+Yours sincerely,
+
+
+
+
+
+
+*This offer is available to new customers only and cannot be used in conjunction with any other offer. The offer applies to each card issued under your WEX Motorpass account. The 1% Fleet Rebate discount is applied and deducted from the full statement value including service &amp; repairs and in store purchases and will appear on your monthly statement as a credit. Applicants and authorised representatives must be over 18 years, have an ABN and use their vehicle for business purposes to apply. The standard WEX Motorpass terms and conditions and fees and charges apply. Please see motorpass.com.au/terms-and-conditions. Credit is issued by WEX Australia Pty Ltd ABN 68 005 970 570 and applications are subject to credit assessment criteria. ™ Motorpass and Anywhere you are,are registered trademarks of WEX Australia Pty Ltd ABN 68 005 970 570.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

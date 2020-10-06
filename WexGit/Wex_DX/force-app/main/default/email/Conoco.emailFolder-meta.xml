@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>*Conoco Email Templates IS</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>Conoco_Phillips</group>
+        <group>InsideSales</group>
+        <group>InsideSalesDataEntry</group>
+        <group>InsideSalesManager</group>
+        <group>Phillips66_Partner_User_Group</group>
+        <role>Fleet_Outbound_Channel_Sales</role>
+        <role>Fleet_Outbound_Channel_Sales_2</role>
+        <role>Fleet_Outbound_Channel_Sales_3</role>
+        <role>Fleet_Outbound_Channel_Sales_STL</role>
+        <role>Fleet_Outbound_Channel_Sales_TL</role>
+        <role>Outbound_Channel_Marketing</role>
+        <role>Product_Manager</role>
+        <role>VP_Customer_Acquisitions</role>
+    </sharedTo>
+</EmailFolder>

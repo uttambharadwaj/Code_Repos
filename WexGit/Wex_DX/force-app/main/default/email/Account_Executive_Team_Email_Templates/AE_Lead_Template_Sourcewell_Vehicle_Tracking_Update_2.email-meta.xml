@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Re: Sourcewell Vehicle Tracking Update</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AE Lead Template: Sourcewell Vehicle Tracking Update 2</name>
+    <style>none</style>
+    <subject>Re: Sourcewell Vehicle Tracking Update</subject>
+    <textOnly>Hello {!Contact.FirstName} –
+
+I hope you had a great weekend.  Did you get the email I sent last week?  Just sending a reminder about the opportunity to schedule a discovery call related to our Sourcewell GPS Telematics to see what fits your organization&apos;s needs and budget.  Please let me know if you are interested or if there is a different person I should connect with.  I look forward to speaking with you.
+
+Thanks,
+
+{!User.Username}
+Account Executive
+WEX Inc.
+97 Darling Avenue, So. Portland, ME 04106
+{!User.Phone}
+www.wexinc.com
+
+Awarded Contract 022217-WEX | Sourcewell
+https://www.sourcewell-mn.gov/cooperative-purchasing/022217-wex
+
+WEX Telematics Video
+https://www.wexinc.com/solutions/fleet-cards/telematics-fleet-tracking/</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

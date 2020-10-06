@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Maintenance/FleetChargeAdvantageSavings_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>Fleet Charge Advantage Advantage Parts Savings</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>International Fleet Charge Advantage</name>
+    <style>none</style>
+    <subject>Parts savings with Fleet Charge Advantage</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

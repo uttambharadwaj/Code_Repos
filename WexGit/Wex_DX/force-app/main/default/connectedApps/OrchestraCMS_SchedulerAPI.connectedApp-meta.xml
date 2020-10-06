@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>ps@stantive.com</contactEmail>
+    <label>OrchestraCMS SchedulerAPI</label>
+    <oauthConfig>
+        <callbackUrl>https://cms.na5.visual.force.com/apex/SetupSchedule</callbackUrl>
+        <consumerKey>3MVG967gVD5fuTmL1omVvIWrWPuKP5KR7NhvwcT4gT5PHQx1eMu9.7d6kWcdtqcEd2MbPvyI09bbgJVQJPjLo</consumerKey>
+    </oauthConfig>
+</ConnectedApp>

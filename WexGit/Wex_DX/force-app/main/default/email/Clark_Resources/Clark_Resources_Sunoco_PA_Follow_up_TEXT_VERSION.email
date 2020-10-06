@@ -1,0 +1,17 @@
+Dear {!Contact.Name},
+
+Per our phone conversation earlier, attached is more information on the Commonwealth of Pennsylvania's Sunoco Fuel Program. One of my colleagues, a Senior Sunoco Account Executive, will reach out to you shortly to review with you how the fuel program’s features and cost savings will benefit your agency. If you would like to reach out to an account executive immediately, you can contact them at 1-866-527-8870.
+
+Keep in mind, in order to be eligible for Pennsylvania's Sunoco Fuel Program, please register at the Commonwealth of Pennsylvania’s COSTARS website. By registering, your agency will not only be eligible for the fuel savings, but the COSTARS program can also offer competitive pricing on many other services for your agency. COSTARS will provide you with a registration number that you can use when signing up for their services, like this fuel program.
+
+Please sign up for the COSTARS program at:
+http://www.costars.state.pa.us/UserRegistration.aspx
+
+It was a pleasure talking to you.
+
+Sincerely,
+
+{!Opportunity.OwnerFullName}
+Sunoco Fuel Services
+{!Opportunity.OwnerPhone}
+{!Opportunity.OwnerEmail

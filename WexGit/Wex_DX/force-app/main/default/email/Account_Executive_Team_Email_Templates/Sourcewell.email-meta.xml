@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>EOY GPS REminder</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>No_Letterhead</letterhead>
+    <name>Sourcewell</name>
+    <style>freeForm</style>
+    <subject>Happy Thanksgiving!</subject>
+    <textOnly>Hello,
+
+As we come to the holiday season, WEX wanted to make sure that you are aware of the gifts ready for you to open when you purchase GPS/Telematics with us.
+
+As a NJPA/Sourcewell member you will have access to SPECIAL discounted rates on high quality equipment that is picked just for your data tracking needs without the RFP process.
+
+You also get free access to the high tech data analytics tool call Clearview to manage the savings potential to your fuel purchase and more.  https://www.youtube.com/watch?v=oY7eJ8yXgPQ&amp;feature=youtu.be
+
+You may be going through your end of year duties and budget reviews.  If GPS is in your plans, WEX is here to help you get what you need at the best price.  Let me know if you have interest and I will be happy to assist you.  If not, we value your business and enjoy the holiday season!
+
+
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+WEX Inc
+123 Darling Ave
+South Portland, ME 04106
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

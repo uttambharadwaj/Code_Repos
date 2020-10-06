@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Office_Solutions/TFX_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>TRANSFLO Express Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>TRANSFLO Express Document Scanning</name>
+    <style>none</style>
+    <subject>Savings on document scanning with TRANSFLO Express</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

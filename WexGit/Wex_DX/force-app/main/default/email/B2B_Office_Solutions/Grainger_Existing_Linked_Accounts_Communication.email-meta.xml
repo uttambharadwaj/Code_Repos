@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Grainger Communication to Existing Linked Accounts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TruckersB2B_2</letterhead>
+    <name>Grainger Existing Linked Accounts Communication</name>
+    <style>freeForm</style>
+    <subject>Your Grainger account just got better</subject>
+    <textOnly>Save up to 22% on product categories
+and get FREE Standard Shipping*!
+—Minimum 7% discount!—
+
+We are excited to announce our new offer with Grainger. As an existing Grainger account holder, your account has already been linked to the TruckersB2B National Account Program. You don&apos;t have to do anything except continue purchasing the way you normally do. You will automatically receive the discounted pricing and FREE standard shipping* on all of your orders with Grainger!  TruckersB2B members are already saving up to 22% on product categories.
+
+
+Top End Discounts
+
+Hand &amp; Power Tools: 50% off manufacturer list price on brands like Milwaukee, Proto, &amp; others
+Motors: 17% discount off catalog pricing on over 10,000 motors
+HVAC: 18% off catalog pricing on over 15,000 products
+
+
+
+Additional FREE Services
+
+Inventory management
+Lighting audits
+Safety training
+Sustainability
+Emergency preparedness
+
+
+Login to your Grainger account online to see your discounted pricing.
+
+
+
+Don&apos;t see the changes to your account? Contact Daniel Pramis at 603-628-2333
+
+
+
+If you are already on another Grainger National Account Program, please reach out to your account representative and request to have your account linked to the TruckersB2B program.
+
+
+
+Learn more at truckersb2b.com/grainger or call 603-628-2333
+
+
+
+
+
+
+
+
+*extra charges will be incurred for additional services, such as expedited delivery or special handling by the carrier
+
+
+
+
+
+Connect with us »»
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

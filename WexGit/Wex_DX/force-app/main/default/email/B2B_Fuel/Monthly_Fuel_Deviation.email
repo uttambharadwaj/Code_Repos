@@ -1,0 +1,15 @@
+Hi {!Contact.FirstName},
+
+Thank you for being a member of the TruckersB2B Fuel Rebate Program. As your dedicated Fuel Specialist, I noticed there was a significant drop in your last month’s total fueling as compared to the prior month. Have you recently changed fuel cards, and if so, which one? We may still be able to process your fuel rebates since our program works with Comdata, EFS, Fleet One, and TCH.
+
+I look forward to hearing back from you as I would like to ensure that you are getting paid for every eligible gallon through our fuel rebate program.
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

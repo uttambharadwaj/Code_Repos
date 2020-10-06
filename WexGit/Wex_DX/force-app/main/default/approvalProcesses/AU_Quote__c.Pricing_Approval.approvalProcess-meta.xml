@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Opportunity__c</field>
+        <field>Owner</field>
+        <field>Contract_Revenue__c</field>
+        <field>Marginperc__c</field>
+        <field>Contribution_Per_Card__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>Manager approval needed</description>
+        <label>Route to Manager</label>
+        <name>Route_to_Manager</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>adelyn.goh@wexinc.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Send to FP&amp;A team for review</description>
+        <label>FP&amp;A Review</label>
+        <name>FP_A_Review</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>marie.yip@wexinc.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>If contract revenue over 70k route to finance director</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>AU_Quote__c.Contract_Revenue__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;AUD 70,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>Finance Director &gt; 70k</label>
+        <name>Finance_Director_70k</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>rick.rose@wexaustralia.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>If contract revenue over 350k route to AU MD</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>AU_Quote__c.Contract_Revenue__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;AUD 350,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>MD approval &gt;350k</label>
+        <name>MD_approval_350k</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>adelyn.goh@wexinc.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Route to FP&amp;A manager if revenue above 1.4M. FP&amp;A Manager will organise approval via email and upload email to salesforce</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>AU_Quote__c.Contract_Revenue__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;AUD 1,400,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>ELT &amp; above &gt; 1.4M</label>
+        <name>ELT_above_1_4M</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>Sends to Finance team for pricing approval</description>
+    <emailTemplate>AU_Email_Templates/AU_Quote_Assignment</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>User.Profile</field>
+            <operation>equals</operation>
+            <value>AU Sales - Trade,AU Sales BDM/RM User,AU Sales Direct User</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Pricing Approval</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

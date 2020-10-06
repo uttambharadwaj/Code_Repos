@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to introduce the Trade Card</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Trade Introduction (Lead Record)</name>
+    <style>freeForm</style>
+    <subject>New Salesforce Opportunity {!Opportunity.Name} requires review</subject>
+    <textOnly>Hi {!Lead.FirstName}
+
+Who is WEX? We are best known here in Australia for our WEX Motorpass fuel card program.
+
+WEX have just launched a Trade Card in the Australian market and we have identified {!Lead.Company} as an ideal fit for this product. Some of the Trade Card features include:
+
+Remove Customer Debt - A WEX Trade Card is a charge card offering tailored payment terms to your customers. This means the credit risk of trade account customers is borne by WEX not {!Lead.Company}
+
+Free up Cash-flow - Guaranteed payment by WEX of goods bought by your customers puts more cash into your business.
+
+Branding - We can build a customized online portal and branded {!Lead.Company} trade card allowing for stronger customer engagement and further supporting the {!Lead.Company} brand.
+
+Support - We also offer ongoing operational support which can include the credit application process, customer service and collections processes.
+
+A meeting to outline this in more depth would be the next step so please let me know how your calendar is looking in the near future. My details are below, I look forward to hearing from you soon
+
+
+
+Kind regards,
+
+
+
+{!User.Name}
+
+{!User.Title}
+
+{!User.Phone}
+
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

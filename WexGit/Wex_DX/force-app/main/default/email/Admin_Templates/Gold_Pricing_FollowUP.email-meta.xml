@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Auto email/fax that goes out when Gold opportunity=quote sent</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Gold Pricing Follow up</name>
+    <style>none</style>
+    <subject>Gold Program Tire Pricing</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

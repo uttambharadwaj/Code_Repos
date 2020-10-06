@@ -1,0 +1,230 @@
+<apex:component controller="PartnersCommLoginController" id="loginComponent">
+	<apex:includeScript value="{!URLFOR($Resource.PartnersCommResources, 'javascript/jquery-1.9.1.min.js')}" />
+	
+	<script type="text/javascript">
+		var loginForm = "{!$Component.loginForm}";
+		var username = "{!$Component.loginForm.container.j_id20.username}";
+		var password = "{!$Component.loginForm.container.j_id20.password}";
+		
+		function handleLogin() 
+		{
+			document.getElementById(loginForm).un.value = document.getElementById(username).value;
+			document.getElementById(loginForm).width.value = screen.width;
+			document.getElementById(loginForm).height.value = screen.height;
+		}
+	</script>
+	<!-- <script src="/customer/jslibrary/baselogin.js" type="text/javascript"></script>  -->
+	<script src="/partners/jslibrary/baselogin.js" type="text/javascript"></script>
+	
+	<style>
+		label
+		{
+			margin-right: 10px;
+		}
+		
+		.textField
+		{
+			position: relative;
+			/*left: 18px;*/
+		}
+		
+		.passwordField
+		{
+			position: relative;
+			/*left: 20px;*/
+		}
+		
+		#loginContainer
+		{
+			padding-left: 40px;
+			position: absolute;
+		}
+		
+		#forgotPasswordLink
+		{
+			/*float: right;*/
+			padding-right: 10px;
+			padding-left: 10px;
+			color: black;
+		}
+		
+		.requiredTextField
+		{			
+			border: 1px solid #ff0000;
+		}
+
+		.wex-BannerContent
+		{
+			float: right;
+			/*width: 365px;*/
+			width: 300px;
+			margin-right: 60px;
+			margin-top: 50px;
+			position: relative;
+			background: url("{!URLFOR($Resource.PartnersCommResources, 'images/header-red-bg.png')}") repeat scroll 0 0;
+			/*float: left;*/
+			color: #fff;
+			padding: 20px 35px;
+			margin-left: 20px;
+			/*margin-top: 20px;*/
+			/*border-radius: 10px;*/
+			/*-moz-border-radius: 10px;*/
+			-webkit-border-radius: 10px;
+		}
+
+		h3
+		{
+			/*font-family: 'Open Sans Condensed',Arial,sans-serif;*/
+			font-family: Georgia,'Times New Roman',serif;
+			letter-spacing: 0;
+			font-weight: normal;
+			/*font-size: 18px;*/
+			line-height: 25px;
+			/*margin: 15px 0 0;*/
+		}
+
+	</style>
+
+	<div>		
+		<apex:form id="loginForm" forceSSL="true" onsubmit="handleLogin();">
+			<fieldset style="display:none" id="hiddenFields">
+				<input type="hidden" value="" name="un" />
+				<input type="hidden" value="" name="width" />
+				<input type="hidden" value="" name="height" />
+				<input type="hidden" value="false" name="hasRememberUn" />
+				<input type="hidden" name="startURL" value="{!StartURL}" />
+				<input type="hidden" name="loginURL" value="{!ServerName}/{!CommunityName}/PartnersCommLogin" />
+				<input type="hidden" value="" name="loginType" />
+				<input type="hidden" value="true" name="useSecure" />
+				<input type="hidden" value="" name="local" />
+				<input type="hidden" value="standard" name="lt" />
+				<input type="hidden" value="" name="qs" />
+				<input type="hidden" value="" name="locale" />
+				<input type="hidden" value="" name="oauth_token" />
+				<input type="hidden" value="" name="oauth_callback" />
+				<input type="hidden" value="/{!CommunityName}/PartnersCommLogin" name="login" />
+				<input type="hidden" value="" name="serverid" />
+				<input type="hidden" value="page" name="display" />
+				<input type="hidden" value="0" name="rememberUn" />
+			</fieldset>
+			 
+			<c:PartnersCommErrorMessage width="370" />
+			
+			<c:PartnersContentContainer height="200" id="container">				
+				<div id="loginContainer">
+					<br />							
+					<!-- <span style="font-size: 26px;">
+						Partner Sign In
+					</span>
+					-->
+					<br />
+					<br />														
+					<label for="username">Username&nbsp;</label>						
+					<apex:inputText id="username" value="{!username}" styleClass="textField {!IF(MissingUsername, 'requiredTextField','')}" />
+					<br />																	
+					<label for="password">Password&nbsp;</label>					
+					<apex:inputSecret id="password" value="{!password}" styleClass="passwordField textField {!IF(MissingPassword, 'requiredTextField','')}" />
+					<br/>
+					<!-- <input id="Login" name="Login" type="submit" onclick="loginToPortal(); return false;" value="Sign In" class="pageButton" onmouseover="buttonOn('Login');" onmouseout="buttonOff('Login');"/> -->
+					<br/>
+					<apex:commandButton action="{!login}" value="Login" style="position:static;"/>	
+					<br/>				
+					<a id="forgotPasswordLink" href="{!ForgotPasswordURL}">forgot password?</a>											
+					<br />		
+				</div>
+				<div class="wex-BannerContent"> <!--banner-content">-->
+
+				<h2>
+					
+				</h2>
+				<h3>
+					Welcome to the 
+				</h3>
+				<h3>
+					WEX Partner Community
+				</h3>
+				</div>
+			</c:PartnersContentContainer>
+
+		</apex:form>				
+		<br />
+	</div>
+	
+	<script>
+		var $j = jQuery.noConflict();
+	
+		function loginToPortal()
+		{
+			if(!isValid())
+			{
+				return false;
+			}
+	
+			document.forms[loginForm].submit();
+		}
+		
+		function isValid()
+		{		
+			var valid = true;
+			var fields = new Array();
+			
+			fields[0] = jqueryFriendlyId(username);
+			fields[1] = jqueryFriendlyId(password);
+			
+			for(var i = 0; i < fields.length; i++)
+			{
+				var field = document.getElementById(fields[i]);
+
+				if(field != null && field != 'undefined')
+				{																		
+					var value = trim(field.value);
+					
+					if(value != null && value !== "" && value !== "undefined") 
+					{		
+						//$j(field).removeClass('requiredTextField').addClass('textField');
+						
+						$j(field).removeClass('requiredTextField');																			
+					}	
+					else
+					{																			
+						//$j(field).removeClass('textField').addClass('requiredTextField');
+						
+						$j(field).addClass("requiredTextField");
+									
+						valid = false;
+					}							
+				}
+				else
+				{
+					valid = false;
+				}
+			}		
+			
+			return valid;			
+		}
+		
+		function trim(value)
+		{
+			if(value == null || value === "" || value === "undefined")
+			{			
+				return value;
+			}
+			else
+			{
+				return value.replace(/\s+/g, '');
+			}
+		}
+		
+		function jqueryFriendlyId(id)
+		{
+			if(id == null || id === "" || id === "undefined")
+			{			
+				return id;
+			}
+			else
+			{
+				return id.replace(/:/g, '\:');
+			}
+		}
+	</script>		
+</apex:component>

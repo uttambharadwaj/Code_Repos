@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Misc</name>
+    <style>freeForm</style>
+    <subject>Misc {!Case.Thread_Id}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+
+Dear Customer,
+
+
+CUSTOM CONTENT TO BE ADDED BY AGENT
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

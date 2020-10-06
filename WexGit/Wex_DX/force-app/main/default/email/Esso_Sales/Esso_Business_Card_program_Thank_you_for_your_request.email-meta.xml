@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_Save_on_Fuel</letterhead>
+    <name>Esso Business Card program: Thank you for your request</name>
+    <style>freeForm</style>
+    <subject>Following up on my voicemail</subject>
+    <textOnly>{!Contact.FirstName},
+
+Per my voice mail, I wanted to give you an overview of the Esso Business Card program. I know you will find it the perfect tool to help you save money and time when it comes to your vehicle fleet operations. 
+
+
+Savings 
+•Maximize your profits with volume discounts.
+•No set up, monthly or annual fees
+
+
+Convenience &amp; Control
+•Canada&apos;s largest retail network
+•Easy online tools so you can set controls, track expenses and save time and money
+
+I will be following up with you next week. In the mean time, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to helping you with the needs of your business.
+
+Sincerely,
+
+ 
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+
+Phone: {!User.Phone}
+
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

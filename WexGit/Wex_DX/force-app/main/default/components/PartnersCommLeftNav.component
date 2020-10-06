@@ -1,0 +1,29 @@
+<apex:component layout="none" controller="PartnersCommLeftNavController">
+	<div id="left-nav">
+		<ul id="leftNav">
+			<apex:repeat value="{!LeftNavURLs}" var="l">
+				<li>
+					<a target="{!l.URL_Target__c}" href="{!l.URL__c}">
+						{!l.URL_Label__c}
+					</a>
+				</li>
+		    </apex:repeat>	
+		</ul>
+		
+		<fieldset id="common_issues">
+			<legend>
+				<h3></h3>
+			</legend>
+			
+			<ul>
+				<apex:repeat value="{!LeftNavCommonIssuesURLs}" var="url">
+					<li>
+						<a target="{!url.URL_Target__c}" href="{!url.URL__c}">
+							{!url.URL_Label__c}
+						</a>
+					</li>
+			    </apex:repeat>				
+			</ul>
+		</fieldset>
+	</div> 
+</apex:component>

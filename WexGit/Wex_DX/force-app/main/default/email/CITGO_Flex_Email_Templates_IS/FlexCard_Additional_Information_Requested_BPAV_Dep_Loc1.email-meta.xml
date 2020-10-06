@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Bank_Letter_of_Credit_Irrevocable_Bank.doc</attachedDocuments>
+    <attachedDocuments>Inside_Sales/FSC_Billing_Deposit_Agreement_NEW_02_2013.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/WEX_Bank_Letter_of_Credit_Fleet_NEW_REV_1_2013.doc</attachedDocuments>
+    <available>true</available>
+    <description>CITGO Flex BPAV &amp; Dep Loc Request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead1</letterhead>
+    <name>FlexCard Additional Info Requested - BPAV &amp; Dep Loc</name>
+    <style>freeForm</style>
+    <subject>CITGO - Additional Information Requested</subject>
+    <textOnly>Dear {!Contact.Name},
+
+You can obtain an account with us by sending in a deposit to secure the account.
+
+Attached is the necessary form for the Deposit option. You may either mail the deposit to our bank or wire us the funds. Instructions for each follow.
+
+Sending the deposit in the mail:
+
+
+Complete and sign the attached form (the minimum deposit amount allowed is $500).
+Send the form to our bank at the address below, along with a certified check, money order or cashier’s check for the deposit amount you would like to put on deposit.
+Reference opportunity # {!Application_Request__c.Siebel_Oppty__c} and mention the check is for a secured deposit in the memo section of the check.
+Fax a copy of the completed and signed deposit agreement to me at {!User.Fax}.
+
+
+Address for our Bank:
+
+WEX Bank
+7090 South Union Park Avenue, Suite 350
+Midvale, UT 84047
+
+Wire Transfer Instructions:
+
+
+Account Name: WEX Inc.
+Account Number: 4539508
+Receiving Instructions: Harris Bank (address: 311 West Monroe, Chicago, IL 60606)
+ABA/Routing Number: 071000288
+Reference: Please reference opportunity # {!Application_Request__c.Siebel_Oppty__c}.
+Memo Section: Please mention the check is for a secured deposit.
+Fax a copy of the completed and signed deposit agreement to me at {!User.Fax}
+
+
+
+
+Whatever deposit amount you choose will become your line of credit. Once our bank has received your check or wire transfer, they will set up your account.
+
+Also, as required by the Patriot Act, Credit is requesting “physical address verification.” We need a copy of a utility bill or other formal document listing your legal business name and the physical address you provided on the application.
+
+Thank you for your interest in the CITGO Fleet Card program.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone: {!User.Phone}
+Fax: {!User.Fax}
+
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by email and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

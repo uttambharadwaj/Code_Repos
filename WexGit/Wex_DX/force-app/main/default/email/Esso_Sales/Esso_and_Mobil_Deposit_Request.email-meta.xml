@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>To enroll in an account with us, please send in a deposit to secure the account along with the attached Deposit Agreement..</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso</letterhead>
+    <name>Esso and Mobil Deposit Request</name>
+    <style>freeForm</style>
+    <subject>Esso and Mobil Business Fleet Card Program - Additional Information Required</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Thank you for your interest in our Esso and Mobil Business Fleet Card Program!
+
+To enroll in an account with us, please send in a deposit to secure the account along with the attached Deposit Agreement. You may either mail the deposit to our bank or wire us the funds.
+
+Sending the deposit by mail:
+
+Complete and sign the attached Deposit Agreement (the minimum deposit is $500).
+Send the Deposit Agreement to our bank (address below) with a certified check, money order or cashier’s check for the deposit amount you would like to put on deposit.
+Reference opportunity # {!Opportunity.Opportunity_Number__c} and mention the check is for a secured deposit in the memo section of the check.
+Either scan/email or fax a copy of the completed and signed Deposit Agreement to me at the email noted below or to:
+
+
+Bank Address:
+
+WEX Canada Ltd.
+c/o Bank of Montreal
+7090 Union Park Center, Suite 350
+Midvale, UT 84047
+
+
+Wire Transfer Instructions:
+
+Account Name: WEX Canada, Ltd., c/o Bank of Montreal
+Account Number: 00021548411
+SWIFT BIC CODE: BOFMCAM2
+Customer Name: WEX Canada, Ltd
+Please reference opportunity # {!Opportunity.Opportunity_Number__c}
+Memo Section: Please mention the check is for a secured deposit.
+Either scan/email or fax a copy of the completed and signed Deposit Agreement to me at the email noted below.
+
+When the deposit is received your account will be set up and the deposit applied will become your line of credit.
+
+Feel free to scan and email the verification to me at the email address noted below, or if you prefer, you can fax it to me at {!User.Fax}. You can also call me at {!User.Phone} if you have any questions.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

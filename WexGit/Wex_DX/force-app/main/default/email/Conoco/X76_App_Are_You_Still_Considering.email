@@ -1,0 +1,40 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" style="">Dear {!Contact.FirstName},<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">I wanted to reach out to you one <b>last time</b> to see if you are still considering the&nbsp;<b><span style="line-height: 107%;">76 Fleet Card Program</span>.</b><o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">It’s <b>easy</b> to enroll.
+Simply complete the attached application form, and fax it to me at&nbsp;<i>{!User.Fax}</i>. You can also scan and
+then email the form back to me at the email noted below.<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">You can find a complete list of accepting locations at&nbsp;<span class="MsoHyperlink"><span style="line-height: 107%;"><a href="https://www.76.com/station-finder">https://www.76.com/station-finder</a>&nbsp;</span></span>.<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">Feel free to give me a call if you have any questions.<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">Thank you for your interest in the&nbsp;<span style="line-height: 107%;">76 Fleet Card Program</span>.<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif">Sincerely,<i>&nbsp;<br>
+<br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+</i><i>{!User.Email}</i><i>&nbsp;<o:p></o:p></i></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" style="" size="1"><i style=""><span style="color: gray;">CONFIDENTIALITY NOTICE: "This message contains
+confidential information of WEX Inc. It is intended only for the use of the
+designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="color: gray;">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<i style=""><span style="line-height: 115%; color: gray;"><font face="Arial, sans-serif" style="" size="1">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</font></span></i></p>]]></td>
+</tr>
+</table>

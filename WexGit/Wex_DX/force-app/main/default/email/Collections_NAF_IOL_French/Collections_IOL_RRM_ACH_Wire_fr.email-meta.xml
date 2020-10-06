@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - RRM - ACH/Wire (fr)</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - No de compte: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+Instructions pour les versements en dollars canadiens liés à l’utilisation des cartes de flotte à WEX Canada Ltd (filiale de WEX Bank en propriété exclusive)
+
+(Ces instructions s’appliquent aux paiements effectués en dollars canadiens, lesquels doivent être soumis à la Banque de Montréal comme indiqué ci-dessous.)
+
+
+Nom du compte :
+
+WEX Canada Ltd
+
+7090 Union Park Center, Suite 350
+
+Midvale, Utah 84047 USA
+
+1 801 568-4345 Service administratif aux É.-U.
+
+1 801 568-4356 Télécopieur du service de trésorerie aux É.-U.
+
+Coordonnées de la banque :
+
+Banque de Montréal
+
+Siège social du service bancaire international
+
+100 King Street West
+
+Toronto (Ontario)
+
+M5W 5M5
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Boîtier postal :
+
+WEX Canada Ltd
+
+P.O. Box 57724, Postal Station A
+
+Toronto (Ontario)
+
+M5W 5M5
+
+
+Transfert bancaire :
+
+Banque destinataire : Banque de Montréal
+
+Code SWIFT/BIC : BOFMCAM2
+
+Nom du client : WEX Canada Ltd
+
+Numéro du compte : 00021548411
+
+(Les transferts bancaires nécessitent les 4 premiers chiffres du numéro de transit à 5 chiffres.)
+
+
+Virement électronique :
+
+Numéro de transit à 5 chiffres : 00022
+
+(À titre informatif, le dernier chiffre correspond à la région d’origine du compte.)
+
+Numéro de la banque : 001
+
+Numéro du compte : 1548411
+
+
+Remarque concernant le traitement :
+
+WEX Canada Ltd est un client de la Banque de Montréal qui traite ses opérations au Canada.
+
+
+
+Pour être inscrits au compte, les paiements doivent être envoyés par courriel à : Financeaccountsreceivable@wexinc.com.
+
+
+
+
+Comptes clients et gestion du crédit
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

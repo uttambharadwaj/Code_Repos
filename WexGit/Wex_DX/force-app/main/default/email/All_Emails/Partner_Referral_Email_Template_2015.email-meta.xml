@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use this template for sending follow up email to a prospect</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Fleet_One_Logo</letterhead>
+    <name>Partner Referral Email Template 2015</name>
+    <style>freeForm</style>
+    <subject>Thank You For Your Interest In Our Fuel Card Programs</subject>
+    <textOnly>Dear {!Lead.FirstName},
+
+
+Thank you for speaking with me today. Per our discussion, I am forwarding information regarding the WEX Fleet One Partner Referral Program. It contains a brief summary of the major benefits offered to fleets by our value-added partners, when used in conjunction with the Fleet One Over The Road (OTR) program.
+
+
+Please review the attached information and select the Partner whose program or services would prove the most beneficial for your fleet’s fueling requirements. As you will notice, this is a fantastic opportunity for maximizing your fuel savings by joining over 25,000 satisfied customers across the country.
+
+
+After making your selection, please reply to this email with your selection partner name or return the form provided back to me either by fax or email {!User.Fax}; or mail to my attention at {!User.Street}, {!User.City}, {!User.State} {!User.PostalCode}. We will handle all the details for you. Thank you for your interest in Fleet One. I look forward to assisting you.
+
+
+
+National Association of Small Trucking Companies (NASTC)
+
+NASTC is dedicated to helping small trucking companies control their costs through managed purchasing, analysis, consultation and advocacy. Our ultimate mission is to level the competitive playing field allowing our member companies to grow, prosper and remain a significant force in the transportation industry.
+
+
+o Contact: Erik Lamb
+
+o Phone: (800) 264-8580
+
+o Email: Erik.Lamb@nastc.com
+
+o Discounts: QPN Network
+
+
+
+RTS Carrier Services
+Ryan Transportation Carrier Services is a full service transportation brokerage that offers shipper and brokerage credit monitoring services and third party logistics. Fleet must be an active RTS Carrier, RTS factoring client or must join RTS credit monitoring program.
+
+
+o Contact: Rick Albright
+
+o Phone: (913) 310-1457
+
+o Email: ralbright@rtscredit.com
+
+o Discounts: TravelCenters of America, Petro Stopping Centers, Pilot Flying J
+
+§ Discounts reflected at time of purchase or rebated
+
+§ Discounts offered are “Better Of” – cost-plus or Retail minus with no “ceiling” on discount
+
+
+National Fuel Negotiators
+National Fuel Negotiators has been negotiating discounted fuel pricing for trucking companies for over 50 years. National Fuel Negotiators’ clients receive a daily price list of participating truck stops showing the discounted price.
+
+
+o Contact: Ken Mac Donald
+
+o Phone: (541) 773-2471
+
+o Email: ken@nfueln.com
+
+o Discounts: TravelCenters of America, Petro Stopping Centers, Pilot Flying J, Love’s and many other truck stop vendors
+
+§ Discounts average 2¢ or more off the cash retail price
+
+§ Low cost-plus pricing is also available
+
+
+360 Fuels
+360 offers cash price and discounts at over 1,500 truck stops across the USA. With 360, fleets have reduced fraud, no lost/stolen cash, and unauthorized purchases are a thing of the past.
+
+
+o Contact: Steve Fowler
+
+o Phone: (877) 360-3835
+
+o Email: sfowler@360fuelcard.com
+
+o Discounts: A variety of truck stop vendors
+
+§ 300 locations offering cost-plus pricing
+
+§ Over 300 locations offering between 5 and 8¢ off the cash retail price
+
+§ Over 1,200 locations offering an average of 2¢ back per gallon
+
+
+Trans-Alliance
+
+Helps truckers trim their costs and maximize net profits.
+
+
+o Contact: Jesse Singh
+
+o Phone: (510) 875-3279
+
+o Email: jesse@trans-alliance.com
+
+o Discounts: A variety of truck stop vendors
+
+§ Rebates range from 4¢ to 18¢ per gallon based upon volume
+
+
+Schneider Carrier Purchasing Program
+
+The Schneider Transportation Management’s Carrier Purchasing Program offers small and mid-sized carriers savings on fuel.
+
+
+o Contact: Schneider Rep
+
+o Phone: (800) 558-1179
+
+o Email: carrierpurchasing@schneider.com
+
+o Discounts: TravelCenters of America and Petro Stopping Centers
+
+§ Save approximately 5¢ per gallon on fuel
+
+§ Rebates and discounts of up to 15¢ per gallon
+
+
+I look forward to the opportunity to assist you with your fuel card needs.
+
+
+{!User.Name}
+{!User.Title}
+
+WEX Fleet One
+
+Phone: {!User.Phone} | Fax: {!User.Fax}
+
+{!User.Email} | www.FleetOne.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

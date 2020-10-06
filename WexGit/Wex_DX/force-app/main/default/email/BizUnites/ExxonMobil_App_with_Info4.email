@@ -1,0 +1,67 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><font size="3" style="font-size: 12pt; font-family: arial;"><font face="Arial,Sans-Serif">Dear {!Contact.FirstName},<br><br></font></font><p class="MsoNormal"><span style="font-family: Arial, sans-serif;">I
+received your request for additional information on our </span><span style="font-size:12.0pt">savings4members™</span><span style="font-family: Arial, sans-serif;"> ExxonMobil Fleet card program. Please take a few minutes to look
+through the accompanying information. Whether you fuel a few or a fleet,
+ExxonMobil has the card that's right for your business.</span></p><ul style="font-size: 12pt; font-family: arial;"><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>Enjoy enhanced security</b> features including<br>custom prompts and single station card options</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;">Potentially <b>reduce unwanted spending</b><br>through purchase restrictions you create<br>and the ability to monitor all driver purchases<br>and vehicle efficiencies</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>Reduce administrative time</b> by eliminating the<br>need to collect paper receipts and expense reports</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>Reduce monthly fuel usage </b>— with automatic<br>pump shut off capabilities</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>See driver spending habits</b> that may be costing<br>you money with downloadable reports</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>Manage your account online</b> in real time: set<br>purchase restrictions, update card and driver<br>information, pay your invoice and more</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>Avoid late fees</b> with pay-by-phone services if a<br>last minute payment becomes necessary</span></span></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-bidi-font-weight:normal"><span style="font-size: 12pt;"><b>Request tax-exempt reporting</b> and billing</span></span></font></li></ul><font face="arial" size="3"></font><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif">It’s easy to enroll.
+Simply complete the attached application form and fax it back to me at {!User.Fax} or scan and email it to me at {!User.Email}.</font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Arial, sans-serif">Thank you for your
+interest in the ExxonMobil Fleet card program.</font></p>
+
+<p class="MsoNormal" style="font-size: 12pt; font-family: arial; margin-bottom: 0.0001pt; line-height: normal;"><i><span style="font-size:8.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:gray">&nbsp; </span></i></p>
+
+<p class="MsoNormal" style="font-size: 12pt; font-family: arial; line-height: normal;"><i><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black">Sincerely, <br>
+<br>
+{!User.FirstName} {!User.LastName} <br>
+{!User.Title} <br>
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email} </span></i><i><span style="font-size:8.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:gray"></span></i></p>]]></td>
+</tr>
+</table>

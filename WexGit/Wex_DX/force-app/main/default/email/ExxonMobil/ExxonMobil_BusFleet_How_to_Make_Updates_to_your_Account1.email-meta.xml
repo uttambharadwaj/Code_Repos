@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>ExxonMobil Business Fleet  How to make card / driver updates</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_card</letterhead>
+    <name>ExxonMobil BusFleet How to Make Updates to your Account</name>
+    <style>freeForm</style>
+    <subject>How to Make Changes to your ExxonMobil Business Fleet Account</subject>
+    <textOnly>Now that you have an established account with us, you can easily make changes to your ExxonMobil Business Fleet account in three ways:
+
+
+By Phone: Customer Services is available 7 days a week, 24 hours a day at 1-800-624-5140
+Online: You can make changes online anytime by visiting https://www.exxonmobilfleetonline.com/online/
+Via Fax: I am attaching forms that you can use to make changes to your account. Simply fax them back to 1-800-395-0809
+
+
+Welcome to the ExxonMobil Business Fleet card program.
+
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

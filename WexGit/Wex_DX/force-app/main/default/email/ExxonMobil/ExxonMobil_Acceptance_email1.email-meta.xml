@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>XOM Acceptace email that goes to personalized landing pages</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ExxonMobil Acceptance email</name>
+    <style>none</style>
+    <subject>One fuel card is all you need</subject>
+    <textOnly>One card is all you need- the ExxonMobil Universal Card.
+
+Enjoy the convenience of nationwide acceptance at more than 90% of all retail fuel stations across the U.S., including more than 50,000 diesel sites, so your drivers will always be able to fuel up when and where they need to.*
+
+&quot;I like the freedom of knowing that my drivers have access to fuel, no matter where they need to travel to complete their jobs.&quot; 
+-Paul McGuire, General Superintendent, Farmer &amp; Irwin Corp. Mechanical Contractors
+
+Are you ready for one, universally-accepted card?
+
+Please contact your personal sales representative:
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+
+
+* Card acceptance is subject to individual operator or owner participation and is subject to change without notice. Exxon and Mobil are registered trademarks of Exxon Mobil Corporation. The ExxonMobil Fleet and Universal cards are issued by WEX Bank.
+
+Exxon and Mobil are registered trademarks of Exxon Mobil Corporation.
+
+This is an advertisement from WEX Inc. on behalf of ExxonMobil Fleet Cards. If you no longer wish to receive future email advertisements, email us to unsubscribe at info@fsolnews.com with the word unsubscribe in the subject line. Please be sure to include your name, company name, and email address in the email.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

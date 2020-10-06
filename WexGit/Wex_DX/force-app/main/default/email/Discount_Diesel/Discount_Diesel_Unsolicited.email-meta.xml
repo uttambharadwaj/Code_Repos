@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Discount_Diesel</letterhead>
+    <name>Discount Diesel Unsolicited</name>
+    <style>freeForm</style>
+    <subject>Discount Diesel Can Help!</subject>
+    <textOnly>Interested in seeing what the Discount Diesel fuel card can do for you? Discount Diesel has teamed up with WEX Fleet One to bring the ultimate fuel card with awesome flexibility. Need fuel or cash? We got you covered. Plus the card has these benefits:
+
+Nationwide acceptance at over 99% truck stop locations
+Fuel discounts or rebates at 2,500+ locations including AMBEST, Flying J, Petro, Pilot, Roady’s, TA as well as numerous independent truck stops.
+
+I look forward to speaking with you personally, feel free to call or send me an email, my contact information is listed below.
+
+{!User.Name}
+
+{!User.Title}
+Discount Diesel
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

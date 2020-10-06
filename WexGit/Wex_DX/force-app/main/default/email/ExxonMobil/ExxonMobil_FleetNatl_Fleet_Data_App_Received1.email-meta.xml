@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sent via workflow when App Request is successful. Includes Fleet National Fleet Data Form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Fleet_National_card</letterhead>
+    <name>ExxonMobil FleetNatl Fleet Data App Received</name>
+    <style>freeForm</style>
+    <subject>Your ExxonMobil Fleet National Application Is Being Processed | Action Required</subject>
+    <textOnly>I received your completed ExxonMobil Fleet National application. Thank you for getting it over to me. Credit will have up to five business days to decision your account.
+
+
+
+Meanwhile, I am attaching a general form that indicates the information we will need to set up your account:
+
+
+Driver Information:
+
+Please provide a list of your driver names with four- or six-digit driver ID numbers. If you prefer us to assign the driver ID numbers, simply leave that field blank. You driver will be required to enter this number at the point of sale. It allows them access to all cards and will trace their name along with any transaction they make.
+
+
+Vehicle Information:
+
+Only one column of information is mandatory, the rest (such as license plate number of VIN number) are optional
+Please select one field that you would like to see appear on the second line of your card, beneath your Company name. This information will also appear on your reports
+
+This field of information is meant to be a means of identification for you so you will know which vehicle is being fueled.
+
+
+Please email or fax the form back to me at {!Opportunity.Opportunity_Owner_Fax__c} at your earliest convenience.
+
+
+
+Need help filling out the form? Please call me with any questions.
+
+
+As soon as your account is approved, an Account Setup Specialist will call you to cover all set-up details with you before ordering your cards.
+
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

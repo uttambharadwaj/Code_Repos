@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>32.0</apiVersion>
+    <available>true</available>
+    <description>Automatic email sent on Revolver BOCA submit--DO NOT DELETE!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CreditAppConfirm</name>
+    <style>none</style>
+    <subject>Thank You For Your Application!</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

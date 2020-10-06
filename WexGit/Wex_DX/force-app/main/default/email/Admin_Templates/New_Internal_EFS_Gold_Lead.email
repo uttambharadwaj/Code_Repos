@@ -1,0 +1,16 @@
+Here is an opportunity to sell some tires. The following W2L form was completed by an internal EFS rep. Please follow up on this newly created lead. If converting the lead and creating an opportunity, make sure that this account does not already exist and if it does, be sure to merge/convert it to the existing account. If creating a new Gold opportunity, you MUST select EFS as the hearsource AND put the rep name in the "Referred by who" field.
+
+You have 24 hours to attempt to make contact with this lead, at which point the lead will be reassigned. 
+
+Company Name: {!Lead.Company}
+Contact: {!Lead.FirstName} {!Lead.LastName}
+State:{!Lead.State} 
+Phone: {!Lead.Phone}
+Region: {!Lead.Region__c}
+Truck Count: {!Lead.Truck_Count__c}
+Tire Preference: {!Lead.Tire_Types__c}
+WEX Fuel Platform: {!Lead.WEX_Fuel_Platform__c}
+Comments: {!Lead.Comments__c}
+Inside Sales Rep: {!Lead.Inside_Sales_Rep__c}
+
+See the lead here: https://na12.salesforce.com/{!Lead.Id}

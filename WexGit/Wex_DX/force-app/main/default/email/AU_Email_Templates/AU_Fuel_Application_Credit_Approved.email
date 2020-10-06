@@ -1,0 +1,21 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<table class="MsoNormalTable" border="0" cellspacing="5" cellpadding="0" width="550" style="width:412.5pt;mso-cellspacing:3.7pt;mso-yfti-tbllook:1184;mso-padding-alt:
+ 3.75pt 3.75pt 3.75pt 3.75pt">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;
+  height:300.0pt">
+  <td valign="top" style="background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt;
+  height:300.0pt">
+  <p class="MsoNormal"><span style="font-family: Arial, sans-serif;">Hi&nbsp;</span><o:p></o:p></p>
+  <p class="MsoNormal"><br><font face="Arial, sans-serif">Your Application - {!AU_Application_Request__c.Name}&nbsp;credit decision has been approved.</font></p><p class="MsoNormal"><span style="font-family: Arial, sans-serif;">
+  <br>
+  Please click on the following link to access the record : &nbsp;</span><font face="Arial, sans-serif" size="3"><span style="line-height: 18.399999618530273px;">{!AU_Application_Request__c.Link}</span><span style="line-height: 115%;">&nbsp;</span></font><span style="font-family: Arial, sans-serif;">&nbsp;</span><o:p></o:p></p>
+  <p class="MsoNormal"><span style="font-family: Arial, sans-serif; font-size: 12pt;">&nbsp;</span></p>
+  <p class="MsoNormal"><span style="font-family: Arial, sans-serif;">Regards,<u1:p></u1:p><o:p></o:p></span></p>
+  <p class="MsoNormal"><span style="font-family: Arial, sans-serif; font-size: 12pt;">WEX Australia</span></p><p class="MsoNormal"><o:p></o:p></p>
+  </td>
+ </tr>
+</tbody></table>]]></td>
+</tr>
+</table>

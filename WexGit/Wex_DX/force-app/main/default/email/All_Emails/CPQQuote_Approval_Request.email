@@ -1,0 +1,18 @@
+<messaging:emailTemplate subject="Quote Approval Request" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:htmlEmailBody >
+<html>
+    <body>
+    <STYLE type="text/css">
+        TH  {font-size: 11px; font-face: arial;background: #CCCCCC; border-width: 1;  text-align: center }
+        TD  {font-size: 11px; font-face: verdana }
+        TABLE {border: solid #CCCCCC; border-width: 1}
+        TR {border: solid #CCCCCC; border-width: 1}
+     </STYLE>
+       
+        <c:CPQQuoteApprovalEmailBody pramquoteId="{!relatedTo.Quote__r.Id}" />
+       <p style="color:white"><apex:outputText value="{!relatedTo.Id}"/></p>
+    </body>
+</html>
+       
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

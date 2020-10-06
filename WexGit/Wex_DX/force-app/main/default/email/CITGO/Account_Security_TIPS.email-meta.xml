@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Welcome email #2 - Security Tips</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead1</letterhead>
+    <name>Account Security TIPS</name>
+    <style>freeForm</style>
+    <subject>CITGO Fleet:  Account Security TIPS</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Thanks for choosing the CITGO fleet card program. Ensure your account stays secure with our four security tips.
+
+1. Remind drivers that if an attendant swipes the card in the card reader, they should keep it in their sight and make sure the same card is returned to them.
+
+2. Always review your reports or better yet, check transaction details at CITGO Fleet Online to watch for discrepancies or unusual purchase patterns.
+
+3. Control access to your account by notifying us of changes to the authorized fleet contact(s).
+
+4. When a vehicle will be out of use for a period of time, collect the card to keep it secure. If a vehicle is sold or retired, immediately cancel and destroy the assigned card.
+
+We&apos;re here for you 24/7, so be sure to give us call at 1-866-926-5615 if you have any questions. Thanks again, and welcome to the CITGO fleet card Program!
+
+
+Best regards,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+©2013 CITGO Petroleum.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

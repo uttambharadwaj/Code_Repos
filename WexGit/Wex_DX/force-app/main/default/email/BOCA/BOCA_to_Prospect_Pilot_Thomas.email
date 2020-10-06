@@ -1,0 +1,406 @@
+<messaging:emailTemplate subject="Thank You For Your Interest In {!RelatedTo.Program__r.Brand_Long_Name__c}!" recipientType="Contact" relatedToType="WeFormObject__c">
+<messaging:htmlEmailBody >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/> 
+    <meta name="viewport" content="width=device-width"/> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+    <meta name="x-apple-disable-message-reformatting"/>  
+    <title></title> 
+
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+    
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+            font-family: Arial;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display:none !important;
+        }
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+    </style>
+
+</head>
+<body width="100%" bgcolor="#f1f1f1" style="margin: 0; mso-line-height-rule: exactly;">
+    <span style="overflow:hidden; float:left; display:none; line-height:0px;">
+        <img src="https://{!$Label.External_Instance_URL}/creditapplication/BocaToProspectTracking?customer={!relatedTo.Id}" height="0" width="0" style="display: none; line-height: 0; font-size: 0; height: 0; padding: 0; mso-hide: all;" alt=""/>
+    </span>
+    <center style="width: 100%; background: #f1f1f1; text-align: left;">
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+
+
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <tr>
+                    <td bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 14px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="50%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: left; padding: 10px 20px;font-size: 18px;" height="80">
+                                                <c:ProgramEmailLogoAsset programIdFromEmail="{!relatedTo.Program__r.Id}"></c:ProgramEmailLogoAsset>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td align="center" valign="middle" width="50%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: right; padding: 10px 20px;font-size: 18px;" height="80">
+                                                <c:ProgramEmailCardAsset programIdFromEmail="{!relatedTo.Program__r.Id}"></c:ProgramEmailCardAsset>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#333333" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 14px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="100%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: center; padding: 0 10px;font-size: 28px;">
+                                                <font color="#f1f1f1"><b>YOUR PILOT THOMAS FLEET TRACK<br/>CARD APPLICATION IS HERE!</b></font>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 14px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="20%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: left; padding: 10px 20px;font-size: 16px;">
+                                                Thank you for considering the Pilot Thomas Fleet Track Card Program. You can be on your way to easier fuel management and greater expense control in just 2 easy steps.
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <apex:outputPanel rendered="{!relatedTo.message__c != null}">
+                
+                <tr>
+                    <td bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding-bottom: 14px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="20%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: left; padding: 10px 20px;font-size: 16px;">
+                                                {!relatedTo.message__c}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                </apex:outputPanel>
+
+                <tr>
+                    <td bgcolor="#2a83ad" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 14px; border-bottom: 3px solid #ffffff;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="20%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: center; padding: 0 10px;font-size: 20px;">
+                                                <font color="#f1f1f1"><b>STEP 1.</b></font>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td align="center" valign="top" width="50%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                                        <tr>
+                                            <td style="border-radius: 5px; background: #ffc212; text-align: center;" class="button-td">
+                                                <a href="http://{!$Label.External_Instance_URL}/creditapplication/{!RelatedTo.Program__r.Form_Template__c}?pgm={!RelatedTo.Program__r.Brand_Short_Name__c}&priority=true&customer={!RelatedTo.Id}&salescode={!RelatedTo.Sales_Id__c}&cc={!RelatedTo.Promotional_Code__c}&pg=a" style="background: #ffc212; border: 15px solid #ffc212; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">
+                                                    <span style="color:#333333;font-size: 16px;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;Complete Your Application&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td align="center" valign="middle" width="30%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                                        <tr>
+                                            <td style="text-align: left; padding: 0 10px;font-size: 18px;">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#7F9A65" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 14px">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="20%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td style="text-align: center; padding: 0 10px;font-size: 20px;">
+                                                <font color="#000000"><b>STEP 2.</b></font>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td align="center" valign="top" width="70%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                                        <tr>
+                                            <td style="border-radius: 3px; text-align: left;">
+                                                <b>Once your application has been submitted, we'll send you an email to easily order your new cards online.</b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td align="center" valign="middle" width="10%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: left;">
+                                        <tr>
+                                            <td style="text-align: left; padding: 0 10px;font-size: 18px;">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#ffffff" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 20px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="100%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td width="100%" colspan="2" style="text-align: left; padding: 10px 20px;font-size: 16px;">
+                                                <p style="padding-bottom: 10px;">In addition to fuel savings, you can also take advantage of other services to help keep your fleet program running smoothly:</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" colspan="2" style="text-align: left; padding: 4px;font-size: 16px;">
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100%" colspan="2" style="text-align: left; padding: 0 20px;font-size: 13px;">
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 13px;text-align: left;">
+                                                    <tr>
+                                                        <td width="68%" style="text-align: left; border-bottom: 1px solid #ddd; padding: 0 0 8px 0;">
+                                                            <b>Card acceptance at over 90% of all U.S. fueling sites</b>
+                                                        </td>
+                                                        <td width="30%">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="70%" style="text-align: left; border-bottom: 1px solid #ddd; padding: 8px 0 8px 0;">
+                                                            <b>Suspend or terminate lost and stolen cards</b>
+                                                        </td>
+                                                        <td width="30%">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="70%" style="text-align: left; border-bottom: 1px solid #ddd; padding: 8px 0 8px 0;">
+                                                            <b>Automate receipts tracking and financial systems updates</b>
+                                                        </td>
+                                                        <td width="30%">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td width="70%" style="text-align: left; border-bottom: 1px solid #ddd; padding: 8px 0 8px 0;">
+                                                            <b>Save with valuable rebates</b>
+                                                        </td>
+                                                        <td width="30%">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="70%" style="text-align: left; padding: 8px 0 8px 0;">
+                                                            <b>Easy integration with our Telematics, GPS service</b>
+                                                        </td>
+                                                        <td width="30%">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td width="100%" colspan="2" style="text-align: left; padding: 20px 20px 0 20px;font-size: 20px;">
+                                                <p style="padding-bottom: 10px;">Start fueling and start saving!</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td bgcolor="#8c8c8c" align="center" height="100%" valign="top" width="100%" style="padding-top: 14px; padding-bottom: 14px;">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:560px;">
+                            <tr>
+                                <td align="center" valign="middle" width="100%">
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: center;">
+                                        <tr>
+                                            <td width="20%" style="padding-left: 20px;" valign="middle">
+                                                <a href="https://{!$Label.External_Instance_URL}/creditapplication/BocaToProspectTracking?customer={!relatedTo.Id}&action=learnMore" style="background: #2b82af; border: 8px solid #2b82af; font-family: sans-serif; font-size: 12px; line-height: 22px; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">
+                                                    <span style="color:#f1f1f1;font-size: 12px; line-height: 15px;" class="button-link">Learn More</span>&nbsp;&nbsp;<span style="vertical-align:middle;font-size: 15px;color:#f1f1f1;">&#9654;</span>
+                                                </a>
+                                            </td>
+                                            <td width="70%" style="text-align: left; padding: 10px 20px;font-size: 16px;">
+                                                <font color="#f1f1f1" style="font-size: 12px;"><b>Get complete program information and service options.</b></font>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+            </table>
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

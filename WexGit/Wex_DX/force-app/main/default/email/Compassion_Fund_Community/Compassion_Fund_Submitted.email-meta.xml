@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification email to Fund Manager of a new fund request</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>Compassion Fund - Submitted</name>
+    <style>freeForm</style>
+    <subject>Your Compassion Fund Request {!Compassion_Fund__c.Name} Has Been Received</subject>
+    <textOnly>Thank you for submitting a new request to the WEX Compassion Fund. Your request will be reviewed and you will be contacted if there are questions.
+
+You can use the link above to access your request, provide additional information and/or read about information on the program.
+
+Thank you,
+The WEX Cares Foundation</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>2020 AU WEX Fuel EFTPOS With FEE MC 0877</name>
+    <style>none</style>
+    <subject>Merchant Update on your Motorcharge application</subject>
+    <textOnly>Dear {!Contact.FirstName}
+
+Thank you for applying to join the WEX Australia Fuel Cards Limited merchant network.
+
+More and more Australian businesses are choosing Motorcharge, Australia&apos;s premier fuel card, to manage their vehicle related expenses. As a merchant of our network you will enjoy access to almost 105,000 cardholders nationally.
+
+Once your application has been finalised, you will receive a start-up kit containing stationery, operating procedures, a merchant identification card, and Motorcharge decals. Make sure that you display the Motorcharge symbol prominently, as our research indicates that cardholder purchasing decisions are heavily influenced by site badging.
+
+Your new merchant number will be allocated once we receive your completed application with a cheque payable to &quot;WEX Fuel Cards Australia Limited&quot; for {!Opportunity.Merchant_Establishment_Fee__c} (please note that the Establishment Fee of $110.00 applies for single product applications or $75.00 each for dual product application) which is a once off joining fee for this merchant facility. In addition please ensure a copy of your current driver&apos;s licence and a bank deposit slip are photocopied and enclosed. If you are already trading in your business, do not use the Merchant Number of the previous owner.
+
+Please note, payments will only be directed to your nominated bank account from the date your completed application form was returned, or the nominated changeover date.
+
+The payment details section of the form allows you to nominate your required payment terms. Please choose from the options detailed below and indicate your choice in the &quot;Payment Plan&quot; section of your application form.
+
+
+
+PAY CYCLE FEE(%)
+1 day (POS only)  3.15%
+9 days  3.00%
+14 days  2.59%
+23 days  2.29%
+32 days  2.00%
+
+
+For further information or assistance completing your application, please contact our Merchant Support Team on 1300 130 113. We look forward to receiving your application and welcoming you to our network.
+
+
+Yours sincerely,
+
+
+Tracey Vines
+Head of Customer Service Asia Pacific</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>For BDMs to send to prospects</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU Sales Article - Compared with Credit Card - Email A</name>
+    <style>none</style>
+    <subject>Why should you change to a WEX Motorpass fuel card?</subject>
+    <textOnly>New Template 2
+
+Dear {!Lead.FirstName},
+
+
+
+I’d like to introduce myself. I am a [role] at WEX, a company specialising in providing payment solutions to businesses throughout the world.
+
+
+
+If your business currently uses a standard credit card to manage your vehicle fleet expenses then we may have an opportunity for you. With fuel prices representing a significant variable cost to your business it’s important to take control where you can.
+
+
+
+We could help you find significant operating efficiencies, save money and have greater control and insight into this area of your business, allowing you to make informed business decisions.
+
+If you would be interested in a short telephone conversation, please reply and let me know a time that is convenient to you and I can get this organised for us.
+
+
+
+In the meantime, if you would be interested in a short article on the benefits our opportunity could provide versus your current payment methods please click here to access.
+
+
+
+Kind regards,
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+WEX Australia Pty Ltd.
+
+Level 3, 293 Camberwell Road, Camberwell VIC 3124
+
+T: {!User.MobilePhone}
+
+E: {!User.Email}
+
+W: wexaustralia.com</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

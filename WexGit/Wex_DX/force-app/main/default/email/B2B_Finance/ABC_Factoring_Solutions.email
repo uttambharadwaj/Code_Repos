@@ -1,0 +1,16 @@
+{!Contact.FirstName},
+
+Thank you for your interest in Triumph Business Capital.  Please review the attached information and call or email me with any questions.   
+
+Remember, TruckersB2B members are eligible for a 2% rebate on all factoring fees paid to Triumph Business Capital. Learn more or request more information today at http://www.b2bquickpay.com. 
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

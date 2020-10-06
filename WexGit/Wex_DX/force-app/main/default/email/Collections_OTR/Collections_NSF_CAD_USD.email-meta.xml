@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - NSF CAD USD</name>
+    <style>freeForm</style>
+    <subject>NSF CAD USD</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+
+[NSF Amount] NSF draft
+
+
+
+
+Your recent payment in the amount of [NSF Amount] has been returned by your bank with the notation NSF. Under these circumstances, credit privileges have been suspended and your account has been inactivated. Please wire transfer $50.00 immediately per the instructions listed below. Once this issue has been cleared up please contact us to discuss the terms and conditions for reactivation of your account.
+
+
+
+Wire Instructions For Canadian USD Customers (payments post next day):
+Receiving Bank: Royal Bank of Canada
+200 Bay St - Main FLR PO Box 1 Station Royal Bank Toronto, ON M5J 2J5
+Bank Code: 0003
+Transit Number: 02382
+Beneficiary Account: 4003141
+Beneficiary Name: Electronic Funds Source LLC
+Beneficiary Address: 1104 Country Hills Drive, Suite 600 Ogden, Utah 84403
+Reference Number: Your 13 digit account number: {!Account.Carrier_ID__c}
+
+
+
+
+*Please make sure to include your 13 digit EFS customer/AR number so that funds can be applied to your account. If your account number includes leading 0&apos;s, please include them in order for funds to be properly applied.
+
+
+
+
+PLEASE NOTE: A $50 NSF fee will be assessed to your account and will show on the next statement created.
+
+
+
+
+Thank you for your prompt attention to this matter.
+
+
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

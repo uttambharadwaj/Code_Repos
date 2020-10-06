@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - 90 - Contact Attempt - FLEX</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+Dear {!Case.Account}:
+
+Your urgent reply is required. Your fuel account is significantly past due and needs payment to avoid any risk of further escalation.
+
+We strongly encourage you to pay the full past due balance to bring the account current.
+
+Total Owed on Account: {!Case.Rollup_Total_Owed_Amount__c}
+
+Minimum Due - Rev: {!Case.Minimum_Due_REV__c}
+
+
+Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}
+
+NOTE: Your account has more than 3 invoices outstanding.  A full security deposit is now required and it is also now at risk of escalation to 3rd party collections
+
+We want to work with you to avoid further delinquency and escalation of your account
+
+If you’re not able to pay the balance in full at this time, please consider paying the oldest invoice to avoid 3rd party collections, or call in to request a weekly payment arrangement.
+
+Make a Payment TODAY
+
+Online and Check-by-Phone payments made before 3:30EST will post same day.
+
+We also accept ACH, Wire, or Western Union payments and have a separate Overnight address if you are mailing a physical check.
+
+If you cannot  make a payment please respond to this email or call today.
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

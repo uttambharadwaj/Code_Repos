@@ -1,0 +1,22 @@
+Dear {!NullValue(Contact.FirstName,"Member")},
+
+Thank you for taking the time to discuss transportation software solutions from Prophesy.  A Representative from Prophesy will contact you within 24 hours to discuss a program that will work best for your needs.
+
+For more than 20 years, Prophesy has delivered user-friendly software solutions with the features and power needed to meet the demands of over 100,000+ transportation professionals.  Best of all, Prophesy not only makes software that is easy-to-use, it is also affordable.  A few benefits of investing in transportation software from Prophesy include:
+
+- Streamline your operations to help run your business better and faster
+- Integrated Windows®-based software solutions
+- As a TruckersB2B member, you receive a 10% rebate on any Prophesy software, or you may opt for additional software
+
+Again, thank you for your interest. A Prophesy Representative will be in touch with you shortly.  In the meantime, should you have any questions, please contact me.
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

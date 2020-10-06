@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - Suspension Notice (fr)</name>
+    <style>freeForm</style>
+    <subject>Un paiement est requis pour pouvoir effectuer de nouveaux achats</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+Votre compte de carte Parcs auto au titre est maintenant suspendu.
+
+Nom du compte: {!Case.Account}
+Numéro du compte se terminant Par: {!Case.Masked_External_Account__c}
+
+Montant Total dû: {!Case.Rollup_Total_Owed_Amount__c}
+Montant en souffrance: {!Case.Rollup_Past_Due_Amount__c}
+Montant actuel dû: {!Case.Rollup_Current_Due_Amount__c}
+
+Il ne sera pas possible de faire de nouveaux achats avec vos cartes tant que le paiement du montant en souffrance ne sera n&apos;est pas appliqué à votre compte et que le solde n&apos;est pas égal ou inférieur à votre limite de crédit. Des frais pourraient être ajoutés conformément aux conditions d&apos;utilisation.
+
+Il se peut que des autorisations d&apos;achats récents sur votre compte n&apos;aient pas encore été traitées et que le solde actuel de votre compte ait presque atteint ou ait dépassé votre limite de crédit.
+
+Pour éviter la suspension de votre compte dans l&apos;avenir, veuillez vous assurer que le solde total de votre compte ne dépasse pas votre limite de crédit.
+
+Les paiements effectués après 15 h 30, heure de l&apos;Est, la fin de semaine ou un jour de congé seront traités le PROCHAIN jour ouvrable.
+
+Merci de nous faire confiance pour vos services de paiement par carte Parcs auto.
+
+Nos sincères salutations,
+Service à la clientèle
+numéro de contact: {!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

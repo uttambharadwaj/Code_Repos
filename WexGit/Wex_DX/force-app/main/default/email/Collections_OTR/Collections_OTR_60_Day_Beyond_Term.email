@@ -1,0 +1,48 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p dir="ltr" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 1.5; margin-top: 10pt; margin-bottom: 0pt;"></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><br></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">{!Account.BillingAddress}</font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="color: rgb(0, 0, 0);" size="2">Dear&nbsp;</font><font face="Verdana, Helvetica, sans-serif" size="2">{!Case.Contact}:</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">Your reply is requested. Your fuel account has
+now reached a serious level of delinquency for the following invoices.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">NOTE: If your account does go more than 3
+invoice cycles outstanding it will require a <u>Credit Review</u>. As an
+outcome of that review, more restrictive terms may be required.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><font face="Verdana, Helvetica, sans-serif" size="2">We want to work with you to avoid further
+delinquency and escalation of your account.<o:p></o:p></font></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Please ACT NOW and make a payment today.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Online and Check-by-Phone payments made before
+3:30EST will post same day.&nbsp;&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">We also accept ACH, Wire, or Western Union
+payments and have a separate Overnight address if you are mailing a physical
+check.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">If you cannot make a payment please respond to
+this email or call today.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Collections and Receivables<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">{!Case.Collections_Phone_Number__c}</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">EFSCollections@wexinc.com<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><o:p style=""><font face="Verdana, Helvetica, sans-serif" style="" size="2">&nbsp;</font></o:p></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></p>]]></td>
+</tr>
+</table>

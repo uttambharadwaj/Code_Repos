@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - RRM - ACH/Wire - REG</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+Dear {!Case.Account}:
+
+Please follow these instructions to send a Wire/ACH payment:
+
+PLEASE NOTE: This information can NOT be used for a Western Union payment
+
+Wire Instructions
+
+OUR BANK IS: BMO Harris Bank
+
+Address: 1200 E Warrenville Rd  Naperville  IL  60563
+
+ABA Routing #: 071000288
+
+Bank Account #:  4539508
+
+Bank Account Name: WEX Bank
+
+WEX Bank PHYSICAL ADDRESS: 97 Darling Ave.  South Portland, ME  04106
+
+ACH Instructions
+
+Use the above banking information for ACH payments
+
+**For ACH only- Our originator id # 0841425616
+
+ACH payments may take up to 48 hrs for posting on business days and WEX requires 6 business days for clearing.
+
+Please allow at least 24 hrs from the time your bank sent the ACH before calling to check the status
+
+Payment Remit Instructions
+
+Please email the following information for correct payment posting to: Wire.remit@wexinc.com
+
+Subject line: Indicate the dollar amount and the fleet invoice number(s) or account number(s).
+
+Body of email: corresponding account name(s) &amp; corresponding invoice total being paid
+
+NOTE: For faster processing, please respond to this email indicating the wire is sent and the dollar amount. I will then take the appropriate next action and notify you.
+
+Wires received at our bank by 2:00 EST post the same night; wires received at our bank after 2:00 EST will post the next business night.
+
+
+Please allow at least 4 hrs from the time your bank sent the wire before calling to check the status.
+
+
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

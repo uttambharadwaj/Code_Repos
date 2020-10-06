@@ -1,0 +1,51 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Date: {!Today}</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">{!Case.Contact}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><a name="Text1"></a><span style="font-size: 9pt; font-family: Verdana, sans-serif;">{!Case.Account}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">{!Account.BillingAddress}</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Re: Release Personal Guarantor from Liability</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><br></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 12px;">Account Number#: *********{!Case.Masked_External_Account__c}&nbsp;</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 12px;"><br></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Dear&nbsp;{!Case.Contact},</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Thank you for request to be released from liability as a personal
+guarantor for the account number above.&nbsp; As of the date of this letter
+your release from liability has been granted.&nbsp; Please reply to this email with any questions you may have.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Sincerely,</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Credit Services</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">WEX Bank</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:9.0pt">The federal Equal Credit
+Opportunity Act prohibits creditors from discriminating against credit
+applicants on the basis of race, color, religion, national origin, sex, marital
+status, age (provided the applicant has the capacity to enter into a binding contract);
+because all or part of the applicant’s income derives from any public
+assistance program; or because the applicant has in good faith exercised any
+right under the Consumer Credit Protection Act.<span style="mso-spacerun:yes">&nbsp;
+</span>The federal agency that administers compliance with this law concerning
+this creditor is the <span style="layout-grid-mode:line">Federal Deposit
+Insurance Corporation, </span>FDIC Consumer Response Center, 1100 Walnut St,
+Box #11, Kansas City, MO 64106.<o:p></o:p></span></p><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial" style="" size="2"></font></span><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></p>]]></td>
+</tr>
+</table>

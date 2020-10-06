@@ -1,0 +1,11 @@
+{!Receiving_User.Name},
+
+The opportunity titled "{!Opportunity.Name}" has been Won and will need to be converted to an asset in the system.  
+
+Please follow this link to view the opportunity:
+
+{!Opportunity.Link}
+
+Thank you,
+
+{!User.Name}

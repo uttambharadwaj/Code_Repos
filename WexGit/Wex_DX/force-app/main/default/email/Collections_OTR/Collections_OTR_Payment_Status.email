@@ -1,0 +1,36 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style=""><font size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b style=""><u style="">Case Number: </u></b></span></font><font size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font style="" size="2" face="Verdana, Helvetica, sans-serif"><br></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font style="" size="2" face="Verdana, Helvetica, sans-serif">{!Today}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">Attn: {!Case.Contact}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Case.Account}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Account.BillingAddress}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif"><font style="">Account Number:&nbsp;</font>{!Account.Carrier_ID__c}</font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">Dear&nbsp;{!Case.Contact}:<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="white-space: pre-wrap;"><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="white-space: pre-wrap;"><font size="2" face="Verdana, Helvetica, sans-serif">According to our records, your account is currently past due. This is a reminder that a payment should be remitted as soon as possible.&nbsp; If the account remains past due your credit line with us will be impacted and the account may have to be sent for credit review before reactivation.</font></span></p><p dir="ltr" style="line-height: 1.38; background-color: rgb(255, 255, 255); margin-top: 0pt; margin-bottom: 0pt; padding: 0pt 0pt 10pt;"><span style="background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><font size="2" face="Verdana, Helvetica, sans-serif">Please do not hesitate to call us should you have questions about your account or wish to obtain additional information on the balance due.&nbsp;</font></span></p><p dir="ltr" style="line-height: 1.38; background-color: rgb(255, 255, 255); margin-top: 0pt; margin-bottom: 0pt; padding: 0pt 0pt 10pt;"><span style="background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><font size="2" face="Verdana, Helvetica, sans-serif">Did you know that you can also pay your invoice through online banking or set-up pre-authorized debit? Simply contact our Customer Service team or email us at Collections@wexinc.com for more information.</font></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif"><span id="docs-internal-guid-48453a5a-7fff-8e62-a05e-6c4439bc4ceb"></span></font></p><p dir="ltr" style="line-height: 1.38; background-color: rgb(255, 255, 255); margin-top: 0pt; margin-bottom: 10pt;"><span style="background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;"><font size="2" face="Verdana, Helvetica, sans-serif">Thank you very much for your attention in the matter and for your continued patronage.</font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font style="" size="2" face="Verdana, Helvetica, sans-serif">Receivables and Credit Management<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Case.Collections_Phone_Number__c}</font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="background: white;">EFSCollections@wexinc.com</span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p style=""><font style="" size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>]]></td>
+</tr>
+</table>

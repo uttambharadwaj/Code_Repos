@@ -1,0 +1,10 @@
+{!Contact.FirstName},
+
+I hope you are well and the cards have been working nicely for you.  There was a change in the implementation process for the speed pass (faab), therefore, I need for you to have the attached form signed only, as I already filled it out for you, and send it back to me and I will forward it to the implementation center.  Contact me if you have any questions.
+
+Have a great day!
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}

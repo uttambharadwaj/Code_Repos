@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Courtesy Notice</name>
+    <style>freeForm</style>
+    <subject>Courtesy Notice</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+{!Case.Contact},
+
+
+
+Please be advised that you are approaching your credit limit of [Account Credit Limit], with a current available balance of [Account Available Credit].
+
+
+
+If you have an EFS account, please contact: EFS - A WEX Company - Credit Department at 888-824-7378 Option 4 Ext 86604 or by email at efs.credit@efsllc.com between the hours of 6AM and 5PM Mountain Time, Monday - Friday.
+
+
+
+If you have a Fleet One account please, contact: WEX Fleet One Collections Department at 877-239-2381 or by email at collections@fleetone.com between the hours of 7AM and 5PM Central Time, Monday - Friday.
+
+
+
+Any other questions should be directed to Customer Service at 888-824-7378.
+
+
+
+Regards,
+
+EFS Collections and Receivables
+
+Email: efs.credit@efsllc.com
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

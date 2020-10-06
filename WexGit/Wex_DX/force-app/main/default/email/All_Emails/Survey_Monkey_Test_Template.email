@@ -1,0 +1,27 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 12pt;">Hello [FirstName],</span></p><p class="MsoNormal"><o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">We see that you recently considered us for your fuel card
+needs, but decided not to go with WEX.&nbsp; We would greatly appreciate your
+time to take this survey and tell us why we did not win your business and how
+we can improve our offering: {!SurveyMonkey.SurveyLink}<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Click here to opt out <o:p></o:p></p>
+
+<p class="MsoNormal">{!SurveyMonkey.RemoveLink}<o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Thank you for your participation, <o:p></o:p></p>
+
+<p class="MsoNormal">The WEX team<o:p></o:p></p>]]></td>
+</tr>
+</table>

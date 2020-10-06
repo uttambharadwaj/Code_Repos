@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>EAPT-2583 Is Not Canadian Queue</label>
+    <protected>false</protected>
+    <values>
+        <field>Collections_Email_Configuration__c</field>
+        <value xsi:type="xsd:string">NAF_Contact_Follow_Up_Email_English</value>
+    </values>
+    <values>
+        <field>Field__c</field>
+        <value xsi:type="xsd:string">Owner.Name</value>
+    </values>
+    <values>
+        <field>Operator__c</field>
+        <value xsi:type="xsd:string">NOT Contains</value>
+    </values>
+    <values>
+        <field>Value__c</field>
+        <value xsi:type="xsd:string">Canada</value>
+    </values>
+</CustomMetadata>

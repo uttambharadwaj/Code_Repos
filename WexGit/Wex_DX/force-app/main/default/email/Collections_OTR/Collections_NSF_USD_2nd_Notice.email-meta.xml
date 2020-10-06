@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - NSF USD - 2nd Notice</name>
+    <style>freeForm</style>
+    <subject>NSF USD 2nd Notice</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+
+2ND NOTICE
+
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+[NSF Amount] NSF draft
+
+
+Dear Customer,
+
+
+As previously advised, your recent payment in the amount of [NSF Amount] has been returned by your bank with the notation NSF.
+
+
+
+Your credit privileges are currently suspended and it is urgent that we get your account current. Please wire transfer $30.00 immediately per the instructions listed below.  Once this issue has been cleared up please contact us to discuss the terms and conditions for reactivation of your account.
+
+
+
+
+Wiring Instructions for EFS USD
+Bank Name:
+
+Fifth Third Bank
+38 Fountain Square
+Cincinnati, OH 45263
+
+
+Account Name: WEX
+
+
+
+Bank Account Number: 7361767473
+
+Wire Routing Number: 042000314
+
+ACH Routing Number: 064103833
+
+
+
+Please make sure to include Company Number in the payment remittance information (&quot;OBI Fields&quot;) - we cannot apply your payment without this information. Please follow the example illustrated below:
+
+
+
+OBI Line 1: # {!Account.Carrier_ID__c} (in English: &apos;#&quot; + [space] + 13 digit customer number)
+
+
+PLEASE NOTE: A $50 NSF fee will be assessed to your account and will show on the next statement created. All wire payments of less than $2,500.00 will be charged an inbound bank fee of $5.00.
+
+
+Thank you for your prompt attention to this matter.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

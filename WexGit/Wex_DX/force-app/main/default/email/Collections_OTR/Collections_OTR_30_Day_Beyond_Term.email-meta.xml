@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - OTR 30 Day Beyond Term</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+
+Dear {!Case.Contact}:
+
+
+This is a reminder that your fuel account has an open balance that is now overdue. This email is to notify you that we have not yet received full payment.
+
+
+NOTE: Anytime your account contains a past due balance it is at risk of Service Interruption
+
+
+Please make your payment today.
+
+
+Online and Check-by-Phone payments made before 3:30EST will post same day
+
+
+We also accept ACH, Wire, or Western Union payments and have a separate Overnight address if you are mailing a physical check
+
+
+If you cannot make a payment please respond to this email or call today.
+
+
+Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+EFSCollections@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - 30 - Generic - FLEX</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number:{!Case.CaseNumber}
+
+Dear {!Case.Account}:
+
+We are attempting to contact you regarding your fuel account. There is an urgent business matter that requires your immediate attention and response today.
+
+Call: {!Case.Collections_Phone_Number__c}
+
+Ref  #: *********{!Case.Masked_External_Account__c}
+
+
+Please contact us immediately by responding to this email or call today.
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

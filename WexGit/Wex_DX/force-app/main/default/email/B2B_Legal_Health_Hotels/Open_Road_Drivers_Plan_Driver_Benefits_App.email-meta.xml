@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Legal_Health_Hotels/ORDPDriverBenefitsApp_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>Open Road Driver Benefits and Application</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Open Road Driver Benefits &amp; App</name>
+    <style>none</style>
+    <subject>Open Road Drivers Plan - Driver Benefits &amp; Application</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

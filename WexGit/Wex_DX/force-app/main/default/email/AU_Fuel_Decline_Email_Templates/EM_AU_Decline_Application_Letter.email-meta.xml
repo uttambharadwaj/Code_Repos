@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>EM AU Application Decline Letter</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AU_WEX_Motorcharge</letterhead>
+    <name>EM AU Decline Application Letter</name>
+    <style>formalLetter</style>
+    <subject>Application Declined {!AU_Application_Request__c.Name} {!AU_Application_Request__c.Account__c}</subject>
+    <textOnly>Dear Applicant,
+Thank you for your recent application for a Mobil Card account.
+
+After careful consideration, we regret to inform that your application does not meet our approval conditions.
+If you would like to re-apply for a Mobil Card account in the future, we may reconsider your application.
+If you would like to discuss your application with one of our Credit team members, please call 1300 173 435.
+
+Kind regards,
+
+Mobil Oil Australia Pty Ltd.
+
+
+This is a computer generated e-mail and no signature is required.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Welcome email that gets sent to new FTS members</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>FTS Plus Welcome Email</name>
+    <style>freeForm</style>
+    <subject>Your {!NullValue(Account.00NU0000003PQkF, &quot;FTS&quot;)} fuel card just got better!</subject>
+    <textOnly>Dear {!Account.Name},
+
+As a {!Account.00NU0000003PQkF} customer, your benefits just got better!  In addition to increased fuel discounts, you now have access to FTS Plus+, which provides savings on virtually everything you need to run your trucking business, including tires, new and used trucks, maintenance, office solutions and so much more!
+
+Below is the link to register for your login credentials  (you will need your Member ID shown below and your billing zip code), which you can use to access the FTS Plus+ website. Here you will find detailed information on all of your newly gained benefits, as well as a place to keep track of your savings to date.   
+
+https://member.ftsplus.com/Account/Register
+Member ID: {!Account.Member_ID__c}
+
+For details on the increased fuel discount, please contact your account manager. For more information on the additional FTS Plus+ benefits, please call a savings representative at 800.749.1724, opt. 2 or email info@ftsplus.com.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

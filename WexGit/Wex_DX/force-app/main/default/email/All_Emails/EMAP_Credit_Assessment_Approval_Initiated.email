@@ -1,0 +1,12 @@
+Hello User, 
+
+This Credit Assessment is pending for your approval. 
+Approved Credit Limit (LCY): {!Credit_Assessment__c.Credit_Limit_Lcy__c}
+Total Exposure Limit USD: {!Credit_Assessment__c.Total_Exposure_Limit_USD__c}
+
+To approve or reject this item, click this link {!ApprovalRequest.Internal_URL} or reply to this email with one of these words in the first line of the email message: APPROVE, APPROVED, YES, REJECT, REJECTED, NO 
+
+If replying via email, you can also add comments on the second line. Comments will be stored with the approval request in Salesforce CRM. 
+
+
+Thank you

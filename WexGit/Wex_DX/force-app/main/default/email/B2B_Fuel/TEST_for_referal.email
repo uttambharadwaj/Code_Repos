@@ -1,0 +1,9 @@
+{!Contact.FirstName},
+
+Thanks so much for referring over {!Account.Name}.  I have set up the account and reached out to them.
+
+Let me know if you have any questions on this account.  You can always refer to {!Account.Name}'s account number or our TruckersB2B member number for this fleet ({!Account.Member_ID__c}).
+
+You can reach myself or our Fuel Account Manager, Jennifer Nelson jnelson@truckersb2b.com with any questions.
+
+Thanks again!

@@ -1,0 +1,16 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<table border="0" height="400" width="600" cellpadding="5" cellspacing="5"><tbody><tr height="50" valign="top"><td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;"><b><br>Congratulations!&nbsp;</b> Your ExxonMobil fleet card account has been approved!</td></tr><tr height="300" valign="top"><td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;"><font size="3"><font face="Arial,Sans-Serif">Before
+ your account can be set up, I will need your driver and vehicle 
+information. Please fill out the attached Fleet Information Form and 
+email back to me as soon as possible. The vehicle description you 
+provide will appear on the second line of your cards under your company 
+name. It will also appear on your reports along with driver names.<br><br>A
+ card will be assigned to each vehicle you list. You can provide Driver 
+ID numbers on the form or we can provide system generated Driver ID’s 
+for you. Each driver’s ID will work with any of your vehicle cards.<br><br>If you have any questions about the Fleet Information Form, please feel free to contact me at {!User.Phone}.<br><br>Again,
+ congratulations on your new ExxonMobil fleet card account. I look 
+forward to helping you manage your vehicle fueling expenses.</font></font></td></tr><tr height="50" valign="top"><td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;">Sincerely,<br><br>{!User.FirstName} {!User.LastName}<br>{!User.Title}<br>Phone: {!User.Phone}<br>Email: {!User.Email}</td></tr></tbody></table>]]></td>
+</tr>
+</table>

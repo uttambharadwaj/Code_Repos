@@ -1,0 +1,23 @@
+<messaging:emailTemplate subject="Beneficial Ownership Form" recipientType="Contact" relatedToType="Beneficial_Owner_Entity__c">
+<messaging:htmlEmailBody >
+<p>Dear {!recipient.FirstName},</p>
+
+<p>Please be aware that Federal regulations now require all banks to verify the ownership of certain business types when they open a new account.</p>
+<p>Before we can review your application, we must ask you to identify:</p>
+<ul>
+<li>Any person who owns, directly or indirectly, at least 25 percent of the equity interests of this business.</li><br/>
+<li>One person with a significant managing role, like an executive officer or senior manager.</li>
+</ul>
+<p>Please provide the name, address, date of birth, and social security/passport number for each individual.</p>
+<p style="font-size: 18px;">We’ve made it easy.</p>
+<p>Just use our simple and secure online form to complete your application.</p>
+<p><a href="https://{!$Label.External_Instance_URL}/creditapplication/BOCertification?entityId={!relatedTo.Id}&formKey={!relatedTo.Save_For_Later_Key__c}">Provide Ownership Info</a></p>
+<p>Read our FAQ about this Federal requirement here. If you still have questions, don’t hesitate to call us at {!relatedTo.Owner.Phone}.</p>
+<p>Sincerely,</p>
+{!relatedTo.Owner.FirstName} {!relatedTo.Owner.LastName}
+<p><br/><br/></p>
+<p>It’s our goal to make your application process as efficient as possible. All banks are subject to new rules under the Bank Secrecy Act that aid the government in the fight against crimes to evade financial measures designed to combat terrorism and other national security threats. We proudly support all efforts to protect and maintain the security of our customers.</p>
+
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

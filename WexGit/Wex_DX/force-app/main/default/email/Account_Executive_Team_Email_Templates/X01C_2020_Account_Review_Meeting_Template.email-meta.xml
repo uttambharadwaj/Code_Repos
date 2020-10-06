@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Short and simple, no bullets + COVID19 response</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>01C 2020 Account Review Meeting Template</name>
+    <style>none</style>
+    <subject>WEX Fuel Card Account Review</subject>
+    <textOnly>Hello {!Contact.FirstName}
+
+
+
+Hope all is well! It&apos;s time for us to schedule your account review for your WEX fuel card program. I am excited to bring you up to speed on our latest program developments, and to talk about what opportunities we see to help you cut your company&apos;s fuel costs. I&apos;d also like to get up to speed with any new needs, goals, and company initiatives you may have.  Additionally, I wanted to let you know that WEX has converted its global workforce to working from home amid concerns of COVID-19. We have the resources and technology to continue providing uninterrupted support to you and all Customers. I&apos;ve attached our corporate response.
+
+
+When would be an okay date and time to schedule and discuss your needs, goals, and savings opportunities?
+
+
+
+Thanks,
+
+
+{!User.Name}, Account Executive
+
+WEX Inc.
+
+97 Darling Ave, South Portland, ME 04106
+
+Phone: {!User.Phone}
+
+Email: {!User.Email}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

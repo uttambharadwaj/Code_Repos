@@ -1,0 +1,12 @@
+<messaging:htmlEmailBody >
+Hello,<br/><br/>
+
+Your Account - {!Credit_Assessment__c.Account__c} credit decision has been rejected. <br/><br/>
+
+Please click on the following link to access the record: <br/>
+{!Credit_Assessment__c.Link} <br/><br/>
+
+Regards, <br/><br/>
+
+WEX EMAP
+</messaging:htmlEmailBody>

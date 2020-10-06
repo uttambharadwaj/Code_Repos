@@ -1,0 +1,83 @@
+<table border="0" cellpadding="0" width="650" cellspacing="0" height="400" >
+<tr valign="top" >
+<td width="460" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" >
+<table border="0" cellpadding="5" width="460" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<table border="0" cellpadding="5" width="600" cellspacing="5" height="400"><tbody><tr valign="top" height="50"><td teditid="c1r1" aeditid="c1r1" locked="0" style="background-color: rgb(255, 255, 255);"><font size="2">Hi&nbsp;{!Lead.FirstName}</font></td></tr><tr valign="top" height="300"><td teditid="c1r2" aeditid="c1r2" locked="0" style="background-color: rgb(255, 255, 255);"><p class="MsoNormal"><font size="2">You recently requested a
+comparison on Fuel Cards and we have been trying to call to provide you with
+more information. <o:p></o:p></font></p><p class="MsoNormal"><o:p><font size="2">&nbsp;</font></o:p></p><p class="MsoNormal"><font size="2">If you prefer to view our
+products online simply visit for more information or feel free to call me during business hours on&nbsp;{!User.Phone}</font><span style="font-size: small;">.</span></p><p class="MsoNormal"><o:p><font size="2">&nbsp;</font></o:p></p><p class="MsoNormal"><font size="2">When it comes to managing your
+fuel needs, <b>WEX Motorpass</b> can make things so much easier.&nbsp; Designed
+specifically to bring you superior control and <o:p></o:p></font></p><p class="MsoNormal"><font size="2">convenience when keeping your
+vehicles on the move, it’s the fuel card that can bring you benefits anywhere
+you are.<o:p></o:p></font></p><p class="MsoNormal"><o:p><font size="2">&nbsp;</font></o:p></p><p class="MsoNormal"><font size="2">With acceptance at over <b>90%</b> of service stations
+Australia wide, <b>WEX Motorpass</b> can significantly reduce driver downtime
+by offering you the flexibility of <o:p></o:p></font></p><p class="MsoNormal" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal"><font size="2">an extensive network and help reduce fuel costs by allowing
+you to shop around for the best fuel price on any given day.</font><o:p></o:p></p><p class="MsoNormal"><br></p><p class="MsoNormal"><font face="Arial, sans-serif" style="" size="2">&nbsp;</font></p><p class="MsoNormal" style=""><o:p><font face="Arial, sans-serif" size="2">Kind Regards,</font></o:p></p><p class="MsoNormal" style=""><o:p><font face="Arial, sans-serif" size="2"><br></font></o:p></p><p class="MsoNormal" style=""><font face="Arial, sans-serif" size="2">{!User.Name}</font></p><p class="MsoNormal" style="font-size: 12pt;"><o:p><font face="Arial, sans-serif"><br></font></o:p></p><p class="MsoNormal" style="font-size: 12pt;"><o:p><font face="Arial, sans-serif"><br></font></o:p></p><p class="MsoNormal" style="font-size: 12pt;"><o:p><font face="Arial, sans-serif"><br></font></o:p></p><p class="MsoNormal" style=""><font size="1">*This
+offer is available to new customers only and cannot be used in conjunction with
+any other offer. The offer applies to each card issued under your WEX Motorpass
+account, and applies only to fuel purchases. Discount does not apply to LPG
+fuels. Discounts are only available off the pump price at BP service stations.
+5 cent discount is available for 5 months from the account opening date and
+will revert to 2 cents off per litre after this date. Applicants and authorised
+representatives must be over 18 years, have an ABN and use their vehicles for
+business purposes to apply. The standard WEX Motorpass terms and conditions and
+fees and charges apply. Please see motorpass.com.au/terms-and-conditions.
+Credit is issued by WEX Australia Pty Ltd ABN 68 005 970 570 and applications
+are subject to credit assessment criteria.</font></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p></td></tr></tbody></table>]]></td>
+</tr>
+</table>
+</td>
+<td width="10" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" >
+<![CDATA[]]></td>
+<td width="180" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" >
+<table border="0" cellpadding="5" width="180" cellspacing="5" height="400" >
+<tr valign="top" height="100" >
+<td rowspan="3" width="180" tEditID="c2r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c2r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><br></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b style=""><span style="font-size: 14pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">WEX Motorpass Benefits<o:p></o:p></font></span></b></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b style=""><span style="background-color: rgb(255, 255, 255);"><font color="#0070c0" face="Arial, sans-serif"><br></font></span></b></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b style=""><span style="background-color: rgb(255, 255, 255);"><font color="#0070c0" face="Arial, sans-serif" style="">Extensive acceptance</font></span></b></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><font style="" face="Arial, sans-serif" size="2">Accepted at over 90% of service stations Australia wide</font></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b><span style="font-size: 11.5pt; background-color: rgb(255, 255, 255);">&nbsp;</span></b></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><span style="background-color: rgb(255, 255, 255);"><font color="#0070c0" face="Arial, sans-serif" style=""><b style="">PIN Authorisation</b></font></span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><span style="background-color: white;"><font face="Arial, sans-serif" style="" size="2">WEX Motorpass allows you to
+set up a PIN for an individual card or all of your cards</font></span></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b><span style="font-size: 11.5pt; background-color: rgb(255, 255, 255);">&nbsp;</span></b></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b style=""><span style="background-color: rgb(255, 255, 255);"><font color="#0070c0" face="Arial, sans-serif" style="">Reduced administration</font></span></b></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><font style="" face="Arial, sans-serif" size="2">Comprehensive ATO approved statements&nbsp;</font></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><b><span style="font-size: 11.5pt; background-color: rgb(255, 255, 255);"><font face="Arial, sans-serif">&nbsp;</font></span></b></p>
+
+<p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><font color="#0070c0" face="Arial, sans-serif"><span style="background-color: rgb(255, 255, 255);"><b>Card Controls</b></span></font></p><p class="MsoNormal" style="font-family: arial; color: rgb(0, 0, 0); text-align: center;"><span lang="EN-US" style="background: white;"><font size="2" style="" face="Arial, sans-serif">Ability to restrict what
+can be purchased and when, even down to what day and the amount of litres
+pumped</font></span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><span lang="EN-US" style="font-size:11.0pt;font-family:
+&quot;Calibri&quot;,sans-serif;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;
+mso-bidi-font-family:&quot;Times New Roman&quot;;background:white;mso-ansi-language:EN-US;
+mso-fareast-language:EN-AU;mso-bidi-language:AR-SA"><br></span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><span style="background-color: white;"><font color="#0070c0" face="Arial, sans-serif" style=""><b style="">Payment Options</b></font></span></p><p class="MsoNormal" style="font-family: arial; color: rgb(0, 0, 0); text-align: center;"><font size="2" face="Arial, sans-serif" style="">Direct debit, credit card, cheque &amp; BPAY</font></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt; color: rgb(0, 0, 0); text-align: center;"><span style="font-size: 11pt;"><font face="Arial, sans-serif"><br></font></span></p><p class="MsoNormal" style="font-size: 12pt; text-align: center;"><font color="#0070c0" face="Arial, sans-serif" style=""><span style="background-color: rgb(255, 255, 255);"><b style="">Exclusive Partner Offers&nbsp;</b></span></font></p><p class="MsoNormal" style="text-align: center;"><font face="Arial, sans-serif" style="" size="2"><span style="color: rgb(0, 0, 0);">Click <a href="https://www.motorpass.com.au/using-your-card/where-can-i-save" style="">here </a>to see how you can&nbsp;</span><span style="color: rgb(0, 0, 0);">Save money on servicing, repairs, tyres &amp; maintenance for your fleet.</span></font></p><p class="MsoNormal" style="font-size: 12pt; text-align: center;"><span style="color: rgb(0, 0, 0); font-size: 11pt;"><font face="Arial, sans-serif"><br></font></span></p><p class="MsoNormal" style="font-size: 12pt; text-align: center;"><b style="color: rgb(0, 112, 192);"><font face="Arial, sans-serif">Savings Calculator</font></b></p><p class="MsoNormal" style="text-align: center;"><span lang="EN-US" style=""><font face="Arial, sans-serif" style="" size="2">Click <a href="https://savingscalculator.motorpass.com.au/savingscalculator.aspx" style="">here </a>to see how much
+WEX Motorpass could save you from driver diversion&nbsp;</font></span></p>]]></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>

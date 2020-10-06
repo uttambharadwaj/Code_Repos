@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - RRM - Account Update (fr)</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - No de compte: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+Cette lettre a pour objectif de vous informer comment ajouter ou supprimer des utilisateurs autorisés à votre compte de carburant ou mettre à jour votre adresse réelle ou postale.
+
+Veuillez soumettre une demande officielle sur papier à en-tête de l’entreprise, et la faire signer par un dirigeant de l’entreprise ou un utilisateur autorisé actuel. Fournissez également les coordonnées complètes de toutes les personnes à ajouter.
+
+Avant de soumettre votre demande, assurez-vous qu’elle :
+
+-          est écrite sur du papier à en-tête de l’entreprise;
+
+-          contient les coordonnées complètes des personnes à ajouter;
+
+-          est signée par un dirigeant ou un utilisateur autorisé actuel.
+
+
+Veuillez envoyer votre demande de mise à jour officielle à : correspondence@wexinc.com
+
+
+Comptes clients et gestion du crédit
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

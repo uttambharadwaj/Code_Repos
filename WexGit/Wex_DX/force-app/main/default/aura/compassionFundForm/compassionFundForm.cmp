@@ -1,0 +1,235 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes"
+                access="global"
+                controller="CompassionFundFormController">
+    <aura:attribute name="newCompassionFundForm" type="Compassion_Fund__c" default="{ 'sobjectType': 'Compassion_Fund__c' }"/>
+    <aura:attribute name="options" type="List" default="[{'label': 'Yes', 'value': 'Yes'},{'label': 'No', 'value': 'No'}]"/>
+    <aura:attribute name="formSubmitted" type="Boolean" default="false"/>
+    
+    <!--  <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>   -->
+    
+    <ltng:require 
+                  styles="{!$Resource.CompassionFundFormCSS.css}" 
+                  />
+    
+    <!-- COMMPASSION FUND FORM -->
+    <lightning:layout horizontalAlign="spread" multipleRows="true">
+        <lightning:layoutItem padding="around-small" flexibility="grow" size="12">
+            
+            <div aria-labelledby="newCompassionFundForm">
+                
+                <fieldset class="slds-box slds-theme--default">
+                    
+                    <aura:if isTrue="{!v.formSubmitted == true}">
+                        Thank you for your submission! You should receive an confirmation email and can view your submitted application under 'My Requests'.
+                    </aura:if>
+                    
+                    <aura:if isTrue="{!v.formSubmitted == false}">
+                        <form class="slds-form--stacked" action="javascript:return false">  
+                            <div class="slds-p-bottom_medium slds-page-header fa-user-circle gradientRed">
+                                <lightning:icon iconName="utility:user" size="x-small" variant="inverse"/>
+                                APPLICANT INFORMATION</div>
+                            &nbsp;&nbsp;
+                            <div>
+                                <lightning:formattedText class="slds-p-top_medium bodyContent" value="Please review application eligibility and criteria before completing this form in its entirety. For this infomation click "/>
+                                <a href="http://wexinc.staging.wpengine.com/wex-compassion-fund" title="EligibilityAndCriteria" target="_blank" class="link">here</a>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-top_medium">     
+                                <lightning:input type="text" aura:id="field" label="Employee ID"
+                                                 name="employeeID"
+                                                 value="{!v.newCompassionFundForm.Employee_ID__c}"
+                                                 maxlength="6"
+                                                 min="1"
+                                                 pattern="[0-9]+"                                                
+                                                 messageWhenBadInput='Employee number must be digits only'
+                                                 class = "slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 slds-p-right_small bodyContent"
+                                                 required="true"
+                                                 placeholder="Your WEX Employee ID can be found in Fushion under 'Employment Information'"
+                                                 />                              
+                                <lightning:select aura:id="newCompassionFundForm" name="selectLocation" label="Office Location"  
+                                                  value="{!v.newCompassionFundForm.Office_Location__c}"
+                                                  required="true"
+                                                  class = "slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 bodyContent">                                             
+                                    <option value="">choose one...</option>
+                                    <option value="EFS - Indianapolis, Indiana">EFS - Indianapolis, Indiana</option>
+                                    <option value="EFS - Memphis, Tennessee">EFS - Memphis, Tennessee</option>
+                                    <option value="EFS - Nashville, Tennessee">EFS - Nashville, Tennessee</option>
+                                    <option value="EFS - Ogden, Utah">EFS - Ogden, Utah</option>
+                                    <option value="WEX Asia - Singapore">WEX Asia - Singapore</option>
+                                    <option value="WEX Australia - Melbourne">WEX Australia - Melbourne</option>
+                                    <option value="WEX Bank - Midvale, Utah">WEX Bank - Midvale, Utah</option>
+                                    <option value="WEX Brazil - São Paulo">WEX Brazil - São Paulo</option>
+                                    <option value="WEX Europe - 1 London Bridge">WEX Europe - 1 London Bridge</option>
+                                    <option value="WEX Europe Services (main office) - Emperor Court, Emperor Way, Crewe Business Park">WEX Europe Services (main office) - Emperor Court, Emperor Way, Crewe Business Park</option>
+                                    <option value="WEX Fuel Management - Louisville, Kentucky">WEX Fuel Management - Louisville, Kentucky</option>
+                                    <option value="WEX Health, General - West Fargo, North Dakota">WEX Health, General - West Fargo, North Dakota</option>
+                                    <option value="WEX Health, Press - St. Louis, Missouri">WEX Health, Press - St. Louis, Missouri</option>
+                                    <option value="WEX Health, Sales - Edina, Minnesota">WEX Health, Sales - Edina, Minnesota</option>
+                                    <option value="WEX Health, Support - Simsbury, Connecticut">WEX Health, Support - Simsbury, Connecticut</option>
+                                    <option value="WEX Health - Omaha, Nebraska">WEX Health - Omaha, Nebraska</option>
+                                    <option value="WEX New Zealand - Auckland">WEX New Zealand - Auckland</option>
+                                    <option value="WEX - South Portland, Maine">WEX - South Portland, Maine</option>
+                                </lightning:select>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-top_medium">
+                                <lightning:input type="tel" label="Work Phone" 
+                                                 aura:id="field"
+                                                 name="workPhone" 
+                                                 class = "slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 slds-p-right_small bodyContent"
+                                                 value="{!v.newCompassionFundForm.Work_Phone__c}"
+                                                 required="true"/>
+                                <lightning:input type="tel" label="Personal Phone" 
+                                                 aura:id="newCompassionFundForm"
+                                                 name="homePhone" 
+                                                 class = "slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 bodyContent"
+                                                 value="{!v.newCompassionFundForm.Mobile_Home_Phone__c}" />
+                            </div>
+                            <div class="slds-p-top_medium"></div>
+                            <lightning:inputAddress aura:id="newCompassionFundForm"
+                                                    streetLabel="Home Address"
+                                                    cityLabel="City"
+                                                    countryLabel="Country"
+                                                    provinceLabel="State / Province"
+                                                    postalCodeLabel="Postal Code"
+                                                    street="{!v.newCompassionFundForm.Home_Street_Address__c}"
+                                                    city="{!v.newCompassionFundForm.Home_City__c}"
+                                                    country="{!v.newCompassionFundForm.Home_Country__c}"
+                                                    province="{!v.newCompassionFundForm.Home_State__c}"
+                                                    postalCode="{!v.newCompassionFundForm.Home_Postal_Code__c}"
+                                                    class="bodyContent"
+                                                    />
+                            <div class="slds-p-top_medium">
+                                <lightning:formattedText class="bodyContent" value="Length of time employed at WEX"/>
+                                <lightning:input type="number" aura:id="field" label="Please note that we are collecting this for informational purposes only.  Federal law and IRS regulations prohibit the WEX Compassion Fund from considering length of employment and performance as criteria for issuing funding."
+                                                 name="lengthEmployed"      
+                                                 min="0"
+                                                 value="{!v.newCompassionFundForm.Employment_Length__c}"
+                                                 maxlength="2"
+                                                 class="bodyContent"/>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="slds-p-vertical_medium fa-user-circle gradientRed">
+                                <lightning:icon iconName="utility:event" size="x-small" variant="inverse"/>
+                                QUALIFYING EVENT TYPE</div>    
+                            &nbsp;&nbsp;
+                            <div class="slds-grid slds-wrap">
+                                <lightning:select aura:id="field" 
+                                                  name="selectEvent" 
+                                                  label="Event"
+                                                  value="{!v.newCompassionFundForm.Qualifying_Event_Type__c}"
+                                                  class = "slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 slds-p-right_small bodyContent"
+                                                  required="true">       
+                                    <option value="">choose one...</option>             
+                                    <option value="Qualified or Natural Disaster">Qualified or Natural Disaster</option>
+                                    <option value="Catastrophic Illness or Injury">Catastrophic Illness or Injury</option>
+                                    <option value="Death/Funeral Expenses">Death/Funeral Expenses</option>
+                                    <option value="Violent Crime">Violent Crime</option>
+                                    <option value="Domestic Abuse">Domestic Violence</option>
+                                    <option value="Military Deployment">Military Deployment</option>
+                                </lightning:select>  
+                                <lightning:input type="date" aura:ud="field" label="Date of Event" name="eventDate" 
+                                                 value="{!v.newCompassionFundForm.Date_of_Event__c}"
+                                                 class = "slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2 bodyContent"
+                                                 required="true"/>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="slds-p-vertical_medium fa-user-circle gradientRed">
+                                <lightning:icon iconName="utility:description" size="x-small" variant="inverse"/>
+                                APPLICANT DETAILS</div>   
+                            &nbsp;&nbsp;
+                            <lightning:textarea aura:id="field" label="Please describe the reason that you are requesting assistance from the Compassion Fund, including details about the qualifying event and how this has impacted, or will impact you, financially."
+                                                value="{!v.newCompassionFundForm.Reason_for_Request__c}" class="slds-p-top_medium bodyContent" required="true"/>
+                            <lightning:input type="number" aura:id="field" label="What is the amount of financial assistance that are you seeking from the Compassion Fund?"
+                                             name="financialAssistanceRequested"
+                                             min="0"
+                                             value="{!v.newCompassionFundForm.Financial_Assistance_Requested__c}"
+                                             maxlength="4"
+                                             class="bodyContent"
+                                             required="true"/>
+                            <lightning:textarea aura:id="field" label="List any other assistance that you/the applicant have applied for, are receiving, or anticipate receiving as a result of the qualifying event."
+                                                value="{!v.newCompassionFundForm.Other_Assistance__c}" class="slds-p-top_medium bodyContent" required="true"/>
+                            <lightning:textarea aura:id="field" label="Explain in detail how you/the applicant will use the grant funds, if received (IMPORTANT: Federal Law prohibits the WEX Cares Foundation from providing grants to be used to pay medical deductibles from WEX’s plans or to cover loss in wages due to reduction in hours)."                         
+                                                value="{!v.newCompassionFundForm.Purpose_of_Funds__c}" class="slds-p-top_medium bodyContent" required="true"/>
+							
+                            <br/>
+                            <label class="slds-p-top_medium">
+                                <lightning:formattedText class="bodyContent" value="Please send all requested supporting documentation to wexcares@wexinc.com.  This is a secure mailbox. All documents must be uploaded as image files only. Supporting documentation includes proof referenced in the qualifying events "/>
+                                <a href="https://www.wexinc.com/wex-compassion-fund/wp-content/uploads/sites/4/2019/01/qualifying-matrix-20190114.pdf" title="matrix" target="_blank" class="link">matrix</a>
+                                <lightning:formattedText class="bodyContent" value=" or documentation otherwise requested by the WEX Cares Foundation to substantiate your claim. Questions around what to include and when? Contact us at " />
+                                <a href="mailto:wexcares@wexinc.com" title="WEX Cares" target="_blank" class="link">wexcares@wexinc.com</a>
+                            </label>
+
+                            <lightning:textarea aura:id="field"
+                                                value="{!v.newCompassionFundForm.Supporting_Documentation__c}" class="bodyContent"/>
+
+                            <div class="slds-p-top_medium">          
+                                <lightning:radioGroup aura:id="field"
+                                                      name="additionalInfo"
+                                                      label="The WEX Cares Foundation may require additional information in support of your application (ex. receipts, invoices, medical information, personal financial, mortgage, or insurance information).  Will you be able to provide this information as specified in the application guidelines?"
+                                                      options="{!v.options}"
+                                                      value="{!v.newCompassionFundForm.Additional_Information__c}"
+                                                      class="bodyContent"
+                                                      required="true"
+                                                      />
+                            </div>
+                            
+                            <div class="slds-p-top_medium bodyContent">
+                                <lightning:radioGroup aura:id="newCompassionFundForm"
+                                                      name="shareInfo"
+                                                      label="The WEX Cares Foundation may occasionally look to share stories of employees who have benefited from the Fund.  Are you willing to share your story?"
+                                                      options="{!v.options}"
+                                                      value="{!v.newCompassionFundForm.Permission_to_Share__c}"
+                                                      class="bodyContent"/>
+                            </div>
+                            &nbsp;&nbsp;
+                            <div class="slds-p-vertical_medium fa-user-circle gradientRed">
+                                <lightning:icon iconName="utility:paste" size="x-small" variant="inverse"/>
+                                DISCLAIMER</div> 
+                            &nbsp;&nbsp;
+                            <div>
+                                <lightning:formattedText class="bodyContent" value="The WEX Compassion Fund may request additional documentation in support of the qualifying event." />
+                            </div>
+                            
+                            <div class="slds-p-top_medium">
+                                <lightning:formattedText class="bodyContent" value="Financial Assistance is at the discretion of the WEX Compassion Fund and is not an employee benefit." />
+                            </div>
+                            <div class="slds-p-top_medium">
+                                <lightning:formattedText class="slds-p-top_medium bodyContent" value="Donations to the Fund do not increase eligibility for awards." />
+                            </div>
+                            <div class="slds-p-top_medium">
+                                <lightning:formattedText class="slds-p-top_medium bodyContent" value="The WEX Cares Foundation considers the employee, their spouse/domestic partner, and minor children up to age 18 as immediate family members. Parents, grandparents or other relatives are not considered immediate family members (for the purposes of receiving aid from the Fund) unless the employee can show they are financially responsible for that relative (i.e., copy of most recent tax return showing dependents, proof of shared physical address or proof of financial responsibility)." />
+                            </div>
+                            <div class="slds-p-top_medium">
+                                <lightning:formattedText class="slds-p-top_medium bodyContent" value="To review the WEX Cares Foundation’s privacy notice, click "/>
+                                <a href="https://www.wexinc.com/wex-compassion-fund/privacy-policy/" title="WEXCardsFoundationPrivacyNotice" target="_blank" class="link">here</a>
+                            </div>
+                            <div>
+                                <lightning:formattedText class="slds-p-top_medium bodyContent" value="To review the terms of use for this site, click "/>
+                                <a href="https://www.wexinc.com/wex-compassion-fund/terms-of-use/" title="TermsOfUse" target="_blank" class="link">here</a>
+                            </div>
+                            <div class="slds-p-top_medium">
+                                <lightning:input type="checkbox" 
+                                                 aura:id="field"
+                                                 name="disclaimer"
+                                                 class="bodyContent"
+                                                 checked="{!v.newCompassionFundForm.Disclaimer__c}" 
+                                                 required="true"
+                                                 label="By submitting this application, under penalty of perjury, I declare, to the best of my knowledge and belief that (i) the above stated information is true and correct and (ii)because of the circumstances described in this application, I am experiencing a severe financial hardship.  Additionally, I authorize the WEX Cares Foundation/WEX Compassion Fund to use this information and other information it may collect in determining my eligibility for receiving a grant, including disclosing such information to others as necessary outside of the Foundation. I understand that funding from the Fund is not guaranteed or a specific benefit of my employment with WEX Inc. Any grant, if made, is from the WEX Cares Foundation, and not WEX Inc. I certify that if a grant is received, it will only be used for my expenses incurred in connection with the qualifying event as described in this application.  I authorize the WEX Cares Foundation to disclose my name and grant amount, if issued, in furtherance of its purposes and legal requirements."/>
+                            </div>
+                            
+                            <lightning:button label="SUBMIT APPLICATION"
+                                              class="slds-m-top--medium submitText submit"
+                                              variant="brand"
+                                              onclick="{!c.clickCreate}"
+                                              type="submit"/>
+                            
+                            
+                        </form>
+                    </aura:if>
+                    <!-- / COMPASSION FUND FORM -->
+                </fieldset>
+                <!-- / BOXED AREA -->         
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+    
+</aura:component>

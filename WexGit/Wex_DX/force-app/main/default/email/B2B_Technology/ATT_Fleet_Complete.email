@@ -1,0 +1,23 @@
+{!Contact.FirstName},
+
+Get on the road to ELD compliance before the December 2017 deadline. With AT&T Fleet Complete®, you can save time, automate driver log books, speed up roadside inspections, expedite DVIR reporting, and more. Take the easy way to ELD compliance, and they'll manage the rest. 
+
+TruckersB2B members receive $0 upfront cost on qualifying AT&T Fleet Complete tracking hardware.* Secure your ELD today and take advantage of our “3 month free ELD” promotion! Offer ends 12/17/2017. 
+
+Take a look at the attached information, and let me know if you have any questions. I'd love to put you in touch with an AT&T Fleet Complete representative to get the process started. 
+
+You can also learn more and request a demo at: http://truckersb2b.com/attfleetcomplete
+
+Your Login Information Is:
+Member ID: {!Account.Member_ID__c}
+Password:  {!Account.Web_Password__c}
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

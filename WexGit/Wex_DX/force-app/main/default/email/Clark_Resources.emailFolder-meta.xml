@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Clark Resources</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>AquarientSalesManager</role>
+        <role>AquarientSalesRep</role>
+        <role>AquarientSalesTL</role>
+        <role>Clark_Associates_Sales</role>
+        <role>Clark_Associates_Sales_TL</role>
+    </sharedTo>
+</EmailFolder>

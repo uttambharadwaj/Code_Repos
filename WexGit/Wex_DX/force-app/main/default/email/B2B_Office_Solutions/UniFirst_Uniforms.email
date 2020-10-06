@@ -1,0 +1,20 @@
+{!Contact.FirstName},
+
+Thank you for your interest in our savings on uniforms with UniFirst, where you save 25% off catalog pricing and up to 20% to 40% off “standard street” pricing. Please review the attached information and call or email me with any questions.   
+
+Learn more and start saving today at http://www.truckersb2b.com/unifirst
+
+You login information is: 
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+ 
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

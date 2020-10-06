@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email reminding to register for the WEX EDGE portal</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>WEX EDGE Member Portal Registration</name>
+    <style>freeForm</style>
+    <subject>Reminder to register for the WEX EDGE fuel beta portal</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

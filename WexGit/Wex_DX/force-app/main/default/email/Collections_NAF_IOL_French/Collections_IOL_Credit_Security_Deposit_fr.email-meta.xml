@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - Credit - Security Deposit (fr)</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - No de compte: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+Veuillez remplir le formulaire d’entente de dépôt ci-joint. Envoyez ensuite les fonds en suivant les instructions fournies sur le formulaire. Une fois les fonds déposés, veuillez nous transmettre le formulaire rempli.
+
+Avant d’envoyer le formulaire, assurez-vous que :
+
+- les fonds ont été déposés;
+
+- TOUS les champs sont remplis;
+
+- le formulaire est signé.
+
+
+Transmettez le formulaire d’entente de dépôt par courriel à : iolunfndplcredit@wrightexpress.com
+
+
+
+Pour toute question, n’hésitez pas à communiquer avec nous.
+
+
+
+
+Comptes clients et gestion du crédit
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

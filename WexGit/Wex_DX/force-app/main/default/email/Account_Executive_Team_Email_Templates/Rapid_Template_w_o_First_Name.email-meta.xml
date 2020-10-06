@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Rapid Template (Established Relationship) w/o First Name - by Ryan Paul</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Rapid Template w/o First Name</name>
+    <style>none</style>
+    <subject>Quick Question?</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

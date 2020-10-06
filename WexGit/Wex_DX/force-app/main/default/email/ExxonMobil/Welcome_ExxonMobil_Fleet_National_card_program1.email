@@ -1,0 +1,44 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNoSpacing"><b>Congratulations, your ExxonMobil fleet cards have shipped!</b></p>
+
+<p class="MsoNoSpacing"><br></p><p class="MsoNoSpacing">You should be receiving them in 3-5 business days. For
+the security of your account, we mail cards and your confidential pin numbers
+in separate packages. Cards are active when they arrive; simply distribute them
+to your drivers along with their unique pin numbers. </p>
+
+<p class="MsoNoSpacing"><br></p><p class="MsoNoSpacing"><b>Register your new account online</b> for the easiest way to
+manage your fuel and vehicle expenses.<span style="mso-spacerun: yes;">&nbsp;
+</span>To self-enroll please visit&nbsp; <a href="http://www.exxonmobillocator.com"><span style="color: windowtext; text-decoration: none; text-underline: none;"></span></a><a href="http://www.exxonmobiluniversalonline.com">www.exxonmobiluniversalonline.com</a> and click on <i>enroll as new user</i>.&nbsp; Simply enter your account number [insert
+number here], and other contact information and you will receive a temporary
+password allowing you to login at that point. Other users needing access can
+follow this same process.&nbsp; If you need assistance please contact our award winning customer service team at 1-800-622-9882<br></p>
+
+<p class="MsoNoSpacing"><br></p><p class="MsoNoSpacing"><b>Start fueling and saving!</b> The ExxonMobil Fleet National
+card is accepted at more than 11,000 Exxon- or and Mobil-branded stations across the
+country- plus 90% of U.S. fueling locations nationwide. The sooner you distribute the cards the sooner you begin to
+save! To help locate the stations nearest you visit <a href="http://www.exxonmobilstations.com"><span style="color: windowtext; text-decoration: none; text-underline: none;">www.exxonmobilstations.com</span></a>&nbsp;
+or download the ExxonMobil Fuel Finder app from Apple or Android.<span style="mso-spacerun: yes;">&nbsp; </span></p>
+
+<p class="MsoNoSpacing"><br></p><p class="MsoNoSpacing">If you have any questions, please feel free to call me at
+{!User.Phone}.</p>
+
+<p class="MsoNoSpacing">&nbsp;</p><p class="MsoNoSpacing"><br></p>
+
+<p class="MsoNoSpacing"><b>Thanks again, and welcome to the ExxonMobil Fleet
+National card program!</b></p>
+
+<p class="MsoNoSpacing"><br></p><p class="MsoNoSpacing">Sincerely,</p>
+
+<p class="MsoNoSpacing">&nbsp;</p>
+
+<p class="MsoNoSpacing">{!User.FirstName} {!User.LastName}</p>
+
+<p class="MsoNoSpacing">{!User.Title}</p>
+
+<p class="MsoNoSpacing">Phone: {!User.Phone}</p>
+
+<p class="MsoNoSpacing">Email: {!User.Email}</p>]]></td>
+</tr>
+</table>

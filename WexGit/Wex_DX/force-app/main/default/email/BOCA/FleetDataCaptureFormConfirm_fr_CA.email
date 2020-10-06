@@ -1,0 +1,91 @@
+<messaging:emailTemplate subject="Merci d’avoir fourni vos renseignements!" recipientType="Contact" relatedToType="FleetEnrollment__c" id="confirm">
+
+<messaging:htmlEmailBody >
+<html>
+    <meta name="title" content=""/>
+    <meta name="description" content=""/>
+    <meta charset="UTF-8"/>
+    <style type="text/CSS">
+        #header h3{
+            padding:4px 0px 0px 10px;
+     
+        }
+         h3{
+          margin:0px;
+        }
+        #header{
+      
+        background-color:#494949;
+        color:#FFFFFF;
+        margin:0px;
+        font-family: Arial;
+        min-height:175px;
+        max-width:640px;
+        margin-bottom:20px;
+        padding:5px;
+        }
+        #footer{
+        padding:4px 8px 4px 8px;
+        background-color:#494949;
+        color:#ffffff;
+        margin:0px;
+        max-width:640px;
+        }
+        #footer a{
+            color:#ffffff;
+        }
+        #wrapper{
+            padding:4px 8px 0px 8px;
+            margin:0px;
+            background-color:#ffffff;
+        }
+        body{
+            margin:0px;
+            background:#FFFFFF;
+            color:#000000; 
+            font-family:Arial, Helvetica, sans-serif; 
+            font-size:13px;
+            max-width:640px;
+           }  
+          html{
+              max-width:640px;
+            
+}
+
+    </style>
+
+
+<body width="640px">
+<table border="0"  cellspacing="0" width="640">
+<div id="header" width="640px">
+<apex:image URL="{!RelatedTo.Program__r.Custom_Email_Header_URL__c}" id="image" style="display:block;"  height="145" width="640"/>
+<h3>Avis de confirmation</h3>
+</div><!----close header---->
+<div id="wrapper" >
+
+                <h3>Merci de nous avoir transmis vos renseignements.</h3>
+                <p>
+                    Votre numéro de confirmation est le {!RelatedTo.Confirmation_Number__c}.
+                </p>
+                <p>
+                    Nous traitons votre demande et nous communiquerons avec vous par courriel dans les 5 jours ouvrables.
+                </p>
+                        
+</div><!----end wrapper---->
+<div id="footer" width="640px">
+<p>
+Pour bien recevoir nos messages, ajoutez l’adresse suivante à vos contacts : {!RelatedTo.Program__r.Email_Reply_To_Address__c} .
+</p>
+<p>
+Le présent courriel (et toute pièce jointe s’y rapportant) est exclusivement destiné à l’organisation ou à la personne susmentionnée et est de nature confidentielle. Si vous n’êtes ni le destinataire visé de ce courriel ni l’employé ou l’intermédiaire responsable de sa transmission, cessez immédiatement de le lire et supprimez-le de votre système. Toute lecture, distribution, reproduction ou utilisation non autorisée du présent courriel (ou de ses pièces jointes) est strictement interdite.
+</p>
+<p>
+&copy; {!year(today())} Services de cartes de flotte, 97 Darling Avenue, South Portland, Maine 04106. Tous droits réservés.
+</p>
+</div>
+</table>
+</body>
+
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

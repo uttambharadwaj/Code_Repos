@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send customer a reminder to update their ABN</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Motorpass - ABN email</name>
+    <style>none</style>
+    <subject>WEX Motorpass – request for updated information</subject>
+    <textOnly>MP-Request-ABN
+
+View in browser
+
+Dear customer,
+
+
+
+000000000 Trading name
+
+
+
+We have recently reviewed your account and ascertained that your ABN has been cancelled on the ABR ABN lookup register. Please contact Credit on 1300 366 109 or credit@wexaustralia.com within the next 14 days as it is a requirement for all active fuel cards to be associated with an active ABN.
+
+
+
+Should you require any further information, please do not hesitate to contact me on 1300 366 109 or email credit@wexaustralia.com.
+
+Kind regards,
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+WEX Australia Pty Ltd. Level 3, 293 Camberwell Road, Camberwell VIC 3124 T: {!User.MobilePhone}
+
+E: {!User.Email}
+
+W: https://www.motorpass.com.au/
+
+This e-mail transmission is intended only for the addressee and may contain confidential or privileged information. Confidentiality and privilege are not waived if you are not the intended recipient of this e-mail, nor may you use or retain, or disclose, copy or forward to any third party this e-mail, or any information contained in or attached to it. If you received this e-mail in error please delete it (and any copy of it from your computer system) and kindly notify the sender by reply e-mail or telephone on (+61) 3 9274 9100.
+
+
+
+This email was sent to you from WEX Motorpass Australia
+
+Unsubscribe</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

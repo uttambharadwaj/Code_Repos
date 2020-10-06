@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Pain Points for fleets (info plus app)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_FR_Save_on_Fuel1</letterhead>
+    <name>Esso FR How can the Esso card help you</name>
+    <style>freeForm</style>
+    <subject>How can the Esso Business Card Program help you</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+Merci d’avoir pris le temps de me parler. Suite à notre conversation, voici l’information supplémentaire que vous avez demandée. Que vous gériez une petite équipe de vente ou une imposante flotte de véhicules, la carte d’Affaires Esso offre des économies exceptionnelles sur l’essence, tout en vous permettant d’accéder à des outils de gestion efficaces et conviviaux ainsi qu’au plus grand réseau de détaillants au Canada.
+
+
+Rabais sur les achats à gros volume pour maximiser vos profits;
+Outil de gestion en ligne convivial qui vous aide à gérer des restrictions, à faire le suivi des dépenses et à économiser temps et argent;
+Récompenses pour vos employés et vous-même grâce aux programmes Esso ExtraMC et AéroplanMD;
+Technologie carburant Synergy;
+Pleins d’essence rapides, simples et sécuritaires grâce à SpeedpassMC.
+
+L’inscription est toute simple : vous n’avez qu’à remplir la demande ci-jointe et me la retourner par télécopieur au {!User.Fax}. Vous pouvez également la numériser et l’envoyer par courriel à {!User.Email}.
+
+
+Merci de l’intérêt que vous portez au programme de cartes d’Affaires Esso.
+
+
+Cordialement,
+
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - NSF CAD - 2nd Notice</name>
+    <style>freeForm</style>
+    <subject>NSF CAD 2nd Notice</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+
+2ND NOTICE
+
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+{!Contact.Email}
+
+
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+
+[NSF Amount] NSF draft
+
+
+Dear Customer,
+
+
+As previously advised, your recent payment in the amount of [NSF Amount] has been returned by your bank with the notation NSF.
+
+
+
+Your credit privileges are currently suspended and it is urgent that we get your account current. Please wire transfer $30.00 immediately per the instructions listed below. Once this issue has been cleared up please contact us to discuss the terms and conditions for reactivation of your account.
+
+Wiring Instructions for EFS CAD
+
+
+
+EFS LLC.
+Royal Bank of Canada
+Main Branch
+65 Princess St.
+Kingston, ON K7L 1A6
+
+Swift code for RBC: ROYCCAT2
+
+Financial Institution Number: 0003
+
+Transit #: 02382
+
+Beneficiary Account: 1017482
+
+Beneficiary Name: Electronic Funds Source LLC
+
+Reference Number: Your 13-digit AR number or 6- or 7-digit Carrier ID number
+
+**Note** Beneficiary should include transit number and account number (02382-1017482)
+
+
+
+PLEASE NOTE: A $50 NSF fee will be assessed to your account and will show on the next statement created. All wire payments of less than $2,500.00 will be charged an inbound bank fee of $5.00.
+
+
+Thank you for your prompt attention to this matter.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

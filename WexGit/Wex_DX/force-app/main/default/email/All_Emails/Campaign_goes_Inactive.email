@@ -1,0 +1,5 @@
+You campaign is going Inactive on - {!Campaign.EndDate}
+
+Follow this link for more details: 
+
+{!Campaign.Link}

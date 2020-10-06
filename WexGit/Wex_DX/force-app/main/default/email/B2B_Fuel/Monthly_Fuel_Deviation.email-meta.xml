@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Drop in total fueling - did you change fuel cards?</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Monthly Fuel Deviation</name>
+    <style>none</style>
+    <subject>Monthly Fuel Processing</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

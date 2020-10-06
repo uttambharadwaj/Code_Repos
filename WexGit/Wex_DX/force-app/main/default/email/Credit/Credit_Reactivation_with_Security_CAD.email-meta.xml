@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - Reactivation with Security (CAD)</name>
+    <style>freeForm</style>
+    <subject>Re: Request for Credit Line Reactivation Request</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Re: Request for Credit Line Reactivation Request
+
+
+Account Number#: *********{!Case.Masked_External_Account__c}
+
+
+Dear {!Case.Contact},
+
+
+We received a request to reactivate your account.  In response to your request, a credit review was conducted.  We will reactivate the account only if you provide security in the form of a Letter of Credit or Cash Deposit. You may choose to secure your credit line for any amount, however; the credit line will be set at the amount of security provided by you.  For example, your current credit limit is Current Credit Line. In order to keep the existing line then Current Credit Line in security is required. If you agree to provide a cash security deposit, please complete the enclosed Deposit Agreement and ACH or Wire according to the instructions on the agreement.
+
+
+If you choose to provide security in the form of a Letter of Credit, please take the attached document to your Bank and have them provide the letter of credit.  Please note, the Bank providing the Letter of Credit may be subject to a credit review and qualification for the amount secured. Please provide the name and address of the Bank issuing the Letter of Credit as soon as available to expedite your request.  If we do not receive a response from you within 14 days of the date of this letter, your account will be terminated.
+
+
+Our reasons for not granting credit (or reactivating your account) under standard terms and conditions include the following:
+
+
+A.  Credit Line Usage
+
+1.  Slow or delinquent payment history in the last 12 months.
+
+2.  Limited or no actual usage in the last 6-12 months.
+
+3.  Unsatisfactory payment history / NSF activity.
+
+
+B.  Business Credit
+
+1.  Delinquent past or present credit obligations.
+
+2.  Unsatisfactory financial conditions and/or rating.
+
+3.  Insufficient information.
+
+4.  Presence of suits, liens, or judgments.
+
+
+C.  Financial Information
+
+1.  Unsatisfactory conditions present.
+
+2.  Insufficient financial strength to support original credit line.
+
+3.  Updated financial statements have not been received.
+
+
+D.  Other
+
+1.  Supportive or additional information has not been received.
+
+2.  Adverse information received from outside sources.
+
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

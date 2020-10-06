@@ -1,0 +1,17 @@
+Hello {!Contact.FirstName},
+
+Thank you for joining TruckersB2B on behalf of eCapital and their fuel savings program, which includes savings of $0.10/gallon at TA and Petro locations. We look forward to helping you save on other products/services such as our national account tire program, wireless savings with AT&T and Sprint, office supplies, and much more!   
+
+Below is your Member ID and Password, which you can use access your TruckersB2B benefits at www.truckersb2b.com.  Login to view detailed information about our programs, update your profile, check your savings history and more. 
+
+Member ID: {!Account.Member_ID__c} 
+Password: {!Account.Web_Password__c} 
+
+Should you have any questions, please don't hesitate to contact us at 888-937-6334. 
+
+
+Thank you,
+
+TruckersB2B, LLC 
+(888) 937-6334 
+memberservices@truckersb2b.com

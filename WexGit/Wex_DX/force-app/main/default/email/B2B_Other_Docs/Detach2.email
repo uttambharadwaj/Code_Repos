@@ -1,0 +1,20 @@
+{!Contact.FirstName},
+
+I wanted to reach out to you in regard to the exclusive rebates and discounts available through your TruckersB2B membership, which gives you access to savings on industry-leading brands at no cost to you.  
+
+I would love to help provide your fleet savings solutions to the issues most companies are facing today. To start taking advantage of  all of our savings programs, please contact me at any time. I look forward to hearing from you. 
+
+Visit us at http://www.truckersb2b.com to see all the ways you can save.
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+ 
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

@@ -1,0 +1,32 @@
+<apex:component layout="none" controller="AnnouncementsController" >
+    <apex:attribute name="title" type="String" description="Page block title"/><!--default="News and Announcements"  /> -->
+    <!-- <apex:attribute name="width" type="Integer" required="false" default="400" description="Width of the container" /> -->
+    <apex:attribute name="height" type="Integer" required="false" default="0" description="Height of the container" />
+    <apex:attribute name="iconImagePath" type="String" required="false" description="The path to the icon image. For example, /resource/SupportCommunityResources/images/icon.png" />
+    <apex:attribute name="NumberOfAnnouncementsToShow" type="Integer" required="false" default="5" description="The number of announcements to show in the component" assignTo="{!NumberOfAnnouncements}" />
+
+    <c:ComponentContainer title="{!title}" height="{!height}" iconImagePath="{!iconImagePath}">
+        <apex:repeat value="{!Records}" var="a">
+            <!--<apex:outputPanel layout="block" style="padding:5px 10px 5px 10px;font-family: Arial,Helvetica,sans-serif;font-size:75%;">-->
+            <apex:outputPanel layout="block" style="font-family: Arial,Helvetica,sans-serif;font-size:70%;">
+
+                <b>Title: </b><apex:outputText value="{!a.a.Name}" /> <br />
+                <b>Date: </b><apex:outputText value="{0, date, MM'/'dd'/'yy}">
+                    <apex:param value="{!a.a.Date_Posted__c}" />
+                </apex:outputText><br />
+                <!--<b>Summary: </b><apex:outputField style="color:#0A3666;" value="{!a.summary__c}"/>-->
+                <b>Summary: </b><div><apex:outputtext style="color:#0A3666;" value="{!a.summary}" escape="false">
+                </apex:outputtext></div>
+
+                <a href="/partners/{!a.a.Id}" target="_blank">Go to Announcement</a>
+
+                <br />
+                <!--
+                <apex:outputText rendered="{!a.a.URL__c != ''}"><b>More info:</b> <a href="{!a.a.URL__c}" target="_blank">{!a.a.URL__c}</a><br /><br /></apex:outputText>
+                -->
+
+                <hr />
+            </apex:outputPanel>
+        </apex:repeat>
+    </c:ComponentContainer>
+</apex:component>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU Proof of business financials email - New</name>
+    <style>none</style>
+    <subject>WEX Motorpass application - Information regarding your application</subject>
+    <textOnly>Hi {!Lead.FirstName},
+
+
+Thank you for your recent application for a WEX Motorpass Account. In order to continue to assess your application we require proof of your business financials. Proof of your business financials can be your most recent balance sheet that lists all of your business’s assets and liabilities.
+
+
+You can scan your documents (PDF or JPEG file format) and send them as an attachment to this email. Alternatively, you can post a copy to us at WEX Australia Level 3, 293 Camberwell Road, Camberwell VIC 3124.
+
+
+Should you require any further information please contact me on {!User.MobilePhone}.
+
+
+Kind regards,
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+WEX Australia Pty Ltd.
+
+Level 3, 293 Camberwell Road, Camberwell VIC 3124
+
+T: {!User.MobilePhone}
+
+E: {!User.Email}
+
+W: https://www.motorpass.com.au/</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

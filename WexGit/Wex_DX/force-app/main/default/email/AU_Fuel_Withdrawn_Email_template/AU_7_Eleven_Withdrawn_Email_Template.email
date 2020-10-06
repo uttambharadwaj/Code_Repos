@@ -1,0 +1,35 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: 12pt;"><font face="Arial, sans-serif" size="4">Dear
+{!Contact.FirstName}<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: 12pt;"><o:p><font face="Arial, sans-serif" size="4">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="text-align: left; margin: 0cm 10.2pt 0.0001pt 0cm; line-height: 12pt;"><font face="Arial, sans-serif" size="4">Thank you for your
+recent application for a {!Opportunity.Product_Type__c} Account.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><o:p><font face="Arial, sans-serif" size="4">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><font face="Arial, sans-serif" size="4">As per your request your application has been withdrawn and the
+application process will not proceed.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><o:p><font face="Arial, sans-serif" size="4">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><font face="Arial, sans-serif" size="4">Please contact us on 1300 711 711 if your situation changes.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><o:p><font face="Arial, sans-serif" size="4">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><font face="Arial, sans-serif" size="4">We hope that we may be of service to you in the future.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><o:p><font face="Arial, sans-serif" size="4">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><o:p><font face="Arial, sans-serif" size="4">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><font face="Arial, sans-serif" size="4">Yours sincerely<o:p></o:p></font></p><p class="MsoNormal" style="text-align: left; margin-bottom: 0.0001pt; line-height: 12pt;"><font face="Arial, sans-serif" size="4"><img src="https://c.cs3.content.force.com/servlet/servlet.ImageServer?id=01570000001MRSc&amp;oid=00DQ000000GJr50&amp;lastMod=1400043509000"></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; text-align: justify; line-height: 12pt;"><font face="Arial, sans-serif" size="4">Greg Drumm<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; text-align: justify; line-height: 12pt;"><font face="Arial, sans-serif" size="4">Managing Director<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: 12pt;">
+
+
+
+</p><p class="MsoNormal" style="margin-bottom: 0.0001pt; text-align: justify; line-height: 12pt;"><b><font face="Arial, sans-serif" size="4">WEX Australia</font><font face="arial" style="font-size: 12pt;"><o:p></o:p></font></b></p><p class="MsoNormal" style="font-size: 12pt;"><span style="font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="font-size: 12pt;"><span style="font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="font-size: 12pt;"><span style="font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="font-size: 12pt;"><span style="font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="font-size: 12pt;"><span style="font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin: 0cm 10.2pt 0.0001pt 0cm; font-size: 12pt; line-height: 12pt;"></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; font-size: 12pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif; color: gray; background-color: white; background-position: initial initial; background-repeat: initial initial;">This e-mail transmission is intended only for the addressee and may contain confidential or privileged information. Confidentiality and privilege are not waived if you are not the intended recipient of this e-mail, nor may you use or retain, or disclose, copy or forward to any third party this e-mail, or any information contained in or attached to it. If you received this e-mail in error please delete it (and any copy of it from your computer system) and kindly notify the sender by reply e-mail or telephone on (+61) 3 9274 9100.</span></p>]]></td>
+</tr>
+</table>

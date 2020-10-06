@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Welcom letter for use by Customer Success Specialists</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_card</letterhead>
+    <name>Welcome Fleet Data Req</name>
+    <style>formalLetter</style>
+    <subject>ExxonMobil Fleet Card: Fleet Data Needed</subject>
+    <textOnly>Congratulations!  Your ExxonMobil fleet card account has been approved!
+
+Before your account can be set up, I will need your driver and vehicle information. Please fill out the attached Fleet Information Form and email back to me as soon as possible. The vehicle description you provide will appear on the second line of your cards under your company name. It will also appear on your reports along with driver names.
+
+A card will be assigned to each vehicle you list. You can provide Driver ID numbers on the form or we can provide system generated Driver ID’s for you. Each driver’s ID will work with any of your vehicle cards.
+
+If you have any questions about the Fleet Information Form, please feel free to contact me at {!User.Phone}.
+
+Again, congratulations on your new ExxonMobil fleet card account. I look forward to helping you manage your vehicle fueling expenses.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

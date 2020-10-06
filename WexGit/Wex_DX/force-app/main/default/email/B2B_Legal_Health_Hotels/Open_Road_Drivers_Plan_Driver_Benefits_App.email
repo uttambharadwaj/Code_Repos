@@ -1,0 +1,15 @@
+{!Contact.FirstName},
+
+Thank you for your interest in the Open Road Drivers Plan for your drivers. Please make this information available to your drivers so they can receive the discounted rate.
+
+If you are interested in offering payroll deduction for this benefit, please let me know, and I can provide you with the necessary information, or put you in touch with Open Road.  You’ll get a $2 rebate each month for every driver who participates in payroll deduction.
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

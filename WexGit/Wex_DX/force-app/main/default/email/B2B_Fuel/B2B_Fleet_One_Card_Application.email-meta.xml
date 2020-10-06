@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Fuel/B2B_Wex_Fleet_One_Agreement.pdf</attachedDocuments>
+    <attachedDocuments>B2B_Fuel/B2B_Wex_Fleet_One_Application.pdf</attachedDocuments>
+    <attachedDocuments>B2B_Fuel/B2B_Wex_Fleet_One_Setup_Questions.pdf</attachedDocuments>
+    <available>false</available>
+    <description>Application forms for B2B Branded Fleet One Card</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>B2B Fleet One Card Application</name>
+    <style>none</style>
+    <subject>Thank you for your interest in the TruckersB2B Over-the-Road Fuel Card</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,29 @@
+<style>p{margin-top:0px; margin-bottom:0px;}</style><body class="setupTab"  style=" background-color:#CCCCCC; bEditID:b1st1; bLabel:body;"><center ><table cellpadding="0" width="500" cellspacing="0" id="topTable" height="450" ><tr valign="top" ><td  style=" background-color:#FFFFFF; bEditID:r1st1; bLabel:header; vertical-align:top; height:100; text-align:center;"></td></tr><tr valign="top" ><td  style=" background-color:#AAAAFF; bEditID:r2st1; bLabel:accent1; height:5;"></td></tr><tr valign="top" ><td styleInsert="1" height="300"  style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;"><table border="0" cellpadding="5" width="550" cellspacing="5" height="400" ><tr valign="top" height="400" ><td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" ><p class="MsoNormal"><span style="font-size: 12pt;">Hello [FirstName],</span></p><p class="MsoNormal"><o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">We see that you recently considered us for your fuel card
+needs, but decided not to go with WEX.&nbsp; We would greatly appreciate your
+time to take this survey and tell us why we did not win your business and how
+we can improve our offering: <o:p></o:p></p>
+
+Take Survey:
+{!SurveyMonkey.SurveyLink}  
+
+
+Click here to opt out:
+{!SurveyMonkey.RemoveLink} 
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Click here to opt out <o:p></o:p></p>
+
+<p class="MsoNormal"><o:p></o:p></p>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal">Thank you for your participation, <o:p></o:p></p>
+
+<p class="MsoNormal">The WEX team<o:p></o:p></p></td></tr></table></td></tr><tr valign="top" ><td  style=" background-color:#AAAAFF; bEditID:r4st1; bLabel:accent2; height:5;"></td></tr><tr valign="top" ><td  style=" background-color:#FFFFFF; bEditID:r5st1; bLabel:footer; vertical-align:top; height:100; text-align:left;"></td></tr><tr valign="top" ><td  style=" background-color:#AAAAFF; bEditID:r6st1; bLabel:accent3; height:5;"></td></tr></table></center><br><br>

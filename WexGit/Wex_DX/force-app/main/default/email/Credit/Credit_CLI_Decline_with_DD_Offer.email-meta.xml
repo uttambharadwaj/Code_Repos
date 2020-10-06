@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - CLI Decline with DD Offer</name>
+    <style>freeForm</style>
+    <subject>Re: Credit Line Increase Decline, Direct Debit Payment System Offer</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Re: Credit Line Increase Decline, Direct Debit Payment System Offer
+
+
+Dear {!Case.Contact},
+
+
+We received your request for a credit line increase on your account.  We are unable to approve the credit line increase, but we can offer you a solution that will accommodate your fueling needs.  This solution involves paying your invoices electronically via our Direct Debit Payment program.  Enclosed is some information about the service.
+
+
+To begin using the Direct Debit Payment Program service, please review and complete the following action items:
+
+
+Complete the attached Authorization Agreement.
+Fax the completed form and a voided check (not a deposit slip) to (207) 253-1465 or email globalcredit@wexinc.com.
+
+Our reasons for not granting the credit line increase include the following:
+
+
+A.  Credit Line
+
+1.  Slow or delinquent payment history in the last 12 months.
+
+2.  Limited or no actual usage in the last 6-12 months.
+
+3.  Your account has not been open for at least 12 months.
+
+B.  Business Credit
+
+1.  Delinquent past or present credit obligations.
+
+2.  Unsatisfactory financial conditions and/or rating.
+
+3.  Insufficient information.
+
+4.  Presence of suits, liens, or judgments.
+
+
+C.  Financial Information
+
+1.  Unsatisfactory conditions present.
+
+2.  Insufficient financial strength to support original credit line.
+
+3.  Updated financial statements have not been received.
+
+
+D.  Other
+
+1.  Supportive or additional information has not been received.
+
+2.  Adverse information received from outside sources.
+
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

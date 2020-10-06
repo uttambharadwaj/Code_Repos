@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Motorcharge – Individual confirmation of online application being submitted</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Motorcharge_Letterhead</letterhead>
+    <name>AU Motorcharge – Individual Confirmation</name>
+    <style>freeForm</style>
+    <subject>Your Motorcharge application has been received</subject>
+    <textOnly>Dear {!Lead.FirstName}
+Thank you for completing a Motorcharge application.
+We will contact you within three business days to progress your application.
+In the meantime, should you have any questions, please call us on 1300 722 525 or visit us online at motorcharge.com.au
+Yours sincerely
+Greg Drumm
+Managing Director
+WEX Australia</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

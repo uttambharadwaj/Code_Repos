@@ -1,0 +1,3 @@
+The Go Live Date for {!CP_Projects__c.Name} has changed to {!CP_Projects__c.Implementation_Complete_Due__c}. This was for the following reason - {!CP_Projects__c.Reason_for_Go_Live_Date_Change__c}.
+
+Project - {!CP_Projects__c.Link}

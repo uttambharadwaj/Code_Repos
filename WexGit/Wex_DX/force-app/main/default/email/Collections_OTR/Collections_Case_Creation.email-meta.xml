@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Case Creation</name>
+    <style>freeForm</style>
+    <subject>Action Required - Review Your Payment Status With Us</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Account.Name}
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+Dear {!Case.Contact},
+
+Account Number: {!Account.Carrier_ID__c}
+
+Amount Due: {!Case.Rollup_Past_Due_Amount__c}
+
+We noticed you missed your payment. If you have already made a payment, you may disregard this notification. If you haven’t, please schedule one with us as soon as possible to ensure you are able to make purchases without interruption.
+
+For same-day processing, we recommend using our convenient online or pay by phone methods. Do note that payments scheduled after 3:30 PM Eastern Time, on a weekend, or holiday will be processed on the NEXT business day.
+
+If you would like to view your account, pay online, or enroll as an online user please visit here.
+
+Thank you for choosing us for your fleet card service.
+
+Regards,
+EFS Collections and Receivables
+{!Case.Collections_Phone_Number__c}
+Email: efs.credit@efsllc.com
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - OTR Payment Status</name>
+    <style>freeForm</style>
+    <subject>OTR Payment Status</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}
+
+
+Dear {!Case.Contact}:
+
+
+
+According to our records, your account is currently past due. This is a reminder that a payment should be remitted as soon as possible.  If the account remains past due your credit line with us will be impacted and the account may have to be sent for credit review before reactivation.
+
+Please do not hesitate to call us should you have questions about your account or wish to obtain additional information on the balance due.
+
+Did you know that you can also pay your invoice through online banking or set-up pre-authorized debit? Simply contact our Customer Service team or email us at Collections@wexinc.com for more information.
+
+
+Thank you very much for your attention in the matter and for your continued patronage.
+
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+EFSCollections@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

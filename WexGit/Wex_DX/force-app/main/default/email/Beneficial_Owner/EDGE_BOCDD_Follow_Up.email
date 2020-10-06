@@ -1,0 +1,14 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Arial, sans-serif" style="" size="2"><br><font face="arial">Hello </font>{!Contact.FirstName}<font face="arial">,</font><br><br></font><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial;"><font face="Arial, sans-serif" size="2"><font style="color: rgb(0, 0, 0);">Thank you for taking the time to discuss your&nbsp;</font>{!OnlineApplication__c.Offer__c}<span style="color: rgb(0, 0, 0);">&nbsp;application with me today</span><span style="color: rgb(0, 0, 0); background: white;">. For your
+convenience, I’ve attached the </span><span style="color: rgb(0, 0, 0);">Beneficial Ownership of Customer Due
+Diligence Form (BOCDD) we discussed as well as a link to</span><b style="color: rgb(0, 0, 0);"> </b><span style="color: rgb(0, 0, 0);">the</span><b style="color: rgb(0, 0, 0);"> </b><a href="https://wexfleetqa-onlineservices.cs14.force.com/creditapplication/BOCertificationFAQ" style=""><font color="#3333ff">BOCDD
+FAQ's</font></a><span style="color: rgb(0, 0, 0); background: white;">
+to assist with any questions you may have regarding this new federal
+regulation. Once you’ve completed the
+attached form, please email it back to me at my email address listed below in
+order for WEX Bank to continue processing your application.<br></span><span style="color: rgb(0, 0, 0); background-color: white;"><br>Again, thank you for your interest in {!OnlineApplication__c.Offer__c}. If you
+have any questions, please do not hesitate to call or email me.&nbsp; &nbsp;</span></font></p><span style="color: rgb(0, 0, 0); font-family: arial; line-height: 107%; background: white;"><font size="2" style=""><font face="Arial, sans-serif" style="color: rgb(0, 0, 0);"><br></font><div style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">{!OnlineApplication__c.OwnerFullName}<br></font><font face="Arial, sans-serif">{!OnlineApplication__c.OwnerTitle}<br>WEX Fleet One</font></div><div style=""><font face="Arial, sans-serif" style="">Phone: {!OnlineApplication__c.OwnerPhone}&nbsp;| Fax: {!OnlineApplication__c.Owner_Fax__c}<br>{!OnlineApplication__c.OwnerEmail}&nbsp;| <a href="http://fleetoneedge.com/" style=""><font color="#3333ff" style="">www.fleetoneedge.com</font></a></font></div></font></span>]]></td>
+</tr>
+</table>

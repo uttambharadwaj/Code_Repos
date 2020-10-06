@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Require Personal Guaranty and Physical Address Verification. Attach PG form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Credit PG and PAV</name>
+    <style>freeForm</style>
+    <subject>Additional Information Required to Process Your Application</subject>
+    <textOnly>Credit does need your signature on a Personal Guaranty prior to being able to process your application. Could you please print the attached Personal Guaranty, sign it, and fax it back to me at {!User.Fax}.
+
+
+Also, due to the Patriot Act, Credit is requesting “physical address verification”. I simply need a copy of a utility bill or some formal document listing your legal business name and the physical address you provided on the application.
+
+
+Thank you for your interest in the ExxonMobil Fleet card program.
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

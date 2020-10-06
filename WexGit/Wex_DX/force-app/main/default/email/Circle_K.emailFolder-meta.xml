@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Circle K</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>F1_Fleet_Sales</group>
+        <group>InsideSales</group>
+        <group>InsideSalesManager</group>
+        <group>Marketing1743636</group>
+        <role>BrandedSalesManagerCentral</role>
+        <role>CircleKRSM</role>
+        <role>Lead_Development_Role</role>
+        <role>VPMerchantandChannelPartner</role>
+    </sharedTo>
+</EmailFolder>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Program_Information/Owner_OpSavings_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Driver discount program overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Driver Discount Programs</name>
+    <style>none</style>
+    <subject>TruckersB2B Driver Discount Programs</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

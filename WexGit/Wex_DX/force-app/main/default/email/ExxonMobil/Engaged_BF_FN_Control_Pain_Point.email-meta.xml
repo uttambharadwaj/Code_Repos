@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Identifying the pain point: control</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>Engaged: BF &amp; FN Control Pain Point</name>
+    <style>freeForm</style>
+    <subject>Are you ready to take control of your fuel expenses?</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+It is time to put yourself back in the driver seat and take control of your fuel expenses!   The ExxonMobil Fleet card program allows you to control everything about your drivers&apos; card purchases with just a few clicks.  We offer a suite of control and alert tools that allow you to know where, when, what and how much is being spent at any time.
+
+Whether you fuel a few or a fleet, ExxonMobil has the card that&apos;s right for your business.
+
+I am looking forward to meeting with you about the needs of your business and to show you the many ways our program can save you time and money.   I have available time this week, which day works best for you?
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

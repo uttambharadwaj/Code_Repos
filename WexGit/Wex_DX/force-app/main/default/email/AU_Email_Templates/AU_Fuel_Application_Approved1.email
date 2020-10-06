@@ -1,0 +1,51 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<div><font style="color: rgb(0, 0, 0);" face="Arial, sans-serif">Dear&nbsp;</font><font face="Arial, sans-serif">{!Contact.FirstName},</font></div><div><font face="Arial, sans-serif"><br></font></div><div><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><b>Welcome to Motorpass – anywhere you are<o:p></o:p></b></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><b><br></b></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;">Your recent online application is approved. <o:p></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;">Your account details and cards will be delivered via mail in the next few
+days.&nbsp;&nbsp; To get started, w<span lang="EN-AU">e recommend setting up your online
+account at </span><a href="https://www.motorpass.com.au/login/login.aspx">https://www.motorpass.com.au/login/login.aspx</a><o:p></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt">Your
+temporary login details are:<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><span lang="EN-AU">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; <span style="color:red">{{UserName}}<o:p></o:p></span></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><span lang="EN-AU">Password:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:red">{{Password}}<o:p></o:p></span></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt">Once online,
+you can view your transactions, reprint statements, manage your cards, receive
+exclusive offers and a whole lot more.<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><b>Call us for help<o:p></o:p></b></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt">If you have
+any questions about your account approval or online account manager, please feel
+welcome to call us on <span lang="EN-AU">1300 366
+109. <o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><span lang="EN-AU">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;">Yours sincerely<o:p></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><o:p>&nbsp;</o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;">Greg Drumm<o:p></o:p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;">Managing Director<o:p></o:p></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom: 0.0001pt;">WEX Australia<b><span style="color:#C00000"><o:p></o:p></span></b></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><b><br></b></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt"><b><br></b></p></div>]]></td>
+</tr>
+</table>

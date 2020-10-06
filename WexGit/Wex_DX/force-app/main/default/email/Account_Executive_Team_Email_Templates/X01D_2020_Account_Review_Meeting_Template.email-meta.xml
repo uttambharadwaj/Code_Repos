@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Short and simple, no bullets + COVID19 response + Booster + ClearView Sessions</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>01D 2020 Account Review Meeting Template</name>
+    <style>none</style>
+    <subject>State of WEX</subject>
+    <textOnly>Hello {!Contact.FirstName}
+
+
+
+I hope that you and your family and friends are well and safe during this virus concern.  I wanted to make sure that I am touching base to let you know that we are still available for you as we transition to working from home.  We can still provide the same quality of service for you as we understand that some of you may be working from home as well.  You may have more time to see things you couldn’t review before so here are some things that WEX are doing to support you during this period of uncertainty.
+
+
+Account Reviews - Let me know what day and time you want to have a review of your account to see trends, behaviors and savings opportunities to meet your fleet goals.  We will update on upgrades and solutions to improve your WEX experience.
+
+
+The Strategic Accounts and Receivables teams are still available to assist if you have any concerns, questions or want to do some training.
+
+
+WEX Products - If you have been interested but didn&apos;t have time before, now is a great time to learn more to see how they can assist your goals.
+
+
+-Corporate cards
+
+-Virtual payments
+
+-Accounts Payable
+
+-Telematics/GPS/ELD
+
+
+If you are looking for a way to help your drivers stay safe, mobile fueling can be a great resource to have your fleet fueled up on the lot overnight and avoid stations. Booster shows up on the Wex reports as a vendor and will count towards any rebate you&apos;re currently receiving thru Wex, huge win for you.  Although &quot;emergency services&quot; isn&apos;t their bread-and-butter, they can be creative to best assist your needs. If you have any fleets in these markets below use this portal on their site and they will reach out to you.
+
+
+- San Francisco (Greater Bay Area)
+
+- Sacramento
+
+- Los Angeles (&amp; surrounding areas)
+
+- Seattle
+
+- DC, Maryland, Virginia area
+
+- Nashville
+
+- Dallas/Fort Worth
+
+- Austin
+
+
+If you have Clearview Data Analytics Tool, have interest, or just want to learn more about why it&apos;s helping many fleets save time and money.  WEX is hosting it&apos;s first virtual ClearView Conference. Several fleet professionals from Safelite, ServiceMaster, Ferguson and Verizon will present a wide variety of fleet best practices and share how they maximize ClearView data analytics.  Please feel free to join our conference for all or select sessions.  A session guide and an agenda are attached.  Webinar instructions are below.
+
+
+Wednesday, March 25, 1 pm-5 pm eastern
+
+Join Webex meeting
+
+Dial In: 1-866-469-3239
+
+Access code: 719 214 384
+Password: 92hMWpmB
+
+
+Thursday, March 26, 1 pm-5 pm eastern
+
+
+Join Webex meeting
+
+Dial In: 1-866-469-3239
+
+Access code: 712 075 042
+
+Password: iV6kYHKj
+
+
+
+Thank you for your business with WEX and please stay safe!
+
+
+
+
+Thanks,
+
+
+{!User.Name}, Account Executive
+
+WEX Inc.
+
+97 Darling Ave, South Portland, ME 04106
+
+Phone: {!User.Phone}
+
+Email: {!User.Email}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

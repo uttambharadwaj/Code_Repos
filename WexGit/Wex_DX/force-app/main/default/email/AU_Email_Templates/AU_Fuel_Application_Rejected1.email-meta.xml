@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Opportunity - Pricing Rejected</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Fuel Application - Rejected</name>
+    <style>freeForm</style>
+    <subject>Application - {!Opportunity.Name} ready for assesment</subject>
+    <textOnly>Hi {!Opportunity.OwnerFullName},
+
+This is to notify you that the Opportunity - {!Opportunity.Name} has been declined by the Acceptance team
+
+To view the comments, click on the following link :{!Opportunity.Link}
+
+Thanks,
+
+Wright Support Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

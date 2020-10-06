@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - Credit - Direct Debit</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+Dear {!Case.Account}:
+
+There are two payment options available on our website:
+
+Manual Online Payments - You must log in and initiate each payment you make
+
+Direct Debit - We automatically pull the balance due each month.
+
+
+
+Each option requires that you apply for that specific option online:
+
+
+
+Manual Online Payment:
+
+Go to INVOICE &amp; PAYMENT &gt; MAKE PAYMENT &gt; Enter Bank Information &gt; Add Bank Account.
+
+Enter your banking information and click SUBMIT at the bottom of the screen.
+
+You can find a link to the PAD form near the bottom of the page where you’ll see the phrase ‘PAD Agreement is available to download as a PDF’
+
+
+
+
+Direct Debit:
+
+Go to INVOICE &amp; PAYMENT &gt; DIRECT DEBIT ENROLLMENT and click ADD BANK ACCOUNT.
+
+Enter your banking information and click SUBMIT on the bottom of the screen.
+
+You can find a link to the PAD form near the bottom of the page where you’ll see the phrase ‘PAD Agreement is available to download as a PDF’
+
+
+
+
+You will need to Email or Fax the PAD Agreement and Voided Check to: iol_pad@wexinc.com
+
+
+
+Within two business days, the PAD form will be approved, and you will receive a confirmation email and the bank account status will change from PENDING to ACTIVE.
+
+
+Let us know if you have any questions.
+
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

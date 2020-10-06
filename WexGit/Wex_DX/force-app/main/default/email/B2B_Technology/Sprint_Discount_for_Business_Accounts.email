@@ -1,0 +1,27 @@
+{!Contact.FirstName},
+
+Thank you for your interest in our Sprint savings, where new and existing Sprint customers can receive an 18% discount on select plans, plus other great benefits through your TruckersB2B membership. 
+
+I have attached our Sprint Business Account* savings and instructions on how to get the discount.  Should you have any questions, please contact me.
+
+As an added benefit, you can also share the 18% discount with your employees by requesting a customized flyer. This will provide instructions on how they can save with Sprint by being an employee of your company. 
+
+Learn more about the Sprint savings at http://www.truckersb2b.com/sprint
+
+Your Login Information Is:
+Member ID: {!Account.Member_ID__c}
+Password:  {!Account.Web_Password__c}
+
+
+*To qualify as a business account, your account must be established utilizing a Tax ID number.  If your account is set up under a Social Security Number, this is considered a personal account and different instructions apply on how to get the savings. Please call or email me to receive a copy of the Sprint Savings for personal accounts.
+
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

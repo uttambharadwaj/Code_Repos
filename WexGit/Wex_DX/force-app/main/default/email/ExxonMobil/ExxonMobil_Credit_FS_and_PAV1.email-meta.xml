@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Needs financial statements and physical address verification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Credit FS and PAV</name>
+    <style>freeForm</style>
+    <subject>Additional Information Requested</subject>
+    <textOnly>In order to qualify for credit, you may either submit financial statements for your business or have an officer of the company sign a Personal Guarantee.
+
+
+If you choose to send financial statements, I will need one full year of financial records. This consists of your balance sheet and income statement.
+
+
+Also, as required by the Patriot Act, Credit is requesting “physical address verification”. We need a copy of a utility bill or other formal document listing your legal business name and the physical address you provided on the application.
+
+
+Please call me with any questions.
+
+
+Thank you for choosing the ExxonMobil Fleet card program.
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Maintenance/EcoFlapsSavings_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>Eco Flaps Savings Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Eco Flaps Savings Overview</name>
+    <style>none</style>
+    <subject>Discounts on your tractor or trailer mud flaps with Eco Flaps</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

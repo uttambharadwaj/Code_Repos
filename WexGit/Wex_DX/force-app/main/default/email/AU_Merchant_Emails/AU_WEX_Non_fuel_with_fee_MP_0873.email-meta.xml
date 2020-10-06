@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Merchant WEX Non fuel with fee MP 0873</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_WEX_LetterHead</letterhead>
+    <name>AU WEX Non fuel with fee MP 0873</name>
+    <style>freeForm</style>
+    <subject>Update on your Motorpass application</subject>
+    <textOnly>Dear {!Contact.FirstName}
+
+
+
+Thank you for your interest in joining WEX Australia Pty Ltd national network of merchants.
+
+
+More and more Australian businesses are choosing Motorpass, Australia&apos;s premier fuel card, to manage their vehicle related expenses.  As a merchant of our network you will enjoy access to almost 145,000 cardholders nationally who use Motorpass for fuel, repairs, accommodation, car parking, vehicle rental and taxis.
+
+
+Once your application has been finalised, you will receive a start-up kit containing stationery, operating procedures, a merchant identification card, and Motorpass decals.  Make sure that you display the Motorpass symbol prominently, as our research indicates that cardholders&apos; vehicle servicing decisions are heavily influenced by site badging.
+
+
+Your new merchant number which will be activated once we receive your completed application with a cheque payable to &quot;WEX Australia Pty Ltd&quot; for {!Opportunity.Merchant_Establishment_Fee__c} (please note that the Establishment Fee of $110.00 applies for single product applications or $75.00 each for dual product application) is a once off joining fee for this merchant facility. In addition please ensure a copy of your current driver&apos;s licence and a bank deposit slip are photocopied and enclosed.  If you are already trading in your business, do not use the Merchant Number of the previous owner.
+
+
+Please note section M of the form which requires you to nominate a payment plan. This choice determines how quickly you will be paid by us and commission rate applicable.
+
+
+PAY CYCLE      FEE(%)             PAY CYCLE            FEE(%)
+
+7 days               4.345%             21 days                    3.575%
+
+10 days             4.18%               28 days                    3.19%
+
+14 days             3.96%
+
+
+For further information or assistance completing your application, please contact our Merchant Support Team on 1300 130 113.
+
+
+We look forward to receiving your application and welcoming you to our network.
+
+
+
+Yours sincerely,
+
+
+
+Tracey Vines
+
+Merchant Support Manager
+
+
+
+#WEX Australia offers no guarantee of the payment of transactions received prior to the receipt of your completed merchant application.
+
+
+
+
+
+
+
+
+
+
+
+We see corporate payments differently.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

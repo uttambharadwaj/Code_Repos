@@ -1,0 +1,15 @@
+{!Receiving_User.Name},
+
+The opportunity titled "{!Opportunity.Name}" has been entered into negotiation and will need your attention.  The details are as follows:
+
+FLEET SIZE: {!Opportunity.Fleet_Size__c}
+MONTHLY GALLONS: {!Opportunity.Gallons_Per_Month__c}
+ANNUAL SETTLEMENT: {!Opportunity.Annual_Settlement_Value__c}
+
+Please follow this link to view the opportunity:
+
+{!Opportunity.Link}
+
+Thank you,
+
+{!User.Name}

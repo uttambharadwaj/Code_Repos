@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - 60 - Prevent 90</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+Dear {!Case.Account}:
+
+Your reply is requested. Your fuel account has now reached a serious level of delinquency for the following invoices.
+
+Total Owed on Account: {!Case.Rollup_Total_Owed_Amount__c} Past Due Amount: {!Case.Rollup_Past_Due_Amount__c} Current Due Amount: {!Case.Rollup_Current_Due_Amount__c}
+
+NOTE: If your account does go more than 3 invoice cycles outstanding it will require a full Security Deposit.
+
+We want to work with you to avoid further delinquency and escalation of your account.
+
+Please pay the full balance OR consider paying the oldest invoice to prevent a required review.
+
+Online and Check-by-Phone payments made before 3:30EST will post same day
+
+We also accept ACH, Wire, or Western Union payments and have a separate Overnight address if you are mailing a physical check
+
+If you cannot  make a payment please respond to this email or call today.
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

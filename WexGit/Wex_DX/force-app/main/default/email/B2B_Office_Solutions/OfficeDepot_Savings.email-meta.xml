@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Office_Solutions/OfficeMaxSavings_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>OfficeDepot Savings Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>OfficeDepot_Savings</name>
+    <style>none</style>
+    <subject>Savings with OfficeDepot</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

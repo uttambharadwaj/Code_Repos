@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Member who haven&apos;t receive a fuel rebate within the last few months or more.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TruckersB2B</letterhead>
+    <name>Missing Fuel Data Last Month</name>
+    <style>freeForm</style>
+    <subject>Network Fueling Issue</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+
+As a valued member of the TruckersB2B fuel discount program, we noticed you did not fuel last month with the billing card we have on file.
+
+We want to ensure there is no interruption in your fuel savings and find out how we can start saving you even more than before! Please let me know why we did not receive fuel data for you last month and how you are purchasing your over-the-road fuel. You can email me back or give us a call at 866.354.7322.
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

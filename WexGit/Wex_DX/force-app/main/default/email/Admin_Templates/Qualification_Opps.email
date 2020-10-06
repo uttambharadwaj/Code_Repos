@@ -1,0 +1,6 @@
+Great job creating this opportunity, {!Account.Name} but is it time to advance it to the next stage?  Qualification stage tells us that there is a chance this could lead to something but you still need to talk to the fleet.  Let's advance it!
+
+See the opportunity here: https://na12.salesforce.com/{!Opportunity.Id}
+
+Thanks
+Salesforce Task Force

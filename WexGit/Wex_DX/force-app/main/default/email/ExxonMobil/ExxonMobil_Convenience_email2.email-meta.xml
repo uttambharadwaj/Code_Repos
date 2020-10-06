@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>XOM Convenience email that links to personalized landing page</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ExxonMobil Convenience email</name>
+    <style>none</style>
+    <subject>Simplify your fuel expenses</subject>
+    <textOnly>ExxonMobil Fleet &amp; Universal Card Program
+
+Eliminate the clutter and hassle of paperwork with a comprehensive online account, and one monthly consolidated invoice and payment. All of your fleet&apos;s fuel usage information is available at the tip of your fingertips, 24-7.
+
+&quot;I can easily log in and see all fuel usage and driving activity and I can pay automatically online. It&apos;s a real time saver for me.&quot;
+
+Robert Tauber
+CFO, ASKEA Property Management
+
+
+Are you ready to simplify your fuel expenses?
+
+
+Please contact your personal sales representative:
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+
+
+Exxon and Mobil are registered trademarks of Exxon Mobil Corporation.
+
+The ExxonMobil Fleet and Universal cards are issued by WEX Bank.
+
+This is an advertisement from WEX Inc. on behalf of ExxonMobil Fleet Cards. If you no longer wish to receive future email advertisements, email us to unsubscribe at info@fsolnews.com with the word unsubscribe in the subject line. Please be sure to include your name, company name, and email address in the email.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

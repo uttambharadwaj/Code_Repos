@@ -1,0 +1,88 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Date: {!Today}</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">{!Case.Contact}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><a name="Text1"></a><span style="font-size: 9pt; font-family: Verdana, sans-serif;">{!Case.Account}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">{!Account.BillingAddress}</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Re: Decline of Personal Guarantor Release Request</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Account Number#: *********{!Case.Masked_External_Account__c}&nbsp;</span><span style="font-size: 9pt; font-family: &quot;Times New Roman&quot;, serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Dear&nbsp;{!Case.Contact},</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">We received your request to release the personal guarantor
+securing your account. Unfortunately, we are unable to process this request for
+the following reason(s):<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Arial, sans-serif;">&nbsp;</span></p><ul style="margin-top:0in" type="disc">
+ <li class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:9.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Your account has not been
+     open for at least one year.&nbsp;</span><span style="font-size:9.0pt;
+     font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:9.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Your account has a slow or
+     unsatisfactory payment history.</span><span style="font-size:9.0pt;
+     font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:9.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Your commercial credit
+     history does not support an unsecured credit line.</span></li></ul><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Sincerely,</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Credit Services</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-family: arial; font-size: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">WEX Bank</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 9pt; font-family: Verdana, sans-serif;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size: 9pt;">The federal Equal Credit
+Opportunity Act prohibits creditors from discriminating against credit
+applicants on the basis of race, color, religion, national origin, sex, marital
+status, age (provided the applicant has the capacity to enter into a binding contract);
+because all or part of the applicant’s income derives from any public
+assistance program; or because the applicant has in good faith exercised any
+right under the Consumer Credit Protection Act.</span><span style="font-size: 9pt;">&nbsp;
+</span><span style="font-size: 9pt;">The federal agency that administers compliance with this law concerning
+this creditor is the </span><span style="font-size: 9pt;">Federal Deposit
+Insurance Corporation, </span><span style="font-size: 9pt;">FDIC Consumer Response Center, 1100 Walnut St,
+Box #11, Kansas City, MO 64106.</span></p><span style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial" style="" size="2"></font></span><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"></p>]]></td>
+</tr>
+</table>

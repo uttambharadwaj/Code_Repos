@@ -1,0 +1,13 @@
+Hello,  {!Application_Request__c.Sales_Person__c}
+
+The sales stage has changed on your submitted application for {!Opportunity.Name}  to the following value: {!Application_Request__c.Sales_Stage__c}
+
+Click the link below to access your application.
+
+{!Application_Request__c.Link}
+
+Click the link below to access your opportunity:
+
+{!Opportunity.Link}
+
+Comments:  {!Application_Request__c.Credit_Decision_Comments__c}

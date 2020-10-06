@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU Request for proof of residence email - New</name>
+    <style>none</style>
+    <subject>WEX Motorpass application - Information regarding your application</subject>
+    <textOnly>Hi {!Lead.FirstName},
+
+
+Thank you for your recent application for a WEX Motorpass Account. In order to continue to assess your application we require a proof of residence to confirm your address. A proof of residence must have both your full name and your address printed on it.
+
+
+We accept the following documents as a proof of residence:
+
+National ID
+Driver&apos;s license
+Utility bill linked to the residential property, such as gas, electricity, water, internet, landline telephone not older than 3 months;
+Dated bank statement under a personal name not older than 3 months
+
+You can scan your documents (PDF or JPEG file format) and send them as an attachment in your reply to this email. Alternatively, you can post a copy to us at WEX Australia Level 3, 293 Camberwell Road, Camberwell VIC 3124 or fax your document to 03 9274 9170.
+
+
+Should you require any further information, please do not hesitate to contact me on {!User.MobilePhone}.
+
+
+
+
+
+Kind regards,
+
+
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+WEX Australia Pty Ltd.
+
+Level 3, 293 Camberwell Road, Camberwell VIC 3124
+
+T: {!User.MobilePhone}
+
+E: {!User.Email}
+
+W: https://www.motorpass.com.au/</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

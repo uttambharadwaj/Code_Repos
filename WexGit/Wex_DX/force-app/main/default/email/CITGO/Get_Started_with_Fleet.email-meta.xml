@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Welcome Email, New accounts</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead1</letterhead>
+    <name>Get Started with Fleet</name>
+    <style>freeForm</style>
+    <subject>Welcome!  CITGO Fleet Card Program</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Welcome to the CITGO Fleet Card Program! With a few easy clicks you&apos;ll be up and running, saving money and time with the industry&apos;s leading fleet card program.
+
+Getting Started
+
+Get Online! Register at www.citgofleetcard.com/login and you can log in anytime, anywhere to review your account, set controls, cancel cards, schedule payments and more. It&apos;s the easiest way to manage your fuel and vehicle expenses.
+
+Distribute your cards and Driver IDs (DIDs). If they haven&apos;t yet arrived in the mail, please call me at {!User.Phone}.
+
+Start fueling and saving! The CITGO Fleet Card is accepted at over 6,000 CITGO locations in 27 states. Find accepting locations now at www.citgo.com/Locator/StoreLocator.jsp.
+
+Thanks again, and welcome to the CITGO Fleet Card Program!
+
+
+Best regards,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+©2013 CITGO Petroleum.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

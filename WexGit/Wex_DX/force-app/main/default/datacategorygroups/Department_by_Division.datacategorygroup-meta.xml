@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Customer Service</label>
+                    <name>Customer_Service</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Premium Fleet Services</label>
+                    <name>Premium_Fleet_Services</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Strategic Implementation</label>
+                    <name>Strategic_Implementation</name>
+                </dataCategory>
+                <label>WEX Customer Relations</label>
+                <name>Customer_Relations</name>
+            </dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>F1 CS Call Center</label>
+                    <name>F1_CS_Call_Center</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>F1 Fleet &amp; Merchant Services</label>
+                    <name>F1_Fleet_Merchant_Services</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>F1 Permits</label>
+                    <name>F1_Permits</name>
+                </dataCategory>
+                <label>WEX Fleet One Customer Relations</label>
+                <name>WEX_F1_Customer_Relations</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Business Readiness</label>
+                <name>Business_Readiness</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Business Ops. and Process Mgmt</label>
+                <name>Business_Ops_and_Process_Mgmt</name>
+            </dataCategory>
+            <label>Service Delivery</label>
+            <name>Service_Delivery</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Credit</label>
+                <name>Credit</name>
+            </dataCategory>
+            <dataCategory>
+                <label>F1 Credit &amp; Collections</label>
+                <name>F1_Credit_Collections</name>
+            </dataCategory>
+            <dataCategory>
+                <label>F1 Payment Processing &amp; Imaging</label>
+                <name>F1_Payment_Processing_Imaging</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Fraud</label>
+                <name>Fraud</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Portfolio Risk and Customer Analytics</label>
+                <name>Portfolio_Risk_and_Customer_Analytics</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Rebates</label>
+                <name>Rebates</name>
+            </dataCategory>
+            <dataCategory>
+                <label>RRM - Recievables and Recovery Mgmt</label>
+                <name>RRM_Recievables_and_Recovery_Mgmt</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Tax</label>
+                <name>Tax</name>
+            </dataCategory>
+            <label>Global Credit Risk</label>
+            <name>Global_Credit_Risk</name>
+        </dataCategory>
+        <label>Client Service Operations</label>
+        <name>Client_Service_Operations</name>
+    </dataCategory>
+    <description>Select the department the article belongs to by Division</description>
+    <label>Department by Division</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

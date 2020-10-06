@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso</letterhead>
+    <name>Esso Fleet Online</name>
+    <style>formalLetter</style>
+    <subject>Esso Fleet Online</subject>
+    <textOnly>Hello,
+
+Nice to speak with you and hope you are well.  A couple of things I wanted to share with you.  Once receiving your fuel cards and pin codes, it&apos;s important that you follow the instructions and set up your account online through essofleetonline.com.  I say this because I&apos;ve seen businesses start using their cards and procrastinate on setting up their account and the payment cycle crept up on them quickly and weren&apos;t prepared, resulting in a late fee. Also, Please implement the cards to your fleet for use once you receive them in the event there is any issue we can resolve it quickly.  Also, important to know that payments made through essofleetonline.com register your payment the same day, which I always encourage you to do to avoid any late fees.  If you want to set up online banking with your bank, take note there is a 3-6 business day delay on payment for processing which could leak past your balance due date if not planned appropriately ahead of time.  I have attached a very easy to follow tutorial/help guide on how to navigate essofleetonline.com and perform any and all functions you desire on the site.  Please do not hesitate to contact me if you have any questions.
+
+Have a great day!
+
+Thank you,
+Steve Kaye
+RSM - ESSO Business Fuel Solutions
++1 647-462-4920
+steve.kaye@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

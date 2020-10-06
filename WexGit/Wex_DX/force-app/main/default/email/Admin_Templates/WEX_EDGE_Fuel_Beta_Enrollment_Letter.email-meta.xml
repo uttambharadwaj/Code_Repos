@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Initial communication letting customer know they&apos;ve been enrolled</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>WEX EDGE Fuel Beta Enrollment Letter</name>
+    <style>freeForm</style>
+    <subject>Your WEX cards are set up to receive fuel discounts!</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>More Info Needed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_Missing_Info_Letterhead</letterhead>
+    <name>Esso More Info Needed EN</name>
+    <style>freeForm</style>
+    <subject>Esso Account Information Needed</subject>
+    <textOnly>You&apos;re almost done! We are missing account information since we upgraded our Esso Card Program.
+
+
+
+Please take a moment to fill out the attached form and provide the necessary missing documentation today to avoid any disruption to your service.
+
+
+Submit via:
+
+Fax: 1-888-581-8817
+
+Email: EssoInfoReturn@wexinc.com
+
+
+Questions?
+
+We’re happy to help. Our conversion advisors are available 8am-8pm EST at 1-888-292-4659.
+
+
+WEX is classified as a financial institution and just like all banks, is subject to regulatory requirements. Federal law requires all financial institutions to obtain a business’s physical address and tax ID information
+
+
+Sincerely,
+
+Conversion Advisor Team
+
+
+Phone: 1-888-292-4659
+Fax: 1-888-581-8817
+Email: EssoInfoReturn@wexinc.com
+Mail: 97 Darling Avenue, South Portland, Maine 04106
+
+
+
+
+
+©2019 Esso Business Card Services. All rights reserved.
+Esso Business Card Services, 97 Darling Avenue, South Portland, ME 04106
+
+Esso is a registered trademark of Imperial Oil Limited. Imperial Oil, Licensee. The Esso Business Card Program is administered by WEX Inc. We respect your privacy. Please review our privacy policy for more information about click activity with WEX Inc. and links included in this email.
+
+
+If you no longer wish to receive email messages about Esso Business Cards, you may instantly unsubscribe. Any unsubscription request will be honored within ten business days of receipt.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

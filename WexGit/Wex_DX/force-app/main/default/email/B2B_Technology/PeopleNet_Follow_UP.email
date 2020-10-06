@@ -1,0 +1,26 @@
+Dear {!NullValue(Contact.FirstName,"Member")},
+
+Thank you for taking the time to discuss mobile communications and fleet management solutions from PeopleNet.  A Representative from PeopleNet will contact you within 48 hours to discuss a program that will work best for your needs.
+
+From GPS tracking and mobile communications, to the latest in advanced onboard computing systems, PeopleNet can help you get ahead of your competition.  PeopleNet will help you save money, run safer, be more compliant and serve customers better.  With PeopleNet, you can expect:  
+
+- Improved productivity from automated communication across the supply chain, from pick up to delivery
+- Pinpoint any vehicle at anytime with precise GPS tracking 
+- Improved operating performance with technology allowing fleet management and reporting on a real-time basis
+- Fulfill customer requirements
+…and much more!
+
+Best of all, by selecting PeopleNet for your mobile communications, you are eligible for a special limited time offer which includes your choice of (1) free service for one month, OR (2) free remote installation training, OR (3) a 36-month service contract.
+
+Again, thank you for your interest, and a PeopleNet Representative will be in touch with you shortly.  In the meantime, should you have any questions, please feel free to contact  me.
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

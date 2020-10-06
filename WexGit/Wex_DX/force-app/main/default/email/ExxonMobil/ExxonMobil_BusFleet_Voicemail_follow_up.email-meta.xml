@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>ExxonMobil Business Fleet Voicemail follow up email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_card</letterhead>
+    <name>ExxonMobil BusFleet Voicemail follow up</name>
+    <style>formalLetter</style>
+    <subject>ExxonMobil Business Fleet Card</subject>
+    <textOnly>{!Contact.FirstName}
+
+Per my voice mail, I wanted to give you an overview of the ExxonMobil Business Fleet card.  I know you will find it the perfect tool to help you save money and time when it comes to your vehicle fleet operations.
+
+
+Savings
+
+Save 25 cents per gallon for 3 months,* then up to 6 cents per gallon** every time you fuel at any Exxon or Mobil locations.
+No set up, monthly or annual fees
+
+Convenience &amp; Control
+
+Accepted at more than10,000 Exxon- and Mobil- branded locations
+Easy online controls so you can set spending limits and monitor driver behavior.
+
+I will be following up with you next week. In the mean time, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+I look forward to helping you with the needs of your business.
+
+
+Sincerely,
+
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+* New accounts only. Valid at participating Exxon- and Mobil-branded stations. The 90 day promotional period begins on the date your account is approved. Rebates earned will be credited directly to your account(s). Promotional offer valid for applications received by 2/7/16.
+
+** Based on combined monthly volume, refer to the standard rebate table. Rebates are not applied at time of purchase – they will appear as an account credit on the same billing statement as your monthly purchases. Rebates issued if payment is made in accordance with the
+
+terms of the ExxonMobil Fleet Charge Account Agreement. Rebates may not be allowed where prohibited by law and apply only to fuel purchases made with the ExxonMobil Business Fleet card at participating Exxon- and Mobil-branded stations in the U.S. Please contact
+
+ExxonMobil Fleet Services for further information on available rebates. Rebates can be changed at any time at ExxonMobil’s discretion.
+
+The Exxon and Mobil Logos are trademarks or registered trademarks of Exxon Mobil Corporation or one of its subsidiaries. The ExxonMobil Business Fleet card is issued by WEX Bank.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

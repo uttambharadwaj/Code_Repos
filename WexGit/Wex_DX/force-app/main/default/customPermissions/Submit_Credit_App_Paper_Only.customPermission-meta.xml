@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>OTR Submit Credit App Button - Only Allow Paper Applications</description>
+    <label>Submit Credit App - Paper Only</label>
+</CustomPermission>

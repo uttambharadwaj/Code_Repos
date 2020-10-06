@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>ExxonMobil both cards  for reps to use to follow up after voicemail</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>Qualified: BF &amp; FN voicemail followup</name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Fleet card program</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+Per my voice mail, I wanted to give you an overview of the ExxonMobil Fleet cards.  Our fleet cards options are the perfect tool to help you save time and money when it comes to you vehicle fleet operations.
+
+Save money with valuable rebates
+Manage your fuel use
+Set purchase restrictions
+Broad acceptance
+Save time with online tools
+Reduce unwanted spending
+
+Whether you fuel a few or a fleet, ExxonMobil has the card that&apos;s right for your business.
+
+I will follow up with you next week, as I am looking forward to meeting with you about the needs of your business.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+
+Fax - {!User.Fax}
+
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

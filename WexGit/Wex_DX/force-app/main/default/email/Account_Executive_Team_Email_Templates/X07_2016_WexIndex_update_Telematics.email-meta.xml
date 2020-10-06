@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>07.2016 WexIndex update - Telematics</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>WexIndex Apr 2017 Update - Telematics</name>
+    <style>promotionRight</style>
+    <subject>&lt;&gt;&lt;&gt; Your WEX Fleet Fuel Savings Update &lt;&gt;&lt;&gt;</subject>
+    <textOnly>Hi {!Contact.FirstName} -
+
+How&apos;s everything going? I have updated information for you on fuel price trends and your fleet card account.
+
+The summer driving season hasn’t even begun and there are many that believe the gasoline markets may have already peaked. You can get more fuel price trend information from WEX online at http://www.wexinc.com/our-story/wex-index/.
+
+I&apos;ve attached your latest account review workbook along with some fuel price information for you.
+
+These are the areas where your fleet card fueling data shows as cost savings opportunities or where you may already be sustaining cost avoidance:
+
+
+Many are looking at putting GPS Telematics in their vehicles to track location, increase productivity &amp; safety, and reduce fleet costs. Have you taken advantage of Section 179 this year? This low fuel price environment could be a great time to invest in these units and be able to write off the full cost in your 2016 taxes. WEX Telematics is fully integrated with your fuel data. Please let me know an okay time to discuss.
+
+Section 179 Capital Purchase Tax Deduction
+http://www.section179.org/section_179_deduction.html 
+
+Thanks for being a WEX Customer.
+
+Kind Regards,
+
+Kevin Thompson
+Account Executive
+WEX Inc.
+97 Darling Avenue, So. Portland, ME 04106
+Office (207) 523-6229    Mobile (207) 415-5405
+www.wexinc.com
+
+LinkedIn: https://www.linkedin.com/in/kevin-thompson-470a7a4
+
+Twitter: https://twitter.com/kthompsonwex
+
+
+Overlooked Financial Benefits of Fleet Telematics
+It’s no question that most fleet managers invest in telematics as a way to reduce fuel waste. After all, the majority of a fleet’s costs go to gas stations, so targeting fuel efficiency is a prudent strategy. However, focusing solely on the potential of telematics to reduce fuel costs takes the other benefits of telematics… Read more » 
+http://www.wexinc.com/wex-fleet/overlooked-financial-benefits-of-fleet-telematics/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

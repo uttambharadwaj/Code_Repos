@@ -1,0 +1,31 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="2" face="Verdana,Helvetica,Sans-Serif">{!Contact.Salutation} {!Contact.LastName}, <br><br></font></p><p style="font-size: 12pt; font-family: arial;"><span style="background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></span></p><p style="font-size: 12pt; font-family: arial;"></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif" size="2">Good day.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p>
+
+<p class="MsoNormal"></p><p><font face="Verdana, Helvetica, sans-serif" size="2">I hope you have been pleased with the WEX fleet card program so far!</font></p><p><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p>
+
+<p><font face="Verdana, Helvetica, sans-serif" size="2">I'd like you to
+consider the advantages of the other WEX programs we provide to complement your fleet account:</font></p><ul type="disc">
+ <li class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">WEX Telematics - Secure Mobile Asset Reporting and Tracking using GPS technology to
+     monitor driving behavior.&nbsp;<o:p></o:p></font></li>
+ <li class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">WEX MasterCard Purchase Log - All the purchasing power of a MasterCard with
+     controls and tools to help you when you need to purchase vehicle service larger than lubricants and quick lubes.<o:p></o:p></font></li>
+ <li class="MsoNormal"><font face="Verdana, Helvetica, sans-serif" size="2">No Cost
+     Road Side Assistance - WEX-Tows is a program that costs you nothing unless
+     you use the service.&nbsp;</font></li>
+</ul>
+
+<p><font face="Verdana, Helvetica, sans-serif" size="2">I'd welcome the
+opportunity to speak with you about what WEX Inc. can do for you through one or
+more of our other products.&nbsp;<o:p></o:p></font></p><p></p><p></p><p style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="2" face="Verdana,Helvetica,Sans-Serif"><br><br>Sincerely, <br><br>{!User.FirstName} {!User.LastName} <br></font></p>
+<p style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font face="Verdana,Helvetica,Sans-Serif"><font size="2">{!User.Title} <br>Phone - {!User.Phone}&nbsp;<br>{!User.Email}&nbsp;<br><br></font></font><a href="http://www.wexinc.com/">http://www.wexinc.com/</a><font face="Verdana,Helvetica,Sans-Serif"><font size="2"><br></font><br><font size="1"></font></font></p><font face="Verdana,Helvetica,Sans-Serif" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font size="1">
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><font size="1"><i><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-fareast-font-family: 'Times New Roman'; mso-fareast-theme-font: minor-fareast; mso-bidi-font-family: Arial; mso-themecolor: background1; mso-themeshade: 128; mso-no-proof: yes">CONFIDENTIALITY NOTICE: "This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</span></i><i style="mso-bidi-font-style: normal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-fareast-font-family: 'Times New Roman'; mso-fareast-theme-font: minor-fareast; mso-themecolor: background1; mso-themeshade: 128; mso-no-proof: yes"><!--?xml:namespace prefix = o /--><o:p></o:p></span></i></font></p>
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><i style="mso-bidi-font-style: normal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-bidi-font-family: Arial; mso-themecolor: background1; mso-themeshade: 128"><o:p><font size="1">&nbsp;</font></o:p></span></i></p>
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><i style="mso-bidi-font-style: normal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-bidi-font-family: Arial; mso-themecolor: background1; mso-themeshade: 128"><font size="1">Wright Express Corporation, 97 Darling Avenue, South Portland, ME 04106<o:p></o:p></font></span></i></p>
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><i style="mso-bidi-font-style: normal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-bidi-font-family: Arial; mso-themecolor: background1; mso-themeshade: 128"><o:p><font size="1">&nbsp;</font></o:p></span></i></p>
+<p style="MARGIN: 0in 0in 0pt" class="MsoNormal"><i style="mso-bidi-font-style: normal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-bidi-font-family: Arial; mso-themecolor: background1; mso-themeshade: 128"><font size="1">This is an advertisement from Wright Express Corporation. If you no longer wish to receive future email advertisements from {!User.Email},</font><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="COLOR: gray; mso-themecolor: background1; mso-themeshade: 128"><font size="1"> email us to unsubscribe</font></span></a><font size="1">. Please be sure to include your name, company name and email address in the email.</font></span></i><i style="mso-bidi-font-style: normal"><span style="FONT-FAMILY: 'Verdana','sans-serif'; COLOR: gray; FONT-SIZE: 8pt; mso-themecolor: background1; mso-themeshade: 128"><o:p></o:p></span></i></p></font></font>]]></td>
+</tr>
+</table>

@@ -1,0 +1,21 @@
+{!Contact.FirstName},
+
+I wanted to let you know about our savings with AT&T, where you and your employees can receive a 19% discount on the monthly service charge of qualified wireless plans. AT&T also offers a full suite of services that improve the way you manage your business, like fleet tracking, electronic forms, asset tracking, and enhanced push to talk just to name a few. I've attached a brief overview for your review. 
+
+In order for you and your employees to start taking advantage of the savings, you must first complete the AT&T Participation Agreement to set up your Foundation Account Number (FAN) for both your corporate responsible users (CRU) and individual responsible users (IRU). This will tie your account to the TruckersB2B discount and provide an online web portal where your employees can access the savings. 
+
+Login now to learn more and get started at http://truckersb2b.com/att
+
+Your Login Information Is:
+Member ID: {!Account.Member_ID__c}
+Password:  {!Account.Web_Password__c}
+
+Should you have any questions, please contact me.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

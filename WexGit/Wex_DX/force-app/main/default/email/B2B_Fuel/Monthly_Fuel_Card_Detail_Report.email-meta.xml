@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Fuel/MonthlyFuelCardReport_General_pdf1.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Monthly Fuel Card Detail Report</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Monthly Fuel Card Detail Report</name>
+    <style>none</style>
+    <subject>Your Monthly Detailed Fuel Card Reporting</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

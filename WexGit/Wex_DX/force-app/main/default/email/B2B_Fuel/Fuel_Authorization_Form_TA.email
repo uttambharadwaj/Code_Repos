@@ -1,0 +1,17 @@
+{!Contact.FirstName},
+
+Thank you for your interest in the TruckersB2B Fuel Discount Program, where you can save $.10 per gallon off the cash price at TA and Petro locations. 
+
+I've attached our one-time fuel authorization, which simply authorizes your fuel card company to set up the $.10/gal discount to be reflected on your billing card invoice.  Please complete and return fax to 888-855-9633 or email to fuelforms@truckersb2b.com.
+
+Should you have any questions, please don't hesitate to contact me. 
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

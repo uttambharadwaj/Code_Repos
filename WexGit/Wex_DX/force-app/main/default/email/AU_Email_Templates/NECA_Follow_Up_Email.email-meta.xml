@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>NECA Follow Up Email</name>
+    <style>none</style>
+    <subject>Special Offer for NECA WA Members</subject>
+    <textOnly>This is a partner offer for NECA WA members from our Silver business partner WEX Motorpass.
+
+6 cents off per litre for NECA members across the PUMA Energy network – including Puma, Gull, Choice, Peak &amp; Matilda sites* .
+
+Hi,
+
+We have been trying to contact you to provide more information about the WEX Motorpass offer. If you prefer to view our products online simply visit https://memberarea.necawa.asn.au/Admin/ViewContentPage?uniqueName=wex-motorpass for more information or feel free to call me during business hours on 1300 130 523.
+
+
+Why choose WEX Motorpass?:
+
+No joining cancellation/termination fees
+No inactive card fees or non-fuel service fees
+Use Woolworths Shop-a-docket’s to receive 4c per litre discount at Caltex Woolworths sites.
+Set transaction controls to limit the amount (or volume) of fuel purchased
+Accepted at over 93% of service stations, WEX Motorpass is Australia’s most widely accepted fuel card. You can enjoy the peace of mind from knowing there’s always somewhere close-by to fill your tank.
+
+No need to retain receipts, WEX Motorpass statements are ATO compliant.
+
+Access to the WEX Motorpass Mobile App.
+
+Online account management.
+
+Exclusive Partner offers – from discounts on tyres, to batteries, servicing and even accommodation, the use of your WEX Motorpass card extends well beyond the service station.
+
+The ability to restrict what can be purchased and when, even down to what day and amount of litres pumped.
+
+Apply Now
+
+*Terms and Conditions Applicants and authorised representatives must be over 18 years, have an ABN and use their vehicle for business purposes to apply. This offer is available by calling WEX Motorpass on 1300 130 523 and it is only available to NECA members who hold a NECA branded WEX Motorpass card. This offer can not be used in conjunction with any other offer. The standard WEX Motorpass terms and conditions apply. Please see motorpass.com.au/terms-and-conditions. Fees and charges apply. To view these please visit motorpass.com.au. To find out where Motorpass cards are accepted, click here. Credit is issued by WEX Australia Pty Ltd ABN 68 005 970 570 and applications are subject to credit assessment criteria. Motorpass TM and &apos;Anywhere you are.&apos; are registered trademarks of WEX Australia Pty Ltd 68 005 970 570.
+
+This email was sent to you from WEX Motorpass Australia
+
+Unsubscribe</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

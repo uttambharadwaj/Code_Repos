@@ -1,0 +1,6 @@
+Hi 
+{!Opportunity.Name} has been submitted for approval and needs your review.
+
+Please navigate here {!Opportunity.Link} to review it.
+
+--Auto sent by salesforce, do not reply--

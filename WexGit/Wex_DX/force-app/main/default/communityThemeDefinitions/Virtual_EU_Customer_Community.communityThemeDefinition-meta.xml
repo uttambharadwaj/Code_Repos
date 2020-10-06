@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommunityThemeDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableExtendedCleanUpOnDelete>true</enableExtendedCleanUpOnDelete>
+    <masterLabel>Virtual_EU_Customer_Community</masterLabel>
+    <publisher>WEX Inc.</publisher>
+    <themeSetting>
+        <themeLayout>Virtual_EU_Customer_Community_napili_themeLayout_home</themeLayout>
+        <themeLayoutType>Inner</themeLayoutType>
+    </themeSetting>
+</CommunityThemeDefinition>

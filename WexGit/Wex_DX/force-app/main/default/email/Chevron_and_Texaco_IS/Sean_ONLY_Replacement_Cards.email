@@ -1,0 +1,34 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font style="" face="Arial, sans-serif">Good Day {!Lead.FirstName}, <o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">I’m reaching out regarding a
+recent card order for your new Chevron and Texaco Business Card account.&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">It has come
+to our attention that the Chevron and Texaco Business cards we recently sent to
+you were not correctly embossed; specifically the “card number” printed on the
+back of the card(s) and also the 2<sup style="">nd</sup> line of printing (directly
+below your company name) on the front of your card(s).&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><b style=""><font face="Arial, sans-serif"><br></font></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><b style=""><font face="Arial, sans-serif">While the card(s) are functional and can be used for now, we have
+overnighted NEW replacement cards.</font></b></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><b style=""><font face="Arial, sans-serif"><br></font></b></p><p class="MsoNormal" style=""><b style=""><font color="#ff0000" face="Arial, sans-serif">UPS Tracking #</font></b></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: 150%;"><font face="Arial, sans-serif">&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">Please <b><u>collect the original cards and
+distribute the NEW replacement cards as soon as possible</u></b>. &nbsp;Be sure to destroy the original (old) cards to
+insure proper reporting and card transaction details.&nbsp; We know reporting is an importing part of
+your day to day!&nbsp; <o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); line-height: 150%;"><font face="Arial, sans-serif">&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">Don’t delay
+in distributing the NEW cards – Your NEW replacement cards are active and ready
+for fueling.&nbsp;&nbsp; <o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">&nbsp;</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif">We
+apologize for any inconvenience this error may have caused. If you have any
+questions, please&nbsp;<font style="">contact our Customer Advisors<font color="#67757c"><span style="background-color: rgb(255, 255, 255);">&nbsp;</span></font></font><font style="">at&nbsp;<br></font><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-weight: 600;">1-888-531-3698</span><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-weight: 600;">&nbsp;</span>if you have additional
+questions or concerns.</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font style="color: rgb(0, 0, 0);" face="Arial, sans-serif"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0);"><font style="" face="Arial, sans-serif">Kind Regards,</font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><br></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0); margin-bottom: 12pt; line-height: normal;"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!User.FirstName} {!User.LastName}&nbsp;<br>{!User.Title}&nbsp;<br>Phone - {!User.Phone}&nbsp;&nbsp;<br>Fax - {!User.Fax}&nbsp;<br>{!User.Email}</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0); margin-bottom: 12pt; line-height: normal;"><i><span style="font-size: 8pt; font-family: Arial, sans-serif; color: gray;">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</span></i><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0); margin-bottom: 12pt; line-height: normal;"><i><span style="font-size: 8pt; font-family: Arial, sans-serif; color: gray;">WEX Inc., 97 Darling Avenue, South Portland, ME 04106 | <a href="https://www.wexinc.com/privacy-policy">Privacy Policy</a></span></i></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><i style="font-size: 12pt;"><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: gray;">This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email},</span></i><span style="font-size: 11pt; font-family: Calibri, sans-serif; line-height: 16.8667px;"><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: gray;">&nbsp;</span></i></a><i><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: rgb(51, 51, 255);"><a href="mailto:{!User.Email}?subject=Unsubscribe&amp;body=Please%20remove%20me%20from%20your%20mailing%20list.">email us to unsubscribe</a></span></i></span><i style="font-size: 12pt;"><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: gray;">. Please be sure to include your name, company name and email address in the email.</span></i></p>]]></td>
+</tr>
+</table>

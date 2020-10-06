@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - Name Change Request</name>
+    <style>freeForm</style>
+    <subject>Re: Documentation Needed for Company Name Change</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Re: Documentation Needed for Company Name Change
+
+
+Account Number#: *********{!Case.Masked_External_Account__c}
+
+
+Dear {!Case.Contact},
+
+
+We have received a request to change your company’s name. In order to process your request and keep your account open, please email the additional documentation listed below to EMAILADDRESS “To” within 7 calendar days. Failure to do so may result in account suspension and/or termination.
+
+
+Please provide documentation showing:
+
+Old legal name;
+New legal name; and
+Date the name change was filed with the state
+Certification of Beneficial Ownership Form.
+
+To do this, simply email your:
+
+Articles of Amendment; AND
+Amendment of Organization; OR
+Amendment of Partnership Agreement
+Certification of Beneficial Ownership Form.
+
+If you have questions, please email EMAILADDRESS “To”
+
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

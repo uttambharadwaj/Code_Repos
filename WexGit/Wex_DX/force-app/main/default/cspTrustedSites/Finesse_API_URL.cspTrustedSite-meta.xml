@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CspTrustedSite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <context>All</context>
+    <endpointUrl>https://msp-uccx-cs-pub.efs.local:8445</endpointUrl>
+    <isActive>true</isActive>
+</CspTrustedSite>

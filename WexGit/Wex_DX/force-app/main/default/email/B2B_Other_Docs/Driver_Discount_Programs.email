@@ -1,0 +1,14 @@
+{!Contact.FirstName},
+
+Thank you for your interest in our driver discount programs.  These programs are readily available to your drivers as a benefit of you being a TruckersB2B member.  Feel free to call or email me with any questions.   
+
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

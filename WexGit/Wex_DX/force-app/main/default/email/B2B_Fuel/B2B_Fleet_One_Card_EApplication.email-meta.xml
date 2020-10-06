@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Application forms for B2B Branded Fleet One Card</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>B2B Fleet One Card E-Application</name>
+    <style>none</style>
+    <subject>Thank you for your interest in the TruckersB2B Over-the-Road Fuel Card</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

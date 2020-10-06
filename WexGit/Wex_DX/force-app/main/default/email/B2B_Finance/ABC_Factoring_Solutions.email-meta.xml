@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Finance/ABC_Solutions_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>Triumph Business Capital</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Triumph Business Capital Factoring Solutions</name>
+    <style>none</style>
+    <subject>Factoring Solutions from Triumph Business Capital</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

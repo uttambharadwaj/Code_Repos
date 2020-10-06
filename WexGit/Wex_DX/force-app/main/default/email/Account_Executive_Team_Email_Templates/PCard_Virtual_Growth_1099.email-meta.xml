@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>1099 to encourage pcard/virtual growth</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>PCard/Virtual Growth (1099)</name>
+    <style>none</style>
+    <subject>1099 Tax Reporting</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

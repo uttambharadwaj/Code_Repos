@@ -1,0 +1,5 @@
+<apex:component controller="ProgramEmailAssetController" access="global">
+    <apex:attribute id="program" assignTo="{!programId}" name="programIdFromEmail" type="ID" description="The Program__c ID"/>    
+    <apex:image height="80" style="max-height: 80px;" value="https://{!$Label.External_Instance_URL}/creditapplication/servlet/servlet.FileDownload?file={!brandingLogo}" rendered="{!IF(AND(programId != null, brandingLogo != null), true, false)}"/>
+    <apex:image height="80" style="max-height: 80px;" value="https://{!$Label.External_Instance_URL}{!$Resource.WEXLogo}" rendered="{!IF(brandingLogo == null, true, false)}"/>
+</apex:component>

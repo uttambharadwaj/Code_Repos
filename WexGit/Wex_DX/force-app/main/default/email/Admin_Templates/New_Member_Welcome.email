@@ -1,0 +1,20 @@
+Hello {!Account.Name},
+ 
+Welcome to TruckersB2B. In addition to our fuel discount network, TruckersB2B also offers thousands of additional savings to keep your fleet moving forward. Learn more about the benefits available to you at www.truckersb2b.com.  
+
+Below is the link to create your login (you will need your Member ID shown below and your billing zip code). Once you register, you can view detailed information about our programs, update your profile, check your savings history and more. 
+ 
+https://member.truckersb2b.com/Account/Register
+Member ID: {!Account.Member_ID__c}
+
+To help you get started, check out all the ways you can save at http://www.truckersb2b.com/savings.
+
+Please be sure to add memberservices@truckersb2b.com to your safe sender list to ensure you receive our emails regarding your savings.
+
+Should you have any questions about any of our savings, please call us at (888) 937-6334. We look forward to providing you with the best savings in the trucking industry. 
+
+Thank you,
+
+TruckersB2B, LLC
+(888) 937-6334
+memberservices@truckersb2b.com

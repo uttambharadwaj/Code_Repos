@@ -1,0 +1,14 @@
+{!Contact.FirstName},
+
+Thank you for your interest in TruckersB2B. As a Fleet One customer, you have access to our fuel discount program, which offers a point-of-sale discount of $.10 per gallon at Pilot Flying J, TA, and Petro. To enroll in TruckersB2B and start taking advantage of the fuel discounts, all you need to do to is complete the attached Fuel Authorization form. 
+
+TruckersB2B also offers a national account tire program with most major tire brands, including Michelin, Goodyear, Continental, Yokohama and more—with savings of up to $120 per tire. If you would like to receive a free quote and learn more, please let me know, and I will have one of our tire representatives reach out to you. 
+
+Thank you again for your interest. Please let me know if you have any questions. I look forward to helping your fleet save money.
+
+  
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

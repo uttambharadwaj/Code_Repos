@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Maintenance/ImperialSavings_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Save up to 25% on Imperial Supplies</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Imperial Supplies Savings</name>
+    <style>none</style>
+    <subject>Save on Fleet Maintenance Supplies with Imperial</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

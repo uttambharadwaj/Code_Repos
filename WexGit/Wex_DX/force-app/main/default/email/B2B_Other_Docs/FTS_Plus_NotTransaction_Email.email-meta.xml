@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up email that gets sent to new FTS members</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FTS_2</letterhead>
+    <name>FTS Plus Not Using Fuel Card email</name>
+    <style>freeForm</style>
+    <subject>Fuel Card Activity Usage</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+Congratulations!  You should have recently received your FTS/EFS fuel cards in the mail!  Our records indicate that you have not begun transacting with those fuel cards, which also means you have not begun saving money on fuel.  As a reminder, the FTS fuel card provides fuel savings at all major locations - Pilot Flying J, Love&apos;s, and TA/Petro - as well as discounts at hundreds of other stops, including Ambest, Kangaroo, Kwik Trip, Petroleum Wholesale, Quick Fuel, Sapp Bros, Speedway, and Wilco Hess.  
+
+If you need help in activating your cards, please contact our team at 800.749.1724, ext. 1.
+
+Just a reminder that in addition to the fuel savings, you now have access to FTS Plus+, which provides savings on virtually everything you need to run your trucking business, including tires, new and used trucks, maintenance, office solutions and so much more!
+
+Below is your Member ID and Password, which you can use to access the new FTS Plus+ website, http://ftsplus.com/?association={!Account.FTS_Association__c}. Here you will find detailed information on all of your newly gained benefits, as well as a place to keep track of your savings to date.  
+
+Member ID: {!Account.Member_ID__c}
+Password: {!Account.Web_Password__c}
+
+For information on how to access those savings, please contact your account manager. For more information on the additional FTS Plus+ benefits, please call Nancy Gustafson at 800.749.1724 or email info@ftsplus.com.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

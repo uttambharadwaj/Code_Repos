@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Sent Info for Opportunity Follow UP</name>
+    <style>none</style>
+    <subject>Follow up to information sent</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Bank_Direct_Debit_Weekly.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Weekly direct debit</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>Chevron Credit Direct Debit Weekly</name>
+    <style>freeForm</style>
+    <subject>Your Chevron and Texaco Business Card Account</subject>
+    <textOnly>Please find information on the Chevron and Texaco Business Card Direct Debit Program. With this plan, we simply debit your fleet program balance directly from your checking account weekly for the previous week’s transactions.
+
+I am attaching the form you need to complete to get set up on Direct Debit. Please take a few moments to fill this out and then fax it back to me at {!User.Fax}, along with a voided check.
+
+Once I receive the form, I will call you to verify the setup of your account prior to issuing your cards. Meanwhile, if you have any questions please just give me a call.
+
+Thank you for choosing the Chevron and Texaco Business Card Program.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

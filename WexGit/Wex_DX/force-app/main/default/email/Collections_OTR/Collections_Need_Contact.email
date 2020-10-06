@@ -1,0 +1,26 @@
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+
+We have been unable to reach you by phone regarding your WEX EFS account. It is very important that you contact us about your account at the telephone number or email listed below.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Email: efs.credit@efsllc.com
+
+Privacy: https://www.efsllc.com/privacy-policy/

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/Esso_Application.pdf</attachedDocuments>
+    <attachedDocuments>Inside_Sales/Esso_Sell_Sheet_French.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Sell sheet + application attached (in French)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_FR_Save_on_Fuel1</letterhead>
+    <name>Esso FR Information Request</name>
+    <style>freeForm</style>
+    <subject>Following up on my voicemail</subject>
+    <textOnly>{!Contact.FirstName},
+
+
+
+Le message vocal que je vous ai laissé visait à vous donner un aperçu du programme de cartes d’Affaires Esso. Je sais que vous y verrez l’outil idéal pour vous permettre d’économiser temps et l’argent dans la gestion de votre flotte de véhicules.
+
+
+Économies
+
+• Rabais sur les achats à gros volume pour maximiser vos profits;
+
+• Aucuns frais annuels, mensuels ou de mise en service.
+
+Contrôle et commodité
+
+• Plus grand réseau de détaillants au Canada;
+
+• Outil de gestion en ligne convivial qui vous permet de gérer des restrictions, de faire le suivi des dépenses et d’économiser de l’argent;
+
+• Pleins d’essence faciles et rapides grâce à SpeedpassMC.
+
+
+J’effectuerai un suivi avec vous la semaine prochaine. D’ici là, vous pouvez m’appeler au {!User.Phone} ou m’envoyer un courriel à {!User.Email}.
+
+
+Au plaisir de vous être utile pour répondre aux besoins de votre entreprise.
+
+
+Cordialement,
+
+
+
+{!User.FirstName} {!User.LastName}
+
+
+{!User.Title}
+
+
+Phone: {!User.Phone}
+
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

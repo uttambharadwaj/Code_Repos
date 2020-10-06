@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Merchant WEX Paintplace TCARD  MP 0889</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_WEX_LetterHead</letterhead>
+    <name>AU WEX Paintplace TCARD  MP 0889</name>
+    <style>freeForm</style>
+    <subject>Update on your Paint Place application</subject>
+    <textOnly>Dear Paint Place Store Owner,
+
+
+Thank you for applying to join the WEX Australia Paint Place Group of Stores T-Card merchant network.
+
+
+As a merchant accepting the T-Card you will enjoy many benefits, including the elimination of credit risk on T-Card customers, a reduction in costs associated with the management of in-house accounts and more time to focus on business growth opportunities.
+
+
+The payment details section of the form allows you to nominate your required payment terms. Please choose from the options detailed below and indicate your choice in the &quot;Payment Plan&quot; section of your application form.
+
+
+PAY CYCLE                                                              FEE(%)
+
+14 days (from the end of the month)                   2.22% (GST excluded)
+
+30 days (from the end of the month)                   1.82% (GST excluded)
+
+
+Once your application has been finalised you will receive a start-up kit containing stationery, operating procedures and a merchant card.
+
+
+For further information or assistance completing your application, please contact our Merchant Support Team on 1300 130 113.
+
+
+We look forward to receiving your application and welcoming you to our network.
+
+
+
+Yours sincerely,
+
+
+
+Tracey Vines
+
+
+Merchant Support Manager
+
+
+
+
+
+
+
+
+
+
+
+We see corporate payments differently.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

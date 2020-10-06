@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used for Q3 12c campaign follow up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU Q3 2018 12c Follow up email</name>
+    <style>none</style>
+    <subject>Apply now for WEX Motorpass  and get up to 12c off a litre*</subject>
+    <textOnly>Salesforce-email
+
+View in browser
+
+Apply now for WEX Motorpass
+
+and get up to 12c off a litre*
+
+
+
+Hi {!Lead.FirstName},
+
+
+
+Thank you for your call today in regards to our fuel card offer.
+
+
+
+By using the WEX Motorpass fuel card you will have peace of mind knowing that your vehicles and their fuel expenses are taken care of.
+
+
+
+Why choose WEX Motorpass?
+
+
+
+No joining or cancellation/termination fees
+No inactive card fees or non-fuel service fees
+Use Woolworths Shop-a-docket’s in conjunction with the cards
+Set transaction controls to limit the amount (or volume) of fuel purchased
+
+
+
+How does WEX Motorpass compare to other multi-branded fuel cards in the market? Click here to take a look beyond the promotional offer. We will be calling you shortly to discuss your fuel card requirements but if you would like to find out more information right away please visit motorpass.com.au
+
+
+
+To find out more about how a fuel card works, how it compares to a credit card and how to choose a fuel card click here.
+
+
+
+Kind Regards,
+
+WEX Motorpass
+
+Get up to 12c off a litre at participating Caltex Woolworths sites. T&amp;Cs apply.
+
+FIND OUT MORE
+
+This email was sent to you from WEX Motorpass Australia
+
+Unsubscribe</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

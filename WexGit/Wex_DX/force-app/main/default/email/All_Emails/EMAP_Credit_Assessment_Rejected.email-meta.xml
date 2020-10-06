@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Credit Assessment Rejection Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>EMAP Credit Assessment Rejected</name>
+    <style>none</style>
+    <subject>Your Account - {!Credit_Assessment__c.Account__c} credit decision has been rejected</subject>
+    <textOnly>Hello,
+
+Your Account - {!Credit_Assessment__c.Account__c} credit decision has been rejected.
+
+Please click on the following link to access the record:
+{!Credit_Assessment__c.Link}
+
+Regards,
+
+WEX EMAP</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

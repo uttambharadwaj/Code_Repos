@@ -1,0 +1,17 @@
+Thank you for enrolling in the TruckersB2B Fuel Discount Program.  By now you should have seen a discount on your billing card transaction report for fuel purchased within the approved TruckersB2B fuel network.  This discount is a result of being approved for discounts at Pilot/Flying J and/or TA/Petro through enrollment in our program. 
+
+As a reminder, you don't have to worry about minimum fueling requirements, and the point of sale discount is automatically reflected on your billing card invoice. It's that simple. There is nothing new you need to do. 
+
+While you're fueling up at TA/Petro locations, you can also take advantage of our PM and DOT savings. You can save up to $15 on PM services and $5 on DOT inspections. The discount is based on your DOT number, so make sure your profile is always up to date.  To update it now, you can visit our website at truckersb2b.com.  Your user id is {!Account.Member_ID__c} and your password is {!Account.Web_Password__c}.  
+
+Also, don't forget about the breakdown benefits with RoadSquad Connect. As a member, you receive a $15 discount on labor for all road calls completed by a TA/Petro RoadSquad service truck.
+
+To learn more about your benefits, visit us online or call 888-937-6334.  
+
+Thank you,
+{!Opportunity.OwnerFullName}
+{!Opportunity.OwnerTitle}
+{!Opportunity.OwnerPhone}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

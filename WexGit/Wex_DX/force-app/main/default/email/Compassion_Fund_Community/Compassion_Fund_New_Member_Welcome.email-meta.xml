@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Confirmation email sent to new Community member</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>Compassion Fund - New Member Welcome</name>
+    <style>freeForm</style>
+    <subject>Welcome to Compassion Fund Community</subject>
+    <textOnly>Hi
+Welcome to the {!Community_Name} Community! To get started, go to {!Community_Url}.
+
+Thank you,
+The WEX Cares Foundation</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

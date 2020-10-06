@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>NFIB Exxon</name>
+    <style>freeForm</style>
+    <subject>Info on the Exxon Mobil Savings for Members fuel card!</subject>
+    <textOnly>Thank you for your interest in the Exxon Mobil Savings for Members fuel card.     
+
+This card is good not only at Exxon Mobil, but at over 90% of all fueling stations nationwide!  You just get a really nice discount when you go to Exxon Mobil.   We’ll take 7¢ off the gallon for the first 7 months, then 5¢ off the gallon for the life of your account!
+
+Know exactly what your drivers are purchasing in the C-store!  You can easily find out where your employees fueled, how much they paid for the fuel,  even track miles per gallon, all while making sure that every drop of fuel you are buying is going into your vehicles.  
+
+No more saving receipts.  Just pull your account up online and monitor the activity on your account.  You can order new fuel cards at any time, or deactivate a fuel card online if you happen to let an employee go and forget to get his fuel card from him!
+
+Please look at the enclosed details.  I will follow up with a phone call over the next several days, or feel free to call me Monday through Friday, 8 to 5 central time! 
+
+Thank you!
+
+Sincerely,
+
+Lori Parr
+WEX Inc.
+Phone: 1.615.523.6433 Fax:  615-843-4180</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

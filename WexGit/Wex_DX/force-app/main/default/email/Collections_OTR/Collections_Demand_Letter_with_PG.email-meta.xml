@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Demand Letter with PG</name>
+    <style>freeForm</style>
+    <subject>Demand Letter with PG</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+
+RE: LEGAL NOTICE OF ACCOUNT DELINQUENCY Account Number: {!Account.Carrier_ID__c}
+
+
+
+Dear Customer,
+
+
+You will hereby take notice that WEX has requested that legal action be commenced against you to collect your delinquent account with them in the amount of {!Case.Rollup_Total_Balance_Due_on_Account__c}. Demand is hereby made upon you for payment in full of {!Case.Rollup_Total_Balance_Due_on_Account__c} within seven (7) days of the date of this letter.
+
+
+This is to inform you that unless satisfactory arrangements are made and approved through the Collections and Receivables Department of WEX, for the payment of this account within seven (7) days from the date of this letter, that legal action will be filed against you. Please contact the Credit Department Manager at {!Case.Collections_Phone_Number__c} to make payment arrangements. Of course, if this litigation becomes necessary, it will result in additional fees and cost being added to your account, thus increasing the amount you already owe.
+
+
+
+Enclosed please find a copy of your personal guarantee on the account that holds you personally liable for the amount due and owing. As a consequence that {!Account.Name} is delinquent, WEX may now prosecute this action against you personally for this amount.
+
+
+
+It would be to your advantage financially to take care of this matter and avoid the addition of attorney&apos;s fees and court costs being added to your account. However, unless we hear from you within the prescribed time, WEX will have no alternative but to file suit.
+
+
+GOVERN YOURSELF ACCORDINGLY; THIS IS THE ONLY NOTICE YOU WILL RECEIVE BEFORE LEGAL ACTION IS BEGUN.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,150 @@
+<apex:component layout="none" controller="PartnersCommHeaderController">
+	<header id="section-header" class="section section-header">
+  <div id="zone-header-wrapper" class="zone-wrapper zone-header-wrapper clearfix">  
+  <div id="zone-header" class="zone zone-header clearfix container-12">
+    <div class="grid-3 region region-branding" id="region-branding">
+  <div class="region-inner region-branding-inner">
+        <div class="branding-data clearfix">
+            <div class="logo-img">
+        <a href="http://www.wexinc.com/" rel="home" title="" class="active">
+        <!--<img src="http://www.wexinc.com/sites/all/themes/wex_style/logo.png" alt="" id="logo" />-->
+        <img src="{!URLFOR($Resource.PartnersCommResources, '/images/logo.png')}" alt="" id="logo" />
+
+
+        </a>
+        </div>
+                        <hgroup class="site-name-slogan">        
+                                <h6 class="site-slogan">We see corporate payments differently.</h6>
+              </hgroup>
+          </div>
+          </div>
+</div>
+
+<!-- client request comment out 072114
+<div class="grid-9 region region-header-first" id="region-header-first">
+  <div class="region-inner region-header-first-inner">
+    <div class="tuckaway-header"><h1 class="tuckaway-text">Fleet, Corporate and Prepaid Payment Solutions</h1></div><div class="block block-search block-form block-search-form odd block-without-title" id="block-search-form">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <form action="http://www.wexinc.com/" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Search </label>
+ <input title="Enter the terms you wish to search for." type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
+</div>
+<div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Search" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-gII-nPIdx-u6KawpAQ4-8BRRv1gX9G7BJWYNzgjXm6Y" />
+<input type="hidden" name="form_id" value="search_block_form" />
+</div>
+</div></form>    </div>
+  </div>
+</div><div class="block block-menu block-menu-header-menu block-menu-menu-header-menu even block-without-title" id="block-menu-menu-header-menu">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu"><li class="first leaf"><a href="http://www.wexinc.com/existing-customers" class="header-link" target="_blank">Existing Customers</a></li>
+<li class="last leaf"><a href="http://www.wexinc.com/content/other-wex-sites" id="wexsitesbox" class="header-link">Other WEX sites</a></li>
+</ul>    </div>
+  </div>
+</div>  </div>
+</div>
+-->
+<!-- client request comment out 072114
+<div class="grid-9 region region-header-second" id="region-header-second">
+  <div class="region-inner region-header-second-inner">
+    <div class="block block-block block-3 block-block-3 odd block-without-title" id="block-block-3">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+       <div id="applyforcard">
+<div class="label"><a href="http://www.thewrightexpresscard.com/app/?couponCode=W7A">Apply for a Card</a></div>
+<div class="arrow"> </div>
+</div>
+     </div>
+  </div>
+</div>  </div>
+</div>  
+-->
+</div>
+</div>
+<!--MENU -->
+  <!--
+<div id="zone-menu-wrapper" class="zone-wrapper zone-menu-wrapper clearfix">  
+  <div id="zone-menu" class="zone zone-menu clearfix container-12">
+  
+  <div class="grid-12 region region-menu" id="region-menu">
+  <div class="region-inner region-menu-inner">
+        <div class="block block-system block-menu block-main-menu block-system-main-menu odd block-without-title" id="block-system-main-menu">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <ul class="menu"><li class="first expanded"><a href="/about-us">About WEX</a><ul class="menu"><li class="first leaf"><a href="/about-us/our-story">Our Story</a></li>
+<li class="collapsed"><a href="/about-us/leadership">Leadership</a></li>
+<li class="leaf"><a href="/wex-locations">WEX Locations</a></li>
+<li class="leaf"><a href="/careers/our-culture">Careers</a></li>
+<li class="leaf"><a href="/contact-us">Contact</a></li>
+<li class="last leaf"><a href="http://www.wexinc.com/content/wexindex-retail-price-index">WEX Index</a></li>
+</ul></li>
+<li class="expanded"><a href="/fleet-operators-and-managers" class="two-line">Fleet Operators and Managers</a><ul class="menu"><li class="first leaf"><a href="/fleet-operators-and-managers">Why WEX Fleet?</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/fleet-cards">WEX Fleet Card</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/small-business-fuel-card">WEX Small Business Card</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/fleet-one">Fleet One/OTR</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/gps-vehicle-tracking">WEX Fleet GPS/Telematics</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/cobrand-fuel-cards">WEX Co-Brand</a></li>
+<li class="leaf"><a href="http://www.wexfuelcard.ca/" target="_blank">WEX Canada</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/fuel-managment">WEX Fuel Management</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/government-fleets">WEX Government Fleet</a></li>
+<li class="collapsed"><a href="/fleet-operators-and-managers/australia-fuel">WEX Australia Fuel</a></li>
+<li class="last leaf"><a href="/largefleet/resources">WEX Fleet Resources</a></li>
+</ul></li>
+<li class="expanded"><a href="/payment-solutions" class="two-line">Corporate Payment Solutions</a><ul class="menu"><li class="first collapsed"><a href="/payment-solutions">Why WEX Virtual Payments?</a></li>
+<li class="collapsed"><a href="/payment-solutions/travel-industry">WEX Travel</a></li>
+<li class="collapsed"><a href="/wex-health">WEX Health</a></li>
+<li class="leaf"><a href="/payment-solutions/electronic-insurance-claims">WEX Insurance</a></li>
+<li class="collapsed"><a href="/payment-solutions/educational-institutions">WEX Education</a></li>
+<li class="expanded"><a href="/payment-solutions/purchasing-card-management">WEX  P-Card</a><ul class="menu"><li class="first last leaf"><a href="/payment-solutions/purchasing-card-management/request-info">Request More Information</a></li>
+</ul></li>
+<li class="collapsed"><a href="/payment-solutions/payroll">WEX rapid! PayCard</a></li>
+<li class="collapsed"><a href="/payment-solutions/australia-prepaid-cards">WEX Australia Prepaid</a></li>
+<li class="collapsed"><a href="/payment-solutions/unik-brazil" title="UNIK">UNIK</a></li>
+<li class="last collapsed"><a href="/payment-solutions/international-virtual-cards">WEX Europe</a></li>
+</ul></li>
+<li class="expanded"><a href="/retailers-and-fuel-merchants" class="two-line">Retailers and Fuel Merchants</a><ul class="menu"><li class="first leaf"><a href="/retailers-and-fuel-merchants">Why WEX For Merchants?</a></li>
+<li class="collapsed"><a href="/retailers-and-fuel-merchants/fleet-cards">Custom Card Programs</a></li>
+<li class="collapsed"><a href="/retailers-and-fuel-merchants/accept-our-cards">Accept Our Cards</a></li>
+<li class="collapsed"><a href="/retailers-and-fuel-merchants/cardlock-fueling-fleets">WEX Card Lock</a></li>
+<li class="last collapsed"><a href="/retailers-and-fuel-merchants/fuel-supply-management">WEX Fuel Supply Mgmt</a></li>
+</ul></li>
+<li class="expanded"><a href="/wex-mobile">WEX Mobile</a><ul class="menu"><li class="first leaf"><a href="/wex-mobile">Why WEX Mobile?</a></li>
+<li class="last leaf"><a href="/wex-mobile/wex-connect">WEX Connect</a></li>
+</ul></li>
+<li class="last expanded"><a href="http://ir.wrightexpress.com/phoenix.zhtml?c=186699&amp;p=irol-irhome">Investors</a><ul class="menu"><li class="first leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-irhome">Investor Overview</a></li>
+<li class="leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-govboard">Corporate Governance</a></li>
+<li class="leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-stockquote">Stock Information</a></li>
+<li class="leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-fundsnapshot">Financial Metrics</a></li>
+<li class="leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-reportsannual">Financial Information</a></li>
+<li class="leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-news&amp;nyo=0">News Releases</a></li>
+<li class="leaf"><a href="http://media.wexinc.com/phoenix.zhtml?c=194179&amp;p=socialresponsibility">Social Responsibility</a></li>
+<li class="leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-inforeq">Request Information</a></li>
+<li class="last leaf"><a href="http://ir.wexinc.com/phoenix.zhtml?c=186699&amp;p=irol-faq">FAQs</a></li>
+</ul></li>
+</ul>    </div>
+  </div>
+</div>  </div>
+</div>
+
+<div class="grid-12 region region-banner" id="region-banner">
+  <div class="region-inner region-banner-inner">
+    <div id="menu-dropshadow"></div>
+    <div class="marquee-banner tall right-aligned" style="background-image: url(&quot;http://www.wexinc.com/sites/default/files/styles/marquee_tall_bg/public/context_banner/home.jpg?itok=DmeMlVeF&quot;)">
+    <div class="banner-content"> <h2>See into your fuel costs</h2>
+<h3>Formerly Wright Express, WEX is the premier provider of physical, digital and virtual payment card solutions</h3>
+ </div>  </div>  </div>
+</div>  </div>
+</div>
+-->
+<!--MENU END-->
+
+</header>
+
+</apex:component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>follow-up when someone is interested in learning more</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Follow-up for Sunoco Direct Mail</name>
+    <style>none</style>
+    <subject>following up</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

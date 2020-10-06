@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Maintenance/RoadSquadSavings_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>RoadSquad Connect Breakdowns Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RoadSquad Connect Breakdowns</name>
+    <style>none</style>
+    <subject>Discounts on breakdown services from RoadSquad Connect</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

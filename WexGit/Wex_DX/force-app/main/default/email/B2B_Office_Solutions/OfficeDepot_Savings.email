@@ -1,0 +1,18 @@
+{!Contact.FirstName},
+
+I wanted to take a moment to let you know about your savings opportunities with OfficeDepot, where you can get incredible members-only savings on all your office needs.
+
+Please take a moment to review the attached information and let me know if you have any questions, or would like more information. 
+
+You can also visit http://truckersb2b.com/OfficeMax to learn more and sign up for an account today.  
+
+
+Thank you, 
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+{!User.Phone} 
+{!User.Email} 
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

@@ -1,0 +1,100 @@
+<apex:component controller="BOCAToProspectComponentController" access="global">
+    <apex:attribute name="bocaToProspectIdFromEmail" assignTo="{!bocaToProspectId}" type="String" description="The BOCA_To_Prospect__c ID"/> 
+    <apex:outputPanel rendered="{!secondaryProgramSize != 0}">
+ <!-- ADDITIONAL CARD OPTIONS HEADER -->
+    <tr>
+        <td class="one-column" style="background-color:#EFEFEF;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                <tr>
+                    <td class="inner contents" style="padding-top:40px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;" >
+                        <p style="text-align:center;font-size:24px;Margin:0;Margin-bottom:10px;" >Additional card options to consider:</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- /ADDITIONAL CARD OPTIONS HEADER -->
+    <apex:repeat value="{!secondaryPrograms}" var="secondaryProgram" rendered="{!secondaryPrograms != null}">
+        
+        <!-- BOTTOM CARD -->
+        <tr>
+            <td class="two-column" style="background-color:#EFEFEF;padding-top:20px;padding-bottom:20px;padding-right:0;padding-left:0;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#d6d6d6;text-align:center;font-size:0;" >
+                <!--[if (gte mso 9)|(IE)]>
+				<table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+					<tr>
+						<td width="30%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+				<![endif]-->
+                <div class="column r2l" style="width:100%;display:inline-block;max-width:187px;vertical-align:top;" >
+                    <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                        <tr>
+                            <td class="innerb" style="padding-right:5px;padding-top:10px;padding-bottom:10px;padding-left:40px;" >
+                                <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:left;" >
+                                    <tr>
+                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                            <!-- CARD IMAGE - width: 142px.  Actual file can be larger, and will be sized down with the code. --><img src="https://{!$Label.External_Instance_URL}/creditapplication/servlet/servlet.FileDownload?file={!secondaryProgram.brandingCard}" alt="" width="142" style="width:100%;max-width:142;border-width:0;height:auto;" /><!-- /CARD IMAGE -->
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--[if (gte mso 9)|(IE)]>
+					</td><td width="70%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+				<![endif]-->
+                <div class="column r2r" style="width:100%;display:inline-block;max-width:453px;vertical-align:top;" >
+                    <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                        <tr>
+                            <td class="innerb" style="padding-top:10px;padding-bottom:10px;padding-right:40px;padding-left:40px;" >
+                                <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:left;" >
+                                    <tr>
+                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                            <p style="font-weight:bold;font-size:16px;Margin:0;" >
+                                                <apex:outputText escape="false" value="{!secondaryProgram.name}" />
+                                            </p>
+                                            <ul class="optionlist" style="margin-bottom:0;" >
+                                                <apex:outputText escape="false" value="{!secondaryProgram.benefits}" />
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;border-spacing:0;font-family:sans-serif;color:#333333;" >
+                                                <tr>
+                                                    <td  valign="middle" class="smallcenter" style="text-align:right;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <!--[if gte mso 9]>
+														<table align="right" border="0" cellspacing="0" cellpadding="0"  width="125" style="width:125px;border-spacing:0;font-family:sans-serif;color:#333333;" >
+															<tr>
+																<td align="center" bgcolor="#FEC524"  valign="top" style="padding-top:padding:5px;padding-bottom:padding:5px;padding-right:15px;padding-left:15px;" >
+														<![endif]-->
+                                                        
+                                                        <!-- BOTTOM CARD APPLY BUTTON --><a href="{!secondaryProgram.bocaURL}" target="_blank" style="background-color:#FEC524;border-collapse:separate;border-top-width:9px;border-top-style:solid;border-top-color:#FEC524;border-right-width:25px;border-right-style:solid;border-right-color:#FEC524;border-bottom-width:9px;border-bottom-style:solid;border-bottom-color:#FEC524;border-left-width:25px;border-left-style:solid;border-left-color:#FEC524;color:#333333;display:inline-block;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;font-weight:600;letter-spacing:.3px;text-decoration:none;" >Apply Now</a>
+                                                        
+                                                        <!--[if gte mso 9]>
+																</td>
+															</tr>
+														</table>
+														<![endif]-->
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--[if (gte mso 9)|(IE)]>
+						</td>
+					</tr>
+				</table>
+				<![endif]-->
+            </td>
+        </tr>
+        <!-- /BOTTOM CARD -->
+        
+    </apex:repeat>
+	</apex:outputPanel>
+</apex:component>

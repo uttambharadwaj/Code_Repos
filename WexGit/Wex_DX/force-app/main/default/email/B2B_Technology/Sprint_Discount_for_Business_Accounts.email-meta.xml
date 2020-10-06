@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Technology/SprintSavings_CL_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Sprint Discount for Business Accounts (set up on a Tax ID)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Sprint Discount for Business Accounts</name>
+    <style>none</style>
+    <subject>Sprint Business Account Savings</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

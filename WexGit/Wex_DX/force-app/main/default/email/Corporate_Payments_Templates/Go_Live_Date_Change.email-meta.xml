@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Go Live Date Change</name>
+    <style>none</style>
+    <subject>Go Live Date Change</subject>
+    <textOnly>The Go Live Date for {!CP_Projects__c.Name} has changed to {!CP_Projects__c.Implementation_Complete_Due__c}. This was for the following reason - {!CP_Projects__c.Reason_for_Go_Live_Date_Change__c}.  
+
+Project - {!CP_Projects__c.Link}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+Here is an opportunity to sell some tires. Please follow up on this newly created Gold opportunity and update the stage as it moves through the sales cycle.  
+
+Fleet Name: {!Opportunity.Account} 
+PRIVATE LABEL PROGRAM? {!Account.Private_Label_Program__c}
+Member id: {!Account.Member_ID__c}
+Billing State: {!Account.BillingState}
+Created by: {!Opportunity.CreatedBy}
+Truck Count: {!Account.Fleet_Size__c}
+
+Comments: {!Opportunity.Description}
+
+See the opportunity here: https://na12.salesforce.com/{!Opportunity.Id}

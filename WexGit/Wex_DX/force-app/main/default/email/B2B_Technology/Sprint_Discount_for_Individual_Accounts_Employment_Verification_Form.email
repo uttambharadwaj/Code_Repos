@@ -1,0 +1,26 @@
+{!Contact.FirstName},
+
+Thank you for your interest in our Sprint savings, where new and existing Sprint customers can receive an 18% discount select wireless service plans. 
+
+I have attached our Sprint Savings for Personal/Individual Accounts* and instructions on how to get the discount.  Please note that you will be required to verify your employment with {!Account.Name}.  If you do not have a company provided email address, you must complete the attached Enrollment Verification Form and provide one of the approved forms of verification listed on the form. 
+
+Should you have any questions, please contact me.
+
+Learn more about the Sprint savings at http://www.truckersb2b.com/sprint
+
+Your Login Information Is:
+Member ID: {!Account.Member_ID__c}
+Password:  {!Account.Web_Password__c}
+
+
+*Personal/Individual accounts are established utilizing a Social Security Number.  If you are a Business Account (set up on a TAX ID), please call me to request the discount information and additional benefits available. 
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

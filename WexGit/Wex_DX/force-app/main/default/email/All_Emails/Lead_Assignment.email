@@ -1,0 +1,5 @@
+{!Receiving_User.Name},
+
+The following lead has been assigned to you.  Please follow the link to access it.
+
+{!Lead.Link}

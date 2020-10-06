@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>AU Motorpass Individual New Sarah</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Motorpass_New_Sarah</letterhead>
+    <name>AU Motorpass - Individual Confirmation New</name>
+    <style>freeForm</style>
+    <subject>We have your Motorpass application</subject>
+    <textOnly>Dear {!Lead.FirstName}
+
+Thank you for completing a Motorpass application.
+
+We will contact you within three business days. Our aim will be to advance your application without delay.
+
+In the meantime, should you have any questions, please call us on 1300 722 525 or visit us online at motorpass.com.au
+
+Yours sincerely
+Greg Drumm
+Managing Director
+WEX Australia</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

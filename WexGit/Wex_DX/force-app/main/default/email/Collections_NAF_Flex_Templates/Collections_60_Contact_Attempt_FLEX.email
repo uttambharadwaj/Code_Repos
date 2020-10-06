@@ -1,0 +1,38 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<span id="docs-internal-guid-4def095f-7fff-676b-b2e0-2f55e0720562" style=""><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">Dear&nbsp;<span style="white-space: pre-wrap;">{!Case.Account}</span><span style="white-space: pre-wrap;">:</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 10pt 0in; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Your reply is requested.
+Your fuel account has now reached a serious level of delinquency for the
+following invoices.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;">Total Owed on Account: </span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;">{!Case.Rollup_Total_Owed_Amount__c}</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="color: rgb(0, 0, 0);"><span style="white-space: pre-wrap;">Minimum Due - Rev: </span></font><font face="Verdana, Helvetica, sans-serif" size="2"><span style="white-space: pre-wrap;">{!Case.Minimum_Due_REV__c}</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 10pt 0in; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">NOTE: If your account does
+go more than 3 invoice cycles outstanding it will require a <u>security deposit</u>.&nbsp;</font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 10pt 0in 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><b>We want to work with
+you to avoid further delinquency and escalation of your account.</b><o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 10pt 0in 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Please ACT NOW and
+make a payment today.<o:p></o:p></font></p><p class="MsoNormal" style="margin: 10pt 0in 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Payments made through our Portal will post that evening if scheduled before 3:30pm EST.</font><font face="Verdana, Helvetica, sans-serif" size="2" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 10pt 0in 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">We also accept ACH,
+Wire, or Western Union payments and have a separate Overnight address if you
+are mailing a physical check.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 10pt 0in; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">If you cannot<b>&nbsp;</b>make a
+payment please respond to this email or call today.<o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Receivables and Credit Management<o:p></o:p></font></p><p dir="ltr" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">{!Case.Collections_Phone_Number__c}</font><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p dir="ltr" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; font-size: 11pt; white-space: pre-wrap;">---</span></p><p dir="ltr" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10pt; font-family: &quot;Times New Roman&quot;; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.&nbsp; Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.&nbsp; </span></p><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size: 10pt; font-family: &quot;Times New Roman&quot;; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"><br></span></div></span>]]></td>
+</tr>
+</table>

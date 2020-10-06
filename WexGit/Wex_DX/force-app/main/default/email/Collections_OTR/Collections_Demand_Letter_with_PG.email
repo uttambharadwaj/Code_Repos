@@ -1,0 +1,60 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><font size="2" style="" face="Verdana, Helvetica, sans-serif"><br></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><font size="2" style="" face="Verdana, Helvetica, sans-serif">{!Today} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><font size="2" face="Verdana, Helvetica, sans-serif">Attn: {!Case.Contact} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Account.Name} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Account.BillingAddress} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif"><font size="2" style="color: rgb(0, 0, 0);">RE: LEGAL NOTICE OF ACCOUNT DELINQUENCY&nbsp;<span style="letter-spacing:
+-.05pt">Account Number:&nbsp;</span></font><font size="2"><span style="letter-spacing: -0.0666667px;">{!Account.Carrier_ID__c}</span></font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif" style=""><span style="letter-spacing: -0.05pt;"><br style="mso-special-character:line-break">
+<!--[endif]--></span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif" style="">Dear Customer,<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><font style="">You will hereby take notice that WEX has requested that legal
+action be commenced against you to collect your delinquent account with them in
+the amount of </font>{!Case.Rollup_Total_Balance_Due_on_Account__c}. Demand is hereby made upon you for
+payment in full of {!Case.Rollup_Total_Balance_Due_on_Account__c}&nbsp;within seven (7) days of the date of
+this letter.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font style="" face="Verdana, Helvetica, sans-serif" size="2">This is to inform you that unless satisfactory arrangements are
+made and approved through the Collections and Receivables Department of WEX, for the payment of this account within seven (7) days from the date of
+this letter, that legal action will be filed against you. Please contact the Credit Department Manager at {!Case.Collections_Phone_Number__c}&nbsp;to make payment arrangements. Of
+course, if this litigation becomes necessary, it will result in additional fees
+and cost being added to your account, thus increasing the amount you already
+owe.</font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small; text-indent: 42pt; line-height: 115%;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small; text-indent: 42pt; line-height: 115%;">Enclosed please
+find a copy of your personal guarantee on the account that holds you personally
+liable for the amount due and owing. As a consequence that&nbsp;</span><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small; text-indent: 42pt; line-height: 115%;"><span style="letter-spacing: -0.0666667px; text-indent: 0px;">{!Account.Name}</span>&nbsp;is delinquent, WEX may now prosecute this action against you personally for this
+amount.</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small; text-indent: 42pt;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-family: Verdana, Helvetica, sans-serif; font-size: small; text-indent: 42pt;">It would be to
+your advantage financially to take care of this matter and avoid the addition
+of attorney's fees and court costs being added to your account. However, unless
+we hear from you within the prescribed time, WEX will have no alternative but
+to file suit.&nbsp;</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif" style="">GOVERN YOURSELF ACCORDINGLY; THIS IS THE ONLY NOTICE YOU WILL
+RECEIVE BEFORE LEGAL ACTION IS BEGUN.<font style=""><o:p></o:p></font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">Regards, <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">EFS Collections and
+Receivables <o:p></o:p></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="background: white; letter-spacing: -0.0666667px;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Case.Collections_Phone_Number__c}</font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><span style="letter-spacing: -0.05pt; background: white;">Privacy:&nbsp;</span><a href="https://www.efsllc.com/privacy-policy/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.efsllc.com/privacy-policy/&amp;source=gmail&amp;ust=1587148052963000&amp;usg=AFQjCNHkdTaCqGPfBzpDCUkI50wEQ7lU3Q" style="color: rgb(17, 85, 204); background-color: rgb(255, 255, 255);">https://www.efsllc.com/<wbr>privacy-policy/</a></font></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,11 @@
+<messaging:emailTemplate subject="Beneficial Ownership Form" recipientType="Contact" relatedToType="Beneficial_Owner_Entity__c">
+<messaging:htmlEmailBody >
+<p>Dear {!recipient.FirstName},</p>
+
+<p>We have received the ownership information that you submitted via our online form. Thank you.</p>
+<p>Your application is currently under review. </p>
+<p>Please note that the Bank may also ask to see a copy of a driver's license or other identifying document for each person listed.</p>
+<p>Sincerely,</p>
+{!relatedTo.Owner.FirstName} {!relatedTo.Owner.LastName}
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

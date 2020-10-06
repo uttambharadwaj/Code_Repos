@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Demand Letter</name>
+    <style>freeForm</style>
+    <subject>Demand Letter</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Today}
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+Dear Customer,
+
+
+The above noted balance remains past due. We have offered you every opportunity to make a satisfactory arrangement to pay your delinquent account.
+
+
+Collection agents are engaged to handle our delinquent accounts, and we will instruct them to take immediate and appropriate action to enforce settlement unless the amount of {!Case.Rollup_Total_Balance_Due_on_Account__c} is paid. This would automatically evoke a negative record of your commercial and/or personal credit file.
+
+
+In the event of legal action, you may be obligated to pay the amount of the claim, late payment charges, and all court costs involved.  Please call or email us immediately to discuss the status of your account.
+
+
+Regards,
+
+Collections &amp; Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+EFSCollections@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

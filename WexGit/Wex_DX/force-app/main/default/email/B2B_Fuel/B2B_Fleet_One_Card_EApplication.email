@@ -1,0 +1,12 @@
+Thank you for your interest in the TruckersB2B over-the-road fuel card. This exclusive card comes packed with incredible cost savings, pre-negotiated fuel discounts, industry-leading security and reporting, plus an entire array of products to help you grow your business.  
+
+In order to get set up, please follow this link to complete the application, https://onlineservices.secure.force.com/appl/ApplicationCompanyInformation?noFrame=true&offer=a3L70000000km58
+
+Should you have any questions, please don't hesitate to contact me at 888-937-6334 or my direct line.
+
+Thanks,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}

@@ -1,0 +1,159 @@
+@isTest
+private class MergeServiceContactsBatchTest {
+    @testSetup
+    static void setup(){
+       UtilityTestLoader.setAutomation(false);
+    }
+    static testmethod void testMerge() {
+
+        Contact_Merge_Settings__c cms = new Contact_Merge_Settings__c();
+        cms.Name = 'Integration Record';
+        cms.Object__c = 'IntegrationRecord__c';
+        cms.Active__c = true;
+        cms.Field__c = 'Contact__c';
+        insert cms;
+
+        Program__c program1 = new Program__c();
+        insert program1;
+
+        Account acc1 = new Account(Name = 'test1');
+        Account acc2 = new Account(Name = 'test2');
+        Account acc3 = new Account(Name = 'test3', Program__c = program1.Id);
+        insert new Account[] {acc1, acc2, acc3};
+
+        Id rectypeid = UtilityClass.getRecTypeByDevName('Contact', 'Service_Operations');
+
+        Contact c1 = new Contact();
+        c1.AccountId = acc1.Id;
+        c1.FirstName = 'John';
+        c1.LastName = 'Doe';
+        c1.Phone = '111-222-3333';
+        c1.HomePhone = '111-222-4444';
+        c1.Email = 'john.doe@test.com';
+        c1.RecordTypeId = rectypeid;
+        c1.SourceLastModifiedDate__c = Datetime.now().addDays(-5);
+        insert c1;
+
+        Contact c2 = new Contact();
+        c2.AccountId = acc1.Id;
+        c2.FirstName = 'John';
+        c2.LastName = 'Doe';
+        c2.Phone = '111-222-4444';
+        c2.Email = 'john.doe1@test.com';
+        c2.RecordTypeId = rectypeid;
+        c2.SourceLastModifiedDate__c = Datetime.now();
+        insert c2;
+
+        Contact c3 = new Contact();
+        c3.AccountId = acc2.Id;
+        c3.FirstName = 'John';
+        c3.LastName = 'Doe';
+        c3.Phone = '111-222-5555';
+        c3.Email = 'john.doe@test.com';
+        c3.RecordTypeId = rectypeid;
+        c3.SourceLastModifiedDate__c = Datetime.now();
+        insert c3;
+
+        Contact c4 = new Contact();
+        c4.FirstName = 'Jane';
+        c4.LastName = 'Doe';
+        c4.Phone = '111-222-5555';
+        c4.Email = 'jane.doe@test.com';
+        c4.RecordTypeId = rectypeid;
+        c4.SourceLastModifiedDate__c = Datetime.now();
+        insert c4;
+
+        Contact c5 = new Contact();
+        c5.AccountId = acc1.Id;
+        c5.FirstName = 'John';
+        c5.LastName = 'Doe';
+        c5.Phone = '111-222-3333';
+        c5.HomePhone = '111-222-4444';
+        c5.Email = 'john.doe@test.com';
+        c5.RecordTypeId = rectypeid;
+        c5.SourceLastModifiedDate__c = Datetime.now();
+        insert c5;
+
+        Contact c6 = new Contact();
+        c6.AccountId = acc1.Id;
+        c6.FirstName = 'John';
+        c6.LastName = 'Doe';
+        c6.Phone = '111-222-3333';
+        c6.HomePhone = '111-222-4444';
+        c6.Email = 'john.doe@test.com';
+        c6.RecordTypeId = rectypeid;
+        c6.SourceLastModifiedDate__c = Datetime.now();
+        insert c6;
+
+        Contact c7 = new Contact();
+        c7.AccountId = acc3.Id;
+        c7.FirstName = 'John';
+        c7.LastName = 'Doe';
+        c7.Phone = '111-222-3333';
+        c7.HomePhone = '111-222-4444';
+        c7.Email = 'john.doe@test.com';
+        c7.RecordTypeId = rectypeid;
+        c7.SourceLastModifiedDate__c = Datetime.now();
+        insert c7;
+
+        IntegrationRecord__c int1 = new IntegrationRecord__c();
+        int1.Contact__c = c1.Id;
+        int1.Account__c = acc1.Id;
+        int1.Contact_Type__c = 'Admin';
+        insert int1;
+
+        IntegrationRecord__c int2 = new IntegrationRecord__c();
+        int2.Contact__c = c1.Id;
+        insert int2;
+
+        IntegrationRecord__c int3 = new IntegrationRecord__c();
+        int3.Contact__c = c2.Id;
+        int3.Account__c = acc1.Id;
+        int3.Contact_Type__c = 'Billing';
+        int3.Phone__c = '333-333-3333';
+        int3.Mobile_Phone__c = '333-333-3334';
+        int3.Email__c = 'int3@test.com';
+        insert int3;
+
+        IntegrationRecord__c int4 = new IntegrationRecord__c();
+        int4.Contact__c = c3.Id;
+        int4.Account__c = acc2.Id;
+        int4.Contact_Type__c = 'Mailing';
+        int4.Phone__c = '444-444-4444';
+        int4.Mobile_Phone__c = '444-444-4445';
+        int4.Email__c = 'int4@test.com';
+        insert int4;
+
+        IntegrationRecord__c int5 = new IntegrationRecord__c();
+        int5.Contact__c = c4.Id;
+        insert int5;
+
+        IntegrationRecord__c int6 = new IntegrationRecord__c();
+        int6.Contact__c = c5.Id;
+        insert int6;
+
+        IntegrationRecord__c int7 = new IntegrationRecord__c();
+        int7.Contact__c = c5.Id;
+        insert int7;
+
+        Test.startTest();
+        Database.executeBatch(new MergeServiceContactsBatch());
+        Test.stopTest();
+
+        List<Contact> ctList = [SELECT Id, MobilePhone, OtherPhone, Phone2__c, Phone3__c, Email_Address_2__c, Email_Address_3__c, (SELECT Id FROM Integration_Record__r)
+                                 FROM Contact ORDER BY Name, Id];
+
+        System.assertEquals(3, ctList.size());
+        System.assertEquals(c4.Id, ctList[0].Id);
+        System.assertEquals(c5.Id, ctList[1].Id);
+        System.assertEquals(c7.Id, ctList[2].Id);
+        System.assertEquals(1, ctList[0].Integration_Record__r.size());
+        System.assertEquals(6, ctList[1].Integration_Record__r.size());
+        System.assert(ctList[1].MobilePhone != null);
+        System.assert(ctList[1].OtherPhone != null);
+        System.assert(ctList[1].Phone2__c != null);
+        System.assert(ctList[1].Phone3__c != null);
+        System.assert(ctList[1].Email_Address_2__c != null);
+        System.assert(ctList[1].Email_Address_3__c != null);
+    }
+}

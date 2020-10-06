@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Link to Onboarding tutorial videos embedded in this template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Letterhead</letterhead>
+    <name>Welcome to Fleet Manager Online!</name>
+    <style>freeForm</style>
+    <subject>Welcome to ExxonMobil Fleet Manager Online!</subject>
+    <textOnly>{!Contact.FirstName},
+
+Congratulations on becoming an ExxonMobil Fleet card customer!
+
+I would like to take this opportunity introduce you to our unique on-line tool, Fleet Manager Online, which will help you get the most out of the ExxonMobil Fleet card program.  By registering with this tool, you will be able to  streamline the management of your company&apos;s vehicle fueling expenses.
+
+The following instructional videos will show you how to take advantage of the important program features which will save you money and time!
+
+To view videos click here.
+
+Feel free to click on the [Download] button in the lower left hand corner to enlarge the PDF document.  Once enlarged, click the play button on the video of your choice!
+
+If you have any questions please feel free to contact me at {!User.Phone}.
+
+Again, Welcome to the ExxonMobil Fleet card program where we provide the right solutions to fuel your business!
+
+
+Sincerely,
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,25 @@
+{!Contact.FirstName},
+
+I wanted to let you know that your TruckersB2B membership gives you access to savings on Sprint's Connected Fleet Solutions, including solutions for fleet management, regulatory compliance, and asset and trailer tracking.
+
+Geotab Fleet Management Solution — Get up to 8% off your Geotab monthly service.
+
+Spireon Fleet and Asset/Trailer Management — No upfront equipment costs
+
+ If you are interested in learning more about how Sprint Fleet Solutions can ensure your vehicles and assets are where they should be when they should be there, while saving you time and money, then please contact me via email or phone call. I have also attached a brief overview showing what Sprint Connected Fleet Solutions has to offer your fleet.
+
+
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+ 
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

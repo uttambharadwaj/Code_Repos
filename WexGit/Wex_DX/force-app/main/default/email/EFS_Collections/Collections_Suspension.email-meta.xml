@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EFS_Collections</letterhead>
+    <name>Collections - Suspension</name>
+    <style>freeForm</style>
+    <subject>Payment Required to Enable New Purchases</subject>
+    <textOnly>{!Today}
+
+Dear {!Case.Contact},
+
+Your fleet card account is now suspended.
+
+Account Name: {!Case.Account}
+
+Account Number ending in: {!Account.AR_Number__c}
+
+Amount Due: {!Collections__c.Past_Due_Amount__c} {!Account.Currency__c}
+
+Last Statement Date: ~statement_close_date~~~~~~
+
+Last Statement Balance: ~statement_balance~ {!Account.Currency__c}
+
+New purchases will not be possible on any of your cards until your past due payment is posted and your account is made current. You may be assessed fees subject to your account terms and conditions.
+
+To avoid future suspensions, please make payments on or before the due date on your invoice.
+
+If you would like to view your account online, or if you would like to enroll as an online user for your account, please visit www.fleetone.com.
+
+If you have questions and want to contact us at (844)355-9281 or collections@wexinc.com.
+
+For supported payment options click here. {waiting for file}
+
+Payments received after 3:30 PM Eastern Time, on a weekend, or on a holiday will be processed on the NEXT business day
+
+Thank you for choosing us for your fleet payment services.
+
+Sincerely,
+Credit and Collections
+Email: efs.credit@efsllc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

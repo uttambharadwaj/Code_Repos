@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>contact 1/16 conversion follow up email to customers who sent in SOME docs. but not all</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>CHEVRON - more info needed</name>
+    <style>freeForm</style>
+    <subject>Chevron and Texaco Business Card account information needed</subject>
+    <textOnly>You&apos;re almost done! We are missing account information since we upgraded our Business Card Program.
+
+
+
+Please take a moment to fill out the attached form and provide the necessary missing documentation today to avoid any disruption to your service.
+
+
+Submit via:
+
+Fax:   1-207-761-3587
+
+Email: chevrontexacoinforeturn@wexinc.com
+
+Web: drivemybusinesscard.com
+
+
+Questions?
+
+We’re happy to help. Our conversion advisors are available 8am-8pm EST at 1-888-292-4549.
+
+
+WEX is classified as a financial institution and just like all banks, is subject to regulatory requirements. Federal law requires all financial institutions to obtain a business’s physical address and tax ID information
+
+
+Sincerely,
+
+Conversion Advisor Team
+
+
+Phone:  1-888-292-4549
+Fax:  1-207-761-3587
+Email:  chevrontexacoinforeturn@wexinc.com
+Mail: 97 Darling Avenue, South Portland, Maine 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Phone Message Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>Chevron Phone Message Follow Up</name>
+    <style>freeForm</style>
+    <subject>Chevron and Texaco Business Card Program – Phone Message Follow Up</subject>
+    <textOnly>Hello {!Lead.FirstName},
+
+
+I just left you a message as well.  I&apos;d like to know if you have 15 minutes available next week that I can stop by and discuss our Business Card Programs with you?
+
+
+We have two great offerings - our Business Card, which is accepted at nearly 8,000 Chevron locations, and our Business Access Card, which offers universal coverage, and is accepted at just about any major retail gas station - no matter the brand!
+
+Please let me know what time and day works best.
+
+Already have a Chevron and Texaco Business Card?  Apologies for the confusion.  If you reply to this message with “Already a Business Card Customer” in the Subject line, I will be sure to remove you from future prospecting communications.  Thank you for being a loyal customer. 
+
+Kind Regards,
+
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

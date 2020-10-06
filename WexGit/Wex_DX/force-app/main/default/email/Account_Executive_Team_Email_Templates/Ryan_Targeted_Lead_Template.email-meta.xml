@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Ryan Targeted Lead Template</name>
+    <style>none</style>
+    <subject>Follow up</subject>
+    <textOnly>Hi -
+
+This is Ryan Scott from WEX, your fleet fuel card provider. Thank you for your business. You may have seen an email from us recently, and I wanted to see if you were interested in learning about our GPS/Telematics solution. Do you have time to chat this week?
+
+Best Regards,
+
+Ryan Scott
+Account Executive
+WEX Inc.
+123 Darling Avenue, So. Portland, ME 04106
+Office 207-523-6224
+www.wexinc.com</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

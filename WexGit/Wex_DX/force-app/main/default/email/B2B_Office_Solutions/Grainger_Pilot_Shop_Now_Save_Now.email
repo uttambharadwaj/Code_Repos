@@ -1,0 +1,22 @@
+Hi {!Contact.FirstName},
+
+You have been selected to receive a special discount on your Grainger purchases! Buy what you need NOW, and get up to 30% or more* off the Grainger catalog list price. If you spend $250 before November 4, 2014, then you can continue receiving these deeper discounts through the end of 2014.
+
+Plus, you get FREE standard freight on all orders shipped via ground transportation**. See the attachment to learn more about this limited time offer.
+
+To start shopping, sign in to www.grainger.com, where you will see your special pricing. You can also contact Grainger Customer Care at 888-326-8605 or centralsupport@grainger.com.
+
+Please contact with me any additional questions. 
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

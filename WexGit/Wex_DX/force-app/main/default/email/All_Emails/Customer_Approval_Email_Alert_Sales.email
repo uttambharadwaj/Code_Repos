@@ -1,0 +1,7 @@
+Hello,
+
+Customer has approved the quote for Account {!zqu__Quote__c.PrimaryAccountName__c}.
+
+Click link below to view the quote.
+
+{!zqu__Quote__c.Link}

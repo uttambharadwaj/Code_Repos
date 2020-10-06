@@ -1,0 +1,22 @@
+<aura:component controller="AccountSearchResultsFieldController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="result" type="Object" />
+    <aura:attribute name="fieldName" type="String" />
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="accountNumber" type="String" />
+    <aura:attribute name="accountRowId" type="String" />
+    <aura:attribute name="contactRowId" type="String" />
+    <aura:attribute name="pdRowId" type="String" />
+    <aura:attribute name="isOtrSearch" type="Boolean" />
+    <aura:attribute name="parent" type="Aura.Component" required="false" />
+
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <div class="slds-cell-wrap">
+        <aura:if isTrue="{!v.fieldName == 'Action'}">
+            <a onclick="{!c.openTab}" title="View">View</a>
+            <aura:set attribute="else">
+                <ui:outputText aura:id="outputTextId" />
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

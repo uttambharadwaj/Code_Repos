@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>Corporate Payments - Receivables</name>
+    <style>freeForm</style>
+    <subject>RE: {!Case.Subject}</subject>
+    <textOnly>Hello,
+
+
+Your WEX Receivables Analyst has received your request and will be in touch with you as soon as possible. To reach us regarding this case, please respond directly to this email to ensure any additional information is logged.
+
+
+Your Case Number is {!Case.CaseNumber}
+
+
+Thank you,
+
+WEX Corporate Payments Receivables</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

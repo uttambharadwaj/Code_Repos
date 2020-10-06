@@ -1,0 +1,36 @@
+<apex:component layout="none" controller="TopOpportunityController">
+    <style>
+        .colus
+        {
+            padding:3px;
+        }
+
+    </style>
+    <c:ComponentContainer title="{!comptitle}" height="{!compheight}" width="{!compwidth}" displayBorder="true">
+        <!--<apex:variable var="count" value="{!0}"/>-->
+        <!--<apex:repeat value="{!opps}" var="o">-->
+        <apex:dataTable value="{!opps}" var="o" cellpadding="3">
+            <!--<apex:variable var="count" value="{!count+1}"/>-->
+            <!--<apex:outputPanel layout="block" style="padding:5px 10px 5px 10px;">
+                {!count} &nbsp;&nbsp;
+                <apex:outputLink value="{!o.oppLink}">
+                    {!o.opp.Name}
+                </apex:outputLink>
+            </apex:outputPanel>-->
+            
+            <apex:column headerValue="Number" styleclass="colus">
+                <!--{!count}-->
+                {!o.counter}
+               
+            </apex:column>
+            <apex:column headerValue="Opportunity" styleClass="colus">
+                <apex:outputlink value="{!o.opplink}" target="_top">
+                    {!o.opp.Name}
+                </apex:outputlink>
+                &nbsp;&nbsp;
+            </apex:column>
+            <apex:column headerValue="Fleet Size" value="{!o.opp.Fleet_Size__c}" styleClass="colus"/>
+        </apex:dataTable>
+        <!--</apex:repeat>-->
+    </c:ComponentContainer>
+</apex:component>

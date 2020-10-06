@@ -1,0 +1,99 @@
+<messaging:emailTemplate subject="Merci pour votre demande!" recipientType="Contact" relatedToType="WeFormObject__c" id="confirm">
+
+<messaging:htmlEmailBody >
+<html>
+    <meta name="title" content=""/>
+    <meta name="description" content=""/>
+    <meta charset="UTF-8"/>
+    <style type="text/CSS">
+        #header h3{
+            padding:4px 0px 0px 10px;
+     
+        }
+         h3{
+          margin:0px;
+        }
+        #header{
+      
+        background-color:#494949;
+        color:#FFFFFF;
+        margin:0px;
+        font-family: Arial;
+        min-height:175px;
+        max-width:640px;
+        margin-bottom:20px;
+        padding:5px;
+        }
+        #footer{
+        padding:4px 8px 4px 8px;
+        background-color:#494949;
+        color:#ffffff;
+        margin:0px;
+        max-width:640px;
+        }
+        #footer a{
+            color:#ffffff;
+        }
+        #wrapper{
+            padding:4px 8px 0px 8px;
+            margin:0px;
+            background-color:#ffffff;
+        }
+        body{
+            margin:0px;
+            background:#FFFFFF;
+            color:#000000; 
+            font-family:Arial, Helvetica, sans-serif; 
+            font-size:13px;
+            max-width:640px;
+           }  
+          html{
+              max-width:640px;
+            
+}
+
+    </style>
+
+
+<body width="640px">
+<table border="0"  cellspacing="0" width="640">
+<div id="header" width="640px">
+<apex:image URL="{!RelatedTo.Program__r.Custom_Email_Header_URL__c}" id="image" style="display:block;"  height="145" width="640"/>
+<h3>Merci pour votre demande!</h3>
+</div><!----close header---->
+<div id="wrapper" >
+
+
+
+                 {!RelatedTo.First_Name__c} {!RelatedTo.Last_Name__c},
+                <p>
+                Merci pour votre demande!</p>
+                <p>
+                Votre numéro de confirmation est {!RelatedTo.Application_Number__c}.</p>
+                <p>
+                Merci d’avoir choisi {!RelatedTo.Branding_Utility__r.Program_Name__c} pour votre carte de paiement de flotte. Une carte de flotte est un outil important que des milliers d’entreprises utilisent pour gagner du temps et économiser sur leurs dépenses de carburant. Tirez profit des caractéristiques uniques de notre carte et d’une grande flexibilité pour vos paiements.
+                </p>
+                <p>
+                Nous traitons actuellement votre demande. Vous recevrez une réponse dans les 5 jours ouvrables.</p>
+                <p>
+                <apex:outputText escape="false" value="{!RelatedTo.Program__r.Confirmation_Info__c}"/>
+               
+                </p>
+                <p>
+                Cordialement,</p>
+                <p>
+                Le service à la clientèle</p>
+         
+</div><!----end wrapper---->
+<div id="footer" width="640px">
+<p>
+Le présent courriel (et toute pièce jointe s’y rapportant) est exclusivement destiné à l’organisation ou à la personne susmentionnée et est de nature confidentielle. Si vous n’êtes pas le destinataire visé de ce courriel ni l’employé ou l’intermédiaire responsable de sa transmission, cessez immédiatement de le lire et supprimez-le de votre système. Toute lecture, distribution, reproduction ou utilisation non autorisée du présent courriel (ou de ses pièces jointes) est strictement interdite.</p>
+
+<p>© 2017 Services de carte de flotte, 97 Darling Avenue, South Portland, Maine 04106. Tous droits réservés.</p>
+</div>
+</table>
+</body>
+
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

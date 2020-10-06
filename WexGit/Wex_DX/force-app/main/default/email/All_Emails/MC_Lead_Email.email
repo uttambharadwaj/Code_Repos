@@ -1,0 +1,5 @@
+{!Receiving_User.Name},
+
+A new lead has been referred from Fleet One and assigned to the Mastercard Lead Queue.  Please follow the link to access it.
+
+{!Lead.Link}

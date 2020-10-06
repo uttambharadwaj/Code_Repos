@@ -1,0 +1,20 @@
+{!Contact.FirstName},
+
+Thank you for enrolling in the TruckersB2B Fuel Discount Program.  In addition to the fuel savings of $.10/gallon we offer at over 900 locations, we also provide an online report that can be accessed with your user id and password, which is provided below.  This report shows you by individual fuel card which drivers are fueling within the TruckersB2B network and the associated fuel rebate earned by each fuel card.  In order to access this report, please see the attached instructions.  
+
+We hope this report proves to be a valuable tool for you in increasing your monthly fuel rebates.  If you have any questions or would like to discuss the report in more detail, please do not hesitate to call or email me.
+
+Your login information:
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+Dedicated Fuel Specialist
+TruckersB2B, LLC
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

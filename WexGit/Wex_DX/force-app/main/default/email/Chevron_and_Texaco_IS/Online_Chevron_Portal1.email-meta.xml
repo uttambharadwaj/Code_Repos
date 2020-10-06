@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Online Portal Registration</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>Online Chevron Portal</name>
+    <style>freeForm</style>
+    <subject>Online Chevron/Texaco Portal</subject>
+    <textOnly>Congratulations, your new Chevron account has been activated; here is your new account number: XXXXXXXXXXX
+
+Your cards are on the way; you can go in and get your account set up so you are ready to go.  Customer Online Web Site: https://www.chevrontexacobusinessmanager.com/online/
+
+Click register as a new user.
+
+Chevron Card Customer Service Number:  888-531-3698
+Email for Customer Support: ChevronTexacoCorrespondence@wexinc.com
+
+Phone Apps to Download:
+  Chevron - find nearby Chevron stations,
+  WEX Connect- real-time fuel and service locator app 
+  FleetSmartHub- Help businesses view and manage on-the-go changes with their Fleet Card program.
+
+image.png
+
+I have attached our online tutorial to get you going. Please let me know if you have any questions. 
+
+Happy Fueling!  In addition, thank you again for joining the Chevron/Texaco-WEX fueling program.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

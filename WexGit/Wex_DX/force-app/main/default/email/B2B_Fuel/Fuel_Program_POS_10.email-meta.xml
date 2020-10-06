@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Fuel/FuelSavingsPOS_10_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Fuel savings overview - save up to $.10/gallon</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Fuel Program POS 10</name>
+    <style>none</style>
+    <subject>TruckersB2B Fuel Program</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

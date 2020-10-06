@@ -1,0 +1,16 @@
+{!Contact.FirstName}, 
+
+Thanks for taking my call today. I am confirming that you have an appointment with our CITGO Fleet Manager, Keith Cantrell, on <ENTER DATE> at <ENTER TIME> at <ENTER LOCATION>.
+ 
+Should something come up between now and then, feel free to reach out to me and we can reschedule.
+ 
+During our conversation, you mentioned an interest in <ENTER THEIR PAIN POINT HERE>. We'll make sure to review how this works on the Sunoco program during our appointment.
+ 
+In the meantime, please see the attached PDF with information about our promotion for the greater Pensacola and Panama City area.
+ 
+Sincerely, 
+
+{!User.FirstName} {!User.LastName} 
+CITGO Fuel Card Specialist 
+Phone: {!User.Phone} 
+Email: {!User.Email}

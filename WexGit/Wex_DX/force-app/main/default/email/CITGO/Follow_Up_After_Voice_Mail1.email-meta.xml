@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow Up After Voice Mail</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead1</letterhead>
+    <name>Follow Up After Voice Mail</name>
+    <style>freeForm</style>
+    <subject>CITGO Fleet Card:  Follow Up</subject>
+    <textOnly>Dear {!Contact.FirstName},&lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+Per my voice mail, I wanted to give you an overview of the CITGO fleet card. Our fleet card is the perfect tool to help you save time and money when it comes to your vehicle fleet operations.
+
+
+REAL SAVINGS
+
+· Save up to 5¢ per gallon* every time you fuel at CITGO location.
+
+· Save up to 15% off your overall fuel management costs.**
+
+EASE OF USE and ACCEPTANCE
+
+· Enjoy easy online controls so you can set spending limits and monitor driver behavior.
+
+· Enjoy convenient access to over 6,000 CITGO locations in 27 states. Ask for our Universal Card, and you’ll have acceptance at over 90% of all U.S. fueling sites.
+
+· Best-in-class customer service available 24 hours a day, 7 days a week.
+
+
+I will be following up with you next week. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.
+
+I look forward to meeting with you about the needs of your business.
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}
+
+
+
+
+*Rebates are subject to change at any time without prior notice.
+**Actual savings may vary.
+
+
+©2013 CITGO Petroleum.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

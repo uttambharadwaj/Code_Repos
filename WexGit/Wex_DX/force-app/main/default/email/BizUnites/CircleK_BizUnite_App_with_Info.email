@@ -1,0 +1,43 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p style="font-size: 12pt; margin-bottom: 12pt;"><font face="Arial,Sans-Serif" size="3"><font size="5"><i><span style="font-size: 10pt;">Dear
+{!Contact.FirstName},</span></i></font><i><span style="font-size: 8pt;"></span></i></font></p><font face="Arial,Sans-Serif" size="3" style="font-size: 12pt;">
+
+</font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><i><span style="font-size: 12pt;">I received your request for additional
+information on our Circle K Fuel Card program for Arizona-area businesses through&nbsp;</span></i></font><span style="font-family: Calibri, sans-serif;"><i><font size="4">savings4members™&nbsp;</font></i></span><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><i><span style="font-size: 12pt;">affiliated&nbsp;associations. Please take a few minutes to look
+through the accompanying information. <br><br></span></i></font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><b><i><span style="font-size: 12pt;">We save you money</span></i></b><i><span style="font-size: 12pt;">. Robust fuel rebates every time you fuel up at a<b> </b>Circle K location<b><br></b></span></i></font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><b><i><span style="font-size: 12pt;"><br>We save you time</span></i></b><i><span style="font-size: 12pt;">. You’ll enjoy the convenience of a single fueling card program and
+one, easy-to-read invoice. You can also easily download transaction data from
+the web right to QuickBooks or Excel each month.</span></i></font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><b><i><span style="font-size: 12pt;"><br><br>We give you control</span></i></b><i><span style="font-size: 12pt;">. Detailed reports show how and where fueling money was spent, so
+you can account for every penny<b>.<br></b></span></i></font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><b><i><span style="font-size: 12pt;"><br>We make it convenient</span></i></b><i><span style="font-size: 12pt;">. Your drivers only need to carry one card to fuel at any
+participating location.</span></i></font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;"><i style="font-size: 12pt;"><span style="font-size: 12pt;">You will find a complete list of accepting
+locations at https://www.circlek.com/store-locator&nbsp; </span></i><i style="font-size: 12pt;"><span style="font-size: 12pt;"><br><br></span></i></font><font face="Arial,Sans-Serif" size="2" style="font-size: 12pt;">
+
+</font><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt;"><font face="Arial,Sans-Serif" size="2"><i><span style="font-size: 12pt;">It’s easy to enroll. Simply complete the attached
+application form and fax it back to me at </span></i><i><span style="font-size: 10pt;">{!User.Fax}.</span></i><i><span style="font-size: 12pt;"></span></i></font><font face="Arial,Sans-Serif" size="4"><i><span style="font-size: 12pt;"><br></span></i></font></p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt;"><font face="Arial,Sans-Serif" size="3"><i><span style="font-size: 12pt;">Thank you for your interest in the Circle K Fuel Card
+program.</span></i></font>
+
+</p><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt;"><font face="Arial,Sans-Serif" size="4"><i><span style="font-size: 10pt;"><font size="3">Sincerely, </font><br>
+<br>
+{!User.FirstName} {!User.LastName} <br>
+{!User.Title} <br>
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email} </span></i><i><span style="font-size: 8pt;"></span></i></font></p><br><font face="Arial,Sans-Serif" size="4" style="font-size: 12pt;">
+
+</font><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt;"><font face="Arial,Sans-Serif" size="4"><i><span style="font-size: 8pt;">CONFIDENTIALITY NOTICE: "This message
+contains confidential information of WEX Inc. It is intended only for the use
+of the designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><span style="font-size: 12pt;"></span></font></p><font face="Arial,Sans-Serif" size="4" style="font-size: 12pt;">
+
+</font><p class="MsoNormal" style="font-size: 12pt; margin-bottom: 12pt;"><font face="Arial,Sans-Serif" size="4"><i><span style="font-size: 8pt;">WEX Inc., 97 Darling Avenue, South Portland, ME
+04106</span></i><span style="font-size: 12pt;"></span></font></p><font face="Arial,Sans-Serif" size="4" style="font-size: 12pt;">
+
+</font><font face="Arial,Sans-Serif" size="4" style="font-size: 12pt;"><i><span style="font-size: 8pt;">This is an advertisement from WEX Inc. If you no
+longer wish to receive future email advertisements from {!User.Email},</span></i><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="font-size: 8pt;"> </span></i><i><span style="font-size: 8pt;">email us to unsubscribe</span></i></a><i><span style="font-size: 8pt;">. Please be sure to include your name, company
+name and email address in the email.</span></i></font><i style="font-size: 12pt;"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:gray"></span></i><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span>]]></td>
+</tr>
+</table>

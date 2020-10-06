@@ -1,0 +1,18 @@
+Hi there!  Just wanted to follow up on the information I recently emailed you regarding {!Opportunity.RecordType}.  Our goal is to provide you with savings on those products and services needed to operate your fleet - savings you only get as a TruckersB2B member.
+
+I look forward to hearing back from you with what your next step is:
+
+1)  Would you like some additional information or questions answered?
+
+2)  Are you ready to speak with someone from their sales team for further information, including pricing?
+
+3)  Right now, you're not interested in in this particular savings opportunity.  No worries!  I just don't want to bother you about it again but instead hope that we can save you money with something else down the road.
+
+Please feel free to reply back or give me a call.
+
+Thank you, 
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+{!User.Phone} 
+{!User.Email}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Activation Email - NO usage (zero fueling)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead1</letterhead>
+    <name>Activation Email - No Usage</name>
+    <style>freeForm</style>
+    <subject>CITGO Fleet Card:  Can I help?</subject>
+    <textOnly>{!Contact.Salutation} {!Contact.LastName},
+
+My latest report shows you have not begun to use your CITGO fleet cards. Please let me know what I can do to help facilitate roll out of the program to your fleet drivers.
+
+If there is a problem with the cards or if you have questions about the program itself, please call me at {!User.Phone}.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName} &lt;?xml:namespace prefix = o ns = &quot;urn:schemas-microsoft-com:office:office&quot; /&gt;
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+
+
+
+©2013 CITGO Petroleum.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Chevron Card Delay May 2018</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>Sean ONLY</name>
+    <style>freeForm</style>
+    <subject>Chevron and Texaco Business Card Program - Delay In Cards</subject>
+    <textOnly>Good Day {!Lead.FirstName},
+
+I’m reaching out regarding a recent card order for your new Chevron and Texaco Business Card account. We recently identified an issue that caused a delay in the card order process and we wanted to proactively reach out to apologize for the issue and let you know that it has been addressed. 
+
+We want to thank you for your business and apologize for the delay in processing. This issue has been addressed and resolved; you can expect your new cards to arrive within the next 3 business days. 
+
+Please contact our Customer Advisors at 1-888-531-3698 if you have additional questions or concerns.
+
+Kind Regards,
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+Phone - {!User.Phone}  
+Fax - {!User.Fax} 
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

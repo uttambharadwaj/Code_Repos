@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Negotiating stage: Respond to a request for additional information. Attach application form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>Negotiating:  BF&amp;FN additional info and app</name>
+    <style>freeForm</style>
+    <subject>Additional information you requested- ExxonMobil Fleet card program</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I received your request for additional information on our ExxonMobil Fleet card program. Please take a few minutes to look through the accompanying information. Whether you fuel a few or a fleet, ExxonMobil has the card that&apos;s right for your business.
+
+Enjoy enhanced security features including
+custom prompts and single station card options
+
+Potentially reduce unwanted spending
+through purchase restrictions you create
+and the ability to monitor all driver purchases
+and vehicle inefficiencies
+
+Reduce administrative time by eliminating the
+need to collect paper receipts and expense reports
+
+Reduce monthly fuel usage — with automatic
+pump shut off capabilities
+
+See driver spending habits that may be costing
+you money with downloadable reports
+
+Manage your account online in real time: set
+purchase restrictions, update card and driver
+information, pay your invoice and more
+
+Avoid late fees with pay-by-phone services if a
+last minute payment becomes necessary
+
+Request tax-exempt reporting and billing
+
+It’s easy to enroll. Simply complete the attached application form and fax it back to me at {!User.Fax} or scan and email it to me at {!User.Email}.
+
+Thank you for your interest in the ExxonMobil Fleet card program.
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

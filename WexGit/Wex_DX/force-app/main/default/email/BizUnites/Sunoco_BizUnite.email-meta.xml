@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Respond to a request for additional information. Attach application form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Sunoco</letterhead>
+    <name>Sunoco App savings4members with Info</name>
+    <style>freeForm</style>
+    <subject>Sunoco - Here Is The Information You Requested</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+I received your request for additional details about our BizUnite Sunoco® Fleet Card program. Please take a few minutes to look through the accompanying information. I’m confident that you’ll find this widely accepted program an ideal solution for all of your fleet fueling needs.
+
+SAVE MONEY. You’ll receive great fuel rebates from gallon one, every time you fuel at Sunoco. You’ll also save on the overall cost of managing your company vehicles by reducing operational and administrative functions, including collecting and organizing receipts, reimbursing drivers, building cost reports, and more.
+
+SAVE TIME. Make life easy with this single fueling card program and one, easy-to-read invoice. Detailed purchase reports and all of your account information are easily accessible online, any time. You can also download monthly transaction data from the web right into QuickBooks or Excel. You’ll always have a clear view into your drivers’ purchases whenever you need it.
+
+GAIN CONTROL. Use our easy-set controls to limit what each driver buys, when, and where. You can also set individual spending limits and much more. Our online tools and purchase alerts will help you keep your fleet fueling and service costs in check.
+
+ENJOY CONVENIENCE. Your drivers only need to carry one card to fuel and save at over 5,000 Sunoco locations. Find a Sunoco near you at https://www.sunoco.com/gas-station-locator/.
+
+To enroll for the Sunoco Fleet Card Program, simply complete the attached application and fax it back to me at {!User.Fax}. Please let me know if you have any questions at all.
+
+Thank you for your interest… we hope to serve your needs!
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+
+CONFIDENTIALITY NOTICE: This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

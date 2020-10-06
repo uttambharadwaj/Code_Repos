@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Q3 Acc rev</name>
+    <style>none</style>
+    <subject>WEX Fuel Card Q3 account review</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

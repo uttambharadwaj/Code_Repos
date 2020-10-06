@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>2 months fee free offer template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AU_WEX_Motorpass_Letterhead</letterhead>
+    <name>AU Inside Sales - 2 months fee free offer</name>
+    <style>promotionRight</style>
+    <subject>You could save more with WEX Motorpass</subject>
+    <textOnly>Dear &lt;insert customer name&gt;,
+
+Whether you’re cruising through the city or crossing the countryside, with a WEX Motorpass fuel card your business could save time and money. With acceptance at over 90% of service stations nationwide, you won’t have to go far to ﬁll up your tank, and you could save more thanks to our exclusive discounts and offers.
+
+Apply today and pay no Card and Management fee for the first 2 months.*
+
+As a special limited offer, if you make the move to WEX Motorpass you’ll also receive the following:
+
+•	Reduced monthly card fee of $5.00 per card per month (excl. GST), which will be applied after the first 2 months.
+•	1c per litre discount on all fuels (applicable after the first 2 months)
+•	$50 joining fee waived 
+
+To take up this special offer, simply call me on &lt;insert number&gt; between 8:45am and 5:00pm AEST/AEDST before &lt;insert offer end date&gt;. 
+
+From Woolloomooloo to Wallan, anywhere you are, I look forward to hearing from you.
+
+Yours sincerely,
+	
+
+
+ 
+
+*This offer is available to new customers only and cannot be used in conjunction with any other offer. The offer applies to each card issued under your WEX Motorpass account, and applies only to fuel purchases. The waiver of the Card and Management Fees will apply for the first 2 months from account set up.  After the first 2 months, the Card and Management Fees will revert to $5.00 per card per month (excl. GST). A $10.00 per card cancellation fee applies if the account is cancelled before the end of the first 2 months from account set up. The 1 cent per litre discount on all fuels will commence to apply after the first 2 months from account set up. Applicants and authorised representatives must be over 18 years, have an ABN and use their vehicle for business purposes to apply. The standard WEX Motorpass terms and conditions and fees and charges apply. Please see motorpass.com.au/terms-and-conditions. Credit is issued by WEX Australia Pty Ltd ABN 68 005 970 570 and applications are subject to credit assessment criteria. ™ Motorpass and Anywhere you are,are registered trademarks of WEX Australia Pty Ltd ABN 68 005 970 570.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

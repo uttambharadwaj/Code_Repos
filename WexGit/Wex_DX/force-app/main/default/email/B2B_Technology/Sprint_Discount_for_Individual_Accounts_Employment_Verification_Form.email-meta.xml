@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Technology/SprintSavings_IL_pdf.pdf</attachedDocuments>
+    <attachedDocuments>B2B_Technology/Sprint_EmploymentVerification_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Sprint Discount for Individual Accounts (set up on a SSN)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Sprint Discount for Individual Accounts &amp; Employment Verification Form</name>
+    <style>none</style>
+    <subject>Sprint Wireless Savings</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

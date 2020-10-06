@@ -1,0 +1,104 @@
+<messaging:emailTemplate subject="Thank You For Your Application!" recipientType="Contact" relatedToType="WeFormObject__c" id="confirm">
+
+<messaging:htmlEmailBody >
+<html>
+    <meta name="title" content=""/>
+    <meta name="description" content=""/>
+    <meta charset="UTF-8"/>
+    <style type="text/CSS">
+        #header h3{
+            padding:4px 0px 0px 10px;
+     
+        }
+         h3{
+          margin:0px;
+        }
+        #header{
+      
+        background-color:#494949;
+        color:#FFFFFF;
+        margin:0px;
+        font-family: Arial;
+        min-height:175px;
+        max-width:640px;
+        margin-bottom:20px;
+        padding:5px;
+        }
+        #footer{
+        padding:4px 8px 4px 8px;
+        background-color:#494949;
+        color:#ffffff;
+        margin:0px;
+        max-width:640px;
+        }
+        #footer a{
+            color:#ffffff;
+        }
+        #wrapper{
+            padding:4px 8px 0px 8px;
+            margin:0px;
+            background-color:#ffffff;
+        }
+        body{
+            margin:0px;
+            background:#FFFFFF;
+            color:#000000; 
+            font-family:Arial, Helvetica, sans-serif; 
+            font-size:13px;
+            max-width:640px;
+           }  
+          html{
+              max-width:640px;
+            
+}
+
+    </style>
+
+
+<body width="640px">
+<table border="0"  cellspacing="0" width="640">
+<div id="header" width="640px">
+<apex:image URL="{!RelatedTo.Program__r.Custom_Email_Header_URL__c}" id="image" style="display:block;"  height="145" width="640"/>
+<h3>Thank You For Your Application!</h3>
+</div><!----close header---->
+<div id="wrapper" >
+
+
+
+                 Dear {!RelatedTo.First_Name__c} {!RelatedTo.Last_Name__c},
+                <p>
+                Thank you for your application!</p>
+                <p>
+                Your confirmation number is {!RelatedTo.Application_Number__c}.</p>
+                <p>
+                Thank you for choosing {!RelatedTo.Program__r.Brand_Long_Name__c} for your fleet payment card. A fleet card is an important tool used by thousands of businesses to save time and fueling expenses. Take advantage of our unique card features while receiving payment flexibility.
+                </p>
+                <p>
+                Your application is being processed and you should expect to receive a response within 5 business days.</p>
+                <p>
+                <apex:outputText escape="false" value="{!RelatedTo.Program__r.Confirmation_Info__c}"/>
+               
+                </p>
+                <p>
+                Sincerely,</p>
+                <p>
+                Customer Service</p>
+         
+</div><!----end wrapper---->
+<div id="footer" width="640px">
+    
+<p>
+To ensure delivery to your inbox, please add this address to your address book: {!RelatedTo.Program__r.Email_Reply_To_Address__c} .</p>
+<p>
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. 
+If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system. 
+Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</p>
+
+<p>Copyright &copy; {!year(today())} Fleet Card Services, 97 Darling Avenue, South Portland, Maine 04106. All rights reserved.</p>
+</div>
+</table>
+</body>
+
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

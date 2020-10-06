@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>WEX MP application has been submitted template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AU_WEX_Motorpass_Letterhead</letterhead>
+    <name>AU Inside Sales - WEX Motorpass application has been submitted</name>
+    <style>freeForm</style>
+    <subject>Your WEX Motorpass application has been submitted</subject>
+    <textOnly>Dear &lt;insert name&gt;,
+
+Your WEX Motorpass application has been submitted for processing.
+
+What happens next?
+Please allow us 7-10 working days to process your application.  Our assessment team will be in contact with you if we require additional information to support your application.
+
+You will be notified of the outcome of your application by post.  Once your application is approved we will post your card/s to your mailing address along with your welcome pack.  When you receive this, please ignore the PIN activation sticker on your card/s if PINS are not required.
+
+We’re always here to help.
+If you have any questions about your application, please feel free to call me via my details below.
+
+Thanks again for choosing WEX Motorpass fuel cards, we look forward to having you driving with us.
+
+Yours sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

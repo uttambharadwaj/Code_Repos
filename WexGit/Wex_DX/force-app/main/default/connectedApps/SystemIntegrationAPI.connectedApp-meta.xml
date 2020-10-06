@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>sara.schmidt@wexinc.com</contactEmail>
+    <description>For REST API call from Java Web Services - used to create cases</description>
+    <label>SystemIntegrationAPI</label>
+    <oauthConfig>
+        <callbackUrl>https://test.salesforce.com/callback</callbackUrl>
+        <certificate>MIIEgTCCA2mgAwIBAgIOAXSOqSidAAAAAA+fuaowDQYJKoZIhvcNAQELBQAwgYIxGjAYBgNVBAMMEVN5c3RlbUludGVncmF0aW9uMRgwFgYDVQQLDA8wMEQwMzAwMDAwMDhhelgxFzAVBgNVBAoMDlNhbGVzZm9yY2UuY29tMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQswCQYDVQQIDAJDQTEMMAoGA1UEBhMDVVNBMB4XDTIwMDkxNDIyMDgwNFoXDTIxMDkxNDEyMDAwMFowgYIxGjAYBgNVBAMMEVN5c3RlbUludGVncmF0aW9uMRgwFgYDVQQLDA8wMEQwMzAwMDAwMDhhelgxFzAVBgNVBAoMDlNhbGVzZm9yY2UuY29tMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQswCQYDVQQIDAJDQTEMMAoGA1UEBhMDVVNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr3Oixvq3l9APuvEpWypaz160Qa9ZcwUWygbAZ8i1EFuM1cKnNeOROvdAOA1BmgFZom1TEf88frQ+147W1jpPhOIf9VJb0KNKV79SFKDcOEOfxQrlQ06HTEr5I+vDWjoABXNJi5GPiHJVOALNA3Cs4WVmMQuZXTAYcq2s7i9NzE5mqJF0C3CZd7/3kjJFRoT9ogTWkGJKetY45GXMdfjhK2LuM17WSfgy7DTiP/tPkSzdTIR2Eqw5o9rSl/XgtZzCSqXppEFRDHZPR5vfWLCYUXZrcdLUv4JxU2ISrt9io2NB8hbD/tSnMhTq+mHjkfCa0wulB4fraoDx5BrUIA9ecwIDAQABo4HyMIHvMB0GA1UdDgQWBBSEChw3CyiRjCGRf5XLiPHpxK25VDAPBgNVHRMBAf8EBTADAQH/MIG8BgNVHSMEgbQwgbGAFIQKHDcLKJGMIZF/lcuI8enErblUoYGIpIGFMIGCMRowGAYDVQQDDBFTeXN0ZW1JbnRlZ3JhdGlvbjEYMBYGA1UECwwPMDBEMDMwMDAwMDA4YXpYMRcwFQYDVQQKDA5TYWxlc2ZvcmNlLmNvbTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzELMAkGA1UECAwCQ0ExDDAKBgNVBAYTA1VTQYIOAXSOqSidAAAAAA+fuaowDQYJKoZIhvcNAQELBQADggEBACilQZZb69YS6b5FhsjUEmzwrVnmMrK4rfyroTQ+V8GuTjZwOCjurKIhBVNBQAUpa4nlvmCStQ5jU0IIl5vK0zxxRXb2fkTD75S0Pzk6idV45dGgU4ZRv8mnp7F9Ew3NOfZ64w5vstLGd2MJVRoZafGtwQotmV9mLhMsCXTG8LovF8LTyeeSBRQwDylqgTTE8vySaIFeP/mfFKJBCFhf7ZPc+C1v/uUTw9xe5+IxUCkvLO+GbS7qgGAsXZmD8MPjlL2OQyPiAsF1okOgy9gdivHRuHxKD2LA6hWwaOB69hXDD2bI6M0gs8yng4e1Kh7lwPAmUngmg1cgzOe1qUjneF4=</certificate>
+        <consumerKey>3MVG967gVD5fuTmL1omVvIWrWPpS5UqPdmjzKrdPRmoCMzD_S26a5v80JIDpKFscdDcuASCx2tdjfjrpFyTfE</consumerKey>
+        <scopes>Api</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+    </oauthConfig>
+</ConnectedApp>

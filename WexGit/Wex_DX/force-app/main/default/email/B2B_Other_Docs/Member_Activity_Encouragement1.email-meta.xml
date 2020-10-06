@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Program_Information/TruckersB2BSavingsOverview_CurrentMembers_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Reminding your members that they haven&apos;t used us in awhile.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TruckersB2B</letterhead>
+    <name>Member Activity Encouragement</name>
+    <style>freeForm</style>
+    <subject>Where have you been? TruckersB2B wants to help you save!</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+
+We&apos;ve noticed that {!Account.Name} has been a member of TruckersB2B since {!Account.Member_Signup_Date__c}, but hasn&apos;t received a rebate since {!Account.00NU0000003MvWR}. As a reminder, TruckersB2B helps your fleet save money on expenses such as fuel, tires, equipment, maintenance, and so much more. We&apos;ve already sent members over $56 Million in rebates! We want to make sure you are getting your share.
+
+I&apos;ve attached an updated overview sheet that lists all of the ways we can help your fleet save. Please feel free to call or email me if you would like more information on any of our programs. You can also visit us online at http://www.truckersb2b.com and use your Member ID and Password listed below.
+
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password: {!Account.Web_Password__c}
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »»
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

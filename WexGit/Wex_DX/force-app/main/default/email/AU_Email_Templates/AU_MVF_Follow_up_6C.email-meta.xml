@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Follow-up email for MVF Campaign - 6 cents BP offer only</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AUWexMotorpass_FullBanner</letterhead>
+    <name>AU MVF Follow-up_6COffer</name>
+    <style>formalLetter</style>
+    <subject>Fuel Card Enquiry - Call now for our special offer</subject>
+    <textOnly>Hi {!Lead.FirstName}
+
+You recently requested a comparison on Fuel Cards and we have been trying to call to provide you with more information.
+
+
+When it comes to managing your fuel needs, WEX Motorpass can make things so much easier.  Designed specifically to bring you superior control and
+
+convenience when keeping your vehicles on the move, it’s the fuel card that can bring you benefits anywhere you are.
+
+
+
+Call now for our special offer:
+
+
+$3.25 monthly card fee (ex GST)
+BP Discounts - 5 cents per litre discount for 5 months and then 2 cents ongoing at BP sites.
+No lock in contract or set up fees
+
+
+With acceptance at over 90% of service stations Australia wide, WEX Motorpass can significantly reduce driver downtime by giving you the flexibility of
+
+
+an extensive network. We also help reduce fuel costs by allowing you to shop around for the best fuel price on any given day.
+
+
+
+More WEX Motorpass benefits:
+
+
+PIN Authorisation - WEX Motorpass allows you to set up a PIN for an individual card or all of your cards
+Reduced Administration - Comprehensive ATO approved statements
+Card Controls - Ability to restrict what can be purchased and when, even down to what day and the amount of litres pumped
+Exclusive Partner Offers - Click here to see how you can save on servicing, repairs, tyres &amp; maintenance
+Savings Calculator - Click here to see how much WEX Motorpass could save your fleet
+
+
+If you prefer to view our products online simply visit motorpass.com.au for more information or feel free to call me during business hours on {!User.Phone} .
+
+
+Kind Regards,
+
+{!User.Name}
+
+
+*This offer is available to new customers only and cannot be used in conjunction with any other offer. The offer applies to each card issued under your WEX Motorpass account, and applies only to fuel purchases. Discount does not apply to LPG fuels. Discounts are only available off the pump price at BP service stations. 5 cent discount is available for 5 months from the account opening date and will revert to 2 cents off per litre after this date. Applicants and authorised representatives must be over 18 years, have an ABN and use their vehicles for business purposes to apply. The standard WEX Motorpass terms and conditions and fees and charges apply. Please see motorpass.com.au/terms-and-conditions. Credit is issued by WEX Australia Pty Ltd ABN 68 005 970 570 and applications are subject to credit assessment criteria.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

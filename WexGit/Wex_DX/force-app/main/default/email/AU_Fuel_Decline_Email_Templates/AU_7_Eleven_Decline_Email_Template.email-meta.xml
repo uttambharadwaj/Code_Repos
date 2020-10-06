@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_7_Eleven_Letterhead</letterhead>
+    <name>AU 7-Eleven Decline Email Template</name>
+    <style>freeForm</style>
+    <subject>Declined 7-Eleven application</subject>
+    <textOnly>Hello,
+ 
+Thank you for your recent application for a 7-Eleven Fuel Card Account.
+ 
+After careful consideration of the details you have provided and an assessment of your overall circumstances, unfortunately we are unable to provide you with a credit facility on this occasion.
+ 
+ 
+Yours sincerely,
+
+Rick Rose                                            John Petit
+Managing Director                               Head of Fuel
+WEX Australia                                     7-Eleven Stores Pty Ltd</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Mobil Card Letterhead used for applicant notifications of:   Decline  Cancelled  Withdrawn</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Mobil_Card_Letterhead</letterhead>
+    <name>AU Mobil Card Decline Email Template</name>
+    <style>freeForm</style>
+    <subject>Declined Mobil Card Application</subject>
+    <textOnly>Hello,
+ 
+Thank you for your recent application for a Mobil Card Account.
+After careful consideration of the details you have provided and an assessment of your overall circumstances, unfortunately we are unable to provide you with a credit facility on this occasion.
+
+Yours sincerely,
+
+Rick Rose
+Managing Director 
+WEX Australia</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

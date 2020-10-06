@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - DD Removal Decline Offer Security</name>
+    <style>freeForm</style>
+    <subject>Re: DD Removal Decline Offer Security</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Dear {!Case.Contact},
+
+
+We received your request to be removed from the Direct Debit Payment program and be placed on standard monthly billing.  In response to your request, a credit review was conducted.  Unfortunately, we are not able to remove your account from the Direct Debit program.  Your request can, however, be accommodated if you elect to secure your account in full with a Letter of Credit or Security Deposit.  Based on your average use over the last 6-12 months, we recommend securing your credit line for $ XXXXX .00.  You may choose to secure your line for any amount; your credit line will be set at the amount you have secured it.  If you choose to provide a security deposit, please complete the enclosed Deposit Agreement and return a signed copy along with a certified check to the address above.
+
+
+Our reasons for offering full security in lieu of removing your account from the Direct Debit program include the following:
+
+
+A.  Credit Line Usage
+
+1.  Slow or delinquent payment history in the last 12 months.
+
+2.  Limited or no actual usage in the last 6-12 months.
+
+
+B.  Business Credit
+
+1.  Delinquent past or present credit obligations.
+
+2.  Unsatisfactory financial conditions and/or rating.
+
+3.  Insufficient information.
+
+4.  Presence of suits, liens, or judgments.
+
+
+C.  Financial Information
+
+1.  Unsatisfactory conditions present.
+
+2.  Insufficient financial strength to support original credit line.
+
+3.  Updated financial statements have not been received.
+
+
+D.  Other
+
+1.  Supportive or additional information has not been received.
+
+2.  Adverse information received from outside sources.
+
+3.  Trucking companies are required to participate in our Daily EFPS program.
+
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

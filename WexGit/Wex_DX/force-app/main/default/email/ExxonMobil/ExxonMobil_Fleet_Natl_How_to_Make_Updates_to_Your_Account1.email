@@ -1,0 +1,38 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font face="Arial,Sans-Serif" size="3"><span style="font-size: 13.5pt; color: black;">Now that you have an established account with us, you can easily
+make changes to your ExxonMobil Fleet National account in three ways:</span><span style="font-size:
+8.0pt;color:gray"></span></font><font face="Arial,Sans-Serif" size="3"><span style="mso-ascii-font-family:
+Calibri;mso-hansi-font-family:Calibri;color:black"> </span><span style="font-size:12.0pt;line-height:115%;color:black"></span></font><ul><li><b style="mso-bidi-font-weight:normal"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;color:black">By
+Phone</span></b>: Customer
+Services is available 7 days a week, 24 hours a <font face="Arial,Sans-Serif" size="3"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:
+Calibri;color:black">day at&nbsp;1-800-950-6157</span><span style="color:black"></span></font><font face="Arial,Sans-Serif" size="3"><b style="mso-bidi-font-weight:
+normal"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;
+color:black"></span></b></font></li><li><font face="Arial,Sans-Serif" size="3"><b style="mso-bidi-font-weight:
+normal"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;
+color:black">Online:</span></b><span style="mso-ascii-font-family:Calibri;
+mso-hansi-font-family:Calibri;color:black"><span style="mso-tab-count:1">&nbsp; </span>You
+can make changes online anytime by visiting </span><a href="https://www.exxonmobiluniversalonline.com/online/">https://www.exxonmobiluniversalonline.com/online/</a></font></li><li><font face="Arial,Sans-Serif" size="3"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;color:black">&nbsp;</span><span style="color:black"></span></font><font face="Arial,Sans-Serif" size="3"><b style="mso-bidi-font-weight:
+normal"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;
+color:black">Via Fax:<span style="mso-tab-count:1"> </span></span></b><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;color:black">I
+am attaching forms that you can use to make changes to your account. Simply fax
+them back to 1-800-395-0809</span><span style="color:black"></span></font>
+
+</li></ul><p class="MsoNormal" style="margin-left:.5in;tab-stops:1.0in"><font face="Arial,Sans-Serif" size="3"><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;color:black">&nbsp;</span><span style="color:black"></span></font></p><span style="mso-ascii-font-family:Calibri;mso-hansi-font-family:Calibri;color:black"><font face="Arial,Sans-Serif" size="3">Welcome
+to the ExxonMobil Fleet National card program</font>.</span><span style="color:black"></span>
+
+<p style="margin-left:.5in"><em><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">&nbsp;</span></em><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black"></span></p>
+
+<p style="margin-left:.5in"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:black">&nbsp;</span></p><em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial">Sincerely,
+</span></em><em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial"><br>{!User.FirstName}
+{!User.LastName} </span></em><em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial"><br>{!User.Title}
+</span></em><em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial"><br>Phone
+- {!User.Phone}&nbsp; </span></em><em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial"><br>Fax
+- {!User.Fax} </span></em><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;
+mso-bidi-font-family:Arial;color:black"><i><em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial"><br>{!User.Email}</span></em></i></span>]]></td>
+</tr>
+</table>

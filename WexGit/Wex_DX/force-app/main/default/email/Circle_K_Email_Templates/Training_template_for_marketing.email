@@ -1,0 +1,69 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><font style="color: rgb(0, 0, 0);">Hello,&nbsp;</font>{!Lead.FirstName}</font></p><div>
+
+<table cellspacing="0" cellpadding="0" hspace="0" vspace="0" align="center">
+ <tbody><tr>
+  <td valign="top" align="left" style="padding-top:0in;padding-right:9.0pt;
+  padding-bottom:0in;padding-left:9.0pt">
+  <p class="MsoHeader"><b><font face="Verdana, Helvetica, sans-serif" size="2">Salesforce - Introduction:<o:p></o:p></font></b></p>
+  <p class="MsoHeader"><font face="Verdana, Helvetica, sans-serif" size="2"><a href="https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/0g000000H1r0/dGiIpzMLC.jZa0tjEIsjTxhOyvlR9jp8bI7dYjrkyCc"><b>Global Table of Contents</b></a><b><o:p></o:p></b></font></p>
+  <p class="MsoHeader"><span class="MsoHyperlink"><b><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></b></span></p>
+  <p class="MsoHeader"><span class="MsoHyperlink"><b><span style="color: windowtext;"><font face="Verdana, Helvetica, sans-serif" size="2">Qualification
+  Phase<o:p></o:p></font></span></b></span></p>
+  <p class="MsoHeader"><span class="MsoHyperlink"><span style="color: windowtext;"><font face="Verdana, Helvetica, sans-serif" size="2">Getting Started With Leads: <o:p></o:p></font></span></span></p>
+  <p class="MsoHeader" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+  mso-element:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;
+  mso-element-anchor-vertical:page;mso-element-anchor-horizontal:margin;
+  mso-element-left:center;mso-element-top:58.05pt;mso-height-rule:exactly"><!--[if !supportLists]--><font face="Verdana, Helvetica, sans-serif" size="2"><span class="MsoHyperlink">·<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><!--[endif]--><a href="https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/700000009JS4/crN3siTWtG4Il.uC8.DyjS5lSN6S1fNXpWvdAXK7SOs">Job Aid_Wright Leads Overview</a><span class="MsoHyperlink"><o:p></o:p></span></font></p>
+  <p class="MsoHeader" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+  mso-element:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;
+  mso-element-anchor-vertical:page;mso-element-anchor-horizontal:margin;
+  mso-element-left:center;mso-element-top:58.05pt;mso-height-rule:exactly"><!--[if !supportLists]--><font face="Verdana, Helvetica, sans-serif" size="2"><span class="MsoHyperlink">·<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><!--[endif]--><u><span style="color: blue;"><a href="https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/0g000000H0TR/j4vBGx1OkX5ihZ9GizkfRlI.n8UsQUwBn2SZMe.LkMY">Job
+  Aid_Leads - Corporate Payments Overview<o:p></o:p></a></span></u></font></p>
+  <p class="MsoHeader"><span class="MsoHyperlink"><b><span style="color: windowtext;"><font face="Verdana, Helvetica, sans-serif" size="2">Sales Phase: <o:p></o:p></font></span></b></span></p>
+  <p class="MsoHeader"><font face="Verdana, Helvetica, sans-serif" size="2"><span class="MsoHyperlink"><span style="color: windowtext;">Managing
+  Opportunities </span></span><o:p></o:p></font></p>
+  <p class="MsoHeader" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+  mso-element:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;
+  mso-element-anchor-vertical:page;mso-element-anchor-horizontal:margin;
+  mso-element-left:center;mso-element-top:58.05pt;mso-height-rule:exactly"><!--[if !supportLists]--><font face="Verdana, Helvetica, sans-serif" size="2"><span class="MsoHyperlink">·<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><!--[endif]--><a href="https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/70000000jxA5/.ubEzKTcGNOSqHvzW2ACREs8SoEESAt0dw0vdbmzGi8">Job Aid_Opportunity - Fuel Card Opportunity
+  Overview</a><span class="MsoHyperlink"><span style="color: windowtext;"><o:p></o:p></span></span></font></p>
+  <p class="MsoHeader" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1;
+  mso-element:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;
+  mso-element-anchor-vertical:page;mso-element-anchor-horizontal:margin;
+  mso-element-left:center;mso-element-top:58.05pt;mso-height-rule:exactly"><!--[if !supportLists]--><font face="Verdana, Helvetica, sans-serif" size="2">·<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><!--[endif]--><a href="https://wexinc.my.salesforce.com/sfc/p/700000009EOI/a/0g000000H3DC/8S_XKH_AShHzEOOuUakwz1Zu2lHxqqS30Fyp80fqe0g">Job Aid_Opportunity - NACorporatePayments
+  Overview</a><o:p></o:p></font></p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div><p class="MsoNormal" style="margin-bottom: 12pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 12pt; line-height: normal;"><font style=""><i style=""><font face="Verdana, Helvetica, sans-serif" style="" size="2">{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+{!User.Email}</font></i><font face="arial" style="font-size: 12pt;"><o:p></o:p></font></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" style="" size="1"><i style=""><span style="color: gray;">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is
+prohibited. If you have received this message in error, please notify sender
+immediately by telephone or reply by e-mail and delete the entire message and
+any attachments."</span></i><o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt; line-height: normal;"><font face="Arial, sans-serif" size="1"><i><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><o:p></o:p></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 12pt;">
+
+
+
+
+
+
+
+<i style=""><span style="line-height: 115%; color: gray;"><font face="Arial, sans-serif" style="" size="1">This
+is an advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<u style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe"><span style="color:gray">&nbsp;</span><span style="color:#3333FF">email us to unsubscribe</span></a></u>. Please be sure to
+include your name, company name and email address in the email.</font></span></i></p>]]></td>
+</tr>
+</table>

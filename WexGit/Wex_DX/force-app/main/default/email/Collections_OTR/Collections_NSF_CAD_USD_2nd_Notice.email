@@ -1,0 +1,113 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt; font-family: Verdana, sans-serif; letter-spacing: -0.05pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2" style="letter-spacing: normal;"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="letter-spacing: normal;"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt; font-family: Verdana, sans-serif; letter-spacing: -0.05pt; background: white;"><font color="#ff0000"><b><br></b></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 10pt; font-family: Verdana, sans-serif; letter-spacing: -0.05pt; background: white;"><font color="#ff0000"><b>2ND NOTICE</b></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white">{!Today} <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white">Attn: </span><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;letter-spacing:-.05pt;
+background:white">{!Case.Contact}<span style="color:black"> <o:p></o:p></span></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white">{!Account.Name} <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white">{!Account.BillingAddress}</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+letter-spacing:-.05pt;background:white">Account Number: {!Account.Carrier_ID__c}</span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+letter-spacing:-.05pt;background:white"><br style="mso-special-character:line-break">
+<!--[endif]--></span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+letter-spacing:-.05pt;background:white">[NSF Amount] NSF draft</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+letter-spacing:-.05pt;background:white"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+letter-spacing:-.05pt;background:white">Dear Customer,</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+letter-spacing:-.05pt;background:white">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></span><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white">As previously advised, your recent payment in the
+amount of [NSF Amount] has been returned by your bank with the notation NSF.</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+color:black;letter-spacing:-.05pt;background:white"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Your credit privileges are currently suspended and it is urgent that we get your account&nbsp;</span></font><font face="Verdana, sans-serif" style="font-size: 12pt;"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">current.&nbsp; Please wire transfer $30.00 immediately per the instructions listed below.&nbsp; Once t</span></font><font face="Verdana, sans-serif" style="font-size: 12pt;"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">his issue has been cleared up please contact us to discuss the terms and conditions for&nbsp;</span></font><span style="font-size: 13.3333px; letter-spacing: -0.0666667px; font-family: Verdana, sans-serif;">reactivation of your account.&nbsp;</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;"><br></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">Wire Instructions For
+Canadian USD Customers (payments post next day):</span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">EFS LLC<br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Royal Bank of Canada</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Main Branch</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">65 Princess St.</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Kingston, ON K7L 1A6</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Financial Institution Number:&nbsp;</span></font><span style="font-size: 13.3333px; letter-spacing: -0.0666667px; font-family: Verdana, sans-serif;">0003</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Transit Number:</span></font><span style="font-size: 13.3333px; letter-spacing: -0.0666667px; font-family: Verdana, sans-serif;">&nbsp;02382</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Beneficiary Account</span></font><span style="font-size: 13.3333px; letter-spacing: -0.0666667px; font-family: Verdana, sans-serif;">: 4003141</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Beneficiary Name</span></font><span style="font-size: 13.3333px; letter-spacing: -0.0666667px; font-family: Verdana, sans-serif;">: Electronic Funds Source LLC</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">Reference Number</span></font><span style="font-size: 13.3333px; letter-spacing: -0.0666667px; font-family: Verdana, sans-serif;">: Your 13-digit AR number or 6- or 7-digit Carrier ID number</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="background: white; font-size: 13.3333px; letter-spacing: -0.0666667px;"></span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">**Note** Beneficiary should include transit number and account number (02382-4003141)</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif" color="#ff0000"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">*Please make sure to include your 13 digit EFS customer/AR number so that funds can be applied to your&nbsp;</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif" color="#ff0000"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">account. If your account number includes leading 0's, please include them in order for funds to be properly&nbsp;</span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif" color="#ff0000"><span style="font-size: 13.3333px; letter-spacing: -0.0666667px;">applied.</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white"><u>PLEASE NOTE:</u> A $50 NSF fee
+will be assessed to your account and will show on the next statement created.</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white"><br style="mso-special-character:
+line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">Thank you for your prompt
+attention to this matter.</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white"><br style="mso-special-character:
+line-break">
+<!--[if !supportLineBreakNewLine]--><br style="mso-special-character:line-break">
+<!--[endif]--></span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;color:black"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">Regards, <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">EFS Collections and
+Receivables <o:p></o:p></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="background: white; font-size: 13.3333px; letter-spacing: -0.0666667px;"><font face="Verdana, sans-serif">{!Case.Collections_Phone_Number__c}</font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-bidi-font-family:Arial;
+color:black;letter-spacing:-.05pt;background:white">Privacy:&nbsp;</span><a href="https://www.efsllc.com/privacy-policy/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.efsllc.com/privacy-policy/&amp;source=gmail&amp;ust=1587148052963000&amp;usg=AFQjCNHkdTaCqGPfBzpDCUkI50wEQ7lU3Q" style="color: rgb(17, 85, 204); font-family: verdana, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">https://www.efsllc.com/<wbr>privacy-policy/</a></p>]]></td>
+</tr>
+</table>

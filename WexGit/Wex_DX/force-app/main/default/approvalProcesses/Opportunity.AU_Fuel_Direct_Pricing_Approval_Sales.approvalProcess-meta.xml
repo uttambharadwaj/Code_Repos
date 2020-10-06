@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <submitter>BeevoPartnerManager</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>BeevoPartnerUser</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>SalmatPartnerExecutive</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>SalmatPartnerManager</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>SalmatPartnerUser</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>ThoughtWorldPartnerExecutive</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>ThoughtWorldPartnerManager</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>ThoughtWorldPartnerUser</submitter>
+        <type>portalRoleSubordinates</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>AUS_Managing_Dir</submitter>
+        <type>roleSubordinatesInternal</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Account</field>
+        <field>Amount</field>
+        <field>AU_Total_Cards_Required__c</field>
+        <field>Campaign__c</field>
+        <field>Product_Type__c</field>
+        <field>AU_Monthly_Card_Fee__c</field>
+        <field>Transaction_Fee__c</field>
+        <field>Promotional_Code__c</field>
+        <field>Credit_Limit__c</field>
+        <field>Payment_Terms_Days__c</field>
+        <field>CloseDate</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>If Team Leader Pricing Approval is needed, push to the Users &quot;Manager&quot; for approval.
+Note: Manager  will seek clarification/guidance etc via Chatter.</description>
+        <entryCriteria>
+            <formula>Team_Leader_Pricing_Approval_Needed__c = TRUE</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>1 - Needs Manager Approval</label>
+        <name>X1_Needs_Manager_Approval</name>
+    </approvalStep>
+    <description>Used for AU Fuel Direct pricing approval prior to passing to Credit for assessment.
+For Sales users.</description>
+    <emailTemplate>AU_Email_Templates/AU_Fuel_Direct_Pricing_Approval_Notification</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>Record_Type_Name__c = &apos;AU Fuel Direct&apos; &amp;&amp;
+OR($Profile.Name = &apos;AU Sales Direct User&apos;,$Profile.Name = &apos;AU Sales BDM/RM User&apos;)
+||
+LEFT(Record_Type_Name__c,10) =&apos;AU Partner&apos; &amp;&amp;
+LEFT($Profile.Name,10) = &apos;AU Partner&apos;</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>AU_Opportunity_Pricing_Approval</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>AU_Pricing_Approval_Received_to_TRUE</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Opportunity_Status_to_Pricing_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>AU_Opportunity_Pricing_Rejected</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>AU_Pricing_Approval_Received_to_FALSE</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Opportunity_Status_to_Pricing_Declined</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>AU_Opportunity_Status_to_In_Progress</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>AU_Pricing_Approval_Received_to_FALSE</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>AU Fuel Direct Pricing Approval (Sales)</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <postTemplate>AU_Fuel_Direct_Opportunity_Pricing_Approval</postTemplate>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

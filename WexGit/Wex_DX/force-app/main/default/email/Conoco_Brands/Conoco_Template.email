@@ -1,0 +1,20 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Dear&nbsp;{!Lead.FirstName} {!Lead.LastName}&nbsp;&nbsp;, </FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>ConocoPhillips is offering&nbsp;{!Lead.Company} $0.15 of every gallon you purchase at any ConocoPhillips retail location for the rest of the year.&nbsp;&nbsp; I have a couple of meetings schedule around your Denver office next Wednesday and Thursday of next week and wanted to see if you had 20 min to talk about our fleet program and the 15 cents off every gallon in 2012.&nbsp; &nbsp;&nbsp;Would 10:30am or 2:00pm be a good time?&nbsp; If not, please provide a time would fit your schedule.</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>&nbsp;</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Please let me know if you have time to discuss this great opportunity.&nbsp; 15 vehicles fleet = $600.00 per month off your fuel cost or $3,600 for the rest of the year!!!</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>&nbsp;</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri>Thank you,</FONT></P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri></FONT>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.FirstName} {!User.LastName}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Title}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Phone}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>{!User.Email}</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal><FONT face=Calibri></FONT>&nbsp;</P>
+<P style="MARGIN: 0in 0in 0pt" class=MsoNormal>&nbsp;</P>]]></td>
+</tr>
+</table>

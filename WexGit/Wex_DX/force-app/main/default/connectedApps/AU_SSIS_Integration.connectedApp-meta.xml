@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>dawn.delima@wexinc.com</contactEmail>
+    <contactPhone>+61 400 949542</contactPhone>
+    <label>AU SSIS Integration</label>
+    <oauthConfig>
+        <callbackUrl>https://login.salesforce.com/services/oauth2/success</callbackUrl>
+        <consumerKey>3MVG967gVD5fuTmL1omVvIWrWPmhdzR45T_2LMcPqeHlHVPzBQOyf.6C2DVe29GJ1hy0OwnpMX5yUKjHnH_V8</consumerKey>
+        <scopes>Api</scopes>
+    </oauthConfig>
+</ConnectedApp>

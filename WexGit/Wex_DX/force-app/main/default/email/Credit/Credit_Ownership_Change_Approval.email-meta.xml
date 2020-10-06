@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - Ownership Change Approval</name>
+    <style>freeForm</style>
+    <subject>Re: Completion of Company Name/Ownership Change Request</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Re: Completion of Company Name/Ownership Change Request
+
+
+Account Number#: *********{!Case.Masked_External_Account__c}
+
+
+Dear {!Case.Contact},
+
+
+We completed the request to change your company’s name from COMPANY OLD NAME to COMPANY NEW NAME.  Please review and complete the following action items:
+
+
+Please note your use of the account constitutes continued acceptance of the terms and conditions of the program.
+
+Order new cards. If you would like your card embossing to match the new company name, you will need to order new cards.  Please note that there may be a fee for replacement cards.  To order new cards you can either:
+
+Request the cards via existing Internet access to your account, OR
+
+
+Contact the Customer Service department listed on your card.
+
+
+Obtain Internet access to your account. If you would like Internet access to your account, go to www.wexonline.com to request an ID and password.
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

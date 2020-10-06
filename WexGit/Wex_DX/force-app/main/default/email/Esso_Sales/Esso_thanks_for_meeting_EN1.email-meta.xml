@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>After client receives cards</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso</letterhead>
+    <name>Esso and Mobil Implementation Email</name>
+    <style>freeForm</style>
+    <subject>Essofleetonline enrollment</subject>
+    <textOnly>Hey {!Contact.FirstName},
+
+Your cards have been sent out today and you should have them within 72 hours. The cards come ready for use and once you are logged in to your online account and have your Driver ID’s (pin codes), you can use the cards.  The instructions I  am providing you to enroll as a new user online and set up your bank account are very IMPORTANT to do right away so you don’t scramble at the end of the month when you need to pay your bill, BUT aren’t necessary to begin fueling.  Your account number is _____________.  Go to www.essofleetonline.com and “enroll as new user” follow the set up instructions, be sure to write down your username and password.  Initially, you will be sent a temporary password sent to confirm the account.  Follow the instructions and once you are signed in, you will see your cards and Drivers list on your home page. First thing to do once you are logged in to your account is go to “Set up” tab, click on ‘preferences’ then scroll down and click ‘email invoice notification’ to ensure you will be notified when your invoice is ready for viewing. Once all the Cards and codes are allocated to your drivers, set up your bank details by going to home page, clicking on “invoice and Payments” scroll down to “set up bank account” or “direct debit enrollment” if you prefer direct debit.  You will also need to scroll down to the blue PDF hyperlink and a window will pop up and that is the PAD agreement which marries your bank with WEX bank allowing you to make a successful payment transaction.  The form has a section for automatic debit payments which you have an option to fill out if you want.  Otherwise, please complete the necessary info and follow the &apos;send to&apos; instructions to complete the process.  Beside “account” it should say Pending… which will become “active” once we receive the PAD agreement.  Follow the instructions accordingly, if you have any questions, contact me or customer service to assist.  If you have trouble accessing your account in the beginning, customer service is the only one that can help you set up your account login as they have direct access
+
+
+
+Best regards,
+{!User.Name} | {!User.Title}
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

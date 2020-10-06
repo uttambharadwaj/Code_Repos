@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Hurricane Preparedness for Fleets</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Hurricane Preparedness for Fleets</name>
+    <style>none</style>
+    <subject>Hurricane Preparedness for Fleets</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

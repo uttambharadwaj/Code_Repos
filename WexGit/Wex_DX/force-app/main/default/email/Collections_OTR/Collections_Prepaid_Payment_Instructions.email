@@ -1,0 +1,89 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2" style="letter-spacing: normal;"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="letter-spacing: normal;"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" style="" face="Verdana, Helvetica, sans-serif"><br></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" style="" face="Verdana, Helvetica, sans-serif">{!Today} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">Attn: {!Case.Contact} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">{!Account.Name} <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="color: black; letter-spacing: -0.05pt; background: white;">{!Account.BillingAddress}</span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2">Account Number:&nbsp;<o:p></o:p></font></span><font size="2"><span style="letter-spacing: -0.0666667px;">{!Account.Carrier_ID__c}</span></font></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">Dear Customer,<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">In order to fund your
+account you may make payments either wire, ACH, or Western Union. Wire payments
+must be received by 4:00 PM MST in order for those funds to be available that
+day. ACH payments will not be applied to the account until the following
+business day.<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="background: white;"><font size="2" style="" face="Verdana, Helvetica, sans-serif"><span style="letter-spacing: -0.05pt;">IMPORTANT:</span><br><span style="letter-spacing: -0.05pt;">
+WIRE PAYMENTS of less than $2,500.00 will be charged an inbound bank fee of
+$5.00. Additionally, if the Customer # as indicated below is not included, a
+$15.00 manual application fee will be assessed. All Western Union payments will
+be charged a $20.00 fee regardless of the amount.</span><br><span style="letter-spacing: -0.05pt;">
+When sending funds, please include your Account#: </span><span style="letter-spacing: -0.0666667px;">{!Account.Carrier_ID__c}</span><span style="letter-spacing: -0.05pt;">&nbsp;as an
+addendum so that your funds may be more quickly applied to your account. Below
+are the instruction for bank wires:<o:p></o:p></span></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="color: black; letter-spacing: -0.05pt; background: white;">Bank Name: Fifth Third Bank<br>
+38 Fountain Square<br>
+Cincinnati, OH 45263<br>
+Account Name: WEX Bank<br>
+1104 Country Hills Drive<br>
+Ogden, Utah 84403<br>
+Bank Account Number: 7361767473<br>
+Wire Routing Number: 042000314<br>
+ACH Routing Number: 064103833</span><span style="color: black; letter-spacing: -0.05pt;"><o:p></o:p></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="color: black; letter-spacing: -0.05pt; background: white;"><br></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" style="" face="Verdana, Helvetica, sans-serif"><span style="background: white;"><span style="letter-spacing: -0.05pt;">Please note that Fifth
+Third uses different routing number for wires and ACH. If the incorrect routing
+number is used, the payment will be rejected by the bank. Please make sure to
+include your EFS Account#: </span><span style="letter-spacing: -0.0666667px;">{!Account.Carrier_ID__c}</span><span style="letter-spacing: -0.05pt;">&nbsp;in the payment remittance
+information ("OBI Fields") - we cannot apply your payment without
+this information. Please follow the example illustrated below:</span></span><span style="color: black; letter-spacing: -0.05pt;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="background: white;"><font size="2" style="" face="Verdana, Helvetica, sans-serif"><br><span style="letter-spacing: -0.05pt;">
+OBI Line 1: # </span><span style="letter-spacing: -0.0666667px;">{!Account.Carrier_ID__c}</span><br><span style="letter-spacing: -0.05pt;">
+Wires are done through the Federal Reserve System and most banks do charge a
+fee for this. Please ask your banker what fee they charge.<o:p></o:p></span></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">Here are the Western Union
+instructions:<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="background: white;"><font size="2" style="" face="Verdana, Helvetica, sans-serif"><span style="letter-spacing: -0.05pt;">WESTERN UNION QUICK COLLECT</span><br><span style="letter-spacing: -0.05pt;">
+PAY TO: ELECTRONIC FUNDS SOURCE</span><br><span style="letter-spacing: -0.05pt;">
+CODE CITY: ELECFS UT STATE: UTAH</span><br><span style="letter-spacing: -0.05pt;">
+YOUR ACCOUNT # WITH EFS LLC: </span><span style="letter-spacing: -0.0666667px;">{!Account.Carrier_ID__c}</span><br><span style="letter-spacing: -0.05pt;">
+Please make sure to include your 13 digit EFS Customer/AR Number so that funds
+can be applied to your account. If your account number includes leading
+"0"'s please include in order for funds to be properly applied.<o:p></o:p></span></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif"><br></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt; background: white;"><font size="2" face="Verdana, Helvetica, sans-serif">If you have any questions
+please contact the Credit Department at the information listed below.<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><o:p><font size="2" face="Verdana, Helvetica, sans-serif">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><font size="2" face="Verdana, Helvetica, sans-serif">Regards, <o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black; letter-spacing: -0.05pt;"><font size="2" face="Verdana, Helvetica, sans-serif">EFS Collections and Receivables <o:p></o:p></font></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font size="2" face="Verdana, Helvetica, sans-serif"><span style="letter-spacing: -0.0666667px;">{!Case.Collections_Phone_Number__c}</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><span style="color: black; letter-spacing: -0.05pt;">Privacy:&nbsp;</span><a href="https://www.efsllc.com/privacy-policy/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.efsllc.com/privacy-policy/&amp;source=gmail&amp;ust=1587148052963000&amp;usg=AFQjCNHkdTaCqGPfBzpDCUkI50wEQ7lU3Q" style="color: rgb(17, 85, 204); background-color: rgb(255, 255, 255);">https://www.efsllc.com/<wbr>privacy-policy/</a></font></p>]]></td>
+</tr>
+</table>

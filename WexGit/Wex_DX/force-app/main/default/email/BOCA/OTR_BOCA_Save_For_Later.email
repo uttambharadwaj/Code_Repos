@@ -1,0 +1,10 @@
+<messaging:emailTemplate subject="Your Saved {!relatedTo.Online_Application_Offer__r.Name} Application!" recipientType="Contact" relatedToType="WeFormObject__c">
+<messaging:htmlEmailBody >
+<p>
+    {!relatedTo.Online_Application_Offer__r.Complete_Later_Email__c}
+</p>
+<p>
+    <a href="https://{!$Label.External_Instance_URL}/creditapplication/OTRBOCA?priority=true&pgm={!relatedTo.Program__r.Brand_Short_Name__c}&offer={!relatedTo.Online_Application_Offer__c}&customer={!relatedTo.Id}&key={!relatedTo.Saved_For_Later_Key__c}">Click To Continue Your Application!</a>
+</p>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

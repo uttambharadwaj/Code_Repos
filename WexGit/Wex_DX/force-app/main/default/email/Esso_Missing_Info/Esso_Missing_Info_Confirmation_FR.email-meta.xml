@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Esso Missing Info Confirmation FR</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_Current_Letterhead_FR</letterhead>
+    <name>Esso Missing Info Confirmation FR</name>
+    <style>freeForm</style>
+    <subject>Confirmation : Nous avons bien reçu votre ou vos dsocuments.</subject>
+    <textOnly>Bonjour {!Contact.FirstName},
+
+Merci, nous avons reçu votre ou vos documents à jour pour votre compte de carte d’Affaires Esso et ils sont en traitement.
+
+Pour l’instant, aucune autre action n’est requise de votre part. Si vous avez des questions, veuillez appeler le service à la clientèle au 1 888 292-4659.
+
+
+Sincères salutations,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+© 2019 L&apos;équipe des parcs automobiles Esso.
+
+97 Darling Avenue | South Portland, ME 04106 | USA | Privacy Policy
+
+Esso est une marque de commerce de la Compagnie Pétrolière Impériale Ltée. Pétrolière Impériale, licencié. Le programme de cartes d’Affaires Esso est géré par WEX Inc.
+
+Ce courriel vous a été envoyé parce que vous êtes un(e) client(e) des cartes d&apos;Affaires Esso. Si vous ne désirez plus recevoir de courriels ou d&apos;autres messages électroniques commerciaux à propos du programme de cartes d&apos;Affaires Esso, vous pouvez vous désabonner, c&apos;est immédiat. Toute demande de désabonnement sera honorée dans les dix jours ouvrables suivant sa réception.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

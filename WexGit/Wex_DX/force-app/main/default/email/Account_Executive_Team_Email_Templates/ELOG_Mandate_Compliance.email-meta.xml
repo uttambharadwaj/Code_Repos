@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Discover who is best person to discuss ELOG oppty qualification with</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ELOG Mandate Compliance</name>
+    <style>none</style>
+    <subject>Fleet Equipment Manager</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

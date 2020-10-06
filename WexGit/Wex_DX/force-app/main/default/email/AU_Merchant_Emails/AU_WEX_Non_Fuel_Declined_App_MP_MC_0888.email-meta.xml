@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Merchant WEX Non Fuel Declined App MP &amp; MC 0888</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_WEX_LetterHead</letterhead>
+    <name>AU WEX Non Fuel Declined App MP &amp; MC 0888</name>
+    <style>freeForm</style>
+    <subject>Update on your Motorpass and Motorcharge application</subject>
+    <textOnly>Dear {!Contact.FirstName}
+
+
+
+Thank you for you recent application to become a Motorpass and Motorcharge merchant.
+
+
+We are currently undertaking a review of our merchant network in a number of areas, including the Parts and Accessories category.  the purposes of the review are:
+
+
+To better understand our customer&apos;s needs and desires around products/service, convenience and value; and
+
+To deliver better outcomes for our customer&apos;s, merchants and our business.
+
+
+The review may result in an addition, reduction or remain unchanged the number of merchants in the category.
+
+
+Therefore pending the outcome of the review, we are placing all new merchant applications on hold.
+
+
+Whilst I appreciate this decision may be disappointing, I am happy to keep your details on file and contact you should we wish to proceed with the application further.
+
+
+Thank you for your understanding.
+
+
+
+Sincerely,
+
+
+Tracey Vines
+
+
+Merchant Support Manager
+
+
+
+
+
+
+
+
+
+
+
+We see corporate payments differently.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

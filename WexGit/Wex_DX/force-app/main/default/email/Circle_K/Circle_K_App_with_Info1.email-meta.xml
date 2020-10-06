@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Respond to a request for additional information. Attach application form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Circle_K_Letterhead</letterhead>
+    <name>Circle K App with Info</name>
+    <style>freeForm</style>
+    <subject>Here Is The Circle K Information You Requested</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+I received your request for additional information on our Circle K Fuel Card program. Please take a few minutes to look through the accompanying information. I’m confident that you’ll find the widely accepted Circle K Fuel Card the one-card solution for all your fueling needs.
+
+  - We save you money. Circle K does not charge any transaction fees.
+
+  - We save you time. You’ll enjoy the convenience of a single fueling card program and one, easy-to-read invoice. You can also easily download transaction data from the web right to QuickBooks or Excel each month.
+
+  - We give you control. Detailed reports show how and where fueling money was spent, so you can account for every penny.
+
+  - We make it convenient. Your drivers only need to carry one card to fuel at any participating location.
+
+You will find a complete list of accepting locations at http://www.circlek.com/store-locator?language=en.
+
+
+It’s easy to enroll. Simply complete the attached application form and fax it back to me at {!User.Fax}.
+
+Thank you for your interest in the Circle K Fuel Card program.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+
+{!User.Email}
+
+
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

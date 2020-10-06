@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>*Enterprise</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <role>Fleet_Outbound_Channel_Sales</role>
+        <role>Fleet_Outbound_Channel_Sales_2</role>
+        <role>Fleet_Outbound_Channel_Sales_STL</role>
+        <role>Fleet_Outbound_Channel_Sales_TL</role>
+        <role>ISTeamLeader</role>
+    </sharedTo>
+</EmailFolder>

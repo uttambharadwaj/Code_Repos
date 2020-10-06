@@ -1,0 +1,14 @@
+{!Opportunity.OwnerFirstName}
+
+There has been activity on the Sales Stage for the application request regarding Opportunity {!Opportunity.Name}  .
+
+The Sales Stage has been updated to {!Application_Request__c.Sales_Stage__c}.
+
+Please click the link to view any activities associated to the Opportunity:
+
+{!Opportunity.Link}
+
+
+
+
+Thank you

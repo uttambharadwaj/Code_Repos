@@ -1,0 +1,12 @@
+@isTest
+public class MockHttpResponseGenerator1 implements HttpCalloutMock {
+   
+    public HTTPResponse respond(HttpRequest req1) 
+    {
+        HttpResponse response = new HttpResponse();
+        response.setHeader('Content-Type', 'application/json');
+        response.setBody('{"errors":[],"validations":{"chars_sortcode":{"code":"006","message":"Sort Code does not contain illegal characters"},"chars_account":{"code":"007","message":"Account Number does not contain illegal characters"},"length_sortcode":{"code":"008","message":"Sort Code length is correct"},"length_account":{"code":"009","message":"Account Number length is correct"},"modulus":{"code":"001","message":"Modulus Success: Check digit is valid"},"sort_found":{"code":"002","message":"Sort Code found in bank directory"}},"account_data":{"sortcode":"401000","account":"91805762","iban":"GB19HBUK40100091805762"},"bank_data":{"bic":"HBUKGB4B","bank":"HSBC UK BANK PLC","branch":"HSBC","address":"NSC Evening Online Team Banking Operations Coventry Harry Weston Road Binley","city":"Coventry","zip":"CV3 2SH","phone":"03457 404404","country":"GB"},"payment_schemes":{"DD":"YES","FPS_PAYMENTS":"YES","CHAPS":"YES","BACS":"YES","CCC_PAYMENTS":"YES"}}{"errors":[],"validations":{"chars_sortcode":{"code":"006","message":"Sort Code does not contain illegal characters"},"chars_account":{"code":"007","message":"Account Number does not contain illegal characters"},"length_sortcode":{"code":"008","message":"Sort Code length is correct"},"length_account":{"code":"009","message":"Account Number length is correct"},"modulus":{"code":"001","message":"Modulus Success: Check digit is valid"},"sort_found":{"code":"002","message":"Sort Code found in bank directory"}},"account_data":{"sortcode":"401000","account":"91805762","iban":"GB19HBUK40100091805762"},"bank_data":{"bic":"HBUKGB4B","bank":"HSBC UK BANK PLC","branch":"HSBC","address":"NSC Evening Online Team Banking Operations Coventry Harry Weston Road Binley","city":"Coventry","zip":"CV3 2SH","phone":"03457 404404","country":"GB"},"payment_schemes":{"DD":"YES","FPS_PAYMENTS":"YES","CHAPS":"YES","BACS":"YES","CCC_PAYMENTS":"YES"}}');
+        response.setStatusCode(200);
+        return response;
+    }
+}

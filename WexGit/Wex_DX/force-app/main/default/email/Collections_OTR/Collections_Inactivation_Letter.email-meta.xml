@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Inactivation Letter</name>
+    <style>freeForm</style>
+    <subject>Inactivation Letter</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Today}
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+
+Dear Customer,
+
+
+Since payment of your account has not been received as requested, your credit privileges have been suspended.
+
+
+Please remit payment in full immediately. Reinstatement will be considered upon request. If your payment has been sent, please call the number below to have our records updated.
+
+
+Thank you for your prompt attention to this matter.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

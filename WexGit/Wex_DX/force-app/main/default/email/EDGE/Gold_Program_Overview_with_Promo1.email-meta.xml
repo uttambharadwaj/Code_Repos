@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_EDGE/EDGE_GoldOverview_Promo_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>EDGE Gold Program Overview with $25 promo</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Gold Program Overview with Promo</name>
+    <style>none</style>
+    <subject>The Gold Program</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

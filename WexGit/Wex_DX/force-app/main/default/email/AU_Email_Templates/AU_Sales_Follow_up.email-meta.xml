@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Sales Follow up</name>
+    <style>freeForm</style>
+    <subject>Salesforce Application {!Opportunity.Name} has been declined and requires Sales follow up</subject>
+    <textOnly>An application has been reviewed and has been declined. This requires Sales action.
+
+{!Opportunity.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

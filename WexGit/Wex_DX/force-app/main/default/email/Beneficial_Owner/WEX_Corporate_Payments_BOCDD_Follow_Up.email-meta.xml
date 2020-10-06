@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead_2</letterhead>
+    <name>Beneficial Owner_WEX Corporate Payments</name>
+    <style>freeForm</style>
+    <subject>WEX Beneficial Ownership of Customer Due Diligence Form</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+Thank you for taking the time to discuss your WEX application with me today. For your convenience, I’ve attached the Beneficial Ownership of Customer Due Diligence Form (BOCDD) we discussed as well as a link to the BOCDD FAQ&apos;s to assist with any questions you may have regarding this new federal regulation. Once you’ve completed the attached form, please email it back to me at my email address listed below in order for WEX Bank to continue processing your application.
+
+Again, thank you for your interest in WEX. If you have any questions, please do not hesitate to call or email me.
+
+
+{!User.Name}
+{!User.Title}
+WEX
+Phone: {!User.Phone} | Fax: {!User.Fax}
+Email: {!User.Email} | www.wexpayables.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

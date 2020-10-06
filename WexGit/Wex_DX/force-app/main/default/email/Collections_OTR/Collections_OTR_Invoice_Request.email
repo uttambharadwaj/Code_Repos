@@ -1,0 +1,43 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><span style="color: black;"><br></span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2"><span style="color: black;">{!Today}</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="color: black;">Attn: {!Case.Contact}</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="color: black;">{!Case.Account}</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="color: black;">{!Account.BillingAddress}</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="color: rgb(0, 0, 0);"><span style="color: black;">Account Number:&nbsp;</span></font><font face="Verdana, Helvetica, sans-serif" size="2">{!Account.Carrier_ID__c}</font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="color: black;">Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="color: black;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="color: black;">Dear&nbsp;{!Case.Contact}:</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="background-color: white;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); margin-bottom: 0.0001pt; line-height: normal;"><span style="background-color: white;"><font face="Verdana, Helvetica, sans-serif" size="2">Attached
+are the invoice(s) that were requested</font></span></p><p style="color: rgb(0, 0, 0); margin: 0in 0in 0.0001pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2"><o:p></o:p></font></p>
+
+<p style="color: rgb(0, 0, 0); margin: 0in 0in 0.0001pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p>
+
+<p style="color: rgb(0, 0, 0); margin: 0in 0in 0.0001pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="white-space:pre-wrap">Please respond to this email or call us if you have any questions</span><o:p></o:p></font></p>
+
+<p style="color: rgb(0, 0, 0); margin: 0in 0in 0.0001pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p>
+
+<p style="color: rgb(0, 0, 0); margin: 0in 0in 0.0001pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="white-space:pre-wrap">Regards,</span><o:p></o:p></font></p>
+
+<p style="color: rgb(0, 0, 0); margin: 0in 0in 0.0001pt; background: white;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="white-space:pre-wrap">Collections &amp; Receivables</span><o:p></o:p></font></p>
+
+<font face="Verdana, Helvetica, sans-serif" size="2" style="color: rgb(0, 0, 0);"><font style="color: rgb(0, 0, 0);"><span style="white-space: pre-wrap;">{!Case.Collections_Phone_Number__c}</span></font><br>
+
+</font><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><span style="color: black;">&nbsp;</span><span style="color: black;"><o:p></o:p></span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><o:p style=""><font face="Verdana, Helvetica, sans-serif" style="" size="2">&nbsp;</font></o:p></p>]]></td>
+</tr>
+</table>

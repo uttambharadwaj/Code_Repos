@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Discount_Diesel</letterhead>
+    <name>Discount Diesel Incomplete eApp</name>
+    <style>freeForm</style>
+    <subject>Discount Diesel (Additional Information Required)</subject>
+    <textOnly>{!OnlineApplication__c.Contact_Name__c},
+
+Thank you for your interest in the Discount Diesel fuel card. It appears you began the application process, but have not completed it.  For your convenience, I’ve attached a link to our online application so that you may complete. Please remember that WEX Bank adheres to the &quot;Know Your Customer&quot; bank regulation, so we do request financial information.  Please don&apos;t miss out on this exclusive offer.
+
+
+
+Click Here and follow the instructions to complete your application process.
+
+
+
+Benefits of the Discount Diesel card:
+
+Nationwide acceptance at over 99% truck stop locations.
+Fuel discounts or rebates at 2,500+ locations including AMBEST, Flying J, Petro, Pilot, Roady’s, TA as well as numerous independent truck stops.
+
+
+
+
+
+
+
+Let me know if you have questions.
+
+
+
+Sincerely,
+
+{!User.Name}
+{!User.Title}
+Discount Diesel
+Phone: {!User.Phone} | Fax: {!User.Fax}
+{!User.Email} | www.FleetOne.com
+
+To opt out of all email marketing messages from WEX Fleet One, click here from the email address you wish to unsubscribe.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>EFS Implementation-Active</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>All_EFS_Users</group>
+        <role>F1_Director_Marketing</role>
+        <role>LearningandDevelopment</role>
+        <role>Marketing</role>
+        <role>MarketingReporting</role>
+        <role>OTR_Admin</role>
+        <role>OTR_Implementation</role>
+        <role>OTR_Implementation_Manager</role>
+        <roleAndSubordinatesInternal>LearningandDevelopment</roleAndSubordinatesInternal>
+    </sharedTo>
+</EmailFolder>

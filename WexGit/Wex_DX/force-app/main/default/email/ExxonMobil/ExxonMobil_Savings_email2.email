@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Rep Email - Savings</title>
+</head>
+
+<body style="background:#d1d1d1;">
+
+<table width="650" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#fff; border-collapse:collapse;">
+	<tr>
+		<td width="650"><img src="http://www.exxonmobilfleetoffers.com/images/xom-076a/header-savings.jpg" alt="Take Control of Your Fuel Expenses - rebates of up to 5 cents per gallon, every day!*" width="650" height="291" border="0" /></td>
+	</tr>
+    <tr>
+		<td width="650"><a href="http://exxonmobilfleetoffers.com/{!User.FirstName}{!User.LastName}/savings.php"><img src="http://exxonmobilfleetoffers.com/images/xom-076a/header-btn-savings.jpg" alt="Find Out More" width="650" height="40" border="0" /></a></td>
+	</tr>    
+</table>
+
+<table width="650" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#ffffff; border-collapse:collapse;">
+	<tr>
+    	<td width="45" valign="top">&nbsp;</td>
+        <td width="560">                
+        	<table width="560" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#ffffff; border-collapse:collapse;">
+            <tr>
+            	<td width="50"></td>
+                <td width="460" colspan="2"><p style="font-family: Arial, Helvetica, sans-serif; font-size:13pt; color:#1767b3; line-height:25px; font-style: italic; margin-bottom: 0;"">"Everybody wants to have cheaper fuel. But on top of my rebate, my invoice is easy to understand, and my drivers hardly ever have a problem using the cards. Everything on this program has worked well for me."</p></td>
+                <td width="50"></td>
+            </tr>
+            
+            <tr>
+            	<td width="50">&nbsp;</td>
+                <td width="200">&nbsp;</td>
+                <td width="260" valign="top"><p style="font-family: Arial, Helvetica, sans-serif; font-size:10pt; color:#1767b3; line-height:25px; margin-top: 0;""><strong style="font-size:13pt;">Paul McGuire</strong><br />
+                <em>General Superintendent<br />
+                Farmer &amp; Irwin Corp. Mechanical Contractors</em></p></td>
+                <td width="50">&nbsp;</td>
+            </tr>
+            </table>        
+		</td>
+        <td width="45">&nbsp;</td>
+    </tr>
+    <tr bgcolor="#ffffff">
+    	<td width="45">&nbsp;</td>
+        <td width="560">
+        	<p style="font-family: Arial, Helvetica, sans-serif; font-size:13pt; color:#2c2c2f; line-height:25px;">Many businesses save hundreds of dollars using ExxonMobil's volume-based fuel rebates.</p>
+            
+            <h2 style="font-family: Arial, Helvetica, sans-serif; color: #D41E36; font-size: 22px; font-weight: bold; text-align: center;">How much could your business save?</h2>
+            	<table style="font-family: Arial, Helvetica, sans-serif; border: 1px solid #010101; border-collapse: collapse; margin: 0 auto; text-align: center; width: 380px; font-size: 11px;" cellpadding="4">
+                	<tr>
+                    	<td colspan="2" style="background: #1767b3; height: 22px; color: #ffffff; font-size: 14px;">REBATE STRUCTURE</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #010101; font-weight: bold;">
+                    	<td>Gallons Purchased<br />Per Billing Period</td>
+                        <td>Rebate<br />Per Gallon</td>
+                    </tr>
+                    <tr>
+                    	<td>0 - 499</td>
+                        <td>0.0&cent;</td>
+                    </tr>
+                    <tr>
+                    	<td>500 - 1,499</td>
+                        <td>1.5&cent;</td>
+                    </tr>
+                    <tr>
+                    	<td>1,500 - 3,999</td>
+                        <td>2.0&cent;</td>
+                    </tr>
+                    <tr>
+                    	<td>4,000 - 6,999</td>
+                        <td>3.0&cent;</td>
+                    </tr>
+                    <tr>
+                    	<td>7,000 - 9,999</td>
+                        <td>4.0&cent;</td>
+                    </tr>
+                    <tr>
+                    	<td>10,000+</td>
+                        <td>5.0&cent;</td>
+                    </tr>
+                </table>
+        </td>
+        <td width="45">&nbsp;</td>
+    </tr>
+    <tr>
+    	<td colspan="3" bgcolor="#ffffff" height="30"></td>    
+    </tr>
+    <tr>
+    	<td colspan="3" bgcolor="#d41e36" height="40"><a href="http://exxonmobilfleetoffers.com/{!User.FirstName}{!User.LastName}/savings.php"><img src="http://exxonmobilfleetoffers.com/images/xom-076a/btn-findoutmore.gif" alt="Find Out More" width="650" height="40" border="0" /></a></td>    
+    </tr>
+    <tr>
+    	<td colspan="3" bgcolor="#d41e36" height="14"></td>    
+    </tr>
+</table>
+
+<table width="650" align="center" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="background:#ffffff; border-collapse:collapse;">
+	<tr>
+    	<td width="45">&nbsp;</td>
+		<td width="560">        
+        <p style="line-height: 10px; margin: 0;">&nbsp;</p>
+        
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:12pt; color:#2c2c2f; line-height: 25px;">
+        Please contact your personal sales representative:<br />
+        <strong>{!User.FirstName} {!User.LastName}</strong><br />
+        {!User.Title}<br />
+        {!User.Phone}<br />
+        {!User.Email}</p>
+        
+		<p style="font-family: Arial, Helvetica, sans-serif; font-size:8pt; color:#aeadad; line-height: 15px;">* Rebates issued if payment is made in accordance with the terms of the ExxonMobil Fleet Charge Account Agreement. Rebates may not be allowed where prohibited by law and apply only to fuel purchases made with the ExxonMobil Fleet Card at participating Exxon and Mobil branded locations in the U.S. Rebates are not applied at time of purchase &mdash; they will appear as an account credit on the same billing statement with your monthly purchases. Please contact ExxonMobil Fleet Services for further information on available rebates. Rebates can be changed at any time at ExxonMobil's discretion.</p>
+
+<p style="font-family: Arial, Helvetica, sans-serif; font-size:8pt; color:#aeadad; line-height: 15px;">**The ExxonMobil Fleet Card fees are applicable under the No Fees Promotion.  The $50.00 standard account set-up fee and $10.00 standard monthly account fee is waived for fleets that are approved or apply for credit in 2014.</p>
+        
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:8pt; color:#aeadad; line-height: 15px;">Exxon and Mobil are registered trademarks of Exxon Mobil Corporation.</p>
+        
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:8pt; color:#aeadad; line-height: 15px;">The ExxonMobil Fleet and Universal cards are issued by WEX Bank.</p>
+        
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:8pt; color:#aeadad; line-height: 15px;">This is an advertisement from WEX, Inc. on behalf of ExxonMobil Fleet Cards. If you no longer wish to receive future email advertisements, email us to unsubscribe at <a href="mailto:info@fsolnews.com?subject=UNSUBSCRIBE" style="color:#305b7c; text-decoration:underline;">info@fsolnews.com</a> with the word unsubscribe in the subject line. Please be sure to include your name, company name, and email address in the email.</p>
+        </td>
+        <td width="45">&nbsp;</td>
+	</tr>
+</table>
+
+</body>
+</html>

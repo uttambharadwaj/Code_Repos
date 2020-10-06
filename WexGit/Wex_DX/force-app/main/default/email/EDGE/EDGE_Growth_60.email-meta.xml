@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>EDGE email with tools to grow gallons</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>EDGE Growth 60</name>
+    <style>freeForm</style>
+    <subject>{!Account.Name}&apos;s Fuel Savings Plan</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

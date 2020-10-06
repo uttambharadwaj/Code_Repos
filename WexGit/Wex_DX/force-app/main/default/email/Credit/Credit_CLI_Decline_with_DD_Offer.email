@@ -1,0 +1,167 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Date: {!Today}</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!Case.Contact}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><a name="Text1"></a><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!Case.Account}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!Account.BillingAddress}</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><b><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Re: Credit Line Increase Decline, Direct Debit Payment System
+Offer</span></b><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><br></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-family: Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);">Account Number#:&nbsp;*********{!Case.Masked_External_Account__c}</span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-family: Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><br></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Dear&nbsp;{!Case.Contact},</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">We received your request for a credit line increase on your
+account.&nbsp; We are unable to approve the credit line increase, but we can
+offer you a solution that will accommodate your fueling needs.&nbsp; This
+solution involves paying your invoices electronically via our Direct Debit
+Payment program.&nbsp; Enclosed is some information about the service.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">To begin using the Direct Debit Payment Program service,&nbsp;<b>please
+review and complete the following action items</b>:<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 12pt; font-family: Arial, sans-serif;">&nbsp;</span></p><ul style="margin-top:0in" type="disc">
+ <li class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Complete the attached
+     Authorization Agreement.</span><span style="font-size:12.0pt;font-family:
+     &quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;mso-bidi-font-family:Arial">Fax the completed form and a
+     voided check (not a deposit slip) to (207) 253-1465 or email&nbsp;<a href="mailto:globalcredit@wexinc.com"><span style="color:blue">globalcredit@wexinc.com</span></a>.</span></li></ul><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Our reasons for not granting the credit line increase include the
+following:</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">A.&nbsp;&nbsp;Credit Line</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">1.&nbsp;<a name="Check27"></a>&nbsp;Slow or delinquent payment
+history in the last 12 months.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">2.&nbsp;<a name="Check28"></a>&nbsp;Limited or no actual usage in
+the last 6-12 months.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">3.&nbsp;<a name="Check30"></a>&nbsp;Your account has not been open
+for at least 12 months.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">B.&nbsp;&nbsp;Business Credit</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">1.&nbsp;<a name="Check6"></a>&nbsp;Delinquent past or present credit
+obligations.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">2.&nbsp;<a name="Check7"></a>&nbsp;Unsatisfactory financial
+conditions and/or rating.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">3.&nbsp;<a name="Check8"></a>&nbsp;Insufficient information.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">4.&nbsp;<a name="Check9"></a>&nbsp;Presence of suits, liens, or
+judgments.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">C.&nbsp;&nbsp;Financial Information</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">1.&nbsp;<a name="Check14"></a>&nbsp;Unsatisfactory conditions
+present.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">2.&nbsp;<a name="Check15"></a>&nbsp;Insufficient financial strength
+to support original credit line.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">3.&nbsp;<a name="Check29"></a>&nbsp;Updated financial statements
+have not been received.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">D.&nbsp;<a name="Check5"></a>&nbsp;Other</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">1.&nbsp;<a name="Check19"></a>&nbsp;Supportive or additional
+information has not been received.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">2.&nbsp;<a name="Check21"></a>&nbsp;Adverse information received
+from outside sources.</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;text-align:
+justify;line-height:normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Sincerely,</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Credit Services</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;">WEX Bank</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
+normal"><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><span style="text-align: justify; font-size: 9pt;">The federal Equal Credit
+Opportunity Act prohibits creditors from discriminating against credit
+applicants on the basis of race, color, religion, national origin, sex, marital
+status, age (provided the applicant has the capacity to enter into a binding contract);
+because all or part of the applicant’s income derives from any public
+assistance program; or because the applicant has in good faith exercised any
+right under the Consumer Credit Protection Act.</span><span style="text-align: justify; font-size: 9pt;">&nbsp;
+</span><span style="text-align: justify; font-size: 9pt;">The federal agency that administers compliance with this law concerning
+this creditor is the </span><span style="text-align: justify; font-size: 9pt;">Federal Deposit
+Insurance Corporation, </span><span style="text-align: justify; font-size: 9pt;">FDIC Consumer Response Center, 1100 Walnut St,
+Box #11, Kansas City, MO 64106.</span></p><span style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"><font face="arial" style="" size="2"></font></span><p style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);"></p>]]></td>
+</tr>
+</table>

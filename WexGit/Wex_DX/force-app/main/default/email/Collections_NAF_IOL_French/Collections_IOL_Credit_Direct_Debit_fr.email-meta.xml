@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - Credit - Direct Debit (fr)</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - No de compte: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+
+Voici les deux modes de paiement que nous proposons sur notre site web :
+
+-  Paiement manuel en ligne – Ouvrez une session et faites vous-même vos paiements.
+
+-  Prélèvement automatique – Nous prélevons directement le solde à payer chaque mois.
+
+
+Chacune de ces options exige une inscription en ligne :
+
+
+Paiement manuel en ligne :
+
+-  Allez sous FACTURES ET PAIEMENT &gt; EFFECTUER UN PAIEMENT &gt; ENTRER LES RENSEIGNEMENTS BANCAIRES[EV1]  &gt; AJOUTER UN COMPTE BANCAIRE.
+
+-  Entrez vos renseignements bancaires et cliquez sur SOUMETTRE au bas de l’écran.
+
+-  Vous trouverez un lien vers le formulaire de prélèvement automatique au bas de la page, près de la mention « Vous trouverez le formulaire en ligne, au format PDF. »
+
+
+Prélèvement automatique :
+
+-  Allez sous FACTURES ET PAIEMENT &gt; S’INSCRIRE AU PRÉLÈVEMENT AUTOMATIQUE[EV2]  puis cliquez sur AJOUTER UN COMPTE BANCAIRE.
+
+-  Entrez vos renseignements bancaires et cliquez sur SOUMETTRE au bas de l’écran.
+
+-  Vous trouverez un lien vers le formulaire de prélèvement automatique au bas de la page, près de la mention « Vous trouverez le formulaire en ligne, au format PDF. »
+
+
+Vous devrez envoyer le formulaire de prélèvement automatique accompagné d’un spécimen de chèque par télécopieur ou par courriel à : iol_pad@wexinc.com
+
+
+Le formulaire de prélèvement automatique sera approuvé dans un délai de deux jours ouvrables. Vous recevrez un courriel de confirmation et le statut de votre compte bancaire passera de EN ATTENTE à ACTIF.
+
+
+
+Pour toute question, n’hésitez pas à communiquer avec nous.
+
+
+
+
+Comptes clients et gestion du crédit
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,16 @@
+{!Contact.FirstName}, 
+
+Thanks for taking my call today, I enjoyed the opportunity to speak with you about your business.
+ 
+I reached out because Keith Cantrell, CITGO's Fuel Card Manager, is running a special offer for Panama City and Pensacola area businesses: 10-cents per gallon during your first 90-days on the CITGO Fleet Card program. After 90-days, you can continue to save up to 5-cents off per gallon on your business's fuel purchases. See the attached document with details.
+ 
+I would like you to meet with Keith as it sounds like this program would be a good fit for your business.
+ 
+You can reach me at {!User.Phone} or via email at {!User.Email}. I look forward to helping you save some money on fuel!
+ 
+Sincerely, 
+
+{!User.FirstName} {!User.LastName}
+CITGO Fuel Card Specialist 
+Phone: {!User.Phone} 
+Email: {!User.Email}

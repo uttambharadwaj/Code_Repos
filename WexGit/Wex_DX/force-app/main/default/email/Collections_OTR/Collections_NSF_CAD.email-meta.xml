@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - NSF CAD</name>
+    <style>freeForm</style>
+    <subject>NSF CAD</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+[NSF Amount] NSF draft
+
+
+Dear Customer,
+
+
+Your recent payment in the amount of [NSF Amount] has been returned by your bank with the notation NSF. Under these circumstances, credit privileges have been suspended and your account has been inactivated. Please wire transfer $50.00 immediately per the instructions listed below. Once this issue has been cleared up please contact us to discuss the terms and conditions for reactivation of your account.
+
+
+Wiring Instructions for EFS CAD
+Swift code for RBC: ROYCCAT2
+EFS Canada Inc.
+Royal Bank of Canada
+Main Branch
+65 Princess St.
+Kingston, ON K7L 1A6
+Transit #: 02382
+Bank ID: 0003
+Acct #: 1017482
+Reference #: {!Account.Carrier_ID__c}
+
+
+
+
+PLEASE NOTE: A $50 NSF fee will be assessed to your account and will show on the next statement created. All wire payments of less than $2,500.00 will be charged an inbound bank fee of $5.00.
+
+
+Thank you for your prompt attention to this matter.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Fuel/FuelAuth_TAOnly_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Fuel Authorization Form TA Only</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Fuel Authorization Form (TA)</name>
+    <style>none</style>
+    <subject>TruckersB2B Fuel Authorization Form</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

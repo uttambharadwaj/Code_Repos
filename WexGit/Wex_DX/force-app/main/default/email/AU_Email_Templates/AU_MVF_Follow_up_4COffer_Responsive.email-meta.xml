@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used for AU 4c offer 2018 campaign</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU MVF Follow-up_4COffer Responsive</name>
+    <style>none</style>
+    <subject>Fuel Card Enquiry - Looking for the best fuel card for your business?</subject>
+    <textOnly>Hi {!Lead.FirstName},
+
+
+
+We have received your request for more information through Expert Market in regards to a fuel card provider.
+
+
+
+WEX Motorpass is Australia’s #1 most widely accepted fuel card with acceptance at over 93% of service stations across Australia.
+
+Why choose WEX Motorpass?:
+
+No joining cancellation/termination fees
+No inactive card fees or non-fuel service fees
+Use Woolworths Shop-a-docket’s in conjunction with the cards
+Set transaction controls to limit the amount (or volume) of fuel purchased
+
+How does WEX Motorpass compare to other multi-branded fuel cards in the market? We will be calling you shortly to discuss your fuel card requirements but if you would like to find out more information right away please visit motorpass.com.au
+
+
+
+Kind Regards,
+
+
+
+WEX Motorpass
+
+WEX Motorpass Benefits
+
+
+
+Extensive acceptance WEX Motorpass gives you access to one of Australia’s largest fuel networks
+
+
+
+No more receipts
+
+WEX Motorpass statements are approved by the Australian Tax Office
+
+
+
+Reduced administration Transactions are processed in real time at the terminal as opposed to some other competitors that post sales vouchers for processing
+
+
+
+WEX Motorpass’ superior fuel card acceptance delivers savings beyond the fuel price. Visit motorpass.com.au/savings calculator to learn more
+
+The offer ends 11:59pm AEST 31st Mat 2019 and is available by applying online at motorpass.com.au or by calling 1300 591 431. It is available to new customers only and cannot be used in conjunction with any other offer. The offer applies to each card under your WEX Motorpass account, and applies only to fuel purchases. Discount does not apply to LPG fuels. Discounts are available off the pump price at all WEX Motorpass participating service stations, excluding Coles Express. A 1% transaction fee applies to purchases at Coles Express only, with no transaction fees at any other service stations. Applicants and authorised representatives must be over 18 years, have an ABN and use their vehicle for business purposes to apply. The standard WEX Motorpass terms and conditions and fees and charges apply. Please see motorpass.com.au/terms-and-conditions. Credit is issued by WEX Australia Pty Ltd ABN 68 005 970 570 and applications are subject to credit assessment criteria. ™ Motorpass and Anywhere you are, are registered trademarks of WEX Australia Pty Ltd ABN 68 005 970 570.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

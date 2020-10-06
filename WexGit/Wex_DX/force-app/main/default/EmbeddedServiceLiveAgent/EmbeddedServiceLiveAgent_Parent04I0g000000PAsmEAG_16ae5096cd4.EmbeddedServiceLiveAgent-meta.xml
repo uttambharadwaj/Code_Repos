@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmbeddedServiceLiveAgent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <embeddedServiceConfig>Shell_Inside_Sales_Leads</embeddedServiceConfig>
+    <embeddedServiceQuickActions>
+        <embeddedServiceLiveAgent>EmbeddedServiceLiveAgent_Parent04I0g000000PAsmEAG_16ae5096cd4</embeddedServiceLiveAgent>
+        <order>1</order>
+        <quickActionDefinition>Snapins_Lead_PrechatQuickAction_08h0g000000PAsN</quickActionDefinition>
+        <quickActionType>Prechat</quickActionType>
+    </embeddedServiceQuickActions>
+    <enabled>true</enabled>
+    <fontSize>Medium</fontSize>
+    <isOfflineCaseEnabled>false</isOfflineCaseEnabled>
+    <isQueuePositionEnabled>true</isQueuePositionEnabled>
+    <liveChatButton>Shell_Inside_Sales</liveChatButton>
+    <liveChatDeployment>Live_Agent_Chat</liveChatDeployment>
+    <masterLabel>EmbeddedServiceLiveAgent_Parent04I0g000000PAsmEAG_16ae5096cd4</masterLabel>
+    <prechatEnabled>true</prechatEnabled>
+    <scenario>Sales</scenario>
+</EmbeddedServiceLiveAgent>

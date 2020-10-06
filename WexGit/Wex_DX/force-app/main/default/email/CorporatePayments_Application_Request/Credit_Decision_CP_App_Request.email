@@ -1,0 +1,12 @@
+Credit Decision: {!CP_Application_Request__c.Credit_Decision__c}     		            Decisioned Date: {!CP_Application_Request__c.Application_Decisioned_Date__c}
+
+
+     Credit Line Approved:      {!CP_Application_Request__c.Credit_Line_Approved__c}
+     Credit Line Requested:   {!CP_Application_Request__c.Credit_Line_Requested__c}
+     Comments: {!CP_Application_Request__c.Credit_Decision_Comments__c}
+
+Billing Cycle:  {!CP_Application_Request__c.Billing_Cycle__c}
+Payment Method:   {!CP_Application_Request__c.Payment_Type__c}
+Day of Payment:  {!CP_Application_Request__c.Payment_Due_Date__c}
+
+Online Application Link: {!CP_Application_Request__c.Link}

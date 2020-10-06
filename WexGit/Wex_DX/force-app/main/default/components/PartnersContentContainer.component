@@ -1,0 +1,10 @@
+<apex:component layout="none">	
+	<apex:attribute name="width" description="The width of the content container" required="false" default="100" type="Integer"/>
+	<apex:attribute name="height" description="The height of the content container" required="false" default="150" type="Integer"/>
+
+	<div id="prow">
+		<div class="pbox" style="width:{!width}% !important; height:{!height}px !important;">
+			<apex:componentBody />
+		</div>
+	</div>
+</apex:component>

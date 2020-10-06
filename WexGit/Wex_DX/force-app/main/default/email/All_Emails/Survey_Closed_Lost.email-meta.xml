@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Draft of Closed/Lost Survey to be used with Form Assembly link</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>Survey - Closed/Lost</name>
+    <style>freeForm</style>
+    <subject>Tell us about your WEX Experience.</subject>
+    <textOnly>Thank you for considering the WEX Fleet card, we were sorry to hear you decided on a different payment solution. Please consider taking our short survey to help us offer you a better product in the future.
+
+We greatly value your feedback and actively use it to improve our products and provide customers with the best possible service.  And thank you for taking time out of your busy schedule to complete this brief questionnaire.
+
+Click Here to Begin
+
+Or copy and paste this address into your web browser’s address field: https://wex.tfaforms.net/2
+
+If you have any questions, please reach out to us at wexsurveys@wexinc.com
+
+Thank you,
+
+WEX
+wexsurveys@wexinc.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

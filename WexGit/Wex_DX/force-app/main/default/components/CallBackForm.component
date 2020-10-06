@@ -1,0 +1,125 @@
+<apex:component controller="CallBackCtrl" allowDML="true">
+    
+    <apex:attribute name="objController" type="Ctrl_MotorpassForm" assignTo="{!Motorpass}" description="The controller for the page." />
+      
+    <body>
+    
+
+<!--        <apex:attribute name="redirect" type="String" description="page to be redirected"/>-->
+        
+        <apex:form id="theForm">
+        
+<!--        <apex:actionFunction name="redirectToBookingPage" action="{!goBack}" immediate="true"/>-->
+        
+        <div id="form-wrapper-callback" style="background-color:#E6E6E6;border: 2px solid red;">
+        
+            <div class="container-callback alert-block">
+        
+              <div class="container-callback-close">
+                  <!--
+                  <apex:commandButton immediate="true" value="Close" onclick="hideForm();" action="{!closeForm}" rerender="theForm" styleclass="{!IF($CurrentPage.Parameters.site == 'RAC','close','closeMC')}" />
+                  -->
+              </div>
+            
+            <div id="formcallback" class="form-horizontal">
+                
+                <apex:outputPanel rendered="{!LEN(errorStr)>0}" >
+                
+                    <div class="message errorM3" style="color:red;padding:25px;">
+                        {!errorStr}
+                    </div>
+                
+                </apex:outputPanel> 
+    
+                <apex:outputPanel style="padding-left: 20px;" rendered="{!NOT(showThankYouText)}">
+                    
+                    <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td colspan="2" style="padding-left: 20px; font-size: 13px; color: #666;"><b>Got a question? </b>
+                        <br/><br/>Have one of our team call you back.<br/><br/></td>
+                      </tr>
+                      <tr>
+                        <td align="left" width="50%" style="padding-left: 20px; font-size: 13px; color: #666;"><label class="control-label" for="firstname">First name<span style="color: red;" class="required">*</span> </label></td>
+                        <td align="left" width="50%"><apex:inputField value="{!l.firstName}" required="true" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,20);"/></td>
+                      </tr>
+                      <tr>
+                        <td align="left" width="50%" style="padding-left: 20px; font-size: 13px; color: #666;"><label class="control-label" for="surname">Last name<span style="color: red;" class="required">*</span> </label></td>
+                        <td align="left" width="50%"><apex:inputField value="{!l.lastName}" required="true" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,20);"/></td>
+                      </tr>
+                      <tr>
+                        <td align="left" width="50%" style="padding-left: 20px; font-size: 13px; color: #666;"><label class="control-label" for="company">{!IF(Motorpass.option == 'Individual','Employer','Business name')}<span style="color: red;" class="required">*</span> </label></td>
+                        <td align="left" width="50%"><apex:inputField value="{!l.Company}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,35);" required="true"/></td>
+                      </tr>
+                      <tr>
+                        <td align="left" width="50%" style="padding-left: 20px; font-size: 13px; color: #666;"><label class="control-label" for="phone">Telephone<span style="color: red;" class="required">*</span> </label></td>
+                        <td align="left" width="50%"><apex:inputField value="{!l.Phone}" required="true" onkeypress="return checkFieldLength(event,this.id,10); return numbersonly(event, false)"/></td>
+                      </tr>
+                      <tr>
+                        <td align="left" width="50%"></td>
+                        <td align="left" width="50%"><apex:commandButton styleclass="smlbutton" value="Submit" onclick="this.style.visibility = 'hidden';" action="{!createNewLead}" rerender="theForm"  /></td>
+                      </tr>
+                    </table>
+                
+                </apex:outputPanel> 
+                
+                <apex:outputPanel rendered="{!showThankYouText}" >
+                    <div style="padding:25px;text-align:left;" >
+                        <h2>Thank you.</h2>
+                        <p>Your call back request has been submitted.<br/><br/>
+                        We will call you on the telephone number you’ve provided within 1 business day.<br/>
+                        </p>
+                     </div>
+                </apex:outputPanel>
+            
+                
+            </div>
+            
+            </div>
+            
+        </div>
+        
+        </apex:form>
+        
+        <script type="text/javascript">
+            function hideForm()
+            {               
+
+                $("#contactForm").hide('slide', {direction: 'right'}, 1000);
+                $("#contactLink").animate({ "right": "0px" }, 1000);
+                $("#transparentDiv").css({ 'display':'none' });
+
+            }
+            
+            function checkFieldLength(evt, eltId, maxlen)
+            {
+                var elt = document.getElementById(eltId);      
+                
+                var charCode = (evt.which) ? evt.which : event.keyCode;     
+                if(charCode == 8)
+                    return true;         
+                if(charCode >= 48 && charCode <= 57)
+                {    
+                    if(elt.value.length < maxlen)
+                        return true;
+                }
+                return false;
+            }
+            
+            function checkFieldLength_NoCharCheck(evt, eltId, maxlen)
+            {        
+                var elt = document.getElementById(eltId);      
+                
+                var charCode = (evt.which) ? evt.which : event.keyCode;     
+                if(charCode == 8)
+                    return true;                
+                if(elt.value.length < maxlen)
+                    return true;
+                return false;
+            }
+        
+        
+        </script>
+        
+    </body>
+    
+</apex:component>

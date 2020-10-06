@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Tools to help your drivers fuel in the Pilot Flying J Network</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TruckersB2B</letterhead>
+    <name>PFJ Driver Tools</name>
+    <style>freeForm</style>
+    <subject>Tools to help your drivers fuel in the PFJ Network</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+
+
+To help increase your rebate and to see the maximum savings possible, here are a few ways to help your drivers fuel in the Pilot Flying J Network. Please share this information with your drivers, driver managers, and/or dispatchers.
+
+
+Pilot Flying J Directories.
+I can send you a directory booklet for each driver, which contains all the PFJ locations listed by state. Also included are PFJ coupons for food, coffee, and more. For more information visit http://pilotflyingj.com/locations for an online truck stop locator.
+
+Pilot Flying J Mobile Application.
+Visit http://pilotflyingj.com/mypilot for more information. You can also have your drivers visit the Apple Store or Android/Google Play Market to download the app.
+
+Fuel Study.
+I can analyze your lanes and help you to identify the best priced PFJ locations on each route. By consolidating your purchases to the lowest priced sites, you can maximize your savings.
+
+
+Please feel free to call or email me with any other questions.
+
+
+Thanks,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+{!User.Phone}
+
+
+
+Connect with us »»
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

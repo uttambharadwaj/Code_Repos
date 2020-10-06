@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>XOM Savings email that links to personalized landing page</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ExxonMobil Savings email</name>
+    <style>none</style>
+    <subject>Fuel rebates up to 5-cents per gallon</subject>
+    <textOnly>Many businesses save hundreds of dollars using ExxonMobil&apos;s volume-based fuel rebates.
+
+&quot;Everybody wants to have cheaper fuel. But on top of my rebate, my invoice is easy to understand, and my drivers hardly ever have a problem using the cards. Everything on this program has worked well for me.&quot;
+
+Paul McGuire
+General Superintendent, Farmer &amp; Irwin Corp.
+
+
+How much could your business save?
+
+REBATE STRUCTURE
+0 - 499 gallons per billing period;  0.0¢ rebate
+500 - 1,499 gallons per billing period; 1.5¢ rebate
+1,500 - 3,999 gallons per billing period; 2.0¢ rebate
+4,000 - 6,999 gallons per billing period;  3.0¢ rebate
+7,000 - 9,999  gallos per billing period; 4.0¢ rebate
+10,000+  gallons per billing period; 5.0¢ rebate
+
+
+Please contact your personal sales representative:
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+
+
+* Rebates issued if payment is made in accordance with the terms of the ExxonMobil Fleet Charge Account Agreement. Rebates may not be allowed where prohibited by law and apply only to fuel purchases made with the ExxonMobil Fleet Card at participating Exxon and Mobil branded locations in the U.S. Rebates are not applied at time of purchase — they will appear as an account credit on the same billing statement with your monthly purchases. Please contact ExxonMobil Fleet Services for further information on available rebates.  Rebates can be changed at any time at ExxonMobil&apos;s discretion.
+
+**The ExxonMobil Fleet Card fees are applicable under the No Fees Promotion.  The $50.00 standard account set-up fee and $10.00 standard monthly account fee is waived for fleets that are approved or apply for credit in 2014.
+
+Exxon and Mobil are registered trademarks of Exxon Mobil Corporation.
+
+The ExxonMobil Fleet and Universal cards are issued by WEX Bank.
+
+This is an advertisement from WEX, Inc. on behalf of ExxonMobil Fleet Cards. If you no longer wish to receive future email advertisements, email us to unsubscribe at info@fsolnews.com with the word unsubscribe in the subject line. Please be sure to include your name, company name, and email address in the email.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,7 @@
+Hello,
+
+The quote for Account {!zqu__Quote__c.PrimaryAccountName__c} needs approval for the following reason:
+
+{!zqu__Quote__c.Approval_Reason__c}
+
+Link to Quote: {!zqu__Quote__c.Link}

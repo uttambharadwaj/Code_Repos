@@ -1,0 +1,43 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="font-family: &quot;Times New Roman&quot;, Times, serif; font-size: 12pt;">Please find information on the</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">&nbsp;Chevron and Texaco Business Card Direct Debit
+Program. With this plan, we simply debit your fleet program balance directly
+from your checking account on either the 5<sup>th</sup>&nbsp;or&nbsp;</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">26</span><sup style="font-family: &quot;Times New Roman&quot;, serif;">th</sup><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">&nbsp;day of every month for
+the previous month’s transactions.</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">I
+am attaching the form you need to complete to get set up on Direct Debit.
+Please take a few moments to fill this out and then fax it back to me at&nbsp;<i>{!User.Fax}</i>,&nbsp;<b>along
+with a voided check</b>.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">Once
+I receive the form, I will call you to verify the setup of your account prior
+to issuing your cards. Meanwhile, if you have any questions please just give me
+a call.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">Thank
+you for choosing the Chevron and Texaco Business Card Program.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><i><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;, serif;">Sincerely,&nbsp;<br>
+</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+{!User.Email}&nbsp;<br>
+<!--[if !supportLineBreakNewLine]--><br>
+<!--[endif]--></span></i><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 12pt 0.25in; line-height: normal;"><i><span style="font-size:8.0pt;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:gray">CONFIDENTIALITY NOTICE: "This message contains confidential
+information of WEX Inc. It is intended only for the use of the designated
+recipient(s) stated above and further distribution of the information is
+prohibited. If you have received this message in error, please notify sender
+immediately by telephone or reply by e-mail and delete the entire message and
+any attachments."</span></i><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="color: gray; font-family: Arial, sans-serif; font-size: 8pt; font-style: italic;">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span><font face="Arial, sans-serif">&nbsp;</font><span style="color: rgb(128, 128, 128); font-family: Arial, sans-serif; font-size: 10.6667px; font-style: italic;">| <a href="https://www.wexinc.com/privacy-policy">Privacy Policy</a></span></p>]]></td>
+</tr>
+</table>

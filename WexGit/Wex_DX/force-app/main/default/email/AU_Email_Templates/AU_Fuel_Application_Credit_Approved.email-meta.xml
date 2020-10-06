@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Application - Credit approved</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Fuel Application - Credit Approved</name>
+    <style>freeForm</style>
+    <subject>Your Application - {!AU_Application_Request__c.Name} credit decision has been approved</subject>
+    <textOnly>Hi
+
+
+Your Application - {!AU_Application_Request__c.Name} credit decision has been approved.
+
+
+Please click on the following link to access the record : {!AU_Application_Request__c.Link}
+
+
+Regards,
+
+WEX Australia</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Dawn Wiggins</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Phillips_Letterhead</letterhead>
+    <name>Phillips Template</name>
+    <style>freeForm</style>
+    <subject>Phillips 66 will save you $3,000 in fuel costs for the rest of the year</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

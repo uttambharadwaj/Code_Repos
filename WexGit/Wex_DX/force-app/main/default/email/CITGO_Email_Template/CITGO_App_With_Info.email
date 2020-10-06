@@ -1,0 +1,62 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p style="margin-bottom: 12pt;"><p class="MsoNormal" style="margin-bottom: 6pt;"><font face="Times New Roman, Times, serif" style="">Dear {!Contact.FirstName},<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt;"><font face="Times New Roman, Times, serif"><span style="mso-bidi-font-style:
+italic">Thank you for your interest in the&nbsp;</span><span style="line-height: 107%;">CITGO Fleet Card Program</span><span style="mso-bidi-font-style:italic">.</span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt;"><font face="Times New Roman, Times, serif"><span style="mso-bidi-font-style:
+italic">Below you will find some <b style="mso-bidi-font-weight:normal">additional
+information</b> about our&nbsp;</span><span style="line-height: 107%;">CITGO Fleet Card Program</span><span style="mso-bidi-font-style:italic">&nbsp;to help you consider our widely accepted&nbsp;</span><span style="line-height: 107%;">CITGO Fleet Card&nbsp;</span><span style="mso-bidi-font-style:italic">as the one-card solution for
+all your fueling needs.</span></font></p><p class="MsoNormal" style="margin-bottom: 6pt;"><ul><li><font face="Times New Roman, Times, serif"><b style="text-indent: -0.25in;">We
+save you money</b><span style="text-indent: -0.25in;">. Robust fuel
+rebates at all CITGO</span><span style="text-indent: -0.25in;">&nbsp;</span><span style="text-indent: -0.25in;">locations.</span></font></li><li><font face="Times New Roman, Times, serif"><span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: normal;">&nbsp;</span><b style="text-indent: -0.25in;">We
+save you time</b><span style="text-indent: -0.25in;">. You’ll enjoy
+the convenience of a single fueling card program and one, easy-to-read invoice.
+You can also easily download transaction data from the web right to QuickBooks
+or Excel each month.</span></font></li><li><font face="Times New Roman, Times, serif"><b style="text-indent: -0.25in;">We
+give you control</b><span style="text-indent: -0.25in;">. Detailed
+reports show how and where you spent your fueling money, so you can account for
+every penny.</span></font></li><li><font face="Times New Roman, Times, serif"><b style="text-indent: -0.25in;">We
+make it convenient</b><span style="text-indent: -0.25in;">. Your
+drivers only need to carry one card to fuel and save at any participating
+location.</span></font></li></ul></p><p class="MsoNormal" style="margin: 0in 0in 6pt; text-indent: -0.25in; line-height: 107%;"><font face="Times New Roman, Times, serif"><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt;"><font face="Times New Roman, Times, serif">You can find a complete list of <b style="mso-bidi-font-weight:normal">accepting
+locations</b> at&nbsp;<o:p></o:p><a href="http://www.citgo.com/Locator/StoreLocator.jsp">http://www.citgo.com/Locator/StoreLocator.jsp</a> .</font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt;"><font face="Times New Roman, Times, serif"><span style="mso-bidi-font-style:
+italic">It’s <b style="mso-bidi-font-weight:normal">easy</b> to enroll. Simply
+complete the attached application form and fax it back to me
+at&nbsp;{!User.Fax}. </span><span style="mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;color:black">You can also scan and email
+the form back to me at the email address below.</span><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt;"><span style="mso-bidi-font-style:
+italic"><font face="Times New Roman, Times, serif">Sincerely,&nbsp;<br>
+<i><br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+Email - {!User.Email}<o:p></o:p></i></font></span></p><p class="MsoNormal" style="margin-bottom: 6pt;"><span style="mso-bidi-font-style:
+italic"><i><font face="Times New Roman, Times, serif"><br></font></i></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt;"><font face="Times New Roman, Times, serif" size="1"><i>CONFIDENTIALITY NOTICE:
+"This message contains confidential information of WEX Inc. It is intended
+only for the use of the designated recipient(s) stated above and further
+distribution of the information is prohibited. If you have received this
+message in error, please notify sender immediately by telephone or reply by
+e-mail and delete the entire message and any attachments."</i><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><font face="Times New Roman, Times, serif" size="1"><i>WEX Inc.,
+97 Darling Avenue, South Portland, ME 04106</i><o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 6pt; line-height: normal;"><i style=""><font face="Times New Roman, Times, serif" style="" size="1">This is an
+advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},<span class="MsoHyperlink" style=""><a href="mailto:info@wexnews.com?subject=Unsubscribe">&nbsp;email us to
+unsubscribe</a></span>. Please be sure to include your name, company name and
+email address in the email.</font></i></p></p>]]></td>
+</tr>
+</table>

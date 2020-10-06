@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Merchant WEX Welcome Letter  MC 0881</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_WEX_LetterHead</letterhead>
+    <name>AU WEX Welcome Letter  MC 0881</name>
+    <style>freeForm</style>
+    <subject>Welcome to Motorcharge</subject>
+    <textOnly>Dear {!Contact.FirstName}
+
+
+
+Welcome to the Motorcharge merchant network!
+
+
+Motorcharge is increasingly the card of choice for administering vehicle related expenditure among Australian businesses, with almost 105,000 cardholders nationally now using Motorcharge for fuel, vehicle repairs, vehicle rental, accommodation and taxis.  Display the Motorcharge symbol prominently to ensure passing business does not pass you by!
+
+
+Your merchant number is on the merchant card enclosed and should be quoted whenever you require authorisation, order stationery or have a query relating to your account.
+
+
+Please read the enclosed Merchant Operating Guide carefully and ensure that your staff are aware of the documented procedures, particularly those relating to purchase authorization, completing sales vouchers, purchasing restrictions and manual batching.
+
+
+You will shortly receive a Starter Pack containing the stationery required to process Motorcharge transactions. Please notify us if this is not delivered within 5 working days.
+
+
+The ability to access important information via our Web Self Service facility is also available to you 24 hours a day, 7 days a week.  Using the Web Self Service you can:
+
+-           access batch/settlement information
+
+-           view and download statements
+
+-           access warning bulletins/hot card lists
+
+-           view and update your account details
+
+-           And more!
+
+
+To log on please go to www.motorcharge.com.au and access the merchant tab.  If you provided us with an email address in your application you will have received an email with all your logon information.  If you have not provided us with an email address please contact us on the number below to receive your logon details.
+
+
+At WEX Fuel Card Australia Pty Ltd we acknowledge your vital contribution to servicing the needs of our joint customers. We look forward to a mutually beneficial relationship and encourage you to contact our Merchant Support team on 1300 130 113 if you have any queries or concerns.
+
+
+
+
+Yours sincerely,
+
+
+Tracey Vines
+
+Merchant Support Manager
+
+
+
+
+
+
+
+
+
+
+
+
+
+We see corporate payments differently.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>ESSO Test Template</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso</letterhead>
+    <name>Esso Key Points-SK</name>
+    <style>freeForm</style>
+    <subject>Esso Business Fuel Card Program</subject>
+    <textOnly>Hey {!Contact.FirstName},
+
+Thank you for allowing me the opportunity to provide you with additional information. I&apos;ve attached information about the advantages and benefits for you to look over.  However, a brief face to face meeting or Phone conversation has proven to be the most beneficial to fully understand how our program can be tailored to your company.   Below are some key talking points to the program I&apos;d like to elaborate on that separate us from competitors:
+
+Provide you with a 7 cent discount
+Additional Association discounts
+365/24/7 access
+Security &amp; Control - no more receipts, peace of mind
+Convenience! Most retailers Canada wide in industry
+Receive 10% off at Mr. Lube
+Speedpass+ App - Know where your Esso is at your fingertip!
+ZERO Fees
+Esso Extra points - Earn and Redeem
+Aeroplan points - Travel rewards
+Best in class Customer Service
+
+If you give an honest assessment of our program compared to your current fueling methods. We are confident you will see the value in month to month savings and how efficient your time will become!
+
+To speak further about the program, please contact me to discuss.
+
+Thank you,
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

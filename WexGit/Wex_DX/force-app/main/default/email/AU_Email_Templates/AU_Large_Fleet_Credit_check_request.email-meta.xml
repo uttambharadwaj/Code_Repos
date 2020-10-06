@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Use this to obtain permission to credit check a large fleet account without completing an application form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Large Fleet - Credit check request</name>
+    <style>freeForm</style>
+    <subject>Request to undertake commercial credit check</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thank you for your interest in partnering with WEX. In order to progress this opportunity our Credit  Team may need to undertake commercial credit checks on your business and its directors.
+
+To enable us to undertake commercial credit checks on your business and its directors, can you please reply to this email by:
+(a) confirming that you have the requisite authority to authorise WEX to conduct these checks; and
+(b) that you authorise and agree to WEX conducting these checks for the purpose of progressing your opportunity to partner with WEX.
+
+Can you also please confirm or provide the following pieces of information?
+
+
+Description
+
+Value
+
+ABN
+
+{!Account.AU_ABN__c}
+
+ACN
+
+{!Account.AU_ACN__c}
+
+Credit Limit Required
+
+{!Opportunity.Credit_Limit__c}
+
+Billing Address
+
+{!Account.BillingAddress}
+
+Postal Address
+
+{!Account.AU_Postal_Address__c},
+
+{!Account.AU_Postal_Suburb__c},
+
+{!Account.AU_Postal_State__c},
+
+{!Account.AU_Postal_Postcode__c}
+
+Authorised Contact&apos;s Name
+
+{!Opportunity.Acknowledgement_First_Name__c},
+
+{!Opportunity.Acknowledgement_Last_Name__c}
+
+Authorised Contact&apos;s Title
+
+{!Opportunity.Acknowledgement_Title__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

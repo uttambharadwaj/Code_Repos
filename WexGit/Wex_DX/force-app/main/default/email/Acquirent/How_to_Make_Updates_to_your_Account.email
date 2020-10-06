@@ -1,0 +1,41 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: 0.5in;"><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt; mso-bidi-font-style: italic;">Dear {!Contact.FirstName},</span></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: 0.5in;"><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt; mso-bidi-font-style: italic;"><i><!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></i></span>&nbsp;</p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 0.5in;"><span style="color: black; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;">Now that you have an established account with us, you can easily
+make changes to your account in three ways:</span></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-left: 0.5in;"><span style="color: black; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;"></span><span style="color: gray; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;"><o:p></o:p></span>&nbsp;</p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 6pt 0.5in;" class="MsoNormal"><b style="mso-bidi-font-weight: normal;"><span style="color: black; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;">Phone</span></b><span style="color: black; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Customer
+Services is available 7 days a week, 24 hours a day at&nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span style="font-family: Calibri; font-size: 12pt;">1-866-870-5281.</span></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="margin: 0in 0in 6pt 1.5in; text-indent: -1in;" class="MsoNormal"><b style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="color: black; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;">Online<span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;</span></span></b><span style="color: black; font-family: Arial, sans-serif; font-size: 9pt; line-height: 115%;"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>You can make
+changes online anytime by visiting&nbsp;</span><font color="#0000ff" face="Arial, sans-serif"><span style="font-size: 12px;"><u>www.wexonline.com/login&nbsp;</u></span></font></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 6pt 1.5in; text-indent: -1in;" class="MsoNormal"><b style="mso-bidi-font-weight: normal;"><span style="color: black; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;">Fax<span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;<span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></b><span style="color: black; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;">I am attaching forms that you can use to make changes to your account. Simply fax them back to 1-800-395-0809.<br><o:p></o:p></span></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><span style="color: black; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 9pt;">Thank you for choosing Meijer &nbsp;and welcome to your new Fuel Card
+program.<br></span><span style="font-family: Arial, sans-serif; font-size: 9pt;"><span style="font-family: Arial, sans-serif;"><br>Sincerely,<br></span></span><i style="font-family: Arial, sans-serif; font-size: 9pt;"><em><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">{!User.FirstName}
+{!User.LastName}<br></span></em></i><i style="font-family: Arial, sans-serif; font-size: 9pt;"><em><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">!User.Title}<br></span></em></i><i style="font-family: Arial, sans-serif; font-size: 9pt;"><em><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">Phone - {!User.Phone}<br></span></em></i><i style="font-family: Arial, sans-serif; font-size: 9pt;"><em><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">Fax - {!User.Fax}<br></span></em></i><i style="font-family: Arial, sans-serif; font-size: 9pt;"><em><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;">{!User.Email}</span></em></i></p><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 10pt 0.5in;" class="MsoNormal"></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><i><span style="color: gray; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt;">CONFIDENTIALITY
+NOTICE: "This message contains confidential information of WEX Inc. It is intended
+only for the use of the designated recipient(s) stated above and further
+distribution of the information is prohibited. If you have received this
+message in error, please notify sender immediately by telephone or reply by
+e-mail and delete the entire message and any attachments."</span></i><span style="line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt;"><o:p></o:p></span></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><i><span style="color: gray; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt;">WEX Inc., 97
+Darling Avenue, South Portland, ME 04106</span></i><span style="line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt;"><o:p></o:p></span></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin: 0in 0in 10pt 0.5in;" class="MsoNormal"><i><span style="color: gray; line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt;">This is an
+advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},</span></i><span style="line-height: 115%; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; font-size: 8pt;"><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="color: gray;">
+</span></i><i><span style="color: rgb(51, 51, 255);">email us to unsubscribe</span></i></a><i><span style="color: gray;">. Please be sure to include your name, company name and
+email address in the email.</span></i><o:p></o:p></span></p><font face="Times New Roman" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">
+
+</font>]]></td>
+</tr>
+</table>

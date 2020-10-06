@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Office_Solutions/UniFirstSavings_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>UniFirst Uniform Savings</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>UniFirst Uniforms</name>
+    <style>none</style>
+    <subject>Uniform Savings from UniFirst</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

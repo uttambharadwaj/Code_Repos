@@ -1,0 +1,5 @@
+You campaign went active today - {!Campaign.StartDate} 
+
+Follow this link for more details: 
+
+{!Campaign.Link}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>XOM Security email that links to personalized landing page</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>ExxonMobil Security email</name>
+    <style>none</style>
+    <subject>Contain fuel costs and control fraud</subject>
+    <textOnly>ExxonMobil Fleet &amp; Universal Card Program
+
+Control everything about your drivers&apos; card purchases with just a few clicks. A suite of control and alert tools allow you to know where, when, what and how much is being spent at any time.
+
+&quot;The ExxonMobil Fleet program is a great management tool. I like the ability to go online and see everything my employees do at any time — what station they use, what time they fueled, the price per gallon, and odometer readings.&quot;
+
+Tammy Riegel
+Transportation Director
+Community Action Agency
+
+
+Are you ready to take control of your fuel expenses?
+
+
+Please contact your personal sales representative:
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+
+
+Exxon and Mobil are registered trademarks of Exxon Mobil Corporation.
+
+The ExxonMobil Fleet and Universal cards are issued by WEX Bank.
+
+This is an advertisement from WEX Inc. on behalf of ExxonMobil Fleet Cards. If you no longer wish to receive future email advertisements, email us to unsubscribe at info@fsolnews.com with the word unsubscribe in the subject line. Please be sure to include your name, company name, and email address in the email.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

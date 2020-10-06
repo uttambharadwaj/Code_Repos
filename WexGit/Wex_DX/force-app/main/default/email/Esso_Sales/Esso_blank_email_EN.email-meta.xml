@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Esso_Current_Letterhead_EN</letterhead>
+    <name>Blank</name>
+    <style>freeForm</style>
+    <subject>follow up</subject>
+    <textOnly>Hey {!Contact.FirstName},
+
+
+
+I appreciate your time once again and please don&apos;t hesitate to contact me. I look forward to hearing from you.
+
+Thank you,
+
+{!User.Name}
+{!User.Title}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

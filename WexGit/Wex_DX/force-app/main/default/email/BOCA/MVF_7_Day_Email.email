@@ -1,0 +1,376 @@
+<messaging:emailTemplate subject="Your Fleet Card Recommendation" recipientType="Lead" relatedToType="Lead">
+<messaging:htmlEmailBody >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--[if !mso]><!-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style type="text/css">
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+    </style>
+    <style type="text/css">
+
+        body {
+            Margin: 0;
+            padding: 0;
+            min-width: 100%;
+            background-color: #e2e3e4;
+        }
+        table {
+            border-spacing: 0;
+            font-family: sans-serif;
+            color: #333333;
+        }
+        td {
+            padding: 0;
+        }
+        img {
+            border: 0;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        .webkit {
+        max-width: 640px;
+        }
+        .outer {
+            Margin: 0 auto;
+            width: 100%;
+            max-width: 640px;
+            background-color: #ffffff;
+        }
+        .inner {
+            padding: 10px 30px;
+        }
+        .innerl {
+            padding: 10px 15px 10px 30px;
+        }
+        .innerr {
+            padding: 10px 30px 10px 15px;
+        }
+        .innerm {
+            padding: 10px;
+        }
+        .contents {
+            width: 100%;
+        }
+        p {
+            Margin: 0;
+        }
+        a {
+            color: #0054a6;
+            text-decoration: underline;
+        }
+        .h1 {
+            font-size: 30px;
+            font-weight: bold;
+            Margin-bottom: 18px;
+            text-align:center;
+        }
+        .h2 {
+            font-size: 18px;
+            font-weight: bold;
+            Margin-bottom: 12px;
+        }
+        hr{
+            border-style: solid;
+            border-width:1px;
+            border-color:#b7b7b7;
+            border-bottom:0;
+        }
+        .full-width-image img {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+        }
+        span.line{
+            display:inline-block;
+        }
+        ul{
+            padding-left:80px;
+        }
+        li{
+            font-size:14px;
+            padding:10px 10px 0;
+            line-height:26px;
+        }
+
+
+        .one-column .contents {
+            text-align: left;
+        }
+        .one-column p {
+            font-size: 14px;
+            Margin-bottom: 10px;
+            line-height:26px;
+            color:#333333;
+            padding:10px 40px 0;
+        }
+        .one-column img{
+            max-width:100%;
+        }
+
+
+        .two-column {
+            text-align: center;
+            font-size: 0;
+        }
+        .two-column .column {
+            width: 100%;
+            display: inline-block;
+        }
+        .two-column .r1l {
+            max-width: 320px;
+            vertical-align: top;
+        }
+        .r1l img {
+            width: 100%;
+            max-width: 178px;
+            height: auto;
+        }
+        .two-column .r1r {
+            max-width: 320px;
+            vertical-align: bottom;
+        }
+        .r1r img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+        .two-column .contents {
+            font-size: 14px;
+            text-align: left;
+        }
+        .two-column .text {
+            padding-top: 10px;
+        }
+
+
+
+        @media screen and (max-width: 550px) {
+            .two-column .r1l,
+            .two-column .r1r {
+                max-width: 100% !important;
+            }
+            .two-column img {
+                max-width: 178px !important;
+            }
+            .one-column p{
+                padding:10px 20px 0;
+            }
+            ul{
+                padding-left:60px;
+            }
+        }
+
+        @media screen and (min-width: 551px) {
+            .two-column .r1l {
+                max-width: 50% !important;
+            }
+            .two-column .r1r {
+                max-width: 50% !important;
+            }
+        }
+
+    </style>
+
+    <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse !important;}
+    </style>
+    <![endif]-->
+</head>
+<body style="Margin:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;min-width:100%;background-color:#e2e3e4;" >
+    <center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;" >
+        <div class="webkit" style="max-width:640px;" >
+            <!--[if (gte mso 9)|(IE)]>
+            <table width="640" align="center" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+            <tr>
+            <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+            <![endif]-->
+            <table class="outer" align="center" style="border-spacing:0;font-family:sans-serif;color:#333333;Margin:0 auto;width:100%;max-width:640px;background-color:#ffffff;" >
+            <!-- CONTENT START -->
+
+                <div style="display:none;font-size:1px;color:#e2e3e4;line-height:1px;font-family:sans-serif;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;" >
+                    The best fuel cards for you, from the most popular brands and retailers
+                </div>
+
+
+<!-- TWO COLUMN -->
+<tr>
+    <td class="two-column" style="background-color:#e2e3e4;padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;text-align:center;font-size:0;" >
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+        <tr>
+        <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+        <![endif]-->
+        <div class="column r1l" style="width:100%;display:inline-block;max-width:320px;vertical-align:top;" >
+            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                <tr>
+                    <td class="inner" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;" >
+                        <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:left;" >
+                            <tr>
+                                <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                    <img src="http://test.wexhosted.com/esp_assets/wex/mvf/wex-logos.png" width="178" alt="" style="border-width:0;width:100%;max-width:178px;height:auto;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="50%" valign="bottom" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+        <![endif]-->
+        <div class="column r1r" style="width:100%;display:inline-block;max-width:320px;vertical-align:bottom;" >
+            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                <tr>
+                    <td class="inner" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;" >
+                        <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:left;" >
+                            <tr>
+                                <td align="right" style="text-align:right;font-size:11px;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;" >
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>
+<!-- /TWO COLUMN -->
+<!-- ONE COLUMN -->
+<tr>
+    <td class="one-column" style="border-top-width:3px;border-top-style:solid;border-top-color:#cf102d;padding-top:30px;padding-bottom:20px;padding-right:0;padding-left:0;text-align:center;" >
+        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+            <tr>
+                <td class="inner " style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;text-align:center;" >
+                    <span class="h1" style="font-size:20px;font-weight:bold;Margin-bottom:18px;text-align:center;" ><span class="line" style="display:inline-block;" >The best fuel cards for you,</span><br/> <span class="line" style="display:inline-block;" >from the most popular fuel brands and retailers</span></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="inner " style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;text-align:center;" >
+                    <img src="http://test.wexhosted.com/esp_assets/wex/mvf/logos.png" alt="Fuel brand logos" style="border-width:0;max-width:100%;text-align:center;" />
+                </td>
+            </tr>
+            <tr>
+                <td class="inner " style="padding-top:30px;padding-bottom:10px;padding-right:30px;padding-left:30px;text-align:center;" >
+                     <table border="0" cellpadding="0" cellspacing="0" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;border-spacing:0;font-family:sans-serif;color:#333333;" >
+                    <tr>
+                              <td align="center" bgcolor="#ffbf3b" style="-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;text-align:center;" >
+                        <a href="http://www.wexcard.com/fuelcards/?state={!RelatedTo.State}&leadId={!RelatedTo.Id}&cc=T2Y"  class="button_link" style="padding-top:10px;padding-bottom:10px;padding-right:15px;padding-left:15px;display:block;text-decoration:none;text-align:center;font-weight:bold;font-size:16px;font-family:sans-serif;color:#000000;background-color:#ffbf3b;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-width:1px;border-style:solid;border-color:#ffbf3b;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;line-height:17px;" >
+                          Choose Your Fleet Card
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!-- /ONE COLUMN -->
+
+                <!-- ONE COLUMN -->
+<tr>
+    <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+            <tr>
+                <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;" >
+                    <hr style="border-style:solid;border-width:1px;border-color:#b7b7b7;border-bottom-width:0;" />
+                    <p style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;Margin:0;font-size:14px;Margin-bottom:10px;line-height:26px;color:#333333;" >
+                        &nbsp;
+                    </p>
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;line-height:26px;color:#333333;padding-top:10px;padding-bottom:0;padding-right:40px;padding-left:40px;" >Hi {!RelatedTo.FirstName}</p>
+
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;line-height:26px;color:#333333;padding-top:10px;padding-bottom:0;padding-right:40px;padding-left:40px;" >
+                        Expert Market recently recommended WEX fleet cards for your business. Have you had a chance to <a href="http://www.wexcard.com/fuelcards/?state={!RelatedTo.State}&leadId={!RelatedTo.Id}&cc=T2Y" target="_blank" style="color:#0054a6;text-decoration:underline;" >see the best cards for your area?</a>
+                    </p>
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;line-height:26px;color:#333333;padding-top:10px;padding-bottom:0;padding-right:40px;padding-left:40px;" >
+                        With cards from the most popular U.S. brands and retailers, we make it easy to choose the right one for <em>your</em> business &mdash; whether you fuel at a favorite location, need to fuel anywhere, or want the best rebate.
+                    </p>
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;line-height:26px;color:#333333;padding-top:10px;padding-bottom:0;padding-right:40px;padding-left:40px;" >
+                        I encourage you to apply now, and take advantage of special offers that aren't widely available. If there's anything I can do to help you choose the best fleet card, please call us at {!RelatedTo.Owner.Phone}.
+                    </p>
+
+                    <p style="Margin:0;font-size:14px;Margin-bottom:0px;line-height:26px;color:#333333;padding-top:50px;padding-bottom:0;padding-right:40px;padding-left:40px;" >Thanks,</p>
+                    <p style="Margin:0;font-size:14px;Margin-bottom:10px;line-height:26px;color:#333333;padding-top:10px;padding-bottom:0;padding-right:40px;padding-left:40px;" >{!RelatedTo.Owner.Name}</p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!-- /ONE COLUMN -->
+
+<!-- ONE COLUMN -->
+<tr>
+    <td class="one-column" style="border-bottom-width:3px;border-bottom-style:solid;border-bottom-color:#cf102d;padding-top:30px;padding-bottom:80px;padding-right:0;padding-left:0;" >
+        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+            <tr>
+                <td class="inner " style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:center;" >
+                    <table border="0" cellpadding="0" cellspacing="0" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;border-spacing:0;font-family:sans-serif;color:#333333;" >
+                        <tr>
+                          <td align="center" bgcolor="#ffffff" style="-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                            <a href="http://www.wexcard.com/fuelcards/?state={!RelatedTo.State}&leadId={!RelatedTo.Id}&cc=T2Y"  class="button_link" style="padding-top:10px;padding-bottom:10px;padding-right:15px;padding-left:15px;display:block;text-decoration:none;text-align:center;font-weight:bold;font-size:15px;font-family:sans-serif;color:#555555;background-color:#ffffff;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-width:2px;border-style:solid;border-color:#333333;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;line-height:17px;" >
+                                Find a Fuel Card Near You  <span style="color:#cf102d;padding-left:15px;" >&#9658;</span>
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!-- /ONE COLUMN -->
+
+<!-- FOOTER -->
+<tr>
+    <td class="one-column" style="background-color:#333333;color:#ffffff;padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;" >
+        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+            <tr>
+                <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;" >
+                    <p style="color:#ffffff;font-size:10px;Margin:0;Margin-bottom:10px;" >&copy;Copyright 2019 WEX Inc. All rights reserved.</p>
+                    <p style="color:#ffffff;font-size:10px;Margin:0;Margin-bottom:10px;" >97 Darling Ave | South Portland, ME 04106 | <a href="http://www.wexinc.com/privacy-policy" target="_blank" style="color:#ffffff;text-decoration:underline;" >Privacy Policy</a> | <a href="https://{!$Label.External_Instance_URL}/ContactUnsubscribe?id={!RelatedTo.Id}" style="color:#ffffff;text-decoration:underline;">Unsubscribe</a></p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<!-- /FOOTER-->
+
+<!-- /ONE COLUMN -->
+
+            <!-- /CONTENT -->
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

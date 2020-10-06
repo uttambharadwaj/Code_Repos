@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email template used to confirm a meeting</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Circle_K_Letterhead</letterhead>
+    <name>Circle K Meeting Confirmation</name>
+    <style>freeForm</style>
+    <subject>Circle K Fleet Card Meeting Confirmation</subject>
+    <textOnly>{!Contact.FirstName},
+
+Thank you for your interest in the Circle K Fleet Card Program.
+
+I am emailing you to confirm our meeting on &lt;date&gt; at &lt;time&gt;. If this date will not work for you please let me know, I would be happy to reschedule.
+
+I look forward to meeting with you to discuss the benefits of the Circle K Fleet Card Program. I think you will find the program ideal for your company’s vehicle fueling needs.
+
+If you have any questions before our meeting, please to do not hesitate to call me at {!User.Phone}.
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+Phone - {!User.Phone}
+{!User.Email}
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of Wright Express Corporation. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+Circle K Fleet Card Services, 97 Darling Avenue, South Portland, ME 04106</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

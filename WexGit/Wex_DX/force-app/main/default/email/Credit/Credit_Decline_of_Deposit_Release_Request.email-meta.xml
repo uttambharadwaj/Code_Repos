@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - Decline of Deposit Release Request</name>
+    <style>freeForm</style>
+    <subject>Re: Decline of Deposit Release Request</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Re: Decline of Deposit Release Request
+
+
+Account Number#: *********{!Case.Masked_External_Account__c}
+
+
+Dear {!Case.Contact},
+
+
+
+We received your request to release the deposit securing your CITGO Fleet account. Although we cannot release the security deposit right now we will reconsider the request with receipt of the last two full fiscal years of financial statements. If this alternative is feasible, please send a letter which includes the account number, desire for the deposit to be released, and the financial statements. The letter and financial statements can be faxed to fax (207) 253-1465 or email: fsc_maintenance@wexinc.com. We will review these financial statements in accordance with our credit policy.
+
+
+Complete set of audited and reviewed financial statements for the last two complete fiscal years (not tax returns). At a minimum we need the income statement and balance sheet for each full fiscal year.
+
+
+Our reasons for not being able to process this request is for the following reason(s):
+
+
+Your account has not been open for at least one year.
+Your account has a slow or unsatisfactory payment history.
+Your commercial credit history does not support an unsecured credit line.
+
+
+If you still desire to have the security deposit be returned the account will need to be closed. If you still want to keep the security on file then do nothing and the account will stay as it is currently.
+
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

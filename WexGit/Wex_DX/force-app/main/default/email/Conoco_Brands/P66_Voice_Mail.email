@@ -1,0 +1,28 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif>Dear {!Contact.FirstName},</FONT></P>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif><BR>Per my voice mail, I wanted to give you an overview of the Phillips 66® Fleet Card.&nbsp; Our FLEET CARD is the perfect tool to help you save time and money when it comes to your vehicle fleet operations.&nbsp;&nbsp; </FONT></P>
+<UL>
+<LI><FONT color=#cc0000><FONT size=2 face=Verdana,Helvetica,Sans-Serif><STRONG>REAL SAVINGS</STRONG></FONT> </FONT>
+<UL>
+<LI><FONT size=2 face=Verdana,Helvetica,Sans-Serif>Save up to 5¢ per gallon* every time you fuel at a Phillips 66®, <BR>Conoco® and 76® locations.</FONT> 
+<LI><FONT size=2 face=Verdana,Helvetica,Sans-Serif>Save up to 15% off your overall fuel management costs.**</FONT></LI></UL>
+<LI><FONT color=#cc0000><FONT size=2 face=Verdana,Helvetica,Sans-Serif><STRONG>EASE OF USE and ACCEPTANCE</STRONG></FONT> </FONT>
+<UL>
+<LI><FONT size=2 face=Verdana,Helvetica,Sans-Serif>Enjoy easy online controls so you can set spending limits <BR>and monitor driver behavior.</FONT> 
+<LI><FONT size=2 face=Verdana,Helvetica,Sans-Serif>Enjoy convenient access to over 7400 Phillips 66®, Conoco® and 76® locations nationwide.&nbsp; Ask for our Universal Card, and you’ll have acceptance at over 90% of all U.S. fueling sites.</FONT> 
+<LI><FONT size=2 face=Verdana,Helvetica,Sans-Serif>Best-in-class customer service available 24 hours a day, <BR>7 days a week.</FONT></LI></UL></LI></UL>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif>I will be following up with you next week. In the meantime, you can reach me at {!User.Phone} or via email at {!User.Email}.</FONT></P>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif>I look forward to meeting with you about the needs of your business.<BR>&nbsp;<BR>&nbsp;<BR>Sincerely,</FONT></P>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif>{!User.FirstName} {!User.LastName}<BR>{!User.Title}<BR>Phone: {!User.Phone} <BR>Email: {!User.Email} </FONT></P>
+<P><FONT size=2 face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT color=#666666 size=1 face=Verdana,Helvetica,Sans-Serif>*Rebates are subject to change at any time without prior notice and are not be applicable to aviation fuel, racing fuel, ethanol, E85 and Kerosene.&nbsp; </FONT></P>
+<P><FONT color=#666666 size=1 face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT color=#666666 size=1 face=Verdana,Helvetica,Sans-Serif>**Actual savings may vary.</FONT></P>
+<P><FONT color=#666666 size=1 face=Verdana,Helvetica,Sans-Serif></FONT>&nbsp;</P>
+<P><FONT face=Verdana,Helvetica,Sans-Serif><FONT color=#666666 size=1>Phillips 66 logo is a trademark of Phillips 66 Company or one of its subsidiaries. ©2012 Phillips 66 Company. </FONT></P></FONT>]]></td>
+</tr>
+</table>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>07.2016 WexIndex update - ClearView</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Corporate_Letterhead</letterhead>
+    <name>07.2016 WexIndex update - ClearView</name>
+    <style>promotionRight</style>
+    <subject>&lt;&gt;&lt;&gt; Your WEX Fleet Fuel Savings Update &lt;&gt;&lt;&gt;</subject>
+    <textOnly>Hi {!Contact.FirstName} -
+
+How&apos;s everything going? I have updated information for you on fuel price trends and your fleet card account.
+
+Fuel prices will likely continue declining for the next couple of weeks and stay low for the remainder of the year. You can get more fuel price trend information from WEX online at http://www.wexinc.com/our-story/wex-index/.
+
+I&apos;ve attached your latest account review workbook along with some fuel price information for you.
+
+These are the areas where your fleet card fueling data shows as cost savings opportunities or where you may already be sustaining cost avoidance:
+
+
+Our brand new fleet analytics dashboard can help you pinpoint savings and red flags in a fraction of the time as weeding through reports. I&apos;d love to show it to you, just let me know an okay time to schedule a discussion.
+
+Thanks for being a WEX Customer.
+
+Kind Regards,
+
+Kevin Thompson
+Account Executive
+WEX Inc.
+97 Darling Avenue, So. Portland, ME 04106
+Office (207) 523-6229    Mobile (207) 415-5405
+www.wexinc.com
+
+LinkedIn: https://www.linkedin.com/in/kevin-thompson-470a7a4
+
+Twitter: https://twitter.com/kthompsonwex
+
+Having a ClearView into Fleet Analytics
+Written by Kurt Thearling, Vice President of Analytics at WEX   Managing large fleets comes with a lot of responsibility. To build on efficiencies and save money, fleet managers need the ability to control driver spending and be aware of vehicle related purchases. While reporting tools for fleet analytics are essential, the intricacies of fuel… Read more »
+http://www.wexinc.com/wex-corporate/having-a-clearview-into-fleet-analytics/ 
+
+Watch The Video!
+https://wexinc.wistia.com/medias/6lbjm2yzb1</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

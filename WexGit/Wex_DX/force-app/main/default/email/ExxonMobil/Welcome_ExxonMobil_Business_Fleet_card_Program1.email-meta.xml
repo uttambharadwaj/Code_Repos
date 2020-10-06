@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Congratulations cards have been shipped and How to register onlinee used by Customer Success Specialist. For ExxonMobil Business Fleet customers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_card</letterhead>
+    <name>Welcome! ExxonMobil Business Fleet card Program</name>
+    <style>freeForm</style>
+    <subject>Welcome! ExxonMobil Business Fleet Card Program</subject>
+    <textOnly>Congratulations, your ExxonMobil fleet cards have shipped!
+
+You should be receiving them in 3-5 business days. For the security of your account, we mail cards and your confidential pin numbers in separate packages. Cards are active when they arrive; simply distribute them to your drivers along with their unique pin numbers.
+
+Register your new account online for the easiest way to manage your fuel and vehicle expenses. To self-enroll please visit www.exxonmobilfleetonline.com and click on enroll as new user.  Simply enter your account number [insert number here], and other contact information and you will receive a temporary password allowing you to login at that point. Other users needing access can follow this same process.  If you need assistance please contact our award winning customer service team at 1-800-624-5140.
+
+Start fueling and saving! The ExxonMobil Business Fleet card is accepted at more than 10,000 Exxon- or Mobil--branded stations across the country.  The sooner you distribute the cards the sooner you begin to save! To help locate the stations nearest you visit www.exxonmobilstations.com or download the ExxonMobil Fuel Finder app from Apple or Android.
+
+If you have any questions, please feel free to call me at {!User.Phone}.
+
+
+Thanks again, and welcome to the ExxonMobil Business Fleet card program!
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

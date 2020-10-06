@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Maintenance/RSM_TruckersB2B_flyer_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>RoadsideMASTERS.com overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RoadsideMASTERS.com</name>
+    <style>none</style>
+    <subject>Commercial Emergency Roadside Membership with RoadsideMASTERS.com</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

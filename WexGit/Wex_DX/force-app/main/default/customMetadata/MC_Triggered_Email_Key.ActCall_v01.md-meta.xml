@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>ActCall_v01</label>
+    <protected>false</protected>
+    <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:string">Activation_Active__c</value>
+    </values>
+    <values>
+        <field>ContactType__c</field>
+        <value xsi:type="xsd:string">Spoke_to_Contact__c</value>
+    </values>
+    <values>
+        <field>EmailAddress__c</field>
+        <value xsi:type="xsd:string">Contact.Email</value>
+    </values>
+    <values>
+        <field>FirstName__c</field>
+        <value xsi:type="xsd:string">Contact.FirstName</value>
+    </values>
+    <values>
+        <field>Online__c</field>
+        <value xsi:type="xsd:string">Activation_Online__c</value>
+    </values>
+    <values>
+        <field>OpportunityID__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>OwnerID__c</field>
+        <value xsi:type="xsd:string">ownerid</value>
+    </values>
+    <values>
+        <field>RecordType__c</field>
+        <value xsi:type="xsd:string">Case_Activation_Specialist</value>
+    </values>
+    <values>
+        <field>RepName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Required_Fields__c</field>
+        <value xsi:type="xsd:string">SFProgramId,Active,Online,FirstName</value>
+    </values>
+    <values>
+        <field>SFProgramId__c</field>
+        <value xsi:type="xsd:string">Card_Program__c</value>
+    </values>
+    <values>
+        <field>WexAccount__c</field>
+        <value xsi:type="xsd:string">Account_Number__c</value>
+    </values>
+    <values>
+        <field>applicationRequestID__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>createddate__c</field>
+        <value xsi:type="xsd:string">createddate</value>
+    </values>
+</CustomMetadata>

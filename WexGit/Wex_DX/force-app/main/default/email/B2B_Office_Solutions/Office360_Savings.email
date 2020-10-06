@@ -1,0 +1,18 @@
+{!Contact.FirstName},
+
+I wanted to take a moment to let you know about our new opportunity with Office360, where we provide ultimate savings on office supplies, coffee and breakroom, cleaning supplies, and more...along with no minimum orders and free, next-day delivery.
+
+Please take a moment to review the attached information and let me know if you have any questions, or would like more information. 
+
+You can also visit http://truckersb2b.com/Office360 to learn more and sign up for an account today.  
+
+
+Thank you, 
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+{!User.Phone} 
+{!User.Email} 
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

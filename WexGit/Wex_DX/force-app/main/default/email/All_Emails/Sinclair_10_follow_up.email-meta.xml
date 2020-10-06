@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Sinclair 10¢ follow-up</name>
+    <style>none</style>
+    <subject>Here&apos;s the follow-up to our phone call today</subject>
+    <textOnly>Fuel your business with the Sinclair Fleet Track card and save 10¢ per gallon for 90 days.  Apply today!
+
+The Sinclair Fleet Track Card
+
+Smarter than a credit card and safer than cash, a Sinclair Fleet Track Card is the easy route to faster, convenient fueling for all your business vehicles.
+
+Save 10¢ per gallon for 90 days and 4¢ per gallon thereafter* on all gallons at over 1,300 Sinclair locations nationwide
+Fuel at every major gas station nationwide
+Simplify accounting – and much more
+
+Apply Now
+https://onlineservices.secure.force.com/creditapplication/WexBOCA?pgm=sinclairfleettrack&amp;cc=Z3D
+
+OR Call me at {!User.Phone}
+(Mention code Z3D)
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Email}
+{!User.Phone}
+
+Accepted at over 90% of U.S fueling locations
+
+Apply ONLINE – it&apos;s easy. Or call me at {!User.Phone} to apply by phone!
+
+https://onlineservices.secure.force.com/creditapplication/WexBOCA?pgm=sinclairfleettrack&amp;cc=Z3D
+
+* Subject to credit approval. Promotional offer is applicable to new Sinclair Fleet Track Card accounts only. Apply by published apply-by date to receive 10¢ off per gallon at Sinclair locations for the first 90 days, and a waived $10 monthly accounting fee for the life of the account; the promotional period begins the day the account is opened. Rebates will appear as an account credit on the same billing statement with monthly purchases. Standard program volume tiers/fuel rebates will apply after the promotional period ends. Rebates are subject to change at any time without prior notice. Offer code: Z3D
+
+© Copyright 2017 Sinclair Fleet Track. All rights reserved.
+97 Darling Avenue | South Portland, ME 04106 | USA</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

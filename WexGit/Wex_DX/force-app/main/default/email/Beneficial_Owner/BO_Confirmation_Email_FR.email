@@ -1,0 +1,361 @@
+<messaging:emailTemplate subject="Certification de propriété effective" recipientType="Contact" relatedToType="Beneficial_Owner_Entity__c">
+<messaging:htmlEmailBody >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!--[if !mso]><!-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!--<![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <style type="text/css">
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+  </style>
+  <style type="text/css">
+    body {
+      Margin: 0;
+      padding: 0;
+      min-width: 100%;
+      background-color: #D8D8D8;
+    }
+
+    table {
+      border-spacing: 0;
+      font-family: sans-serif;
+      color: #333333;
+    }
+
+    td {
+      padding: 0;
+    }
+
+    img {
+      border: 0;
+    }
+
+    .wrapper {
+      width: 100%;
+      table-layout: fixed;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    .webkit {
+      max-width: 640px;
+    }
+
+    .outer {
+      Margin: 0 auto;
+      width: 100%;
+      max-width: 640px;
+      background-color: #ffffff;
+    }
+
+    .inner {
+      padding: 10px 75px;
+    }
+
+    .innerb {
+      padding: 10px 40px;
+    }
+
+    .innerl {
+      padding: 10px 25px 10px 75px;
+    }
+
+    .innerr {
+      padding: 10px 75px 10px 25px;
+    }
+
+    .innerm {
+      padding: 10px;
+    }
+
+    .contents {
+      width: 100%;
+    }
+
+    p {
+      Margin: 0;
+    }
+
+    a {
+      color: #0645AD;
+      text-decoration: underline;
+    }
+
+    .h1 {
+      font-size: 21px;
+      font-weight: bold;
+      Margin-bottom: 18px;
+    }
+
+    .h2 {
+      font-size: 18px;
+      font-weight: bold;
+      Margin-bottom: 12px;
+    }
+
+    .full-width-image img {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+    }
+
+    li {
+      padding-bottom: 12px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+
+    .one-column .contents {
+      text-align: left;
+    }
+
+    .one-column p {
+      font-size: 14px;
+      Margin-bottom: 10px;
+    }
+
+
+    .two-column {
+      text-align: center;
+      font-size: 0;
+    }
+
+    .two-column .column {
+      width: 100%;
+      display: inline-block;
+    }
+
+    .two-column .r1l {
+      max-width: 320px;
+      vertical-align: top;
+    }
+
+    .r1l img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .two-column .r1r {
+      max-width: 320px;
+      vertical-align: top;
+    }
+
+    .r1r img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .two-column .r2l {
+      max-width: 187px;
+      vertical-align: top;
+    }
+
+    .r2l img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .two-column .r2r {
+      max-width: 453px;
+      vertical-align: top;
+    }
+
+    .r2r img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+    }
+
+    .two-column .contents {
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .two-column .text {
+      padding-top: 10px;
+    }
+
+    .optionlist {
+      margin-bottom: 0;
+    }
+
+    .optionlist li {
+      font-size: 14px;
+    }
+
+
+
+
+    @media screen and (max-width: 400px) {
+      .two-column .r1l,
+      .two-column .r1r,
+      .three-column .column,
+      .four-column .column {
+        max-width: 100% !important;
+      }
+      .two-column img {
+        max-width: 100% !important;
+      }
+      .three-column img {
+        max-width: 50% !important;
+      }
+      .four-column img {
+        max-width: 50% !important;
+      }
+      .inner,
+      .innerl,
+      .innerr {
+        padding: 10px 15px !important;
+      }
+      .four-column,
+      .three-column {
+        padding: 10px 5px !important;
+      }
+    }
+
+    @media screen and (min-width: 401px) {
+      .four-column .column {
+        max-width: 50% !important;
+      }
+      .three-column .column {
+        max-width: 33% !important;
+      }
+      .two-column .r1l {
+        max-width: 50% !important;
+      }
+      .two-column .r1r {
+        max-width: 50% !important;
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      .step {
+        font-size: 16px !important;
+      }
+      .inner,
+      .innerl,
+      .innerr {
+        padding: 10px 35px !important;
+      }
+      .two-column .r1l,
+      .two-column .r1r {
+        max-width: 100% !important;
+      }
+      .smallcenter {
+        text-align: center !important;
+      }
+    }
+  </style>
+
+  <!--[if (gte mso 9)|(IE)]>
+    <style type="text/css">
+        table {border-collapse: collapse !important;}
+    </style>
+    <![endif]-->
+</head>
+
+<body style="Margin:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;min-width:100%;background-color:#D8D8D8;">
+  <center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+    <div class="webkit" style="max-width:640px;">
+      <!--[if (gte mso 9)|(IE)]>
+            <table width="640" align="center" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+            <tr>
+            <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+            <![endif]-->
+      <table class="outer" align="center" style="margin-top:20px;border-spacing:0;font-family:sans-serif;color:#333333;Margin:0 auto;width:100%;max-width:640px;background-color:#ffffff;">
+        <!-- CONTENT START -->
+
+        <div style="display:none;font-size:1px;color:#D8D8D8;line-height:1px;font-family:sans-serif;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;">
+          {preheader text}
+        </div>
+
+        <apex:outputPanel rendered="{!relatedTo.Program__c != null}">
+          <tr>
+            <td class="one-column" style="padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                <tr>
+                  <td class="inner contents" style="text-align:center;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;">
+                    <c:ProgramEmailLogoAsset programIdFromEmail="{!relatedTo.Program__c}"></c:ProgramEmailLogoAsset>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </apex:outputPanel>
+
+        <apex:outputPanel rendered="{!relatedTo.Program__c == null}">
+          <tr>
+            <td class="one-column" style="padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;">
+              <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                <tr>
+                  <td class="inner contents" style="text-align:center;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;">
+                    <img src="https://{!$Label.External_Instance_URL}{!$Resource.WEXLogo}" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </apex:outputPanel>
+
+        <!-- GENERAL SECTION -->
+        <tr>
+          <td class="one-column" style="padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;">
+            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+              <tr>
+                <td class="inner contents" style="text-align:left;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;">
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px;">Bonjour {!relatedTo.Correspondence_Contact__r.FirstName},</p>
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px;">Nous avons bien reçu les renseignements sur la propriété que vous nous avez transmis par le formulaire en ligne. Merci.</p>
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px; display: {!IF(relatedTo.Program__c != null, 'block', 'none')};">Votre demande pour la carte &nbsp;<apex:outputText value="{!relatedTo.Brand_Name__c}" /> est en cours d’examen.</p>
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px; display: {!IF(relatedTo.Program__c == null, 'block', 'none')};">Votre demande pour la carte est en cours d’examen.</p>
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px;">Veuillez noter que la banque pourrait également vous demander de lui fournir une copie du permis de conduire ou d’une autre pièce d’identité de chaque personne qui apparaît dans le présent formulaire.</p>
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px;">Cordialement,</p>
+                  <p style="font-size:14px;Margin:0;Margin-bottom:20px;">{!relatedTo.Owner.Name}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- /GENERAL SECTION -->
+
+        <!-- FOOTER -->
+        <tr>
+          <td class="one-column" style="background-color:#333333;color:#ffffff;padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;">
+            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+              <tr>
+                <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;">
+                  <p style="color:#ffffff;font-size:10px;Margin:0;Margin-bottom:20px;">&copy;Copyright 2018 WEX Inc. All rights reserved.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <!-- /FOOTER-->
+
+
+        <!-- /CONTENT -->
+      </table>
+      <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+    </div>
+  </center>
+</body>
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

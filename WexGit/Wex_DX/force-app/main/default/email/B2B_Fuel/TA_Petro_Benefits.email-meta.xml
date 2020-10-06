@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TA_Petro_Fuel_Savings</letterhead>
+    <name>TA/Petro Benefits</name>
+    <style>freeForm</style>
+    <subject>Everything a driver needs under one roof</subject>
+    <textOnly>TA/Petro Benefits
+They Just Get Better and Better
+
+
+{!Contact.FirstName},
+
+Did you know that as a TruckersB2B member, you receive exclusive access to multiple benefits at TA/Petro?  For starters, just by stopping at one of their 244 locations, you can save $.10 a gallon! You don&apos;t have to worry about minimum fueling requirements, and the point of sale discount is automatically reflected on your billing card invoice. It&apos;s that simple. There is nothing new you need to do.
+
+While you&apos;re already there fueling up, you can also take advantage of the PM and DOT savings at TA/Petro. You can save up to $15 on PM services and $5 on DOT inspections. The discount is based on your DOT number, so make sure your profile is always up to date at truckersb2b.com/myprofile.
+
+Don&apos;t forget about the breakdown benefits with RoadSquad Connect. As a member, you receive a $15 discount on labor for all road calls completed by a TA/Petro RoadSquad service truck.
+
+To learn more about your TA/Petro benefits, visit us online at truckersb2b.com or call 866.354.7322.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

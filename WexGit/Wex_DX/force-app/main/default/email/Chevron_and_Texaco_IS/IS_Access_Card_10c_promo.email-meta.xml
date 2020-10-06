@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>IS Access Card 10c for 4 months promo</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>IS Access Card 10c for 4 mo. promo</name>
+    <style>freeForm</style>
+    <subject>Never pay full price again plus a special introductory rebate</subject>
+    <textOnly>Dear {!Contact.FirstName},
+
+
+The Chevron and Texaco Business Access Card keeps your business moving forward with rebates, paperless receipts, powerful purchase controls, and convenient fueling at more than 95% of U.S. gas stations.
+
+
+Plus, for a limited-time only, apply now and earn a 10¢ PER GALLON REBATE for 4 months* at Chevron and Texaco locations!
+
+
+
+
+Never pay full price for fuel again!
+After the first 4 months, earn volume-based rebates up to 6¢ per gallon** at nearly 8,000 Chevron and Texaco locations nationwide.
+
+
+
+
+How we keep things moving:
+- Fuel at 95% of U.S. gas stations
+
+- Control and enforce purchasing policies with powerful online tools
+
+- Uncover savings with advanced data capture and reporting
+
+- Reduce paperwork with automatic accounting
+
+- Fight fraud with Driver ID numbers and odometer at the pump
+
+- Live support 24/7 with U.S.-based customer advisors
+
+
+
+
+You have a business to run. We can make it easier.
+I will follow up next week with more information about our program, and look forward to learning about your unique business needs. In the meantime, you can always reach me at {!User.Phone} or via email at {!User.Email}.
+
+
+
+Ready to start saving today? Call now for this exclusive 10¢ per gallon rebate!
+
+
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone: {!User.Phone} Email: {!User.Email}
+
+
+
+
+*Applications must be received by December 31, 2019. The 10¢ per gallon promotional rebate is based on your billing cycle and ends four months after the Chevron and Texaco Business Card account is issued. Rebate will begin from gallon one and apply to each gallon up to 500 gallons per monthly billing period purchased at Chevron and Texaco locations. Rebates will appear as an account credit on your billing statement. Rebates are subject to change at any time without prior notice. Not valid on aviation, bulk fuel, propane or natural gas purchases.
+
+**The up to 6¢ per gallon fuel rebates starting at 500 gallons, are volume based and are subject to change at any time without prior notice and only apply at Chevron and Texaco locations. Rebates are on cents per gallon based on the number of gallons purchased at Chevron and Texaco locations per month. Credit will appear on your billing statement.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>WEX - GPS solution and fuel integration</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>WEX - GPS solution and fuel integration</name>
+    <style>none</style>
+    <subject>WEX - GPS solution and fuel integration</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - Suspension Notice</name>
+    <style>freeForm</style>
+    <subject>Payment Required to Enable New Purchases</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+Dear {!Case.Contact},
+
+Your fleet card account is now suspended.
+
+Account Name: {!Case.Account}
+Account Number ending in: {!Case.Masked_External_Account__c}
+Total Owed: {!Case.Rollup_Total_Owed_Amount__c}
+Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}
+Current Due Amount: {!Case.Rollup_Current_Due_Amount__c}
+
+New purchases will not be possible on any of your cards until your past due payment is posted and your balance is below your credit limit. You may be assessed fees subject to your account terms and conditions.
+
+Recent purchase authorizations on your account may not have been processed yet, and your current account balance may have come close to or exceeded your credit limit.
+
+To avoid future suspensions, please keep your total balance below your credit limit.
+
+Payments received after 3:30 PM Eastern Time, on a weekend, or on a holiday will be processed on the NEXT business day.
+
+Thank you for choosing us for your fleet payment services.
+
+Sincerely,
+Receivables and Credit Management
+Contact us: {!Case.Collections_Phone_Number__c}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

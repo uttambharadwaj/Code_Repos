@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Program_Information/TruckersB2BSavingsOverview_App_pdf1.pdf</attachedDocuments>
+    <available>true</available>
+    <description>TruckersB2B Membership Overview and Application for prospect members</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Membership Overview and Application</name>
+    <style>none</style>
+    <subject>TruckersB2B Membership Overview and Application</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,3 @@
+Hi {!Contact.FirstName},
+
+My name is {!User.FirstName} {!User.LastName} and I manage your company's fleet card program with Wex. I was just surveying our customer base, and are you now using payroll cards or are you still cutting paper checks?

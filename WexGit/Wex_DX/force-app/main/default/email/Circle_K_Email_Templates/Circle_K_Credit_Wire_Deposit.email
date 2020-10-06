@@ -1,0 +1,77 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom:12.0pt">As we
+discussed, I am attaching the form with necessary information to send a deposit
+via wire (rather than a certified check).<o:p></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><b>Wire Transfer Instructions:</b><o:p></o:p></p>
+
+<p class="MsoListParagraphCxSpFirst" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">Account Name:&nbsp; WEX Bank<o:p></o:p></span></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">Account Number:&nbsp; 4539508<o:p></o:p></span></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">Receiving Institution:&nbsp; Harris Bank<o:p></o:p></span></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">Address:&nbsp; 311 West Monroe, Chicago, IL 60606<o:p></o:p></span></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">Telephone Number:&nbsp; (312)461-3036<o:p></o:p></span></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">ABA/Routing Number:&nbsp; 071000288<o:p></o:p></span></p>
+
+<p class="MsoListParagraphCxSpLast" style="margin-top:0in;margin-right:0in;
+margin-bottom:12.0pt;margin-left:.5in;mso-add-space:auto;text-indent:-.25in"><span style="font-family: Wingdings;">§</span><span style="font-size: 7pt;">&nbsp; </span><span style="font-family: Calibri, sans-serif;">Reference:&nbsp; Please list account number that
+payment/deposit needs to be applied to<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt">Please
+notify me of the amount and the date you wire the funds.<o:p></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt">Also,
+please fax the deposit form to me at <em><span style="font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-bidi-theme-font:minor-bidi">{!User.Fax}.</span></em>&nbsp;<o:p></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt">Thank
+you for choosing the Circle K Fuel Card program.<o:p></o:p></p>
+
+<p style="margin-bottom:12.0pt"><em><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Sincerely, </span></em><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+<br>
+<em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial">{!User.FirstName}
+{!User.LastName} </span></em><br>
+<em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial">{!User.Title}
+</span></em><br>
+<em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial">Phone
+- {!User.Phone} </span></em><br>
+<em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial">Fax
+- {!User.Fax}&nbsp;</span></em><br>
+<em><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-bidi-font-family:Arial">{!User.Email}&nbsp;</span></em></span></i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><i><span style="font-size:8.0pt;
+line-height:115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:gray">CONFIDENTIALITY
+NOTICE: "This message contains confidential information of WEX Inc. It is
+intended only for the use of the designated recipient(s) stated above and further
+distribution of the information is prohibited. If you have received this
+message in error, please notify sender immediately by telephone or reply by
+e-mail and delete the entire message and any attachments."</span></i><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><i><span style="font-size:8.0pt;
+line-height:115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:gray">WEX Inc., 97
+Darling Avenue, South Portland, ME 04106</span></i><span style="font-family:
+&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><i><span style="font-size:8.0pt;
+line-height:115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:gray">This is an
+advertisement from WEX Inc. If you no longer wish to receive future email
+advertisements from {!User.Email},</span></i><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="font-size:
+8.0pt;line-height:115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:gray"> </span></i><i><span style="font-size:8.0pt;line-height:115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+color:#3333FF">email us to unsubscribe</span></i></a><i><span style="font-size:
+8.0pt;line-height:115%;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:gray">. Please be
+sure to include your name, company name and email address in the email.</span></i><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>]]></td>
+</tr>
+</table>

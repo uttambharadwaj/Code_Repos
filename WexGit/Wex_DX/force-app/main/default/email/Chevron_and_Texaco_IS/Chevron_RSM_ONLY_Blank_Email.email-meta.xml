@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Blank template for LAMAR RSM ONLY</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>Chevron Blank Email - Lamar</name>
+    <style>freeForm</style>
+    <subject>Chevron and Texaco Business Card Programs</subject>
+    <textOnly>Good Morning {!Lead.FirstName},
+
+I hope your week is going well. My name is Lamar Jackson with the Chevron and Texaco Business Fuel Card Program.  I&apos;d like to know if you have a few minutes available next Wednesday to discuss our solution programs and the benefits including savings we offer?
+
+We have two tailored programs - our Business Card, which is accepted at nearly 8,000 Chevron and Texaco locations, and our Business Access Card, which in addition offers universal coverage and allows your drivers to fuel at just about any major retail gas station - no matter the brand. Total fuel expense management is easy to track and control, so you can focus on running your business.
+
+If this date is not good for you, please let me know what time works best for you. I am available for a call as well if you need immediate solutions.
+
+Kind Regards,
+
+Lamar
+
+{!User.FirstName} {!User.LastName}
+
+{!User.Title}
+
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+www.chevrontexacobusinesscard.com
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106 | Privacy Policy
+
+If you no longer wish to receive future email promotions from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

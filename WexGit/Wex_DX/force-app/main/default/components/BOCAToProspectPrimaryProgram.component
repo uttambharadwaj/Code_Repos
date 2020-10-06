@@ -1,0 +1,144 @@
+<apex:component controller="BOCAToProspectComponentController" access="global">
+    <apex:attribute name="bocaToProspectIdFromEmail" assignTo="{!bocaToProspectId}" type="String" description="The BOCA_To_Prospect__c ID"/> 
+								   <!-- PROGRAM NAME, CARD, AND STEPS -->
+                <tr>
+                    <td class="one-column" style="padding-top:50px;padding-bottom:0;padding-right:0;padding-left:0;" >
+                        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                            <tr>
+                                <td class="inner contents" style="text-align:center;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;" >
+                                    <p style="font-size:20px;Margin:0;Margin-bottom:10px;" >{!$Label.BOCAToProspect_Thank_You_For_Interest}</p>
+                                    <p style="font-size:20px;font-weight:bold;Margin:0;Margin-bottom:10px;" >
+                                        <apex:outputText escape="false" value="{!primaryBrandingUtility.Program_Name__c}" />!
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="inner contents" style="text-align:center;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;" >
+                                    <!-- CARD IMAGE  width:250px --><img src="https://{!$Label.External_Instance_URL}/creditapplication/servlet/servlet.FileDownload?file={!primaryBrandingCard}" alt="" width="250" style="width:100%;max-width:250px;border-width:0;" /><!-- /CARD IMAGE -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="inner contents" style="padding-bottom:0;padding-top:30px;padding-right:75px;padding-left:75px;width:100%;text-align:left;">
+                                    <p style="line-height: 22px;">
+                                        {!$Label.BOCAToProspect_Greeting} {!bocaToProspect.Contact__r.FirstName},
+                                    </p>
+                                    <p style="line-height: 22px;">
+                                        {!$Label.BOCAToProspect_Thank_You_For_Interest}<strong>&nbsp;<apex:outputText escape="false" value="{!primaryBrandingUtility.Program_Name__c}" /></strong>.  {!$Label.BOCAToProspect_Ideal_Solution}
+                                    </p>
+                                    <p style="line-height: 22px; display: {!IF(bocaToProspect.Custom_Message__c != null, 'block', 'none')}">
+                                    	<apex:outputText escape="false" value="{!bocaToProspect.Custom_Message__c}" />    
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="inner contents" style="padding-top:20px;padding-bottom:10px;padding-right:150px;padding-left:150px;width:100%;text-align:left;" >
+                                    <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+
+										<tr>
+                                           
+                                            <td class="innerm" style="background-color:#ededed;text-align:center;border-bottom-width:3px;border-bottom-style:solid;border-bottom-color:#fff;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;" >
+                                            	<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;border-spacing:0;font-family:sans-serif;color:#333333;" >
+													<tr>
+														<td  valign="middle" class="smallcenter" style="text-align:center;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+															<!--[if gte mso 9]>
+															<table align="center" border="0" cellspacing="0" cellpadding="0"  width="180" style="width:180px;border-spacing:0;font-family:sans-serif;color:#333333;" >
+															<tr>
+															<td align="center" bgcolor="#FEC524"  valign="top" style="padding-top:padding:5px;padding-bottom:padding:5px;" >
+															<![endif]-->
+
+
+															<!-- BOCA LINK --><a href="{!primaryURL}" target="_blank" style="background-color:#FEC524;border-collapse:separate;border-top-width:11px;border-top-style:solid;border-top-color:#FEC524;border-right-width:33px;border-right-style:solid;border-right-color:#FEC524;border-bottom-width:11px;border-bottom-style:solid;border-bottom-color:#FEC524;border-left-width:33px;border-left-style:solid;border-left-color:#FEC524;color:#333333;display:inline-block;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:600;letter-spacing:.3px;text-decoration:none;" >{!$Label.BOCAToProspect_Apply_Now}</a> <!-- /BOCA LINK -->
+
+
+															<!--[if gte mso 9]>
+															</td>
+															</tr>
+															</table>
+															<![endif]-->
+														</td>
+													</tr>
+												</table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+						
+                        </table>
+                    </td>
+                </tr>
+                <!-- /PROGRAM NAME, CARD, AND STEPS  -->
+                
+                
+                
+                
+                
+                
+                <!-- BULLETS -->
+                <tr>
+                    <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                            <!-- SET 1 -->
+                            <tr>
+                                <td class="inner contents" style="font-family:sans-serif;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;" >
+                                    <ul style="font-family:sans-serif;font-size:14px!important;">
+                                        <apex:outputText escape="false" value="{!primaryBrandingUtility.Primary_Program_Benefits__c}" />
+										
+                                    </ul>
+                                </td>
+                            </tr>
+                            <!-- /SET 1 -->
+                            <apex:outputPanel rendered="{!primaryLearnMoreURL != null && displayAssetsLinks == true}">
+                            <tr>
+                                <td class="inner contents" style="font-family:sans-serif;padding-top:0px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:center;" >
+                                    <p style="font-size:18px;"><a href="{!primaryLearnMoreURL}"><strong>{!$Label.BOCAToProspect_Click_Learn}</strong></a></p>
+                                </td>
+                            </tr>
+                            </apex:outputPanel>
+                        </table>
+                    </td>
+                </tr>
+                <!-- /BULLETS -->        
+				
+				
+				
+				
+				
+				
+                
+                
+                
+  
+                
+                
+               
+    
+    			<!-- SIGNATURE -->
+                <tr style="display: {!IF(salesRep != null, 'block', 'none')};">
+                    <td class="one-column" style="border-bottom-width:3px;border-bottom-style:solid;border-bottom-color:#595959;padding-top:0;padding-bottom:20px;padding-right:0;padding-left:0;" >
+                        <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                            <tr>
+                                <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;" >
+									<p>{!$Label.BOCAToProspect_Thank_You_For_Time}</p>
+                                    <p style="font-size: 18px; line-height: 18px; padding: 0; margin: 0;">
+                                        {!salesRep.Name}
+                                    </p>
+                                    <p style="font-size: 13px; display: {!IF(salesRep.Title != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
+                                        {!salesRep.Title}
+                                    </p>
+                                    <p style="font-size: 13px; display: {!IF(salesRep.Email != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
+                                       {!$Label.BOCAToProspect_Field_Email} <a style="color: #0645AD;" href="mailto:{!salesRep.Email}">{!salesRep.Email}</a>
+                                    </p>
+                                    <p style="font-size: 13px; display: {!IF(salesRep.Phone != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
+                                        {!$Label.BOCAToProspect_Field_Phone} {!salesRep.Phone}
+                                    </p>
+                                    <p style="font-size: 13px; display: {!IF(salesRep.Fax != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
+                                        {!$Label.BOCAToProspect_Field_Fax} {!salesRep.Fax}
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- /SIGNATURE --> 
+</apex:component>

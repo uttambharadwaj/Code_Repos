@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Maintenance/CastrolSavings_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>Castrol Oil Savings</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Castrol Oil Rebate Program</name>
+    <style>none</style>
+    <subject>Savings on Castrol HD Engine Oils</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

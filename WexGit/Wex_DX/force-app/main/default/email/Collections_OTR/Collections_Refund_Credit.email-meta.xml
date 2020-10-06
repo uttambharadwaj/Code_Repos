@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_OTR</letterhead>
+    <name>Collections - Refund Credit</name>
+    <style>freeForm</style>
+    <subject>Refund Credit</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+
+{!Today}
+
+
+Attn: {!Case.Contact}
+
+{!Account.Name}
+
+{!Account.BillingAddress}
+
+Account Number: {!Account.Carrier_ID__c}
+
+
+
+
+Dear Customer,
+
+
+We are completing a periodic review of your account and have discovered a credit that should be returned to you. Please give us a call to make arrangements for refunding this credit or let us know via e-mail if you would like it returned via ACH or check.
+
+
+If you would like an ACH transfer, please provide a voided check to us so we can return the funds. If we already have your banking information, please confirm the banking institution and the last 4 digits of the bank account we have on file. If you would like the amount returned by check, please send a request to us with the current company address details.
+
+
+Regards,
+
+EFS Collections and Receivables
+
+{!Case.Collections_Phone_Number__c}
+
+Privacy: https://www.efsllc.com/privacy-policy/</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Tires/GoldOverview_General_DD_pdf.pdf</attachedDocuments>
+    <available>true</available>
+    <description>use for workflow rule to remind fleets earning discounts from us.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Pilot/TA/Petro Savings120days</name>
+    <style>none</style>
+    <subject>Fuel Discount Reminder</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

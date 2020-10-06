@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Sourcewell Vehicle Tracking Update</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AE Lead Template: Sourcewell Vehicle Tracking Update</name>
+    <style>none</style>
+    <subject>Sourcewell Vehicle Tracking Update</subject>
+    <textOnly>Hello {!Contact.FirstName} –
+
+Are you looking into telematics or gps tracking for your vehicles this year? WEX can help, and you are eligible for special discounts through your WEX Sourcewell Government Fleet Card Program. No RFP required—the paperwork and vetting requirements have already been satisfied! If you would like more information or to set up a demo please let me know, my contact information is below.
+
+Kind Regards,
+
+{!User.Name}
+Account Executive
+WEX Inc.
+97 Darling Avenue, So. Portland, ME 04106
+{!User.Phone}
+www.wexinc.com
+
+
+
+See how WEX Telematics lets you track vehicle location, speed, fuel use, driver performance, and more.
+https://youtu.be/Cu1bG-rhNNM
+
+
+Sourcewell Contract # 022217-WEX
+https://www.sourcewell-mn.gov/sites/default/files/2018-05/WEX%20Contract%20022217.pdf</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

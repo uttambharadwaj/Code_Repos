@@ -1,0 +1,368 @@
+/**
+ * Created by dgilbert on 9/20/2018.
+ * Revision History:    IADJUDICAT-1199 order by lastmodifieddate
+ *                      21/Aug/2019 MFarrell    NAFONBOARD-75   Added check to see if app request is missing Fleet Enrollment record.
+ *
+ */
+
+// TODO - The robots are coming.
+@RestResource(urlMapping='/FleetEnrollmentWS/AccountActivationQueue/*')
+global with sharing class FleetEnrollmentWS_AccountActivationQueue {
+
+    global static Implementation_Automation_Setting__mdt errorQueueSettings {
+        get {
+
+            List<Implementation_Automation_Setting__mdt> errorQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Error'];
+
+            if (errorQueueSettings.size() > 0) { return errorQueueSettings[0]; }
+
+            return null;
+
+        }
+    }
+
+    global static Implementation_Automation_Setting__mdt activationQueueSettings {
+        get {
+
+            List<Implementation_Automation_Setting__mdt> dataEntryQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Activation'];
+
+            if (dataEntryQueueSettings.size() > 0) { return dataEntryQueueSettings[0]; }
+
+            return null;
+
+        }
+    }
+
+    global static Id errorQueueId {
+        get {
+
+            List<QueueSobject> queueSobjects = [SELECT Queue.Id FROM QueueSobject WHERE Queue.DeveloperName = :errorQueueSettings.Queue_Name__c];
+
+            if (queueSobjects.size() > 0) { return queueSobjects[0].Queue.Id; }
+
+            return null;
+
+        }
+    }
+
+    global static Id activationQueueId {
+        get {
+
+            List<QueueSobject> queueSobjects = [SELECT Queue.Id FROM QueueSobject WHERE Queue.DeveloperName = :activationQueueSettings.Queue_Name__c];
+
+            if (queueSobjects.size() > 0) {
+                return queueSobjects[0].Queue.Id;
+            }
+
+            return null;
+
+        }
+    }
+
+    global static Set<Id> activationQueueMemberIds {
+        get {
+
+            Set<Id> queueMembers = new Set<Id>();
+
+            for (GroupMember groupMember : [SELECT UserOrGroupId FROM GroupMember WHERE Group.DeveloperName = :activationQueueSettings.Queue_Name__c]) {
+
+                queueMembers.add(groupMember.UserOrGroupId);
+
+            }
+
+            return queueMembers;
+
+        }
+    }
+
+    global static Implementation_Automation_Setting__mdt dataEntryQueueSettings {
+        get {
+
+            List<Implementation_Automation_Setting__mdt> dataEntryQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Data_Entry'];
+
+            if (dataEntryQueueSettings.size() > 0) {
+                return dataEntryQueueSettings[0];
+            }
+
+            return null;
+
+        }
+    }
+
+    global static Id dataEntryQueueId {
+        get {
+
+            List<QueueSobject> queueSobjects = [SELECT QueueId FROM QueueSobject WHERE Queue.DeveloperName = :dataEntryQueueSettings.Queue_Name__c];
+
+            if (queueSobjects.size() > 0) {
+                return queueSobjects[0].QueueId;
+            }
+
+            return null;
+
+        }
+    }
+
+    global static Implementation_Automation_Setting__mdt callQueueSettings {
+        get {
+
+            List<Implementation_Automation_Setting__mdt> callQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Call_Queue'];
+
+            if (callQueueSettings.size() > 0) {
+                return callQueueSettings[0];
+            }
+
+            return null;
+
+        }
+    }
+
+    global static Id callQueueId {
+        get {
+
+            List<QueueSobject> queueSobjects = [SELECT QueueId FROM QueueSobject WHERE Queue.DeveloperName = :callQueueSettings.Queue_Name__c];
+
+            if (queueSobjects.size() > 0) {
+                return queueSobjects[0].QueueId;
+            }
+
+            return null;
+
+        }
+    }
+
+    @HttpGet
+    global static void getQueueCases() {
+
+        try {
+
+            if (activationQueueMemberIds.contains(UserInfo.getUserId())) {
+
+                GETResponse gResponse = new GETResponse();
+                gResponse.result = true;
+                gResponse.message = 'Case Queue successfully retrieved!';
+
+                gResponse.availableImplementationCases = new List<Case>();
+                //1199 order by lastmodifieddate
+                for(Case fleetEnrollmentCase : [SELECT Id, CaseNumber, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY LastModifiedDate ASC LIMIT 10]) {
+                    gResponse.availableImplementationCases.add(fleetEnrollmentCase);
+                }
+
+                System.debug(gResponse);
+
+                RestContext.response.addHeader('Content-Type', 'application/json');
+                RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));
+
+            } else { throw new fleetEnrollmentWSQueueException('Your login user is not a member of this queue. Please contact the System Administrator.'); }
+
+        } catch (Exception e) {
+            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+
+            RestContext.response.addHeader('Content-Type', 'application/json');
+            RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new GETResponse(false, e.getMessage())));
+        }
+
+    }
+
+    @HttpPost
+    global static void updateQueueCase(String id, Boolean activationCompleted, String caseNotes) {
+
+        try {
+
+            if (activationQueueMemberIds.contains(UserInfo.getUserId())) {
+
+                List<Case> cases = [SELECT Id, Account_Activation_Completed__c, OwnerId, Status FROM Case WHERE Id = :id LIMIT 1];
+
+                if (cases.size() > 0) {
+
+                    if (activationCompleted == true) {
+
+                        markCaseComplete(cases[0].Id, caseNotes);
+
+                        RestContext.response.addHeader('Content-Type', 'application/json');
+                        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new POSTResponse(id, true, 'Case marked as completed.')));
+
+                    } else {
+
+                        updateCaseOwner(cases[0].Id, errorQueueId, caseNotes);
+
+                        RestContext.response.addHeader('Content-Type', 'application/json');
+                        RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new POSTResponse(id, true, 'Case moved to error queue.')));
+
+                    }
+
+
+                } else { throw new fleetEnrollmentWSQueueException('Unable to find specified record.'); }
+
+            } else { throw new fleetEnrollmentWSQueueException('Your login user is not a member of this queue. Please contact the System Administrator.'); }
+
+        } catch (Exception e) {
+            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+
+            RestContext.response.addHeader('Content-Type', 'application/json');
+            RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new POSTResponse(id, false, e.getMessage())));
+        }
+
+    }
+
+    @future
+    global static void markCaseComplete(Id caseId, String caseNotes) {
+
+        try {
+
+            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, Account_Activation_Completed__c,
+                    Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c
+                    FROM Case
+                    WHERE Id = :caseId LIMIT 1];
+
+            if (cases.size() > 0) {
+                cases[0].Account_Activation_Completed__c = true;
+                cases[0].OwnerId = UserInfo.getUserId();
+                cases[0].Status = 'Closed';
+                if (caseNotes.length() > 255) {
+                    cases[0].Subject = (caseNotes).substring(0, 255);
+                } else {
+                    cases[0].Subject = caseNotes;
+                }
+
+                if (cases[0].Description != null) {
+                    cases[0].Description = cases[0].Description + '\n\n' + caseNotes;
+                } else {
+                    cases[0].Description = caseNotes;
+                }
+
+                upsert cases;
+
+                //NAFONBOARD-75
+                //if app request made it this far without a fleet enrollment attached, find the fleet enrollment and attach it.
+                if(cases[0].Fleet_Enrollment__c == null) {
+                    List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c = :cases[0].Opportunity__c LIMIT 1];
+
+                    List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id = :cases[0].App_Request_This_Case__c LIMIT 1];
+
+                    if (applicationRequests.size() > 0 && fleetEnrollments.size() > 0) {
+
+                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollments[0].Id;
+
+                        upsert applicationRequests[0];
+                    }
+                }
+
+                // Re-fetch the case after insert
+                cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, Account_Activation_Completed__c,
+                        Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c
+                FROM Case
+                WHERE Id = :caseId LIMIT 1];
+
+                List<FleetEnrollment_Contact__c> fleetEnrollmentContacts = [SELECT Id FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
+                List<FleetEnrollment_Driver__c> fleetEnrollmentDrivers = [SELECT Id FROM FleetEnrollment_Driver__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
+                List<FleetEnrollment_Vehicle__c> fleetEnrollmentVehicles = [SELECT Id FROM FleetEnrollment_Vehicle__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
+                List<Attachment> fleetEnrollmentAttachmnets = [SELECT Id FROM Attachment WHERE ParentId =: cases[0].Fleet_Enrollment__c and ParentId != null];
+
+                if(cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null && ((fleetEnrollmentContacts.size() > 0 && fleetEnrollmentVehicles.size() > 0 && fleetEnrollmentDrivers.size() > 0) || fleetEnrollmentAttachmnets.size() > 0)) {
+
+                    Case implementationCallCase = new Case();
+
+                    implementationCallCase.ParentId = cases[0].ParentId;
+                    implementationCallCase.Subject = 'Data Entry';
+                    implementationCallCase.Type = 'Data Entry';
+                    implementationCallCase.Status = 'New';
+                    implementationCallCase.OwnerId = dataEntryQueueId;
+                    implementationCallCase.AccountId = cases[0].AccountId;
+                    implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
+                    implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
+                        implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    }
+
+                    insert implementationCallCase;
+
+                }
+                else {
+
+                    Case implementationCallCase = new Case();
+
+                    implementationCallCase.ParentId = cases[0].ParentId;
+                    implementationCallCase.Subject = 'Implementation Call';
+                    implementationCallCase.Type = 'Implementation Call';
+                    implementationCallCase.Status = 'New';
+                    implementationCallCase.OwnerId = callQueueId;
+                    implementationCallCase.AccountId = cases[0].AccountId;
+                    implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
+                    implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
+                        implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    }
+
+                    insert implementationCallCase;
+
+                }
+
+            }
+
+        } catch (Exception e) {
+            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+        }
+    }
+
+    @future
+    global static void updateCaseOwner(Id caseId, Id queueId, String caseNotes) {
+        List<Case> cases = [SELECT Id, OwnerId, Subject, Description FROM Case WHERE Id = :caseId LIMIT 1];
+
+        if (cases.size() > 0) {
+            cases[0].OwnerId = queueId;
+            if(caseNotes.length() > 255) {  cases[0].Subject = (caseNotes).substring(0, 255); }
+            else { cases[0].Subject = caseNotes; }
+
+            if(cases[0].Description != null) { cases[0].Description = cases[0].Description + '\n\n' + caseNotes; }
+            else { cases[0].Description = caseNotes; }
+
+            try {
+                upsert cases;
+            }
+            catch(Exception e) {
+                WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+            }
+
+        }
+    }
+
+    public class fleetEnrollmentWSQueueException extends Exception {}
+
+    public class GETResponse {
+
+        public Boolean result { get; set; }
+        public String message { get; set; }
+
+        public List<Case> availableImplementationCases { get; set; }
+
+        public GETResponse() {
+
+        }
+
+        public GETResponse(Boolean result, String message) {
+            this.result = result;
+            this.message = message;
+        }
+
+    }
+
+    public class POSTResponse {
+
+        public String id { get; set; }
+        public Boolean result { get; set; }
+        public String message { get; set; }
+
+        public POSTResponse(String caseId, Boolean result, String message) {
+
+            this.id = caseId;
+            this.result = result;
+            this.message = message;
+
+        }
+
+    }
+
+}

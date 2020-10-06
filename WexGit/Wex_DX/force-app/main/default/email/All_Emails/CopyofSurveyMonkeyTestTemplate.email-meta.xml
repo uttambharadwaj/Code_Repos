@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Copy of Survey Monkey Test Template</name>
+    <style>none</style>
+    <subject>Welcome to Our Survey [FirstName]</subject>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

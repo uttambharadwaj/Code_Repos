@@ -1,0 +1,19 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'>{!Contact.FirstName},</span></p><p><br></p><p><font face="Times New Roman">
+
+</font><span style='color: black; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'> Thanks for taking my call, here is the additional information you requested. Whether you have a small sales force or a large fleet of service vehicles, the Esso Business Card Program gives you exceptional fuel savings, powerful and easy-to-use fuel management tools with the convenience of Canada's largest retail network!</span></p><p><span style='color: black; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'><br></span></p><ul><li><font face="Arial,Sans-Serif">Maximize profits with volume discounts</font></li><li><font face="Arial,Sans-Serif">Easy-to-use online management tool that helps you set controls, track expenses and save time and money</font></li><li><font face="Arial,Sans-Serif">Synergy Fuel technology</font></li><li>Fuel quickly, safely and simply with <font face="Calibri"><font face="Arial,Sans-Serif">Speedpass</font>™</font><font face="Times New Roman">
+</font></li><li><font face="Arial,Sans-Serif">Save 10% off oil changes at all Mr.Lube<font size="1">®</font> locations
+by showing&nbsp;your Esso Business Card.</font></li></ul><font face="Times New Roman"><p><span style='color: black; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman";'>It’s easy to enroll.
+Simply complete the attached application form and fax it back to me at
+{!User.Fax} or scan and email it to me at {!User.Email}.</span></p><p>
+
+<br></p></font><p><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'>Thank you for your interest in the Esso Business Card program. </span></p><p><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'><br></span></p><p><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'>Sincerely,</span></p><p><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'><br></span></p><p><span style='color: black; line-height: 115%; font-family: "Arial","sans-serif"; font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA;'><span style='color: black; line-height: 115%; font-family: "Verdana","sans-serif"; font-size: 10pt; mso-fareast-font-family: "Times New Roman"; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-style: italic;'><font size="3">{!User.FirstName}
+{!User.LastName} <br>
+{!User.Title} <br>
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email}</font> </span></span></p><font face="Times New Roman"><p><br></p><p><br></p></font>]]></td>
+</tr>
+</table>

@@ -1,0 +1,1749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Clone of Sales app, with WEX logo added.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>WEX Sales</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.AU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.EU_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.NA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunity_Record_Related_On_Right</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.ASIA_Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.APAC_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.AU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.EU_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Lead_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Lead</pageOrSobjectType>
+        <recordType>Lead.NA_Corporate_Payments_Lead</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Parent</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Finance EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Marketing NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Campaigns_Record_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Campaign</pageOrSobjectType>
+        <recordType>Campaign.CorporatePay_Events_Master</recordType>
+        <type>Flexipage</type>
+        <profile>CP Standard AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Contacts_Record_Page_LinkedIn</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Contacts_Record_Page_LinkedIn</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Account_Record_Page_Corporate_Payments</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Account</pageOrSobjectType>
+        <recordType>Account.Corporate_Payments</recordType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Corporate Payment - Global</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>EFS_Inside_Sales_Home_Page_Fleet_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>WEX EFS OTR Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Sales AU</profile>
+    </profileActionOverrides>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Feed</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>Virtual_FEP__c</tabs>
+    <tabs>Competitor__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>echosign_dev1__SIGN_Agreement__c</tabs>
+    <tabs>Application_Request__c</tabs>
+    <tabs>Account_Asset__c</tabs>
+    <tabs>Training__c</tabs>
+    <tabs>standard-Case</tabs>
+    <tabs>Site__c</tabs>
+    <tabs>Child_Host__c</tabs>
+    <tabs>Cards__c</tabs>
+    <tabs>OCMS_Form_Data__c</tabs>
+    <tabs>WeFormObject__c</tabs>
+    <tabs>Online_Application_Status__c</tabs>
+    <tabs>mea__Activities_Tab</tabs>
+    <tabs>Campaign_Pricing__c</tabs>
+    <tabs>WEX_Map__c</tabs>
+    <tabs>po_box_validation__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Project__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Task__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Milestone__c</tabs>
+    <tabs>Forms__c</tabs>
+    <tabs>Daily_Transaction_Monitoring_Report</tabs>
+    <tabs>FleetEnrollment__c</tabs>
+    <tabs>Truckers_Commisions__c</tabs>
+    <tabs>Customer_Dashboard</tabs>
+    <tabs>Partner__c</tabs>
+    <tabs>CP_Projects__c</tabs>
+    <tabs>FSC_Existing_Exposure__c</tabs>
+    <tabs>CP_Application_Request__c</tabs>
+    <tabs>SAP_Commissions</tabs>
+    <tabs>WEX_Support_Portal</tabs>
+    <tabs>iSell__Avention</tabs>
+    <tabs>et4ae5__Configuration__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

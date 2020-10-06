@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_EDGE/InTouchELD_Information_Sheet_pdf.pdf</attachedDocuments>
+    <available>false</available>
+    <description>InTouch ELD overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EDGE_Letterhead</letterhead>
+    <name>EDGE InTouch ELD</name>
+    <style>freeForm</style>
+    <subject>InTouch ELD solution</subject>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

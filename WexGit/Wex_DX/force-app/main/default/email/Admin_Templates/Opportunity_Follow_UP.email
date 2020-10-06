@@ -1,0 +1,10 @@
+Thank you for your recent interest in {!Opportunity.TB2B_Product_Interest__c}.  I wanted to follow up to make sure a representative has been in touch with you and was able to meet your needs.  If you have not heard from them, please let me know. 
+
+If there's anything I can help you with at this time, please do not hesitate to call or email me. Otherwise, I will reach out to you in a few weeks to see how things went with {!Opportunity.TB2B_Product_Interest__c}.
+
+Thank you, 
+
+{!User.FirstName} {!User.LastName} 
+{!User.Title} 
+{!User.Phone} 
+{!User.Email}

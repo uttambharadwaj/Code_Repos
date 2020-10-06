@@ -1,0 +1,13 @@
+Hi {!Opportunity.OwnerFirstName},
+
+The status on the application you have submitted for {!Opportunity.Name} has been changed by credit to {!Application_Request__c.Credit_Decision__c}.
+
+Decision Comments: {!Application_Request__c.Credit_Decision_Comments__c}
+
+Please follow these links to view more detail.
+
+Opportunity:  {!Opportunity.Link}
+
+App Request:  {!Application_Request__c.Link}
+
+Thank you

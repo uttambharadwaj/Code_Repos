@@ -1,0 +1,120 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.il
+	{mso-style-name:il;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>Hello {!Contact.FirstName} </p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>
+I hope you are having a great summer, its been a hot one.  We have 5 months left to 2019 and I wanted to send another reminder of your account review for your WEX fuel card program.  Its important to make sure that we are on the same page with the purchase trends and way your account is being serviced.  I would also like to review areas we have identified to help reduce your fuel costs and discuss any related company initiatives you have for the next 12 months.  It takes about 30 minutes for this along with bringing you up to speed on our program enhancements that we have or will be rolling out in 2019.  Let me know when we can schedule this and I will get it on our calendars.  
+
+If you have done your review this year, awesome, lets reconnect on any items you have tasked to me.  I will be reaching out to you if you have expressed interest in any, WEX solutions (Clearview, AP/Purchase cards, GPS/Telematics, etc.) </p>
+
+<p class=MsoNormal>When would be a good time to set up a meeting?</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>Thanks,</p>
+
+<p class=MsoNormal> </p>
+
+<p class=MsoNormal>{!User.Name}, Account Executive </p>
+
+<p class=MsoNormal>WEX Inc.</p>
+
+<p class=MsoNormal>97 Darling Ave, South Portland, ME 04106</p>
+
+<p class=MsoNormal>Phone: {!User.Phone} </p>
+
+<p class=MsoNormal>Email: {!User.Email} </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

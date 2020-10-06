@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Savings on Tires, PM&apos;s and DOT inspections with Goodyear Commercial Tire &amp; Service Centers</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>GoodyearCTSC Savings</name>
+    <style>none</style>
+    <subject>Savings at Goodyear Commercial Tire &amp; Service Centers</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

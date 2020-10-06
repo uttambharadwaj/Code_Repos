@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>WEX Fuel Savings Consultation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AE Lead Teamplate: Clearview 2</name>
+    <style>none</style>
+    <subject>Re: WEX Fuel Savings Consultation</subject>
+    <textOnly>Hello {!Contact.FirstName} –
+
+I hope you had a great weekend.  Did you get the email I sent last week?  Just sending a reminder about the opportunity to review your WEX fuel card account for areas we have identified to help reduce your fuel costs and discuss any fleet management related company initiatives you have.  Please let me know if you are interested or if there is a different person I should connect with.  I look forward to speaking with you.
+
+Thanks,
+
+{!User.Name}
+Account Executive
+WEX Inc.
+97 Darling Avenue, So. Portland, ME 04106
+{!User.Phone}
+www.wexinc.com
+
+See how WEX developed the data visualization tool ClearView in consultation with the managers of some of the nation’s largest and most mission-critical fleets.
+https://youtu.be/oY7eJ8yXgPQ</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

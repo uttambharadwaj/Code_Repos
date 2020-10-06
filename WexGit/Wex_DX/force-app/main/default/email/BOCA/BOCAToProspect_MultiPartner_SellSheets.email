@@ -1,0 +1,120 @@
+<messaging:emailTemplate subject="Thank You For Your Interest In {!RelatedTo.Program__r.Brand_Long_Name__c}!" recipientType="Contact" relatedToType="WeFormObject__c" id="confirm">
+
+<messaging:htmlEmailBody >
+<html>
+    <meta name="title" content=""/>
+    <meta name="description" content=""/>
+    <meta charset="UTF-8"/>
+    <style type="text/CSS">
+        #header h3{
+            padding:4px 0px 0px 10px;
+     
+        }
+        .sig p{
+            padding-bottom: 2px;
+        }
+         h3{
+          margin:0px;
+        }
+        #header{
+      
+        background-color:#6d991c;
+        color:#FFFFFF;
+        margin:0px;
+        font-family: Arial;
+        min-height:175px;
+        max-width:640px;
+        }
+
+        #wrapper{
+            padding:4px 8px 0px 8px;
+            margin:0px;
+            background-color:#ffffff;
+        }
+        body{
+            margin:0px;
+            background:#FFFFFF;
+            color:#000000; 
+            font-family:Arial, Helvetica, sans-serif; 
+            font-size:13px;
+            max-width:640px;
+           }  
+          html{
+              max-width:640px;
+            
+}
+    #footer{
+        margin-top: 20px;
+    }
+    #footer p{
+        font-style:italic;
+    }
+
+    </style>
+
+
+<body width="640px">
+<table border="0"  cellspacing="0" width="640">
+<div id="header" width="640px">
+<apex:image URL="{!RelatedTo.Program__r.Custom_Email_Header_URL__c}" id="image" style="display:block;" alt="Branding" height="145" width="640"/>
+
+</div><!----close header---->
+<div id="wrapper" >
+
+
+                 Dear {!recipient.FirstName} {!recipient.LastName},
+                <p>
+                Thank you for considering the {!RelatedTo.Program__r.Brand_Long_Name__c} program!</p>
+                <p>I think you’ll find the {!RelatedTo.Program__r.Brand_Long_Name__c} an ideal solution for your company’s fueling needs.<br/>
+                
+
+                Please take a moment to review our program information.  Program details are included in the links provided.<br/>
+                
+               
+                <apex:outputText value="{!relatedTo.message__c}"></apex:outputText><br/><br/>
+                
+                <apex:outputPanel rendered="{!IF(ISBLANK(relatedTo.Program_Info__c),false,true)}">
+                <apex:outputText Value="{!relatedTo.Program_Info__c}" escape="false"/><br/>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!IF(ISBLANK(relatedTo.Program_Info__c),true,false)}">
+              <a href="http://onlineservices.force.com/creditapplication/{!RelatedTo.Program__r.Form_Template__c}?pgm={!RelatedTo.Program__r.Brand_Short_Name__c}&priority=true&customer={!RelatedTo.Id}&salescode={!RelatedTo.Sales_Id__c}&cc={!RelatedTo.Promotional_Code__c}"
+               target="_blank"  title="Online Application">Your Personal Application</a>.<br/><br/>
+                Program Information <br/>
+                <apex:outputText Value="{!relatedTo.Program__r.BOCA_Sell_Sheet__c}" escape="false"/><br/><br/>
+                </apex:outputPanel>
+               
+       
+                 
+                It’s easy to enroll.  Simply complete the online application.  <br/><br/>
+                Upon approval; you’ll receive another email containing a link allowing you to order your cards online.<br/><br/>
+
+
+            
+                Thank you for your interest in our program,</p>
+               
+                <p span="sig">
+                {!RelatedTo.Opportunity__r.Owner.Name} <br/>
+              
+                {!RelatedTo.Opportunity__r.Owner.Phone}<br/>
+               
+                {!RelatedTo.Opportunity__r.Owner.Email}<br/>
+                </p>
+    
+</div><!----end wrapper---->
+
+
+
+<span id="footer">
+
+<p>
+
+To ensure delivery to your inbox, please add this address to your address book: {!RelatedTo.Program__r.Email_Reply_To_Address__c}.<br/>
+Copyright &copy; {!year(today())} WEX Inc., 97 Darling Avenue, South Portland, Maine 04106. All rights reserved.</p></span>
+
+</table>
+</body>
+
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

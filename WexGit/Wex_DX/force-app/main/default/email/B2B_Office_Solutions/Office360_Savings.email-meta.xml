@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>B2B_Office_Solutions/Office360SavingsOverview_pdf.pdf</attachedDocuments>
+    <attachedDocuments>B2B_Office_Solutions/Office360_Top15HotItems.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Office360 Savings Overview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Office360_Savings</name>
+    <style>none</style>
+    <subject>New savings with Office360</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

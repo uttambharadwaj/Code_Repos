@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attachedDocuments>Inside_Sales/FSC_Billing_Personal_Guaranty_Form_2013.pdf</attachedDocuments>
+    <available>true</available>
+    <description>Need financial statements or a Personal Guarantee to qualify. Also need physical address verification. Attach Personal Guarantee form.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Chevron_and_Texaco_Letterhead</letterhead>
+    <name>Chevron Credit FS, PG and PAV</name>
+    <style>freeForm</style>
+    <subject>Chevron and Texaco Business Card Program - Additional Information Required</subject>
+    <textOnly>In order to qualify for credit, you may either submit financial statements for your business or have an officer of the company sign a Personal Guaranty (attached).
+
+If you choose to send financial statements, I will need one full year of financial records. This consists of your balance sheet and income statement.
+
+Also, as part of the approval process our bank is requesting to verify your physical address to comply with the Patriot Act.  We will need documentation from a third party to verify your business is located at the physical address listed on your application. 
+The bank requires a copy of one of the following documents:
+
+A copy of a Utility bill or invoice (i.e. telephone or power) showing that the bill is mailed to the physical street address or that it services the physical address of the business
+
+Lease agreement that identifies the business and the physical street address of the business
+Certified articles of incorporation that identifies the physical street address
+
+An unexpired government-issued business license; a partnership agreement; or a trust instrument that identifies the physical street address
+
+A copy of an invoice (paper supplies, lumber, etc.) that documents delivery to the physical street address as it appears on the credit application
+
+Bank account statement that identifies the physical street address
+
+Business name needs to match the name on the application and documents need to be no older than 60 days.
+
+
+
+Feel free to scan and email the verification to me or if you prefer, you can fax it directly to me at {!User.Fax}.  Should you have any questions, I can be reached directly at {!User.Phone}.
+
+Thank you for choosing the Chevron and Texaco Business Card Program.
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+
+Fax - {!User.Fax}
+
+{!User.Email}
+
+
+CONFIDENTIALITY NOTICE: &quot;This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments.&quot;
+
+WEX Inc., 97 Darling Avenue, South Portland, ME 04106
+
+This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email}, email us to unsubscribe. Please be sure to include your name, company name and email address in the email.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Referral request #5</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CITGO_Letterhead</letterhead>
+    <name>Referral</name>
+    <style>freeForm</style>
+    <subject>CITGO Fleet Program - Checking In</subject>
+    <textOnly>{!Contact.FirstName},
+
+It&apos;s been a pleasure working with you to implement the CITGO Fleet program.
+
+Do you have any business contacts that could use help saving on fuel for their vehicles? I am always looking to grow my network and help businesses save with CITGO.
+
+As always, I am available if anything comes up. Remember that we also have 24/7 customer service at 1-866-926-5615, and you can also pull reports, add and delete cards and drivers anytime on your online account at CITGO Fleet Online.
+
+Sincerely,
+
+{!User.FirstName}
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}
+
+
+
+©2016 CITGO Petroleum.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

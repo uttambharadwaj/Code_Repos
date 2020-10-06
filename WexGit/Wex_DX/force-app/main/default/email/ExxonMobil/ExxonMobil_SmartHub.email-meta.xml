@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EXX_SmartHub</letterhead>
+    <name>ExxonMobil SmartHub</name>
+    <style>freeForm</style>
+    <subject>ExxonMobil Fleet SmartHub App</subject>
+    <textOnly>Did you know you can now obtain access to key online services at anytime, anywhere?
+
+
+
+Add Fleet SmartHub to your fleet toolkit today and be able to access these key features right from your smartphone:
+
+
+
+Bill Pay- view and make payments
+Credit View- see all available billed &amp; unbilled credit
+Transaction Details- view posted purchase transactions
+Card Management- re-issue, terminate and check status of cards
+Payment View- displays payment activities
+
+The Fleet SmartHub app was designed specifically for Fleet Managers to improve efficiencies, help reduce late fees, provide insight and control unauthorized spending.
+
+
+
+Download Fleet SmartHub today and bring these benefits directly to your bottom line.
+
+
+
+{!User.FirstName}{!User.LastName}
+
+{!User.Title}
+
+Phone: {!User.Phone}
+
+Fax:{!User.Fax}
+
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

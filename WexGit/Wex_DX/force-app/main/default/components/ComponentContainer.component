@@ -1,0 +1,25 @@
+<apex:component layout="none">
+	<apex:attribute name="title" type="String" required="true" description="Title of the container" />
+	<apex:attribute name="width" type="Integer" required="false" default="0" description="Width of the container" />
+	<apex:attribute name="height" type="Integer" required="false" default="0" description="Height of the container. A value of zero makes height dynamically change" />
+	<apex:attribute name="iconImagePath" type="String" required="false" description="The path to the icon image. For example, /resource/SupportCommunityResources/images/image.png" />
+	<apex:attribute name="displayborder" type="Boolean" required="false" default="false" description="Display a border for container." />
+		
+	<!--<div class="componentContainer" style="float:left; {!IF(height > 0, 'height:' & TEXT(height) & 'px;', '')} margin-left:5px;margin-right:5px;color:#0A3666;">-->
+	<!--<div class="componentContainer" style="{!IF(height > 0, 'height:' & TEXT(height) & 'px;', '')} margin-left:5px;margin-right:5px;color:#0A3666;">-->
+	<!--
+	<div style="float:left; width:{!width}%; height:{!height}px; margin-left:5px;margin-right:5px;border-color:#D21743;" class="loop grid article">
+	-->
+	<div style="float:left; {!IF(width > 0, 'width:' & TEXT(width) & '%;','')} height:{!height}px; margin-left:5px;margin-right:5px; {!IF(displayBorder,'border:1px solid black;','')}">
+
+		<div class="middle">		
+			<!--<div style="margin:10px auto;display: inline-block; padding-left:40%;">-->
+				<!-- <img src="{!iconImagePath}" alt="{!title}" /> -->		
+			<div class="header" style="padding:2px;">		
+				<b>{!title}</b>				
+			</div>
+			
+			<apex:componentBody />			
+		</div>
+	</div>
+</apex:component>

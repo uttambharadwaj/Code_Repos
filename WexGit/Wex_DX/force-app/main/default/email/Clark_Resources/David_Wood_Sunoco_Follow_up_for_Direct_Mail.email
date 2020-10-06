@@ -1,0 +1,14 @@
+{!Contact.FirstName}
+
+Thank you for the call today, I appreciate your time. Just confirming that my colleague, David Wood, Sunoco Fleet Card Manager, will be giving you a call within the next few days to discuss your needs. He specializes in cost savings and fueling needs for business vehicles, which it sounds like you might be able to benefit from.
+
+In the meantime, attached is information about the 20-cent per gallon fuel savings program that we are running in your local area. You can find more information about the Sunoco Fleet program at www.sunocofleetcards.com.
+
+If you would like to reach out to David Wood you can reach him at 330-256-6180 or david.wood@wexinc.com. 
+
+Regards,
+
+{!User.FirstName} {!User.LastName}
+Sunoco Fuel Card Specialist
+Phone - {!User.Phone}
+{!User.Email}

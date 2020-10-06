@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Enterprise Payments Sales Templates</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <roleAndSubordinatesInternal>Corporate_Payments_Marketing</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>Corporate_Payments_Sales</roleAndSubordinatesInternal>
+        <roleAndSubordinatesInternal>Corporate_Payments_Strategic_Accounts_Leadership</roleAndSubordinatesInternal>
+    </sharedTo>
+</EmailFolder>

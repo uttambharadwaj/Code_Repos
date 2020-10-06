@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>32.0</apiVersion>
+    <available>true</available>
+    <description>Multi-Partner Email BOCA to potential customer from SalesRep with Sell Sheets</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>BOCAToProspect_MultiPartner_SellSheets</name>
+    <style>none</style>
+    <subject>Thank You For Your Interest In !</subject>
+    <type>visualforce</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

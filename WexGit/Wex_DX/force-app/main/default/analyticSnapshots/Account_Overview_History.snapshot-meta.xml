@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticSnapshot xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Enables reporting on Share Of Spend etc. from the Account Overview so that data can be summarized in a report and displayed in graphs</description>
+    <mappings>
+        <sourceField>Virtual_FEP__c.Group_Turnover__c.CONVERT</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Group_Turnover__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Virtual_FEP__c.Annual_Addressable_Spend__c.CONVERT</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Addressable_Annual_Spend__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Virtual_FEP__c.WE_Share_Of_Spend__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.WE_Share_Of_Spend__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Virtual_FEP__c.Value_Of_WE_Spend__c.CONVERT</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Value_Of_WE_Spend__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>CUST_ID</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Account_Overview__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>Virtual_FEP__c.Account_Name__c</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Account_Text__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>CUST_NAME</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Account_Overview_Name_Text__c</targetField>
+    </mappings>
+    <mappings>
+        <sourceField>CUST_OWNER_NAME</sourceField>
+        <sourceType>tabular</sourceType>
+        <targetField>WE_FEP_History__c.Account_Overview_Owner_Text__c</targetField>
+    </mappings>
+    <name>Account Overview History</name>
+    <runningUser>alex.sherwood@wexeurope.com</runningUser>
+    <sourceReport>Virtual_EU_RMWE_Relationship_Management/Account_Overview_History</sourceReport>
+    <targetObject>WE_FEP_History__c</targetObject>
+</AnalyticSnapshot>

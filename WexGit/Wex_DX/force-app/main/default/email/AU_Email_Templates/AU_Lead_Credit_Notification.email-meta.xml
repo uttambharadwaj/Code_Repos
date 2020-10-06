@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Lead Credit Notification</name>
+    <style>freeForm</style>
+    <subject>New Salesforce Application {!Lead.Id} requires review</subject>
+    <textOnly>A new application has been received and requires credit review.
+
+
+
+{!Lead.Link}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

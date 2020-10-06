@@ -1,0 +1,19 @@
+{!Contact.FirstName},
+
+Thank you for your interest in Marquette Transportation Finance, where you can receive a 2% rebate on all financing fees. Please review the attached information and call or email me with any questions.  When you are ready, I can put you in touch with a Marquette representative.
+
+You can also login with your Member ID and password located below to view more detailed information at http://www.truckersb2b.com/marquette
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+ 
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

@@ -1,0 +1,10 @@
+You have an opportunity to make this prospect a full-fledged member of B2B or FTS!   This opportunity was created for the awesome Savings Consultant to contact prospect & see if there's a fit.
+
+Prospect: {!Opportunity.Account}
+Opp created by: {!Opportunity.CreatedBy}
+Opp Record type: {!Opportunity.RecordType}
+Truck Count: {!Opportunity.Truck_count__c} (THIS IS PROBABLY NOT ACCURATE BUT WE HAD TO ENTER SOMETHING!)
+
+Comments: {!Opportunity.Vendor_Comments__c}
+
+See the opportunity here: https://na12.salesforce.com/{!Opportunity.Id}

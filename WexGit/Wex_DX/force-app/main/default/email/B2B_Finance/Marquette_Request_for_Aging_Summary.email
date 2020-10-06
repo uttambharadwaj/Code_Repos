@@ -1,0 +1,26 @@
+Dear {!NullValue(Contact.FirstName,"Member")},
+
+Thank you for taking the time to discuss Accounts Receivable Financing.  In order to better serve you, please fax a copy of a recent Summary Aging to 888-855-9633.  This will be used solely by Marquette Transportation Finance for purposes of providing a free analysis of your aging.  
+
+Once we receive your Summary Aging, a representative from Marquette Transportation Finance will contact you within 48 hours to discuss a program that will work best for your needs.
+
+Marquette has over 50 years of financing expertise and is dedicated solely to the trucking industry.  Here are just a few of the benefits of financing with Marquette Funding….
+
+- Improve your cash flow
+- Improve your receivable return time
+- Take advantage of vendors’ discounts by paying quicker
+- Reduce credit and collection costs
+…and more
+
+Again, thank you for your interest, and a Marquette Representative will be in touch with you shortly.  In the meantime, should you have any questions, please feel free to contact me.
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

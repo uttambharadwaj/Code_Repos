@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Need a deposit, letter of credit or Personal Guarantee for account approval. Attach Paperwork for letter of credit and deposit, and Personal Guarantee.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Credit Deposit, LOC, PG &amp; PAV</name>
+    <style>freeForm</style>
+    <subject>Your ExxonMobil Fleet Card Application Status</subject>
+    <textOnly>You can obtain an account with WEX by either providing a deposit or completing a letter of credit with your bank. The amount you provide would become your credit limit. I am attaching the necessary paperwork for both the letter of credit and deposit.
+
+
+For the letter of credit, one form needs to be signed by you and the other needs to be completed by your bank on their letterhead. Both must have original signatures. Then mail them back to Credit at: 7090 South Union Park Avenue, Suite 350, Salt Lake City, UT 84047.
+
+
+Or, if you choose to send a deposit, the last page must be completed. Please fax the agreement to me at {!User.Fax}, and mail a certified check to Credit at the above address.
+
+
+If you prefer, you may submit a Personal Guarantee. An officer of the company must complete and sign the form, which can then be faxed back to me.
+
+
+Also, as required by the Patriot Act, Credit is requesting “physical address verification”. We need a copy of a utility bill or other formal document listing your legal business name and the physical address you provided on the application.
+
+
+Please call me with any questions.
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

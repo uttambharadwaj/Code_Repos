@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Recap of Green EDGE conversation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>EDGE Green Initiative Recap</name>
+    <style>none</style>
+    <subject>Recap of our conversation and next steps</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

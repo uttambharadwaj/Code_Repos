@@ -1,0 +1,25 @@
+<messaging:emailTemplate subject="New Fleet Enrollment" recipientType="User" relatedToType="FleetEnrollment__c">
+<messaging:htmlEmailBody >
+
+A new Fleet Enrollment has been submitted.
+
+<p>
+<b>Submission Type:</b>&nbsp; 
+<apex:outputText rendered="{!relatedTo.Credit_Approved__c == true}">Approved</apex:outputText>
+<apex:outputText rendered="{!relatedTo.Credit_Approved__c == false}">Unapproved</apex:outputText>
+</p>
+
+<apex:outputText rendered="{!relatedTo.Opportunity_Number__c != ''}">
+<p>
+    <b>Opportunity:</b> {!relatedTo.Opportunity_Number__c}
+</p>
+</apex:outputText>
+
+<p>
+    <b>Business Name:</b> {!relatedTo.Company_Name_Lookup__c}
+</p>
+
+<a href="{!$Label.Instance_URL}{!relatedTo.Id}">View Fleet Enrollment</a>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

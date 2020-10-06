@@ -1,0 +1,21 @@
+Hello there, {!Contact.FirstName}
+
+Thank you for taking the time to talk with me earlier!  As a reminder, you have been a member with TruckersB2B since {!Account.Member_Signup_Date__c} and have saved over {!Account.Total_Savings__c} in that time.  
+
+As a result of being enrolled in our fuel program through your Comdata Fuel Card, you are currently earning {!Account.Pilot_Fuel_Override__c} cents per gallon off at all Pilot Flying J and 10 cents per gallon at TA Petro locations. Those discounts are immediately credited to your Comdata account, and can be viewed on your Comdata transaction report. 
+
+We received a notification from Pilot Flying J stating that you opted for a fuel discount program through the Comdata Small Carrier Program. It has come to our understanding that they have been switching TruckersB2B customers over to their program, and in some cases they have not given our customers an option or made it seem like they didn't have an option. 
+
+You do have a choice in the matter. We value the longstanding relationship that we have with you and would hate to lose your business. In effort to keep your business with TruckersB2B I can offer you a 10 cent discount at Pilot Flying J. That will match the discount that the Comdata Small Carrier Program is offering you.  
+
+So your choice is simple...you can stay with us and get 10 cents or go to a new program and get 10 cents off a gallon. Either way you get 10 cents. In addition our program offers a discount of 10 cents at TA Petro, assuming a fleet is not on a competing program. The Comdata Small Carrier Program has no deal in place with TA Petro. I am hoping due to our history with you that you will opt to be loyal and stay with us. 
+
+If you wish to stay on our program, then all you need to do is complete the attached forms and fax or email it back to me. 
+
+If you have any questions, please do not hesitate to call me direct or at 888-937-6334.  
+
+Thank you for being a valued member of TruckersB2B,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - 60 - Contact Attempt (fr)</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - No de compte: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+Veuillez répondre à ce message concernant votre compte de carburant. Les trois factures suivantes accusent un retard important.
+
+
+Montant total dû: {!Case.Rollup_Total_Owed_Amount__c}
+
+Montant en souffrance: {!Case.Rollup_Past_Due_Amount__c}
+
+Montant actuel dû: {!Case.Rollup_Current_Due_Amount__c}
+
+
+REMARQUE: Si votre compte fait plus de 3 cycles de facture en suspens, il nécessitera un dépôt de garantie complet.
+
+
+Pour éviter que la situation de votre compte s’aggrave, nous souhaitons collaborer avec vous.
+
+
+Veuillez prendre des mesures IMMÉDIATEMENT et faire un paiement aujourd’hui.
+
+
+Nous vous encourageons à effectuer votre paiement par l’entremise du site web de votre banque ou de notre portail en ligne.
+
+
+Un paiement effectué sur notre portail avant 15 h 30 (HE) sera inscrit au compte le soir même.
+
+
+Si vous n’êtes pas en mesure de faire un paiement, veuillez répondre à ce courriel ou nous appeler aujourd’hui.
+
+
+Comptes clients et gestion du crédit
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

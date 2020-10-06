@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Approved under weekly direct debit</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_and_Fleet_National</letterhead>
+    <name>ExxonMobil Credit Direct Debit Weekly</name>
+    <style>freeForm</style>
+    <subject>Your Account Has Been Approved</subject>
+    <textOnly>Your ExxonMobil Fleet card program account has been approved under our Direct Debit Program. With this plan, we simply debit your fleet program balance directly from your checking account weekly for the previous week’s transactions.
+
+I am attaching the form you need to complete to get set up on Direct Debit. Please take a few moments to fill this out and then fax it back to me at {!User.Fax}, along with a voided check.
+
+Once I receive the form, I will call you to verify the setup of your account prior to issuing your cards. Meanwhile, if you have any questions please just give me a call.
+
+Thank you for choosing the ExxonMobil Fleet card program.
+
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

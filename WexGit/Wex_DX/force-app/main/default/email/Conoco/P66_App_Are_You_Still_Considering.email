@@ -1,0 +1,52 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif;">I am checking in with you one last time to see
+if you are still considering the Phillips 66 Fuel Card program?&nbsp; It’s easy to enroll. Simply complete the
+attached application form and fax it to me at </span><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!User.Fax}</span></i><span style="font-size: 12pt; font-family: 'Times New Roman', serif;">.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 12pt;"><span style="font-family: 'Times New Roman', serif; font-size: 12pt;">You will find a
+complete list of accepting locations at&nbsp;</span><font face="Arial, sans-serif" style="font-size: 11pt;"><a href="http://www.phillips66gas.com/locations/" style="font-size: 11pt;">http://www.phillips66gas.com/locations/</a>.&nbsp;</font></p>
+
+<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif;">Please call me should you have any questions. <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif;">Thank you for your interest in the Phillips Fuel Card
+program.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Sincerely, </span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+<br>
+</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!User.FirstName}
+{!User.LastName} </span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;">{!User.Title} </span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Phone - {!User.Phone} </span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;">Fax - {!User.Fax}</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"> </span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+</span></i><i><span style="font-size: 12pt; font-family: 'Times New Roman', serif;">{!User.Email}</span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"> </span></i><i><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>
+<!--[if !supportLineBreakNewLine]--><br>
+<!--[endif]--></span></i><span style="font-size: 12pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><i><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:gray">CONFIDENTIALITY NOTICE: "This message
+contains confidential information of WEX Inc. It is intended only for the use
+of the designated recipient(s) stated above and further distribution of the
+information is prohibited. If you have received this message in error, please
+notify sender immediately by telephone or reply by e-mail and delete the entire
+message and any attachments."</span></i><span style="font-size:12.0pt;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><i><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:gray">WEX Inc., 97 Darling Avenue, South Portland, ME
+04106</span></i><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="font-family: arial; margin-bottom: 12pt;"><i><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:gray">This is an advertisement from WEX Inc. If you no
+longer wish to receive future email advertisements from {!User.Email},</span></i><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="font-size:
+8.0pt;mso-bidi-font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:gray"> </span></i><i><span style="font-size:8.0pt;
+mso-bidi-font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:#3333FF">email us to unsubscribe</span></i></a><i><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;;color:gray">. Please be sure to include your name, company
+name and email address in the email.</span></i><span style="font-size:12.0pt;
+font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>]]></td>
+</tr>
+</table>

@@ -1,0 +1,53 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<span id="docs-internal-guid-4def095f-7fff-676b-b2e0-2f55e0720562" style=""><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>Case Number: </u></b></span></font><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);"><span style="white-space: pre-wrap;"><b><u>{!Case.CaseNumber}</u></b></span></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="background-color: rgb(255, 255, 255);" size="2"><br></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="background-color: rgb(255, 255, 255);" size="2">Dear&nbsp;<o:p></o:p><font style="">{!Case.Account}:</font></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">Your reply is requested. Your fuel account has now reached a
+serious level of delinquency for the following invoices.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">Total Owed on Account: {!Case.Rollup_Total_Owed_Amount__c}</font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif" size="2">Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><span style="background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif" size="2">Current Due Amount: {!Case.Rollup_Current_Due_Amount__c}<o:p></o:p></font></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">NOTE:&nbsp;<o:p></o:p><span style="letter-spacing: -0.07px; white-space: pre-wrap;">If your account does go more than 3 invoice cycles outstanding it will require a full Security Deposit.</span></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><b><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">We want to work with you to avoid further delinquency and
+escalation of your account.<o:p></o:p></font></b></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">Please ACT NOW and make a payment today.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">We encourage online payments through your bank’s website OR our
+online portal.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">Payments made through our Portal will post that evening if
+scheduled before 3:30pm EST<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">If you cannot&nbsp;make a payment please respond to this email or
+call today.<o:p></o:p></font></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">&nbsp;</font></o:p></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="background-color: rgb(255, 255, 255);">Receivables and Credit Management<o:p></o:p></font></p>
+
+<p dir="ltr" style="line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><font face="Verdana, Helvetica, sans-serif" style="background-color: rgb(255, 255, 255);" size="2">{!Case.Collections_Phone_Number__c}</font></p><p dir="ltr" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; font-size: 11pt; white-space: pre-wrap;">---</span></p><p dir="ltr" style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial; line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-size: 10pt; font-family: &quot;Times New Roman&quot;; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.&nbsp; Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.&nbsp; </span></p><div style="color: rgb(0, 0, 0); font-size: 12pt; font-family: arial;"><span style="font-size: 10pt; font-family: &quot;Times New Roman&quot;; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;"><br></span></div></span>]]></td>
+</tr>
+</table>

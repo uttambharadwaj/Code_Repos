@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Account Approved for ExxonMobil Business Fleet. Send Business Fleet Data Forms.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>ExxonMobil_Business_Fleet_card</letterhead>
+    <name>ExxonMobil BusFleet Fleet Data App Approved</name>
+    <style>freeForm</style>
+    <subject>Your ExxonMobil Business Fleet account has been approved</subject>
+    <textOnly>Your ExxonMobil Business Fleet account has been approved.
+
+As the next step, please take a few moments to complete the attached form, following the steps below:
+
+Recommended Program Setup:
+
+Drivers IDs (or PIN #s) are linked to employees/drivers
+Fuel Cards are linked to vehicles
+Any driver can use his/her Driver ID number on any card on your account
+
+
+Information needed on the Fleet Card Information Form:
+
+Please choose ONE field that you would like to have appear on the second line of your card, beneath your company name
+
+o Vehicle description or
+
+o License plate number or
+
+o Unit number
+
+Leave the rest of the fields on the bottom portion of the form blank
+
+
+Driver Information:
+
+Please provide a list of your driver names along with a separate four- or six-digit Driver ID number for each driver. If you prefer for us to assign the Driver ID number, just leave that section blank.
+
+
+Please fax this form back to me at {!User.Fax} at your earliest convenience. Once I receive this information I will be in touch to review the account set up with you before issuing your cards.
+
+
+Need help filling out the form? Please call me with any questions.
+
+
+Sincerely,
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone - {!User.Phone}
+Fax - {!User.Fax}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

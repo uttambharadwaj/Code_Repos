@@ -1,0 +1,85 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span lang="EN">Dear {!Contact.FirstName},<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN">Our wheels are always turning, looking for
+ways to boost business owners. That’s why the <b style="mso-bidi-font-weight:
+normal">Chevron and Texaco Business Card</b> is the fueling solution that helps
+you control spending, skip paperwork, and maximize savings--all with no setup,
+monthly, or annual fees! <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span lang="EN">Special
+Limited-Time Offer</span></b><span lang="EN">: Apply today and earn a <b style="mso-bidi-font-weight:normal">10¢ per gallon rebate for 4 months*</b> at
+all Chevron and Texaco locations!<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN"><o:p>&nbsp;</o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span lang="EN">Keep
+your business moving</span></b><span lang="EN"> <b style="mso-bidi-font-weight:
+normal"><o:p></o:p></b></span></p>
+
+<p class="MsoNormal" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span lang="EN"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span lang="EN">Fuel at nearly 8,000 Chevron and
+Texaco stations in the U.S.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span lang="EN"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span lang="EN">Control and enforce purchasing
+policies with powerful online tools<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span lang="EN"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span lang="EN">Uncover savings with advanced data
+capture and reporting<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span lang="EN"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span lang="EN">Reduce paperwork with automatic
+accounting<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span lang="EN"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span lang="EN">Fight fraud with Driver ID numbers
+and odometer at the pump <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-left:.5in;text-indent:-.25in;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span lang="EN"><span style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><!--[endif]--><span lang="EN">Live support 24/7 with U.S.-based
+customer advisors<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN"><o:p>&nbsp;</o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p>
+
+<p class="MsoNormal"><b style="mso-bidi-font-weight:normal"><span lang="EN">We help
+make fueling your business easier.</span></b><span lang="EN"> <o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN">I will follow up next week with more
+information on our program, and look forward to learning about the unique needs
+of your business. In the meantime, you can always reach me at {!User.Phone} or
+via email at {!User.Email}.<o:p></o:p></span></p><p class="MsoNormal"><span lang="EN"><br></span></p>
+
+<p class="MsoNormal"><br></p>
+
+<p class="MsoNormal"><span lang="EN"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN">Sincerely,<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN">{!User.FirstName} {!User.LastName}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN">{!User.Title}<o:p></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN">Phone: {!User.Phone} Email: {!User.Email}<o:p></o:p></span></p><p class="MsoNormal"><span lang="EN"><br></span></p><p class="MsoNormal"><span lang="EN"><b>Ready to apply?</b>&nbsp;It only takes one call for extra savings on fuel costs!</span></p>
+
+<p class="MsoNormal"><span lang="EN"><o:p>&nbsp;</o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p><p class="MsoNormal"><span lang="EN"><o:p><br></o:p></span></p>
+
+<p class="MsoNormal"><span lang="EN" style="font-size:8.0pt;line-height:115%">*Applications must be received
+by December 31, 2019. The 10¢ per gallon promotional rebate is based on your
+billing cycle and ends four months after the Chevron and Texaco Business Card
+account is issued. Rebate will begin from gallon one and apply to each gallon
+up to 500 gallons per monthly billing period purchased at Chevron and Texaco
+locations. Rebates will appear as an account credit on your billing statement.
+Rebates are subject to change at any time without prior notice. Not valid on
+aviation, bulk fuel, propane or natural gas purchases. <o:p></o:p></span></p>
+
+<p class="MsoNormal"><br></p>]]></td>
+</tr>
+</table>

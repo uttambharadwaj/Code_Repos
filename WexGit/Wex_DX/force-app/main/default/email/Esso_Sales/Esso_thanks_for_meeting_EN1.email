@@ -1,0 +1,38 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Hey {!Contact.FirstName},</font><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style=""><p class="MsoNormal" style=""><span style="font-size: 12pt; font-family: Arial, sans-serif;">Your
+cards have been sent out today and you should have them within 72 hours. The
+cards come ready for use and once you are logged in to your online account and
+have your Driver ID’s (pin codes), you can use the cards.&nbsp; The
+instructions I &nbsp;am providing you to enroll as a new user online and set up
+your bank account are very IMPORTANT to do right away so you don’t scramble at
+the end of the month when you need to pay your bill, BUT aren’t necessary to
+begin fueling.&nbsp; Your account number is&nbsp;</span><span style="font-size: 9pt; font-family: Arial, sans-serif;">_____________</span><span style="font-size: 12pt; font-family: Arial, sans-serif;">.&nbsp;</span><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:
+Calibri;mso-fareast-theme-font:minor-latin;color:#1F497D;mso-ansi-language:
+EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">&nbsp;</span><span style="font-size: 12pt; font-family: Arial, sans-serif;">Go to&nbsp;<a href="http://www.essofleetonline.com/"><span style="color:#0563C1">www.essofleetonline.com</span></a>&nbsp;and
+“enroll as new user” follow the set up instructions, be sure to write down your
+username and password.&nbsp; Initially, you will be sent a temporary password
+sent to confirm the account.&nbsp; Follow the instructions and once you are
+signed in, you will see your cards and Drivers list on your home page.&nbsp;
+First thing to do once you are logged in to your account is go to “Set up” tab,
+click on ‘preferences’ then scroll down and click ‘email invoice notification’
+to ensure you will be notified when your invoice is ready for viewing.&nbsp;
+Once all the Cards and codes are allocated to your drivers, set up your bank
+details by going to home page, clicking on “invoice and Payments” scroll down
+to “set up bank account” or “direct debit enrollment” if you prefer direct
+debit.&nbsp; You will also need to scroll&nbsp;down to the blue PDF hyperlink
+and a window will pop up and that is the PAD agreement which marries your bank
+with WEX bank allowing you to make a successful payment transaction.&nbsp; The
+form has a section for automatic debit payments which you have an option to
+fill out if you want.&nbsp; Otherwise, please complete the necessary info and
+follow the 'send to' instructions to complete the process.&nbsp; Beside “account”
+it should say Pending… which will become “active” once we receive the PAD
+agreement.&nbsp;&nbsp;Follow the instructions accordingly, if you have any
+questions, contact me or customer service to assist.&nbsp; If you have trouble
+accessing your account in the beginning, customer service is the only one that
+can help you set up your account login as they have direct access</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="color: rgb(31, 73, 125); font-size: 12pt;">&nbsp;</span><font face="Arial, sans-serif" style="">&nbsp;</font></p><br><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Best regards,</font><br><b style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">{!User.Name}</b><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"> | {!User.Title}</font><br><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Phone: {!User.Phone} | Fax: {!User.Fax}</font><br><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">{!User.Email}</font><br><br><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">&nbsp; </font><br><br></div>]]></td>
+</tr>
+</table>

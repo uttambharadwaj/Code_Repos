@@ -1,0 +1,12 @@
+Thank you for taking the time to look into the Gold Program. As a reminder, you qualify for discount pricing tire purchases at any Authorized Dealer that accepts National Accounts. We can help you with Over the Road or Stock Purchases. 
+
+If you have questions about pricing, please do not hesitate to reach out to your Fleet Tire Consultant using the contact information at the bottom of this email. 
+
+Also, if you have not already registered for our Gold Customer Portal, please visit goldprogramonline.com. The portal provides you with access to your pricing and invoice viewing.  You will need your Gold ID which is {!Account.Gold_ID__c}. 
+
+Thank you,
+
+{!Opportunity.OwnerFullName} 
+{!Opportunity.OwnerTitle}
+{!Opportunity.OwnerPhone}
+Gold Line: 866-354-7322

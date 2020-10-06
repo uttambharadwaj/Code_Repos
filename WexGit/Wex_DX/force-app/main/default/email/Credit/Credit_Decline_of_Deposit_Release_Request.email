@@ -1,0 +1,65 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="font-size: 12pt; font-family: arial; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">Date: {!Today}<o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2" style="">{!Case.Contact}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><a name="Text1"></a>{!Case.Account}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">{!Account.BillingAddress}<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></p><p class="MsoNormalCxSpFirst" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Re:
+Decline of Deposit Release Request<b><o:p></o:p></b></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><b><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></b></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Account Number#: *********{!Case.Masked_External_Account__c}<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Dear&nbsp;{!Case.Contact},<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2"><br></font></p><p class="MsoNormalCxSpFirst" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">We received your request to release the
+deposit securing your CITGO Fleet account. Although we cannot release the security
+deposit right now we will reconsider the request with receipt of the last two
+full fiscal years of financial statements. If this alternative is feasible,
+please send a letter which includes the account number, desire for the deposit
+to be released, and the financial statements. The letter and financial
+statements can be faxed to fax (207) 253-1465 or email:
+fsc_maintenance@wexinc.com. We will review these financial statements in
+accordance with our credit policy. <o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"></p><ul style=""><li><font face="Verdana, Helvetica, sans-serif" size="2">Complete set of audited and reviewed financial statements for the last
+two complete fiscal years (not tax returns). At a minimum we need the income
+statement and balance sheet for each full fiscal year.</font></li></ul><p style=""></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Our reasons for not being able to
+process this request is for the following reason(s):</font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"></p><ol style=""><li><font face="Verdana, Helvetica, sans-serif" size="2">Your account has not been open for at least one year.</font></li><li><font face="Verdana, Helvetica, sans-serif" size="2">Your account has a slow or unsatisfactory payment history.</font></li><li><font face="Verdana, Helvetica, sans-serif" size="2">Your commercial credit history does not support an unsecured credit
+line.</font></li></ol><p style=""></p><p class="MsoNormalCxSpMiddle" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">If you still desire to have the security
+deposit be returned the account will need to be closed. If you still want to
+keep the security on file then do nothing and the account will stay as it is
+currently. <o:p></o:p></font></p><p class="MsoNormalCxSpMiddle" style="margin-bottom: 0.0001pt; line-height: normal;"><o:p><font face="Verdana, Helvetica, sans-serif" size="2">&nbsp;</font></o:p></p><p class="MsoNormalCxSpMiddle" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Sincerely, <o:p></o:p></font></p><p class="MsoNormalCxSpMiddle" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" size="2">Credit Services <o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormalCxSpMiddle" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, Helvetica, sans-serif" style="" size="2">WEX Bank</font><font face="arial" style="font-size: 12pt; font-family: arial;"><o:p></o:p></font></p><p class="MsoNormalCxSpFirst" style="font-size: 12pt; font-family: arial; margin-bottom: 0.0001pt; text-align: justify; line-height: normal;"><br></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><span style="font-size: 9pt;">The federal Equal Credit
+Opportunity Act prohibits creditors from discriminating against credit
+applicants on the basis of race, color, religion, national origin, sex, marital
+status, age (provided the applicant has the capacity to enter into a binding contract);
+because all or part of the applicant’s income derives from any public
+assistance program; or because the applicant has in good faith exercised any
+right under the Consumer Credit Protection Act.</span><span style="font-size: 9pt;">&nbsp;
+</span><span style="font-size: 9pt;">The federal agency that administers compliance with this law concerning
+this creditor is the </span><span style="font-size: 9pt;">Federal Deposit
+Insurance Corporation, </span><span style="font-size: 9pt;">FDIC Consumer Response Center, 1100 Walnut St,
+Box #11, Kansas City, MO 64106.</span></p><span style="font-size: 12pt; font-family: arial;"><font face="arial" style="" size="2"></font></span><p style="font-size: 12pt; font-family: arial;"></p>]]></td>
+</tr>
+</table>

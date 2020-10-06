@@ -1,0 +1,14 @@
+Hi {!Contact.FirstName}, 
+
+My name is {!User.Name}, a fleet consultant with Fleet One. I attempted to contact you to discuss your Fleet One fuel card that was recently upgraded to include our EDGE network of benefits, but I was unable to reach you. 
+
+The EDGE fuel discount network includes over 3,600 locations. I'd love to discuss your current fueling and how I can help you get better discounts on fuel. I have been able to save other fleets thousands of dollars a year and would like to see if I can do the same for you.
+ 
+Please give me a call back at {!User.Phone}, or let me know when a good time to connect would be, and I'll be happy to get in touch with you.
+
+Thank you for your time, 
+
+{!User.Name} 
+{!User.Title} 
+{!User.Phone} 
+{!User.Email}

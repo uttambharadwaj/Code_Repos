@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>AU Merchant Emails</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>AU_Internal_Users</group>
+        <roleAndSubordinatesInternal>Commercial_Director</roleAndSubordinatesInternal>
+    </sharedTo>
+</EmailFolder>

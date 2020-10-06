@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - 30 - Contact Attempt</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - Acct: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Case Number: {!Case.CaseNumber}
+
+Dear {!Case.Account}:
+
+This is a reminder that your fuel account has an open balance that is now overdue. This email is to notify you that we have not yet received full payment.
+
+
+Total Owed on Account: {!Case.Rollup_Total_Owed_Amount__c}
+
+Past Due Amount: {!Case.Rollup_Past_Due_Amount__c}
+
+Current Due Amount: {!Case.Rollup_Current_Due_Amount__c}
+
+
+NOTE: Anytime your account contains a past due balance it is at risk of Service Interruption
+
+Please make your payment today.
+
+
+We encourage online payments through your bank’s website OR our online portal.
+
+
+Payments made through our Portal will post that evening if scheduled before 3:30pm EST.
+
+
+If you cannot make a payment please respond to this email or call today.
+
+
+Receivables and Credit Management
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+This e-mail communication (including any attachments) is intended only for use by the individual or entity named above and is considered confidential. If you are not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you should immediately stop reading this message and delete it from your system.  Any unauthorized reading, distribution, copying or other use of this communication (or its attachments) is strictly prohibited.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Used for AU Win Back 2018 campaign</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU Win Back 2018 Follow up custom</name>
+    <style>none</style>
+    <subject>WEX Motorpass - Look forward to welcoming you back!</subject>
+    <textOnly>Hi {!Contact.FirstName},
+
+Thank you for taking the time to speak to me today. As discussed, you’ve been a great customer and we would love to have you back.
+
+
+When it comes to managing your fuel needs, WEX Motorpass can make things so much easier. Designed specifically to bring you superior control and convenience when keeping your vehicles on the move, it’s the fuel card that can bring you benefits anywhere you are.
+
+Sign up with WEX Motorpass today and you’ll receive 6 cents off per litre for 8 months at BP Service Stations*
+
+Benefits:
+
+Monthly management fee of $5 excl. GST per card per month.
+Convenience of being able to use your fuel card at over 93% of petrol stations in Australia
+You are also able to use Woolworths Shop-a-docket’s in conjunction with the cards
+No joining cancellation/termination fees
+
+To take up this special offer simply call us on 1300 590 302 before 30th July 2018.
+
+We value your business and we look forward to welcoming you back.
+
+Yours Sincerely,
+
+Bilal Mehdi
+
+Business Consultant WEX Australia Pty Ltd.
+
+
+Level 3, 293 Camberwell Road, Camberwell VIC 3124
+
+
+T: +61 3 8508 9257 F: +61 3 9274 9170
+
+E: bilal.mehdi@wexaustralia.com www.wexaustralia.com
+
+
+WEX Motorpass Benefits
+
+
+Extensive acceptance WEX Motorpass gives you access to one of Australia’s largest fuel networks
+
+
+No more receipts
+
+WEX Motorpass statements are approved by the Australian Tax Office
+
+Reduced administration Transactions are processed in real time at the terminal as opposed to some other competitors that post sales vouchers for processing
+
+WEX Motorpass’ superior fuel card acceptance delivers savings beyond the fuel price. Visit motorpass.com.au/savings calculator to learn more</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

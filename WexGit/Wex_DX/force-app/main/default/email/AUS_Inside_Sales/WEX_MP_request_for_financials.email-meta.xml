@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>WEX Motorpass application – request for further information</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>AU_WEX_Motorpass_Letterhead</letterhead>
+    <name>AU Inside Sales - WEX MP request for financials</name>
+    <style>freeForm</style>
+    <subject>WEX Motorpass application – request for further information</subject>
+    <textOnly>Dear &lt;insert name&gt;,
+
+Before we can process your application, we just need some more information from you. 
+To support the credit limit you have requested in your application for a WEX Motorpass Fuel Card account, we need a copy of your most recent balance sheets and profit and loss statements for the past two years, plus any additional supporting notes.
+
+We need this information to assess your WEX Motorpass application against our credit policy.
+
+I’m always here to help.
+If you have any questions at all, please feel free to call me via my details below.
+
+Yours sincerely,</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

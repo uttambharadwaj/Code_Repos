@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to Lead when new Application submitted</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>AU_Default_Letterhead</letterhead>
+    <name>AU Application Submitted</name>
+    <style>freeForm</style>
+    <subject>Thank-you for submitting your application</subject>
+    <textOnly>Dear {!Lead.FirstName},
+
+Thanks for submitting your application online with us.
+
+We will be in contact with you shortly.
+
+Regards,
+
+WEX Administration</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

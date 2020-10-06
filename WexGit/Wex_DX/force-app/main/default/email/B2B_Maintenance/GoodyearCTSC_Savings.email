@@ -1,0 +1,19 @@
+{!Contact.FirstName},
+
+Thank you for your interest in our savings at Goodyear Commercial Tire & Service Centers.  Here you can save on Goodyear tires, PM services and DOT inspections.  Please review the attached information and call or email me with any questions.   
+
+You can also login with your Member ID and password located below to view more detailed information at http://www.truckersb2b.com/goodyearctsc
+
+Your Member ID: {!Account.Member_ID__c}
+Your Password:  {!Account.Web_Password__c}
+ 
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>for Acquirent use only!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Appt Confirm- Tom Thumb Florida Field Campaign</name>
+    <style>none</style>
+    <subject>appointment confirmation</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

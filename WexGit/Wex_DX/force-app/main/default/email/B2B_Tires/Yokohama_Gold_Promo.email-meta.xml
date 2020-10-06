@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>You are still eligible to take advantage of our national account tire program, plus save an additional $20 on your Yokohama purchases!</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>TruckersB2B_2</letterhead>
+    <name>Yokohama Gold Promo</name>
+    <style>freeForm</style>
+    <subject>Additional Yokohama Savings with The Gold Program</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+
+We have talked with you in the past about the benefits you can receive through The Gold Program from TruckersB2B. We wanted to let you know that you are still eligible to take advantage of our national account tire program, and also tell you about a limited time promotion from our leading vendor partner, Yokohama.
+
+
+Now through June 30, 2015, Yokohama is offering TruckersB2B Gold Program members additional savings of up to $20 more per tire on their Yokohama tire purchases.
+
+Buy 4 or more Yokohama commercial tires, and you will save an extra $10 per tire.
+Buy 8 or more Yokohama commercial tires, and you will save an extra $20 per tire.
+
+These discounts are in addition to the national account tire savings offered with The Gold Program, which average $40 per tire. To take advantage of this exclusive offer, please email or call me at your convenience. If you want to learn more about The Gold Program, call us at 866.354.7322.
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

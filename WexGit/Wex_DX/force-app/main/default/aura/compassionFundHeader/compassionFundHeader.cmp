@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes"
+                access="global">
+   <lightning:accordion activeSectionName="A">
+     <lightning:accordionSection name="A" label="SUMMARY" class="headline">
+         <p class="bodyContent">The WEX Cares Foundation (home of the WEX Compassion Fund), was founded and funded by contributions from WEX Inc. and its employees and board, and offers relief for WEX employees with critical financial needs caused by a natural disaster or other qualified hardship.</p> 
+         <p class="bodyContent">A WEX employee may be eligible for aid from the Compassion Fund if they or an immediate family member have been impacted by one of the following events:</p>
+         &nbsp;
+         <div class="slds-text-longform">
+             <ul class="bodyContent">
+                 <li>Qualified or Natural Disaster</li>
+                 <li>Catastrophic Illness or Injury</li>
+                 <li>Death or Funeral Expenses</li>
+                 <li>Violent Crime</li>
+                 <li>Domestic Abuse</li>
+                 <li>Military Deployment</li>
+             </ul>            
+         </div>
+         <p class="bodyContent">All current full-time and part-time employees of WEX and their immediate family members (as defined below) are eligible to apply for aid. The well-being of WEX employees is of utmost importance to the Foundation, and applications are handled by the Foundation in a time–sensitive manner with strict confidentiality by its staff and members of its board of directors.</p>
+          &nbsp;
+         <p class="noteText">* The WEX Cares Foundation considers the employee, their spouse/domestic partner, and minor children up to age 18 as immediate family members. Parents, grandparents or other relatives are not considered immediate family members (for the purposes of receiving aid from the Fund) unless the employee can show they are financially responsible for that relative (i.e., copy of most recent tax return showing dependents, proof of shared physical address or proof of financial responsibility).  </p> 
+       </lightning:accordionSection>
+     <lightning:accordionSection name="B" label="APPLICATION CRITERIA" class="headline" aura:Id="headerSection2">
+         <p class="bodyContent">Applications are reviewed weekly, and grant eligibility is determined by objective, needs-based criteria as outlined in the application. Grants are awarded in accordance with need and available funds, up to a max award of $5,000. Federal law prohibits the WEX Compassion Fund from accessing or considering employee performance information when making grants.</p>
+         <p class="bodyContent">All full or part time employees of WEX and our wholly owned subsidiaries are eligible to apply. Contractors, temporary workers, interns, and externs are not eligible.</p>
+         <p class="bodyContent">For further information about eligibility or the Compassion Fund, refer to our <a href="http://wexinc.staging.wpengine.com/wex-compassion-fund" target="_blank" class="link">website</a> or contact us <a href="wexcares@wexinc.com" target="_blank" class="link">directly</a></p>
+       </lightning:accordionSection>
+   </lightning:accordion>
+</aura:component>

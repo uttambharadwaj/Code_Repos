@@ -1,0 +1,5 @@
+Account Name: {!Account.Name}
+F1 Account #: {!Account.F1_Account_Number__c}
+
+Opportunity Name: {!Opportunity.Name}
+Projected Monthly Gallons: {!Opportunity.Projected_Monthly_Gallons__c}

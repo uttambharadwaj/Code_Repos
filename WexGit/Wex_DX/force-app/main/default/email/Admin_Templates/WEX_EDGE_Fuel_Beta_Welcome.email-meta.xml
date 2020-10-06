@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Registration Confirmation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>B2B_Blank_Left</letterhead>
+    <name>WEX EDGE Fuel Beta Welcome</name>
+    <style>freeForm</style>
+    <subject>Welcome to the WEX EDGE Member Portal</subject>
+    <textOnly>Hello {!Contact.FirstName},
+
+Welcome to the WEX EDGE Fuel Beta, and thank you for registering for the WEX EDGE member portal. You are on your way to fuel savings!
+
+Here is a quick reference guide to help you get started:
+
+• Access the WEX EDGE Member Portal:
+https://member.wexedge.com/
+
+Use the login you created to access the locations, discounts, your savings history and your reporting.
+
+• View Locations and Discounts:
+https://member.wexedge.com/Locator/LocationList
+
+Quickly access the list of locations and the associated discounts participating in the WEX EDGE fuel beta.
+
+• Frequently Asked Questions
+https://benefits.wexedge.com/fuelbetafaq
+
+View our most commonly asked questions regarding the WEX EDGE fuel beta.
+
+• Customer Support
+For questions or help, contact support at 844-WEX-EDGE (844-939-3343) or support@wexedge.com.
+
+
+To see the biggest impact, direct more of your gallons to the participating locations to increase your savings! Be on the lookout for our monthly savings emails, which will recap the savings you received through the WEX EDGE fuel beta network.
+
+We look forward to helping your fleet go the extra mile and save the extra dollar.
+
+
+Thank you,
+
+WEX EDGE
+Phone: 844-WEX EDGE
+Email: support@wexedge.com
+Website: member.wexedge.com</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

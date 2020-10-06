@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Test</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_U_Letterhead</letterhead>
+    <name>Survey Monkey Test Template</name>
+    <style>freeForm</style>
+    <subject>Welcome to Our Survey [FirstName]</subject>
+    <textOnly>Hello [FirstName],
+
+
+
+We see that you recently considered us for your fuel card needs, but decided not to go with WEX.  We would greatly appreciate your time to take this survey and tell us why we did not win your business and how we can improve our offering: {!SurveyMonkey.SurveyLink}
+
+
+
+Click here to opt out
+
+{!SurveyMonkey.RemoveLink}
+
+
+Thank you for your participation,
+
+The WEX team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

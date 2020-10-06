@@ -1,0 +1,6 @@
+Either a Comdata relationship form is missing, an account number if not on fuel form, or some other reason is preventing us from entering {!Opportunity.Account} fuel code.  Please follow up on this and provide whatever is needed to the Fuel Account Manager. 
+
+the account in question is {!Account.Name}
+
+Thank you
+Fuel Crisis Center

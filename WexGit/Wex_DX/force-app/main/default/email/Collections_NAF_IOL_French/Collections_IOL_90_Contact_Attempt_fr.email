@@ -1,0 +1,63 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<span id="docs-internal-guid-4def095f-7fff-676b-b2e0-2f55e0720562" style=""><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><u style="font-family: &quot;Times New Roman&quot;; font-size: medium;"><b><font face="Verdana, Helvetica, sans-serif" size="2">Numéro de Dossier: {!Case.CaseNumber}</font></b></u></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 9pt;"><br></span></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="color: rgb(0, 0, 0); font-family: Verdana, sans-serif; font-size: 9pt;">Bonjour&nbsp;<o:p></o:p></span><font face="Verdana, sans-serif"><span style="font-size: 12px;">{!Case.Account}:</span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Votre compte de carburant accuse un retard important. Pour éviter
+que la situation s’aggrave, vous devez faire un paiement. Veuillez répondre
+dans les plus brefs délais.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Nous vous encourageons fortement à payer la totalité du solde en
+souffrance pour que votre compte ne soit plus en défaut.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 12px;">Montant total dû: {!Case.Rollup_Total_Owed_Amount__c}</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 12px;">Montant en souffrance: {!Case.Rollup_Past_Due_Amount__c}</span></font></p><p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><font face="Verdana, sans-serif"><span style="font-size: 12px;">Montant actuel dû: {!Case.Rollup_Current_Due_Amount__c}</span></font></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;"><o:p style="">&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">REMARQUE : Votre dossier risque d’être transféré à une agence de
+recouvrement.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><b><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Nous souhaitons collaborer avec vous afin de remédier à la
+situation.<o:p></o:p></span></b></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Veuillez payer la totalité du solde ou du moins la facture la plus
+ancienne afin d’éviter que votre dossier soit transféré à une agence de
+recouvrement. Vous pouvez également nous appeler pour demander une entente de
+paiement hebdomadaire.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Faites un paiement AUJOURD’HUI<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Nous vous encourageons à effectuer votre paiement par l’entremise
+du site web de votre banque ou de notre portail en ligne.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Un paiement effectué sur notre portail avant 15 h 30 (HE) sera
+inscrit au compte le soir même.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Si vous n’êtes pas en mesure de faire un paiement, veuillez
+répondre à ce courriel ou nous appeler aujourd’hui.</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; margin-bottom: 0.0001pt; line-height: normal;"><span style="font-size: 9pt; font-family: Verdana, sans-serif;">Comptes clients et gestion du crédit</span><span style="font-size: 9pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>
+
+<p dir="ltr" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: Verdana, sans-serif; font-size: 9pt;">{!Case.Collections_Phone_Number__c}</span></p><p dir="ltr" style="margin-top: 0pt; margin-bottom: 0pt; font-size: 12pt; line-height: 1.38;"><span style="font-family: &quot;Times New Roman&quot;; font-size: 11pt; white-space: pre-wrap;">---</span></p><p dir="ltr" style="margin-top: 0pt; margin-bottom: 0pt; font-family: &quot;Times New Roman&quot;; font-size: medium; line-height: 1.38;"><span style="font-size: 13.3333px; white-space: pre-wrap;"><i>Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l'entité nommée ci-dessus et est considérée comme confidentielle. Si vous n'êtes pas le destinataire prévu, ni l'employé ou l'agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</i></span></p></span>]]></td>
+</tr>
+</table>

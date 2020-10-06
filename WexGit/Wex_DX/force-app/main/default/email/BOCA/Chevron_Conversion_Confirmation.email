@@ -1,0 +1,806 @@
+<messaging:emailTemplate subject="Thank you for confirming your account information" recipientType="Contact" relatedToType="Customer_Conversion_Data__c" id="confirm">
+<messaging:htmlEmailBody >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <title>Chevron with TECHRON</title>
+    <!--[if !mso]><!-- -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style type="text/css">
+        #outlook a {
+            padding: 0;
+        }
+        .ReadMsgBody {
+            width: 100%;
+        }
+        .ExternalClass {
+            width: 100%;
+        }
+        .ExternalClass * {
+            line-height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        p {
+            display: block;
+            margin: 13px 0;
+        }
+    </style>
+    <!--[if !mso]><!-->
+    <style type="text/css">
+        @media only screen and (max-width:480px) {
+            @-ms-viewport {
+                width:320px;
+            }
+            @viewport {
+                width:320px;
+            }
+        }
+    </style>
+    <!--<![endif]--><!--[if mso]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]--><!--[if lte mso 11]>
+    <style type="text/css">
+        .outlook-group-fix { width:100% !important; }
+    </style>
+    <![endif]--><!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+    </style>
+    <!--<![endif]-->
+    <style type="text/css">
+        @media only screen and (min-width:480px) {
+            .mj-column-px-700 {
+                width: 700px !important;
+                max-width: 700px;
+            }
+            .mj-column-px-658 {
+                width: 658px !important;
+                max-width: 658px;
+            }
+            .mj-column-px-634 {
+                width: 634px !important;
+                max-width: 634px;
+            }
+            .mj-column-px-173 {
+                width: 173px !important;
+                max-width: 173px;
+            }
+            .mj-column-px-385 {
+                width: 385px !important;
+                max-width: 385px;
+            }
+            .mj-column-px-480 {
+                width: 480px !important;
+                max-width: 480px;
+            }
+            .mj-column-px-45 {
+                width: 45px !important;
+                max-width: 45px;
+            }
+            .mj-column-px-133 {
+                width: 133px !important;
+                max-width: 133px;
+            }
+        }
+    </style>
+    <style type="text/css">
+        @media only screen and (max-width:480px) {
+            table.full-width-mobile {
+                width: 100% !important;
+            }
+            td.full-width-mobile {
+                width: auto !important;
+            }
+        }
+    </style>
+</head>
+<body style="background-color:#ffffff;">
+<div style="background-color:#ffffff;">
+    <!--[if mso | IE]>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0px 0px 17px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" class="" style="vertical-align:top;width:700px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-700 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="center" style="font-size:0px;padding:0px;word-break:break-word;">
+                                                <table cellpadding="0" cellspacing="0" width="100%" border="0" style="cellspacing:0;color:#000000;font-family:Open Sans, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
+                                                    <tr>
+                                                        <td height="2" style="line-height:0px; font-size:0px;" bgcolor="#ecebea"><img src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/spacer.gif" width="1" height="2" alt=" " style="display:block;" border="0" /></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0px 21px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="" style="" >
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:658px;" width="658" >
+                                    <tr>
+                                        <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                                            <v:rect style="width:658px;" xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false">
+                                                <v:fill origin="0.5, 0" position="0.5, 0" src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg1.png" type="tile" />
+                                                <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+                    <![endif]-->
+                    <div style="background:url(http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg1.png) top center / cover no-repeat;Margin:0px auto;max-width:658px;">
+                        <div style="line-height:0;font-size:0;">
+                            <table align="center" background="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg1.png" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:url(http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg1.png) top center / cover no-repeat;width:100%;">
+                                <tbody>
+                                <tr>
+                                    <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:bottom;">
+                                        <!--[if mso | IE]>
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td align="center" class="" style="vertical-align:top;width:658px;" >
+                                        <![endif]-->
+                                        <div class="mj-column-px-658 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                            <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                                <tbody>
+                                                <tr>
+                                                    <td style="vertical-align:top;padding:0px;">
+                                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                                            <tr>
+                                                                <td align="center" style="font-size:0px;padding:39px 10px 0px;word-break:break-word;">
+                                                                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td style="width:98px;"><a href="https://www.chevrontexacobusinesscard.com/about-us" target="_blank"><img alt="Chevron with TECHRON" height="auto" src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/header_logo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="98" /></a></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center" style="font-size:0px;padding:10px 25px;padding-top:25px;padding-right:20px;padding-bottom:120px;padding-left:20px;word-break:break-word;">
+                                                                    <div style="font-family:Open Sans, Arial, sans-serif;font-size:68px;font-weight:600;line-height:69px;text-align:center;color:#0b76bc;">Thank you!</div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--[if mso | IE]>
+                                        </td>
+                                        </tr>
+                                        </table>
+                                        <![endif]-->
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--[if mso | IE]>
+                    </v:textbox>
+                    </v:rect>
+                    </td>
+                    </tr>
+                    </table>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" class="" style="vertical-align:top;width:634px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-634 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:28px 25px 4px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:34px;font-weight:bold;line-height:36px;text-align:left;color:#0b76bc;">Thank you!</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:0px 25px 30px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:21px;font-weight:400;line-height:26px;text-align:left;color:#0b76bc;">We&rsquo;ve received your updated information.</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" class="" style="vertical-align:top;width:173px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-173 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="border-right:2px #ececeb solid;vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="center" style="font-size:0px;padding:0px 32px 0px 0px;word-break:break-word;">
+                                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="width:141px;"><img height="auto" src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/chevron-cardart-1xytiny.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="141" /></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    <td align="right" class="" style="vertical-align:top;width:385px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-385 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:20px 25px 11px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:21px;font-weight:600;line-height:26px;text-align:left;color:#e31936;">Confirmation number:</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:0px 25px 25px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:21px;font-weight:400;line-height:26px;text-align:left;color:#e31936;">{!RelatedTo.Name}</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#ffffff;background-color:#ffffff;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" class="" style="vertical-align:top;width:634px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-634 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:48px 25px 47px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#54575b;">For now, there&rsquo;s nothing more for you to do. We&rsquo;ll let you know when we&rsquo;re working on your new cards. You can expect to receive them in the next month.<br/>
+                                                    <br />
+                                                    In the meantime, if you have any questions, contact our customer advisors at 1-888-531-3698. We appreciate your patience as we update our Business Card Program.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+                <v:rect style="width:700px;" xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false">
+                    <v:fill origin="0.5, 0" position="0.5, 0" src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg2.png" type="tile" />
+                    <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+    <![endif]-->
+    <div style="background:url(http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg2.png) top center / cover no-repeat;Margin:0px auto;max-width:700px;">
+        <div style="line-height:0;font-size:0;">
+            <table align="center" background="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg2.png" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:url(http://www.wexhosted.com/esp_assets/partner/chevron/conversion/1541155867440_bg2.png) top center / cover no-repeat;width:100%;">
+                <tbody>
+                <tr>
+                    <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:bottom;">
+                        <!--[if mso | IE]>
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="center" class="" style="vertical-align:top;width:634px;" >
+                        <![endif]-->
+                        <div class="mj-column-px-634 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                <tbody>
+                                <tr>
+                                    <td style="vertical-align:top;padding:0px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                            <tr>
+                                                <td align="left" style="font-size:0px;padding:10px 25px;padding-top:50px;padding-right:25px;padding-bottom:19px;padding-left:25px;word-break:break-word;">
+                                                    <div style="font-family:Open Sans, Arial, sans-serif;font-size:34px;font-weight:bold;line-height:36px;text-align:left;color:#0b76bc;">Your Progress</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
+                                                    <table cellpadding="0" cellspacing="0" width="100%" border="0" style="cellspacing:0;color:#000000;font-family:Open Sans, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
+                                                        <tr>
+                                                            <td align="left" valign="top" style="padding:0px 0px 64px;">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                    <tr>
+                                                                        <td width="25" style="width:25px;">&nbsp;</td>
+                                                                        <td align="left" valign="top">
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                                <tr>
+                                                                                    <td align="center" valign="top" style="padding-bottom:26px;">
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                                            <tr>
+                                                                                                <td align="left" valign="top" width="30">
+                                                                                                    <table width="30" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                                                        <tr>
+                                                                                                            <td height="8" style="line-height:0px; font-size:0px;">&nbsp;</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td align="left" valign="top" width="30" style="line-height:0px; font-size:0px;"><img src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/img_arrow.png" width="19" height="15" style="display:block;" border="0" /></td>
+                                                                                                        </tr>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                                <td align="left" valign="top" style="font-family:Open Sans, Arial, sans-serif; font-size:21px; line-height:26px; color:#0b76bc; font-weight:bold;">Confirm Account Information</td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" valign="top" style="padding-bottom:25px;">
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                                            <tr>
+                                                                                                <td align="left" valign="middle" width="30" style="line-height:0px; font-size:0px;"><img src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/img_checkbox.png" width="17" height="16" style="display:block;" border="0" /></td>
+                                                                                                <td align="left" valign="top" style="font-family:Open Sans, Arial, sans-serif; font-size:16px; line-height:23px; color:#0b76bc; font-weight:400;">Cards Printed and Shipped</td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" valign="top" style="padding-bottom:25px;">
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                                            <tr>
+                                                                                                <td align="left" valign="middle" width="30" style="line-height:0px; font-size:0px;"><img src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/img_checkbox.png" width="17" height="16" style="display:block;" border="0" /></td>
+                                                                                                <td align="left" valign="top" style="font-family:Open Sans, Arial, sans-serif; font-size:16px; line-height:23px; color:#0b76bc; font-weight:400;">Set Up Online Account</td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" valign="top">
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+                                                                                            <tr>
+                                                                                                <td align="left" valign="middle" width="30" style="line-height:0px; font-size:0px;"><img src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/img_checkbox.png" width="17" height="16" style="display:block;" border="0" /></td>
+                                                                                                <td align="left" valign="top" style="font-family:Open Sans, Arial, sans-serif; font-size:16px; line-height:23px; color:#0b76bc; font-weight:400;">Start Fueling</td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                        <td width="25" style="width:25px;">&nbsp;</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--[if mso | IE]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--[if mso | IE]>
+    </v:textbox>
+    </v:rect>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#0b76bc;background-color:#0b76bc;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#0b76bc;background-color:#0b76bc;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" class="" style="vertical-align:top;width:634px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-634 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:52px 25px 16px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:30px;font-weight:600;line-height:33px;text-align:left;color:#ffffff;">FAQ&rsquo;s</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:0px;padding:0px;word-break:break-word;" align="left">
+                                                <table style="cellspacing:0;color:#000000;font-family:Open Sans, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="padding:0px 25px;" valign="top" align="left">
+                                                            <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td style="padding-bottom:15px;" valign="top" align="center">
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td style="width:12px; font-family:Open Sans, Arial, sans-serif; font-size:15px; line-height:26px; color:#ffffff; font-weight:400;" width="12" valign="top" align="left">•</td>
+                                                                                <td style="font-family:Open Sans, Arial, sans-serif; font-size:15px; line-height:26px; color:#ffffff; font-weight:400;" valign="top" align="left"><a href="https://www.chevrontexacobusinesscard.com/faq#why" target="_blank" style="text-decoration:underline; color:#ffffff;">Why is my Business Card program with Chevron and Texaco changing?</a></td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom:15px;" valign="top" align="center">
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td style="width:12px; font-family:Open Sans, Arial, sans-serif; font-size:15px; line-height:26px; color:#ffffff; font-weight:400;" width="12" valign="top" align="left">•</td>
+                                                                                <td style="font-family:Open Sans, Arial, sans-serif; font-size:15px; line-height:26px; color:#ffffff; font-weight:400;" valign="top" align="left"><a href="https://www.chevrontexacobusinesscard.com/faq#newcards" target="_blank" style="text-decoration:underline; color:#ffffff;">Will I be getting new cards?</a></td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom:20px;" valign="top" align="center">
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0" align="left">
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td style="width:12px; font-family:Open Sans, Arial, sans-serif; font-size:15px; line-height:26px; color:#ffffff; font-weight:400;" width="12" valign="top" align="left">•</td>
+                                                                                <td style="font-family:Open Sans, Arial, sans-serif; font-size:15px; line-height:26px; color:#ffffff; font-weight:400;" valign="top" align="left"><a href="https://www.chevrontexacobusinesscard.com/faq#onlineaccount" target="_blank" style="text-decoration:underline; color:#ffffff;">Will my online account be affected?</a></td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="right" style="font-size:0px;padding:0px 25px 30px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:13px;font-weight:600;line-height:16px;text-align:right;text-decoration:underline;color:#ffffff;"><a href="https://www.chevrontexacobusinesscard.com/faq" target="_blank" style="text-decoration:underline; color:#ffffff;">See All FAQs</a></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="font-size:0px;padding:0px 25px;word-break:break-word;">
+                                                <table cellpadding="0" cellspacing="0" width="100%" border="0" style="cellspacing:0;color:#000000;font-family:Open Sans, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
+                                                    <tr>
+                                                        <td height="2" style="line-height:0px; font-size:0px;" bgcolor="#44abe0"><img src="http://www.wexhosted.com/esp_assets/partner/chevron/conversion/spacer.gif" width="1" height="2" alt=" " style="display:block;" border="0" /></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:12px 25px 8px;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:29px;font-weight:400;line-height:34px;text-align:left;color:#ffffff;">What&rsquo;s Next:<br/>
+                                                    <strong>Cards Printed and Shipped</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:0px 25px 55px ;word-break:break-word;">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#ffffff;">We&rsquo;ll send you an email when your cards are being printed, so you know to keep an eye out for them in the mail.</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:700px;" width="700" >
+        <tr>
+            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+    <![endif]-->
+    <div style="background:#54575b;background-color:#54575b;Margin:0px auto;max-width:700px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#54575b;background-color:#54575b;width:100%;">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:22px 21px 0px;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" class="" style="vertical-align:top;width:480px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-480 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td style="font-size:0px;padding:0px 0px 15px;word-break:break-word;" align="left">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:10px;font-weight:400;line-height:13px;text-align:left;color:#ffffff;">
+                                                    Chevron and Texaco Business Card Program, 97 Darling Avenue, South Portland, ME 04106.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:0px;padding:0px 0px 15px;word-break:break-word;" align="left">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:10px;font-weight:400;line-height:13px;text-align:left;color:#ffffff;">
+                                                    CHEVRON, the Chevron Hallmark, TEXACO, the Texaco Logo and TECHRON are registered trademarks of Chevron Intellectual Property LLC.<br/>&copy; Chevron U.S.A. Inc. All rights reserved.<br/>The Chevron and Texaco Business Card Program is administered by WEX Inc. and is not an obligation of Chevron U.S.A. Inc.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:0px;padding:0px 0px 15px;word-break:break-word;" align="left">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:10px;font-weight:400;line-height:13px;text-align:left;color:#ffffff;">Please review our <a href="http://www.wexinc.com/privacy-policy" target="_blank" style="color:#ffffff;">privacy policy</a> for more information about click activity with WEX Inc. and links included in this email.</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:0px;padding:0px 0px 15px;word-break:break-word;" align="left">
+                                                <div style="font-family:Open Sans, Arial, sans-serif;font-size:10px;font-weight:400;line-height:13px;text-align:left;color:#ffffff;">This email was sent to %%EMAILADDRESS%% to inform you about important changes to your Chevron and Texaco Business Card account.</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    <td class="" style="vertical-align:top;width:45px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-45 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    <td align="right" class="" style="vertical-align:top;width:133px;" >
+                    <![endif]-->
+                    <div class="mj-column-px-133 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                        <tr>
+                                            <td align="left" style="font-size:0px;padding:0 0 20px;word-break:break-word;">
+                                                <table align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="width:133px;"> <a href="https://www.chevrontexacobusinesscard.com/about-us/" target="_blank">
+                                                            <img src='http://www.wexhosted.com/esp_assets/partner/chevron/conversion/logo-wex.png' style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="133" height="auto" />
+                                                        </a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+</div>
+</body>
+</html>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

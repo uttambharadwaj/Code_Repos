@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!--[if !mso]><!-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--<![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <style type="text/css">
+            a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+            }
+        </style>
+        <style type="text/css">
+            body {
+            Margin: 0;
+            padding: 0;
+            min-width: 100%;
+            background-color: #e2e3e4;
+            }
+            table {
+            border-spacing: 0;
+            font-family: sans-serif;
+            color: #333333;
+            }
+            td {
+            padding: 0;
+            }
+            img {
+            border: 0;
+            }
+            .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            }
+            .webkit {
+            max-width: 640px;
+            }
+            .outer {
+            Margin: 0 auto;
+            width: 100%;
+            max-width: 640px;
+            background-color: #ffffff;
+            }
+            .inner {
+            padding: 10px 30px;
+            }
+            .innerl {
+            padding: 10px 15px 10px 30px;
+            }
+            .innerr {
+            padding: 10px 30px 10px 15px;
+            }
+            .innerm {
+            padding: 10px;
+            }
+            .contents {
+            width: 100%;
+            }
+            p {
+            Margin: 0;
+            }
+            a {
+            color: #000000;
+            text-decoration: underline;
+            }
+            .h1 {
+            font-size: 40px;
+            font-weight: bold;
+            Margin-bottom: 18px;
+            }
+            .h2 {
+            font-size: 22px;
+            font-weight: normal;
+            Margin-bottom: 12px;
+            }
+            .full-width-image img {
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            }
+            li{
+            margin-bottom: 10px;
+            font-size: 18px;
+            }
+            ul{
+            padding-left: 20px;
+            }
+            .one-column .contents {
+            text-align: left;
+            }
+            .one-column p {
+            font-size: 18px;
+            Margin-bottom: 10px;
+            line-height:24px;
+            }
+            .two-column {
+            text-align: center;
+            font-size: 0;
+            }
+            .two-column .column {
+            width: 100%;
+            display: inline-block;   
+            }
+            .two-column .r1l {
+            max-width: 320px;
+            vertical-align: middle;
+            }
+            .r1l img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            }
+            .two-column .r1r {
+            max-width: 320px;
+            vertical-align: middle;
+            }
+            .r1r img {
+            width: 100%;
+            max-width: 224px;
+            height: auto;
+            }
+            .two-column .contents {
+            font-size: 14px;
+            text-align: left;
+            }
+            .two-column .text {
+            padding-top: 10px;
+            }
+            .two-column .logos-l, .two-column .logos-r{
+            width:50%;
+            }
+            .three-column {
+            text-align: center;
+            font-size: 0;
+            padding: 10px 20px;
+            }
+            .three-column .column {
+            width: 100%;
+            max-width: 186px;
+            display: inline-block;
+            vertical-align: top;
+            }
+            .three-column img {
+            width: 100%;
+            max-width: 180px;
+            height: auto;
+            }
+            .three-column .contents {
+            font-size: 14px;
+            text-align: center;
+            }
+            .three-column .text {
+            padding-top: 10px;
+            }
+            .four-column {
+            text-align: center;
+            font-size: 0;
+            padding: 10px 20px;
+            }
+            .four-column .column {
+            width: 100%;
+            max-width: 140px;
+            display: inline-block;
+            vertical-align: top;
+            }
+            .four-column img {
+            width: 100%;
+            max-width: 130px;
+            height: auto;
+            }
+            .four-column .contents {
+            font-size: 14px;
+            text-align: center;
+            }
+            .four-column .text {
+            padding-top: 10px;
+            }
+            .left-sidebar {
+            text-align: center;
+            font-size: 0;
+            }
+            .left-sidebar .column {
+            width: 100%;
+            display: inline-block;
+            vertical-align: middle;
+            }
+            .left-sidebar .left {
+            max-width: 140px;
+            }
+            .left-sidebar .right {
+            max-width: 460px;
+            }
+            .left-sidebar .img {
+            width: 100%;
+            max-width: 80px;
+            height: auto;
+            }
+            .left-sidebar .contents {
+            font-size: 14px;
+            text-align: center;
+            }
+            .left-sidebar a {
+            color: #85ab70;
+            }
+            .right-sidebar {
+            text-align: center;
+            font-size: 0;
+            }
+            .right-sidebar .column {
+            width: 100%;
+            display: inline-block;
+            vertical-align: middle;
+            }
+            .right-sidebar .left {
+            max-width: 160px;
+            }
+            .right-sidebar .right {
+            max-width: 480px;
+            }
+            .right-sidebar .img {
+            width: 100%;
+            max-width: 80px;
+            height: auto;
+            }
+            .right-sidebar .contents {
+            font-size: 14px;
+            text-align: center;
+            }
+            .right-sidebar a {
+            color: #70bbd9;
+            }
+            .logos-l img, .logos-r img{
+            max-width:100%;
+            }
+            @media screen and (max-width: 400px) {
+            .two-column .r1l,
+            .two-column .r1r,
+            .three-column .column,
+            .four-column .column,
+            .two-column .logos-l,
+            .two-column.logos-r{
+            max-width: 100% !important;
+            }
+            .two-column .logos-l,
+            .two-column .logos-r{
+            width:100%!important;
+            text-align:center;
+            }
+            .two-column img {
+            max-width: 100% !important;
+            }
+            .three-column img {
+            max-width: 50% !important;
+            }
+            .four-column img {
+            max-width: 50% !important;
+            }
+            .inner, .innerl, .innerr {
+            padding: 10px 15px !important;
+            }
+            .four-column, .three-column {
+            padding: 10px 5px !important;
+            }            
+            }
+            @media screen and (min-width: 401px) {
+            .four-column .column {
+            max-width: 50% !important;
+            }
+            .three-column .column {
+            max-width: 33% !important;
+            }
+            .two-column .r1l {
+            max-width: 50% !important;
+            }
+            .two-column .r1r {
+            max-width: 50% !important;
+            }
+            }
+        </style>
+        <!--[if (gte mso 9)|(IE)]>
+        <style type="text/css">
+            table {border-collapse: collapse !important;}
+        </style>
+        <![endif]-->
+    </head>
+    <body style="Margin:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;min-width:100%;background-color:#e2e3e4;">
+        <center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+            <div class="webkit" style="max-width:640px;">
+                <!--[if (gte mso 9)|(IE)]>
+                <table width="640" align="center" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                    <tr>
+                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                            <![endif]-->
+                            <div style="display:none;font-size:1px;color:#e2e3e4;line-height:1px;font-family:sans-serif;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;">
+                                Fuel your business with the Sinclair Fleet Track card and save 10¢ per gallon for 90 days.  Apply today!
+                            </div>
+                            <table class="outer" align="center" style="border-spacing:0;font-family:sans-serif;color:#333333;Margin:0 auto;width:100%;max-width:640px;background-color:#ffffff;">
+                                <!-- CONTENT START -->
+                                <!-- ONE COLUMN -->
+                                <tbody>
+                                    <tr>
+                                        <td class="" style="background-color:#e2e3e4;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="" align="right" style="text-align:right;font-size:11px;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;">
+                                                            <a href="http://app.response.wexinc.com/e/es.aspx?s=~~eloqua..type--emailfield..syntax--siteid..innerText--siteid..encodeFor--url~~&e=~~eloqua..type--emailfield..syntax--elqemailsaveguid..innerText--elqemailsaveguid..encodeFor--url~~&elqTrackId=458c38c3a5134d3f88a3d3b8d5262ba3" style="color:#7f7f7f;text-decoration:underline;">View in browser</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <img src="http://test.wexhosted.com/esp_assets/partner/sinclair/distrib/pilotthomas-201702/logo-fleet-track.png" alt="Sinclair Fleet Track" style="border-width:0;">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="background-color:#00843d;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="color:#ffffff;padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <span class="h1" style="font-size:40px;font-weight:bold;Margin-bottom:18px;">
+                                                                Save 10<sup style="font-size:24px;">¢</sup> per gallon
+                                                                <p class="">
+                                                                    <span class="h2" style="font-size:22px;font-weight:normal;Margin-bottom:12px;">for the first 90 days!<sup>*</sup></span>
+                                                                </p>
+                                                                <p>
+                                                                </p>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <table border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;margin-bottom:0;margin-right:0;margin-left:0;border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td align="center" bgcolor="#00843d" style="-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:14px;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" class="">
+                                                                            <a href="https://onlineservices.secure.force.com/creditapplication/WexBOCA?pgm=sinclairfleettrack&cc=Z3D" class="button_link" style="padding-top:10px;padding-bottom:10px;padding-right:20px;padding-left:20px;display:block;text-decoration:none;text-align:center;font-weight:bold;font-size:22px;font-family:arial, sans-serif;color:#ffffff;background-color:#00843d;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-width:1px;border-style:solid;border-color:#00843d;-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;">
+                                                                            Apply Now
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <span class="h2" style="font-weight:bold;font-size:22px;Margin-bottom:12px;">The Sinclair Fleet Track Card</span>
+                                                            <p style="margin-top:20px;Margin:0;font-size:18px;Margin-bottom:10px;line-height:24px;" class="">Smarter than a credit card and safer than cash, a Sinclair Fleet Track Card is the easy route to faster, convenient fueling for all your business vehicles.</p>
+                                                            <ul style="padding-left:20px;">
+                                                                <li style="margin-bottom:10px;font-size:18px;">Save 10¢ per gallon for 90 days and 4¢ per gallon thereafter<sup>*</sup> on all gallons at over 1,300 Sinclair locations nationwide</li>
+                                                                <li style="margin-bottom:10px;font-size:18px;">Fuel at every major gas station nationwide</li>
+                                                                <li style="margin-bottom:10px;font-size:18px;">Simplify accounting – and much more</li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- TWO COLUMN -->
+                                    <tr>
+                                        <td class="two-column" style="padding-top:20px;padding-bottom:0;padding-right:0;padding-left:0;text-align:center;font-size:0;">
+                                            <!--[if (gte mso 9)|(IE)]>
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                                                <tr>
+                                                    <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <![endif]-->
+                                                        <div class="column r1l" style="width:100%;display:inline-block;max-width:320px;vertical-align:middle;">
+                                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="inner" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;">
+                                                                            <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:left;">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                                            <table border="0" cellpadding="0" cellspacing="0" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td align="center" bgcolor="#00843d" style="-moz-border-radius:10px;-webkit-border-radius:10px;border-radius:10px;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                                                            <a href="https://onlineservices.secure.force.com/creditapplication/WexBOCA?pgm=sinclairfleettrack&cc=Z3D" class="button_link" style="padding-top:10px;padding-bottom:10px;padding-right:20px;padding-left:20px;display:block;text-decoration:none;text-align:center;font-weight:bold;font-size:22px;font-family:arial, sans-serif;color:#ffffff;background-color:#00843d;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-width:1px;border-style:solid;border-color:#00843d;-moz-border-radius:20px;-webkit-border-radius:10px;border-radius:10px;line-height:17px;">
+                                                                                                            Apply Now
+                                                                                                            </a>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="text" style="font-size:18px;padding-bottom:0;padding-right:0;padding-left:0;padding-top:10px;">
+                                                                                            OR Call me at <span style="color:#be2035;font-weight:bold;white-space:nowrap;">{!User.Phone}</span><br><span style="font-size: 13px;">(Mention code Z3D)</span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!--[if (gte mso 9)|(IE)]>
+                                                    </td>
+                                                    <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <![endif]-->
+                                                        <div class="column r1r" style="width:100%;display:inline-block;max-width:320px;vertical-align:middle;">
+                                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="inner" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;">
+                                                                            <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:14px;text-align:left;">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" class="">
+                                                                                            <img src="http://www.wexhosted.com/esp_assets/partner/sinclair/20170306/card.png" width="224" alt="Pilot Thomas Fleet Track Card" style="border-width:0;width:100%;max-width:224px;height:auto;" class="">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!--[if (gte mso 9)|(IE)]>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <![endif]-->
+                                        </td>
+                                    </tr>
+                                    <!-- /TWO COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="padding-top:20px;padding-bottom:20px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <p style="font-size:16px;font-weight:normal;Margin:0;Margin-bottom:10px;line-height:22px;" class="">Sincerely,<br>
+                                                                        {!User.FirstName} {!User.LastName}<br>
+                                                                        {!User.Title}<br>
+                                                                        {!User.Email}<br>
+                                                                        {!User.Phone}</p>
+                                                          </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <p style="font-size:18px;font-weight:bold;Margin:0;Margin-bottom:10px;line-height:24px;" class="">Accepted at over 90% of U.S fueling locations</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- TWO COLUMN -->
+                                    <tr>
+                                        <td class="two-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;text-align:center;font-size:0;">
+                                            <!--[if (gte mso 9)|(IE)]>
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                                                <tr>
+                                                    <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <![endif]-->
+                                                        <div class="column logos-l" style="display:inline-block;width:50%;">
+                                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                            <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:16px;text-align:left;">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                                            <img src="http://test.wexhosted.com/esp_assets/largefleet/20161122gov/logos-row1.png" width="296" alt="" style="border-width:0;max-width:100%;" class="">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!--[if (gte mso 9)|(IE)]>
+                                                    </td>
+                                                    <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <![endif]-->
+                                                        <div class="column logos-r" style="display:inline-block;width:50%;">
+                                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                            <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:16px;text-align:left;">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                                            <img src="http://test.wexhosted.com/esp_assets/largefleet/20161122gov/logos-row2.png" width="296" alt="" style="border-width:0;max-width:100%;" class="">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!--[if (gte mso 9)|(IE)]>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <![endif]-->
+                                        </td>
+                                    </tr>
+                                    <!-- /TWO COLUMN -->
+                                    <!-- TWO COLUMN -->
+                                    <tr>
+                                        <td class="two-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;text-align:center;font-size:0;">
+                                            <!--[if (gte mso 9)|(IE)]>
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
+                                                <tr>
+                                                    <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <![endif]-->
+                                                        <div class="column logos-l" style="display:inline-block;width:50%;">
+                                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                            <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:16px;text-align:left;">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                                            <img src="http://test.wexhosted.com/esp_assets/largefleet/20161122gov/logos-row3.png" width="296" alt="" style="border-width:0;max-width:100%;">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!--[if (gte mso 9)|(IE)]>
+                                                    </td>
+                                                    <td width="50%" valign="top" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+                                                        <![endif]-->
+                                                        <div class="column logos-r" style="display:inline-block;width:50%;">
+                                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                            <table class="contents" style="border-spacing:0;font-family:sans-serif;color:#333333;width:100%;font-size:16px;text-align:left;">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                                            <img src="http://test.wexhosted.com/esp_assets/largefleet/20161122gov/logos-row4.png" width="296" alt="" style="border-width:0;max-width:100%;" class="">
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <!--[if (gte mso 9)|(IE)]>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <![endif]-->
+                                        </td>
+                                    </tr>
+                                    <!-- /TWO COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="padding-top:10px;padding-bottom:10px;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <p style="font-size:16px;Margin:0;Margin-bottom:10px;line-height:24px;">
+                                                                Apply ONLINE – it's easy. Or call me at <span style="white-space:nowrap;">{!User.Phone}</span> to apply by phone!
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- ONE COLUMN -->
+                                    <tr>
+                                        <td class="one-column" style="background-color:#6d6e71;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                            <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="inner contents" style="color:#000000;padding-top:25px;padding-bottom:10px;padding-right:30px;padding-left:30px;width:100%;text-align:left;">
+                                                            <p style="font-size:11px;line-height:14px;Margin:0;Margin-bottom:10px;" class="">* Subject to credit approval. Promotional offer is applicable to new Sinclair Fleet Track Card accounts only. Apply by published apply-by date to receive 10¢ off per gallon at Sinclair locations for the first 90 days, and a waived $10 monthly accounting fee for the life of the account; the promotional period begins the day the account is opened. Rebates will appear as an account credit on the same billing statement with monthly purchases. Standard program volume tiers/fuel rebates will apply after the promotional period ends. Rebates are subject to change at any time without prior notice.
+                                                                Offer code: Z3D<br><br>
+                                                                
+                                                                
+                                                                © Copyright 2017 Sinclair Fleet Track. All rights reserved.<br>
+                                                                97 Darling Avenue | South Portland, ME 04106 | USA
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- /ONE COLUMN -->
+                                    <!-- /CONTENT -->
+                                </tbody>
+                            </table>
+                            <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                    </tr>
+                </table>
+                <![endif]-->
+            </div>
+        </center>
+    </body>
+</html>

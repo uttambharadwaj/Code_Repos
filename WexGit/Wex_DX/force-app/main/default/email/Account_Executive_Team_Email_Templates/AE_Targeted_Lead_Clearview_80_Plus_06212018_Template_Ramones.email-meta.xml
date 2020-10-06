@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Follow Up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AE Targeted Lead Clearview 80 Plus 06212018 Template Ramones</name>
+    <style>none</style>
+    <subject>Follow Up</subject>
+    <textOnly>Hi {!Contact.FirstName} –
+
+This is Ramone Jones from WEX, your fuel card provider. Thank you for your business. Fuel prices recently hit a four year high, and card fraud is on the rise. Many are looking for other ways to save money to offset the impact. I wanted to introduce myself, and let you know that I’ll be reviewing your fueling data closely to uncover some helpful cost savings opportunities for you. I’ll aim to follow up with you early next week with what I find. If you would like to spend 15 minutes to review the details with me, please feel free to send me a date and time to do so. My contact information is below.
+
+Kind Regards,
+
+Ramone Jones
+Account Executive
+WEX Inc.
+97 Darling Avenue, So. Portland, ME 04106
+Office (207) 523-7408
+www.wexinc.com
+
+P.S. -- With summer fuel prices hitting a 4 year high and with hurricane season around the corner, it&apos;s a good idea to remind everyone to use our free mobile app WEX Connect.
+
+Learn how the free WEX Connect app helps drivers find fuel after the storm:
+https://www.wexinc.com/wex-corporate/wex-connect/
+
+See how WEX developed the data visualization tool ClearView in consultation with the managers of some of the nation’s largest and most mission-critical fleets.
+https://youtu.be/oY7eJ8yXgPQ</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

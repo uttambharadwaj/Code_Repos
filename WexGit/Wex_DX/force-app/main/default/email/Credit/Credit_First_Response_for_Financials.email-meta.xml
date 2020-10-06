@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - First Response for Financials</name>
+    <style>freeForm</style>
+    <subject>Initial Request for Financials</subject>
+    <textOnly>WEX Bank
+PO Box 57748
+Salt Lake City, UT 84157-0748
+
+Date: {!Today}
+
+{!Case.Account}
+{!Account.BillingAddress}
+
+
+RE: Initial Request for Information Required for Annual Account Review
+
+Dear {!Case.Contact},
+
+WEX Bank is an FDIC insured financial institution and, as such and pursuant to the terms and conditions of your account, is required to maintain current financial statements on our customers by obtaining them annually. We use these financial statements to properly assess the credit worthiness of your company. This may be the first time you have provided these statements to WEX Bank, but this request will be an annual request going forward.
+
+Annually, a credit review of all large customers is conducted. To facilitate an accurate and expeditious review of your account, please provide the following information by {!TODAY() +30} to the analyst outlined below:
+
+1. Complete set of audited, reviewed, compiled, or internal financial statements for the last two complete fiscal years, including the Income Statement, Cash Flow Statement, Balance Sheet, Statement of Equity and footnotes, and
+
+2. Interim Financial Statements for the current year, if any, including the Income Statement, Cash Flow Statement, Balance Sheet, and footnotes
+
+Note: The financials provided should match the contracting entity. If they do not match, a cross corporate guaranty would be required to use financials for a different legal entity under contract.
+
+This information should be forwarded to {!Case.OwnerFullName} via email {!Case.OwnerEmail}. Please be assured that we consider information provided by you in response to this request to be confidential. We will safeguard such information in accordance with our policies for handling confidential information.
+
+Please note your account will remain at its current credit limit until a credit review can be performed. If we do not receive your financial information in a timely manner, we will have to perform our review on commercial credit information alone. Your current credit limit is a maximum and includes both billed and unbilled purchases. Your service may be temporarily interrupted if your purchasing exceeds the credit limit.
+
+If you have any questions please email {!Case.OwnerFullName} at {!Case.OwnerEmail}.
+
+Sincerely,
+{!Case.OwnerFullName}
+Credit Services
+WEX Bank
+
+The Federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applications on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract), because all or part of the applicant’s income derives from any public assistance program, or because the applicant in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this credit is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.
+
+[0071-102012]</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

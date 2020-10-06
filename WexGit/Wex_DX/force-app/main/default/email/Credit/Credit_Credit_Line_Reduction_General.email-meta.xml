@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>WEX_Bank</letterhead>
+    <name>Credit - Credit Line Reduction (General)</name>
+    <style>freeForm</style>
+    <subject>Re: Credit Line Reduction Notification</subject>
+    <textOnly>Date: {!Today}
+
+
+{!Case.Contact}
+
+{!Case.Account}
+
+{!Account.BillingAddress}
+
+
+Re: Credit Line Reduction Notification
+
+
+Account Number#: *********{!Case.Masked_External_Account__c}
+
+
+Dear {!Case.Contact},
+
+
+Thank you for using the WEX Account for your business needs. As part of a normal credit review process, credit lines are periodically evaluated. Your credit line has been reduced to $NEW CREDIT LINE based on the following reason(s):
+
+
+Slow or delinquent payment history in the last 12 months/NSF’s.
+Actual credit line usage in the last 12 months.
+Updated financial statements have not been received.
+Insufficient financial strength to support original credit line.
+Adverse information received from outside sources.
+Adverse information noted on personal guarantor’s credit report.
+
+Sincerely,
+
+Credit Services
+
+
+WEX Bank
+
+
+
+The federal Equal Credit Opportunity Act prohibits creditors from discriminating against credit applicants on the basis of race, color, religion, national origin, sex, marital status, age (provided the applicant has the capacity to enter into a binding contract); because all or part of the applicant’s income derives from any public assistance program; or because the applicant has in good faith exercised any right under the Consumer Credit Protection Act. The federal agency that administers compliance with this law concerning this creditor is the Federal Deposit Insurance Corporation, FDIC Consumer Response Center, 1100 Walnut St, Box #11, Kansas City, MO 64106.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,51 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif" style="">Good Morning, <o:p></o:p></font></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">&nbsp;</font></p>
+
+<p class="MsoNormal" style=""><font face="Times New Roman, Times, serif">I’m reaching out on behalf of the Chevron and Texaco
+Business Card program and some exiting new regarding your account! Recently
+Chevron has tasked WEX to manage its fleet card program, you should have
+already received some information about the transition, and what it means to
+your business. We wanted to take this time to reach out and learn more about
+how you’re currently utilizing all the benefits your card offers. I’d like to
+setup a time to connect by phone, please let me know what date and time would
+work best to do so. If you’d prefer to communicate electronically please answer
+this brief questionnaire about your account so we can learn how to best serve
+you and your business. <o:p></o:p></font></p><p class="MsoNormal" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoListParagraphCxSpFirst" style=""><font face="Times New Roman, Times, serif">How many cards do you currently use? <o:p></o:p></font></p><p class="MsoListParagraphCxSpMiddle" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoListParagraphCxSpMiddle" style=""><font face="Times New Roman, Times, serif">Do you have one card for each vehicle or
+are your cards assigned to the drivers? <o:p></o:p></font></p><p class="MsoListParagraphCxSpMiddle" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoListParagraphCxSpMiddle" style=""><font face="Times New Roman, Times, serif">Do you allow your drivers to make purchases
+aside from fuel? <o:p></o:p></font></p><p class="MsoListParagraphCxSpMiddle" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoListParagraphCxSpMiddle" style=""><font face="Times New Roman, Times, serif">If yes, what type or purchases are your
+drivers making? <o:p></o:p></font></p><p class="MsoListParagraphCxSpMiddle" style=""><o:p><font face="Times New Roman, Times, serif">&nbsp;</font></o:p></p><p class="MsoNormal" style="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoListParagraphCxSpLast" style=""><font face="Times New Roman, Times, serif">Are you currently utilizing the online tool
+for account management?&nbsp;<o:p></o:p></font></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif">&nbsp;</font></p><p class="MsoNormal" style="">
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;"><font face="Times New Roman, Times, serif" style="">Thank you,</font><font face="Times New Roman, serif" style="font-size: 12pt;"><o:p></o:p></font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><font face="Times New Roman, Times, serif" style=""><br></font></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; margin-bottom: 12pt; line-height: normal;"><span style="font-size: 10pt; font-family: Verdana, sans-serif;"><br>{!User.FirstName} {!User.LastName}&nbsp;<br>{!User.Title}&nbsp;<br>Phone - {!User.Phone}&nbsp;&nbsp;<br>{!User.Email}</span><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; margin-bottom: 12pt; line-height: normal;"><i><span style="font-size: 8pt; font-family: Arial, sans-serif; color: gray;">CONFIDENTIALITY NOTICE: "This message contains confidential information of WEX Inc. It is intended only for the use of the designated recipient(s) stated above and further distribution of the information is prohibited. If you have received this message in error, please notify sender immediately by telephone or reply by e-mail and delete the entire message and any attachments."</span></i><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial; margin-bottom: 12pt; line-height: normal;"><i><span style="font-size: 8pt; font-family: Arial, sans-serif; color: gray;">WEX Inc., 97 Darling Avenue, South Portland, ME 04106</span></i><span style="font-size: 12pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt; font-family: arial;"><i style="font-size: 12pt;"><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: gray;">This is an advertisement from WEX Inc. If you no longer wish to receive future email advertisements from {!User.Email},</span></i><span style="font-size: 11pt; font-family: Calibri, sans-serif; line-height: 16.8667px;"><a href="mailto:info@wexnews.com?subject=Unsubscribe"><i><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: gray;">&nbsp;</span></i><i><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: rgb(51, 51, 255);">email us to unsubscribe</span></i></a></span><i style="font-size: 12pt;"><span style="font-size: 8pt; line-height: 12.2667px; font-family: Arial, sans-serif; color: gray;">. Please be sure to include your name, company name and email address in the email.</span></i></p>]]></td>
+</tr>
+</table>

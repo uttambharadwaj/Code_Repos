@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Engaged Financial</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <portalRole>ENGAGEDFINANCIALLLCPartnerManager</portalRole>
+        <portalRole>ENGAGEDFINANCIALLLCPartnerUser</portalRole>
+    </sharedTo>
+</EmailFolder>

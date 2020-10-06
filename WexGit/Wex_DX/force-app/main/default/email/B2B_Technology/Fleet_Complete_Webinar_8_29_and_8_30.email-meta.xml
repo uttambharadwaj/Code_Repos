@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AT&amp;T Fleet Complete Webinar 8/29 and 8/30</name>
+    <style>none</style>
+    <subject>Upcoming webinar: Learn the difference between AOBRD and ELD regulations</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

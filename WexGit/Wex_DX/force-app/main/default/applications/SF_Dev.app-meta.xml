@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Development support tab for related objects</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>SF Dev</label>
+    <tabs>standard-Case</tabs>
+    <tabs>standard-Solution</tabs>
+    <tabs>MPM4_BASE__Milestone1_Task__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Log__c</tabs>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-Workspace</tabs>
+    <tabs>Dev_Home</tabs>
+    <tabs>Daily_Transaction_Monitoring_Report</tabs>
+    <tabs>CP_Projects__c</tabs>
+    <tabs>FSC_Existing_Exposure__c</tabs>
+    <tabs>WEX_Support_Portal</tabs>
+    <tabs>et4ae5__Configuration__c</tabs>
+</CustomApplication>

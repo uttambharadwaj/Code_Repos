@@ -1,0 +1,16 @@
+{!Contact.FirstName},
+
+Thanks for taking my call today, I enjoyed the opportunity to speak with you about your business.
+
+Wawa has launched a fueling program designed specifically for businesses. It monitors all aspects of your fueling activity to make your drivers more efficient, adds security and controls, and can help reduce unnecessary administrative expenses. See the attached document with all of the details.
+
+Furthermore, depending on your fueling volume, there are opportunities for fuel rebates at Wawa. 
+
+It sounds like it would be beneficial for you to meet with our Fleet Manager, Scott Perkins and his team, to see if the program would be a good fit for your business. What does your availability look like?
+
+Sincerely,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+Phone: {!User.Phone}
+Email: {!User.Email}

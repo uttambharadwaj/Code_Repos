@@ -1,0 +1,10 @@
+Hi {!Opportunity.OwnerFirstName}
+
+The Cross Sell opportunity titled "{!Opportunity.Name}" has been referred by you.
+
+Please follow this link {!Opportunity.Link} to view the opportunity once you have reassigned it to the proper contact person for that product division. 
+
+For more detail on Cross Selling other WEX Products follow the link below to the Cross Sell Process All Record Types
+https://na5.salesforce.com/sfc/p/700000009EOI/a/700000009F8y/KjCvAlRMWkrgcIAd8XXF8..7MqRoHJt9TaPt4StLD4Y
+
+Thank you

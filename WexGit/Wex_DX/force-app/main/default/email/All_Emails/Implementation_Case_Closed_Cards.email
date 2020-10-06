@@ -1,0 +1,11 @@
+{!Case.Account}
+{!Case.ClosedDate}
+
+The case for Account {!Case.Account}  {!Case.Siebel_Oppty__c} has been closed. 
+
+Approved Credit Limit - {!Case.Approved_Credit_Limit__c} 
+
+{!Case.Cards__c} cards  have been ordered. 
+
+Thanks,
+{!Case.OwnerFullName}

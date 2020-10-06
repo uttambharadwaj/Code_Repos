@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Credit Card Skimming Hits Central Florida</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Fleet Manager Value Add 2: Credit Card Skimming Hits Central Florida</name>
+    <style>none</style>
+    <subject>Credit Card Skimming Hits Central Florida</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

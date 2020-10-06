@@ -1,0 +1,26 @@
+{!Contact.FirstName},
+   
+Thank you for taking the time to discuss our newest savings opportunity with Office360°, one of the nation's fastest growing office supply dealers.
+
+I am attaching Office360’s Top 15 Item HOT List, so you can see the program’s savings for yourself. You'll see discounts from 45% to 85% off Manufacturer’s Suggested Retail Price, delivering significant savings on traditional office supplies, coffee and breakroom, cleaning supplies and more. 
+
+With more than 45,000 items available on their site, you are sure to find what you are looking for. Look for our savings dog, Miles, throughout the site as he helps you sniff out additional savings opportunities at the time of check out. 
+
+One of the best features of our partnership is Office360's capability to provide FREE, NEXT-DAY DELIVERY with no minimum order size throughout the continental U.S.
+
+Also, for a limited time get a $10 gift card when your first order from Office360° is at least $100.  
+
+Visit http://truckersb2b.com/Office360 to find out more, to register for an account, and to give our newest vendor partner a try today!
+
+For your reference, your TruckersB2B Member ID is {!Account.Member_ID__c} 
+(This will be asked for on the sign up page to link your account).
+ 
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

@@ -1,0 +1,26 @@
+Dear {!NullValue(Contact.FirstName,"Member")},
+
+Thank you for taking the time to discuss nationwide emergency road services from InterStar North America.  A Representative from InterStar will contact you within 48 hours to discuss a breakdown service that will work best for your needs.
+
+For over 25 years, InterStar has provided quality services and consistent pricing to the transportation industry through their managed vendor network.  Here are just a few of the benefits of InterStar:
+
+- Nationwide coverage
+- Flat rate pricing
+- Quality services backed by a warranty
+- Managed vendor network
+- No cost to join and no monthly or annual fees
+- Rebates from TruckersB2B on every repair
+…and more!
+
+Again, thank you for your interest, and an InterStar Representative will be in touch with you shortly.  In the meantime, should you have any questions, please feel free to contact me.
+
+
+Thank you,
+
+{!User.FirstName} {!User.LastName}
+{!User.Title}
+{!User.Phone}
+{!User.Email}
+
+Connect with us »» 
+Facebook.com/TruckersB2B | Twitter.com/TruckersB2B

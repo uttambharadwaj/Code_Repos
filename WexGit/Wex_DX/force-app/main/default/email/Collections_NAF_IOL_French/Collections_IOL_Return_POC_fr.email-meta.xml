@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Collections_NAF</letterhead>
+    <name>Collections - IOL - Return - POC (fr)</name>
+    <style>freeForm</style>
+    <subject>Re: {!Case.Account} - No de compte: *********{!Case.Masked_External_Account__c}</subject>
+    <textOnly>Numéro de Dossier: {!Case.CaseNumber}
+
+Bonjour {!Case.Account}:
+
+Veuillez répondre directement à ce courriel en joignant une preuve de paiement. Voici les deux preuves de paiement admises :
+
+Une saisie d’écran affichant le prélèvement sur votre compte bancaire. La transaction doit être inscrite au compte, elle ne doit pas être en attente. De plus, le solde de votre compte bancaire doit être positif après la transaction.
+
+
+
+Exemple :
+
+DATE
+
+TYPE
+
+DESCRIPTION
+
+DÉBIT
+
+CRÉDIT
+
+SOLDE QUOTIDIEN
+
+02/24/19
+
+Prélèvement
+
+Paiement : example.com
+
+63,00 $
+
+
+3 267,00 $
+
+02/17/19
+
+Prélèvement
+
+Paiement : WEX BANK
+
+1 000,00 $
+
+
+3 332,00 $
+
+02/11/19
+
+Dépôt
+
+Dépôt de chèque #9876
+
+
+3 000,00 $
+
+4332,00
+
+
+
+OU
+
+Une lettre officielle avec en-tête de votre banque contenant les renseignements suivants :
+
+- Confirmation du prélèvement sur votre compte bancaire avec un solde positif après la transaction
+
+- Date de la transaction
+
+- Montant de la transaction
+
+
+- Coordonnées de la banque au cas où nous aurions des questions
+
+
+
+Comptes clients et gestion du crédit
+
+{!Case.Collections_Phone_Number__c}
+
+---
+
+Cette communication par e-mail (y compris les pièces jointes) est destinée uniquement à être utilisée par la personne ou l&apos;entité nommée ci-dessus et est considérée comme confidentielle. Si vous n&apos;êtes pas le destinataire prévu, ni l&apos;employé ou l&apos;agent chargé de le remettre au destinataire prévu, vous devez immédiatement arrêter de lire ce message et le supprimer de votre système. Toute lecture, distribution, copie ou autre utilisation non autorisée de cette communication (ou de ses pièces jointes) est strictement interdite.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

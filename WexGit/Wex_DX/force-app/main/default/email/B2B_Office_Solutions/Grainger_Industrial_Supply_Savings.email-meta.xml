@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Grainger Operations Product Savings</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Grainger Operations Product Savings</name>
+    <style>none</style>
+    <subject>Operations Products from Grainger</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

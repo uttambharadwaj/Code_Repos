@@ -1,0 +1,51 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style='font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman"; mso-bidi-font-style: italic;'><font face="Calibri">Dear {!Contact.FirstName},</font></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="background: white; font-size: 12pt; mso-bidi-font-family: Arial;"><font face="Calibri">We still need the following documentation to confirm
+your Esso Business Card account:</font></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><i><span style="background: white; font-size: 12pt; mso-bidi-font-family: Arial;"><font face="Calibri">- &lt;type document needed
+here&gt; document with physical address such as a utility bill.</font></span></i></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="background: white; font-size: 12pt; mso-bidi-font-family: Arial;"><font face="Calibri">WEX is classified as a financial institution and just
+like all banks, is subject to regulatory&nbsp;requirements. Federal law
+requires all financial institutions to obtain a business’s
+physical&nbsp;address and tax ID information.</font></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><span style="background: white; font-size: 12pt; mso-bidi-font-family: Arial; mso-bidi-font-size: 11.0pt;"><font face="Calibri">If you should have any
+additional questions, please call our Customer Service team at 1-888-292-4659.&nbsp;</font></span></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><font face="Calibri"><i><span style='font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial;'>Sincerely,&nbsp;<br>
+<br>
+{!User.FirstName} {!User.LastName}&nbsp;<br>
+{!User.Title}&nbsp;<br>
+Phone - {!User.Phone}&nbsp;<br>
+Fax - {!User.Fax}&nbsp;<br>
+</span></i><i><span style='font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: "Times New Roman";'>{!User.Email}</span></i><i><span style='font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial;'>&nbsp;</span></i></font></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><i><span style='font-size: 12pt; mso-fareast-font-family: "Times New Roman"; mso-bidi-font-family: Arial;'><font face="Calibri">&nbsp;</font></span></i></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><i><span style="background: white; color: rgb(191, 191, 191); font-size: 8pt; mso-themecolor: background1; mso-themeshade: 191; mso-style-textfill-fill-color: #BFBFBF; mso-style-textfill-fill-themecolor: background1; mso-style-textfill-fill-alpha: 100.0%;"><font face="Calibri">©2019
+Esso Business Card Services. All rights reserved. </font></span></i></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><i><span style="background: white; color: rgb(191, 191, 191); font-size: 8pt; mso-themecolor: background1; mso-themeshade: 191; mso-style-textfill-fill-color: #BFBFBF; mso-style-textfill-fill-themecolor: background1; mso-style-textfill-fill-alpha: 100.0%;"><font face="Calibri">Esso
+Business Card Services, 97 Darling Avenue, South Portland, ME 04106</font></span></i></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><font face="Calibri"><i><span style="background: white; color: rgb(191, 191, 191); font-size: 8pt; mso-themecolor: background1; mso-themeshade: 191; mso-style-textfill-fill-color: #BFBFBF; mso-style-textfill-fill-themecolor: background1; mso-style-textfill-fill-alpha: 100.0%;">Esso
+is a registered trademark of Imperial Oil Limited. Imperial Oil, Licensee. The
+Esso Business Card Program is administered by WEX Inc. We respect your privacy.
+Please review our </span></i><i style="mso-bidi-font-style: normal;"><span style="color: rgb(9, 49, 251); font-size: 8pt;"><a href="https://protect-us.mimecast.com/s/hdZAC1wz14cMlX96iYoug5?domain=app.response.wexinc.com" target="_blank"><span style="color: rgb(9, 49, 251); mso-bidi-font-family: Arial;">privacy
+policy</span></a><span style="word-spacing: 0px; float: none; orphans: 2; widows: 2; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"> </span></span></i><i style="mso-bidi-font-style: normal;"><span style="color: rgb(191, 191, 191); font-size: 8pt; mso-themecolor: background1; mso-themeshade: 191; mso-style-textfill-fill-color: #BFBFBF; mso-style-textfill-fill-themecolor: background1; mso-style-textfill-fill-alpha: 100.0%;">for more information
+about click activity with WEX Inc. and links included in this email. </span></i></font></p><font face="Times New Roman">
+
+</font><p style="margin: 0in 0in 12pt 0.25in; line-height: normal;"><font face="Calibri"><i style="mso-bidi-font-style: normal;"><span style="color: rgb(191, 191, 191); font-size: 8pt; mso-themecolor: background1; mso-themeshade: 191; mso-style-textfill-fill-color: #BFBFBF; mso-style-textfill-fill-themecolor: background1; mso-style-textfill-fill-alpha: 100.0%;">If you no longer wish to receive email messages about Esso Business
+Cards, you may instantly </span></i><i style="mso-bidi-font-style: normal;"><span style="color: rgb(9, 49, 251); font-size: 8pt;"><a href="https://protect-us.mimecast.com/s/GQ9vC2kA4WspgQ9VcMHTi9?domain=app.response.wexinc.com" target="_blank"><span style="color: rgb(9, 49, 251); mso-bidi-font-family: Arial;">unsubscribe</span></a></span></i><i style="mso-bidi-font-style: normal;"><span style="font-size: 8pt;"><span style="word-spacing: 0px; float: none; orphans: 2; widows: 2; font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">. <span style="color: rgb(191, 191, 191); mso-themecolor: background1; mso-themeshade: 191; mso-style-textfill-fill-color: #BFBFBF; mso-style-textfill-fill-themecolor: background1; mso-style-textfill-fill-alpha: 100.0%;">Any unsubscription
+request will be honored within ten business days of receipt. </span></span></span></i></font></p><font face="Times New Roman">
+
+</font>]]></td>
+</tr>
+</table>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Advises the approver that an approval has been assigned to them</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AU Fuel Direct Pricing Approval Notification</name>
+    <style>none</style>
+    <subject>Opportunity {!Opportunity.Name} needs your review for approval</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

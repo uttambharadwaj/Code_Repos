@@ -1,0 +1,44 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!Contact.FirstName},</span><o:p></o:p></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt"><span style="font-size: 10pt; font-family: Arial, sans-serif;">It's been
+a pleasure working with you to implement the CITGO Fleet program. </span><o:p></o:p></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Do you
+have any business contacts that could use help saving on fuel for their
+vehicles? I am always looking to grow my network and help businesses save with
+CITGO.</span><o:p></o:p></p>
+
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial, sans-serif;">As
+always, I am available if anything comes up. Remember that we also have 24/7
+customer service at 1-866-926-5615, and you can also pull reports, add and
+delete cards and drivers anytime on your online account at </span><a href="https://www.wextools.com/distrib/?source=citgo" title="Check your account online"><span style="mso-bidi-font-size:7.5pt;
+font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:
+minor-latin;mso-bidi-font-family:Calibri;mso-bidi-theme-font:minor-latin;
+color:#276D91">CITGO Fleet Online</span></a><span style="font-size: 10pt; font-family: Arial, sans-serif;">. </span><o:p></o:p></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Sincerely, </span><o:p></o:p></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!User.FirstName}</span><o:p></o:p></p>
+
+<p class="MsoNormal" style="mso-margin-top-alt:auto;margin-bottom:12.0pt"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!User.FirstName} {!User.LastName} <br>
+{!User.Title} <br>
+Phone - {!User.Phone} <br>
+Fax - {!User.Fax} <br>
+{!User.Email}</span><o:p></o:p></p>
+
+<p class="MsoNormal"><span style="font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p><span style="font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</span></p>
+
+<p><span style="font-size:8.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;mso-ascii-theme-font:
+minor-latin;mso-hansi-theme-font:minor-latin;color:#595959;mso-themecolor:text1;
+mso-themetint:166">©2016 CITGO Petroleum. <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:12.0pt"><span style="font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;
+mso-ascii-theme-font:minor-latin;mso-hansi-theme-font:minor-latin;mso-bidi-font-family:
+Arial;color:#595959;mso-themecolor:text1;mso-themetint:166">&nbsp;</span></p>]]></td>
+</tr>
+</table>
