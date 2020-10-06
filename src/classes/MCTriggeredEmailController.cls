@@ -26,7 +26,6 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     public List<SelectOption> mcTriggeredEmailKeys { get; set; }
     private List<sObject> triggeredEmailKeyObj { get; set; }
     private MC_Triggered_Email__mdt triggeredEmailConfig;
-    private List<MC_Triggered_Email_Key_Validations__mdt> emailKeyValidations { get; set; }
     private sObject selectedEmailKeyObj;
 
     public Map<String, Object> subscriberAttributes;
@@ -139,19 +138,6 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                     commonFields.add(field);
                 }
             }
-        }
-
-        // Get any email key specific validations
-        this.emailKeyValidations = [
-                SELECT Field__c, Operator__c, Value__c, Error_Message__c
-                FROM MC_Triggered_Email_Key_Validations__mdt
-                WHERE MC_Triggered_Email_Key__c = :(Id)selectedEmailKeyObj.get('Id')
-                AND Field__c != NULL
-                AND Operator__c != NULL
-                AND Error_Message__c != NULL
-        ];
-        for (MC_Triggered_Email_Key_Validations__mdt emailKeyValidation : emailKeyValidations) {
-            pageObjFields.add(emailKeyValidation.Field__c);
         }
 
         try {
