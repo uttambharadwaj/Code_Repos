@@ -21,7 +21,7 @@ jobs:
         run: 'echo ${{secrets.DEVHUB_TOKEN}} > token.txt'
     
       - name: Dump token.txt
-        run: 'echo token.txt'
+        run: 'cat token.txt'
         
       - name: Install Salesforce CLI
         run: |
