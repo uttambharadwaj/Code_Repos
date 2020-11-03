@@ -19,6 +19,9 @@ jobs:
       - uses: actions/checkout@v2              
       - name: Write the token into a file
         run: 'echo ${{secrets.DEVHUB_TOKEN}} > token.txt'
+    
+      - name: Dump token.txt
+        run: 'echo token.txt'
         
       - name: Install Salesforce CLI
         run: |
