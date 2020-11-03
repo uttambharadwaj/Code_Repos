@@ -23,5 +23,5 @@ jobs:
           sfdx-auth-url: ${{ secrets.DEVHUB_TOKEN }}
    
      # Create Scratch Org 
-      - name: Create scratch org
-        run: 'sfdx force:org:create -f config/project-scratch-def.json -a my-scratch'
+      - name: List orgs
+        run: 'sfdx force:org:list'
