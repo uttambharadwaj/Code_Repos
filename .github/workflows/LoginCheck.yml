@@ -33,7 +33,7 @@ jobs:
           ./sfdx-cli/install
           
      # Authorize Dev Hub
-     - name: Auth with the DevHub
+      - name: Auth with the DevHub
         run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
       
      # Create Scratch Org 
