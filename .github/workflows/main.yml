@@ -16,12 +16,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - name: Salesforce SFDX CLI Action
-        uses: sfdx-actions/setup-sfdx@v1
-        with:
-        # Authorize a Salesforce org using an SFDX auth URL
-          sfdx-auth-url: ${{ secrets.DEVHUB_TOKEN }}
+      - uses: actions/checkout@v2              
+      - name: Write the token into a file
+        run: 'echo ${{ secrets.DEVHUB_TOKEN}} > token.txt'
+        
+      - name: Install Salesforce CLI
+        run: |
+          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+          mkdir sfdx-cli
+          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+          ./sfdx-cli/install
+          
+      - name: Auth with the DevHub
+        run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
    
-     # Create Scratch Org 
+     # List Orgs 
       - name: List orgs
         run: 'sfdx force:org:list'
