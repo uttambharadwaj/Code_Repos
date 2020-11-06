@@ -20,7 +20,7 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            branch: 'release-notes'
+            branch: 'Testing/Master-ProdCheck'
       - uses: actions/checkout@v2              
       - name: Write the token into a file
         run: 'echo ${{secrets.DEVHUB_TOKEN}} > token.txt'
@@ -35,15 +35,9 @@ jobs:
      #  Authorize with DevHub
       - name: Auth with DevHub
         run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
-   
-     # Creating Scratch
-      - name: Create scratch org
-        run: 'sfdx force:org:create -f config/project-scratch-def.json -a my-scratch -w 12'
      
-     # List Orgs 
-      - name: List orgs
-        run: 'sfdx force:org:list'
-
-     # Delete Scratch Org
-      - name: Delete scratch org
-        run: 'sfdx force:org:delete -u my-scratch --noprompt'
+     # Create a folder to dump the incoming source
+      - name: Create Folder
+        run: |
+            sudo apt-get install tree
+            tree
