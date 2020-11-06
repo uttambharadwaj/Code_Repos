@@ -34,10 +34,7 @@ jobs:
       
      #  Authorize with DevHub
       - name: Auth with DevHub
-        run: 'sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d'
-     
-     # Create a folder to dump the incoming source
-      - name: Create Folder
         run: |
             pwd
-            sfdx force:mdapi:retrieve -r orgDump
+            sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d
+            sfdx force:mdapi:retrieve -r ../orgDump
