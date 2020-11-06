@@ -86,14 +86,6 @@
   </types>
   <types>
     <members>*</members>
-    <name>Dashboard</name>
-  </types>
-  <types>
-    <members>*</members>
-    <name>Document</name>
-  </types>
-  <types>
-    <members>*</members>
     <name>DuplicateRule</name>
   </types>
   <types>
@@ -197,11 +189,12 @@
     <name>RemoteSiteSetting</name>
   </types>
   <types>
-    <members>*</members>
+    <members>Service_Operations</members>
+    <members>Service_Operations/GSA_Driver_Actions_Daily</members>
     <name>Report</name>
   </types>
   <types>
-    <members>*</members>
+    <members>GSA_Driver_Action_Report_Type</members>
     <name>ReportType</name>
   </types>
   <types>
