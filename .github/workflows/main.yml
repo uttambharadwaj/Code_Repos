@@ -36,5 +36,5 @@ jobs:
       - name: Auth with DevHub
         run: |
             pwd
-            sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d
+            sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d -s
             sfdx force:mdapi:retrieve -r ../orgDump
