@@ -1,0 +1,28 @@
+{
+  "orgName": "Shaped Org",
+  "sourceOrg": "00D700000009EOIEA2",
+  "hasSampleData": false,
+  "features": [
+    "Communities",
+    "CustomerCommunityPlus",
+    "CustomerCommunity",
+    "DefaultWorkflowUser",
+    "ForceComPlatform",
+    "MultiCurrency",
+    "ProcessBuilder",
+    "RecordTypes",
+    "Sites",
+    "Workflow"
+  ],
+  "settings": {
+        "communitiesSettings": {
+            "enableNetworksEnabled": true
+        },
+        "chatterSettings": {
+            "enableChatter": true
+        },
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        }
+    }
+}
