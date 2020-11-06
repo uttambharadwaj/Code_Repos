@@ -30,22 +30,6 @@
   </types>
   <types>
     <members>*</members>
-    <name>BrandingSet</name>
-  </types>
-  <types>
-    <members>*</members>
-    <name>CallCenter</name>
-  </types>
-  <types>
-    <members>*</members>
-    <name>CampaignInfluenceModel</name>
-  </types>
-  <types>
-    <members>*</members>
-    <name>CleanDataService</name>
-  </types>
-  <types>
-    <members>*</members>
     <name>Community</name>
   </types>
   <types>
