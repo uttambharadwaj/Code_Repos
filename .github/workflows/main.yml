@@ -37,7 +37,9 @@ jobs:
         run: |
             pwd
             sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d -s
-            sfdx force:mdapi:retrieve -r ../orgDump -k package-1.xml
             sfdx force:mdapi:retrieve -r ../orgDump -k package-2.xml
+            unzip ../orgDump/unpackaged.zip -d ../master
             sfdx force:mdapi:retrieve -r ../orgDump -k package-3.xml
+            unzip ../orgDump/unpackaged.zip -d ../master
             sfdx force:mdapi:retrieve -r ../orgDump -k package-4.xml
+            unzip ../orgDump/unpackaged.zip -d ../master
