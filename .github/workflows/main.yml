@@ -37,12 +37,13 @@ jobs:
         run: |
             pwd
             sfdx force:auth:sfdxurl:store -f token.txt -a DevHub -d -s
-            sfdx force:mdapi:retrieve -r ../orgDump -k package-2.xml
+            sfdx force:mdapi:retrieve -r ../orgDump -k package-4.xml
             unzip -o ../orgDump/unpackaged.zip -d ../master
-            sfdx force:mdapi:retrieve -r ../orgDump -k package-3.xml
-            unzip -o ../orgDump/unpackaged.zip -d ../master
+            git commit
+            git push
  #           sfdx force:mdapi:retrieve -r ../orgDump -k package-4.xml
  #           unzip -o ../orgDump/unpackaged.zip -d ../master
+ 
             
       - name: Check contents of folder
         run: |
